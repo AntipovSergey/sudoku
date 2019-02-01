@@ -8,11 +8,11 @@ const sudoku = require('./sudoku');
 // so we should remove them.
 
 function sudokuParse(content) {
-    //console.log(content);
+ 
     let firstLine = content.split('\n')[0];
-    console.log(firstLine);
+    content = firstLine;
 
-
+   
     return  content;
 }
 
@@ -34,4 +34,3 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
 	}
 
 });
-
