@@ -7,7 +7,7 @@ function solve(boardString) {
 	let count = 0;
 	let str = [];
 	let boardFirst = [];
-	for(let i = 0; i <= 81; i++){
+	for(let i = 0; i <= boardString.length; i++){
 		if(count == 9) {
 			boardFirst.push(str.slice(0, 9))
 			count = 0;
