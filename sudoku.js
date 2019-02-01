@@ -32,3 +32,20 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+function getSquare(arr, row, col) {
+	let newArr = [];
+	xSquare = Math.floor(row / 3)
+	ySquare = Math.floor(col / 3)
+  
+	for (let r = 0; r < 9; r++) {
+	  if (Math.floor(r / 3) === xSquare) {
+		for (let c = 0; c < 9; c++) {
+		  if (Math.floor(c / 3) === ySquare) {
+			newArr.push(arr[r][c])
+		  }
+		}
+	  }
+	}
+	return newArr;
+  }
