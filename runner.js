@@ -9,11 +9,11 @@ const sudoku = require('./sudoku');
 
 function sudokuParse(content) {
     //console.log(content);
-    let firstLine = content.split('\n')[0];
+    let firstLine = content.split('\n')[15];
     console.log(firstLine);
 
 
-    return  content;
+    return  firstLine;
 }
 
 
@@ -24,10 +24,12 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
 
     let boardString = sudokuParse(data);  
 
+    console.log(boardString)
+
     let solvedBoard = sudoku.solve(boardString);
 	if(sudoku.isSolved(solvedBoard)) {
 	  console.log("The board was solved!");
-	  console.log(sudoku.prettyBoard(solved_board));
+	  sudoku.prettyBoard(solvedBoard);
 	}
 	else {
 	  console.log("The board wasn't solved :(");
