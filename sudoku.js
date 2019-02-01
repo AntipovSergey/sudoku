@@ -26,6 +26,42 @@ function prettyBoard(board) {
 
 }
 
+//Переворачивает матрицу
+function transpose(arr) {
+    return a[0].map(function (_, c) { return a.map(function (r) { return r[c]; }); });
+}
+
+//Принимает i-й массив. Определяет есть ли число в строке.
+function includeInRow(arrRow, num) {
+	return arrRow.includes(num);
+}
+
+//Принимает index столбца. Определяет есть ли число в столбце.
+function includeInCol(arr, index, num) {
+	let newArr = transpose(arr);
+
+	return newArr[index].includes(num);
+}
+
+//Принимает массив из значений в квадрате. Определяет есть ли число в квадрате.
+function includeInSquare(arrSquare, num) {
+	return arrSquare.includes(num);
+}
+
+//Принимает исходный массив. Расставляет числа по ячейкам.
+function setNumbers(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		
+	}
+
+	return newArr;
+}
+
+function parseBoard(arr) {
+
+	return arr.split('');
+}
+
 
 module.exports = {
 	solve: solve,
