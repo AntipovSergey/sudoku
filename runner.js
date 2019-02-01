@@ -8,11 +8,11 @@ The sudoku puzzles that your program will solve can be found
 
 // 
 function sudokuParse(content) {
-    //console.log(content);
+ 
     let firstLine = content.split('\n')[0];
-    console.log(firstLine);
+    content = firstLine;
 
-
+   
     return  content;
 }
 
@@ -34,4 +34,3 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
 	}
 
 });
-

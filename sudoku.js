@@ -4,7 +4,19 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+	let count = 0;
+	let str = [];
+	let boardFirst = [];
+	for(let i = 0; i <= boardString.length; i++){
+		if(count == 9) {
+			boardFirst.push(str.slice(0, 9))
+			count = 0;
+			str.splice(0, 81);
+		}
+		str.push(boardString[i]);
+		count++;
+	}	
+	return boardFirst
 }
 
 
