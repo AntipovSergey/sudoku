@@ -12,9 +12,35 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
 
+function isSolved(argSolvedBoard) {
+	for (i = 0; i < argSolvedBoard.length; i++) {
+		for (j = 0; j < argSolvedBoard.length; j++) {
+			if (testPassed(checkLine(j, argSolvedBoard))) {
+				if (testPassed(checkColumn(i, argSolvedBoard))) {
+					if (testPassed(checkSquare(makeSquare(argSolvedBoard, i, j)))) {
+
+
+					}
+				}
+				else return false;
+			}
+			else return false;
+		}
+	}
+	return true;
 }
+
+function testPassed(solvedArray) {
+	for (let key in solvedArray) {
+		if (solvedArray[key] > 1) {
+			return false
+		}
+	}
+	return true
+}
+
+
 
 
 // Takes in a board in some form and
@@ -84,28 +110,53 @@ function stringToArray(boardString) {
 // console.log(checkLine(strinToEnter));
 
 
-let bigArray = stringToArray('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
-// console.log(bigArray);
-function checkColumn(argArray) {
-	console.log(argArray);
+
+
+
+function checkColumn(ColumnNumber, InputArray) {
 	let result = {};
 	let baseDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	for (let i = 0; i < baseDigits.length; i++) {
-		for (let j = 0; j < argArray.length; j++) {
-			// console.log(`  baseDigits[i]   ${baseDigits[i] }     argArray[j]) ${argArray[j][0]} `);
-			if (baseDigits[i] == argArray[j][0]) {
-				console.log(result[baseDigits[i]]);
+		for (let j = 0; j < InputArray.length; j++) {
+			if (baseDigits[i] == InputArray[j][ColumnNumber]) {
 				if (isNaN(result[baseDigits[i]])) {
-					console.log(result[baseDigits[i]]);
 					result[baseDigits[i]] = 1;
 				}
 				else {
 					result[baseDigits[i]] = result[baseDigits[i]] + 1;
 				}
-				console.log(result[baseDigits[i]]);
 			}
 		}
 	}
 	return result;
 }
-console.log(checkColumn(bigArray));
+
+let bigArray = stringToArray('1-5822----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+
+function checkLine(NumberOfString, InputArray) {
+	let baseDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+	let result = {};
+	for (i = 0; i < baseDigits.length; i++) {
+		for (let j = 0; j < InputArray[NumberOfString].length; j++) {
+			if (baseDigits[i] == InputArray[NumberOfString][j]) {
+				if (isNaN(result[baseDigits[i]])) {
+
+					result[baseDigits[i]] = 1;
+				}
+				else {
+					result[baseDigits[i]] = result[baseDigits[i]] + 1;
+				}
+
+			}
+		}
+	}
+	return result
+}
+
+console.log(bigArray);
+console.log("");
+console.log(checkColumn(4, bigArray));
+console.log("");
+console.log(checkLine(0, bigArray));
+
+
