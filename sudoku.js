@@ -45,9 +45,35 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
 
+function isSolved(argSolvedBoard) {
+	for (i = 0; i < argSolvedBoard.length; i++) {
+		for (j = 0; j < argSolvedBoard.length; j++) {
+			if (testPassed(checkLine(j, argSolvedBoard))) {
+				if (testPassed(checkColumn(i, argSolvedBoard))) {
+					if (testPassed(checkSquare(makeSquare(argSolvedBoard, i, j)))) {
+
+
+					}
+				}
+				else return false;
+			}
+			else return false;
+		}
+	}
+	return true;
 }
+
+function testPassed(solvedArray) {
+	for (let key in solvedArray) {
+		if (solvedArray[key] > 1) {
+			return false
+		}
+	}
+	return true
+}
+
+
 
 
 // Takes in a board in some form and
@@ -90,7 +116,6 @@ function checkSquare(boardSmallArray) {
 
 }
 
-console.log(checkSquare('1-58-2---'))
 
 function makeSquare(boardArray, numberColumn, numberRow) {
 	let startX = Math.floor(numberColumn / 3) * 3;
@@ -144,8 +169,6 @@ function fullPossibleAnswers(boardArray, x, y) {
 }
 
 
-
-
 function checkColumn(ColumnNumber, InputArray) {
 	let result = {};
 	let baseDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -164,6 +187,7 @@ function checkColumn(ColumnNumber, InputArray) {
 	return result;
 }
 
+
 function checkLine(NumberOfString, InputArray) {
 	let baseDigits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	let result = {};
@@ -171,18 +195,18 @@ function checkLine(NumberOfString, InputArray) {
 		for (let j = 0; j < InputArray[NumberOfString].length; j++) {
 			if (baseDigits[i] == InputArray[NumberOfString][j]) {
 				if (isNaN(result[baseDigits[i]])) {
+
 					result[baseDigits[i]] = 1;
 				}
 				else {
 					result[baseDigits[i]] = result[baseDigits[i]] + 1;
 				}
+
 			}
 		}
 	}
 	return result
 }
-
-
 
 
 
