@@ -1,12 +1,12 @@
 const fs = require('fs');
 const sudoku = require('./sudoku');
-
-// The sudoku puzzles that your program will solve can be found
+The sudoku puzzles that your program will solve can be found
 // in the sudoku_puzzles.txt file.
 //
 // Remember, the file has newline characters at the end of each line,
 // so we should remove them.
 
+// 
 function sudokuParse(content) {
     //console.log(content);
     let firstLine = content.split('\n')[0];
