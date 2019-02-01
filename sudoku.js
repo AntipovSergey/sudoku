@@ -14,7 +14,7 @@ function solve(boardString) {
 			count = 0;
 			str.splice(0, 81);
 
-			
+
 		}
 		str.push(boardString[i]);
 		count++;
@@ -65,11 +65,12 @@ function getSquare(arr, row, col) {
 //Принимает исходный массив. Расставляет числа по ячейкам.
 function setNumbers(arr) {
 	for (let i = 0; i < arr.length; i++) {
-		for (let j = 0; j < arr[i].length; j++)	{
+		for (let j = 0; j < arr[i].length; j++) {
 			let elem = arr[i][j];
 			if (elem === '-') {
 				for (let n = 1; n <= 9; n++) {
 					let arrSquare = getSquare(arr, i, j);
+					//console.log(arrSquare);
 					if (includeInSquare(arrSquare, n)) {
 						continue;
 					} else if (includeInRow(arr[i], n)) {
@@ -86,9 +87,41 @@ function setNumbers(arr) {
 
 	return arr;
 }
+
+function includesInPosition(arr, num) {
+	let position = 0;
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr[i].length; j++) {
+			let elem = arr[i][j];
+			if (num === elem) {
+				if (j === position) {
+					return true;
+				} else {
+					position = j;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+function getQuaresArray(arr) {
+	let newArr = [];
+
+	for (let x = 0; x < 9; x += 3) {
+		for (let y = 0; y < 9; y += 3) {
+			newArr.push(getSquare(arr, x, y));
+		}
+	}
+	return newArr;
+}
+
 let a = solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
 
+
+
 console.log(setNumbers(a));
+
 // module.exports = {
 // 	solve: solve,
 // 	isSolved: isSolved,
