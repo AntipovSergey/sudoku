@@ -1,5 +1,10 @@
 boardString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 
+let boardArray = createBoardArray(boardString);
+let squreImposiible = getPresentNumbersSquare(boardArray);
+let horImpossible = checkHor(boardArray);
+let vertImpossible = checkVert(boardArray);
+
 function createBoardArray(boardString) {
 	let boardArray = [];
 	let n = 0;
@@ -13,15 +18,12 @@ function createBoardArray(boardString) {
 	return boardArray;
 }
 
-	let boardArray = createBoardArray(boardString);
-	let presentNumbersSquare = [];
-
 function getPresentNumbersSquare(boardArray) {
+	let presentNumbersSquare = [];
 	//presentNumbersSquare.push([]);
 	let subArrayCounter = 0;
 	let offsetX = 0;
 	let offsetY = 0;
-
 	while (offsetY < 9 ){
 		while (offsetX < 9 ) {
 			presentNumbersSquare.push([]);
@@ -41,23 +43,13 @@ function getPresentNumbersSquare(boardArray) {
 	return presentNumbersSquare;
 }
 
-let actualNumbersSquare = getPresentNumbersSquare(boardArray);
-//console.log(actualNumbersSquare);
-
-
-
-
-
 function checkHor(arr) { // выдаёт невозможные значения по горизонтали
+	let returnArray = [];
 	for (let i = 0; i < 9; i++) {
-		arr[i] = arr[i].join().match(/\d/g);
+		returnArray[i] = arr[i].join().match(/\d/g);
 	}
-	return arr;
+	return returnArray;
 }
-
-let impossibleHorisontal = checkHor(boardArray);
-//console.log(impossibleHorisontal);
-
 
 function checkVert(arr) { // выдаёт невозможные значения по вертикали
 	let vertArr = [];
@@ -73,30 +65,8 @@ function checkVert(arr) { // выдаёт невозможные значени�
 	return vertArr;
 } 
 
-	let impossibleVertical = checkHor(boardArray);
-	console.log(impossibleVertical);
-
-
-
-
-	for (let i = 0; i < 9; i++) {
-		vertArr[i] = vertArr[i].join().match(/\d/g);
-	}
-	return vertArr;
-} 
-
-
-
-function findSol(arr) { // получает массив точно неправильных и выдаёт массив возможных ответов
-	for (let i = 0; i < arr.length; i++) {
-		posSol.splice(posSol.indexOf(arr[i]), 1);
-	}
-	return posSol;
+function name(params) {
+	
 }
-
-
-
-
-
 
 
