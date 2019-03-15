@@ -4,7 +4,18 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+	let boardArray = [];
+	let n = 0;
 
+	for (let j = 0; j < 9; j++) {
+		boardArray.push([]);
+		for (let i = 0; i < 9; i++) {
+			boardArray[j][i] = (boardString[i + n]);
+		}
+		n += 9;
+	}
+
+	
 }
 
 
