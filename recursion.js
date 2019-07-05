@@ -1,4 +1,5 @@
-const newSudoku = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+// const newSudoku = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+const newSudoku = '---------------------------------------------------------------------------------';
 
 const massiveFirst = [1, 2, 3, 4, 5];
 const massiveSecond = [2, 6, 7, 4, 8, 9];
@@ -84,15 +85,60 @@ const verticalSearch = (coords, sudoku) => {
 // console.log(verticalSearch([0, 1], vertical(verticalTest)));
 
 // Функция принимает массив координат и возвращает массив координат текущего квадрата(Ex.: [3, 5]).
-const searchPointer = (coord) => {
-  const point = [[0, 0], [0, 3], [0, 6], [3, 0], [3, 3], [3, 6], [6, 0], [6, 3], [6, 6]];
-  for (let i = 0; i < point.length - 1; i += 1) {
-    if (coord >= point[i] && coord < point[i + 1]) {
-      return point[i];
-    }
+
+// const searchPointer = (coord) => {
+//   const point = [[0, 0], [0, 3], [0, 6], [3, 0], [3, 3], [3, 6], [6, 0], [6, 3], [6, 6]];
+//   for (let i = 0; i < point.length - 1; i += 1) {
+//     if (coord >= point[i] && coord < point[i + 1]) {
+//       return point[i];
+//     }
+//   }
+//   return false;
+// };
+
+// let numbers = [1, 2];
+function searchPointer(numbers) {
+  let ans = [];
+  if (numbers[0] <= 2 && numbers[1] <= 2) {
+    ans = [0, 0];
+    return ans;
+  }
+  if (numbers[0] <= 2 && numbers[1] >= 3 && numbers[1] <= 5) {
+    ans = [0, 3];
+    return ans;
+  }
+  if (numbers[0] <= 2 && numbers[1] >= 6) {
+    ans = [0, 6];
+    return ans;
+  }
+  if (numbers[0] >= 3 && numbers[0] <= 5 && numbers[1] <= 2) {
+    ans = [3, 0];
+    return ans;
+  }
+  if (numbers[0] >= 3 && numbers[0] <= 5 && numbers[1] >= 3 && numbers[1] <= 5) {
+    ans = [3, 3];
+    return ans;
+  }
+  if (numbers[0] >= 3 && numbers[0] <= 5 && numbers[1] >= 6) {
+    ans = [3, 6];
+    return ans;
+  }
+  if (numbers[0] >= 6 && numbers[1] <= 2) {
+    ans = [6, 0];
+    return ans;
+  }
+  if (numbers[0] >= 6 && numbers[1] >= 3 && numbers[1] <= 5) {
+    ans = [6, 3];
+    return ans;
+  }
+  if (numbers[0] >= 6 && numbers[1] >= 6) {
+    ans = [6, 6];
+    return ans;
   }
   return false;
-};
+}
+// console.log(squareSearch([4, 4]));
+
 // console.log(search(coord))
 // Функция принимает массив координат текущего квадрата(Ex.: [3, 5]) и исходный массив.
 // разбивает квадрат на одномерный массив.
@@ -101,7 +147,7 @@ const squareArr = (item, array) => {
   const variations = [];
   const ref = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   for (let i = item[0]; i < item[0] + 3; i += 1) {
-    for (let j = item[1]; j < item[0] + 3; j += 1) {
+    for (let j = item[1]; j < item[1] + 3; j += 1) {
       newArr.push(array[i][j]);
     }
   }
@@ -143,22 +189,32 @@ const recursion = (sudoku) => { // Решает судоку
   // console.log(variations3);
 
   const finalVariations = unitedMassive(variations1, variations2, variations3); // Обобщили варианты
-  console.log(finalVariations);
+  // console.log(finalVariations);
+
   let i = 0;
-  while (i < finalVariations.length) {
-    if (unitedMassive.length === 0) {
+  while (i <= finalVariations.length) {
+    if (finalVariations.length === 0) {
       return false;
     }
     sudoku[emptyCellCoord[0]][emptyCellCoord[1]] = finalVariations[i];
+    // console.log(sudoku);
+    if (recursion(sudoku) === false) {
+      i += 1;
+      if (i < finalVariations.length) {
+        sudoku[emptyCellCoord[0]][emptyCellCoord[1]] = finalVariations[i];
+      } else {
+        sudoku[emptyCellCoord[0]][emptyCellCoord[1]] = '-';
+        return false;
+      }
+    }
     if (recursion(sudoku) !== false) {
       return recursion(sudoku);
     }
-    i += 1;
   }
-  return false
+  return false;
 };
 
-console.log(solve(newSudoku));
+// console.log(solve(newSudoku));
 
 console.log(recursion(solve(newSudoku)));
 // console.log(emptyCell(newSudoku));
