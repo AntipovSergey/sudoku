@@ -32,3 +32,14 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+
+function stringToArray(str){
+	let field = []
+	firstString = str.match(/.{9}/g);
+	for (let i = 0; i < 8; i++) {
+		let line = firstString[i].split('')
+		field.push(line)
+	}
+	return field;
+}
