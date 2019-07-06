@@ -14,33 +14,6 @@ const newSudoku13 = '--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71
 const newSudoku14 = '----------2-65-------18--4--9----6-4-3---57-------------------73------9----------';
 const newSudoku15 = '---------------------------------------------------------------------------------';
 
-const massiveFirst = [1, 2, 3, 4, 5];
-const massiveSecond = [2, 6, 7, 4, 8, 9];
-
-const verticalTest = [
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ['-', '2', '3', '-', '5', '6', '-', '8', '9'],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-  ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
-];
-
-const vertical = (puzzle) => {
-  const Massive = [];
-  for (let x = 0; x < puzzle.length; x += 1) { // Находит вертикали
-    const string = [];
-    for (let i = 0; i < puzzle[x].length; i += 1) {
-      string.push(puzzle[i][x]);
-    }
-    Massive.push(string);
-  }
-  return Massive;
-};
-
 const solve = (boardString) => { // Переводит строку в двумерный массив
   const board = [
     [], [], [], [], [], [], [], [], [],
@@ -94,23 +67,7 @@ const verticalSearch = (coords, sudoku) => {
   return variations;
 };
 
-// console.log(vertical(verticalTest));
-// console.log(verticalSearch([0, 1], vertical(verticalTest)));
-
-// Функция принимает массив координат и возвращает массив координат текущего квадрата(Ex.: [3, 5]).
-
-// const searchPointer = (coord) => {
-//   const point = [[0, 0], [0, 3], [0, 6], [3, 0], [3, 3], [3, 6], [6, 0], [6, 3], [6, 6]];
-//   for (let i = 0; i < point.length - 1; i += 1) {
-//     if (coord >= point[i] && coord < point[i + 1]) {
-//       return point[i];
-//     }
-//   }
-//   return false;
-// };
-
-// let numbers = [1, 2];
-function searchPointer(numbers) {
+function searchPointer(numbers) { // Ищет индекс квадрата, в котором лежит пустая клетка
   let ans = [];
   if (numbers[0] <= 2 && numbers[1] <= 2) {
     ans = [0, 0];
@@ -150,9 +107,7 @@ function searchPointer(numbers) {
   }
   return false;
 }
-// console.log(squareSearch([4, 4]));
 
-// console.log(search(coord))
 // Функция принимает массив координат текущего квадрата(Ex.: [3, 5]) и исходный массив.
 // разбивает квадрат на одномерный массив.
 const squareArr = (item, array) => {
@@ -172,8 +127,6 @@ const squareArr = (item, array) => {
   return variations;
 };
 
-// console.log(squareArr(coord, arr))
-
 const unitedMassive = (massvie1, massive2, massive3) => { // Объединяет совпадения из массивов
   const finalMassive = [];
   const ref = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -184,8 +137,6 @@ const unitedMassive = (massvie1, massive2, massive3) => { // Объединяе�
   }
   return finalMassive;
 };
-
-// console.log(unitedMassive(massiveFirst, massiveSecond));
 
 const recursion = (sudoku) => { // Решает судоку
   const emptyCellCoord = emptyCell(sudoku); // Нашли координаты пустой клетки
@@ -205,12 +156,11 @@ const recursion = (sudoku) => { // Решает судоку
   // console.log(finalVariations);
 
   let i = 0;
-  while (i <= finalVariations.length) {
+  while (i <= finalVariations.length) { // Решили судоку
     if (finalVariations.length === 0) {
       return false;
     }
     sudoku[emptyCellCoord[0]][emptyCellCoord[1]] = finalVariations[i];
-    // console.log(sudoku);
     if (recursion(sudoku) === false) {
       i += 1;
       if (i < finalVariations.length) {
@@ -245,11 +195,11 @@ const recursion = (sudoku) => { // Решает судоку
 // console.log('\n');
 // console.log(recursion(solve(newSudoku8)));
 // console.log('\n');
-// console.log(recursion(solve(newSudoku9))); // 3min
+console.log(recursion(solve(newSudoku9))); // 3min
 // console.log('\n');
 // console.log(recursion(solve(newSudoku10)));
 // console.log('\n');
-console.log(recursion(solve(newSudoku11)));
+// console.log(recursion(solve(newSudoku11)));
 // console.log('\n');
 // console.log(recursion(solve(newSudoku12)));
 // console.log('\n');
@@ -258,5 +208,3 @@ console.log(recursion(solve(newSudoku11)));
 // console.log(recursion(solve(newSudoku14)));
 // console.log('\n');
 // console.log(recursion(solve(newSudoku15)));
-// console.log(emptyCell(newSudoku));
-// console.log(unitedMassive(massiveFirst, massiveSecond));
