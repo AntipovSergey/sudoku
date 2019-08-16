@@ -83,7 +83,9 @@ let arr = vertical(position, board);
 // function vertical();
 console.log(arr);
 // function square();
+
 // function allVariations();
+
 // ////////////////
 //проверка инклюдов
 // let x = [1,2,4,5];
