@@ -19,14 +19,14 @@ function generateBoard(string) {
     //  console.log(arr);
     return arr;
 }
-console.log(generateBoard(str));
+
 
 
 
 function findPosition(board) {
     let position = [];
     for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
+        for (let j = 0; j < board[0].length; j++) {
             if (board[i][j] === '-') {
                 position.push(i, j);
                 return position;
@@ -34,7 +34,7 @@ function findPosition(board) {
         }
     }
 
-    return true; //?!?!?!?!??!?!?!?!?!?!??!?!?!?!
+    return false; //?!?!?!?!??!?!?!?!?!?!??!?!?!?!
 }
 
 function horizontal(position, board) { ///position [0,1] -kletka
@@ -46,45 +46,48 @@ function horizontal(position, board) { ///position [0,1] -kletka
     }
 
 
-    console.log('all numbers=== ', allNumbers);
+    
     for (let j = 0; j < basis.length; j++) {
         if (!allNumbers.includes(basis[j])) possibleNumbers.push(basis[j]);
     }
-    console.log('possible numbers == ', possibleNumbers);
-
+    
 
     return possibleNumbers;
 }
 
-function vertical(position, board) {
+function vertical(position, board) { //position[1,2]
     let possibleNumbers = [];
     let allNumbers = [];
     let basis = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
     for (let i = 0; i < board[position[0]].length; i++) { // i =postio[0]
-        if (board[i][position[0]] != '-') allNumbers.push(board[i][position[0]]);
+        if (board[i][position[1]] != '-') allNumbers.push(board[i][position[1]]);
     }
-    console.log('all numbers=== ', allNumbers);
+   
     for (let j = 0; j < basis.length; j++) {
         if (!allNumbers.includes(basis[j])) possibleNumbers.push(basis[j]);
     }
-    console.log('possible numbers == ', possibleNumbers);
-
+   
 
     return possibleNumbers;
 }
 
+// let board = generateBoard(str);
+// let x = findPosition(generateBoard(str));
+// console.log(horizontal(x,board));
+// console.log(vertical(x,board));
+// console.log(square(x,board));
 
-
-let board = generateBoard(str);//до рукурсии
-let position = findPosition(board); //
-let arr = vertical(position, board);
-let arr1 = horizontal(position, board);
-let arr2 = square(position, board);
-let arr3 = allVariations(arr1,arr,arr2);
-console.log(arr1);
-console.log(arr);
-console.log(arr2);
-console.log(arr3);
+// let board = generateBoard(str);//до рукурсии
+// let position = findPosition(board); //
+// let arr = vertical(position, board);
+// let arr1 = horizontal(position, board);
+// let arr2 = square(position, board);
+// let arr3 = allVariations(arr1,arr,arr2);
+// console.log(arr1);
+// console.log(arr);
+// console.log(arr2);
+// console.log(arr3);
+// console.log("-------");
 
  function square(position,board) {
     let possibleNumbers = [];
@@ -120,32 +123,59 @@ function allVariations(horizontal,vertical,square) {
 
 
 
-function getSolvedSudoku(board){
 
-} 
+//  console.log(generateBoard(str));
+ console.log(recursion(generateBoard(str)));
+
+
 
 ////Логика
-Рекурсия(board) {
+function recursion(board) { 
 
+    let isAnySpace = findPosition(board);
+    if(isAnySpace===false) return board;
+    //let isAnyVariations = true;//?? kyda i za4em?!
+    let horizontalVars = horizontal(isAnySpace,board);
+    let verticalVars = vertical(isAnySpace, board);
+    let squareVars = square(isAnySpace, board); 
+    let sumVars = allVariations(horizontalVars,verticalVars,squareVars);
+     ////?!?!?!?!? ili dosky?
+   
+    for(let i = 0 ; i < sumVars.length;i++) {
+        if(sumVars.length===0)return false;
+        board[isAnySpace[0]][isAnySpace[1]] = sumVars[i]; // перезаписали борд
 
-    if  нет пустых строк  => return board;
-     else идём дальше 
+        
+             if(recursion(board)) { 
+                 return board;
+             }
 
-    findPossition - находим пустую клетку
-    получаем по гор +верт+квадрат 
-    находим все варианты и собираем allVariations собрать!
-
- цикл?! 
-    бежим  пока не истратим все возможные варианты(allVariations.length===0) 
-    if варианты нулёвые сразу return false;
-    else  добавляем варианты?!? (allVariations) borad[i][j] =all Variations[i];
-    прыгнем в рекурсию с новым бордом!!!
-
-    if рекурсия false(тупиковая ветвь) , то берём следующий allVariation если можно (какое-то условие у него)
-    перезаписываем борд
-    else изначальное значение - ?
-    и возвращаем false -???
-
-
+        
+        
+        
+    
     }
 }
+// console.log(generateBoard(str));
+    
+//         if  нет пустых строк  => return board;
+//      else идём дальше 
+
+//     findPossition - находим пустую клетку
+//     получаем по гор +верт+квадрат 
+//     находим все варианты и собираем allVariations собрать!
+
+//  цикл?! 
+//     бежим  пока не истратим все возможные варианты(allVariations.length===0) 
+//     if варианты нулёвые сразу return false;
+//     else  добавляем варианты?!? (allVariations) borad[i][j] =all Variations[i];
+//     прыгнем в рекурсию с новым бордом!!!
+
+//     if рекурсия false(тупиковая ветвь) , то берём следующий allVariation если можно (какое-то условие у него)
+//     перезаписываем борд
+//     else изначальное значение - ?
+//     и возвращаем false -???
+
+
+    
+
