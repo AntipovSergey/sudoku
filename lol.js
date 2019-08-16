@@ -59,7 +59,7 @@ function horizontal(position, board) { ///position [0,1] -kletka
 function vertical(position, board) {
     let possibleNumbers = [];
     let allNumbers = [];
-    let basis = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    let basis = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
     for (let i = 0; i < board[position[0]].length; i++) { // i =postio[0]
         if (board[i][position[0]] != '-') allNumbers.push(board[i][position[0]]);
     }
@@ -78,13 +78,47 @@ function vertical(position, board) {
 let board = generateBoard(str);
 let position = findPosition(board);
 let arr = vertical(position, board);
-
-
-// function vertical();
+let arr1 = horizontal(position, board);
+let arr2 = square(position, board);
+let arr3 = allVariations(arr1,arr,arr2);
+console.log(arr1);
 console.log(arr);
-// function square();
+console.log(arr2);
+console.log(arr3);
 
-// function allVariations();
+ function square(position,board) {
+    let possibleNumbers = [];
+    let allNumbers = [];
+    let basis = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let sqrHor = Math.floor(position[0]/3);
+    let sqrVert = Math.floor(position[1]/3);
+    let startPoint = [sqrHor,sqrVert];
+    for (let i = startPoint[0]; i < startPoint[0]+3; i++) {
+        for (let j = startPoint[1]; j < startPoint[1]+3; j++) {
+            allNumbers.push(board[i][j]);
+        }
+    }
+    for (let j = 0; j < basis.length; j++) {
+        if (!allNumbers.includes(basis[j])) possibleNumbers.push(basis[j]);
+    }
+    
+    return possibleNumbers;
+ }
+
+function allVariations(horizontal,vertical,square) {
+    let possibleNumbers = [];
+    let allNumbers = [];
+    let basis = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    for(let i = 0; i < basis.length;i++) {
+        if(horizontal.includes(basis[i])&&vertical.includes(basis[i])&&square.includes(basis[i])) {
+            possibleNumbers.push(basis[i]);
+        }
+    }
+    return possibleNumbers;
+}
+
+
+
 
 // ////////////////
 //проверка инклюдов
@@ -154,7 +188,7 @@ console.log(arr);
 //     добавляем варианты?!?
 //     if рекурсия false , то берём следующий allVariation (какое-то условие у него)
 //     else изначальное значение - ?
-//     и 
+//     и возвращаем false
 
 
 //     }
