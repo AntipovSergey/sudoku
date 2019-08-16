@@ -21,3 +21,8 @@ function convertInputString(str) {
   }
   return outPut;
 }
+
+
+module.exports = {
+	convertInputString: convertInputString,
+}

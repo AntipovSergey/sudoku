@@ -44,5 +44,8 @@ function defineBoarders(i, j) {
     return borders;
 }
 
-// console.log(defineBoarders(2, 3));
-// findInSquare(arr, 3 , 4);
+
+module.exports = {
+    findInSquare: findInSquare,
+    defineBoarders: defineBoarders
+}
