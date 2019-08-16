@@ -75,8 +75,8 @@ function vertical(position, board) {
 
 
 
-let board = generateBoard(str);
-let position = findPosition(board);
+let board = generateBoard(str);//до рукурсии
+let position = findPosition(board); //
 let arr = vertical(position, board);
 let arr1 = horizontal(position, board);
 let arr2 = square(position, board);
@@ -120,76 +120,32 @@ function allVariations(horizontal,vertical,square) {
 
 
 
-// ////////////////
-//проверка инклюдов
-// let x = [1,2,4,5];
-// let temp = [];
-// let y=[1,2,3,4,5,6,7,8,9];
-// for(let i = 0; i < 9 ; i ++) {
+function getSolvedSudoku(board){
 
-//     // if ( !x.includes(i) )temp.push(i);
-//     if( !x.includes(y[i]) )temp.push(y[i]);
+} 
+
+////Логика
+Рекурсия(board) {
 
 
-// }
-// console.log(temp);
-///проверка инклюдов
-//////
-// function possibleGor (arr) {
-//     let arr=[];
-//     for(let i = 0;i < 9;i++) {
-//         obj["gor"] = i;
-//         for(let j = 0;j < 9;j++) {
-//             obj["vert"] =j;
-//             if(arr[i][j]!=='-') {
+    if  нет пустых строк  => return board;
+     else идём дальше 
 
-//                 obj[arr[i][j]] = true;
-//             }
+    findPossition - находим пустую клетку
+    получаем по гор +верт+квадрат 
+    находим все варианты и собираем allVariations собрать!
 
-//         }
-//         console.log(obj);
-//     }
+ цикл?! 
+    бежим  пока не истратим все возможные варианты(allVariations.length===0) 
+    if варианты нулёвые сразу return false;
+    else  добавляем варианты?!? (allVariations) borad[i][j] =all Variations[i];
+    прыгнем в рекурсию с новым бордом!!!
 
-
-// }
-// let massGor = [3,5,'-','-',7];
-// let varr = [];
-// let x = [1,2,3,4,5,6,7,8,9];
-// for(let i = 0; i <8;i++) {
-
-//     if(massGor.includes(x[i])===false) {
-//          varr.push(x[i]);
-//     }
-
-// }
-// console.log(varr);
-// //FInal variasions!!
-// varr1 = [1,3,6];
-// varr2 = [1,6,7];
-//  x = [1,2,3,4,5,6,7,8,9];
-// for(let i = 0; i < 8;i++) {
-//     if(varr.includes(x[i])&&varr1.includes(x[i])&&varr2.includes(x[i]))
-//     console.log(x[i]);//1,6
-// }
+    if рекурсия false(тупиковая ветвь) , то берём следующий allVariation если можно (какое-то условие у него)
+    перезаписываем борд
+    else изначальное значение - ?
+    и возвращаем false -???
 
 
-//////Логика
-// Рекурсия(board) {
-
-
-//     Есть ли пустые строки?вернуть board!!
-
-
-//     allVariations собрать!
-
-//     бежим по рекурсии пока не истратим все возможные варианты ветки(return false)
-//     {
-//     если варианты нулёвые сразу return false;
-//     добавляем варианты?!?
-//     if рекурсия false , то берём следующий allVariation (какое-то условие у него)
-//     else изначальное значение - ?
-//     и возвращаем false
-
-
-//     }
-// }
+    }
+}
