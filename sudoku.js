@@ -4,7 +4,37 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  checkRow(x, y, num, element);
+  checkColumn(x, y, num, element)
+}
 
+function checkRow(x, y, num, element) {
+  while (nums[num] !== element) {
+    if (x === 9) {
+      x = 0;
+      y++;
+    }
+    x++;
+  }
+
+  element = x;
+  line = y;
+  return;
+}
+
+function checkColumn(x, y, num, element) {
+  while (nums[num] !== element) {
+    if (y === 9) {
+      y = 0;
+      x++;
+      return x++;
+    }
+    y++;
+  }
+
+  element = x;
+  line = y;
+  return;
 }
 
 
