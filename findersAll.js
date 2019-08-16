@@ -1,7 +1,25 @@
 
 
-str = "---------------------------------------------------------------------------------"
-stopPosition={}
+
+stopPosition = {}
+
+function generateBoard(field) {
+  let board = document.querySelector('#game');
+  for (let i = 0; i < field.length; i++) {
+      let tr = document.createElement('tr');
+      tr.id = `r${i}`
+      board.appendChild(tr)
+      for (let j = 0; j < field[i].length; j++) {
+          let td = document.createElement('td');
+          td.id = `r${i}c${j}`;
+          td.classList.add('cell');
+        if (typeof field[i][j] !== 'object') {
+          td.innerText = field[i][j];
+        }
+          tr.appendChild(td);
+      }
+  }
+}
 function findAll(arr) {
 
   for (let i = 0; i < arr.length; i++) {
@@ -120,6 +138,6 @@ function convertInputString(str) {
   }
   return outPut;
 }
-console.log(findAll(convertInputString(str)));
+
 
 
