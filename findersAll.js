@@ -1,25 +1,23 @@
-
-
-
 stopPosition = {}
 
 function generateBoard(field) {
   let board = document.querySelector('#game');
   for (let i = 0; i < field.length; i++) {
-      let tr = document.createElement('tr');
-      tr.id = `r${i}`
-      board.appendChild(tr)
-      for (let j = 0; j < field[i].length; j++) {
-          let td = document.createElement('td');
-          td.id = `r${i}c${j}`;
-          td.classList.add('cell');
-        if (typeof field[i][j] !== 'object') {
-          td.innerText = field[i][j];
-        }
-          tr.appendChild(td);
+    let tr = document.createElement('tr');
+    tr.id = `r${i}`
+    board.appendChild(tr)
+    for (let j = 0; j < field[i].length; j++) {
+      let td = document.createElement('td');
+      td.id = `r${i}c${j}`;
+      td.classList.add('cell');
+      if (typeof field[i][j] !== 'object') {
+        td.innerText = field[i][j];
       }
+      tr.appendChild(td);
+    }
   }
 }
+
 function findAll(arr) {
 
   for (let i = 0; i < arr.length; i++) {
@@ -40,16 +38,16 @@ function findAll(arr) {
 
     }
   }
-  let find=false
-  for (let i = arr.length-1; i >0 && find==false ; i--) {
-    for (let j = arr[i].length-1; j > 0 && find ==false; j--) {
+  let find = false
+  for (let i = arr.length - 1; i > 0 && find == false; i--) {
+    for (let j = arr[i].length - 1; j > 0 && find == false; j--) {
       if (typeof arr[i][j] == 'object') {
         stopPosition.row = i;
         stopPosition.col = j;
-        find=true
+        find = true
       }
     }
-    
+
   }
   return arr;
 }
@@ -138,6 +136,3 @@ function convertInputString(str) {
   }
   return outPut;
 }
-
-
-

@@ -20,7 +20,7 @@ str = [
 /* solveSudocu(findAll(convertInputString(str))) */
 document.addEventListener('DOMContentLoaded', onLoad)
 document.querySelector('select').addEventListener('change', onLoad)
-document.querySelector('input').addEventListener('click', startSolving)
+document.querySelector('.start').addEventListener('click', startSolving)
 
 function generateBoard(field) {
     let board = document.querySelector('#game');
@@ -52,14 +52,20 @@ function startSolving() {
     renderBufer = [];
     let needSudocu = document.querySelector('select').value - 1;
     solveSudocu(findAll(convertInputString(str[needSudocu])))
+    alert(`Потребовалось ${renderBufer.length} итераций`)
     renderBoard(renderBufer);
 }
 
 function renderBoard(arr) {
     if (arr.length == 0) return;
-    let rendered = arr.shift()
-    generateBoard(rendered)
-    setTimeout(() => renderBoard(arr), 20);
+    if (document.querySelector('#period').checked == true) {
+        let rendered = arr.shift()
+        generateBoard(rendered)
+        setTimeout(() => renderBoard(arr), 4);
+    } else {
+        let rendered = arr.pop()
+        generateBoard(rendered)
+    }
 }
 
 

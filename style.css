@@ -6,7 +6,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, #f6f1d3, #648880 85%, #40627c)
+    background: linear-gradient(to right, rgba(182,190,245,1) 0%, rgba(170,240,105,1) 100%);
 }
 .cell {
     width: 50px;
@@ -24,8 +24,17 @@ table {
 }
 input {
     display: inline-block;
+    font-weight: bold;
+}
+select {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times;
 }
 p {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
 }
+ label {
+     font-size: 20px;
+     margin-top: 10px;
+ }
