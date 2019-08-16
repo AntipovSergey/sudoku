@@ -56,6 +56,21 @@ function prettyBoard(board) {
 
 }
 
+let str = " 1-58-2 ---- 9--764-52--4--819-19--73-6762-83-9 ----- 61-5 --- 76 --- 3 -43--2-5-16--3-89 - ";
+function strAddArray(change) {
+let start = 0;
+let end = 9;
+let arr2 = [];
+for (let i=0; i<9; i++) {
+	let res = change.slice(start,end);
+		let res2 = res.split('');
+			arr2.push(res);
+			start += 9;
+			end += 9;
+}
+	return arr2;
+}
+strAddArray(str);
 
 module.exports = {
 	solve: solve,
