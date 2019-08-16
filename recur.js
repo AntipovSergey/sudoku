@@ -136,7 +136,7 @@ function isSudocuCorrect(sudocu, row, col) {
 }
 
 function isSudocuSolved(i, j) {
-    return i == 8 && j == 8;
+    return i == stopPosition.row && j == stopPosition.col;
 }
 
 function renderSudocu(sudocu) {
@@ -156,5 +156,5 @@ function renderSudocu(sudocu) {
     render += '|'
     console.log(render);
 }
-renderSudocu(mass);
-solveSudocu(mass)
+/* renderSudocu(findAll(convertInputString(str))); */
+solveSudocu(findAll(convertInputString(str)))

@@ -44,8 +44,3 @@ function defineBoarders(i, j) {
     return borders;
 }
 
-
-module.exports = {
-    findInSquare: findInSquare,
-    defineBoarders: defineBoarders
-}
