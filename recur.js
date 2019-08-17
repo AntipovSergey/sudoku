@@ -1,54 +1,16 @@
-/* let mass = [
-    [
-        [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [1, 2, 3, 4, 5, 6, 7, 8, 9], 2, 8, 1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    ],
-    [
-        [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [1, 2, 3, 4, 5, 6, 7, 8, 9], 1, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [1, 2, 3, 4, 5, 6, 7, 8, 9], 9
-    ],
-    [
-        [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 8, [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, 2, 5, [1, 2, 3, 4, 5, 6, 7, 8, 9], 6
-    ],
-    [
-        [1, 2, 3, 4, 5, 6, 7, 8, 9], 8, [1, 2, 3, 4, 5, 6, 7, 8, 9],
-        [1, 2, 3, 4, 5, 6, 7, 8, 9], 5, [1, 2, 3, 4, 5, 6, 7, 8, 9], 3, 6, 2
-    ],
-    [2, [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    [1, 2, 3, 4, 5, 6, 7, 8, 9], 9, 3, 8, 1, 7, [1, 2, 3, 4, 5, 6, 7, 8, 9]
-],
-[1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 7, 6, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9], 5
-],
-[4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 3, 1, [1, 2, 3, 4, 5, 6, 7, 8, 9], 6, 9, [1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9]
-],
-[7, [1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9], 5, 4, [1, 2, 3, 4, 5, 6, 7, 8, 9], 6, 2, 8
-],
-[8, 6, 5, [1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9], 9, [1, 2, 3, 4, 5, 6, 7, 8, 9], 3, [1, 2, 3, 4, 5, 6, 7, 8, 9]
-]
-] */
 let renderBufer=[]
 let gameSolved = false;
 
-
-
-
-
 function solveSudocu(sudocu) {
     iterationCorect = true
-    
+    findStopPosition(sudocu);
     for (let i = 0; i < sudocu.length; i++) {
         for (let j = 0; j < sudocu[i].length; j++) {
             if (typeof sudocu[i][j] === 'object') {
                 for (let k = 0; k < sudocu[i][j].length; k++) {
                     let newSudocu = JSON.parse(JSON.stringify(sudocu))
                     newSudocu[i][j] = newSudocu[i][j][k]
-                    recurentSolve(newSudocu, i, j);
+                    recurentSolve(findAll(newSudocu), i, j);
                     if (gameSolved) {
                         return
                     }
@@ -74,7 +36,7 @@ function recurentSolve(sudocu, row, col) {
                 for (let k = 0; k < sudocu[i][j].length; k++) {
                     let newSudocu = JSON.parse(JSON.stringify(sudocu))
                     newSudocu[i][j] = newSudocu[i][j][k]
-                    recurentSolve(newSudocu, i, j);
+                    recurentSolve(findAll(newSudocu), i, j);
 /*                     if (!iterationCorect) {
                         return
                     } */
