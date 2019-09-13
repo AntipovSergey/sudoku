@@ -135,9 +135,9 @@ function sector(){
 
 
    function potential(){
-     let numbersHorizon =  [1,2,3] //horizon();
-     let numbersVertical = [1,2,3]//vertical();
-     let numbersSector = [1,2,3,7]//sector();
+     let numbersHorizon = horizon();
+     let numbersVertical = vertical();
+     let numbersSector = sector();
      let general = numbersHorizon.concat(...numbersVertical,...numbersSector);
      
 

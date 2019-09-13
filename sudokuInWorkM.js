@@ -13,6 +13,8 @@ const parse = (string) => {
     }
   return board
 }
+
+
 //------------------------------------
 
 // первая координата недостающего числа
@@ -24,9 +26,11 @@ const findCoordinateH = () => {
       if (board[i][j] == '-') {
         coordinate.push(i, j)
         return coordinate;
-      }
+      } 
     }
   }
+   
+  
 }
 //-----------------------------------------
 
@@ -34,8 +38,12 @@ const findCoordinateH = () => {
 
 const horizon = () => {
   let numbers = ['1','2','3','4','5','6','7','8','9'] 
-  let arrForSearch = parse(incomeString)[findCoordinateH()[0]]
+  let coordinate= findCoordinateH()
+  let arrForSearch = parse(incomeString)[coordinate[0]]
   let possibleNum = []
+  if(coordinate.length===0){
+    return possibleNum=[];
+  }
   for (let i = 0; i < 9; i += 1) {
     if(arrForSearch.includes(numbers[i])){
       continue
@@ -46,6 +54,7 @@ const horizon = () => {
   }
   return possibleNum
 }
+
 
 
 
@@ -70,8 +79,9 @@ function vertical() {
       numbersVertical.push(numbers[i]);
     }
   }
-return numbersVertical;
-}
+ return numbersVertical;
+ }
+//  console.log(vertical())
 
 //------------------------------------
 
@@ -83,6 +93,10 @@ function sector(){
   let sectorNumber =[];
   let numbersSector =[];
   let boxCoordinat;
+if(coordinate.length===0){
+  return numbersSector=[];
+}
+
  // квадрат 1
   if(coordinate[0]<=2&&coordinate[1]<=2){
    boxCoordinat=[0,0];
@@ -138,25 +152,50 @@ function sector(){
  return numbersSector;
  }
 
+ console.log(sector())
+
 //------------------------------------
 // возможные числа в координате
 
  function potential(){
-   let numbersHorizon =  [1,2,3] //horizon();
-   let numbersVertical = [1,2,3]//vertical();
-   let numbersSector = [1,2,3,7]//sector();
+   let numbersHorizon = horizon();
+   let numbersVertical = vertical();
+   let numbersSector = sector();
    let general = numbersHorizon.concat(...numbersVertical,...numbersSector);
-   
-
-  //  let numbersPotential=[...new Set(general)]
-
-   return general;
-
-
-
-
+   let numbersPotential=[]
+   for (let i=0;i<general.length;i++){
+    let repeat = general.filter(item => item == general[i]).length;
+   if(repeat < 2){
+    numbersPotential.push(general[i]);
+   }
+  }
+   return numbersPotential;
  }
-
-
  console.log(potential());
+ 
+
+function slover(string){
+  let board=parse(string);
+  let coordinate =findCoordinateH();
+  let numbersHorizon = horizon();
+  let numbersVertical = vertical();
+  let numbersSector = sector();
+  let numbersPotential = potential();
+  if(coordinate.length!==0){
+  board[coordinate[0]][coordinate[1]]=numbersPotential[0]
+  var newBoard = board;
+  let newString = newBoard.join('').replace(/,/g, '');
+  return slover(newString)
+  } else {
+    return newBoard;
+  }
+
+}
+
+
+
+// console.log(slover(incomeString));
+
+
+
  
