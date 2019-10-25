@@ -7,6 +7,12 @@ const sudoku = require('./sudoku');
 // Remember, the file has newline characters at the end of each line,
 // so we should remove them.
 
+// Загадки судоку, которые решит ваша программа, можно найти
+// в файле sudoku_puzzles.txt.
+//
+// Помните, что файл имеет символы новой строки в конце каждой строки,
+// поэтому мы должны удалить их.
+
 function sudokuParse(content) {
     let firstLine = content.split('\n')[0];
     console.log(firstLine);
