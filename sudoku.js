@@ -7,6 +7,9 @@ function solve(boardString) {
 
 }
 
+check3x3Square
+
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
