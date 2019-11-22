@@ -12,8 +12,20 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
+// Возвращает логическое значение (true/false), указывающее, решена ли предоставленная таблица.
 function isSolved(board) {
-
+	let newArr = [];
+	for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board.length; j++) {
+			newArr.push(board[i][j]);
+		}
+	}
+	for (let k = 0; k < newArr.length; k++) {
+		if (newArr[k] === 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 // Проверяет горизонталь и вертикаль на возможность добавления числа
