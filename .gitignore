@@ -1,4 +1,8 @@
 /node_modules
 *.log
 .idea
+<<<<<<< HEAD
 .vscode
+=======
+.vscode
+>>>>>>> 8f25202cbe3d10d855fe58923c29f049502cb933
