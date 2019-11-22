@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "## Введение",
   "main": "runner.js",
+<<<<<<< HEAD
+=======
+  "directories": {
+    "lib": "lib"
+  },
+>>>>>>> 0c6894cfabfb8aa80ca31b3e92d78feb426c9f61
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -19,7 +19,7 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
         throw err;
     }
 
-    let boardString = sudokuParse(data);  
+    let boardString = sudokuParse(data);
 
     let solvedBoard = sudoku.solve(boardString);
 	if(sudoku.isSolved(solvedBoard)) {
@@ -30,15 +30,17 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
 	  // console.log("The board wasn't solved :(");
 	}
 
+
     function searchIndexOfDefis (boardString) {       // This function will search the '-' symbol, and if it found this symbol, returns its index
         return (boardString.search(/[-]/))
 	}
     console.log(searchIndexOfDefis(boardString))
+
+    function stringSearch(index) {                  // This function searches the string where index is located.
+        let subArr = [];
+        for (let i = 0; i < 81; i += 9) {
+            subArr.push(boardString.substring(i, i + 9));
+        }
+        return subArr[Math.ceil(index / 9) - 1];
+    }
 });
-
-
-
-
-
-
-

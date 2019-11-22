@@ -1,6 +1,9 @@
-node_modules
 *.log
 .vscode
 .idea
 .eslintrc.js
+lib
+YourSpecRunner.html
+spec
+node_modules
 
