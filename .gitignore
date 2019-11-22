@@ -3,3 +3,4 @@
 .idea
 .eslintrc.js
 /node-modules
+.DS_Store
