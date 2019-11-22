@@ -23,20 +23,24 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
 
     let solvedBoard = sudoku.solve(boardString);
 	if(sudoku.isSolved(solvedBoard)) {
-	  console.log("The board was solved!");
-	  console.log(sudoku.prettyBoard(solvedBoard));
+	  // console.log("The board was solved!");
+	  // console.log(sudoku.prettyBoard(solvedBoard));
 	}
 	else {
-	  console.log("The board wasn't solved :(");
+	  // console.log("The board wasn't solved :(");
 	}
 
-// This function searches the string where index is located.
-  function stringSearch(index) {
-    let subArr = [];
-    for (let i = 0; i < 81; i += 9) {
-      subArr.push(boardString.substring(i, i + 9));
-    }
-    return subArr[Math.ceil(index / 9) - 1];
-  }
 
+    function searchIndexOfDefis (boardString) {       // This function will search the '-' symbol, and if it found this symbol, returns its index
+        return (boardString.search(/[-]/))
+	}
+    console.log(searchIndexOfDefis(boardString))
+
+    function stringSearch(index) {                  // This function searches the string where index is located.
+        let subArr = [];
+        for (let i = 0; i < 81; i += 9) {
+            subArr.push(boardString.substring(i, i + 9));
+        }
+        return subArr[Math.ceil(index / 9) - 1];
+    }
 });
