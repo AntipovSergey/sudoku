@@ -93,14 +93,19 @@ function checkSquare(testBoard, row, column, value) {
 
 // Возвращает логическое значение (true/false), указывающее, решена ли предоставленная таблица.
 function isSolved(board) {
-	let newArr = [];
-	for (let i = 0; i < board.length; i++) {
-		for (let j = 0; j < board.length; j++) {
-			newArr.push(board[i][j]);
+	let newArr = []
+    newArr.push(board);
+	for (let i = 0; i < newArr.length; i++) {
+		for (let j = 0; j < newArr.length; j++) {
+            if (newArr[i] === undefined) {
+                newArr[i] += null;
+            };
+			//newArr.push(newArr[i][j]);
+			// console.log(newArr);
 		}
-	}
+	};
 	for (let k = 0; k < newArr.length; k++) {
-		if (newArr[k] === 0) {
+		if (newArr[k] === 0 || newArr[k] !== undefined) {
 			return false;
 		}
 	}
