@@ -2,7 +2,7 @@
 .vscode
 .idea
 .eslintrc.js
-node-modules
+node_modules
 lib
 YourSpecRunner.html
 spec
