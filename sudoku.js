@@ -25,7 +25,6 @@ function findEmptyCells(testBoard) {
 
   for (let i = 0; i < testBoard.length; i += 1) {
     for (let j = 0; j < testBoard[i].length; j += 1) {
-      console.log(testBoard[i][j]);
       if (testBoard[i][j] === 0) {
         emptyCells.push([i, j]);
       }
@@ -33,6 +32,34 @@ function findEmptyCells(testBoard) {
   }
   return emptyCells;
 }
+const blankSpaces = findEmptyCells(testBoard);
+
+
+function prepareData (testBoard) {
+function getRandomNumber(min, max) {
+  return Math.round(Math.random() * (max - min)) + min;
+  }
+const randomNumber = getRandomNumber(1, 9);
+
+
+// берет первое пустое место
+function getBlank() {
+  for (let i = 0; i < blankSpaces.length; i++) {
+      let x = blankSpaces[i][0];
+      let y = blankSpaces[i][1];
+       if (testBoard[x][y] === 0) {
+          return [x, y];
+       }
+  }
+}
+
+const blank = getBlank();
+const row = blank[0];
+const column = blank[1];
+return [row, column, randomNumber];
+}
+
+const dataArr = prepareData(testBoard);
 
 // проверяет возможность вставки по блоку 3х3
 function checkSquare(testBoard, row, column, value) {
@@ -81,12 +108,11 @@ function isSolved(board) {
 }
 
 // Проверяет горизонталь и вертикаль на возможность добавления числа
-
 function checklLines(array, row, column, element) {
 	let result = 0;
 	for (let x = 0; x < array[row].length; x++) {
 		if (element === array[row][x]){
-			result++;
+      result++;
 		}
 	}
 
@@ -97,6 +123,22 @@ function checklLines(array, row, column, element) {
 	}
     return result === 0;
 }
+console.log(blankSpaces);
+console.log('Координата x, координата y, вставляемый элемент: ' + dataArr);
+function addNumber (dataArr){
+  const isRightLines = checklLines(testBoard, dataArr[0], dataArr[1], dataArr[2]);
+  const isRightSquare = checkSquare(testBoard, dataArr[0], dataArr[1], dataArr[2]);
+  console.log('Проверка на линии ' + isRightLines);
+  console.log('Проверка на блок ' + isRightSquare);
+  if (isRightLines && isRightSquare) {
+  testBoard[dataArr[0]][dataArr[1]] = dataArr[2];
+}
+  let newTestBoard = testBoard;
+  return newTestBoard;
+}
+addNumber(dataArr);
+console.log(testBoard);
+
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -106,7 +148,6 @@ function checklLines(array, row, column, element) {
 
 
 function prettyBoard(board) {
-
 	let arr=[]
 	let str=""
 	for(let i=0;i<board.length;i+=9){
@@ -115,7 +156,7 @@ function prettyBoard(board) {
 		}
 		arr.push(str)
 		str=""
-		
+
 	}
 	return arr.join(`\n`)
 
@@ -126,4 +167,3 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
-
