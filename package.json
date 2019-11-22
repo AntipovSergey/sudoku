@@ -1,0 +1,25 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vad-s/project-sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vad-s/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/vad-s/project-sudoku#readme",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}

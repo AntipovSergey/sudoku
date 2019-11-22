@@ -16,6 +16,23 @@ function isSolved(board) {
 
 }
 
+// Проверяет горизонталь и вертикаль на возможность добавления числа
+
+function checklLines(array, row, column, element) {
+	let result = 0;
+	for (let x = 0; x < array[row].length; x++) {
+		if (element === array[row][x]){
+			result++;
+		}
+	}
+
+	for (let y = 0; y < array.length; y++) {
+		if (array[y][column] === element){
+			result++;
+		}
+	}
+    return result === 0;
+}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -45,3 +62,5 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+
