@@ -32,3 +32,4 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
