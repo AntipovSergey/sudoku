@@ -3,7 +3,13 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
 function solve(boardString) {
+	let board = [];
+		let arrFirst = boardString.split("");
+	 board = [[arrFirst.slice(0, 9)], [arrFirst.slice(9, 18)],[arrFirst.slice(18, 27)], [arrFirst.slice(27, 36)],
+		[arrFirst.slice(36, 45)], [arrFirst.slice(45, 54)], [arrFirst.slice(54, 63)], [arrFirst.slice(63, 72)],
+		[arrFirst.slice(72, 81)]];
 
 	sudokuSolver(board);
 
