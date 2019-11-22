@@ -64,6 +64,12 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {
 
+	board.reduce(function(sum, current) {
+		return sum.concat(current + '\n');
+	}, "");
+}
+
+
 
 module.exports = {
 	solve: solve,
