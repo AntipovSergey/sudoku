@@ -16,37 +16,17 @@ function isSolved(board) {
 
 }
 
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-
-}
-
-
-module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
-
-
 // Проверяет горизонталь и вертикаль на возможность добавления числа
 
 function checklLines(array, row, column, element) {
 	let result = 0;
 	for (let x = 0; x < array[row].length; x++) {
-		console.log(array[row][x]);
 		if (element === array[row][x]){
 			result++;
 		}
 	}
 
 	for (let y = 0; y < array.length; y++) {
-		console.log(array[y][column]);
 		if (array[y][column] === element){
 			result++;
 		}
@@ -54,12 +34,33 @@ function checklLines(array, row, column, element) {
     return result === 0;
 }
 
-console.log(checklLines(arr, 0, 0, 3));
+// Takes in a board in some form and
+// returns a String that's well formatted
+// for output to the screen.
+// The input board will be in whatever
+// form `solve` returns.
 
 
+function prettyBoard(board) {
 
+	let arr=[]
+	let str=""
+	for(let i=0;i<board.length;i+=9){
+		for(let j=0;j<9;j++){
+			str+=board[i+j]
+		}
+		arr.push(str)
+		str=""
+		
+	}
+	return arr.join(`\n`)
 
+}
 
-
+module.exports = {
+	solve: solve,
+	isSolved: isSolved,
+	prettyBoard: prettyBoard
+}
 
 
