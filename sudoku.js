@@ -25,6 +25,16 @@ function isSolved(board) {
 
 
 function prettyBoard(board) {
+	
+	let arr=[]
+	let str=""
+	for(let i=0;i<board.length;i+=9){
+		for(let j=0;j<9;j++)
+			str+=board[i+j]
+		arr.push(str)
+		str=""
+	}
+	return arr
 
 }
 
@@ -34,3 +44,6 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+let b1="1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
+console.log(prettyBoard(b1))
