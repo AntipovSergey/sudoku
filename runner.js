@@ -22,19 +22,19 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
     let boardString = sudokuParse(data);
 
     let solvedBoard = sudoku.solve(boardString);
-	if(sudoku.isSolved(solvedBoard)) {
-	  // console.log("The board was solved!");
-	  // console.log(sudoku.prettyBoard(solvedBoard));
-	}
-	else {
-	  // console.log("The board wasn't solved :(");
-	}
+    if (sudoku.isSolved(solvedBoard)) {
+        console.log("The board was solved!");
+        console.log(sudoku.prettyBoard(solvedBoard));
+    } else {
+        console.log("The board wasn't solved :(");
+    }
 
 
-    function searchIndexOfDefis (boardString) {       // This function will search the '-' symbol, and if it found this symbol, returns its index
-        return (boardString.search(/[-]/))
-	}
-    console.log(searchIndexOfDefis(boardString))
+    function searchIndexOfDefis(boardString) {       // This function will search the '-' symbol, and if it found this symbol, returns its index
+        let string = (boardString.search(/[-]/));
+        return string;
+
+    }
 
     function stringSearch(index) {                  // This function searches the string where index is located.
         let subArr = [];
@@ -43,4 +43,22 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
         }
         return subArr[Math.ceil(index / 9) - 1];
     }
+
+    function indexReplacer(horizontal, vertical, square) {
+        let tempArr = [];
+        for (let i = 1; i <= 9; i++) {
+            let regExp = new RegExp(i);
+            if (horizontal.search(regExp) === -1 && vertical.search(regExp) === -1 && square.search(regExp) === -1) {
+                tempArr.push(i)
+            }
+        }
+        if (tempArr.length === 1) {
+            return tempArr[0];
+        }
+        return false
+
+    };
+
+
 });
+
