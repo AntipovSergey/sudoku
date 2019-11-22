@@ -25,23 +25,20 @@ function isSolved(board) {
 
 
 function prettyBoard(board) {
-	
+
 	let arr=[]
 	let str=""
 	for(let i=0;i<board.length;i+=9){
 		for(let j=0;j<9;j++){
 			str+=board[i+j]
 		}
-		arr.push(`str${''}`)
-		console.log(str)
+		arr.push(str)
 		str=""
 		
 	}
-
-	return str
+	return arr.join(`\n`)
 
 }
-
 
 module.exports = {
 	solve: solve,
