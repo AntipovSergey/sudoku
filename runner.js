@@ -8,16 +8,57 @@ const sudoku = require('./sudoku');
 // so we should remove them.
 
 function sudokuParse(content) {
-    let firstLine = content.split('\n')[0];
-    console.log(firstLine);
-    return firstLine;
+  let firstLine = content.split('\n')[0];
+  console.log(firstLine);
+  return firstLine;
 }
 
 
 fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
-    if (err) {
-        throw err;
+  if (err) {
+    throw err;
+  }
+
+  let boardString = sudokuParse(data);
+
+  let solvedBoard = sudoku.solve(boardString);
+  if (sudoku.isSolved(solvedBoard)) {
+    // console.log("The board was solved!");
+    // console.log(sudoku.prettyBoard(solvedBoard));
+  } else {
+    // console.log("The board wasn't solved :(");
+  }
+
+
+  function searchIndexOfDefis(boardString) {       // This function will search the '-' symbol, and if it found this symbol, returns its index
+    return (boardString.search(/[-]/))
+  }
+
+  console.log(searchIndexOfDefis(boardString))
+
+  function stringSearch(index) {                  // This function searches the string where index is located.
+    let subArr = [];
+    for (let i = 0; i < 81; i += 9) {
+      subArr.push(boardString.substring(i, i + 9));
     }
+    return subArr[Math.ceil(index / 9) - 1];
+  }
+
+  // функция формирующая столбец для индекса
+  function stringColumn(index) {
+    //вычисляем номер стролбца
+while (index > 8) {
+      index -= 9;
+    }
+
+    let strColumn = '';
+    for (let i = 0; i < 9; i++) {
+      strColumn += boardString[index + (i * 9)]
+    }
+
+    return strColumn;
+  }
+});
 
     let boardString = sudokuParse(data);
 
@@ -61,4 +102,6 @@ fs.readFile('./sudoku_puzzles.txt', 'utf-8', function read(err, data) {
 
 
 });
+
+
 
