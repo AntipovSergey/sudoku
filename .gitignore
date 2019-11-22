@@ -2,4 +2,4 @@
 .vscode
 .idea
 .eslintrc.js
-/node-modules
+node-modules
