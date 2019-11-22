@@ -3,3 +3,6 @@
 .idea
 .eslintrc.js
 node-modules
+lib
+YourSpecRunner.html
+spec
