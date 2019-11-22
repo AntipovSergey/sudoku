@@ -34,7 +34,9 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+	board.reduce(function(sum, current) {
+		return sum.concat(current + '\n');
+	}, "");
 }
 
 
