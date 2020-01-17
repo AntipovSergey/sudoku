@@ -56,20 +56,24 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 
+// const board = new Array(81).fill("9");
+
 function prettyBoard(board) {
   const mainSudokuBoard = document.getElementById('mainSudokuBoard');
-  for (let i = 0; i < 81; i++) {
+  for (let i = 0; i < board.length; i++) {
+    console.log(i)
     const divBoard = mainSudokuBoard.appendChild(document.createElement('div'));
-    divBoard.style.backgroundColor = parseInt((i / 9) + i) % 2 === 0 ? '#ababab' : 'white';
-    divChess.innerText = board[i];
+    divBoard.style.backgroundColor = parseInt((i)) % 2 === 0 ? 'grey' : 'white';
+    divBoard.innerText = board[i];
   }
 
 }
 
 
-module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+// module.exports = {
+//   solve: solve,
+//   isSolved: isSolved,
+//   prettyBoard: prettyBoard
+// }
 
+prettyBoard(new Array(81).fill("9"))
