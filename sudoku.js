@@ -63,7 +63,7 @@ function prettyBoard(board) {
   for (let i = 0; i < board.length; i++) {
     console.log(i)
     const divBoard = mainSudokuBoard.appendChild(document.createElement('div'));
-    divBoard.style.backgroundColor = parseInt((i)) % 2 === 0 ? 'grey' : 'white';
+    divBoard.style.backgroundColor = i % 2 === 0 ? 'grey' : 'white';
     divBoard.innerText = board[i];
   }
 
