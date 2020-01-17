@@ -23,6 +23,12 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
+  const mainSudokuBoard = document.getElementById('mainSudokuBoard');
+  for (let i = 0; i < 81; i++) {
+    const divBoard = mainSudokuBoard.appendChild(document.createElement('div'));
+    divBoard.style.backgroundColor = parseInt((i / 9) + i) % 2 === 0 ? '#ababab' : 'white';
+    divChess.innerText = board[i];
+  }
 
 }
 

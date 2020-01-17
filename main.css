@@ -1,0 +1,13 @@
+#mainSudokuBoard {
+    width: 900px;
+    height: 900px;
+    border: 1px solid black;
+}
+
+div {
+    width: 100px;
+    height: 100px;
+    float: left;
+    font-weight: bold;
+    text-align: center;
+}
