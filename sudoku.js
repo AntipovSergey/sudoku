@@ -24,11 +24,23 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {
 
-}
+} 
 
 
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
+}
+
+
+isSolvedVertical(board, position, number){
+
+  for ( let i = 0; i < board.length; i++ ){
+    if( board[i][position] === number ){
+      return false
+    }
+  }
+  return true
+
 }
