@@ -4,7 +4,39 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  let arr = boardString.split("");
+  let arrOne = arr.slice(0, 9);
+  let lineOne = [...arrOne];
+  let arrTwo = arr.slice(9, 18);
+  let lineTwo = [...arrTwo];
+  let arrThree = arr.slice(18, 27);
+  let lineThree = [...arrThree];
+  let arrFour = arr.slice(27, 36);
+  let lineFour = [...arrFour];
+  let arrFive = arr.slice(36, 45);
+  let lineFive = [...arrFive];
+  let arrSix = arr.slice(45, 54);
+  let lineSix = [...arrSix];
+  let arrSeven = arr.slice(54, 63);
+  let lineSeven = [...arrSeven];
+  let arrEight = arr.slice(63, 72);
+  let lineEight = [...arrEight];
+  let arrNine = arr.slice(72, 81);
+  let lineNine = [...arrNine];
+  let board = [];
+  board.push(
+    lineOne,
+    lineTwo,
+    lineThree,
+    lineFour,
+    lineFive,
+    lineSix,
+    lineSeven,
+    lineEight,
+    lineNine
+  );
 
+  return board;
 }
 
 
@@ -14,6 +46,7 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
+
 }
 
 
@@ -22,6 +55,7 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+
 function prettyBoard(board) {
   const mainSudokuBoard = document.getElementById('mainSudokuBoard');
   for (let i = 0; i < 81; i++) {
@@ -38,3 +72,4 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
