@@ -57,6 +57,7 @@ function isSolved(board) {
 // form `solve` returns.
 
 // const board = new Array(81).fill("9");
+// const mainSudokuBoard = document.getElementById('mainSudokuBoard');
 
 function prettyBoard(board) {
   const mainSudokuBoard = document.getElementById('mainSudokuBoard');
@@ -66,7 +67,7 @@ function prettyBoard(board) {
     divBoard.style.backgroundColor = i % 2 === 0 ? 'grey' : 'white';
     divBoard.innerText = board[i];
   }
-
+  console.table(board)
 }
 
 
@@ -76,4 +77,4 @@ function prettyBoard(board) {
 //   prettyBoard: prettyBoard
 // }
 
-prettyBoard(new Array(81).fill("9"))
+prettyBoard(new Array(81).fill("0"))
