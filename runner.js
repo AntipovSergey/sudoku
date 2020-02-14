@@ -1,3 +1,5 @@
+
+
 // Use filesystem.
 const fs = require('fs');
 // Use functions from sudoku.js file.
