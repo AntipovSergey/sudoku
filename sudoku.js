@@ -17,6 +17,41 @@ function solve(boardString) {
   return board;
 }
 
+function checkVertical(board) {
+  for (let i = 0; i < board.length; i += 1) {
+    const newArr = [];
+    for (let j = 0; j < board.length; j += 1) {
+      if (newArr.includes(board[j][i])) {
+        console.log(newArr);
+        return false;
+      } if (!newArr.includes(board[j][i])) {
+        console.log(newArr);
+        if (board[i][j] !== '-') {
+          newArr.push(board[j][i]);
+        }
+      }
+    }
+  }
+  return true;
+}
+function checkHorizont(board) {
+  for (let i = 0; i < board.length; i += 3) {
+    const newArr = [];
+    for (let j = 0; j < board.length; j += 1) {
+      if (newArr.includes(board[i][j])) {
+        console.log(newArr);
+        return false;
+      } if (!newArr.includes(board[i][j])) {
+        console.log(newArr);
+        if (board[i][j] !== '-') {
+          newArr.push(board[i][j]);
+        }
+      }
+    }
+  }
+  return true;
+}
+
 function kub(arr) {
   let generalArray = [];
   let columnKub = [];
