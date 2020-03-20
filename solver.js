@@ -20,17 +20,19 @@ function isEmpty(cell) {
   return // true?false
 }
 
-function addNumInField(field, cell, num){
+function addNumInField(field, cell, num) {
   // todo
+  field[cell[0]][cell[1]] = num
+
   return // nothing;
 }
 
-function nextCell(cell){
+function nextCell(cell) {
   // todo
   return // cell
 }
 
-function clearCell(cell){
+function clearCell(cell) {
   // todo
   return // nothing
 }
