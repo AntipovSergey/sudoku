@@ -28,6 +28,8 @@ function isEmpty(cell) {
 
 function addNumInField(field, cell, num) {
   // todo
+  field[cell[0]][cell[1]] = num
+
   return // nothing;
 }
 
