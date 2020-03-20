@@ -20,67 +20,61 @@ function fillField(field, input) {
   return;
 }
 
-function isLast(cell) {
-  return cell[0] === 9 && cell[1] === 9;
+function isLast(x, y) {
+  return x === 9 && y === 0;
 }
 
-function isEmpty(cell) {
-  if (field[cell[0]][cell[1]] === null) {
+function isEmpty(x, y) {
+  if (field[x][y] === null) {
     return true
   }
   return false
 }
 
-function addNumInField(field, cell, num) {
-  field[cell[0]][cell[1]] = num
-
+function addNumInField(field, x, y, num) {
+  field[x][y] = num
+  console.table(field);
   return;
 }
 
-function nextCell(cell) {
-  let x = cell[0];
-  let y = cell[1];
+function nextCell(x, y) {
   if (x <= 8 && y <= 7) {
     y++;
   } else if (y === 8) {
     x++;
     y = 0;
   }
-
-  if (x === 9) {
-    y = 9;
-  }
-  cell[0] = x;
-  cell[1] = y;
-  return cell;
+  return [x, y];
 }
 
-function clearCell(cell) {
-  field[cell[0]][cell[1]] = null;
+
+function clearCell(x, y) {
+  field[x][y] = null;
+  console.table(field);
   return;
 }
 
-function getNums(field, cell) {
-  function checkVertical(cell, num) {
+function getNums(field, x, y) {
+  function checkVertical(x, y, num) {
     for (let i = 0; i < 9; i++) {
-      if (field[i][cell[1]] === num) return false;
+      if (field[i][y] === num) return false;
     }
     return true;
   }
 
-  function checkHorisontal(cell, num) {
+  function checkHorisontal(x, y, num) {
     for (let i = 0; i < 9; i++) {
-      if (field[cell[0]][i] === num) return false;
+      if (field[x][i] === num) return false;
     }
     return true;
   }
 
-  function checkSquare(cell, num) {
-    const xShift = Math.floor(cell[0] / 3) * 3;
-    const yShift = Math.floor(cell[1] / 3) * 3;
+  function checkSquare(x, y, num) {
+    const xShift = Math.floor(x / 3) * 3;
+    const yShift = Math.floor(y / 3) * 3;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        if (field[xShift + i][yShift + j] === num && !(xShift + i === cell[0] && yShift + j === cell[1])) {
+        if (field[xShift + i][yShift + j] === num) {
           return false;
         }
       }
@@ -88,13 +82,13 @@ function getNums(field, cell) {
     return true;
   }
 
-  function checkNum(cell, num) {
-    return checkVertical(cell, num) && checkHorisontal(cell, num) && checkSquare(cell, num);
+  function checkNum(x, y, num) {
+    return checkVertical(x, y, num) && checkHorisontal(x, y, num) && checkSquare(x, y, num);
   }
 
   let correct = [];
   for (let i = 1; i <= 9; i++) {
-    if (checkNum(cell, num)) correct.push(i);
+    if (checkNum(x, y, i)) correct.push(i);
   }
   return correct; //array of correct nums to fill in cell
 }
@@ -102,26 +96,30 @@ function getNums(field, cell) {
 
 // main func solver
 
-function solver(field, cell) {  // cell = [x,y]
-  if (isLast(cell)) return field;
+function solver(field, x = 0, y = 0) {
+  console.log(x, y)  // cell = [x,y]
+  if (isLast(x, y)) return field;
 
-  if (isEmpty(cell)) {
-    let nums = getNums(field, cell);
-    if (!nums) return [];
+  if (isEmpty(x, y)) {
+    let nums = getNums(field, x, y);
+    if (nums.length === 0) {
+      return [];
+    };
 
     for (let i = 0; i < nums.length; i++) {
-      addNumInField(field, cell, nums[i]);
-      let tmp = solver(field, nextCell(cell));
-      if (tmp) {
+      addNumInField(field, x, y, nums[i]);
+      let cell = nextCell(x, y);
+      let tmp = solver(field, cell[0], cell[1]);
+      if (tmp > 0) {
         return tmp;
-      } else {
-        clearCell(cell);
-        return [];
       }
     }
+    clearCell(x, y);
+    return [];
   } else {
-    let tmp = solver(field, nextCell(cell));
-    if (tmp) {
+    let cell = nextCell(x, y);
+    let tmp = solver(field, cell[0], cell[1]);
+    if (tmp.length > 0) {
       return tmp
     } else {
       return [];
@@ -129,4 +127,9 @@ function solver(field, cell) {  // cell = [x,y]
   }
 
 }
+const data = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+let field = createField();
+fillField(field, data);
+console.table(solver(field));
+
 
