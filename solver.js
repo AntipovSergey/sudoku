@@ -98,7 +98,7 @@ function getNums(field, x, y) {
 
 function solver(field, x = 0, y = 0) {
   console.log(x, y)  // cell = [x,y]
-  if (isLast(x, y)) return field;
+  if (isLast(x, y)) return 'win';
 
   if (isEmpty(x, y)) {
     let nums = getNums(field, x, y);
@@ -110,7 +110,7 @@ function solver(field, x = 0, y = 0) {
       addNumInField(field, x, y, nums[i]);
       let cell = nextCell(x, y);
       let tmp = solver(field, cell[0], cell[1]);
-      if (tmp > 0) {
+      if (tmp === 'win') {
         return tmp;
       }
     }
@@ -119,7 +119,7 @@ function solver(field, x = 0, y = 0) {
   } else {
     let cell = nextCell(x, y);
     let tmp = solver(field, cell[0], cell[1]);
-    if (tmp.length > 0) {
+    if (tmp === 'win') {
       return tmp
     } else {
       return [];
@@ -127,7 +127,7 @@ function solver(field, x = 0, y = 0) {
   }
 
 }
-const data = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+const data = '--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3';
 let field = createField();
 fillField(field, data);
 console.table(solver(field));
