@@ -1,4 +1,45 @@
 let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+const defaultNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const coords = [
+	[
+		[0, 0],
+		[2, 2]
+	],
+	[
+		[0, 3],
+		[2, 5]
+	],
+	[
+		[0, 6],
+		[2, 8]
+	],
+	[
+		[3, 0],
+		[5, 2]
+	],
+	[
+		[3, 3],
+		[5, 5]
+	],
+	[
+		[3, 6],
+		[5, 8]
+	],
+	[
+		[6, 0],
+		[8, 2]
+	],
+	[
+		[6, 3],
+		[8, 5]
+	],
+	[
+		[6, 6],
+		[8, 8]
+	]
+];
+
+
 
 let boardArr = function (string) {
 	let board = [];
@@ -21,65 +62,32 @@ function solve(arr) {
 	for (let i = 0; i < arr.length; i++) {
 		for (let j = 0; j < arr[i].length; j++) {
 			if (arr[i][j] === '-') {
-
-				return findSquare([i, j]);
-				let numbers = [];
+				let square = findSquare([i, j]);
+				let numbers = findAllNumbersInSquare(square);
+				console.log(numbers);
 			}
 		}
 	}
 }
 
-console.log(solve(boardArr(boardString)));
-
-
 function findSquare(elemCoords) {
-	let coords = [
-		[
-			[0, 0],
-			[2, 2]
-		],
-		[
-			[0, 3],
-			[2, 5]
-		],
-		[
-			[0, 6],
-			[2, 8]
-		],
-		[
-			[3, 0],
-			[5, 2]
-		],
-		[
-			[3, 3],
-			[5, 5]
-		],
-		[
-			[3, 6],
-			[5, 8]
-		],
-		[
-			[6, 0],
-			[8, 2]
-		],
-		[
-			[6, 3],
-			[8, 5]
-		],
-		[
-			[6, 6],
-			[8, 8]
-		]
-	];
-
-
 	for (let i = 0; i < coords.length; i++) {
-		if (elemCoords[0] >= coords[i][0][0] && elemCoords[0] <= coords[i][1][0] && elemCoords[1] >= coords[i][0][1] && elemCoords[1] <= coords[i][1][1]) return `Your elem in ${i} square`;
+		if (elemCoords[0] >= coords[i][0][0] && elemCoords[0] <= coords[i][1][0] && elemCoords[1] >= coords[i][0][1] && elemCoords[1] <= coords[i][1][1]) return i;
 	}
 }
 
-
-
+function findAllNumbersInSquare(position) {
+	let needeedNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+	let coordsSquare = coords[position];
+	for (let i = 0; i < 3; i++) {
+		for (let j = 0; j < 3; j++) {
+			if (needeedNumbers.includes(boardArr[coordsSquare[0][0]][coordsSquare[0][1]])) {
+				needeedNumbers = needeedNumbers.splice(needeedNumbers.indexOf(boardArr[coordsSquare[0][0]][coordsSquare[0][1]], 1));
+			}
+		}
+	}
+	return needeedNumbers;
+}
 
 
 
