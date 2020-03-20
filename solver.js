@@ -34,8 +34,21 @@ function addNumInField(field, cell, num) {
 }
 
 function nextCell(cell) {
-  // todo
-  return // cell
+  let x = cell[0];
+  let y = cell[1];
+  if (x <= 8 && y <= 7) {
+    y++;
+  } else if (y === 8) {
+    x++;
+    y = 0;
+  }
+
+  if (x === 9) {
+    y = 9;
+  }
+  cell[0] = x;
+  cell[1] = y;
+  return cell;
 }
 
 function clearCell(cell) {
@@ -60,8 +73,8 @@ function getNums(field, cell) {
   }
 
   function checkSquare(cell, num) {
-    const xShift = Math.floor(cell[0] / 3)*3;
-    const yShift = Math.floor(cell[1] / 3)*3;
+    const xShift = Math.floor(cell[0] / 3) * 3;
+    const yShift = Math.floor(cell[1] / 3) * 3;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         if (field[xShift + i][yShift + j] === num && !(xShift + i === cell[0] && yShift + j === cell[1])) {
@@ -113,3 +126,4 @@ function solver(field, cell) {  // cell = [x,y]
   }
 
 }
+
