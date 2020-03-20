@@ -1,6 +1,6 @@
 let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-function createSudokuBoard(string) {
+let boardArr = function (string) {
 	let board = [];
 	let boardArr = string.split('');
 
@@ -13,67 +13,72 @@ function createSudokuBoard(string) {
 		board.push(row);
 	}
 	return board;
-}
-console.log(createSudokuBoard(boardString));
+};
 
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(board = createSudokuBoard(boardString)) {
-	for (let row of board) {
-		for (let i = 0; i < row.length; i++) {
-			if (row[i] === '-') {
-				searchNums(row[i]);
+
+
+function solve(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr[i].length; j++) {
+			if (arr[i][j] === '-') {
+
+				return findSquare([i, j]);
+				let numbers = [];
 			}
-
 		}
 	}
 }
 
-function findSquare(board, elem) {
-	let coords = {
-		1: [
-			[],
-			[]
+console.log(solve(boardArr(boardString)));
+
+
+function findSquare(elemCoords) {
+	let coords = [
+		[
+			[0, 0],
+			[2, 2]
 		],
-		2: [
-			[],
-			[]
+		[
+			[0, 3],
+			[2, 5]
 		],
-		3: [
-			[],
-			[]
+		[
+			[0, 6],
+			[2, 8]
 		],
-		4: [
-			[],
-			[]
+		[
+			[3, 0],
+			[5, 2]
 		],
-		5: [
-			[],
-			[]
+		[
+			[3, 3],
+			[5, 5]
 		],
-		6: [
-			[],
-			[]
+		[
+			[3, 6],
+			[5, 8]
 		],
-		7: [
-			[],
-			[]
+		[
+			[6, 0],
+			[8, 2]
 		],
-		8: [
-			[],
-			[]
+		[
+			[6, 3],
+			[8, 5]
 		],
-		9: [
-			[],
-			[]
+		[
+			[6, 6],
+			[8, 8]
 		]
-	};
+	];
 
 
+	for (let i = 0; i < coords.length; i++) {
+		if (elemCoords[0] >= coords[i][0][0] && elemCoords[0] <= coords[i][1][0] && elemCoords[1] >= coords[i][0][1] && elemCoords[1] <= coords[i][1][1]) return `Your elem in ${i} square`;
+	}
 }
+
+
 
 
 
