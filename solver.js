@@ -4,8 +4,6 @@ function createField() {
     let fieldString = new Array(9).fill(null);
     field.push(fieldString);
   }
-  // todo
-
   return field;
 }
 
@@ -19,12 +17,11 @@ function fillField(field, input) {
       stringIndex++;
     }
   }
-  return //nothing;
+  return;
 }
 
 function isLast(cell) {
-  return cell[0] === 9 && cell[1] === 9;// todo
-  // true?false
+  return cell[0] === 9 && cell[1] === 9;
 }
 
 function isEmpty(cell) {
@@ -35,10 +32,9 @@ function isEmpty(cell) {
 }
 
 function addNumInField(field, cell, num) {
-  // todo
   field[cell[0]][cell[1]] = num
 
-  return // nothing;
+  return;
 }
 
 function nextCell(cell) {
@@ -60,9 +56,8 @@ function nextCell(cell) {
 }
 
 function clearCell(cell) {
-  // todo
   field[cell[0]][cell[1]] = null;
-  return // nothing
+  return;
 }
 
 function getNums(field, cell) {
