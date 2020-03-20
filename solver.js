@@ -17,8 +17,8 @@ function fillField(field) {
 
 
 function isLast(cell) {
-  // todo
-  return // true?false
+  return cell[0] === 9 && cell[1] === 9;// todo
+  // true?false
 }
 
 function isEmpty(cell) {
