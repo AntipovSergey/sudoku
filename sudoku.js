@@ -1,3 +1,20 @@
+let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+
+function createSudokuBoard(string) {
+	let board = [];
+	boardArr = string.split('');
+
+	for (let i = 0; i <= 9; i++) {
+		let row = [];
+		for (let j = 0; j < 9; j++) {
+			row.push(boardString[j]);
+		}
+		board.push(row);
+	}
+	return board;
+}
+
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
