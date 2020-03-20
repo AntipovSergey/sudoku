@@ -58,7 +58,7 @@ let boardArr = function (string) {
 
 
 
-function solve(arr) {
+function solve(arr = boardArr) {
 	for (let i = 0; i < arr.length; i++) {
 		for (let j = 0; j < arr[i].length; j++) {
 			if (arr[i][j] === '-') {
@@ -78,17 +78,20 @@ function findSquare(elemCoords) {
 
 function findAllNumbersInSquare(position) {
 	let needeedNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-	let coordsSquare = coords[position];
+	let coordsSquareStart = coords[position][0];
 	for (let i = 0; i < 3; i++) {
 		for (let j = 0; j < 3; j++) {
-			if (needeedNumbers.includes(boardArr[coordsSquare[0][0]][coordsSquare[0][1]])) {
-				needeedNumbers = needeedNumbers.splice(needeedNumbers.indexOf(boardArr[coordsSquare[0][0]][coordsSquare[0][1]], 1));
-			}
+
+
+			//  if ((boardArr[coordsSquare[0][0]][coordsSquare[0][1]])) {
+			//  	needeedNumbers = needeedNumbers.splice(needeedNumbers.indexOf(boardArr[coordsSquare[0][0]][coordsSquare[0][1]], 1));
+			//  }
+
+
 		}
 	}
 	return needeedNumbers;
 }
-
 
 
 
