@@ -9,12 +9,18 @@ function createField() {
   return field;
 }
 
-function fillField(field) {
-  // todo
-
+function fillField(field, input) {
+  let stringIndex = 0;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (input[stringIndex] !== '-') {
+        field[i][j] = +input[stringIndex];
+      }
+      stringIndex++;
+    }
+  }
   return //nothing;
 }
-
 
 function isLast(cell) {
   return cell[0] === 9 && cell[1] === 9;// todo
