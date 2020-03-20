@@ -16,21 +16,23 @@ function isLast(cell) {
 }
 
 function isEmpty(cell) {
-  // todo
-  return // true?false
+  if (field[cell[0]][cell[1]] === null) {
+    return true
+  }
+  return false
 }
 
-function addNumInField(field, cell, num){
+function addNumInField(field, cell, num) {
   // todo
   return // nothing;
 }
 
-function nextCell(cell){
+function nextCell(cell) {
   // todo
   return // cell
 }
 
-function clearCell(cell){
+function clearCell(cell) {
   // todo
   return // nothing
 }
