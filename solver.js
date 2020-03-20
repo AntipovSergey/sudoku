@@ -1,8 +1,14 @@
 function createField() {
+  const field = [];
+  for (let i = 0; i < 9; i++) {
+    let fieldString = new Array(9).fill(null);
+    field.push(fieldString);
+  }
   // todo
 
   return field;
 }
+
 function fillField(field) {
   // todo
 
@@ -20,17 +26,17 @@ function isEmpty(cell) {
   return // true?false
 }
 
-function addNumInField(field, cell, num){
+function addNumInField(field, cell, num) {
   // todo
   return // nothing;
 }
 
-function nextCell(cell){
+function nextCell(cell) {
   // todo
   return // cell
 }
 
-function clearCell(cell){
+function clearCell(cell) {
   // todo
   return // nothing
 }
