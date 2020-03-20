@@ -38,6 +38,7 @@ function nextCell(cell) {
 
 function clearCell(cell) {
   // todo
+  field[cell[0]][cell[1]] = null;
   return // nothing
 }
 
