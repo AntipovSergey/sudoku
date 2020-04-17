@@ -82,16 +82,41 @@ module.exports = {
  */
 
 
-function sudokuSolver(board) {
-  for (let vertical = 0; vart < board.length; vertical += 1) {
-    for (let horizontal = 0; horizontal < board.length; horizontal += 1) {
-      console.log
-    }
-  }
-}
 
-let board = [
-  [
-
-  ]
+[
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+   ------------------------| -----------
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+   -------------------------------------
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
+  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
 ]
+
+0   0
+1   3
+2   6
+
+
+function checkValue(board, number, i, j) {
+
+  for (let x = 0; x < board[i].length; x += 1) {
+    for (let y = 0; y < board[j].length; y += 1) {
+      if (board[x][y] === number) { return false; }
+    }
+    let box_x = number[Math.floor(i / 3)];
+    let box_y = number[Math.floor(j / 3)];
+
+    for (let x = box_x * 3; x < box_x * 3 + 3; x += 1) {
+      for (let y = box_y * 3; y < box_y * 3 + 3; y += 1) {
+        if (board[x][y] === number) { return false; }
+      }
+    }
+    return true;
+  }
+
+  function sudokuSolver(board, )
