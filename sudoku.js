@@ -13,7 +13,7 @@ function horizontalSudoku(arr){
  }
  return true;
 }
-console.log(horizontalSudoku(sudokArrH));
+//console.log(horizontalSudoku(sudokArrH));
 
 
 
@@ -29,16 +29,19 @@ let sudokArrV = [
   [1]
 ];
 
-function vertikalSudoku(arr){
-  for (let i = 0; i < array.length; i++) {
-    
-    
+function vertikalSudoku(arrV){
+  let arrH = [];
+  for (let x = 0; x < 1; x++) {
+  for (let i = 0; i < arrV.length; i++) {
+    arrH.push(arrV[x][i]);
+    console.log(arrH);
   }
+}
   
-  for (let i = 0; i < arr.length; i++) {
-    for (let x = i+1; x < arr.length; x++) {
+  for (let i = 0; i < arrH.length; i++) {
+    for (let x = i+1; x < arrH.length; x++) {
      //console.log(arr.length);
-     if (arr[i] == arr[x]) {
+     if (arrH[i] == arrH[x]) {
        
       return false;
     }
@@ -47,7 +50,7 @@ function vertikalSudoku(arr){
 return true;
 }
 
-
+console.log(vertikalSudoku(sudokArrV));
 
 
 
