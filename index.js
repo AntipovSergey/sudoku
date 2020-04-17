@@ -17,27 +17,23 @@
 
 // console.log(solve(sudoku))
 
-let b = [
-  ['1', '7', '5', '8', '7', '2', '6', '5', '3'], ['8',
-  '9', '7', '9', '7', '6', '4', '7', '5'], ['2', '4',
-  '8', '4', '7', '5', '8', '1', '9'], ['2', '1', '9',
-  '3', '6', '7', '3', '2', '6'], ['7', '6', '2', '7',
-  '8', '3', '7', '9', '4'], ['8', '2', '6', '8', '6',
-  '1', '9', '5', '9'], ['8', '9', '7', '6', '6', '5',
-  '4', '3', '6'], ['4', '3', '3', '8', '2', '8', '5',
-  '6', '1'], ['6', '7', '8', '3', '4', '8', '9', '1',
-  '6']
-]
+let num = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+let b = [[num], [num], [num], [num]]
 
 function verCheck (arr) {
   let middle = []
-  // let index_main = 0
-  for (let i = 0; i < 1; i++) {
-    for (let j = 1; i < arr.length; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < arr.length; j++) {
       middle.push(arr[j][i])
-      console.log(middle);
-      
+      middle.sort()
+      middle[i].join()
+
+      if (middle[i] !== num) {
+        return false
+      }
     }
   }
+  return true
 }
 console.log(verCheck(b));
+
