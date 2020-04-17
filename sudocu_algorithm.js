@@ -10,29 +10,26 @@ function sudocu(board) {
           if (correctSolving(indexX, indexY, candidate, board)) {
             board[indexX][indexY] = candidate;
             sudocu(board);
-            // return true;
           }
         }
       }
       return false;
     }
   }
+  return true;
 }
 
 function correctSolving(indexX, indexY, candidate, board) {
   let leftToRightCheck = [];
   let upToDownCheck = [];
   let cellCheck = [];
-  let cellX = Math.floor(indexX / 3);
-  let cellY = Math.floor(indexY / 3);
+  let cellX = Math.floor(indexX / 3) * 3;
+  let cellY = Math.floor(indexY / 3) * 3;
 
   for (let index = 0; index < board.length; index += 1) {
-    if (index !== indexY) {
-      leftToRightCheck[index] = board[indexX][index];
-    }
-    if (index !== indexX) {
-      upToDownCheck[index] = board[index][indexY];
-    }
+
+    leftToRightCheck[index] = board[indexX][index];
+    upToDownCheck[index] = board[index][indexY];
   }
 
   for (let index = 0; index < 3; index += 1) {
@@ -41,7 +38,6 @@ function correctSolving(indexX, indexY, candidate, board) {
     cellCheck[index] = board[cellX + 2][cellY + Math.floor(index / 3)];
     // cellCheck[index] = board[cellX + Math.floor(index / 3)][cellY + Math.floor(index / 3)];
   }
-  cellCheck.splice(cellCheck.indexOf(candidate), 1);
 
   if ((leftToRightCheck.indexOf(candidate) === -1) && (upToDownCheck.indexOf(candidate) === -1) && (upToDownCheck.indexOf(candidate) === -1)) {
     return false;
