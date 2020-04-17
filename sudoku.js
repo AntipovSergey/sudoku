@@ -1,3 +1,56 @@
+let sudokArrH = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function horizontalSudoku(arr){
+  
+   for (let i = 0; i < arr.length; i++) {
+     for (let x = i+1; x < arr.length; x++) {
+      //console.log(arr.length);
+      if (arr[i] == arr[x]) {
+        
+       return false;
+     }
+   }
+ }
+ return true;
+}
+console.log(horizontalSudoku(sudokArrH));
+
+
+
+let sudokArrV = [
+  [1],
+  [2],
+  [1],
+  [2],
+  [1],
+  [2],
+  [1],
+  [2],
+  [1]
+];
+
+function vertikalSudoku(arr){
+  for (let i = 0; i < array.length; i++) {
+    
+    
+  }
+  
+  for (let i = 0; i < arr.length; i++) {
+    for (let x = i+1; x < arr.length; x++) {
+     //console.log(arr.length);
+     if (arr[i] == arr[x]) {
+       
+      return false;
+    }
+  }
+}
+return true;
+}
+
+
+
+
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
