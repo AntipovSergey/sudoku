@@ -1,34 +1,60 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(boardString) {
+// Main sudocu solver function
+function sudoku(board) {
 
+  for (let indexX = 0; indexX < board.length; indexX++) {                 // перебираем Строки
+    for (let indexY = 0; indexY < board[indexX].length; indexY++) {       // ... Столбцы
+      for (let candidate = 1; candidate <= 9; candidate++) {              // ... Кандидаты на пустое место
+        
+        if (board[indexX][indexY] === '-') {                              // если элемент пустой, то начинаем проверки
+          
+          if (correctSolving(indexX, indexY, candidate, board)) {         // проверка, возможности вставить кандидата 
+            board[indexX][indexY] = candidate;                            // если Да, то вставляем кандидата
+            
+            result = sudoku(board);                                       // решаем оставшуюся судоку
+            
+            if (result !== false) return true;
+            board[indexX][indexY] = '-';
+          }
+        }
+      }
+      if (board[indexX][indexY] === '-') return false;
+    }
+  }
+  console.table(board);
+  return board;
 }
 
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
-
+function correctSolving(indexX, indexY, candidate, board) {
+  
+  for (let index = 0; index < board.length; index += 1) {
+    // Проверка на совпадение в столбце
+    if (index != indexX && board[index][indexY] === candidate) {
+      return false;
+    }
+    
+    // Проверка на совпадение в строке
+    if (index != indexY && board[indexX][index] === candidate) {
+      return false;
+    }
+  }
+  
+  let cellCheck = [];
+  let cellX = 3 * Math.floor(indexX / 3);
+  let cellY = 3 * Math.floor(indexY / 3);
+  
+  for (let index = 0; index < 3; index += 1) {
+    cellCheck[index] = board[cellX][cellY + index];
+    cellCheck[index + 3] = board[cellX + 1][cellY + index];
+    cellCheck[index + 6] = board[cellX + 2][cellY + index];
+    // cellCheck[index] = board[cellX + Math.floor(index / 3)][cellY + Math.floor(index / 3)];
+  }
+  
+  
+  if (cellCheck.some(el => el === candidate)) {
+    return false;
+  }
+  return true;
 }
 
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-
-}
-
-// Exports all the functions to use them in another file.
-module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+module.exports = { sudoku, correctSolving };
