@@ -12,7 +12,7 @@ for (let i = 0; i < 81; i += 9) {
 }
 
 let log = [];
-let nextH = 1;
+let nextH = 0;
 let nextV = 0;
 
 function choice(coordH, coordV) {
@@ -26,10 +26,9 @@ function choice(coordH, coordV) {
   if (raws[coordH][coordV] !== '-') {
     choice(nextH, nextV);
   }
-  console.table(raws);
 
   // Переменные для хранения содержимого строки, столбца и квадрата, соответствующих текущей ячейке
-  const horiz = raws[coordH].join('');
+  const horiz = raws[coordV].join('');
   let vert = '';
   let sqr = '';
 
@@ -44,19 +43,19 @@ function choice(coordH, coordV) {
   if (coordH / 3 < 1) {
     sqrH = 0;
   }
-  if (coordH / 3 > 1 && coordH / 3 < 2) {
+  if (coordH / 3 >= 1 && coordH / 3 < 2) {
     sqrH = 3;
   }
-  if (coordH / 3 > 2) {
+  if (coordH / 3 >= 2) {
     sqrH = 6;
   }
   if (coordV / 3 < 1) {
     sqrV = 0;
   }
-  if (coordV / 3 > 1 && coordV / 3 < 2) {
+  if (coordV / 3 >= 1 && coordV / 3 < 2) {
     sqrV = 3;
   }
-  if (coordV / 3 > 2) {
+  if (coordV / 3 >= 2) {
     sqrV = 6;
   }
 
@@ -66,25 +65,34 @@ function choice(coordH, coordV) {
     }
   }
 
-  console.log(horiz);
-  console.log(vert);
-  console.log(sqr);
-
   // Получение пула свободных чисел
-  const pool = ['3', '4', '5']; // poolCheck(horiz, vert, sqr).split('');
+  const pool = ['1', '2', '3', '4', '5', '6', '7', '8', '9']; // poolCheck(horiz, vert, sqr).split('');
   if (pool.length > 1) {
+    log.push([raws.slice(''), pool, coordH, coordV]);
     raws[coordH][coordV] = pool[-1];
-    log.push([raws, pool]);
+    if (coordH === 8 && coordV === 8) {
+      console.table(raws);
+      return raws;
+    }
+    choice(nextH, nextV);
   }
   if (pool === -1) {
     raws = [];
     raws.push(log[-1].slice(''));
+    pool.pop();
+    choice(log[-1][2], log[-1][3]);
+  }
+  if (pool.length === 1) {
+    raws[coordH][coordV] = pool[0];
+    if (coordH === 8 && coordV === 8) {
+      console.table(raws);
+      return raws;
+    }
+    choice(nextH, nextV);
   }
 
-  console.log(log[0]);
-  if (coordH === 8 && coordV === 8) {
-    return raws;
-  }
+  // console.log(log[0]);
 }
 
+console.table(raws);
 choice(0, 0);
