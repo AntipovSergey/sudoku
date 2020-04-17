@@ -4,6 +4,8 @@
 const string1 =
   '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
+let pool = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
 const splited = [...string1.split('')];
 let raws = [];
 
@@ -11,7 +13,7 @@ for (let i = 0; i < 81; i += 9) {
   raws.push(splited.slice(i, i + 9));
 }
 
-let log = [];
+let log = [[raws], [pool], 0, 0];
 let nextH = 0;
 let nextV = 0;
 
@@ -66,20 +68,21 @@ function choice(coordH, coordV) {
   }
 
   // Получение пула свободных чисел
-  const pool = ['1', '2', '3', '4', '5', '6', '7', '8', '9']; // poolCheck(horiz, vert, sqr).split('');
+  // poolCheck(horiz, vert, sqr).split('');
+
   if (pool.length > 1) {
     log.push([raws.slice(''), pool, coordH, coordV]);
     raws[coordH][coordV] = pool[-1];
-    if (coordH === 8 && coordV === 8) {
-      console.table(raws);
-      return raws;
-    }
     choice(nextH, nextV);
   }
   if (pool === -1) {
     raws = [];
     raws.push(log[-1].slice(''));
     pool.pop();
+    if (pool.length === 0) {
+      log.pop();
+      choice(log[-1][2], log[-1][3]);
+    }
     choice(log[-1][2], log[-1][3]);
   }
   if (pool.length === 1) {
