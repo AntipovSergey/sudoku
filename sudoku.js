@@ -1,109 +1,37 @@
-/* // Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+let boardString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89---";
+
 function solve(boardString) {
-
-}
-
-
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
-
-}
-
-function solve(board) {
-  let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  find = findEmpty(board);
-  if (find) {
-    let find = board[row][col];
-    for (item of digits) {
-      if valid(board, i, (row, col))
-     board[row][col] = i;
-      if (solve(board))
-        return true;
+  const board = [];
+  for (let i = 0; i < 9; i++) {
+    board.push(new Array(9).fill(null));
+  }
+  let stringIndex = 0;
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (boardString[stringIndex] !== '-') {
+        board[i][j] = +boardString[stringIndex];
+      }
+      stringIndex++;
     }
   }
-  return true;
+  return board;
 }
 
-function findEmpty (board){
-  for (let i of board){
-    for (le j = 0; j < board.length; j += 1){
-      if (board[i][j] === 0)
-      return (i,j)
+function isEmpty(board) {
+  let coordinates = [];
+  for (let y = 0; y < 9; y++) {
+    for (let x = 0; x < 9; x++) {
+      if (board[y][x] === null) {
+        coordinates = [x, y];
+      }
     }
   }
-  return false;
+  return coordinates;
 }
 
-
-function isValid(board, number, position) {
-  // Check row
-  for (let i of board[0].length)
-  if ((board[position][0][i]) === num && position[1] != i)
-  return false
-  // Check column
-  for (let i of board.length){
-    if (board[i][position[1]] == number && position[0] != i)
-    return false;
-  }
-// Check box 
-
-let box_x = postiion[1] / 3;
-let box_y = position[0] / 3;
-
-for (let i of (box_y * 3, box * 3 + 3){
-  for (let j of (box_x * 3, box_x * 3 + 3){
-    if (board[i][j] === num && (i,j) != poistion) return false;
-  }
-}
-retrun 
-  }
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-
-}
-
-// Exports all the functions to use them in another file.
-module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard
-}
- */
-
-
-
-[
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-   ------------------------| -----------
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-   -------------------------------------
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-  ['1', '1', '1' | '1', '1', '1' | '1', '1', '1']
-]
-
-0   0
-1   3
-2   6
-
-
-function checkValue(board, number, i, j) {
-
+function checkValue(board, number, coordinates) {
+  let i = coordinates[0];
+  let j = coordinates[1]
   for (let x = 0; x < board[i].length; x += 1) {
     for (let y = 0; y < board[j].length; y += 1) {
       if (board[x][y] === number) { return false; }
@@ -116,7 +44,23 @@ function checkValue(board, number, i, j) {
         if (board[x][y] === number) { return false; }
       }
     }
+  }
+  return true;
+}
+function sudokuSolver() {
+  let board = solve(boardString);
+  let find = isEmpty(board)
+  if (find === false) {
     return true;
   }
+  for (let digit = 0; digit < 10; digit += 1) {
+    if (checkValue(board, digit, find)) {
+      board[find] = digit;
+    }
+  }
+  if (sudokuSolver(board))
+    return true;
+  return sudokuSolver(board);
+}
 
-  function sudokuSolver(board, )
+console.log(sudokuSolver())
