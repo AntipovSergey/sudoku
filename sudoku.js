@@ -4,7 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  adadad
+
 }
 
 
@@ -16,7 +16,24 @@ function isSolved(board) {
 
 }
 
+function solve(board) {
+  let digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  find = findEmpty(board);
+  if (find) {
+    let find = board[row][col];
+    for (item of digits) {
+      if valid(board, i, (row, col))
+     board[row][col] = i;
+      if (solve(board))
+        return true;
+    }
+  }
+}
 
+function isValid(board, number, position) {
+  // Check row
+  for (let i of board[i])
+}
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
