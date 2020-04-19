@@ -38,10 +38,9 @@ function solveCheck(puzzle, indexH, indexV, type) {
   let a = 1;
   let trigger = true;
 
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 9; i++) {
     if (trigger === true) {
-      trigger = sortedArray[i] == a;
-      a++;
+      trigger = sortedArray[i] === a++;
     } else {
       return false;
     }

@@ -29,23 +29,29 @@ function rawsToString(arr) {
 }
 
 function loadState() {
-  raws = [];
   raws = log[log.length - 1][0].slice();
-  pool = [];
   pool = log[log.length - 1][1].slice();
   pool.pop();
   if (pool.length === 0) {
     log.pop();
-    raws = [];
     raws = log[log.length - 1][0].slice();
     pool = log[log.length - 1][1].slice();
     pool.pop();
-    choice(log[log.length - 1][2], log[log.length - 1][3]);
+    choice(
+      log[log.length - 1][0],
+      log[log.length - 1][2],
+      log[log.length - 1][3],
+    );
   }
-  choice(log[log.length - 1][2], log[log.length - 1][3]);
+  choice(
+    log[log.length - 1][0],
+    log[log.length - 1][2],
+    log[log.length - 1][3],
+  );
 }
 
-function choice(coordV, coordH) {
+function choice(arr, coordV, coordH) {
+  raws = arr.slice();
   if (coordH === 8 && coordV < 8) {
     nextH = 0;
     nextV = coordV + 1;
@@ -57,7 +63,7 @@ function choice(coordV, coordH) {
   // Проверка на наличие цифры в ячейке
   if (raws[coordV][coordH] !== '-' && coordV < 8 && coordH < 8) {
     console.log(raws[coordV][coordH], nextV, nextH, 'next');
-    choice(nextV, nextH);
+    choice(raws, nextV, nextH);
   } else if (coordV === 8 && coordH === 8 && raws[coordV][coordH] !== '-') {
     console.table(raws);
     return raws;
@@ -111,41 +117,44 @@ function choice(coordV, coordH) {
   if (pool.length === 1 && pool[0] !== -1) {
     raws[coordV][coordH] = pool[0];
     pool = [];
-  }
-  if (pool.length > 1) {
+  } else if (pool.length > 1) {
     log.push([raws.slice(), pool.slice(), coordV, coordH]);
     raws[coordV][coordH] = pool[pool.length - 1];
-  }
-  if (pool === -1) {
+    pool = [];
+  } else if (pool === -1) {
     loadState();
   }
-  if (coordH === 8) {
-    if (!op2.solveCheck(rawsToString(raws), 0, coordV, 'h')) {
-      loadState();
-    }
-  }
-  if (coordV === 8) {
-    if (!op2.solveCheck(rawsToString(raws), coordH, 0, 'v')) {
-      loadState();
-    }
-  }
-  if (
-    (coordH === 2 && coordV === 2) ||
-    (coordH === 5 && coordV === 2) ||
-    (coordH === 2 && coordV === 5) ||
-    (coordH === 5 && coordV === 5)
-  ) {
-    if (!op2.solveCheck(rawsToString(raws), sqrH, sqrV, 's')) {
-      loadState();
-    }
-  }
+
+  // // Проверки правильности заполнения ряда, столбца или квадрата
+  // if (coordH === 8) {
+  //   if (!op2.solveCheck(rawsToString(raws), 0, coordV, 'h')) {
+  //     loadState();
+  //   }
+  // }
+  // if (coordV === 8) {
+  //   if (!op2.solveCheck(rawsToString(raws), coordH, 0, 'v')) {
+  //     loadState();
+  //   }
+  // }
+  // if (
+  //   (coordH === 2 && coordV === 2) ||
+  //   (coordH === 5 && coordV === 2) ||
+  //   (coordH === 2 && coordV === 5) ||
+  //   (coordH === 5 && coordV === 5)
+  // ) {
+  //   if (!op2.solveCheck(rawsToString(raws), sqrH, sqrV, 's')) {
+  //     loadState();
+  //   }
+  // }
+
   if (coordV === 8 && coordH === 8) {
     console.table(raws);
     return raws;
   }
 
-  choice(nextV, nextH);
+  choice(raws, nextV, nextH);
+  return raws;
 }
 
 console.table(raws);
-choice(0, 0);
+choice(raws, 0, 0);
