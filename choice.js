@@ -4,21 +4,19 @@ const op1 = require('./poolCheck');
 const op2 = require('./solveCheck');
 
 const string1 =
-  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+  '---------------------------------------------------------------------------------';
 
 let pool = [];
 let raws = [];
 let log = [];
+let nextH = 0;
+let nextV = 0;
 
 const splited = [...string1.split('')];
 
 for (let i = 0; i < 81; i += 9) {
   raws.push(splited.slice(i, i + 9));
 }
-
-log.push([raws.slice(), [], 0, 0]);
-let nextH = 0;
-let nextV = 0;
 
 function rawsToString(arr) {
   let str = '';
@@ -28,20 +26,14 @@ function rawsToString(arr) {
   return str;
 }
 
+// Возврат к последнему сохраненному состоянию с неизрасходованным пулом чисел
 function loadState() {
   raws = log[log.length - 1][0].slice();
   pool = log[log.length - 1][1].slice();
   pool.pop();
   if (pool.length === 0) {
     log.pop();
-    raws = log[log.length - 1][0].slice();
-    pool = log[log.length - 1][1].slice();
-    pool.pop();
-    choice(
-      log[log.length - 1][0],
-      log[log.length - 1][2],
-      log[log.length - 1][3],
-    );
+    loadState();
   }
   choice(
     log[log.length - 1][0],
@@ -50,6 +42,7 @@ function loadState() {
   );
 }
 
+// Выбор числа и движение по ячейкам
 function choice(arr, coordV, coordH) {
   raws = arr.slice();
   if (coordH === 8 && coordV < 8) {
@@ -125,17 +118,17 @@ function choice(arr, coordV, coordH) {
     loadState();
   }
 
-  // // Проверки правильности заполнения ряда, столбца или квадрата
+  // Проверки правильности заполнения ряда, столбца или квадрата
   // if (coordH === 8) {
   //   if (!op2.solveCheck(rawsToString(raws), 0, coordV, 'h')) {
   //     loadState();
   //   }
   // }
-  // if (coordV === 8) {
-  //   if (!op2.solveCheck(rawsToString(raws), coordH, 0, 'v')) {
-  //     loadState();
-  //   }
-  // }
+  if (coordV === 8) {
+    if (!op2.solveCheck(rawsToString(raws), coordH, 0, 'v')) {
+      loadState();
+    }
+  }
   // if (
   //   (coordH === 2 && coordV === 2) ||
   //   (coordH === 5 && coordV === 2) ||

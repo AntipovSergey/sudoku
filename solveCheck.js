@@ -45,9 +45,7 @@ function solveCheck(puzzle, indexH, indexV, type) {
       return false;
     }
   }
-  if (trigger === true) {
-    return true;
-  }
+  return trigger;
 }
 
 module.exports = { solveCheck: solveCheck };
