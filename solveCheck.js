@@ -1,15 +1,6 @@
-function solveCheck(puzzle, indexH, indexV, type) {
+function solveCheck(arr, indexH, indexV, type) {
   let newArray = [];
-  let puzzleArr = [];
-
-  for (let i = 0; i < 81; ) {
-    let row = [];
-    for (let i2 = 0; i2 < 9; i2++) {
-      row.push(puzzle[i]);
-      i++;
-    }
-    puzzleArr.push(row);
-  }
+  let puzzleArr = arr.slice();
 
   if (type === 'v') {
     for (; indexV < 9; indexV++) {
@@ -18,19 +9,14 @@ function solveCheck(puzzle, indexH, indexV, type) {
   }
 
   if (type === 'h') {
-    for (; indexH < 9; indexH++) {
-      newArray.push(puzzleArr[indexV][indexH]);
-    }
+    newArray = puzzleArr[indexV].slice();
   }
 
   if (type === 's') {
     for (let j = 0; j < 3; j++) {
       for (let i = 0; i < 3; i++) {
-        newArray.push(puzzleArr[indexV][indexH]);
-        indexH++;
+        newArray.push(puzzleArr[indexV + j][indexH + i]);
       }
-      indexV++;
-      indexH -= 3;
     }
   }
 
@@ -40,7 +26,7 @@ function solveCheck(puzzle, indexH, indexV, type) {
 
   for (let i = 0; i < 9; i++) {
     if (trigger === true) {
-      trigger = sortedArray[i] === a++;
+      trigger = sortedArray[i] == a++;
     } else {
       return false;
     }

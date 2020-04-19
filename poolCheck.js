@@ -25,15 +25,19 @@ function poolCheck(strH, strV, strSqr) {
   let diff6 = diff4
     .filter((i) => diff5.includes(i))
     .concat(diff5.filter((i) => diff4.includes(i)));
-  let outputNumber = diff6
-    .filter((element, i) => diff6.indexOf(element) === i)
-    .filter((element) => element !== '0')
-    .join('');
+
+  let outputNumber = Array.from(new Set(diff6));
+
+  for (let i = outputNumber.length - 1; i >= 0; i--) {
+    if (outputNumber[i] == '0') {
+      outputNumber.splice(i, 1);
+    }
+  }
 
   if (outputNumber.length === 0) {
     return '-1';
   }
-  return outputNumber;
+  return outputNumber.join('');
 }
 
 module.exports = { poolCheck: poolCheck };

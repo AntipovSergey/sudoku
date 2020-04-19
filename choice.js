@@ -1,14 +1,15 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable node/no-unsupported-features/node-builtins */
 const op1 = require('./poolCheck');
 const op2 = require('./solveCheck');
 
 const string1 =
-  '---------------------------------------------------------------------------------';
+  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 let pool = [];
 let raws = [];
-let log = [];
+let save = []; // [[raws, pool, coordV, coordH], ...]
 let nextH = 0;
 let nextV = 0;
 
@@ -18,33 +19,20 @@ for (let i = 0; i < 81; i += 9) {
   raws.push(splited.slice(i, i + 9));
 }
 
-function rawsToString(arr) {
-  let str = '';
-  for (let i = 0; i < arr.length; i++) {
-    str += arr[i].join('');
-  }
-  return str;
-}
-
 // Возврат к последнему сохраненному состоянию с неизрасходованным пулом чисел
 function loadState() {
-  raws = log[log.length - 1][0].slice();
-  pool = log[log.length - 1][1].slice();
-  pool.pop();
+  raws = save[save.length - 1][0].slice();
+  save[save.length - 1][1].pop();
+  pool = save[save.length - 1][1].slice();
   if (pool.length === 0) {
-    log.pop();
+    save.pop();
     loadState();
   }
-  choice(
-    log[log.length - 1][0],
-    log[log.length - 1][2],
-    log[log.length - 1][3],
-  );
+  choice(save[save.length - 1][2], save[save.length - 1][3]);
 }
 
 // Выбор числа и движение по ячейкам
-function choice(arr, coordV, coordH) {
-  raws = arr.slice();
+function choice(coordV, coordH) {
   if (coordH === 8 && coordV < 8) {
     nextH = 0;
     nextV = coordV + 1;
@@ -54,12 +42,8 @@ function choice(arr, coordV, coordH) {
   }
 
   // Проверка на наличие цифры в ячейке
-  if (raws[coordV][coordH] !== '-' && coordV < 8 && coordH < 8) {
-    console.log(raws[coordV][coordH], nextV, nextH, 'next');
-    choice(raws, nextV, nextH);
-  } else if (coordV === 8 && coordH === 8 && raws[coordV][coordH] !== '-') {
-    console.table(raws);
-    return raws;
+  if (!isNaN(raws[coordV][coordH]) && !(coordV === 8 && coordH === 8)) {
+    choice(nextV, nextH);
   }
 
   // Переменные для хранения содержимого строки, столбца и квадрата, соответствующих текущей ячейке
@@ -67,8 +51,8 @@ function choice(arr, coordV, coordH) {
   let vert = '';
   let sqr = '';
 
-  for (let j = 0; j < 9; j++) {
-    vert += `${raws[j][coordH]}`;
+  for (let i = 0; i < 9; i++) {
+    vert += `${raws[i][coordH]}`;
   }
 
   // Определение левой верхней ячейки текущего квадрата
@@ -111,7 +95,7 @@ function choice(arr, coordV, coordH) {
     raws[coordV][coordH] = pool[0];
     pool = [];
   } else if (pool.length > 1) {
-    log.push([raws.slice(), pool.slice(), coordV, coordH]);
+    save.push([raws.slice(), pool.slice(), coordV, coordH]);
     raws[coordV][coordH] = pool[pool.length - 1];
     pool = [];
   } else if (pool === -1) {
@@ -119,35 +103,35 @@ function choice(arr, coordV, coordH) {
   }
 
   // Проверки правильности заполнения ряда, столбца или квадрата
-  // if (coordH === 8) {
-  //   if (!op2.solveCheck(rawsToString(raws), 0, coordV, 'h')) {
-  //     loadState();
-  //   }
-  // }
-  if (coordV === 8) {
-    if (!op2.solveCheck(rawsToString(raws), coordH, 0, 'v')) {
+  if (coordH === 8) {
+    if (!op2.solveCheck(raws, 0, coordV, 'h')) {
       loadState();
     }
   }
-  // if (
-  //   (coordH === 2 && coordV === 2) ||
-  //   (coordH === 5 && coordV === 2) ||
-  //   (coordH === 2 && coordV === 5) ||
-  //   (coordH === 5 && coordV === 5)
-  // ) {
-  //   if (!op2.solveCheck(rawsToString(raws), sqrH, sqrV, 's')) {
-  //     loadState();
-  //   }
-  // }
+  if (coordV === 8) {
+    if (!op2.solveCheck(raws, coordH, 0, 'v')) {
+      loadState();
+    }
+  }
+  if (
+    (coordH === 2 && coordV === 2) ||
+    (coordH === 5 && coordV === 2) ||
+    (coordH === 2 && coordV === 5) ||
+    (coordH === 5 && coordV === 5)
+  ) {
+    if (!op2.solveCheck(raws, sqrH, sqrV, 's')) {
+      loadState();
+    }
+  }
 
   if (coordV === 8 && coordH === 8) {
     console.table(raws);
     return raws;
   }
 
-  choice(raws, nextV, nextH);
+  choice(nextV, nextH);
   return raws;
 }
 
 console.table(raws);
-choice(raws, 0, 0);
+choice(0, 0);
