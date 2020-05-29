@@ -1,0 +1,23 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evgKonst/project-sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evgKonst/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/evgKonst/project-sudoku#readme",
+  "devDependencies": {
+    "eslint": "^7.1.0"
+  }
+}
