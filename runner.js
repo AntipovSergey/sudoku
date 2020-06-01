@@ -13,9 +13,8 @@ const sudoku_w = require('./sudoku_w');
 // so you should remove them.
 
 // Gets one puzzle from the text file.
-function sudokuParse(content, puzzleNumber = 0) {
+function sudokuParse(content, puzzleNumber = 2) {
   let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
   return puzzle;
 }
 
