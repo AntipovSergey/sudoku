@@ -68,27 +68,74 @@ function calculateScope(arr) {
 function solve(str) {
   const originalArray = sudoku_a.stringToArr(str);
   const arrayOfScopes = calculateScope(originalArray);
-  const tempArray3 = reducingScope(arrayOfScopes);
-  return [];
-  let flag = true;
+  let flag1 = true;
+  let flag2 = true;
   let tempArray1 = originalArray;
   let tempArray2 = arrayOfScopes;
-  while (flag) {
-    sudoku_a.prettyBoard(tempArray1);
-    console.log('\n');
-    if (sudoku_s.pasteElem(tempArray1, tempArray2)) {
-      tempArray1 = sudoku_s.pasteElem(originalArray, tempArray2);
-      tempArray2 = calculateScope(tempArray1);
+
+  while (flag2) {
+
+    while (flag1) {
+      sudoku_a.prettyBoard(tempArray1);
+      console.log('\n');
+      if (sudoku_s.pasteElem(tempArray1, tempArray2)) {
+        tempArray1 = sudoku_s.pasteElem(originalArray, tempArray2);
+        tempArray2 = calculateScope(tempArray1);
+      }
+      else flag1 = false;
     }
-    else flag = false;
+
+    if (reducingScope(tempArray2)) {
+      flag1 = true;
+      while (flag1) {
+        sudoku_a.prettyBoard(tempArray1);
+        console.log('\n');
+        if (sudoku_s.pasteElem(tempArray1, tempArray2)) {
+          tempArray1 = sudoku_s.pasteElem(originalArray, tempArray2);
+          tempArray2 = calculateScope(tempArray1);
+        }
+        else flag1 = false;
+      }
+      tempArray2 = reducingScope(tempArray2)
+    }
+    else flag2 = false;
   }
+
   return tempArray1;
 }
 
-function reducingScope(arr) {
+function reducingScope(array) {
+  const arr = JSON.parse(JSON.stringify(array));
+  let tempArrStr;
+  let tempItemsOfRow;
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 8; j += 1) {
+      tempItemsOfRow = [];
+      tempArrStr = JSON.stringify(arr[i][j][1]);
+      tempItemsOfRow.push(j);
+      for (let k = 0; k < 9; k += 1) {
+        if (arr[i][j][1].length === 0) break;
+        if (k !== j && tempArrStr === JSON.stringify(arr[i][k][1])) {
+          tempItemsOfRow.push(k);
+        }
+      }
+      if (tempItemsOfRow.length === JSON.parse(tempArrStr).length) {
+        for (let x = 0; x < 9; x += 1) {
+          if (tempItemsOfRow.includes(x) === false && arr[i][x][1].length > 0) {
+            // console.log('есть что удалять?', i, x, arr[i][x][1], tempArrStr, tempItemsOfRow);
+            JSON.parse(tempArrStr).forEach((element) => {
+              if (arr[i][x][1].indexOf(element) !== -1) {
+                arr[i][x][1].splice(arr[i][x][1].indexOf(element), 1);
+                // console.log('удалил ' + element, 'в:', i, x, arr[i][x][1], tempItemsOfRow, tempArrStr);
+              }
+            });
+          }
+        }
+      }
 
-
-
+    }
+  }
+  return (JSON.stringify(array) === JSON.stringify(arr)) ? false : arr;
 }
 
 
