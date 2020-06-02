@@ -68,6 +68,8 @@ function calculateScope(arr) {
 function solve(str) {
   const originalArray = sudoku_a.stringToArr(str);
   const arrayOfScopes = calculateScope(originalArray);
+  const tempArray3 = reducingScope(arrayOfScopes);
+  return [];
   let flag = true;
   let tempArray1 = originalArray;
   let tempArray2 = arrayOfScopes;
@@ -83,7 +85,19 @@ function solve(str) {
   return tempArray1;
 }
 
+function reducingScope(arr) {
+
+
+
+}
+
+
+
+
+
+
 module.exports = {
   solve: solve,
   calculateScope: calculateScope,
+  numOfBlock: numOfBlock,
 }
