@@ -13,6 +13,7 @@ function creatBord(str) {
   newArr.push(stringToArr.slice(63,72));
   newArr.push(stringToArr.slice(72,81));
   console.table(newArr);
+  console.log(newArr);
 }
 
 
