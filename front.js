@@ -124,10 +124,10 @@ const redrawCell = (puzzle) => {
     setTimeout(() => {
       setTimeout(() => {
         el.style.background = "green";
-      }, 200);
+      }, 20);
       el.innerHTML = puzzlestr[i];
-      el.style.background = "white";
-    }, (i + 1) * 500);
+      el.style.background = "red";
+    }, (i + 1) * 50);
   });
 };
 
