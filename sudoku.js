@@ -8,9 +8,9 @@ function solve(boardString) {
 }
 
 let puzzle = [
-  ['1',null,5,8,null,2,null,null,null],
+  [1,null,5,8,null,2,null,null,null],
   [null,9,null,null,7,6,4,null,5],
-  ['2',null,null,4,null,null,8,1,9],
+  [2,null,null,4,null,null,8,1,9],
   [null,1,9,null,null,7,3,null,6],
   [7,6,2,null,8,3,null,9,null],
   [null,null,null,null,6,1,null,5,null],
@@ -25,8 +25,6 @@ function checkColumn(data, number, j){
   }
   return true;
 }
-
-console.log(checkColumn(puzzle, '5', 0));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
