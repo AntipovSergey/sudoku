@@ -3,12 +3,16 @@
 function FuncCheckStr(newArr) {
 
   for (let i = 0; i < Arr.length; i+=1) {
-    for(let g = 0; g < Arr[i].length; g+=1)
+    for(let j = 0; g < Arr[i].length; j+=1){
+      if (Arr[i][j] "h"){
+
+      } 
+    }
   }
 }
 
 
-
+ 
 
 
 
@@ -19,3 +23,5 @@ function FuncCheckStr(newArr) {
 modules.export = {
   importSudokuFromStr,
 }
+let Arr = 
+console.log(typeof Arr[i][j]);
