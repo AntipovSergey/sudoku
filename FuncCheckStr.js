@@ -32,6 +32,5 @@ console.log(FuncCheckColumn(boardArr, 5));
 
 module.exports = {
   FuncCheckStr,
+  FuncCheckColumn
 };
-// let Arr =
-// console.log(typeof Arr[i][j]);
