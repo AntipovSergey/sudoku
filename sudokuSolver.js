@@ -41,22 +41,6 @@ function createColumn(boardArg) {
   return column;
 }
 
-//функция проверки
-
-function checkSolution(boardArg) {
-  // нужно улучшить при помощи every
-  let chekRowBoard = [];
-  chekRowBoard = boardArg.map((el) => {
-    if (el.includes(0)) {
-      return false;
-    }
-  });
-  if (chekRowBoard.includes(false)) {
-    return 'This sudoku is unsolvable!';
-  }
-  return boardArg;
-}
-
 function sudoku(board) {
   let copyBoard = board;
 
@@ -156,7 +140,7 @@ function sudoku(board) {
       }
     }
   }
-  return checkSolution(copyBoard);
+  return copyBoard;
 }
 
 console.log(
