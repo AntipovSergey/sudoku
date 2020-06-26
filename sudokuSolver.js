@@ -1,3 +1,5 @@
+const {parse} = require('./readFunc')
+const colors = require('colors')
 //Создаем массив с квадратами
 function createCub(boardArg) {
   //упростить код разбиение на кубы
@@ -50,7 +52,7 @@ function sudoku(board) {
   //запускается цикл при которой будет находиться и проставляться значение если искомый элемент
   //будет единственным возможном
   //и так несколько раз пока судоку не решится
-  for (let start = 0; start < 200; start++) {
+  for (let start = 0; start < 80; start++) {
     //возможно это лишнее придумать как
     //При каждой итерации будут создаваться новые массивы с кубами и вертикалями
     let column = createColumn(copyBoard);
@@ -119,12 +121,12 @@ function sudoku(board) {
               }
             }
 
-            //если судоку не решается методом 'одиночки' то подставляем случайную цифру
-            // if (start > 50 && checkAr.length > 0) {
-            //   const randomIndex = ~~(Math.random() * checkAr.length);
-            //   console.log(randomIndex);
-            //   copyBoard[i][j] = checkAr[randomIndex];
-            // }
+            // если судоку не решается методом 'одиночки' то подставляем случайную цифру
+            if (start > 50 && checkAr.length > 0) {
+              const randomIndex = ~~(Math.random() * checkAr.length);
+              console.log(' Мы еще не умее рещать такие судоку');
+              copyBoard[i][j] = checkAr[randomIndex];
+            }
 
             if (checkAr.length === 1) {
               //если в массиве оказался один возможный
@@ -140,26 +142,16 @@ function sudoku(board) {
       }
     }
   }
+  console.table(copyBoard)
   return copyBoard;
 }
 
-// console.log(
-//   sudoku([
-//     [0, 0, 0, 0, 7, 0, 0, 0, 0],
-//     [0, 0, 0, 1, 9, 5, 0, 0, 0],
-//     [0, 9, 8, 0, 0, 0, 0, 6, 0],
-//     [8, 0, 0, 0, 6, 0, 0, 0, 3],
-//     [4, 0, 0, 8, 0, 3, 0, 0, 1],
-//     [7, 0, 0, 0, 2, 0, 0, 0, 6],
-//     [0, 6, 0, 0, 0, 0, 2, 8, 0],
-//     [0, 0, 0, 4, 1, 9, 0, 0, 5],
-//     [0, 0, 0, 0, 8, 0, 0, 7, 9],
-//   ])
+// console.table(
+//   sudoku(parse(5))
 // );
 
 module.exports ={
   cub:createCub,
   column:createColumn,
   solution: sudoku,
-  
 }
