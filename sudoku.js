@@ -4,7 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  
 }
 
 
@@ -25,6 +25,18 @@ function isSolved(board) {
 function prettyBoard(board) {
 
 }
+
+
+function puzzleParse(str) {
+  let arr = [];
+  for (let i = 0; i < str.length; i += 9) {
+    arr.push(str.slice(i, i + 9).split(''));
+  }
+  return arr;
+}
+
+console.table(puzzleParse('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
