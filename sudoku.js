@@ -38,7 +38,8 @@ function prettyBoard(board) {
 module.exports = {
   // solve: solve,
   isSolved: isSolved,
-  prettyBoard: prettyBoard
+  prettyBoard: prettyBoard,
+  createBoard
 }
 
 
