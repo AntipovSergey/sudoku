@@ -5,6 +5,8 @@
 // How you represent your board is up to you!
 function solve(boardString) {}
 
+
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
@@ -34,8 +36,7 @@ function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
-  FindEmpty: FindEmpty,
+  solve,
+  isSolved,
+  prettyBoard,
 };
