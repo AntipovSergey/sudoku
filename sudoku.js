@@ -1,11 +1,11 @@
 let inputSudokuPuzzle = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function createBoard(str) { //принимает строку и преобразовывает в массив 9 строк и в каждой строке 9 элементов
-  let stringToArr = str.split(''); 
+  let stringToArr = str.split('');
   // console.log(stringToArr); 
   let newArr = [];
-  for(let i=0; i<=9; i++){
-    newArr.push(stringToArr.slice(i*9, (i+1)*9)); 
+  for (let i = 0; i < 9; i++) {
+    newArr.push(stringToArr.slice(i * 9, (i + 1) * 9));
   }
   return newArr;
 }
