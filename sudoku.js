@@ -4,8 +4,16 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  let newArr = boardString.split('');
+  let size = 9;
+  let subArr = [];
+  for (let i = 0; i <Math.ceil(newArr.length/size); i++){
+  subArr[i] = newArr.slice((i*size), (i*size) + size);
+  
 }
+console.table(subArr);
+}
+
 
 
 // Returns a boolean indicating whether
