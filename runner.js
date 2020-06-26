@@ -9,6 +9,7 @@ const sudoku = require('./sudoku');
 // Remember, the file has newline characters at the end of each line,
 // so you should remove them.
 
+
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
   let puzzle = content.split('\n')[puzzleNumber];
