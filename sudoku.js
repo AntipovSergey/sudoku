@@ -12,7 +12,7 @@ function FuncCheckColumn(boardArr, cellIndex) {
     colunArr.push(boardArr[stringIndex][cellIndex]);
   }
   let intersectionCellResult = variantsArr.filter(x => !colunArr.includes(x));
-  
+
   return intersectionCellResult;
 }
 
@@ -103,21 +103,21 @@ function checkSector(boardArr, stringIndex, cellIndex) {
   }
 
   let sectorArr = [];
-  for(let sectorStringIndex = (sectorDiapason[sector].stringStart); sectorStringIndex <= sectorDiapason[sector].stringEnd; sectorStringIndex++) {
-    for(let sectorCellIndex = (sectorDiapason[sector].cellStart); sectorCellIndex <= sectorDiapason[sector].cellEnd; sectorCellIndex++) {
+  for (let sectorStringIndex = (sectorDiapason[sector].stringStart); sectorStringIndex <= sectorDiapason[sector].stringEnd; sectorStringIndex++) {
+    for (let sectorCellIndex = (sectorDiapason[sector].cellStart); sectorCellIndex <= sectorDiapason[sector].cellEnd; sectorCellIndex++) {
       sectorArr.push(boardArr[sectorStringIndex][sectorCellIndex]);
     }
   }
-  
-  
+
+
   let intersection = variantsArr.filter(x => !sectorArr.includes(x));
-  
+
 
   return intersection;
 }
 
-function FuncSudokuMerge (x,y){
-  let intersectionStringResult = x.filter(x => y.includes(x));
+function FuncSudokuMerge(arr1, arr2, arr3) {
+  let intersectionStringResult = arr1.filter(element => arr2.includes(element) && arr3.includes(element));
   return intersectionStringResult;
 }
 
@@ -131,24 +131,45 @@ function createBoard(str) { //принимает строку и преобра�
   return newArr;
 }
 let variantsArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '-'];
-let inputSudokuPuzzle = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-let inputSudokuPuzzle2 = '--8------49-157--2--3--419-185-6--2-----2--6-96-4-53---3--72--4-49-3--57827--9-13';
+let inputSudokuPuzzle2 = '6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--';
+// let inputSudokuPuzzle2 = '--8------49-157--2--3--419-185-6--2-----2--6-96-4-53---3--72--4-49-3--57827--9-13';
 let boardArr = createBoard(inputSudokuPuzzle2);
 let sudoku = createBoard(inputSudokuPuzzle2);
 // console.table(createBoard(inputSudokuPuzzle2));
+// let sectorArr = checkSector(sudoku, 0, 0);
+// console.log(sectorArr);
+console.table(sudoku);
+
+let changesCounter = 1;
+while (changesCounter != 0) {
+  changesCounter = 0;
+  for (let stringIndex = 0; stringIndex < 9; stringIndex++) {
+    for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
+      if (sudoku[stringIndex][cellIndex] == '-') {
+        let sectorArr = checkSector(sudoku, stringIndex, cellIndex);
+        let stringArr = FuncCheckStr(sudoku, stringIndex);
+        let columnArr = FuncCheckColumn(sudoku, cellIndex);
+        let mergeResult = FuncSudokuMerge(sectorArr, stringArr, columnArr);
+
+        if (mergeResult.length === 1) {
+          sudoku[stringIndex][cellIndex] = mergeResult[0];
+          console.log('В ячейку ' + stringIndex + cellIndex + ' стала:  ' + sudoku[stringIndex][cellIndex]);
+          changesCounter++;
+        }
+      }
+    }
+    // if (changesCounter > 0) {
+    //   changesCounter = 0;
+    //   stringIndex = -1;
+    //   console.table(sudoku);
+    // }
+  }
+  console.table(sudoku);
+}
+// if (changesCounter > 0) {continue again };
 console.table(sudoku);
 
 
-for(let stringIndex = 0; stringIndex < 9; stringIndex++) {
-  for(let cellIndex = 0; cellIndex < 9; cellIndex++) {
-    if (sudoku[stringIndex][cellIndex] == '-') {
-      // let sectorArr = checkSector(sudoku, stringIndex, cellIndex);
-      // let stringArr = FuncCheckStr(sudoku, stringIndex);
-      // let columnArr = FuncCheckColumn(sudoku, cellIndex);
-      // let mergeResult = FuncSudokuMerge(sectorArr, stringArr, columnArr);
-    }
-  }
-}
 
 
 
@@ -157,10 +178,15 @@ for(let stringIndex = 0; stringIndex < 9; stringIndex++) {
 
 
 
-// let x = FuncCheckColumn(boardArr, 5);
-// let y = FuncCheckStr(boardArr, 1);
 
-// console.log(FuncSudokuMerge(x,y));
+
+
+
+// let x = FuncCheckColumn(boardArr, 0);
+// let y = FuncCheckStr(boardArr, 2);
+// let sectorArr333 = checkSector(boardArr, 2, 0);
+
+// console.log(FuncSudokuMerge(x,y, sectorArr333));
 // console.log(FuncCheckColumn(boardArr, 5));
 // console.log(FuncCheckStr(boardArr, 1));
 //console.log(FuncSudokuMerge();
