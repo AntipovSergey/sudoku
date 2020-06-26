@@ -4,15 +4,9 @@ function createBoard(str) { //принимает строку и преобра�
   let stringToArr = str.split(''); 
   // console.log(stringToArr); 
   let newArr = [];
-  newArr.push(stringToArr.slice(0, 9)); 
-  newArr.push(stringToArr.slice(9, 18)); 
-  newArr.push(stringToArr.slice(18, 27)); 
-  newArr.push(stringToArr.slice(27, 36)); 
-  newArr.push(stringToArr.slice(36, 45)); 
-  newArr.push(stringToArr.slice(45, 54)); 
-  newArr.push(stringToArr.slice(54, 63)); 
-  newArr.push(stringToArr.slice(63, 72)); 
-  newArr.push(stringToArr.slice(72, 81)); 
+  for(let i=0; i<=9; i++){
+    newArr.push(stringToArr.slice(i*9, (i+1)*9)); 
+  }
   return newArr;
 }
 
