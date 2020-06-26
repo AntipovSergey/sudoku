@@ -1,17 +1,19 @@
-module.exports = { sudokuSolver };
+const isValid = require('./validations');
+const findEmpty = require('./FindEmpty');
 
 const sudokuSolver = (puzzle) => {
-  emptyPos = findEmpty(puzzle);
+  const emptyPos = findEmpty.FindEmpty(puzzle);
   if (!emptyPos) return true;
 
   for (let i = 1; i <= 9; i++) {
-    if (isValid(puzzle, i, emptyPos)) {
+    if (isValid.isValid(puzzle, i, emptyPos)) {
       puzzle[emptyPos[0]][emptyPos[1]] = i;
-      if (solver(puzzle)) {
+      if (sudokuSolver(puzzle)) {
         return true;
       }
-      puzzle[emptyPos[0]][emptyPos[1]] = '-';
+      puzzle[emptyPos[0]][emptyPos[1]] = 0;
     }
   }
   return false;
 };
+module.exports = { sudokuSolver };
