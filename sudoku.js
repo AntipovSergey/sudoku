@@ -11,7 +11,6 @@ const sudokuSolver = require('./solver');
 function solve(boardString) {
   const puzzle = sudokuParse.sudokuParse(boardString);
   sudokuSolver.sudokuSolver(puzzle);
-  console.log(puzzle);
   return puzzle;
 }
 
