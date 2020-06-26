@@ -1,5 +1,6 @@
-const isValid = require('./validations');
-const findEmpty = require('./FindEmpty');
+const isValid = require("./validations");
+const findEmpty = require("./FindEmpty");
+const Play = require("./front");
 
 const sudokuSolver = (puzzle) => {
   const emptyPos = findEmpty.FindEmpty(puzzle);
