@@ -5,7 +5,7 @@ describe('Test', () => {
     it('is a function', () => {
       expect(cub).toEqual(jasmine.any(Function));
     });
-  });
+  })
 });
 
 
