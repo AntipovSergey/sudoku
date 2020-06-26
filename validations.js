@@ -38,7 +38,6 @@ const isValid = (puzzle, prediction, position) => {
 // Валидация таблицы
 
 const isValidBoard = (puzzle) => {
-  console.log('Проверяем судоку');
   const checkLine = (arr) => arr.sort((a, b) => (a - b)).join('') === '123456789';
   for (let i = 0; i < 9; i++) {
     const currentLine = [];
