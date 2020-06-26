@@ -1,3 +1,6 @@
+// const checkStrAndCheckColumn = require("./FuncCheckStr.js");
+// const checkSector = require("./FuncCheckSector.js");
+
 let inputSudokuPuzzle = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 let inputSudokuPuzzle2 = '--8------49-157--2--3--419-185-6--2-----2--6-96-4-53---3--72--4-49-3--57827--9-13';
 
@@ -10,6 +13,32 @@ function createBoard(str) { //принимает строку и преобра�
   }
   return newArr;
 }
+
+let sudoku = createBoard(inputSudokuPuzzle2);
+console.table(sudoku);
+
+for(let stringIndex = 0; stringIndex <= 9; stringIndex++) {
+  for(let cellIndex = 0; cellIndex <= 9; cellIndex++) {
+    if (sudoku[stringIndex][cellIndex] == '-') {
+      let sectorArr = checkSector(sudoku, stringIndex, cellIndex);
+      let stringArr = FuncCheckStr(sudoku, stringIndex);
+      let columnArr = FuncCheckColumn(sudoku, cellIndex);
+      let mergeResult = FuncSudokuMerge(sectorArr, stringArr, columnArr);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // console.table(createBoard(inputSudokuPuzzle2));
 
