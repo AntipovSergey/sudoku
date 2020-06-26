@@ -7,23 +7,24 @@ function solve(boardString) {
   
 }
 
-let puzzle = [
-  [1,null,5,8,null,2,null,null,null],
-  [null,9,null,null,7,6,4,null,5],
-  [2,null,null,4,null,null,8,1,9],
-  [null,1,9,null,null,7,3,null,6],
-  [7,6,2,null,8,3,null,9,null],
-  [null,null,null,null,6,1,null,5,null],
-  [null,null,7,6,null,null,null,3,null],
-  [4,3,null,null,2,null,5,null,1],
-  [6,null,null,3,null,8,9,null,null]
-]
+
+function checkRow(array, num, i) {
+  for (let j = 0; j < array.length; j++) {
+    if (array[i][j] === num) {
+      return false
+    }
+  }
+  return true
+}
+
+
 
 function checkColumn(data, number, j){
   for(let i = 0; i < data.length; i++) {
     if (data[i][j] === number) return false;
   }
   return true;
+
 }
 
 // Returns a boolean indicating whether
