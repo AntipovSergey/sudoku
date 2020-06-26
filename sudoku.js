@@ -7,7 +7,6 @@ function solve(boardString) {
 
 }
 
-
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
@@ -15,7 +14,6 @@ function solve(boardString) {
 function isSolved(board) {
 
 }
-
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -28,7 +26,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+  solve,
+  isSolved,
+  prettyBoard,
+};
