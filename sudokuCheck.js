@@ -1,3 +1,7 @@
+const {solution} = require('./sudokuSolver')
+const {parse} = require('./readFunc')
+const colors = require('colors')
+
 function validSolution(board) {
   //Row
   const chekRowBoard = board.map((el) => {
@@ -62,6 +66,8 @@ function validSolution(board) {
 
   return true;
 }
+
+console.log(`${validSolution(solution(parse(5)))}`.rainbow);
 
 
 module.exports = {
