@@ -64,3 +64,6 @@ function validSolution(board) {
 }
 
 
+module.exports = {
+  valid:validSolution,
+}
