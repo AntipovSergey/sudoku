@@ -8,7 +8,7 @@ function createCub(boardArg) {
     for (let j = 0; j < 9; j++) {
       for (let k = begin; k < end; k++) {
         arrCub.push(boardArg[k][j]);
-      }
+      } 
     }
     begin += 3;
     end += 3;
