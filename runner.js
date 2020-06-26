@@ -16,6 +16,7 @@ function sudokuParse(content, puzzleNumber = 0) {
   return puzzle;
 }
 
+
 function readAndSolve(err, data) {
   if (err) {
     throw err;
@@ -23,14 +24,8 @@ function readAndSolve(err, data) {
   let puzzle = sudokuParse(data);
 
   let solvedPuzzle = sudoku.solve(puzzle);
-  if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
   }
-  else {
-    console.log("The board wasn't solved :(");
-  }
-}
+
 
 // Reads file and sends data from it to the readAndSolve function.
 fs.readFile(
