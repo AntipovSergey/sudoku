@@ -1,4 +1,5 @@
 let inputSudokuPuzzle = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+let inputSudokuPuzzle2 = '--8------49-157--2--3--419-185-6--2-----2--6-96-4-53---3--72--4-49-3--57827--9-13';
 
 function createBoard(str) { //принимает строку и преобразовывает в массив 9 строк и в каждой строке 9 элементов
   let stringToArr = str.split('');
@@ -10,7 +11,7 @@ function createBoard(str) { //принимает строку и преобра�
   return newArr;
 }
 
-console.table(createBoard(inputSudokuPuzzle));
+console.table(createBoard(inputSudokuPuzzle2));
 
 
 
