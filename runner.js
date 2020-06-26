@@ -1,7 +1,7 @@
 // Use filesystem.
-const fs = require('fs');
+const fs = require("fs");
 // Use functions from sudoku.js file.
-const sudoku = require('./sudoku');
+const sudoku = require("./sudoku");
 
 // The sudoku puzzles that your program will solve can be found
 // in the sudoku-puzzles.txt file.
@@ -26,17 +26,10 @@ function readAndSolve(err, data) {
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
     console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
+  } else {
     console.log("The board wasn't solved :(");
   }
 }
 
 // Reads file and sends data from it to the readAndSolve function.
-fs.readFile(
-  './sudoku-puzzles.txt',
-  'utf-8',
-  readAndSolve
-);
-
-console.log(sudokuParse('./sudoku-puzzles.txt'),1)
+fs.readFile("./sudoku-puzzles.txt", "utf-8", readAndSolve);
