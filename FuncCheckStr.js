@@ -8,8 +8,8 @@ console.table(boardArr);
 function FuncCheckStr(boardArr, stringIndex) {
   let variantsArr = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   let intersection = boardArr[stringIndex];
-  let intersectionResult = variantsArr.filter(x => !intersection.includes(x));
-  return intersectionResult;
+  let intersectionStringResult = variantsArr.filter(x => !intersection.includes(x));
+  return intersectionStringResult;
 }
 
 
@@ -20,15 +20,23 @@ function FuncCheckColumn(boardArr, cellIndex) {
   for (let stringIndex = 0; stringIndex < 9; stringIndex++) {
     colunArr.push(boardArr[stringIndex][cellIndex]);
   }
-  let intersectionResult = variantsArr.filter(x => !colunArr.includes(x));
+  let intersectionCellResult = variantsArr.filter(x => !colunArr.includes(x));
   
-  return intersectionResult;
+  return intersectionCellResult;
 }
+let x = FuncCheckColumn(boardArr, 5);
+let y = FuncCheckStr(boardArr, 1);
 
+function FuncSudokuMerge (x,y){
+  let intersectionStringResult = x.filter(x => y.includes(x));
+  return intersectionStringResult;
+}
   
 
-console.log(FuncCheckStr(boardArr, 1));
+console.log(FuncSudokuMerge(x,y));
 console.log(FuncCheckColumn(boardArr, 5));
+console.log(FuncCheckStr(boardArr, 1));
+//console.log(FuncSudokuMerge();
 
 module.exports = {
   FuncCheckStr,
