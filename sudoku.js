@@ -1,11 +1,25 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(boardString) {
+let inputSudokuPuzzle = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
+function createBoard(str) { //принимает строку и преобразовывает в массив 9 строк и в каждой строке 9 элементов
+  let stringToArr = str.split(''); 
+  // console.log(stringToArr); 
+  let newArr = [];
+  newArr.push(stringToArr.slice(0, 9)); 
+  newArr.push(stringToArr.slice(9, 18)); 
+  newArr.push(stringToArr.slice(18, 27)); 
+  newArr.push(stringToArr.slice(27, 36)); 
+  newArr.push(stringToArr.slice(36, 45)); 
+  newArr.push(stringToArr.slice(45, 54)); 
+  newArr.push(stringToArr.slice(54, 63)); 
+  newArr.push(stringToArr.slice(63, 72)); 
+  newArr.push(stringToArr.slice(72, 81)); 
+  return newArr;
 }
+
+console.table(createBoard(inputSudokuPuzzle));
+
+
+
 
 
 // Returns a boolean indicating whether
@@ -28,7 +42,27 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  // solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
+
+
+
+
+
+
+
+
+
+
+
+//------
+// Takes a board as a string in the format
+// you see in the puzzle file. Returns
+// something representing a board after
+// your solver has tried to solve it.
+// How you represent your board is up to you!
+// function solve(boardString) {
+
+// }
