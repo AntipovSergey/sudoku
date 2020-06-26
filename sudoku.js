@@ -11,7 +11,7 @@ function createBoard(str) { //принимает строку и преобра�
   return newArr;
 }
 
-console.table(createBoard(inputSudokuPuzzle2));
+// console.table(createBoard(inputSudokuPuzzle2));
 
 
 
