@@ -160,7 +160,6 @@ function sudoku(board) {
 module.exports ={
   cub:createCub,
   column:createColumn,
-  row:checkSolution,
-
-
+  solution: sudoku,
+  
 }
