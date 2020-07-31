@@ -22,6 +22,8 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+
+написать функцию которая выводи таблицу 9х9
 function prettyBoard(board) {
 
 }
