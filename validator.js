@@ -34,6 +34,11 @@ function lengthEqual1Validator() {
       }
     }
   }
+  // for (let i = 0; i < 81; i++) {
+  //   if (arrFirst[i] == '-') { lengthEqual1Validator(); };
+    
+  // }
+  // return finalArr;
 }
 
 //console.log(lengthEqual1Validator())

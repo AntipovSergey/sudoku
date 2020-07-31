@@ -1,53 +1,43 @@
-// function rowValidator(element) {
-//   // let checkRows =
-// }
-// function collumnValidator(element) {
-
-// }
-
-// function squareValidator(element) {
-
-// }
-
-
-const { finalArr } = require('./getSudoku');
-let arrColumn = [];
-function createArrayOfColumns(finalArr) {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      arrColumn.push(finalArr[j][i]);
+const { finalArr, arrFirst } = require('./getSudoku');
+const { massiveArrColumn } = require('./massiveArrColumn');
+//        finalArrPossibleValues.push(k);
+// // цикл который ищет совпадающие значения
+let massAdder = [];
+let k = 1;
+// функция горизонтального поиска
+function gorisontSearch(k) {
+  while (k <= 9) {
+    let j = 0;
+    for (let i = 0; i < 9; i++) {
+      if (String(k) === finalArr[0][j]) {
+        k += 1;}
+      j += 1;
     }
+    if (j === 9) {
+      if (verticalSearch(k) > 0) massAdder.push(k);
+    }
+    k += 1;
   }
-  return arrColumn;
+
+  return massAdder;
 }
 
-createArrayOfColumns(finalArr);
+gorisontSearch(k);
 
-const column1 = arrColumn.slice(0, 9);
-const column2 = arrColumn.slice(9, 18);
-const column3 = arrColumn.slice(18, 27);
-const column4 = arrColumn.slice(27, 36);
-const column5 = arrColumn.slice(36, 45);
-const column6 = arrColumn.slice(45, 54);
-const column7 = arrColumn.slice(54, 63);
-const column8 = arrColumn.slice(63, 72);
-const column9 = arrColumn.slice(72, 81);
+// функция вертикального поиска
+function verticalSearch(k) {
+  let vert = 0;
+  for (let counter = 0; counter < 9; counter++) {
+    if (String(k) !== massiveArrColumn[0][vert]) {
+      vert += 1;//        finalArrPossibleValues.push(k);
+    }
+  }
+  if (vert === 9) {
+    return k;
+  } return -1;
+}
 
-let massiveArrColumn = [];
-// eslint-disable-next-line max-len
-massiveArrColumn.push(column1, column2, column3, column4, column5, column6, column7, column8, column9);
-console.table(massiveArrColumn);
-
-// for (let i = 0; i < 9; i++) {
-//     for (let j = 0; j < 9; j++) {
-//       for (let k = 0; k < 9; k++) {
-        
-        
-//       }
-// }
-
-// }
-
+console.log(massAdder);
 
 
 
