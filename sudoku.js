@@ -44,14 +44,14 @@ function prettyBoard(board) {
 //   prettyBoard: prettyBoard,
 // };
 
-function lineSearchForOneEmpty(board, number) {
+function lineSearchForOneEmpty(board) {
   for (let index = 0; index < board.length; index++) {
     const line = board[index];
-    if (!board[index].includes(number)) {
-      const difference = 45 - board[index].reduce((a, c) => a + c, 0);
+    const difference = 45 - board[index].reduce((a, c) => a + c, 0);
+    if (!board[index].includes(difference)) {
       for (let j = 0; j < line.length; j++) {
-        if (line[j] === 0 && difference === number) {
-          line[j] = number;
+        if (line[j] === 0) {
+          line[j] = difference;
         }
       }
     }
@@ -65,3 +65,4 @@ function lineSearchForOneEmpty(board, number) {
 //   )
 // );
 
+function columnSearchForOneEmpty(board, number) {}
