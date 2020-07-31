@@ -14,5 +14,4 @@ for (let p = 0; p < 9; p++) {
   squareMas.push(squareRow);
 }
 console.log(squareMas);
-
 // дальше нужно передвинуть индексы на плюс три , но это утром
