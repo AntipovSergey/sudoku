@@ -7,10 +7,12 @@ function mainArray(str) {
 // creates array of horizontal lines
 function horizontalLines(arr) {
   const result = [];
-  for (let i = 0; i < 9; i += 1) {
+  for (let i = 0; i < arr.length; i += 9) {
+    let counter = i;
     const temp = [];
-    for (let j = 0; j < 9; i += 1) {
-      temp.push(arr[i][j]);
+    while (counter !== i + 9) {
+      temp.push(arr[counter]);
+      counter++;
     }
     result.push(temp);
   }
@@ -19,15 +21,12 @@ function horizontalLines(arr) {
 
 // creates array of vertical lines from array of horizontal lines
 function verticalLines(arr) {
-  const result = [];
-  for (let i = 0; i < 9; i += 1) {
-    const temp = [];
-    for (let j = 0; j < 9; j += 1) {
-      temp.push(arr[j][i]);
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < i; j++) {
+      [arr[i][j], arr[j][i]] = [arr[j][i], arr[i][j]];
     }
-    result.push(temp);
   }
-  return result;
+  return arr;
 }
 
 // creates array of squares from ...
