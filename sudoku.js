@@ -54,11 +54,6 @@ const toArray = (str) => {
 };
 let result = objectFromArray(toArray(inputText));
 console.log(result);
-// for (let key in result) {
-//   console.log(Object.values(key));
-//   console.log(key);
-// }
-// console.log((objectFromArray(toArray(inputText))));
 
 const findInRow = (str) => {
   let result = [];
@@ -68,4 +63,3 @@ const findInRow = (str) => {
   return result;
 };
 
-// console.log(findInRow(toArray(inputText)));
