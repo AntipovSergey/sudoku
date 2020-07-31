@@ -6,7 +6,7 @@
 function solve(boardString) {
   let k = 0;
   let x = [];
-  const y = [];
+  const board = [];
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       x.push(+boardString[k]);
@@ -15,10 +15,9 @@ function solve(boardString) {
       }
       k++;
     }
-    y.push(x);
+    board.push(x);
     x = [];
   }
-  console.log(y);
 }
 
 // Returns a boolean indicating whether
