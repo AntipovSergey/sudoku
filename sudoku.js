@@ -4,9 +4,22 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  let k = 0;
+  let x = [];
+  const y = [];
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      x.push(+boardString[k]);
+      if (isNaN(x[j])) {
+        x[j] = 0;
+      }
+      k++;
+    }
+    y.push(x);
+    x = [];
+  }
+  console.log(y);
 }
-
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -15,7 +28,6 @@ function solve(boardString) {
 function isSolved(board) {
 
 }
-
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -28,7 +40,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+  solve,
+  isSolved,
+  prettyBoard,
+};
