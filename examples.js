@@ -15,3 +15,8 @@
 
 
 // console.log(objectFromArray(array));
+
+
+function searchInColumn(obj) {
+  const 
+}
