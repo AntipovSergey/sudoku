@@ -31,12 +31,33 @@ function verticalLines(arr) {
 }
 
 // creates array of squares from ...
-/*function squares(arr) {
+function createArrayOfSquares(arr) {
   const result = [];
-  let temp = [];
-  for (let i = 0; i < 3; i += 1) {
-    for (let j = 0; j < 3; j += 1) {
-      temp.push(arr[i][j]);
+  let slicer = 0;
+  let start = 0;
+  let counter = 0;
+  while (result.length !== 9) {
+    const temp = [];
+    slicer = start;
+    while (temp.length !== 9) {
+      temp.push(...arr.slice(slicer, slicer + 3));
+      slicer += 9;
     }
+    start += 3;
+    counter += 1;
+    if (counter === 3) {
+      arr.splice(0, 27);
+      start = 0;
+      counter = 0;
+    }
+    result.push(temp);
   }
-}*/
+  return result;
+}
+
+module.exports = {
+  createArrayOfSquares,
+  mainArray,
+  horizontalLines,
+  verticalLines,
+};
