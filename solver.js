@@ -7,6 +7,7 @@
 
 // создание функции, создающей многомерный массив из колонок судоку
 const { finalArr, arrFirst } = require('./getSudoku');
+
 const arrColumn = [];
 function createArrayOfColumns(finalArr2) {
   for (let i = 0; i < 9; i++) {
@@ -16,7 +17,6 @@ function createArrayOfColumns(finalArr2) {
   }
   return arrColumn;
 }
-
 createArrayOfColumns(finalArr);
 
 const column1 = arrColumn.slice(0, 9);
@@ -28,23 +28,16 @@ const column6 = arrColumn.slice(45, 54);
 const column7 = arrColumn.slice(54, 63);
 const column8 = arrColumn.slice(63, 72);
 const column9 = arrColumn.slice(72, 81);
-
 const massiveArrColumn = [];
-// eslint-disable-next-line max-len
 // получение многомерного массива
 massiveArrColumn.push(column1, column2, column3, column4, column5, column6, column7, column8, column9);
-// console.table(massiveArrColumn);
-
 // цикл который ищет совпадающие значения
 
-const massAdder = [];
-// const massAdder2 = [];
-
-const k = 1;
-
+let massAdder = [];
+let k = 1;
 function gorisontSearch(k) {
   while (k <= 9) {
-    let j = 1;
+    let j = 0;
     // k += 1;
     for (let i = 0; i < 9; i++) {
       if (String(k) === finalArr[0][j]) {
@@ -53,9 +46,7 @@ function gorisontSearch(k) {
       j += 1;
     }
     if (j === 9) {
-      if (verticalSearch(k) > 0) {
-        massAdder.push(k);
-      }
+      if (verticalSearch(k) > 0) massAdder.push(k);
     }
     k += 1;
   }
@@ -64,6 +55,7 @@ function gorisontSearch(k) {
 }
 
 gorisontSearch(k);
+
 
 function verticalSearch(k) {
   let vert = 0;
@@ -79,6 +71,8 @@ function verticalSearch(k) {
 }
 
 console.log(massAdder);
+
+
 
 module.exports = {
   massiveArrColumn,
