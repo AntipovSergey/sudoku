@@ -13,16 +13,12 @@ const coordinates = [
 let string = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
 function createBoard(str) {
     str = str.split('');
-    // let arr = [];
-    str = str.map((item) => {
+    str = str.map(item => {
         if (item === '-') {
             return item = 0;
         }
-        return item;
+        return Number(item);
     });
-    // str = str.map((item) => {
-    //     arr.push(Number(item));
-    // })
     return str;
 }
 
