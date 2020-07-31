@@ -9,3 +9,4 @@ function findSquare(board,variants){
 }
 
 console.log(findSquare(board, variants));
+
