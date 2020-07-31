@@ -16,15 +16,52 @@ function isSolved(board) {}
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  let string = board;
+  let result = [];
+  for (let index = 0; index < 9; index++) {
+    result.push(Array.from(string.substring(0, 9)));
+    string = string.substring(9);
+  }
+  for (let index = 0; index < result.length; index++) {
+    const element = result[index];
+    for (let jindex = 0; jindex < element.length; jindex++) {
+      const cell = element[jindex];
+      if (cell === '-') {
+        element[jindex] = 0;
+      } else {
+        element[jindex] = +element[jindex];
+      }
+    }
+  }
+  return result;
+}
 
 // Exports all the functions to use them in another file.
-module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
-};
+// module.exports = {
+//   solve: solve,
+//   isSolved: isSolved,
+//   prettyBoard: prettyBoard,
+// };
 
-function name(params) {
-  
+function lineSearchForOneEmpty(board, number) {
+  for (let index = 0; index < board.length; index++) {
+    const line = board[index];
+    if (!board[index].includes(number)) {
+      const difference = 45 - board[index].reduce((a, c) => a + c, 0);
+      for (let j = 0; j < line.length; j++) {
+        if (line[j] === 0 && difference === number) {
+          line[j] = number;
+        }
+      }
+    }
+  }
+  return board;
 }
+
+// console.log(
+//   prettyBoard(
+//     '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+//   )
+// );
+
