@@ -7,12 +7,11 @@
 
 // создание функции, создающей многомерный массив из колонок судоку
 const { finalArr, arrFirst } = require('./getSudoku');
-
 const arrColumn = [];
-function createArrayOfColumns(finalArr) {
+function createArrayOfColumns(finalArr2) {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      arrColumn.push(finalArr[j][i]);
+      arrColumn.push(finalArr2[j][i]);
     }
   }
   return arrColumn;
