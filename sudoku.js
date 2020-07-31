@@ -32,3 +32,11 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+const objectFromArray = (arr) => {
+  const object = {};
+  for (let item = 0; item < arr.length; item += 1) {
+    object[item] = arr[item];
+  }
+  return object;
+};
