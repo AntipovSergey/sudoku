@@ -3,9 +3,10 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
-
+function solve(boardString) {	
+	
 }
+console.log(solve())
 
 
 // Returns a boolean indicating whether

@@ -11,9 +11,13 @@ const sudoku = require('./sudoku');
 
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
-  let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  return puzzle;
+  let forCheck = [];
+  let puzzle = content.split('\n')[puzzleNumber].split('');
+  for (let i = 0; i < puzzle.length; i += 9) {
+    forCheck.push(puzzle.slice(i, i + 9));
+  }
+  console.table(forCheck);
+  // return forCheck;
 }
 
 function readAndSolve(err, data) {
