@@ -10,6 +10,6 @@ const superBoard = function solve(boardString) {
     subArr[i] = newArr.slice(i * BordSize, i * BordSize + BordSize);
   }
   return subArr;
-}
+};
 
 console.table(superBoard(newArr1));
