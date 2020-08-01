@@ -26,7 +26,7 @@ function readAndSolve(err, data) {
   let solvedPuzzle = sudoku.runThrough(formattedPuzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log('The board was solved!');
-    console.log(solvedPuzzle);
+    console.table(solvedPuzzle);
   } else {
     console.log("The board wasn't solved :(");
   }
