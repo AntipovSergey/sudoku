@@ -13,7 +13,7 @@
 // }
 
 // Use filesystem.
-const fs = require('fs');
+// const fs = require('fs');
 // Use functions from sudoku.js file.
 // const sudoku = require('./sudoku');
 
@@ -24,30 +24,30 @@ const fs = require('fs');
 // so you should remove them.
 
 // Gets one puzzle from the text file.
-function sudokuParse(content, puzzleNumber = 13) {
-  let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  console.log(typeof puzzle);
-  return puzzle;
-}
+// function sudokuParse(content, puzzleNumber = 13) {
+//   let puzzle = content.split('\n')[puzzleNumber];
+//   console.log(puzzle);
+//   console.log(typeof puzzle);
+//   return puzzle;
+// }
 
-function readAndSolve(err, data) {
-  if (err) {
-    throw err;
-  }
-  let puzzle = sudokuParse(data);
-  const formattedPuzzle = prettyBoard(puzzle);
-  let solvedPuzzle = runThrough(formattedPuzzle);
-  if (isSolved(solvedPuzzle)) {
-    console.log('The board was solved!');
-    console.table(solvedPuzzle);
-  } else {
-    console.log("The board wasn't solved :(");
-  }
-}
+// function readAndSolve(err, data) {
+//   if (err) {
+//     throw err;
+//   }
+//   let puzzle = sudokuParse(data);
+//   const formattedPuzzle = prettyBoard(puzzle);
+//   let solvedPuzzle = runThrough(formattedPuzzle);
+//   if (isSolved(solvedPuzzle)) {
+//     console.log('The board was solved!');
+//     console.table(solvedPuzzle);
+//   } else {
+//     console.log("The board wasn't solved :(");
+//   }
+// }
 
-// Reads file and sends data from it to the readAndSolve function.
-fs.readFile('./sudoku-puzzles.txt', 'utf-8', readAndSolve);
+// // Reads file and sends data from it to the readAndSolve function.
+// fs.readFile('./sudoku-puzzles.txt', 'utf-8', readAndSolve);
 
 //
 
@@ -124,11 +124,11 @@ function prettyBoard(board) {
 }
 
 // Exports all the functions to use them in another file.
-// module.exports = {
-//   solve: solve,
-//   isSolved: isSolved,
-//   prettyBoard: prettyBoard,
-// };
+module.exports = {
+  runThrough: runThrough,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard,
+};
 
 function isHorizontal(num, line) {
   for (let index = 0; index < line.length; index++) {
@@ -145,10 +145,6 @@ function isVertical(num, board, column) {
   return false;
 }
 
-const pretty = prettyBoard(
-  '--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3'
-);
-
 const transpondToColumn = (m) => m[0].map((x, i) => m.map((x) => x[i]));
 
 // console.log(pretty);
@@ -158,11 +154,6 @@ const transpondToColumn = (m) => m[0].map((x, i) => m.map((x) => x[i]));
 // function isAlreadyInOtherDimensions(number, line) {
 //   return transponse(line).includes(number);
 // }
-
-const table = [
-  [1, 2, 2, 4],
-  [5, 6, 7, 4],
-];
 
 // console.table(transpondToColumn(table));
 const indexes = [
@@ -273,16 +264,12 @@ function isSquare(num, line, cell, board, indexes) {
     for (let cells = 0; cells < indexes[index].length; cells++) {
       // for (let item = 0; item < indexes[index][cells].length; item++) {
       const cursqr = indexes[index][cells];
-      if (
-        indexes[index][cells][0] === currentCoord[0] &&
-        cursqr[1] === currentCoord[1]
-      ) {
+      if (cursqr[0] === currentCoord[0] && cursqr[1] === currentCoord[1]) {
         const ourSqaure = indexes[index];
         const squareOfNumbers = ourSqaure.map((elem) => {
           return board[elem[0]][elem[1]];
         });
         for (let i = 0; i < squareOfNumbers.length; i++) {
-          const numberInSquare = squareOfNumbers[i];
           if (squareOfNumbers[i] === num) {
             return true;
           }
@@ -292,9 +279,6 @@ function isSquare(num, line, cell, board, indexes) {
     }
   }
 }
-
-const sudokustring =
-  '----------------------------------------------------------------------------------';
 // console.log(sudokustring);
 // console.log(prettyBoard);
 // console.table(sudoku);
