@@ -16,14 +16,26 @@ function createObj(str) {
       i++;
     }
   }
-  return obj
+  // console.log(obj['43']); //БЫЛА ЯЧЕЙКА
+
+  checkColumn(obj);
+
 }
-console.log(createObj(str)); 
+console.log(createObj(str));
 
+function checkColumn(obj) {
+  let coor = '43';
+  let secondCoor = coor[1]; //3
 
+  let column = Object.keys(obj).filter((item) => item[1] === secondCoor)
+  for (let everyItemOfColumn of column) {
+    if ((coor !== everyItemOfColumn) && (obj[everyItemOfColumn].length === 1)) {
+      obj[coor] = obj[coor].filter(item => item !== obj[everyItemOfColumn][0]);
+    }
+  }
 
-
-
+  // console.log(obj['43']); //СТАЛА ЯЧЕЙКА
+}
 
 
 // Takes a board as a string in the format
@@ -56,7 +68,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
