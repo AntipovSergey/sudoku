@@ -1,7 +1,7 @@
-let str = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-let str1 = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
-let obj = createObj(str1)
-let coor = '30';
+let str = '-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--';
+let obj = createObj(str);
+let difObj = checkCells(obj);
+
 
 // создаем объект из строки
 // ключи = координаты на сетке
@@ -32,14 +32,17 @@ function checkCells(obj) {
 
   let coors = Object.keys(obj);
   for (let coor of coors) {
-    checkBlocks(obj, coor);
     checkRow(obj, coor);
     checkColumn(obj, coor);
+    checkBlocks(obj, coor);
   }
+  // hiddenSingles(obj);
 
   if (compareObj === JSON.stringify(obj)) {
-    visualisation(obj);
-    return 'ne mogu eto reshit'
+    //visualisation(obj);
+    //console.log('===================================================================================');
+    // console.log('ne mogu eto reshit');
+    return obj;
   };
 
   return checkCells(obj);
@@ -55,10 +58,10 @@ function isSolve(obj) {
 }
 
 
-console.log(checkCells(obj));
+// console.log(checkCells(obj));
 
 function checkRow(obj, coor) {
-  for (let n = 0; n < 9; n++) {
+  for (let n = 0; n < 9; n += 1) {
     if ((coor !== `${coor[0]}${n}`) && obj[`${coor[0]}${n}`].length === 1) {
       obj[coor] = obj[coor].filter(item => item !== obj[`${coor[0]}${n}`][0]);
     }
@@ -92,7 +95,7 @@ function checkBlocks(obj, coor) {
     ['60', '61', '62', '70', '71', '72', '80', '81', '82'],
     ['63', '64', '65', '73', '74', '75', '83', '84', '85'],
     ['66', '67', '68', '76', '77', '78', '86', '87', '88'],
-  ]
+  ];
 
   // определяем квадрат, в котором находится проверяемая ячейка
   let blockNum;
@@ -113,8 +116,76 @@ function checkBlocks(obj, coor) {
     }
   }
 
-  //return obj;
+  return obj;
 }
+
+function makeObjOfBlockCandidates(obj) {
+  let blocksMap = [
+    ['00', '01', '02', '10', '11', '12', '20', '21', '22'],
+    ['03', '04', '05', '13', '14', '15', '23', '24', '25'],
+    ['06', '07', '08', '16', '17', '18', '26', '27', '28'],
+    ['30', '31', '32', '40', '41', '42', '50', '51', '52'],
+    ['33', '34', '35', '43', '44', '45', '53', '54', '55'],
+    ['36', '37', '38', '46', '47', '48', '56', '57', '58'],
+    ['60', '61', '62', '70', '71', '72', '80', '81', '82'],
+    ['63', '64', '65', '73', '74', '75', '83', '84', '85'],
+    ['66', '67', '68', '76', '77', '78', '86', '87', '88'],
+  ];
+  let sampleObj = {
+    '1': [],
+    '2': [],
+    '3': [],
+    '4': [],
+    '5': [],
+    '6': [],
+    '7': [],
+    '8': [],
+    '9': [],
+  }
+
+  let candidateObj = {};
+
+  for (let indexBlock = 0; indexBlock < blocksMap.length; indexBlock += 1) {
+    candidateObj[indexBlock] = JSON.parse(JSON.stringify(sampleObj));
+    for (let indexCoor = 0; indexCoor < blocksMap[indexBlock].length; indexCoor += 1) {
+      for (let candidate of obj[blocksMap[indexBlock][indexCoor]]) {
+        if (obj[blocksMap[indexBlock][indexCoor]].length !== 1) {
+          candidateObj[indexBlock][candidate].push(blocksMap[indexBlock][indexCoor]);
+        }
+      }
+    }
+  }
+
+  //  return visualisation(checkBlocks(obj, '41'));
+  return candidateObj;
+
+}
+
+
+function hiddenSingles(difObj) {
+  let BlockCandidates = makeObjOfBlockCandidates(difObj);
+
+
+
+
+  for (let blockNum = 0; blockNum < 9; blockNum += 1) {
+    for (let candidate = 1; candidate < 10; candidate += 1) {
+      let candidateArr = BlockCandidates[String(blockNum)][String(candidate)];
+      if (candidateArr.length === 1) {
+        console.log(candidate, candidateArr[0]);
+        difObj[candidateArr[0]] = [String(candidate)];
+      }
+    }
+  }
+
+  return difObj;
+}
+
+visualisation(difObj)
+console.log('===========================================================================================================');
+// lockedCandidate(difObj)
+visualisation(hiddenSingles(difObj));
+
 
 function visualisation(obj) {
   for (let x = 0; x < 9; x += 1) {
