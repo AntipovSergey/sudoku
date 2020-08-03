@@ -41,6 +41,122 @@ function solve(boardString) {
   return mainArr;
 }
 
+// let testArr = [
+
+//   [
+//     [1], ['-'],
+//     [5], [8],
+//     ['-'], [2],
+//     ['-'], ['-'],
+//     ['-']
+//   ],
+//   [
+//     ['-'], [9],
+//     ['-'], ['-'],
+//     [7], [6],
+//     [4], ['-'],
+//     [5]
+//   ],
+//   [
+//     [2], ['-'],
+//     ['-'], [4],
+//     ['-'], ['-'],
+//     [8], [1],
+//     [9]
+//   ],
+//   [
+//     ['-'], [1],
+//     [9], ['-'],
+//     ['-'], [7],
+//     [3], ['-'],
+//     [6]
+//   ],
+//   [
+//     [7], [6],
+//     [2], ['-'],
+//     [8], [3],
+//     ['-'], [9],
+//     ['-']
+//   ],
+//   [
+//     ['-'], ['-'],
+//     ['-'], ['-'],
+//     [6], [1],
+//     ['-'], [5],
+//     ['-']
+//   ],
+//   [
+//     ['-'], ['-'],
+//     [7], [6],
+//     ['-'], ['-'],
+//     ['-'], [3],
+//     ['-']
+//   ],
+//   [
+//     [4], [3],
+//     ['-'], ['-'],
+//     [2], ['-'],
+//     [5], ['-'],
+//     [1]
+//   ],
+//   [
+//     [6], ['-'],
+//     ['-'], [3],
+//     ['-'], [8],
+//     [9], ['-'],
+//     ['-']
+//   ]
+// ]
+// console.log(typeof (testArr[0][1]));
+
+function salavat(arr) {
+
+
+  arr.forEach((element) => {
+    let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let numsInRow = [];
+    let newNums = [];
+    element.forEach((el1) => {
+      if (el1 != '-') {
+        numsInRow.push(el1);
+      }
+    })
+
+    nums.forEach((el2) => {
+      for (let i = 0; i < numsInRow.length; i++) {
+        if (el2 == numsInRow[i]) {
+          nums.splice(el2 - 1, 1, 0);
+        }
+        // console.log(nums);
+      }
+    }
+    )
+    nums.forEach((el) => {
+      if (el !== 0) {
+        newNums.push(el);
+      }
+    })
+    element.forEach((el3) => {
+      if (el3 == '-') {
+        el3.splice(0, 1, newNums);
+      }
+    })
+
+  });
+  // console.table(arr);
+  // console.log(arr[0][1]);
+
+}
+
+// nums.forEach((el2) => {
+//   for (let i = 0; i < numsInRow.length; i++) {
+//     if (el2 == numsInRow[i]) {
+//       nums.slice(el2, 1)
+//     })
+
+salavat(testArr);
+
+
 // Returns a boolean indicating whether
 // or not the provided board is solveds.
 // The input board will be in whatever
