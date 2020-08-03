@@ -1,5 +1,6 @@
 let str = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-let obj = createObj(str)
+let str1 = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
+let obj = createObj(str1)
 let coor = '30';
 
 // создаем объект из строки
@@ -23,13 +24,46 @@ function createObj(str) {
   return obj
 }
 
+
+function checkCells(obj) {
+  if (isSolve(obj)) return obj;
+
+  let compareObj = JSON.stringify(obj);
+
+  let coors = Object.keys(obj);
+  for (let coor of coors) {
+    checkBlocks(obj, coor);
+    checkRow(obj, coor);
+    checkColumn(obj, coor);
+  }
+
+  if (compareObj === JSON.stringify(obj)) {
+    visualisation(obj);
+    return 'ne mogu eto reshit'
+  };
+
+  return checkCells(obj);
+}
+
+
+function isSolve(obj) {
+  let values = Object.values(obj);
+  for (let arr of values) {
+    if (arr.length !== 1) return false
+  }
+  return true;
+}
+
+
+console.log(checkCells(obj));
+
 function checkRow(obj, coor) {
   for (let n = 0; n < 9; n++) {
     if ((coor !== `${coor[0]}${n}`) && obj[`${coor[0]}${n}`].length === 1) {
       obj[coor] = obj[coor].filter(item => item !== obj[`${coor[0]}${n}`][0]);
     }
   }
-  return obj;
+  // return obj;
 }
 
 function checkColumn(obj, coor) {
@@ -40,7 +74,7 @@ function checkColumn(obj, coor) {
       obj[coor] = obj[coor].filter(item => item !== obj[everyItemOfColumn][0]);
     }
   }
-  return obj;
+  // return obj;
 }
 
 // функция проверки кандидатов внутри блока
@@ -51,19 +85,18 @@ function checkBlocks(obj, coor) {
   let blocksMap = [
     ['00', '01', '02', '10', '11', '12', '20', '21', '22'],
     ['03', '04', '05', '13', '14', '15', '23', '24', '25'],
-    ['06', '07', '08', '16', '17', '18', '26', '27', '27'],
+    ['06', '07', '08', '16', '17', '18', '26', '27', '28'],
     ['30', '31', '32', '40', '41', '42', '50', '51', '52'],
     ['33', '34', '35', '43', '44', '45', '53', '54', '55'],
     ['36', '37', '38', '46', '47', '48', '56', '57', '58'],
     ['60', '61', '62', '70', '71', '72', '80', '81', '82'],
-    ['63', '64', '65', '73', '75', '75', '83', '84', '85'],
+    ['63', '64', '65', '73', '74', '75', '83', '84', '85'],
     ['66', '67', '68', '76', '77', '78', '86', '87', '88'],
   ]
 
   // определяем квадрат, в котором находится проверяемая ячейка
   let blockNum;
   for (let index = 0; index < blocksMap.length; index += 1) {
-    console.log(index);
     if (blocksMap[index].includes(coor)) {
       blockNum = index;
       break;
@@ -80,11 +113,23 @@ function checkBlocks(obj, coor) {
     }
   }
 
-  return obj;
+  //return obj;
+}
+
+function visualisation(obj) {
+  for (let x = 0; x < 9; x += 1) {
+    let string = '';
+    for (let y = 0; y < 9; y += 1) {
+      let space = ' ';
+      space = space.repeat(10 - (obj[`${x}${y}`].length * 2 - 1));
+      string += obj[`${x}${y}`].join(',').concat(space);
+    }
+    console.log(string);
+  }
 }
 
 
-console.log(checkBlocks(obj, coor));
+// console.log(checkBlocks(obj, coor));
 
 
 /*
