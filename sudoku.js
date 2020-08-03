@@ -23,38 +23,25 @@ function createObj(str) {
   return obj
 }
 
-
 function checkRow(obj, coor) {
   for (let n = 0; n < 9; n++) {
     if ((coor !== `${coor[0]}${n}`) && obj[`${coor[0]}${n}`].length === 1) {
-
       obj[coor] = obj[coor].filter(item => item !== obj[`${coor[0]}${n}`][0]);
     }
   }
   return obj;
 }
 
-
-
-  checkColumn(obj);
-
-}
-console.log(createObj(str));
-
-function checkColumn(obj) {
-  let coor = '43';
-  let secondCoor = coor[1]; //3
+function checkColumn(obj, coor) {
+  let secondCoor = coor[1];
   let column = Object.keys(obj).filter((item) => item[1] === secondCoor)
   for (let everyItemOfColumn of column) {
     if ((coor !== everyItemOfColumn) && (obj[everyItemOfColumn].length === 1)) {
       obj[coor] = obj[coor].filter(item => item !== obj[everyItemOfColumn][0]);
     }
   }
-
-  // console.log(obj['43']); //СТАЛА ЯЧЕЙКА
+  return obj;
 }
-
-
 
 // функция проверки кандидатов внутри блока
 // принимает объект (ключи = координатам на сетке, значения = массиву кандидатов)
@@ -126,7 +113,7 @@ let a = [
 // --------------------------------------------
 
 
-  
+
 
 
 // Takes a board as a string in the format
