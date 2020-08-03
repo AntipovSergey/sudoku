@@ -4,7 +4,27 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  const num = boardString.split('');
+  const mainArr = new Array(9);
+  let rowArr = [];
+  let startIndex = 0;
+  let endIndex = 9;
 
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = startIndex; j < endIndex; j += 1) {
+      if (num[j] !== '-') {
+        rowArr.push([+num[j]]);
+      } else {
+        rowArr.push([num[j]]);
+      }
+    }
+    mainArr[i] = rowArr;
+    startIndex += 9;
+    endIndex += 9;
+    rowArr = [];
+  }
+
+  return mainArr;
 }
 
 // Returns a boolean indicating whether
@@ -12,7 +32,19 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
+  function random(i, j) {
+    board[i][j];
+  }
 
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; j += 1) {
+      if (board[i][j] === '-') {
+        random(i, j);
+      }
+    }
+  }
+
+  console.log(board);
 }
 
 // Takes in a board in some form and
