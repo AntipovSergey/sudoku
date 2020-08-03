@@ -20,7 +20,6 @@ function createObj(str) {
       i += 1;
     }
   }
-
   return obj
 }
 
@@ -34,6 +33,27 @@ function checkRow(obj, coor) {
   }
   return obj;
 }
+
+
+
+  checkColumn(obj);
+
+}
+console.log(createObj(str));
+
+function checkColumn(obj) {
+  let coor = '43';
+  let secondCoor = coor[1]; //3
+  let column = Object.keys(obj).filter((item) => item[1] === secondCoor)
+  for (let everyItemOfColumn of column) {
+    if ((coor !== everyItemOfColumn) && (obj[everyItemOfColumn].length === 1)) {
+      obj[coor] = obj[coor].filter(item => item !== obj[everyItemOfColumn][0]);
+    }
+  }
+
+  // console.log(obj['43']); //СТАЛА ЯЧЕЙКА
+}
+
 
 
 // функция проверки кандидатов внутри блока
@@ -105,6 +125,8 @@ let a = [
 // далее следует реализовать более сложные проверки (но как это делать без понятия)
 // --------------------------------------------
 
+
+  
 
 
 // Takes a board as a string in the format
