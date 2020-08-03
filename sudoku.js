@@ -1,3 +1,31 @@
+let str = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+
+
+function createObj(str) {
+  let strArr = str.split('');
+  let obj = {};
+
+  let i = 0;
+  for (let x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
+      if (strArr[i] === '-') {
+        obj[`${x}${y}`] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      } else {
+        obj[`${x}${y}`] = [Number(strArr[i])];
+      }
+      i++;
+    }
+  }
+  return obj
+}
+console.log(createObj(str)); 
+
+
+
+
+
+
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
