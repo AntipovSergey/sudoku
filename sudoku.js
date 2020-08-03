@@ -16,9 +16,21 @@ function createObj(str) {
       i++;
     }
   }
+
   return obj
 }
-console.log(createObj(str)); 
+
+
+
+function checkRow(obj, coor) {
+  for (let n = 0; n < 9; n++) {
+    if ((coor !== `${coor[0]}${n}`) && obj[`${coor[0]}${n}`].length === 1) {
+
+      obj[coor] = obj[coor].filter(item => item !== obj[`${coor[0]}${n}`][0]);
+    }
+  }
+  return obj;
+}
 
 
 
