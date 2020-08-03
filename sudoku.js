@@ -24,6 +24,20 @@ function solve(boardString) {
     rowArr = [];
   }
 
+  function random(i, j) {
+    mainArr[i][j];
+  }
+
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; j += 1) {
+      if (mainArr[i][j] === '-') {
+        random(i, j);
+      }
+    }
+  }
+
+  console.log(mainArr);
+
   return mainArr;
 }
 
@@ -32,19 +46,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  function random(i, j) {
-    board[i][j];
-  }
 
-  for (let i = 0; i < 9; i += 1) {
-    for (let j = 0; j < 9; j += 1) {
-      if (board[i][j] === '-') {
-        random(i, j);
-      }
-    }
-  }
-
-  console.log(board);
 }
 
 // Takes in a board in some form and
