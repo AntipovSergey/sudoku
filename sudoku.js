@@ -141,7 +141,35 @@ function salavat(arr) {
 
 salavat(testArr);
 
+function chekAndRemoveInSubArrays(board) {
+  function checkInEachSubArray(y, x) {
+    let tempArr = [];
+    for (let i = x; i < x + 3; i++) {
+      for (let j = y; j < y + 3; j++) {
+        if (board[i][j].length === 1) { tempArr.push(board[i][j][0]); }
+      }
+    }
 
+    for (let f = x; f < x + 3; f++) {
+      for (let g = y; g < y + 3; g++) {
+        if (board[f][g].length > 1) {
+          for (let h = board[f][g].length - 1; h >= 0; h--) {
+            if (board[f][g].length === 1) break;
+            if (tempArr.includes(board[f][g][h])) { board[f][g].splice(h, 1) }
+          }
+        }
+      }
+    }
+    //console.table(board);
+  }
+
+  for (let n = 0; n < board[0].length; n += 3) {
+    for (let p = 0; p < board.length; p += 3) {
+      checkInEachSubArray(n, p)
+    }
+  }
+  return board;
+}
 // Returns a boolean indicating whether
 // or not the provided board is solveds.
 // The input board will be in whatever
