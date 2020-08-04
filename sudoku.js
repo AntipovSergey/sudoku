@@ -3,6 +3,15 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+function sumCellsLength(someArr4) {
+  let summ = 0;
+  someArr4.forEach(el1 => {
+    el1.forEach(el2 => {
+      summ += el2.length;
+    })
+  })
+  return summ;
+}
 function solve(boardString) {
   const num = boardString.split('');
   const mainArr = new Array(9);
@@ -116,7 +125,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  if (sumCellsLength(board) === 81) { return true; }
 }
 
 // Takes in a board in some form and
