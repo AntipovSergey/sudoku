@@ -3,6 +3,7 @@ let obj = createObj(str);
 let difObj = checkCells(obj);
 visualisation(difObj)
 
+
 // создаем объект из строки
 // ключи = координаты на сетке
 // значения = массиву кандидатов (если ответ уже есть там только 1 значение)
@@ -168,13 +169,14 @@ function hiddenSingles(obj) {
   }
 }
 
-
 function visualisation(obj) {
   for (let x = 0; x < 9; x += 1) {
     let string = '';
     for (let y = 0; y < 9; y += 1) {
       let space = ' ';
+
       space = space.repeat(15 - (obj[`${x}${y}`].length * 2 - 1));
+
       string += obj[`${x}${y}`].join(',').concat(space);
     }
     console.log(string);
@@ -227,8 +229,29 @@ function prettyBoard(board) {
 }
 
 // Exports all the functions to use them in another file.
-module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard
+// module.exports = {
+//   solve: solve,
+//   isSolved: isSolved,
+//   prettyBoard: prettyBoard
+// }
+
+
+let mainDiv = document.querySelector('.content');
+let cellText = mainDiv.getElementsByTagName('div');
+let button = document.querySelector('button');
+for (let i = 0; i < str.length; i += 1) {
+  cellText[i].innerText = str[i];
+}
+
+
+let newObj = JSON.parse(JSON.stringify(checkCells(obj)));
+let newArr = Object.values(newObj);
+let removed = newArr.splice(72, 9);
+let newArrChange = removed.concat(newArr);
+
+button.addEventListener("click", decide);
+function decide() {
+  for (let i = 0; i < newArrChange.length; i += 1) {
+    cellText[i].innerText = newArrChange[i];
+  }
 }
