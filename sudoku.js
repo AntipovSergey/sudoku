@@ -34,6 +34,31 @@ function solve(boardString) {
 
   firstFilling(mainArr);
 
+
+
+  function searchRow(arr) {
+    arr.forEach((element) => {
+      let numsInRow = [];
+      element.forEach((element2) => {
+        if (element2.length == 1) {
+          numsInRow.push(element2);
+        }
+      })
+      element.forEach((element3) => {
+        if (element3.length > 1) {
+          for (let i = element3.length - 1; i >= 0; i--) {
+            numsInRow.forEach((element4) => {
+              if (element4 == element3[i]) {
+                element3.splice(element3.indexOf(element3[i]), 1);
+              }
+            })
+          }
+        }
+      })
+    })
+    return arr;
+  }
+
   function searchCol(arr) {
     for (let m = 0; m < arr.length; m += 1) {
       const values = []; // [ [ '1' ], [ '2' ], [ '7' ], [ '4' ], [ '6' ] ]
@@ -70,9 +95,6 @@ function solve(boardString) {
     return (arr);
   }
 
-  searchCol(mainArr);
-
-  console.table(mainArr);
 
   function chekAndRemoveInSubArrays(board) {
     function checkInEachSubArray(y, x) {
