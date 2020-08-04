@@ -1,6 +1,7 @@
-let str = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-let obj = createObj(str)
-let coor = '30';
+let str = '3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-';
+let obj = createObj(str);
+let difObj = checkCells(obj);
+visualisation(difObj)
 
 // создаем объект из строки
 // ключи = координаты на сетке
@@ -20,21 +21,60 @@ function createObj(str) {
       i += 1;
     }
   }
-
   return obj
 }
 
 
-function checkRow(obj, coor) {
-  for (let n = 0; n < 9; n++) {
-    if ((coor !== `${coor[0]}${n}`) && obj[`${coor[0]}${n}`].length === 1) {
+function checkCells(obj) {
+  if (isSolve(obj)) return obj;
 
-      obj[coor] = obj[coor].filter(item => item !== obj[`${coor[0]}${n}`][0]);
-    }
+  let compareObj = JSON.stringify(obj);
+
+  let coors = Object.keys(obj);
+  for (let coor of coors) {
+    checkRow(obj, coor);
+    checkColumn(obj, coor);
+    checkBlocks(obj, coor);
   }
-  return obj;
+
+  if (compareObj === JSON.stringify(obj)) {
+    hiddenSingles(obj);
+  }
+
+  if (compareObj === JSON.stringify(obj)) {
+    // не смог решить
+    return obj;
+  };
+
+  return checkCells(obj);
 }
 
+
+function isSolve(obj) {
+  let values = Object.values(obj);
+  for (let arr of values) {
+    if (arr.length !== 1) return false
+  }
+  return true;
+}
+
+function checkRow(obj, coor) {
+  for (let n = 0; n < 9; n += 1) {
+    if ((coor !== `${coor[0]}${n}`) && obj[`${coor[0]}${n}`].length === 1) {
+      obj[coor] = obj[coor].filter(item => Number(item) !== Number(obj[`${coor[0]}${n}`][0]));
+    }
+  }
+}
+
+function checkColumn(obj, coor) {
+  let secondCoor = coor[1];
+  let column = Object.keys(obj).filter((item) => item[1] === secondCoor)
+  for (let everyItemOfColumn of column) {
+    if ((coor !== everyItemOfColumn) && (obj[everyItemOfColumn].length === 1)) {
+      obj[coor] = obj[coor].filter(item => Number(item) !== Number(obj[everyItemOfColumn][0]));
+    }
+  }
+}
 
 // функция проверки кандидатов внутри блока
 // принимает объект (ключи = координатам на сетке, значения = массиву кандидатов)
@@ -44,19 +84,18 @@ function checkBlocks(obj, coor) {
   let blocksMap = [
     ['00', '01', '02', '10', '11', '12', '20', '21', '22'],
     ['03', '04', '05', '13', '14', '15', '23', '24', '25'],
-    ['06', '07', '08', '16', '17', '18', '26', '27', '27'],
+    ['06', '07', '08', '16', '17', '18', '26', '27', '28'],
     ['30', '31', '32', '40', '41', '42', '50', '51', '52'],
     ['33', '34', '35', '43', '44', '45', '53', '54', '55'],
     ['36', '37', '38', '46', '47', '48', '56', '57', '58'],
     ['60', '61', '62', '70', '71', '72', '80', '81', '82'],
-    ['63', '64', '65', '73', '75', '75', '83', '84', '85'],
+    ['63', '64', '65', '73', '74', '75', '83', '84', '85'],
     ['66', '67', '68', '76', '77', '78', '86', '87', '88'],
-  ]
+  ];
 
   // определяем квадрат, в котором находится проверяемая ячейка
   let blockNum;
   for (let index = 0; index < blocksMap.length; index += 1) {
-    console.log(index);
     if (blocksMap[index].includes(coor)) {
       blockNum = index;
       break;
@@ -69,30 +108,80 @@ function checkBlocks(obj, coor) {
   // при удовлетворении условиям фильтруем список кандидатов в проверяемой ячейке
   for (let checkCoor of blocksMap[blockNum]) {
     if ((coor !== checkCoor) && (obj[checkCoor].length === 1)) {
-      obj[coor] = obj[coor].filter(item => item !== obj[checkCoor][0]);
+      obj[coor] = obj[coor].filter(item => Number(item) !== Number(obj[checkCoor][0]));
+    }
+  }
+}
+
+function makeObjOfBlockCandidates(obj) {
+  let blocksMap = [
+    ['00', '01', '02', '10', '11', '12', '20', '21', '22'],
+    ['03', '04', '05', '13', '14', '15', '23', '24', '25'],
+    ['06', '07', '08', '16', '17', '18', '26', '27', '28'],
+    ['30', '31', '32', '40', '41', '42', '50', '51', '52'],
+    ['33', '34', '35', '43', '44', '45', '53', '54', '55'],
+    ['36', '37', '38', '46', '47', '48', '56', '57', '58'],
+    ['60', '61', '62', '70', '71', '72', '80', '81', '82'],
+    ['63', '64', '65', '73', '74', '75', '83', '84', '85'],
+    ['66', '67', '68', '76', '77', '78', '86', '87', '88'],
+  ];
+  let sampleObj = {
+    '1': [],
+    '2': [],
+    '3': [],
+    '4': [],
+    '5': [],
+    '6': [],
+    '7': [],
+    '8': [],
+    '9': [],
+  }
+
+  let candidateObj = {};
+
+  for (let indexBlock = 0; indexBlock < blocksMap.length; indexBlock += 1) {
+    candidateObj[indexBlock] = JSON.parse(JSON.stringify(sampleObj));
+    for (let indexCoor = 0; indexCoor < blocksMap[indexBlock].length; indexCoor += 1) {
+      for (let candidate of obj[blocksMap[indexBlock][indexCoor]]) {
+        if (obj[blocksMap[indexBlock][indexCoor]].length !== 1) {
+          candidateObj[indexBlock][candidate].push(blocksMap[indexBlock][indexCoor]);
+        }
+      }
     }
   }
 
-  return obj;
+  return candidateObj;
 }
 
 
-console.log(checkBlocks(obj, coor));
+function hiddenSingles(obj) {
+  let BlockCandidates = makeObjOfBlockCandidates(obj);
+
+  for (let blockNum = 0; blockNum < 9; blockNum += 1) {
+    for (let candidate = 1; candidate < 10; candidate += 1) {
+      let candidateArr = BlockCandidates[String(blockNum)][String(candidate)];
+      if (candidateArr.length === 1) {
+        obj[candidateArr[0]] = [Number(candidate)];
+        return checkCells(obj)
+      }
+    }
+  }
+}
 
 
-/*
-let a = [
-  '1', '-', '5', '8', '-', '2', '-', '-', '-',
-  '-', '9', '-', '-', '7', '6', '4', '-', '5',
-  '2', '-', '-', '4', '-', '-', '8', '1', '9',
-  '-', '1', '9', '-', '-', '7', '3', '-', '6',
-  '7', '6', '2', '-', '8', '3', '-', '9', '-',
-  '-', '-', '-', '-', '6', '1', '-', '5', '-',
-  '-', '-', '7', '6', '-', '-', '-', '3', '-',
-  '4', '3', '-', '-', '2', '-', '5', '-', '1',
-  '6', '-', '-', '3', '-', '8', '9', '-', '-'
-]
-*/
+function visualisation(obj) {
+  for (let x = 0; x < 9; x += 1) {
+    let string = '';
+    for (let y = 0; y < 9; y += 1) {
+      let space = ' ';
+      space = space.repeat(15 - (obj[`${x}${y}`].length * 2 - 1));
+      string += obj[`${x}${y}`].join(',').concat(space);
+    }
+    console.log(string);
+  }
+}
+
+
 // создаем объект из строки с ключами вида XY координат и значением массива вариантов от 0 до 9
 // в случае, если значение уже дано, то в этот массив будет записано только одно это значение
 // затем начать цикличискую проверку на "одиночек" в строке, столбце, 
@@ -104,6 +193,8 @@ let a = [
 
 // далее следует реализовать более сложные проверки (но как это делать без понятия)
 // --------------------------------------------
+
+
 
 
 
