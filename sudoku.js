@@ -1,6 +1,7 @@
-let str = '-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--';
+let str = "---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----";
+let str1 = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
 let obj = createObj(str);
-let difObj = checkCells(obj);
+let coor = '30';
 
 
 // создаем объект из строки
@@ -40,8 +41,7 @@ function checkCells(obj) {
 
   if (compareObj === JSON.stringify(obj)) {
     //visualisation(obj);
-    //console.log('===================================================================================');
-    // console.log('ne mogu eto reshit');
+    //return 'ne mogu eto reshit'
     return obj;
   };
 
@@ -261,8 +261,29 @@ function prettyBoard(board) {
 }
 
 // Exports all the functions to use them in another file.
-module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard
+// module.exports = {
+//   solve: solve,
+//   isSolved: isSolved,
+//   prettyBoard: prettyBoard
+// }
+
+
+let mainDiv = document.querySelector('.content');
+let cellText = mainDiv.getElementsByTagName('div');
+let button = document.querySelector('button');
+for (let i = 0; i < str.length; i += 1) {
+  cellText[i].innerText = str[i];
+}
+
+
+let newObj = JSON.parse(JSON.stringify(checkCells(obj)));
+let newArr = Object.values(newObj);
+let removed = newArr.splice(72, 9);
+let newArrChange = removed.concat(newArr);
+
+button.addEventListener("click", decide);
+function decide() {
+  for (let i = 0; i < newArrChange.length; i += 1) {
+    cellText[i].innerText = newArrChange[i];
+  }
 }
