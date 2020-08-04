@@ -5,11 +5,11 @@
 // How you represent your board is up to you!
 function sumCellsLength(someArr4) {
   let summ = 0;
-  someArr4.forEach(el1 => {
-    el1.forEach(el2 => {
+  someArr4.forEach((el1) => {
+    el1.forEach((el2) => {
       summ += el2.length;
-    })
-  })
+    });
+  });
   return summ;
 }
 function solve(boardString) {
@@ -41,18 +41,14 @@ function solve(boardString) {
     return someArr;
   }
 
-  // firstFilling(mainArr);
-
-
-
   function searchRow(arr) {
     arr.forEach((element) => {
-      let numsInRow = [];
+      const numsInRow = [];
       element.forEach((element2) => {
         if (element2.length == 1) {
           numsInRow.push(element2);
         }
-      })
+      });
       element.forEach((element3) => {
         if (element3.length > 1) {
           for (let i = element3.length - 1; i >= 0; i--) {
@@ -60,17 +56,17 @@ function solve(boardString) {
               if (element4 == element3[i]) {
                 element3.splice(element3.indexOf(element3[i]), 1);
               }
-            })
+            });
           }
         }
-      })
-    })
+      });
+    });
     return arr;
   }
 
   function searchCol(arr) {
     for (let m = 0; m < arr.length; m += 1) {
-      const values = []; // [ '1', '2'
+      const values = [];
 
       for (let j = 0; j < arr.length; j += 1) {
         if (arr[j][m].length === 1) {
@@ -90,7 +86,6 @@ function solve(boardString) {
     }
     return arr;
   }
-
 
   function chekAndRemoveInSubArrays(board) {
     function checkInEachSubArray(y, x) {
@@ -121,15 +116,10 @@ function solve(boardString) {
     return board;
   }
 
-  // console.table(chekAndRemoveInSubArrays(searchCol(searchRow(firstFilling(mainArr)))));
-
   let tempCellLength = sumCellsLength(mainArr);
   function inAll(someArr5) {
-    let result = chekAndRemoveInSubArrays(searchCol(searchRow(firstFilling(someArr5))));
-    if (sumCellsLength(result) === 81) {
-      console.table(result);
-      return result;
-    };
+    const result = chekAndRemoveInSubArrays(searchCol(searchRow(firstFilling(someArr5))));
+    if (sumCellsLength(result) === 81) { return result; }
     if (sumCellsLength(result) === tempCellLength) { return result; }
     tempCellLength = sumCellsLength(result);
     return inAll(result);
@@ -152,7 +142,10 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  board.forEach((el1) => {
+    el1.join('');
+  });
+  return board.join('\n');
 }
 
 // Exports all the functions to use them in another file.
