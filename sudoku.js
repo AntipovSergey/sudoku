@@ -1,8 +1,4 @@
-let str = '3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-';
-let obj = createObj(str);
-let difObj = checkCells(obj);
-visualisation(difObj)
-
+ let str ;
 
 // создаем объект из строки
 // ключи = координаты на сетке
@@ -235,22 +231,37 @@ function prettyBoard(board) {
 //   prettyBoard: prettyBoard
 // }
 
-
 let mainDiv = document.querySelector('.content');
 let cellText = mainDiv.getElementsByTagName('div');
 let button = document.querySelector('button');
-for (let i = 0; i < str.length; i += 1) {
-  cellText[i].innerText = str[i];
+
+
+let input = document.getElementById('inputPuzzle');
+
+input.addEventListener("change", createTable);
+function createTable(){
+  str = input.value;
+  for (let i = 0; i < str.length; i += 1) {
+    cellText[i].innerText = str[i];
+  }
 }
 
 
-let newObj = JSON.parse(JSON.stringify(checkCells(obj)));
-let newArr = Object.values(newObj);
-let removed = newArr.splice(72, 9);
-let newArrChange = removed.concat(newArr);
+
 
 button.addEventListener("click", decide);
 function decide() {
+
+  let obj = createObj(str);
+  checkCells(obj);
+  // let newObj = JSON.parse(JSON.stringify(checkCells(obj)));
+  // let newArr = Object.values(newObj);
+  // let removed = newArr.splice(72, 9);
+  // let newArrChange = removed.concat(newArr);
+  
+  let newArr = Object.values(obj);
+  let removed = newArr.splice(72, 9);
+  let newArrChange = removed.concat(newArr);
   for (let i = 0; i < newArrChange.length; i += 1) {
     cellText[i].innerText = newArrChange[i];
   }
