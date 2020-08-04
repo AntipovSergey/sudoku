@@ -41,7 +41,7 @@ function solve(boardString) {
     return someArr;
   }
 
-  firstFilling(mainArr);
+  // firstFilling(mainArr);
 
 
 
@@ -70,38 +70,25 @@ function solve(boardString) {
 
   function searchCol(arr) {
     for (let m = 0; m < arr.length; m += 1) {
-      const values = []; // [ [ '1' ], [ '2' ], [ '7' ], [ '4' ], [ '6' ] ]
-      const proverka = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+      const values = []; // [ '1', '2'
 
       for (let j = 0; j < arr.length; j += 1) {
         if (arr[j][m].length === 1) {
-          values.push(arr[j][m]);
-        }
-      }
-
-      const filters = [];
-
-      proverka.forEach((el2) => {
-        for (let i = 0; i < values.length; i += 1) {
-          if (el2 === values[i][0]) {
-            proverka.splice(el2 - 1, 1, 0);
-          }
-        }
-      });
-
-      for (let i = 0; i < proverka.length; i += 1) {
-        if (proverka[i] !== 0) {
-          filters.push(proverka[i]);
+          values.push(arr[j][m][0]);
         }
       }
 
       for (let j = 0; j < arr.length; j += 1) {
         if (arr[j][m].length !== 1) {
-          arr[j][m] = filters;
+          for (let index = arr[j][m].length - 1; index >= 0; index -= 1) {
+            if (values.includes(arr[j][m][index])) {
+              arr[j][m].splice(index, 1);
+            }
+          }
         }
       }
     }
-    return (arr);
+    return arr;
   }
 
 
@@ -134,12 +121,21 @@ function solve(boardString) {
     return board;
   }
 
-  chekAndRemoveInSubArrays(mainArr);
+  // console.table(chekAndRemoveInSubArrays(searchCol(searchRow(firstFilling(mainArr)))));
 
-  console.table(mainArr);
-  console.log(mainArr[0][1]);
+  let tempCellLength = sumCellsLength(mainArr);
+  function inAll(someArr5) {
+    let result = chekAndRemoveInSubArrays(searchCol(searchRow(firstFilling(someArr5))));
+    if (sumCellsLength(result) === 81) {
+      console.table(result);
+      return result;
+    };
+    if (sumCellsLength(result) === tempCellLength) { return result; }
+    tempCellLength = sumCellsLength(result);
+    return inAll(result);
+  }
 
-  return mainArr;
+  return inAll(mainArr);
 }
 
 // Returns a boolean indicating whether
