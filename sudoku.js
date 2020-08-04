@@ -1,7 +1,7 @@
-let str = "---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----";
-let str1 = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
+let str = '3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-';
 let obj = createObj(str);
-let coor = '30';
+let difObj = checkCells(obj);
+visualisation(difObj)
 
 
 // создаем объект из строки
@@ -37,11 +37,13 @@ function checkCells(obj) {
     checkColumn(obj, coor);
     checkBlocks(obj, coor);
   }
-  // hiddenSingles(obj);
 
   if (compareObj === JSON.stringify(obj)) {
-    //visualisation(obj);
-    //return 'ne mogu eto reshit'
+    hiddenSingles(obj);
+  }
+
+  if (compareObj === JSON.stringify(obj)) {
+    // не смог решить
     return obj;
   };
 
@@ -57,16 +59,12 @@ function isSolve(obj) {
   return true;
 }
 
-
-// console.log(checkCells(obj));
-
 function checkRow(obj, coor) {
   for (let n = 0; n < 9; n += 1) {
     if ((coor !== `${coor[0]}${n}`) && obj[`${coor[0]}${n}`].length === 1) {
-      obj[coor] = obj[coor].filter(item => item !== obj[`${coor[0]}${n}`][0]);
+      obj[coor] = obj[coor].filter(item => Number(item) !== Number(obj[`${coor[0]}${n}`][0]));
     }
   }
-  // return obj;
 }
 
 function checkColumn(obj, coor) {
@@ -74,10 +72,9 @@ function checkColumn(obj, coor) {
   let column = Object.keys(obj).filter((item) => item[1] === secondCoor)
   for (let everyItemOfColumn of column) {
     if ((coor !== everyItemOfColumn) && (obj[everyItemOfColumn].length === 1)) {
-      obj[coor] = obj[coor].filter(item => item !== obj[everyItemOfColumn][0]);
+      obj[coor] = obj[coor].filter(item => Number(item) !== Number(obj[everyItemOfColumn][0]));
     }
   }
-  // return obj;
 }
 
 // функция проверки кандидатов внутри блока
@@ -112,11 +109,9 @@ function checkBlocks(obj, coor) {
   // при удовлетворении условиям фильтруем список кандидатов в проверяемой ячейке
   for (let checkCoor of blocksMap[blockNum]) {
     if ((coor !== checkCoor) && (obj[checkCoor].length === 1)) {
-      obj[coor] = obj[coor].filter(item => item !== obj[checkCoor][0]);
+      obj[coor] = obj[coor].filter(item => Number(item) !== Number(obj[checkCoor][0]));
     }
   }
-
-  return obj;
 }
 
 function makeObjOfBlockCandidates(obj) {
@@ -156,43 +151,32 @@ function makeObjOfBlockCandidates(obj) {
     }
   }
 
-  //  return visualisation(checkBlocks(obj, '41'));
   return candidateObj;
-
 }
 
 
-function hiddenSingles(difObj) {
-  let BlockCandidates = makeObjOfBlockCandidates(difObj);
-
-
-
+function hiddenSingles(obj) {
+  let BlockCandidates = makeObjOfBlockCandidates(obj);
 
   for (let blockNum = 0; blockNum < 9; blockNum += 1) {
     for (let candidate = 1; candidate < 10; candidate += 1) {
       let candidateArr = BlockCandidates[String(blockNum)][String(candidate)];
       if (candidateArr.length === 1) {
-        console.log(candidate, candidateArr[0]);
-        difObj[candidateArr[0]] = [String(candidate)];
+        obj[candidateArr[0]] = [Number(candidate)];
+        return checkCells(obj)
       }
     }
   }
-
-  return difObj;
 }
-
-visualisation(difObj)
-console.log('===========================================================================================================');
-// lockedCandidate(difObj)
-visualisation(hiddenSingles(difObj));
-
 
 function visualisation(obj) {
   for (let x = 0; x < 9; x += 1) {
     let string = '';
     for (let y = 0; y < 9; y += 1) {
       let space = ' ';
-      space = space.repeat(10 - (obj[`${x}${y}`].length * 2 - 1));
+
+      space = space.repeat(15 - (obj[`${x}${y}`].length * 2 - 1));
+
       string += obj[`${x}${y}`].join(',').concat(space);
     }
     console.log(string);
@@ -200,22 +184,6 @@ function visualisation(obj) {
 }
 
 
-// console.log(checkBlocks(obj, coor));
-
-
-/*
-let a = [
-  '1', '-', '5', '8', '-', '2', '-', '-', '-',
-  '-', '9', '-', '-', '7', '6', '4', '-', '5',
-  '2', '-', '-', '4', '-', '-', '8', '1', '9',
-  '-', '1', '9', '-', '-', '7', '3', '-', '6',
-  '7', '6', '2', '-', '8', '3', '-', '9', '-',
-  '-', '-', '-', '-', '6', '1', '-', '5', '-',
-  '-', '-', '7', '6', '-', '-', '-', '3', '-',
-  '4', '3', '-', '-', '2', '-', '5', '-', '1',
-  '6', '-', '-', '3', '-', '8', '9', '-', '-'
-]
-*/
 // создаем объект из строки с ключами вида XY координат и значением массива вариантов от 0 до 9
 // в случае, если значение уже дано, то в этот массив будет записано только одно это значение
 // затем начать цикличискую проверку на "одиночек" в строке, столбце, 
