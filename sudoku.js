@@ -12,28 +12,13 @@ function solve(boardString) {
 
   for (let i = 0; i < 9; i += 1) {
     for (let j = startIndex; j < endIndex; j += 1) {
-      if (num[j] !== '-') {
-        rowArr.push([+num[j]]);
-      } else {
-        rowArr.push([num[j]]);
-      }
+      rowArr.push([num[j]]);
     }
+
     mainArr[i] = rowArr;
     startIndex += 9;
     endIndex += 9;
     rowArr = [];
-  }
-
-  function random(i, j) {
-    mainArr[i][j];
-  }
-
-  for (let i = 0; i < 9; i += 1) {
-    for (let j = 0; j < 9; j += 1) {
-      if (mainArr[i][j] === '-') {
-        random(i, j);
-      }
-    }
   }
 
   console.log(mainArr);
