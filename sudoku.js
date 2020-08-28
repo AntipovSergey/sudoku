@@ -37,10 +37,10 @@ function prettyBoard(board) {
 
 prettyBoard('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
 
+let arrRes = []
 
 function createArrayFromString(board) {
     let arr2 = board.split('');
-    let arrRes = []
     let arr = []
     for (let i = 0; i < arr2.length; i++) {
         arr.push(arr2[i]);
@@ -53,6 +53,12 @@ function createArrayFromString(board) {
 }
 
 console.log(createArrayFromString('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
+
+function createStringFromArray(arr) {
+    return arr.join('').split(',').join('');
+}
+
+console.log(createStringFromArray(arrRes));
 
 
 // Exports all the functions to use them in another file.
