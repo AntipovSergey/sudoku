@@ -10,22 +10,26 @@ function solve(boardString) {
 
 }
 
+
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  for (const array of board) {
-    const str = array.join('');
-    if (new Set(str).size !== str.length) {
-      return false;
-    } else {
+  const rowCheck = () => {
+    for (const array of board) {
+      const str = array.join('');
+      if (new Set(str).size !== str.length) {
+        return false;
+      }
       return true;
     }
-  }
+  };
+  rowCheck();
 }
 
-console.log((isSolved([[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]])));
+console.log((isSolved([[1, 2, 3, 4], [1, 2, 3, 1], [1, 2, 3, 4]])));
 
 // Takes in a board in some form and
 // returns a String that's well formatted
