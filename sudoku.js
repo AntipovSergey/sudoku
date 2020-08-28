@@ -1,3 +1,5 @@
+//bracnch from Tanya
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -22,13 +24,33 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
+let inputArr = [
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9]
+];
 
-}
+function prettyBoard(board) {
+  let result = [];
+
+  inputArr.map((el) => {
+    result.push(el.join(' '));
+  })
+  return result.join('\n');
+};
+
+prettyBoard(inputArr);
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
+
