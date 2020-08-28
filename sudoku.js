@@ -20,8 +20,6 @@ function solve(boardString) {
   }
 
   const sudArr = (typeof (boardString) === 'string') ? createSudArr() : boardString;
-  prettyBoard(sudArr);
-  // const originArr = JSON.parse(JSON.stringify(sudArr));
 
   // Получаем группу, в которой находится незаполненная ячейка
   function getGroup(arr, width, height) {
@@ -125,15 +123,13 @@ function isSolved(board) {
 // form `solve` returns.
 
 function prettyBoard(board) {
-  let result = [];
+  const result = [];
 
   board.map((el) => {
     result.push(el.join(' '));
-  })
-  // return result.join('\n');
-  console.log(result.join('\n'));
-  console.log('\n');
-};
+  });
+  return result.join('\n');
+}
 
 // Exports all the functions to use them in another file.
 module.exports = {
