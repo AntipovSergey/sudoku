@@ -35,14 +35,14 @@ let inputArr = [
   [1, 2, 3, 4, 5, 6, 7, 8, 9],
   [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ];
-let result = [];
 
 function prettyBoard(board) {
+  let result = [];
 
   inputArr.map((el) => {
     result.push(el.join(' '));
   })
-  console.log(result.join('\n'));
+  return result.join('\n');
 };
 
 prettyBoard(inputArr);
@@ -53,3 +53,4 @@ module.exports = {
   isSolved: isSolved,
   prettyBoard: prettyBoard
 }
+
