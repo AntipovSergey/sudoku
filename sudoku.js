@@ -5,32 +5,41 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+// eslint-disable-next-line no-unused-vars
 function solve(boardString) {
 
 }
-
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  for (const array of board) {
+    const str = array.join('');
+    if (new Set(str).size !== str.length) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
+console.log((isSolved([[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]])));
 
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+// eslint-disable-next-line no-unused-vars
 function prettyBoard(board) {
 
 }
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+  solve,
+  isSolved,
+  prettyBoard,
+};
