@@ -1,12 +1,12 @@
-let arr = [[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9],
-[1,2,3,4,5,6,7,8,9]];
+let arr = [[1,1,1,2,2,2,3,3,3],
+[1,1,1,2,2,2,3,3,3],
+[1,1,1,2,2,2,3,3,3],
+[4,4,4,5,5,5,6,6,6],
+[4,4,4,5,5,5,6,6,6],
+[4,4,4,5,5,5,6,6,6],
+[7,7,7,8,8,8,9,9,9],
+[7,7,7,8,8,8,9,9,9],
+[7,7,7,8,8,8,9,9,9]];
 
 function convertToSquare3x3Horizontal(array){
 
@@ -17,14 +17,16 @@ function convertToSquare3x3Horizontal(array){
     }
   }
   searchMissingOneNumberInArray(array2)
-  searchAndReplaceOneMissingNumberInArray(array2)
-array2 = [9,9,9,9,9,9,9,9,9]
- 
-  array[0].splice(0,9);
-  for( i= 0; i<9; i+=1){
-  array[0].push(array2[i]);
-  }
-  console.log(array);
+  searchAndReplaceOneMissingNumberInArray(array2)  //первый квадрат
+  for( i= 0; i<3; i+=1){
+    for(j = 0; j<3; j+=1){
+      (array[i])[j]= array2.shift();
+    }
+}
+
+
 
 }
-convertToSquare3x3Horizontal(arr);
+
+convertToSquare3x3Horizontal(arr)
+
