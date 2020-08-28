@@ -31,6 +31,7 @@ function readAndSolve(err, data) {
     console.log("The board wasn't solved :(");
   }
 }
+// prettyBoard("123456789456789123789123456214365897365897214897214365531642978642978531978531642");
 
 // Reads file and sends data from it to the readAndSolve function.
 fs.readFile(
@@ -38,4 +39,5 @@ fs.readFile(
   'utf-8',
   readAndSolve
 );
+
 
