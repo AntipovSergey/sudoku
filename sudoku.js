@@ -26,8 +26,8 @@ function solve(boardString) {
   // Получаем группу, в которой находится незаполненная ячейка
   function getGroup(arr, width, height) {
     function getNums(num) {
-      if (num <= 3) return [0, 1, 2];
-      if (num > 3 && num <= 6) return [3, 4, 5];
+      if (num <= 2) return [0, 1, 2];
+      if (num > 2 && num <= 5) return [3, 4, 5];
       return [6, 7, 8];
     }
 
@@ -106,13 +106,9 @@ function solve(boardString) {
   }
 
   searchEmptyEl();
-  prettyBoard(sudArr);
-  // if (haveEmptyEl()) return solve(sudArr);
+  if (haveEmptyEl()) return solve(sudArr);
   return sudArr;
 }
-
-const a = solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
-solve(a);
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -145,4 +141,3 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
-
