@@ -1,4 +1,3 @@
-// Branch from Alexander
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -21,10 +20,11 @@ function solve(boardString) {
   }
 
   const sudArr = (typeof (boardString) === 'string') ? createSudArr() : boardString;
+  prettyBoard(sudArr);
   // const originArr = JSON.parse(JSON.stringify(sudArr));
 
   // Получаем группу, в которой находится незаполненная ячейка
-  function getGroup(arr, height, width) {
+  function getGroup(arr, width, height) {
     function getNums(num) {
       if (num <= 3) return [0, 1, 2];
       if (num > 3 && num <= 6) return [3, 4, 5];
@@ -106,12 +106,13 @@ function solve(boardString) {
   }
 
   searchEmptyEl();
-  // console.log(sudArr);
-  if (haveEmptyEl()) return solve(sudArr);
+  prettyBoard(sudArr);
+  // if (haveEmptyEl()) return solve(sudArr);
   return sudArr;
 }
 
-solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+const a = solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+solve(a);
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -126,9 +127,17 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
 
-}
+function prettyBoard(board) {
+  let result = [];
+
+  board.map((el) => {
+    result.push(el.join(' '));
+  })
+  // return result.join('\n');
+  console.log(result.join('\n'));
+  console.log('\n');
+};
 
 // Exports all the functions to use them in another file.
 module.exports = {
@@ -136,3 +145,4 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
