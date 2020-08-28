@@ -14,5 +14,6 @@ module.exports = {
   rules: {
     'consistent-return': 0,
     'no-restricted-syntax': 0,
+    'array-callback-return': 0,
   },
 };
