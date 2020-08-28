@@ -1,0 +1,25 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickBGor/project-sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickBGor/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/NickBGor/project-sudoku#readme",
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "jasmine": "^3.6.1"
+  }
+}
