@@ -12,9 +12,9 @@ function solve(boardString) {
           for (let x = 1; x <= 9; x++) {
             let possibleResults = [];
             if (
-              func1(x, result[i][y]) &&
-              func2(x, result[i][y]) &&
-              func3(x, result[i][y])
+              checkRow(result, x, i) &&
+              checkColumn(result, x, y) &&
+              searchBox(result, i, y, x)
             ) {
               possibleResults.push(x);
               if (possibleResults.length === 1) {
