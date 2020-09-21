@@ -55,9 +55,86 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {}
 
+function arraytoString(sudoku) {
+  const result = [];
+  const arr1 = sudoku.split('');
+  let arr = [];
+  for (let i = 0; i < arr1.length; i += 1) {
+    arr.push(arr1[i]);
+    if ((i + 1) % 9 === 0) {
+      result.push(arr);
+      arr = [];
+    }
+  }
+  return result;
+}
+arraytoString('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89---');
+
+function searchBox(arr, i, j, number) {
+  let arrBox = [];
+  if (i < 3) {
+    if (j < 3) {
+      arrBox.push(arr[0].splice(0, 3));
+      arrBox.push(arr[1].splice(0, 3));
+      arrBox.push(arr[2].splice(0, 3));
+    } else if (j < 6) {
+      arrBox.push(arr[0].splice(3, 3));
+      arrBox.push(arr[1].splice(3, 3));
+      arrBox.push(arr[2].splice(3, 3));
+    } else {
+      arrBox.push(arr[0].splice(6, 3));
+      arrBox.push(arr[1].splice(6, 3));
+      arrBox.push(arr[2].splice(6, 3));
+    }
+  } else if (i < 6) {
+      if (j < 3) {
+        arrBox.push(arr[3].splice(0, 3));
+        arrBox.push(arr[4].splice(0, 3));
+        arrBox.push(arr[5].splice(0, 3));
+      } else if (j < 6) {
+        arrBox.push(arr[3].splice(3, 3));
+        arrBox.push(arr[4].splice(3, 3));
+        arrBox.push(arr[5].splice(3, 3));
+      } else {
+        arrBox.push(arr[3].splice(6, 3));
+        arrBox.push(arr[4].splice(6, 3));
+        arrBox.push(arr[5].splice(6, 3));
+      }
+    } else {
+    if (j < 3) {
+      arrBox.push(arr[6].splice(0, 3));
+      arrBox.push(arr[7].splice(0, 3));
+      arrBox.push(arr[8].splice(0, 3));
+    } else if (j < 6) {
+      arrBox.push(arr[6].splice(3, 3));
+      arrBox.push(arr[7].splice(3, 3));
+      arrBox.push(arr[8].splice(3, 3));
+    } else {
+      arrBox.push(arr[6].splice(6, 3));
+      arrBox.push(arr[7].splice(6, 3));
+      arrBox.push(arr[8].splice(6, 3));
+    }
+  }
+  let find = true;
+  for (let i = 0; i < arrBox.length; i += 1) {
+    for (let j = 0; j < arrBox[i].length; j += 1) {
+      if (arrBox[i][j] === number) {
+        find = false;
+        break;
+      }
+    }
+  }
+  return find;
+  }
+
 // Exports all the functions to use them in another file.
+
 module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
+
+
+  solve,
+  isSolved,
+  prettyBoard,
 };
+
+
