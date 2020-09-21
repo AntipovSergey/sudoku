@@ -4,7 +4,34 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  let result = [...board];
+  while (!isSolved(result)) {
+    for (let i = 0; i < result.length; i++) {
+      for (let y = 0; y < result[i].length; y++) {
+        if (result[i][y] === '-') {
+          for (let x = 1; x <= 9; x++) {
+            let possibleResults = [];
+            if (
+              checkRow(result, x, i) &&
+              checkColumn(result, x, y) &&
+              searchBox(result, i, y, x)
+            ) {
+              possibleResults.push(x);
+              if (possibleResults.length === 1) {
+                result[i][y] == x;
+              } else {
+                continue;
+              }
+            } else {
+              continue;
+            }
+          }
+        }
+        continue;
+      }
+    }
+  }
+  return result;
 }
 
 // Returns a boolean indicating whether
@@ -12,7 +39,13 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i++) {
+    for (let y = 0; y < board[i].length; y++) {
+      if (board[i][y] === '-') return false;
+      continue;
+    }
+  }
+  return true;
 }
 
 // Takes in a board in some form and
@@ -20,9 +53,7 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 function arraytoString(sudoku) {
   const result = [];
@@ -100,8 +131,10 @@ function searchBox(arr, i, j, number) {
 
 module.exports = {
 
+
   solve,
   isSolved,
   prettyBoard,
 };
+
 
