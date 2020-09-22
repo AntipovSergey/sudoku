@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Ranchers&display=swap');
+
+
+
+
+
+.container {
+    display: block;
+    position: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 50px;
+    padding: 0 50px;
+   
+}
+
+h2{
+    text-align: left;
+    color: rgb(206, 3, 3);
+    font-size: xx-large;
+    font-family: 'Playfair Display SC', serif;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+   
+}
+h4{
+
+    text-align: left;
+    font-size: xx-large;
+    color: rgb(13, 37, 255);
+   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: 'Playfair Display SC', serif;
+
+}
+h3{
+
+    text-align: left;
+    font-size: xx-large;
+    color: rgb(241, 3, 114);
+   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: 'Playfair Display SC', serif;
+    
+   
+
+}
+h1{
+    text-align: left;
+    flex: 100%;
+    max-width: 50%;
+    min-width: 50px;
+    color: rgb(255, 255, 13);
+   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-family: 'Playfair Display SC', serif;
+}
+
+table tbody {
+    display: flex;
+    flex-direction: column;
+
+}
+
+table tr {
+    display: flex;
+    position: center;
+    color: rgb(0, 0, 0);
+    
+}
+
+table td {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+}
+
+table tr:nth-child(3) td, table tr:nth-child(6) td {
+    border-bottom: 4px solid rgb(54, 255, 4);
+}
+
+table tr:nth-child(4) td, table tr:nth-child(7) td {
+    border-top: none;
+}
+
+table tr td:nth-child(3), table tr td:nth-child(6) {
+    border-right: 4px solid rgb(54, 255, 4);
+}
+
+table tr td:nth-child(4), table tr td:nth-child(7) {
+    border-left: none;
+}
+
+button {
+    color: #030303;
+     text-align: center;
+     font-family: "Comic Sans MS", "Comic Sans",;
+
+
+  }
