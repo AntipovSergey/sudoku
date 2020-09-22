@@ -18,10 +18,10 @@ function arraytoString(sudoku) {
 }
 
 let array = arraytoString(
-  '-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7'
+  '6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--'
 );
 
-console.log(array);
+// console.log(array);
 
 function isValid(board, y, x, num) {
   for (let i = 0; i < 9; i++) {
@@ -71,8 +71,24 @@ function isSolved(board) {
   return true;
 }
 
-console.log(solve(array));
-console.log(isSolved(boardSolved));
+console.log(...boardSolved);
+
+const solveTable = document.createElement('table');
+const bodyTable = document.createElement('tbody');
+solveTable.append(bodyTable);
+
+boardSolved.forEach(item => {
+  const tr = document.createElement('tr');
+  bodyTable.append(tr);
+  item.forEach(item1 => {
+    const td = document.createElement('td');
+    td.innerHTML = item1;
+    tr.append(td);
+  });
+});
+
+const containerDOM = document.querySelector('.container');
+containerDOM.append(solveTable);
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -83,8 +99,8 @@ function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
+// module.exports = {
+//   solve,
+//   isSolved,
+//   prettyBoard,
+// };
