@@ -21,6 +21,8 @@ let array = arraytoString(
   '-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7'
 );
 
+console.log(array);
+
 function isValid(board, y, x, num) {
   for (let i = 0; i < 9; i++) {
     // координаты бокса
