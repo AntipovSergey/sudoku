@@ -48,6 +48,10 @@ function getColumn(board, index) {
   return column
 }
 
+function getRow(board, rowIindex) {
+  return board[rowIindex];
+}
+
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
@@ -55,4 +59,6 @@ module.exports = {
   prettyBoard: prettyBoard,
   getColumn: getColumn
 }
+
+
 
