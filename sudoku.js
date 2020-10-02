@@ -26,6 +26,10 @@ function prettyBoard(board) {
 
 }
 
+function getRow(board, rowIindex) {
+  return board[rowIindex];
+}
+
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
