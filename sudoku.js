@@ -32,3 +32,5 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+console.log(test)
