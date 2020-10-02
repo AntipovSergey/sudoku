@@ -23,5 +23,8 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jasmine": "^4.1.1",
     "jasmine": "^3.6.1"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
   }
 }

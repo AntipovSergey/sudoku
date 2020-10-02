@@ -1,5 +1,7 @@
 // Use filesystem.
 const fs = require('fs');
+// Use prompt.
+const prompt = require('prompt-sync')();
 // Use functions from sudoku.js file.
 const sudoku = require('./sudoku');
 
@@ -16,11 +18,12 @@ function sudokuParse(content, puzzleNumber = 0) {
   return puzzle;
 }
 
-function readAndSolve(err, data) {
+function readAndSolve(err, data, puzzleNumber) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+
+  let puzzle = sudokuParse(data, puzzleNumber);
 
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
@@ -32,10 +35,15 @@ function readAndSolve(err, data) {
   }
 }
 
+function runGame(err, data) {
+  const puzzleNumber = parseInt(prompt('Введите номер паззла: '));
+  return readAndSolve(err, data, puzzleNumber)
+}
+
 // Reads file and sends data from it to the readAndSolve function.
 fs.readFile(
   './sudoku-puzzles.txt',
   'utf-8',
-  readAndSolve
+  runGame
 );
 
