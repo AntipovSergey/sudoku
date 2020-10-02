@@ -1,11 +1,32 @@
-const helper = require('./solve-helpers');
+const {
+  getRow,
+  getColumn,
+  getSquare,
+}
+ = require('./get.js');
+
+const {
+  tableIsFinished,
+  isValidArray,
+  isValidTable
+} = require('./validate.js');
+
+const {
+  transform,
+  prettyBoard
+} = require('./transform.js');
 
 //
 // 
 // 
 // 
 //
-function transform(sring) {
+
+// Returns a boolean indicating whether
+// or not the provided board is solved.
+// The input board will be in whatever
+// form `solve` returns.
+function isSolved(board) {
 
 }
 
@@ -27,13 +48,6 @@ function solve(board) {
 }
 
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
-
-}
 
 // Exports all the functions to use them in another file.
 module.exports = {

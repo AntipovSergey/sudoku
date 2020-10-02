@@ -1,6 +1,4 @@
-const { getRow, getColumn, getSquare } = require("./solve-helpers");
-
-// const getter = require('./get')
+const { getRow, getColumn, getSquare } = require("./get");
 
 const isValidArray = (arr9) => {
   const arr = arr9.sort((a, b) => a - b);
@@ -19,7 +17,7 @@ const isValidTable = (arr81) => {
     if (
       !isValidArray(getRow(arr81, i))
       || !isValidArray(getColumn(arr81, i)) 
-      || isValidArray(getSquare(arr81, i))
+      || !isValidArray(getSquare(arr81, i))
     ) {
       return false
     }
@@ -27,7 +25,12 @@ const isValidTable = (arr81) => {
   return true
 }
 
+const tableIsFinished = function(arr) {
+  return !arr.includes(null);
+}
+
 module.exports = {
+  tableIsFinished,
   isValidArray,
   isValidTable
 }

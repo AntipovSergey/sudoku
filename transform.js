@@ -1,21 +1,27 @@
-
 function transform (string) {
-  return Array.from(string, (elem) => elem === '-' ? null : elem );
+  return Array.from(string, (elem) => elem === '-' ? null : Number(elem));
 };
 
 function prettyBoard (array) {
-  let smallRow = [];
-  let longRow = [];
-  for (let i = 0; i < array.length; i = i + 3) {
+  const newArray = array;
+  const smallRow = [];
+  const longRow = [];
+  for (let i = 0; i < array.length; i += 3) {
+    for (let j = 0; j < 3; j += 1) {
+     if (array[i + j] === null) {
+        array[i + j] = ' '; 
+      }
+    }
     smallRow.push([array[i], array[i + 1], array[i + 2]].join(' '));
   };
   for (let j = 0; j < smallRow.length; j = j + 3) {
-    longRow.push([smallRow[j], smallRow[j+1], smallRow[j+2]].join(' | '));
-
+    longRow.push([smallRow[j], smallRow[j + 1], smallRow[j + 2]].join(' | '));
   };
-  return longRow.join('\n');
+  return longRow.slice(0, 3).join('\n') +'\n' + '-'.repeat(21) + '\n' + longRow.slice(3, 6).join('\n') +'\n' + '-'.repeat(21) + '\n' + longRow.slice(6, 9).join('\n');
 };
 
-
-console.log(prettyBoard(transform('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')));
+module.exports = {
+  transform,
+  prettyBoard
+}
 
