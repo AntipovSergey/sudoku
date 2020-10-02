@@ -15,16 +15,16 @@ const isValidArray = (arr9) => {
 }
 
 const isValidTable = (arr81) => {
-  // for (let i = 0; i < 9; i += 1) {
-  //   if (
-  //     !isValidArray(getRow(arr81, i))
-  //     || !isValidArray(getColumn(arr81, i)) 
-  //     || isValidArray(getSquare(arr81, i))
-  //   ) {
-  //     return false
-  //   }
-  // }
-  // return true
+  for (let i = 0; i < 9; i += 1) {
+    if (
+      !isValidArray(getRow(arr81, i))
+      || !isValidArray(getColumn(arr81, i)) 
+      || isValidArray(getSquare(arr81, i))
+    ) {
+      return false
+    }
+  }
+  return true
 }
 
 module.exports = {

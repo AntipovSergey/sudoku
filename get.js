@@ -8,15 +8,15 @@ const getRow = (array, n) => {
 
 const getColumn = (array, n) => {
   const resArr = [];
-  for (let i = 0 + n; i < 72 + n; i += 9) {
+  for (let i = 0 + n; i <= 72 + n; i += 9) {
     resArr.push(array[i]);
   }
   return resArr;
 };
 
 const getSquare = (array, n) => {
-  const colStart = Math.floor((n % 3) * 3);
   const rowStart = Math.floor(n / 3) * 3;
+  const colStart = (n % 3) * 3;
   const resArr = [];
   for (let i = rowStart; i < rowStart + 3; i += 1) {
     for (let j = colStart; j < colStart + 3; j += 1) {
@@ -25,13 +25,9 @@ const getSquare = (array, n) => {
   }
   return resArr;
 };
-//
-// Функция, проверяющая массив на валидность
-//
 
 module.exports = {
   getRow,
   getColumn,
   getSquare,
-  // validateArray
 }
