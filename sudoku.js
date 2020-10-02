@@ -4,11 +4,11 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  let array = boardString.split('')  
+  let array = boardString.split('')
   let newArr = [];
   let size = 9;
-  for (i = 0; i<array.length; i+=size){
-    newArr.push(array.slice(i, i+size))
+  for (i = 0; i < array.length; i += size) {
+    newArr.push(array.slice(i, i + size))
   }
   return newArr
 }
@@ -36,8 +36,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
-
