@@ -13,8 +13,7 @@ const sudoku = require('./sudoku');
 
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
-  let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
+  const puzzle = content.split('\n')[puzzleNumber];
   return puzzle;
 }
 
@@ -24,17 +23,35 @@ function readAndSolve(err, data, puzzleNumber) {
   }
 
   let puzzle = sudokuParse(data, puzzleNumber);
-  puzzle = solve.transform(puzzle);
+  puzzle = sudoku.transform(puzzle);
 
-  let solvedPuzzle = sudoku.solve(puzzle);
-  if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
+  const solvedTable = sudoku.solve(puzzle);
+
+  if (solvedTable) {
+    console.log(solvedTable);
   }
   else {
-    console.log("The board wasn't solved :(");
+    console.log('Я не умею решать такие сложные судоки =(')
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function runGame(err, data) {
   const puzzleNumber = parseInt(prompt('Введите номер паззла: '));

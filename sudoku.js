@@ -16,35 +16,38 @@ const {
   prettyBoard
 } = require('./transform.js');
 
-//
-// 
-// 
-// 
-//
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
 
-}
-
-// Takes in a board as an array and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-
-}
-
-// Takes a board as an array in the format
-// you see in the puzzle file. Returns
-// an array representing a board after
-// your solver has tried to solve it.
 function solve(board) {
+  if (!isValidTable(board)) {
+    return null;
+  };
 
+  if (tableIsFinished(board)) {
+    return board;
+  };
+
+
+  // Куда-то вставляем число
+  // newBoard = board[сюда пихаем чото]
+  let newNumberIndex = board.indexOf(null);
+  console.log(board);
+
+
+
+
+
+
+  for (let newNumber = 1; newNumber <= 9; newNumber += 1) {
+    let newBoard = [...board];
+    newBoard[newNumberIndex] = newNumber;
+
+    newBoard = solve(newBoard); 
+    
+    if (newBoard) {
+      return newBoard;
+    };
+  };
 }
 
 
@@ -53,6 +56,6 @@ function solve(board) {
 module.exports = {
   transform,
 	solve,
-	isSolved,
 	prettyBoard,
+  tableIsFinished
 }
