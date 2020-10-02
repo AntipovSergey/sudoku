@@ -21,6 +21,5 @@ const getSquare = (n) => {
 module.exports = {
   getRow,
   getColumn,
-  getSquare,
-  validateArray
+  getSquare
 }
