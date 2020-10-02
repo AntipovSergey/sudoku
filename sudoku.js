@@ -28,13 +28,13 @@ function prettyBoard(board) {
 
 Object.defineProperty(Array.prototype, 'chunk', {
 	value: function(chunkSize){
-		var temporal = [];
+		let temp = [];
 
-		for (var i = 0; i < this.length; i+= chunkSize){
-			temporal.push(this.slice(i,i+chunkSize));
+		for (let i = 0; i < this.length; i+= chunkSize){
+			temp.push(this.slice(i,i+chunkSize));
 		}
 
-		return temporal;
+		return temp;
 	}
 });
 
