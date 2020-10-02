@@ -24,19 +24,12 @@ function solve(board) {
   };
 
   if (tableIsFinished(board)) {
-    return board;
+    console.clear();
+    return prettyBoard(board);
   };
 
-
-  // Куда-то вставляем число
-  // newBoard = board[сюда пихаем чото]
   let newNumberIndex = board.indexOf(null);
   console.log(board);
-
-
-
-
-
 
   for (let newNumber = 1; newNumber <= 9; newNumber += 1) {
     let newBoard = [...board];
@@ -50,9 +43,6 @@ function solve(board) {
   };
 }
 
-
-
-// Exports all the functions to use them in another file.
 module.exports = {
   transform,
 	solve,

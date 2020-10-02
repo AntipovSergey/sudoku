@@ -26,6 +26,42 @@ const getSquare = (array, n) => {
   return resArr;
 };
 
+const getBestCell = (array) => {
+  // let leastNulls;
+  // let bestArrayIndex;
+  // let bestArrayType;
+  // for (let i = 0; i < 9; i += 1) {
+  //   let currentArray = getRow(array, i);
+  //   let currentLength = currentArray.filter(x => x === null).length;
+  //   if (currentLength < bestLength) {
+  //     bestLength = currentLength;
+  //     bestArrayIndex = i;
+  //     bestArrayType = 'row';
+  //   }
+
+  //   currentArray = getColumn(array, i);
+  //   currentLength = currentArray.filter(x => x === null).length;
+  //   if (currentLength < bestLength) {
+  //     bestLength = currentLength;
+  //     bestArrayIndex = i;
+  //     bestArrayType = 'column';
+  //   }
+
+  //   currentArray = getSquare(array, i);
+  //   currentLength = currentArray.filter(x => x === null).length;
+  //   if (currentLength < bestLength) {
+  //     bestLength = currentLength;
+  //     bestArrayIndex = i;
+  //     bestArrayType = 'square';
+  //   }
+  // }
+  // if (bestArrayType === 'row') {
+  //   getRow(array, bestArrayIndex)
+  // } else if (bestArrayType === 'row')) {
+
+  // }
+}
+
 module.exports = {
   getRow,
   getColumn,
