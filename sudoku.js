@@ -4,8 +4,16 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  let array = boardString.split('')  
+  let newArr = [];
+  let size = 9;
+  for (i = 0; i<array.length; i+=size){
+    newArr.push(array.slice(i, i+size))
+  }
+  return newArr
 }
+
+
 
 
 // Returns a boolean indicating whether
@@ -32,4 +40,4 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
-let a = []
+
