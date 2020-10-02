@@ -13,6 +13,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
+	for(let i = 0; i < )
 
 }
 
