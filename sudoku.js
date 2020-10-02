@@ -26,6 +26,22 @@ function prettyBoard(board) {
 
 }
 
+Object.defineProperty(Array.prototype, 'chunk', {
+	value: function(chunkSize){
+		var temporal = [];
+
+		for (var i = 0; i < this.length; i+= chunkSize){
+			temporal.push(this.slice(i,i+chunkSize));
+		}
+
+		return temporal;
+	}
+});
+
+let input = ['1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'].join('').split('');
+let array = input.chunk(9)
+console.log(array)
+
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
