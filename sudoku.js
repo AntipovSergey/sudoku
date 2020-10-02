@@ -13,7 +13,7 @@ function solve(boardString) {
   return newArr
 }
 
-
+solve()
 
 
 // Returns a boolean indicating whether
