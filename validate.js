@@ -2,7 +2,7 @@ const { getRow, getColumn, getSquare } = require("./get");
 
 const isValidArray = (arr9) => {
   const arr = arr9.sort((a, b) => a - b);
-  for (let i = 0; i < 7; i += 1) {
+  for (let i = 0; i < 8; i += 1) {
     if (arr[i] === arr[i + 1]) {
       if (arr[i] !== null) {
         return false;

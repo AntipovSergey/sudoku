@@ -31,31 +31,15 @@ function readAndSolve(err, data, puzzleNumber) {
     console.log(solvedTable);
   }
   else {
-    console.log('Я не умею решать такие сложные судоки =(')
+    console.log('Во мне нет такого файла =(')
   }
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function runGame(err, data) {
-  const puzzleNumber = parseInt(prompt('Введите номер паззла: '));
-  return readAndSolve(err, data, puzzleNumber)
+  const puzzleNumber = parseInt(prompt('Введите номер паззла (от 1 до 15): '));
+  return readAndSolve(err, data, puzzleNumber - 1);
 }
 
 // Reads file and sends data from it to the readAndSolve function.
