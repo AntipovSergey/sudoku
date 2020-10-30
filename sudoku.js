@@ -3,20 +3,57 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
 function solve(boardString) {
   const newArr = []
-    const arr = boardString.split('');
-    for(let i = 0; i < 9; i += 1){
-      const arr2 = []
+  const arr = boardString.split('');
+
+  // console.log(arr);
+
+  let newArr2 = arr.map((item, index, array) => {
+    if (item == '-') {
+      return item = 0
+    }function solve(boardString) {
+      const newArr = []
+      const arr = boardString.split('');
+    
+      // console.log(arr);
+    
+      let newArr2 = arr.map((item, index, array) => {
+        if (item == '-') {
+          return item = 0
+        }
+        return +item    
+      })
+    
+      for(let i = 0; i < 9; i += 1) {
+        const arr2 = []
+          for (let j = 0; j < 9; j += 1){
+            arr2.push(newArr2[(i * 9) + j])
+          }
+          newArr.push(arr2)
+        }
+        console.log(newArr)
+      }
+    solve(boardString)
+    
+    return +item    
+  })
+
+  for(let i = 0; i < 9; i += 1) {
+    const arr2 = []
       for (let j = 0; j < 9; j += 1){
-        arr2.push(arr[(i * 9) + j])
+        arr2.push(newArr2[(i * 9) + j])
       }
       newArr.push(arr2)
     }
     console.log(newArr)
   }
- console.log(solve(boardString))
-}
+solve(boardString)
+
+
+
+
 
 
 // Returns a boolean indicating whether
