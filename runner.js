@@ -20,7 +20,7 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+  let puzzle = sudokuParse(data, 0); // какой тест
 
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
