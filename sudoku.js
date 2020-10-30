@@ -13,7 +13,25 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
+  for (let i = 0; i < board.length; i ++) {
+    board[i].join()
+  }
+  board = (board.join('')).replace(/,/g, '');
 
+  const strings = [];
+
+  for (let r = 0; r <= 80; r += 9) {
+    strings.push(board.substring(r, (r + 9)));
+  }
+  for (let c = 0; c <= 8; c += 1) {
+    strings.push(`${board[c]}${board[c + 9]}${board[c + 18]}${board[c + 27]}${board[c + 36]}${board[c + 45]}${board[c + 54]}${board[c + 63]}${board[c + 72]}`)
+  }
+  for (let bc = 0; bc <= 6; bc += 3) {
+    for (let b = bc; b <= 80; b += 27) {
+      strings.push(`${board[b]}${board[b + 1]}${board[b + 2]}${board[b + 9]}${board[b + 10]}${board[b + 11]}${board[b + 18]}${board[b + 19]}${board[b + 20]}`)
+    }
+  }
+  return strings.every((string) => (string.search(/(?!.*([1-9]).*\1)^[1-9]{1,9}$/)) !== -1)
 }
 
 
