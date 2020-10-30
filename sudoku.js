@@ -32,3 +32,15 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+/*// циклы прохода вокруг
+for(let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            let x_near = x + i;
+            let y_near = y + j;
+            if (i === 0 && j === 0) continue;
+            if (board[x_near][y_near] !== '-')//вычеркиваем если цифра из массива
+                var_numbers//стереть нужную цифру
+        }
+    }
+*/
