@@ -8,3 +8,5 @@ function deleteExistKey(objectContainingValues, key, arr) {
   }
   return objectContainingValues;
 }
+
+module.exports = deleteExistKey;

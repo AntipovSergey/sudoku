@@ -14,3 +14,5 @@ function makeObjFromArr(arrWithSolution) {
   }
   return objectContainingValues;
 }
+
+module.exports = makeObjFromArr;
