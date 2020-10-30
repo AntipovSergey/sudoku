@@ -13,7 +13,15 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 1; j <= 9; j++) { // просто счетчик возможных значений в строке
+      if (board[i].includes(j)) {
+      }else{
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 
