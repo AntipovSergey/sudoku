@@ -4,7 +4,18 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  const newArr = []
+    const arr = boardString.split('');
+    for(let i = 0; i < 9; i += 1){
+      const arr2 = []
+      for (let j = 0; j < 9; j += 1){
+        arr2.push(arr[(i * 9) + j])
+      }
+      newArr.push(arr2)
+    }
+    console.log(newArr)
+  }
+ console.log(solve(boardString))
 }
 
 
