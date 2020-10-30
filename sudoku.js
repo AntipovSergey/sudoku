@@ -8,12 +8,12 @@ function solve(boardString) {
  //ищем пустое значение
  for (let i = 0; i < boardString.length; i++) {
   for (let j = 0; j < boardString[i].length; j++) {
-    if(boardString[i][j] === '-' ){
+    if(boardString[i][j] === 0 ){
        let  possibleNumbers = [];
       // совершить проверку по массивам
       for (let num = 1; num <= 9; num ++) {
        // если и в строке и в столбце и в группе нет цифры, то добавляем ее в возможные варианты
-        if(boardString[i].includes(num)){
+        if(rowContent[i].includes(num)&&colContent.includes(num)&&groupContent.includes(num)) {
         }else{
           possibleNumbers.push(num)
         }
@@ -21,16 +21,11 @@ function solve(boardString) {
       if(possibleNumbers.length === 1){
         boardString[i][j] = possibleNumbers[0]
         console.log(boardString)
-  
       }
     }
   }   
  }
 }
-solve([
-  [1,'-', 3, 4, 5, 6, 7, 8, 9],
-  ['1', '4', '5', '2', '3', '-', '8', '9', '6']
-])
 
 
 // Returns a boolean indicating whether
