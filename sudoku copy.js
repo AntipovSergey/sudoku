@@ -18,7 +18,6 @@ function solve(boardString) {
       const newArr2 = arr.map((item, index, array) => {
         if (item === '-') {
           return item = 0;
-
         }
         return +item;
       });
@@ -90,7 +89,6 @@ function solve(boardString) {
       newArr[i][j] = possibleNumbers[0];
     }
     return newArr;
-
   }
 
   function getColumn(j) {
