@@ -5,6 +5,7 @@
 // How you represent your board is up to you!
 
 function solve(boardString) {
+
     const newArr = []
     const arr = boardString.split('');
   
@@ -95,6 +96,7 @@ function fillCell(i,j,possibleNumbers) {
   }
   return newArr;
 }
+
 
 function getColumn(j) {
   const columnArr = []
