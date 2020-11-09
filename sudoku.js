@@ -1,5 +1,5 @@
 const { stringToArr } = require('./egor');
-const { comparisonSquare } = require('./alexander')
+const { comparisonSquare, isSolved } = require('./alexander')
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -10,40 +10,37 @@ const { comparisonSquare } = require('./alexander')
 
 
 function solve(puzzle) {
-  console.log(puzzle);
   let board = stringToArr(puzzle);
-  console.table(board);
   solveSolve(board);
+
 }
 
 function solveSolve(board) {
-  console.table(board);
-  let isSolv = false;
   for (let i = 0; i < board.length; i += 1) {
-    let def = board[i].indexOf('-');
-    if (def === -1) { continue; };
-    let arrayNumber = [];
-    for (let k = 1; k <= 9; k += 1) {
-        if (comparisonSquare(board, i, def, k)) {
-        arrayNumber.push(k);
+    for (def = 0; def < board[i].length; def += 1) {
+      if (board[i][def] == '-') {
+        for (let k = 1; k <= 9; k += 1) {
+          if (comparisonSquare(board, i, def, k)) {
+            board[i, def] = String(k);
+            if (!solveSolve(board)) {
+              return board;
+            } else board[i][def] = '-';
+          }
+        }
       }
-    }
-    if (arrayNumber.length === 1) {
-      board[i][def] = String(arrayNumber[0]);
-      isSolv = true;
-      if (isSolved(board)) { return board };
+      return false;
     }
   }
-  if (!isSolv) { return false; }
-  return solveSolve(board);
-}
+}   
+      
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 
-function isSolved(board) {
-}
+// function isSolved(board) {
+// }
 
 
 // Takes in a board in some form and
