@@ -10,7 +10,7 @@ function comparisonSquare(board, i, j, num) {
       if (board[row][j] === num) {
         return false;
       }
-      if (board[row][j] === num) {
+      if (board[Math.floor(i / 3) + row % 3][Math.floor(j / 3) + col % 3] === num) {
         return false;
       }
     }
