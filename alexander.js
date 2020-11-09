@@ -19,6 +19,19 @@ function comparisonSquare(board, i, j, num) {
 }
 
 
+function isSolved(board) {
+  for (let row = 0; row < board.length; row += 1) {
+    for (let col = 0; col < board.length; col += 1) {
+      if (board[row][j] && board[i][col] !== '-') {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+}
+
 module.exports = {
-  comparisonSquare
+  comparisonSquare,
+  isSolved
 }
