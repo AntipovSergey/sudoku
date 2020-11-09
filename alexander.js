@@ -15,6 +15,7 @@ function comparisonSquare(board, i, j, num) {
       }
     }
   }
+  return true
 }
 comparisonSquare();
 
