@@ -37,7 +37,12 @@ function solveSolve(board) {
 }   
 
 function prettyBoard(board) {
- 
+  let pretty = '';
+  for (let i = 0; i < board.length; i += 1) {
+    let string = board[i].join('   ');
+    pretty = pretty + string + '\n'; 
+  }
+  return pretty;
 }
 
 // Exports all the functions to use them in another file.
