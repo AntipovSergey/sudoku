@@ -11,43 +11,31 @@ const { comparisonSquare, isSolved } = require('./alexander')
 
 function solve(puzzle) {
   let board = stringToArr(puzzle);
-  solveSolve(board);
+  return solveSolve(board);
 
 }
 
 function solveSolve(board) {
   for (let i = 0; i < board.length; i += 1) {
-    for (def = 0; def < board[i].length; def += 1) {
+    for (let def = 0; def < board[i].length; def += 1) {
       if (board[i][def] == '-') {
         for (let k = 1; k <= 9; k += 1) {
           if (comparisonSquare(board, i, def, k)) {
-            board[i, def] = String(k);
-            if (!solveSolve(board)) {
+            board[i][def] = String(k);
+              if (solveSolve(board)) {
               return board;
-            } else board[i][def] = '-';
+            } else {
+              board[i][def] = '-';
+            }
           }
         }
+        return false;
       }
-      return false;
     }
   }
+  return board;
 }   
-      
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-
-// function isSolved(board) {
-// }
-
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
 function prettyBoard(board) {
  
 }
