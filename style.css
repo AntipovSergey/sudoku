@@ -27,3 +27,13 @@ td {
 .button1 {
   margin-top: 40px;
 }
+
+.button2 {
+  border-radius: 3px;
+  border: 2px blue solid;
+  background-color: turquoise;
+}
+
+body {
+  background-image: url(https://avatars.mds.yandex.net/get-zen_doc/61014/pub_5de8da6035ca3100afdc523d_5dedfa7505fd9800b1fcc61e/scale_1200);
+}
