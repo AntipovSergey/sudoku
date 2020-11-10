@@ -20,19 +20,7 @@
 
 // fs.readFile('./sudoku-puzzles.txt', 'utf-8', readAndSolve);
 
-function isSolved(board) {
-  let sum = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  for (i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      sum[i] += board[i][j];
-    }
-  }
-  for (i = 0; i < 9; i++) {
-    if (sum[i] != 45) return false;
-  }
-  return true;
-}
-
+/* 
 function prettyBoard(puzzle) {
   let array = [
     [1, '', 5, 8, '', 2, '', '', ''],
@@ -74,21 +62,36 @@ function solveColumn(array) {
   //   ['42', '42', 7, 6, '42', '42', '42', 3, '42'],
   //   [4, 3, '42', '42', 2, '42', 5, '42', 1],
   //   [6, '42', '42', 3, '42', 8, 9, '42', '42'],
-  // ];
-  array = [
-    [1, 4, 5, 8, 9, 2, 6, 7, 3],
-    [8, 9, 3, 1, 7, 6, 4, 2, 5],
-    [2, 7, 6, 4, 3, 5, 8, 1, 9],
-    [5, 1, 9, 2, 4, 7, 3, 8, 6],
-    [7, 6, 2, 5, 8, 3, 1, 9, 4],
-    [3, 8, 4, 9, 6, 1, 7, 5, 2],
-    [9, 5, 7, 6, 1, 4, 2, 3, 8],
-    [4, 3, 8, 7, 2, 9, 5, 6, 1],
-    [6, 2, 1, 3, 5, 8, 9, 4, 7],
-  ];
-  return array;
+  // ]; */
+
+array = [
+  [1, 4, 5, 8, 9, 2, 6, 7, 3],
+  [8, 9, 3, 1, 7, 6, 4, 2, 5],
+  [2, 7, 6, 4, 3, 5, 8, 1, 9],
+  [5, 1, 9, 2, 4, 7, 3, 8, 6],
+  [7, 6, 2, 5, 8, 3, 1, 9, 4],
+  [3, 8, 4, 9, 6, 1, 7, 5, 2],
+  [9, 5, 7, 6, 1, 4, 2, 3, 8],
+  [4, 3, 8, 7, 2, 9, 5, 6, 1],
+  [6, 2, 1, 3, 5, 8, 9, 4, 7],
+];
+
+function isSolved(board) {
+  let sum = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  for (i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      sum[i] += board[i][j];
+    }
+  }
+  for (i = 0; i < 9; i++) {
+    if (sum[i] != 45) return false;
+  }
+  return true;
 }
 
+console.log(isSolved(array));
+
+/* 
 function solve(puzzle) {
   let checker = false;
   puzzle = prettyBoard(puzzle);
@@ -118,3 +121,4 @@ console.log(solve(puzzle));
 //   isSolved: isSolved,
 //   prettyBoard: prettyBoard,
 // };
+ */
