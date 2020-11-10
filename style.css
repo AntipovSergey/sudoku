@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.table1,
+.table2 {
+  background-color: #000000;
+  border: 1px solid red;
+  margin-top: 5px;
+  color: white;
+  height: 100px;
+  width: 100px;
+  font-size: 5px;
+  text-align: center 
+}
+
+td {
+  border: 1px solid red;
+}
+
+.contan {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button1 {
+  margin-top: 40px;
+}
