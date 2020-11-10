@@ -1,5 +1,5 @@
 function comparisonSquare(board, i, j, num) {
-  for (let row = 0; row < 9; row+=1) {
+  for (let row = 0; row < 9; row +=1) {
     // координаты бокса
     const m = 3 * parseInt(i / 3) + parseInt(row / 3);
     const n = 3 * parseInt(j / 3) + (row % 3);
