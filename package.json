@@ -1,0 +1,22 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "jest -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tingol88/project-sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tingol88/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/tingol88/project-sudoku#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
