@@ -10,7 +10,7 @@ const {
 	getGuesses
 } = require('./helpers');
 
-const solve = (board) => {
+const boardSolve = (board) => {
 	for (let r = 0; r < board.length; r++) {			// row
 		for (let c = 0; c < board.length; c++) {		// column
 			if (board[r][c] !== 0) {
@@ -18,7 +18,7 @@ const solve = (board) => {
 					if(isPossible(g, r, c, board)) {
 						let newBoard = JSON.parse(JSON.stringify(board));
 						newBoard[r][c] = guess;
-						if (solve(newBoard)) {
+						if (boardSolve(newBoard)) {
 							return newBoard;
 						}
 					}
