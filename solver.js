@@ -22,4 +22,4 @@ const boardSolve = (board) => {
 	return board;
 };
 
-module.exports = { solve };
+module.exports = { boardSolve };
