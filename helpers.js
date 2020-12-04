@@ -53,3 +53,15 @@ const getAllExceptions = (setRow, setCol, setSq) => {}; // Set
 
 // Саша
 const getGuesses = (exceptions) => {}; // guesses []
+
+module.exports = {
+	sudokuToArray,
+	sudokuToString,
+	sudokuToMap,
+	getSquare,
+	getexceptionsFromRow,
+	getexceptionsFromCol,
+	getExceptionsFromSquare,
+	getAllExceptions,
+	getGuesses
+};
