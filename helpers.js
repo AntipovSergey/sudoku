@@ -8,10 +8,32 @@ const sudokuToString = () => {};
 
 // Соня
 const sudokuToMap = (sudokuArray) => {
-	return {};
-} // return sudokuDB [{}]
+	const sudokuDB = [];
+	let count = 0;
+	for (let row = 0; row < sudokuArray.length; row++) {
+		for (let col = 0; col < sudokuArray[row]; col++) {
+			const cell = {};
+			const element = sudokuArray[row][col];
 
-//Большая функция, потребуются мельче внутри
+			cell.init = !!element;
+			cell.row = row;
+			cell.col = col;
+			cell.sq = getSquare(row, col);
+			cell.guesses = [];
+			cell.id = count;
+
+			count++;
+
+			sudokuDB.push(cell);
+		} 
+	}
+
+	return sudokuDB;
+} 
+
+const getSquare = (row, col) => {
+	return (Math.ceil((row + 1) / 3) - 1) * 3 + Math.ceil((col + 1) / 3);
+}
 
 // Влад
 const getexceptionsFromRow = (sudoku, row) => {
