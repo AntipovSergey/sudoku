@@ -28,6 +28,7 @@ function solve(board) {
   }
   return board;
 }
+
 let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let extBoard = [3, 4, 6, 7];
 
@@ -46,26 +47,47 @@ function deleteEl(board, extBoard) {
 console.log(deleteEl(board,extBoard))
 
 
-// function solving(boardWithArrays) {
-//   for (let i = 0; i < boardWithArrays.length; i++) {
-//     for (let j = 0; j < boardWithArrays[i].length; j++) {
-//       if (boardWithArrays[i][j] == testNumber) {
-//         for (k = 0; k < boardWithArrays[i].length; k++) {
-//           if (
-//             typeof boardWithArrays[i][k] !== "object" &&
-//             boardWithArrays[i][j][k][i] == boardWithArrays[i][j][k]
-//           ) {
-//             for (let l = 0; l < boardWithArrays[i][j][k].length; l++) {
-//               boardWithArrays[i][j].splice(k, 1);
-//               console.log(boardWithArrays);
-//             }
-//           }
-//         }
-//       }
+function solving(boardWithArrays) {
+  let elementFromStr = []
+  let objctForArray = {}
+  // let arrayInarrayInarray
+  for (let i = 0; i < boardWithArrays.length; i++) {
+    for (let j = 0; j < boardWithArrays[i].length; j++) {
+      if (typeof boardWithArrays[i][j] == 'object'){
+          objctForArray.arrayInarrayInarray = boardWithArrays[i][j]
+        if(typeof boardWithArrays[i][j] != 'object'){
+          objctForArray.elementFromStr = elementFromStr.push(boardWithArrays[i][j])
+          
+          }
+        }
+      }
+    }
+    return objctForArray
+  } 
+
+console.log(solving(solve(prettyBoard(str))));
+      // if (boardWithArrays[i][j] == testNumber) {
+      //   for (k = 0; k < boardWithArrays[i].length; k++) {
+      //     if (
+      //       typeof boardWithArrays[i][k] !== "object" &&
+      //       boardWithArrays[i][j][k][i] == boardWithArrays[i][j][k]
+      //     ) {
+      //       for (let l = 0; l < boardWithArrays[i][j][k].length; l++) {
+      //           if (boardWithArrays[i][j] !== 0){
+      //             boardWithArrays[i][j][]
+      //           }
+      //         deleteEl()
+      //         // boardWithArrays[i][j].splice(k, 1);
+      //         // console.log(boardWithArrays);
+      //       }
+      //     }
+      //   }
+      // }
 //     }
 //   }
-//   return boardWithArrays;
-}
+//   // return boardWithArrays;
+// }
+
 
 console.log(solving(solve(prettyBoard(str))));
 // function(solve)
