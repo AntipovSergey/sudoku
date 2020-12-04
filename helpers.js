@@ -8,40 +8,43 @@ const sudokuToArray = (str = '') => {
   return res;
 }
 
-//console.log(sudokuToArrayX('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
-
-
-// Саша
-const sudokuToString = () => { };
+// const sudokuToString = (arr) => {
+//   //arr.filter(item => item = 0).map(item => item = '-') --- not ready but not need
+//   let res = '';
+//   for (let i = 0; i < arr.length; i += 1) {
+//     arr[i] = arr[i].join('');
+//   }
+//   return arr.join('');
+// };
 
 // Соня
 const sudokuToMap = (sudokuArray) => {
-	const sudokuDB = [];
-	let count = 0;
-	for (let row = 0; row < sudokuArray.length; row++) {
-		for (let col = 0; col < sudokuArray[row]; col++) {
-			const cell = {};
-			const element = sudokuArray[row][col];
+  const sudokuDB = [];
+  let count = 0;
+  for (let row = 0; row < sudokuArray.length; row++) {
+    for (let col = 0; col < sudokuArray[row]; col++) {
+      const cell = {};
+      const element = sudokuArray[row][col];
 
 
-			cell.init = !!element;
-			cell.row = row;
-			cell.col = col;
-			cell.sq = getSquare(row, col);
-			cell.guesses = [];
-			cell.id = count;
+      cell.init = !!element;
+      cell.row = row;
+      cell.col = col;
+      cell.sq = getSquare(row, col);
+      cell.guesses = [];
+      cell.id = count;
 
-			count++;
+      count++;
 
-			sudokuDB.push(cell);
-		} 
-	}
+      sudokuDB.push(cell);
+    }
+  }
 
-	return sudokuDB;
-} 
+  return sudokuDB;
+}
 
 const getSquare = (row, col) => {
-	return (Math.ceil((row + 1) / 3) - 1) * 3 + Math.ceil((col + 1) / 3);
+  return (Math.ceil((row + 1) / 3) - 1) * 3 + Math.ceil((col + 1) / 3);
 }
 
 // Влад
@@ -61,16 +64,23 @@ const getExceptionsFromSquare = (sudoku, sq) => { }; // []
 const getAllExceptions = (setRow, setCol, setSq) => { }; // Set
 
 // Саша
-const getGuesses = (exceptions) => {}; // guesses []
+const getGuesses = (set) => {
+  let res = [];
+  for (let i = 1; i < 10; i += 1) {
+    set.has(i) ? 1 : res.push(i);
+  }
+
+  return res;
+}; 
 
 module.exports = {
-	sudokuToArray,
-	sudokuToString,
-	sudokuToMap,
-	getSquare,
-	getexceptionsFromRow,
-	getexceptionsFromCol,
-	getExceptionsFromSquare,
-	getAllExceptions,
-	getGuesses
+  sudokuToArray,
+  //sudokuToString,
+  sudokuToMap,
+  getSquare,
+  getexceptionsFromRow,
+  getexceptionsFromCol,
+  getExceptionsFromSquare,
+  getAllExceptions,
+  getGuesses
 };
