@@ -6,7 +6,9 @@ const sudokuToArray = () => {}
 const sudokuToString = () => {}
 
 // Соня
-const sudokuToMap = (sudokuArray) => {} // return sudokuDB [{}]
+const sudokuToMap = (sudokuArray) => {
+	return {};
+} // return sudokuDB [{}]
 //Большая функция, потребуются мельче внутри
 
 // Влад
