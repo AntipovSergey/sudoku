@@ -32,3 +32,30 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function reWrite(array) {
+	for (let i = 0; i < array.length; i += 1) {
+		for (let j = 0; j < array[i].length; j += 1) {
+			if (array[i][j] === 0) {
+				array[i][j] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+			}
+		}
+	}
+	return array
+}
+console.log(reWrite(test))
+
