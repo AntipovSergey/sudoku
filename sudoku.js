@@ -1,10 +1,14 @@
+const { boardSolve } = require('./solver');
+const { sudokuToArray } = require('./helpers');
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+	const board = sudokuToArray(boardString);
+	return boardSolve(board);
 }
 
 
@@ -13,7 +17,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+	return !!solve(board);
 }
 
 
@@ -23,7 +27,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+	
 }
 
 // Exports all the functions to use them in another file.
