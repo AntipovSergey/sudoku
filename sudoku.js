@@ -27,8 +27,26 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-	
+	for (let i = 0; i < 9; i++) {
+		if (i % 3 === 0) {
+			console.log(' +-------+-------+-------+ ');
+		}
+
+		let str = '';
+		for (let j = 0; j < 9; j++) {
+			if (j % 3 === 0) {
+				str += ' |';
+			}
+			str += ` ${board[i][j]}`
+		}
+		str += ' |';
+		console.log(str);
+	}
+	console.log(' +-------+-------+-------+ ');
 }
+
+let puzzle = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+prettyBoard(sudokuToArray(puzzle));
 
 // Exports all the functions to use them in another file.
 module.exports = {
