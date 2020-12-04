@@ -2,7 +2,7 @@ const { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } = require("constants");
 
 let str =
   "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-function prettyBoard(str) {
+function prettyBoard(str) {                         //переводим строку в массив
   let newstr1 = str.replace(/\D/g, "0");
   let newStr = newstr1.split("");
   let sudoku = [];
@@ -18,7 +18,7 @@ function prettyBoard(str) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 let testNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-function solve(board) {
+function solve(board) {                   
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] == 0) {
@@ -32,7 +32,7 @@ function solve(board) {
 let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let extBoard = [3, 4, 6, 7];
 
-function deleteEl(board, extBoard) {
+function deleteEl(board, extBoard) {              //функция, которая вырезет недопустимые элементы
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < extBoard.length; j++) {
       if (board[i] === extBoard[j]) {
