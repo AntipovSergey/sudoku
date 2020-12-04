@@ -1,13 +1,15 @@
-console.log();
-console.log();
-console.log();
-console.log();
-console.log();
-console.log();
-console.log(console.log();
-console.log();
-console.log();
-console.log();
-console.log();
-console.log();
-);
+const transformArr = (str) => {
+  let newArr = str.split('')
+  let sudokuArr = []
+  for (let i = 0; i < newArr.length; i += 9) {
+    sudokuArr.push(newArr.slice(i, i + 9))
+  }
+  return sudokuArr
+}
+
+console.table(transformArr('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
+
+
+module.exports = {
+  transformArr,
+}
