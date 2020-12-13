@@ -1,9 +1,4 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(boardString) {
+function render(boardString) {
   const result = [];
   const boardArr = boardString.split('');
   while (boardArr.length > 0) {
@@ -12,32 +7,28 @@ function solve(boardString) {
   return result;
 }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
 function isSolved(board) {
-  function isValid(boardV, row, col, k) {
+  function isValid(boardValid, row, col, k) {
     for (let i = 0; i < 9; i += 1) {
       const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
       const n = 3 * Math.floor(col / 3) + i % 3;
-      if (boardV[row][i] == k || boardV[i][col] == k || boardV[m][n] == k) {
+      if (boardValid[row][i] == k || boardValid[i][col] == k || boardValid[m][n] == k) {
         return false;
       }
     }
     return true;
   }
-  function sodokoSolver(boardR) {
+  function sodokoSolver(boardRecursive) {
     for (let i = 0; i < 9; i += 1) {
       for (let j = 0; j < 9; j += 1) {
-        if (boardR[i][j] == '-') {
+        if (boardRecursive[i][j] == '-') {
           for (let k = 1; k <= 9; k += 1) {
-            if (isValid(boardR, i, j, k)) {
-              boardR[i][j] = `${k}`;
-              if (sodokoSolver(boardR)) {
-                return boardR;
+            if (isValid(boardRecursive, i, j, k)) {
+              boardRecursive[i][j] = `${k}`;
+              if (sodokoSolver(boardRecursive)) {
+                return boardRecursive;
               }
-              boardR[i][j] = '-';
+              boardRecursive[i][j] = '-';
             }
           }
           return false;
@@ -49,18 +40,12 @@ function isSolved(board) {
   return sodokoSolver(board);
 }
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
 function prettyBoard(board) {
   return board.join('\n');
 }
 
-// Exports all the functions to use them in another file.
 module.exports = {
-  solve,
+  render,
   isSolved,
   prettyBoard,
 };

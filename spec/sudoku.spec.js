@@ -1,4 +1,4 @@
-const { solve, isSolved, prettyBoard } = require('../sudoku.js');
+const { render, isSolved, prettyBoard } = require('../sudoku.js');
 
 const strings = [
   ['1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'],
@@ -20,7 +20,7 @@ const strings = [
 
 describe('Solve function', () => {
   test('should output in the format of an array of string 1 lvl', () => {
-    expect(solve(strings[0].join(''))).toEqual([
+    expect(render(strings[0].join(''))).toEqual([
       ['1', '-', '5', '8', '-', '2', '-', '-', '-'],
       ['-', '9', '-', '-', '7', '6', '4', '-', '5'],
       ['2', '-', '-', '4', '-', '-', '8', '1', '9'],
@@ -33,7 +33,7 @@ describe('Solve function', () => {
     ]);
   });
   test('should output in the format of an array of string 14 lvl', () => {
-    expect(solve(strings[13].join(''))).toEqual([
+    expect(render(strings[13].join(''))).toEqual([
       ['-', '-', '-', '-', '-', '-', '-', '-', '-'],
       ['-', '2', '-', '6', '5', '-', '-', '-', '-'],
       ['-', '-', '-', '1', '8', '-', '-', '4', '-'],
@@ -46,7 +46,7 @@ describe('Solve function', () => {
     ]);
   });
   test('should output in the format of an array of string 15 lvl', () => {
-    expect(solve(strings[14].join(''))).toEqual([
+    expect(render(strings[14].join(''))).toEqual([
       ['-', '-', '-', '-', '-', '-', '-', '-', '-'],
       ['-', '-', '-', '-', '-', '-', '-', '-', '-'],
       ['-', '-', '-', '-', '-', '-', '-', '-', '-'],

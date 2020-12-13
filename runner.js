@@ -20,9 +20,9 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  const puzzle = sudokuParse(data, 14);
+  const puzzle = sudokuParse(data, 13);
 
-  const solvedPuzzle = sudoku.solve(puzzle);
+  const solvedPuzzle = sudoku.render(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log('The board was solved!');
     console.log(sudoku.prettyBoard(solvedPuzzle));
