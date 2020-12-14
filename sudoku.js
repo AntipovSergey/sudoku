@@ -5,6 +5,7 @@
 // How you represent your board is up to you!
 function solve(boardString) {
 
+  
 }
 
 
@@ -14,6 +15,7 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
+return true;
 }
 
 
@@ -25,6 +27,7 @@ function isSolved(board) {
 function prettyBoard(board) {
 
 }
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
