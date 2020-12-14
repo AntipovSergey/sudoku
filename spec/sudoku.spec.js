@@ -1,13 +1,8 @@
-const sudoku = require('../sudoku.js');
+const {
+  validCol
+} = require('../sudoku.js');
 
-function validCol(board, col_index, n) {
-  for (let i = 0; i < 9; i += 1) {
-    if (board[i][col_index] === n) {
-      return false;
-    }
-  }
-  return true;
-}
+
 
  beforeEach(() => {
   board =

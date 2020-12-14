@@ -28,7 +28,7 @@ function prettyBoard(board) {
 
 function validCol(board, col_index, n) {
   for (let i = 0; i < 9; i += 1) {
-    if (board[i][col_index] === n) {
+    if (board[i][col_index] == n) {
       return false;
     }
   }
