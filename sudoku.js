@@ -10,13 +10,13 @@ function solve(boardString) {
   }
   return board;
 }
-// reshayem sudoku!!!
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
+
 
 
   return true;
@@ -42,6 +42,7 @@ function validBox(board, row_index, col_index, n) {
     }
   }
   return true;
+
 }
 //1 - 5
 //- 9 -
@@ -67,10 +68,20 @@ function prettyBoard(board) {
 
 }
 
+function validCol(board, col_index, n) {
+  for (let i = 0; i < 9; i += 1) {
+    if (board[i][col_index] == n) {
+      return false;
+    }
+  }
+  return true;
+}
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve: solve,
-  isSolved: isSolved,
+	solve: solve,
+	isSolved: isSolved,
   prettyBoard: prettyBoard,
+  validCol: validCol
 }
