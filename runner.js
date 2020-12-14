@@ -37,7 +37,7 @@ function readAndSolve(err, data) {
 
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log(sudoku.prettyBoard(solvedPuzzle));
-    if (sudoku.globalCheck(solvedPuzzle)) {
+    if (sudoku.globalCheck(rightBoard)) {
       console.log("The board was solved!");
     } else {
     console.log("The board wasn't solved :(");
