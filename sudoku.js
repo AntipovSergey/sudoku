@@ -17,20 +17,39 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
-
-
   return true;
 }
 
-const board_box = [['1', '-', '5', '8', '-', '2', '-', '-', '-'],
-['-', '9', '-', '-', '7', '6', '4', '-', '5'],
-['2', '-', '-', '4', '-', '-', '8', '1', '9'],
-['-', '1', '9', '-', '-', '7', '3', '-', '6'],
-['7', '6', '2', '-', '8', '3', '-', '9', '-'],
-['-', '-', '-', '-', '6', '1', '-', '5', '-'],
-['-', '-', '7', '6', '-', '-', '-', '3', '-'],
-['4', '3', '-', '-', '2', '-', '5', '-', '1'],
-['6', '-', '-', '3', '-', '8', '9', '-', '-']];
+
+
+// console.log(validBox(board_box,0,1,4));
+// Takes in a board in some form and
+// returns a String that's well formatted
+// for output to the screen.
+// The input board will be in whatever
+// form `solve` returns.
+function prettyBoard(board) {
+
+}
+
+
+function validRow(board, row_index, num) {
+  let check = true;
+  board[row_index].forEach(el => {
+     if (el === String(num)) check = false  
+  })
+  return check
+}
+
+function validCol(board, col_index, n) {
+  for (let i = 0; i < 9; i += 1) {
+    if (board[i][col_index] == n) {
+      return false;
+    }
+  }
+  return true;
+}
+
 function validBox(board, row_index, col_index, n) {
   let row = Math.floor(row_index / 3) * 3;
   let col = Math.floor(col_index / 3) * 3;
@@ -44,44 +63,12 @@ function validBox(board, row_index, col_index, n) {
   return true;
 
 }
-//1 - 5
-//- 9 -
-//2 - -
-/*console.log('n=1', validBox(board_box, 0, 1, 1));
-console.log('n=2', validBox(board_box, 0, 1, 2));
-console.log('n=3', validBox(board_box, 0, 1, 3));*/
-
-//8 - 2
-//- 7 6
-//4 - -
-console.log('n=1', validBox(board_box, 0, 4, 1));
-console.log('n=2', validBox(board_box, 0, 4, 2));
-console.log('n=3', validBox(board_box, 0, 4, 3));
-
-// console.log(validBox(board_box,0,1,4));
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-
-}
-
-function validCol(board, col_index, n) {
-  for (let i = 0; i < 9; i += 1) {
-    if (board[i][col_index] == n) {
-      return false;
-    }
-  }
-  return true;
-}
 
 
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
-  prettyBoard: prettyBoard,
+	prettyBoard: prettyBoard,
   validCol: validCol
 }
