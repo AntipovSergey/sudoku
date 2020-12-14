@@ -21,7 +21,7 @@ function readAndSolve(err, data) {
     throw err;
   }
 
-  let puzzle = sudokuParse(data, 14);
+  let puzzle = sudokuParse(data, 13);
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
