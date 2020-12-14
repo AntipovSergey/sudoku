@@ -21,7 +21,7 @@ function isSolved(board) {
       if (board[i][j] === '-') {
         for (let z = 1; z <= 9; z += 1) {
           if (validRow(board, i, z) && validCol(board, j, z) && validBox(board, i, j, z)) {
-            board[i][j] = z;
+            board[i][j] = String(z);
             if (isSolved(board)) return true;
             else board[i][j] = '-';
           }
@@ -70,15 +70,139 @@ function validBox(board, row_index, col_index, n) {
       if (board[row + i][col + j] == n)
         return false;
     }
+    return true;
+  }
+}
+
+function globalCheck(board) {
+  for (let i = 0; i < 9; i += 1) {
+    const row = getRow(board, i);
+    const column = getColumn(board, i);
+    const square = getSquare(board, i + 1);
+    if (!check(row) || !check(column) || !check(square)) {
+      return false;
+    }
   }
   return true;
 }
 
+//Функция которая принимает на вход судоку в табличном виде
+//и номер строки - возвращает указанную строку в виде массива
+function getRow(table, number) {
+  return table[number];
+}
+
+// Функция которая принимает на вход судоку
+// в виде строки а возвращает в виде массива массивов
+function convertToTable(boardString) {
+  const table = [];
+  const boardArray = boardString.split('');
+  while (boardArray.length > 0) {
+    const tempStr = boardArray.splice(0, 9);
+    table.push(tempStr);
+  }
+  return table;
+}
+
+//Функция которая принимает на вход судоку в табличном виде
+//и номер столбца - возвращает указанный столбец в виде массива
+function getColumn(table, number) {
+  const column = [];
+  for (let i = 0; i < 9; i += 1) {
+    column.push(table[i][number]);
+  }
+  return column;
+}
+//Функция которая принимает на вход судоку в табличном виде
+//и номер малого квадрата - возвращает указанный квадрат в виде массива
+function getSquare (table, number) {
+  const square = [];
+  let iStart = 0;
+  let jStart = 0;
+  let iEnd = 0;
+  let jEnd = 0;
+  switch (number) {
+    case 1:
+      iStart = 0;
+      jStart = 0;
+      iEnd = 3;
+      jEnd = 3;
+      break;
+    case 2:
+      iStart = 0;
+      jStart = 3;
+      iEnd = 3;
+      jEnd = 6;
+      break;
+    case 3:
+      iStart = 0;
+      jStart = 6;
+      iEnd = 3;
+      jEnd = 9;
+      break;
+    case 4:
+      iStart = 3;
+      jStart = 0;
+      iEnd = 6;
+      jEnd = 3;
+      break;
+    case 5:
+      iStart = 3;
+      jStart = 3;
+      iEnd = 6;
+      jEnd = 6;
+      break;
+    case 6:
+      iStart = 3;
+      jStart = 6;
+      iEnd = 6;
+      jEnd = 9;
+      break;
+    case 7:
+      iStart = 6;
+      jStart = 0;
+      iEnd = 9;
+      jEnd = 3;
+      break;
+    case 8:
+      iStart = 6;
+      jStart = 3;
+      iEnd = 9;
+      jEnd = 6;
+      break;
+    case 9:
+      iStart = 6;
+      jStart = 6;
+      iEnd = 9;
+      jEnd = 9;
+      break;
+    default:
+      break;
+  }
+  for (let i = iStart; i < iEnd; i += 1) {
+    for (let j = jStart; j < jEnd; j += 1) {
+      square.push(table[i][j]);
+    }
+  }
+  return square;
+}
+//Функция принимает на вход массив (строку, cтолбец или квадрат) из
+//девяти чисел и определяет является ли этот набор набором от 1 до 9
+function check(set) {
+  const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  for (let i = 0; i < 9; i += 1) {
+    if (set.includes(numbers[i]) == false) {
+      return false;
+    }
+  }
+  return true;
+}
 
 // Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
   isSolved: isSolved,
   prettyBoard: prettyBoard,
-  validCol: validCol
+  validCol: validCol,
+  globalCheck: globalCheck
 }
