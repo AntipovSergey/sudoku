@@ -72,8 +72,7 @@ function validBox(board, row_index, col_index, n) {
     }
   }
   return true;
-<<<<<<< HEAD
-=======
+
 }
 
 //checking rows, columns, and squares
@@ -94,7 +93,7 @@ function globalCheck(board) {
 //и номер строки - возвращает указанную строку в виде массива
 function getRow(table, number) {
   return table[number];
->>>>>>> master
+
 }
 
 //Функция которая принимает на вход судоку в табличном виде
