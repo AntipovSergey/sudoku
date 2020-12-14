@@ -20,10 +20,6 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-<<<<<<< HEAD
-
-  let puzzle = sudokuParse(data, 14);
-=======
   const rightBoard =
   [
     ['1', '4', '5', '8', '9', '2', '6', '7', '3'],
@@ -37,12 +33,11 @@ function readAndSolve(err, data) {
     ['6', '2', '1', '3', '5', '8', '9', '4', '7']
   ];
   let puzzle = sudokuParse(data, 0);
->>>>>>> master
   let solvedPuzzle = sudoku.solve(puzzle);
 
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log(sudoku.prettyBoard(solvedPuzzle));
-    if (sudoku.globalCheck(rightBoard)) {
+    if (sudoku.globalCheck(solvedPuzzle)) {
       console.log("The board was solved!");
     } else {
     console.log("The board wasn't solved :(");
