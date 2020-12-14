@@ -4,8 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
-  
+ 
 }
 
 
@@ -15,7 +14,6 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
-return true;
 }
 
 
@@ -28,10 +26,20 @@ function prettyBoard(board) {
 
 }
 
+function validCol(board, col_index, n) {
+  for (let i = 0; i < 9; i += 1) {
+    if (board[i][col_index] === n) {
+      return false;
+    }
+  }
+  return true;
+}
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  prettyBoard: prettyBoard,
+  validCol: validCol
 }
