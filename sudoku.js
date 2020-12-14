@@ -4,8 +4,11 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
-
+  let board = [];
+  for (let i = 0; i < boardString.length; i += 9) {
+    board.push(boardString.split('').slice(i, i + 9));
+  }
+  return board;
 }
 
 
@@ -15,8 +18,10 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
+
   return true;
 }
+
 const board_box = [['1', '-', '5', '8', '-', '2', '-', '-', '-'],
 ['-', '9', '-', '-', '7', '6', '4', '-', '5'],
 ['2', '-', '-', '4', '-', '-', '8', '1', '9'],
@@ -67,5 +72,5 @@ function prettyBoard(board) {
 module.exports = {
   solve: solve,
   isSolved: isSolved,
-  prettyBoard: prettyBoard
+  prettyBoard: prettyBoard,
 }
