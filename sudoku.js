@@ -21,7 +21,7 @@ function isSolved(board) {
       if (board[i][j] === '-') {
         for (let z = 1; z <= 9; z += 1) {
           if (validRow(board, i, z) && validCol(board, j, z) && validBox(board, i, j, z)) {
-            board[i][j] = z;
+            board[i][j] = String(z);
             if (isSolved(board)) return true;
             else board[i][j] = '-';
           }
@@ -70,12 +70,9 @@ function validBox(board, row_index, col_index, n) {
       if (board[row + i][col + j] == n)
         return false;
     }
+    return true;
   }
-  return true;
-
 }
-
-//checking rows, columns, and squares
 
 function globalCheck(board) {
   for (let i = 0; i < 9; i += 1) {
@@ -93,7 +90,18 @@ function globalCheck(board) {
 //и номер строки - возвращает указанную строку в виде массива
 function getRow(table, number) {
   return table[number];
+}
 
+// Функция которая принимает на вход судоку
+// в виде строки а возвращает в виде массива массивов
+function convertToTable(boardString) {
+  const table = [];
+  const boardArray = boardString.split('');
+  while (boardArray.length > 0) {
+    const tempStr = boardArray.splice(0, 9);
+    table.push(tempStr);
+  }
+  return table;
 }
 
 //Функция которая принимает на вход судоку в табличном виде
