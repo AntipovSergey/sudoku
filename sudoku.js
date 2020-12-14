@@ -26,6 +26,19 @@ function prettyBoard(board) {
 
 }
 
+
+
+function searchInRow(board, row_index, num) {
+  let check = true;
+  board[row_index].forEach(el => {
+     if (el === num) check = false  
+  })
+  return check
+}
+
+
+
+
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
