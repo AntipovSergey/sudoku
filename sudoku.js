@@ -48,7 +48,7 @@ function prettyBoard(board) {
 function validRow(board, row_index, num) {
   let check = true;
   board[row_index].forEach(el => {
-    if (el === String(num)) check = false
+    if (el == num) check = false
   })
   return check
 }
@@ -72,7 +72,6 @@ function validBox(board, row_index, col_index, n) {
     }
   }
   return true;
-
 }
 
 
