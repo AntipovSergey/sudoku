@@ -1,5 +1,3 @@
-//import { solve } from "./sudoku";
-
 let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 let data = [];
 function solve(boardString) {
@@ -17,35 +15,82 @@ function generateTab(board, param = 0) {
     row = document.createElement('tr');
     for (let j = 0; j < 9; j++) {
       el = document.createElement('td');
-      if (board[i][j] === '-')
+      if (board[i][j] === '-') {
         flag = "";
-      else
-        flag = "readonly";
+        el.innerHTML = `<input type="text" class = "itembox" id = ${i}_${j}; value="" ${flag}/>`;
+      }
+        
+      else {
+        flag = "readonly"; 
+        el.innerHTML = `<input type="text" class = "itembox" id = ${i}_${j}; value="${board[i][j]}" ${flag}/>`;       
+      }
 
       el.id = `tb_${i}_${j}`;
-      el.innerHTML = `${board[i][j]}`
-      el.innerHTML = `<input type="text" class = "itembox" id = ${i}_${j}; value="${board[i][j]}" ${flag}/>`;
       row.appendChild(el);
     }
     tab.appendChild(row);
   }
 }
+
+
 generateTab(solve(boardString));
 let btn = document.getElementById('btnTab');
 
-btn.addEventListener('click', () => { isSolved(data); });
+btn.addEventListener('click', () => { 
+  isSolved(data); 
+  render(data, inputColection, 50)
+
+});
+
+const inputColection = document.querySelectorAll('.itembox');
+
+const clearButton = document.createElement('input');
+clearButton.type = 'button';
+clearButton.value = 'Очистить судоку';
+clearButton.classList.add('btnTab');
+clearButton.disabled = 'true';
+
+clearButton.addEventListener('click', () => { 
+  data = []
+  solve(boardString)
+  render(data, inputColection, 10) 
+
+});
+
+btn.insertAdjacentElement('afterend', clearButton)
+
+
+function render(data, inputColection, time) {
+  let itr = 0;
+
+  let dataArr = data.join(',').split(',')
+
+  let renderSetInt = setInterval(() => {
+    inputColection[itr].value = dataArr[itr] === '-' ? '' : dataArr[itr];
+    itr++;
+
+    if (itr === 81) {
+      clearInterval(renderSetInt);
+
+      time === 10 ? clearButton.disabled = 'true' 
+        : clearButton.removeAttribute('disabled');
+    }
+  }, time);
+
+}
+
 
 function isSolved(board) {
   //sleep(500);
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      let el = document.getElementById(`tb_${i}_${j}`);
+
       if (board[i][j] === "-") {
         //k-это числа от 1 до 9 которое нужно подставить
         for (let k = 1; k <= 9; k++) {
           if (checkValid(board, i, j, k)) {
             board[i][j] = k;
-            el.innerHTML = `${k}`;
+
             if (isSolved(board)) {
               return true;
             } else {
@@ -59,6 +104,7 @@ function isSolved(board) {
   }
   return true;
 }
+
 function sleep(ms) {
   const date = Date.now();
   let currentDate = null;
@@ -78,3 +124,5 @@ function checkValid(board, row, col, k) {
   }
   return true;
 }
+
+

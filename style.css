@@ -1,3 +1,7 @@
+* {
+  outline: none;
+}
+
 table {
   display: table;
   border: 2px solid #444;
@@ -11,7 +15,6 @@ table tr {
 }
 table td {
   display: table-cell;
-  padding: 8px;
   border: 1px solid #ff0000;
   text-align: center;
 }
@@ -25,7 +28,7 @@ table tr:nth-child(6) td {
   border-bottom: 3px solid #555;
 }
 
-#btnTab {
+.btnTab {
   background-color: orange;
   border: none;
   text-decoration: none;
@@ -39,4 +42,5 @@ table tr:nth-child(6) td {
  width: 10px;
  height: 10px;
  border:0;
+ padding: 8px;
 }
