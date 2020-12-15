@@ -32,10 +32,9 @@ async function  fileread() {
 
 
 describe("sudoku.solve", function () {
-  it("should return the true if we can place number n in col_index else return false", async function () {
+  it("should return board in table format from string input", async function () {
     const f = await fileread();
     expect(sudoku.solve(f[0])).toEqual(board);
-    //expect(sudoku.solve(f[1])).toEqual(board);
   });
 });
 
