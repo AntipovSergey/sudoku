@@ -4,6 +4,7 @@ let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---
 let data = [];
 let otveti = [];
 let changed = [];
+
 function solve(boardString) {
   let ln = boardString.length;
   for (i = 0; i < ln; i += 9) {
@@ -37,11 +38,14 @@ let btn = document.getElementById('btnTab');
 
 btn.addEventListener('click', () => { isSolved(data); });
 
+// уберем кнопку "заполнить"
+btn.remove();
+
 isSolved(data);
 
 
 function isSolved(board) {
-  //sleep(500);
+  // sleep(500);
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       let el = document.getElementById(`tb_${i}_${j}`);
@@ -50,7 +54,7 @@ function isSolved(board) {
         for (let k = 1; k <= 9; k++) {
           if (checkValid(board, i, j, k)) {
             board[i][j] = k;
-           // el.innerHTML = `${k}`;
+            // el.innerHTML = `${k}`;
             if (isSolved(board)) {
               return true;
             } else {
@@ -65,6 +69,7 @@ function isSolved(board) {
   otveti = board;
   return true;
 }
+
 function sleep(ms) {
   const date = Date.now();
   let currentDate = null;
@@ -87,29 +92,27 @@ function checkValid(board, row, col, k) {
 
 // наш код
 
-
 const button2 = document.createElement('button');
-button2.innerText ='Проверить';
+button2.innerText = 'Проверить';
 button2.setAttribute("id", "btnTab");
 button2.style.backgroundColor = 'teal';
 let cont = document.querySelector('.conteiner');
 cont.appendChild(button2);
 
 button2.addEventListener('click', (e) => {
-  console.log(otveti[changed[0][0],changed[0][1]]);
- for (let z = 0; z < changed.length; z += 1) {
-   if (otveti[changed[z][0],changed[z][1]] == changed[z][2]) {
-    let myInput = document.getElementById(`${changed[z][0]}_${changed[z][1]};`);
-    myInput.parentNode.style.backgroundColor = 'green';
-   } else {
-    let myInput = document.getElementById(`${changed[z][0]}_${changed[z][1]};`);
-    myInput.parentNode.style.backgroundColor = 'red'; 
-   }
- }
+  for (let z = 0; z < changed.length; z += 1) {
+    if (otveti[changed[z][0]][changed[z][1]] == changed[z][2]) {
+      let myInput = document.getElementById(`${changed[z][0]}_${changed[z][1]};`);
+      myInput.parentNode.style.backgroundColor = 'green';
+    } else {
+      let myInput = document.getElementById(`${changed[z][0]}_${changed[z][1]};`);
+      myInput.parentNode.style.backgroundColor = 'red';
+    }
+  }
 })
 
 document.addEventListener('input', (event) => {
-  let a = event.target.id; 
+  let a = event.target.id;
   let i = a[0];
   let j = a[2];
   changed.push([i, j, event.target.value]);
@@ -121,8 +124,9 @@ document.addEventListener('input', (event) => {
   // }
 });
 
- document.addEventListener('click', (event) => {
+document.addEventListener('click', (event) => {
   if (event.target.value == '-') {
     event.target.value = '';
   }
- })
+})
+
