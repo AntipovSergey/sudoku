@@ -41,4 +41,6 @@ fs.readFile(
   readAndSolve
 );
 
-//gitjfkdj
+module.exports = {
+	puzzle: sudokuParse,
+}

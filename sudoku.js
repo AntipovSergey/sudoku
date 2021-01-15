@@ -1,3 +1,7 @@
+const sudokuParse = require('./runner.js');
+
+
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -40,7 +44,7 @@ function isSolved(board) {
 function prettyBoard(board) {
 return (board.map(el => el.join('')).join('\n') )
 }
-console.log(prettyBoard(solve(boardString)));
+console.log(prettyBoard(solve(puzzle)));
 
 // Exports all the functions to use them in another file.
 module.exports = {
@@ -48,3 +52,5 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+console.log(arrMain);
