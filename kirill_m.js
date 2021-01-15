@@ -45,7 +45,6 @@ function prettyBoard(board) {
 const result = prettyBoard(board)
 console.log(result);
 
-
 function solve(arrSudoku) {
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
