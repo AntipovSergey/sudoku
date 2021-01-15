@@ -26,8 +26,7 @@ function readAndSolve(err, data) {
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
     console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
+  } else {
     console.log("The board wasn't solved :(");
   }
 }
@@ -38,4 +37,3 @@ fs.readFile(
   'utf-8',
   readAndSolve
 );
-
