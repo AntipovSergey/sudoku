@@ -41,6 +41,10 @@ fs.readFile(
   readAndSolve
 );
 
+
+
+
 module.exports = {
-	puzzle: sudokuParse,
+  sudokuParse,
+  data
 }
