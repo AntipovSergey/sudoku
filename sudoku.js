@@ -78,33 +78,16 @@ for (let i = 0; i < board.length; i++) {
 	for (let i = 0; i < boardVert.length; i++) {
 		for (let j = 0; j < boardVert.length; j++) {
 			if (boardVert[i][j] === 0) {
-				console.log(boardVert[i][j]);
+				console.log(boardVert);
 				numbersVert[i] = arr_diff(numbersHor[i], boardVert[i].filter(n => n != 0));
 				// board[i][j] = numbersVert[i][Math.floor(Math.random() * numbersHor[i].length)]
 			} 
 		}
 	}
 
-	// console.log(numbersVert[1])
-
-	
-	// console.log(numbersVert);
-
-
-	// return board;
-
-	// console.log(numbersHor[0]);
-	// console.log(board[0][0], board[1][0],board[2][0],board[3][0],board[4][0],board[5][0],board[6][0]);
-
-	// console.log(boardArr);
-	// console.log(board);
-	// console.log(numbersHor[0]);
 }
 
-
 console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
-
-// console.log([1, 2, 3, 4, 5, 6, 7, 8, 9].diff([1, 2]);
 
 
 // Returns a boolean indicating whether
