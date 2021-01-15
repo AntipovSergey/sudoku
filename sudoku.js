@@ -3,6 +3,15 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
+const arrTest = [
+  ['-', '1', '-'], 
+  ['2', '-', '1'],
+  ['3', '-', '2']];
+console.log(arrTest);
+
+
+
 function solve(boardString) {
  function search(){
 
