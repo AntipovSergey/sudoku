@@ -36,7 +36,7 @@ justify-content: center;
 
 .divCell
 {
-    float:left;/*fix for  buggy browsers*/
+    float:left;
     display:flex;
     flex-direction: column;
     text-align: center;
@@ -50,4 +50,29 @@ justify-content: center;
 
 }
 
+a.button8 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+    text-align: center;
 
+  color: #ffbc5b;
+  width: 200px;
+    height: 50px; 
+  font-weight: 700;
+  text-decoration: none;
+  user-select: none;
+  padding: .5em 2em;
+  outline: none;
+  border: 2px solid;
+  border-radius: 1px;
+  transition: 0.2s;
+  font-family: Impact, fantasy;
+} 
+a.button8:hover { background: rgba(255,255,255,.2); }
+a.button8:active { background: white; }
+
+.kk {
+  display: flex;
+  justify-content: center;
+}
