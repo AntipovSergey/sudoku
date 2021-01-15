@@ -4,47 +4,50 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  let sud = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
+  let sud =
+    '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-  let s = 0
-  sud.split('').join("")
-  let arrResult = [] //
-  for (let i = 0 ; i < 9 ; i++){
-    let arr = []
-    for(let m = 0;m < 9; m++) {
-      arr.push(sud.replace(/\-/g,'0').split('')[m+s])  
+  let s = 0;
+  sud.split('').join('');
+  let arrResult = []; //
+  for (let i = 0; i < 9; i++) {
+    let arr = [];
+    for (let m = 0; m < 9; m++) {
+      arr.push(sud.replace(/\-/g, '0').split('')[m + s]);
     }
-    s+=9
-    arrResult.push(arr)
+    s += 9;
+    arrResult.push(arr);
   }
-  console.log(arrResult);
-
-
- 
+  return arrResult;
 }
-solve()
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
-
+function isSolved() {
+  let arrArr = solve();
+  for (let i = 0; arrArr.length > i; i++) {
+    // перевод массивов в строки
+    console.log(arrArr[i].join(''));
+    for (let j = 0; arrArr.length > j; j++) {
+      // нахождение каждого символаgi
+      console.log(arrArr[i][j]);
+    }
+  }
 }
-
+isSolved(solve());
 
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard,
+};
