@@ -4,33 +4,36 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 
-const arrTest = [
-  ['-', '1', '-'], 
+const arr = [
+  ['-', '1', '-'],
   ['2', '-', '1'],
   ['3', '-', '2']];
-console.log(arrTest);
+console.log(arr);
 
 
 
 function solve(boardString) {
- function search(){
-
-
-
-
-  let cnt = 0;
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
-      if (arr[i][j] === num[cnt]) return search(i, j, cnt +1);       
-    }    
-  }
-
-
- }
-}
-function search(num, arr) {
   
 }
+
+function search(board, emptyPoints, emptyPointIndex) {
+ 
+
+
+}
+
+function findEmpty(board) {
+  const emptySpaces = [];
+  for (let row = 0; row < board.length; row++) {
+   for (let column = 0; column < board[row].length; column++) {
+     if (board[row][column] === '-') {
+       emptySpaces.push([row, column])
+     } 
+   }
+ }
+ return emptySpaces
+}
+
 
 
 // Returns a boolean indicating whether
@@ -48,7 +51,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-  
+
 
 }
 
