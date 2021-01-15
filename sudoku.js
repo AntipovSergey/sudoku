@@ -10,8 +10,9 @@ function solve(boardString) {}
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board, row, col, prob) {
+function isSolved(board, row, col, prob)
 
+  }
 }
 
 
