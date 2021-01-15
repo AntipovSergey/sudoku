@@ -10,6 +10,7 @@ function solve(boardString) {
       .slice(i * 9, i * 9 + 9))
     .filter((el) => el.length);
   return arr;
+
 }
 
 
