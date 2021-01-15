@@ -12,18 +12,17 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
+function isSolved(board, row, col, prob) {
 
 }
 
 
-// Takes in a board in some form and
+// Takes in a board in some form andcd
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
 }
 
 // Exports all the functions to use them in another file.
