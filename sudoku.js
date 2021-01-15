@@ -21,24 +21,21 @@ function solve(boardString) {
   return arrResult;
 }
 
-
 const rand = (str) => {
-  let arr = str.split('')
-  let arrRandom = []
-  let z
-  
-  for(let i = 0; i<9;i++) {
-    z = Math.ceil(Math.random()*arr.length-1)
-    if(arr[i]==0){
-      arrRandom.push(String(z+1))
-    }else {
-      arrRandom.push(arr[i])
-    }
-    }
-    console.log(arrRandom); 
+  let arr = str.split('');
+  let arrRandom = [];
+  let z;
 
+  for (let i = 0; i < 9; i++) {
+    z = Math.ceil(Math.random() * arr.length - 1);
+    if (arr[i] == 0) {
+      arrRandom.push(String(z + 1));
+    } else {
+      arrRandom.push(arr[i]);
+    }
   }
-console.log(rand('010030060')); 
+  return arrRandom;
+};
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -46,17 +43,21 @@ console.log(rand('010030060'));
 // form `solve` returns.
 function isSolved() {
   let arrArr = solve();
+  let resultArr = [];
   for (let i = 0; arrArr.length > i; i++) {
+    // console.log(random);
     // перевод массивов в строки
-    console.log(arrArr[i].join(''));
+    // console.log(arrArr[i].join(''));
+    const acc = rand(arrArr[i].join(''));
     for (let j = 0; arrArr.length > j; j++) {
       // нахождение каждого символаgi
-      console.log(arrArr[i][j]);
+      //   console.log(arrArr[i][j]);
     }
+    resultArr.push(acc);
   }
+  return resultArr;
 }
-isSolved(solve());
-
+console.log(isSolved(solve()));
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
