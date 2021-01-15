@@ -1,8 +1,19 @@
-.globalsudoku 
+.h
 {
-  display:flex;
+  text-align: center;
+  color:#29edff;
+}
+.string
+{
+  display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.global
+{
+display: flex;
+flex-direction: row;
+justify-content: center;
 }
 
 .fon 
@@ -10,17 +21,17 @@
   background-color: #4520ab;
 }
 
-.divSudoku
+.divsquare
 {
     display: table;
     width:auto;
-    border:3px solid  #ffbc5b;
+    border:1px solid  #ffbc5b;
 }
 
 .divRow
 {
-   display:table-row;
-   width:auto;
+  display:table-row;
+  width:auto;
 }
 
 .divCell
@@ -30,9 +41,11 @@
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    background-color:#ccc;
-    border:2px solid  #000000;
+    background-color:white;
     width: 50px;
     height: 50px; 
+    border:2px solid  #4520ab;
+    font-family: Impact, fantasy;
+  
 
 }
