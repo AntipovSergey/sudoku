@@ -10,11 +10,10 @@ function solve(boardString) {
       .slice(i * 9, i * 9 + 9))
     .filter((el) => el.length);
   return arr;
-
 }
 
-const findGap = (board) => {
-  for (let r = 0; r < size; r++) {
+function findGap(board) {
+  for (let r = 0; r < board.length; r++) {
     for (let c = 0; c < board[r].length; c++) {
       if (board[r][c] === '-') {
         return [r, c];
@@ -23,6 +22,8 @@ const findGap = (board) => {
   }
   return null;
 }
+
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -43,7 +44,9 @@ function prettyBoard(board) {
 }
 
 const str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-console.table(solve(str));
+const boardMap = solve(str);
+console.table(boardMap);
+console.log(findGap(boardMap));
 
 // Exports all the functions to use them in another file.
 module.exports = {
