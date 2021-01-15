@@ -41,7 +41,6 @@ function solve(boardString) {
   
 }
 
-console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
 
  function alex(){
    let sameIndex=[];
@@ -65,23 +64,27 @@ console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
-
-}
-
+function isSolved(board) {}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
+function prettyBoard(puzzle) {
+  let prettyBoard = [];
+  let arr = Object.values(puzzle);
+  prettyBoard.push(arr.slice(0, 9),arr.slice(9, 18),arr.slice(18, 27),arr.slice(27, 36),arr.slice(36, 45),arr.slice(45, 54),arr.slice(54, 63),arr.slice(63, 72),arr.slice(72))
 
+
+  return prettyBoard;
 }
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard,
+};
+
