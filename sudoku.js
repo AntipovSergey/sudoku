@@ -35,6 +35,7 @@ function solve(boardString) {
 
 	let numbersHor = [];
 	let numbersVert = [];
+	let numbersVertEl;
 	
 
 	for (i = 0; i < boardArr.length; i++) {
@@ -48,18 +49,24 @@ function solve(boardString) {
 		for (j = 0; j < board.length; j++) {
 			if (board[i][j] === 0) {
 				numbersHor[i] = arr_diff(numbers, board[i].filter(n => n != 0));
-				// numbersVert[j][i] = arr_diff(numbersHor[i], board[j][i]);
 
-				console.log(boardArr);
-				console.log(board);
-
+				// numbersVertEl = arr_diff(numbersHor[i], board[i][j]);
+				numbersVertEl = numbersHor[i].filter(n => n != numbersHor[i][j])
+				numbersVert.push(numbersVertEl);
+				// board[i][j] = Math.random(...numbersHor[i]);
+				board[i][j] = numbersHor[i][Math.floor(Math.random() * numbersHor[i].length)]
 				
 			} 
 		}
 	}
-	console.log(boardArr);
-	console.log(board);
-	// console.log(numbersVert);
+	return board;
+
+	// console.log(numbersHor[0]);
+	// console.log(board[0][0], board[1][0],board[2][0],board[3][0],board[4][0],board[5][0],board[6][0]);
+
+	// console.log(boardArr);
+	// console.log(board);
+	// console.log(numbersHor[0]);
 }
 
 
