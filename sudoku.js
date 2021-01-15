@@ -13,11 +13,11 @@ console.log(arr);
 
 
 function solve(boardString) {
-  
+
 }
 
 function search(board, emptyPoints, emptyPointIndex) {
- 
+
 
 
 }
@@ -25,13 +25,13 @@ function search(board, emptyPoints, emptyPointIndex) {
 function findEmpty(board) {
   const emptySpaces = [];
   for (let row = 0; row < board.length; row++) {
-   for (let column = 0; column < board[row].length; column++) {
-     if (board[row][column] === '-') {
-       emptySpaces.push([row, column])
-     } 
-   }
- }
- return emptySpaces
+    for (let column = 0; column < board[row].length; column++) {
+      if (board[row][column] === '-') {
+        emptySpaces.push([row, column])
+      }
+    }
+  }
+  return emptySpaces
 }
 
 
