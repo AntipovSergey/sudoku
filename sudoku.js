@@ -33,33 +33,65 @@ function solve(boardString) {
 	let boardArr = boardString.replace(/\-/gm, 0).match(/.{9}/gm);
 	let board = [];
 
+
 	let numbersHor = [];
 	let numbersVert = [];
-	let numbersVertEl;
+	let boardVert = new Array(9).fill('');
 	
-
-	for (i = 0; i < boardArr.length; i++) {
+	for (let i = 0; i < boardArr.length; i++) {
 		board[i] = boardArr[i].split('');
-		for (j = 0; j < boardArr.length; j++) {
+		for (let j = 0; j < boardArr.length; j++) {
 			board[i][j] = Number(board[i][j]);
 		}
 	}
 
-	for (i = 0; i < board.length; i++) {
-		for (j = 0; j < board.length; j++) {
+for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board.length; j++) {
 			if (board[i][j] === 0) {
 				numbersHor[i] = arr_diff(numbers, board[i].filter(n => n != 0));
-
-				// numbersVertEl = arr_diff(numbersHor[i], board[i][j]);
-				numbersVertEl = numbersHor[i].filter(n => n != numbersHor[i][j])
-				numbersVert.push(numbersVertEl);
-				// board[i][j] = Math.random(...numbersHor[i]);
-				board[i][j] = numbersHor[i][Math.floor(Math.random() * numbersHor[i].length)]
-				
+				// board[i][j] = numbersHor[i][Math.floor(Math.random() * numbersHor[i].length)]
 			} 
 		}
 	}
-	return board;
+
+	for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board.length; j++) {
+			boardVert[j] += board[i][j];
+		}
+	}
+
+	for (let i = 0; i < board.length; i++) {
+		for (let j = 0; j < board.length; j++) {
+			if (board[j][i] === 0) {
+				numbersVert = numbersHor[i].filter(n => n != board[i][j])
+			} 
+		}
+	}
+	
+	for (let i = 0; i < boardVert.length; i++) {
+		boardVert[i] = boardVert[i].split('');
+		for (let j = 0; j < boardVert[i].length; j++) {
+			boardVert[i][j] = +boardVert[i][j];
+		}
+	}
+
+	for (let i = 0; i < boardVert.length; i++) {
+		for (let j = 0; j < boardVert.length; j++) {
+			if (boardVert[i][j] === 0) {
+				console.log(boardVert[i][j]);
+				numbersVert[i] = arr_diff(numbersHor[i], boardVert[i].filter(n => n != 0));
+				// board[i][j] = numbersVert[i][Math.floor(Math.random() * numbersHor[i].length)]
+			} 
+		}
+	}
+
+	// console.log(numbersVert[1])
+
+	
+	// console.log(numbersVert);
+
+
+	// return board;
 
 	// console.log(numbersHor[0]);
 	// console.log(board[0][0], board[1][0],board[2][0],board[3][0],board[4][0],board[5][0],board[6][0]);
