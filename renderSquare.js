@@ -1,10 +1,11 @@
 const {searchElForLine} = require('./searchElForLine');
 const {setStringInTwoArr} = require('./setStringInTwoArr')
-const {arrySudoku} = require('./main')
+const {arraySudoku} = require('./main')
 
 function renderSquare(obj, arr) {
+
   for(let key in obj) {
-    if(obj[key])
+    obj[key] != null
   }
   //perebirau kluchi
   for(let key in obj) {
