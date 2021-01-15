@@ -12,6 +12,16 @@ function solve(boardString) {
   return arr;
 }
 
+const findGap = (board) => {
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < board[r].length; c++) {
+      if (board[r][c] === '-') {
+        return [r, c];
+      }
+    }
+  }
+  return null;
+}
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
