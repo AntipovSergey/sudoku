@@ -3,9 +3,7 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
-
-}
+function solve(boardString) {}
 
 
 // Returns a boolean indicating whether
@@ -23,12 +21,11 @@ function isSolved(board, row, col, prob)
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-}
+function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
