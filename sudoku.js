@@ -22,8 +22,7 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
+function prettyBoard(puzzle) {
 }
 
 // Exports all the functions to use them in another file.
