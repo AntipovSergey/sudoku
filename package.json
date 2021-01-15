@@ -1,0 +1,30 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Js<",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanSosnovich/project-sudoku.git"
+  },
+  "keywords": [
+    "js",
+    "sudoku",
+    "command"
+  ],
+  "author": "command 1",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvanSosnovich/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/IvanSosnovich/project-sudoku#readme",
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "jest": "^26.6.3"
+  }
+}
