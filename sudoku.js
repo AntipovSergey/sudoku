@@ -21,6 +21,25 @@ function solve(boardString) {
   return arrResult;
 }
 
+
+const rand = (str) => {
+  let arr = str.split('')
+  let arrRandom = []
+  let z
+  
+  for(let i = 0; i<9;i++) {
+    z = Math.ceil(Math.random()*arr.length-1)
+    if(arr[i]==0){
+      arrRandom.push(String(z+1))
+    }else {
+      arrRandom.push(arr[i])
+    }
+    }
+    console.log(arrRandom); 
+
+  }
+console.log(rand('010030060')); 
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
