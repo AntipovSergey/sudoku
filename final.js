@@ -82,10 +82,10 @@ function searchColumn(columnIndex, arrMain) {
 }
 
 // console.log((searchColumn(columnIndex, arrMain)));
-
+let arrDigits = [];
 function digitsToPaste () {
-  let arrDigits = ['1','2','3','4','5','6','7','8','9'];
   console.log('arrDigits FIRST', arrDigits);
+  arrDigits = ['1','2','3','4','5','6','7','8','9'];
 
   // arrDigits.map((el, index) => {
   //   for (let i = 0; i < arrRow.length; i++) {
@@ -136,12 +136,13 @@ function digitsToPaste () {
 
 
 //координата заполняемой ячейки
-let rowIndex;
-let columnIndex;
 
 function xy() {
   for (let i = 0; i < arrMain.length; i++) {
-    for (let j = 0; arrMain[i].length; j++) {
+    console.log(`главный массив строка ${i}`);
+    for (let j = 0; j < arrMain[i].length; j++) {
+      console.log(`главный массив строка ${i} колонка ${j}`);
+
       if (arrMain[i][j] == '-') {
         // console.log('i',i,'j',j);
         // rowIndex = i;
@@ -152,12 +153,15 @@ function xy() {
         digitsToPaste();
         console.log('END');
         console.log('');
-        
+        console.log(`arrMain[i][j] \n ${arrMain.join('\n ')}`);
+        // arrMain[i][j] = arrDigits[0];
       } 
       // continue;
     }
   }
   console.log('hi');
+  // console.log(arrMain);
+  
   // return
 }
 
