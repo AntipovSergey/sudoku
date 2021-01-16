@@ -7,26 +7,27 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+let arrPrimary = [];
 let arrMain = [];
-let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+let boardString = '-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--';
 
 function solve(boardString) {
   // console.log(boardString);
   let arrBoard = boardString.split('');
-  
-  for (i = 0; i < 9 ; i++) {
+
+  for (i = 0; i < 9; i++) {
     let arr = [];
     for (j = 0; j < 9; j++) {
       arr.push(arrBoard[j]);
     }
     arrMain.push(arr);
     arrBoard.splice(0, 9);
-
+    arrPrimary = Array.from(arrMain);
   }
   return arrMain;
 }
 
-solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+solve(boardString);
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -38,7 +39,7 @@ solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16
 
 
 function prettyBoard(board) {
-  return (board.map(el => el.join('')).join('\n') )
+  return (board.map(el => el.join('')).join('\n'))
 }
 
 console.log(prettyBoard(arrMain));
@@ -54,12 +55,13 @@ console.log(prettyBoard(arrMain));
 //==============
 //Поиск массива чисел из строки по координате
 let arrRow = [];
+
 function searchString(rowIndex) {
   arrRow.length = 0;
-  
+
   let str = arrMain[rowIndex].join('');
   // console.log('arrString', str.match(/\d/g));
-  arrRow = str.match(/\d/g).sort();
+  arrRow = str.match(/\d/g);
   console.log(`arrRow ${arrRow}`);
   return arrRow;
 }
@@ -68,14 +70,14 @@ function searchString(rowIndex) {
 
 //Поиск массива чисел из колонки по координате
 let arrColumn = [];
+
 function searchColumn(columnIndex, arrMain) {
   arrColumn.length = 0;
-  for (let i = 0; i < arrMain.length; i++  ) {
+  for (let i = 0; i < arrMain.length; i++) {
     if (arrMain[i][columnIndex] !== '-') {
       arrColumn.push(arrMain[i][columnIndex]);
     }
   }
-  arrColumn.sort();
   console.log((`arrColumn ${arrColumn}`));
   return arrColumn;
 
@@ -83,9 +85,10 @@ function searchColumn(columnIndex, arrMain) {
 
 // console.log((searchColumn(columnIndex, arrMain)));
 let arrDigits = [];
-function digitsToPaste () {
+
+function digitsToPaste() {
   console.log('arrDigits FIRST', arrDigits);
-  arrDigits = ['1','2','3','4','5','6','7','8','9'];
+  arrDigits = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
   // arrDigits.map((el, index) => {
   //   for (let i = 0; i < arrRow.length; i++) {
@@ -93,7 +96,7 @@ function digitsToPaste () {
   //       console.log(`index ${index}, i ${i}, arrRow.length ${arrRow.length}`);
   //       console.log(arrDigits.splice(index, 1));
   //       index--;
-        
+
   //     }
   //   }
 
@@ -103,7 +106,7 @@ function digitsToPaste () {
   //     }
   //   }
   // })
-  
+
   for (let i = 0; i < arrDigits.length; i++) {
     arrRow.forEach((el, index) => {
       if (el == arrDigits[i]) {
@@ -114,23 +117,27 @@ function digitsToPaste () {
         // console.log('arrD.length String', arrDigits.length, 'el', el, 'i', i);
       }
 
-    arrColumn.forEach((el, index) => {
-      if (el == arrDigits[i]) {
-        console.log(`index ${index}, i ${i}, arrColumn[index] ${arrColumn[index]}, before arrDigits ${arrDigits.join(' ')}`);
-        arrDigits.splice(i, 1);
-        console.log(arrDigits.length);
-        console.log(`arrDigits ${arrDigits.join(' ')}`);
-        // console.log('arrD.length String', arrDigits.length, 'el', el, 'i', i);
-      }
-    })
+      arrColumn.forEach((el, index) => {
+        if (el == arrDigits[i]) {
+          console.log(`index ${index}, i ${i}, arrColumn[index] ${arrColumn[index]}, before arrDigits ${arrDigits.join(' ')}`);
+          arrDigits.splice(i, 1);
+          console.log(arrDigits.length);
+          console.log(`arrDigits ${arrDigits.join(' ')}`);
+          // console.log('arrD.length String', arrDigits.length, 'el', el, 'i', i);
+        }
+      })
     })
   }
+  // if (arrDigits.length == 0) {
+  //   return 'нечего вставлять';
+  // }
+
   console.log('arrDigits=> ', arrDigits);
 
   // for (let j = 0; i < arrDigits.length; j++) {
-    
+
   // }
-  
+
   return arrDigits;
 }
 
@@ -153,15 +160,30 @@ function xy() {
         digitsToPaste();
         console.log('END');
         console.log('');
+        console.log(arrDigits[0]);
+        if (arrDigits[0] == undefined) {
+          return 'Не решается';
+        }
+        let rand = Math.random();
+        let math = Math.round(rand * (arrDigits.length-1));
+        let digitToChange = arrDigits[math];
+        console.log(`
+        длина массива arrDigits ${arrDigits.length},
+        rand ${rand},
+        случ число ${math},
+        arrDigits[случ число] ${digitToChange}`);
+        arrMain[i][j] = arrDigits[math];
+        
         console.log(`arrMain[i][j] \n ${arrMain.join('\n ')}`);
-        // arrMain[i][j] = arrDigits[0];
-      } 
+      }
       // continue;
     }
   }
   console.log('hi');
   // console.log(arrMain);
-  
+  // arrMain[0][0] = arrDigits[0];
+  console.log(`arrPrimary \n ${arrPrimary.join('\n ')}`);
+  console.log(`arrMain[i][j] \n ${arrMain.join('\n ')}`);
   // return
 }
 
@@ -169,7 +191,3 @@ xy();
 
 
 //исключение "лишних" цифр из массива для подстановки
-
-
-
-
