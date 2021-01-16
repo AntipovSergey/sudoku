@@ -135,7 +135,7 @@ function digitsToPaste () {
         // console.log(arrColumn[k], arrDigits[j]);
         // console.log('el',arrColumn[k], 'arrDigits',arrDigits);
         arrDigits.splice(j, 1);
-        // console.log('arrD.length Column', arrDigits.length, 'el', arrColumn[k], 'j', j);
+        // console.log('arrD.length Column', arrDigits.length, 'el', arrColumn[k], 'j', j) ;
       }
     };
   }
