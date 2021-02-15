@@ -1,4 +1,4 @@
-const checkHorisontal = (value, y, x, board) => {
+const isInHorisontal = (value, y, x, board) => {
   //board[y][x]
   for(let x = 0; x < board[y].length; x++){
     if(board[y][x] === value){
@@ -9,7 +9,7 @@ const checkHorisontal = (value, y, x, board) => {
 }
 
 module.export = {
-  checkHorisontal,
+  isInHorisontal,
 }
 
 
