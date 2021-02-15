@@ -6,3 +6,4 @@ function isInVertical(value, y, x, board) {
 }
 
 module.exports = isInVertical
+
