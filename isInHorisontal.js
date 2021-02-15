@@ -8,7 +8,7 @@ const isInHorisontal = (value, y, x, board) => {
   return true;
 }
 
-module.export = {
+module.exports = {
   isInHorisontal,
 }
 
