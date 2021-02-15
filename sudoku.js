@@ -2,7 +2,6 @@ const strToArr = require('./strtoarr');
 const isInHorisontal = require('./isInHorisontal');
 const isInVertical = require('./isInVertical');
 const isInBlock = require('./isInBlock');
-const { isArray } = require('util');
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -11,14 +10,11 @@ const { isArray } = require('util');
 // How you represent your board is up to you!
 function solve(boardString) {
   // const board = strToArr(boardString);
-  const board = strToArr('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+  const board = strToArr('-8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-');
   const checkArr = [];
   prettyBoard(board);
-  let counter = 0;
 
-  function step(board) {
-    if (isSolved(board)) return board;
-
+  while (!isSolved(board)) {
     for (let y = 0; y < board.length; y++) {
       for (let x = 0; x < board.length; x++) {
         if (board[y][x] === '-') {
@@ -32,17 +28,18 @@ function solve(boardString) {
             }
           }
           if (checkArr.length === 1) {
-            board[y][x] = checkArr[0]; // later: toString();
+            board[y][x] = checkArr[0].toString();
             checkArr.length = 0;
           }
         }
         checkArr.length = 0;
       }
     }
-    prettyBoard(board);
-    counter++;
   }
-  console.log(step(board));
+  console.log('Result');
+  prettyBoard(board);
+
+  return 
 }
 
 // Returns a boolean indicating whether
@@ -67,7 +64,6 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-  //console.clear()
   console.log('---------------------');
   board.forEach((line) => console.log('| ' + line.join(' ') + ' |'));
   console.log('---------------------');
