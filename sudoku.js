@@ -9,12 +9,15 @@ const isInBlock = require('./isInBlock');
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  // const board = strToArr(boardString);
-  const board = strToArr('-8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-');
+  const board = strToArr(boardString);
   const checkArr = [];
   prettyBoard(board);
+  let boardCopy = [];
 
-  while (!isSolved(board)) {
+  while (board.join('') !== boardCopy.join('')) {
+    boardCopy.length = 0;
+    boardCopy = [...JSON.parse(JSON.stringify(board))];
+
     for (let y = 0; y < board.length; y++) {
       for (let x = 0; x < board.length; x++) {
         if (board[y][x] === '-') {
@@ -36,10 +39,8 @@ function solve(boardString) {
       }
     }
   }
-  console.log('Result');
-  prettyBoard(board);
 
-  return 
+  return board;
 }
 
 // Returns a boolean indicating whether
@@ -64,12 +65,11 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-  console.log('---------------------');
-  board.forEach((line) => console.log('| ' + line.join(' ') + ' |'));
-  console.log('---------------------');
+  let consoleString = '---------------------\n';
+  board.forEach((line) => (consoleString += '| ' + line.join(' ') + ' |\n'));
+  consoleString += '---------------------\n';
+  return consoleString;
 }
-
-solve();
 
 // Exports all the functions to use them in another file.
 module.exports = {
