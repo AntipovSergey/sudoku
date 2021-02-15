@@ -1,5 +1,5 @@
 const strToArr = require('./strtoarr');
-const { isInHorisontal } = require('./isInHorisontal');
+const isInHorisontal = require('./isInHorisontal');
 const isInVertical = require('./isInVertical');
 const isInBlock = require('./isInBlock');
 
@@ -26,7 +26,7 @@ function solve(boardString) {
           }
         }
         if (checkArr.length === 1) {
-          console.log(`board[${y}][${x}]`,board[y][x]);
+          console.log(`board[${y}][${x}]`, board[y][x]);
           board[y][x] = checkArr[0]; // later: toString();
           checkArr.length = 0;
         }
@@ -44,9 +44,7 @@ solve();
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
-  
-}
+function isSolved(board) {}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
