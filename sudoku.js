@@ -1,7 +1,7 @@
-const strToArr = require('./strtoarr');
-const isInHorisontal = require('./isInHorisontal');
-const isInVertical = require('./isInVertical');
-const isInBlock = require('./isInBlock');
+const strToArr = require("./strtoarr");
+const isInHorisontal = require("./isInHorisontal");
+const isInVertical = require("./isInVertical");
+const isInBlock = require("./isInBlock");
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -17,7 +17,7 @@ function solve(boardString) {
 
   for (let y = 0; y < board.length; y++) {
     for (let x = 0; x < board.length; x++) {
-      if (board[y][x] === '-') {
+      if (board[y][x] === "-") {
         for (let i = 1; i <= 9; i++) {
           if (
             isInHorisontal(i.toString(), y, x, board) &&
