@@ -3,6 +3,30 @@
 // something representing a board after
 // your solver has tried to solve it.
 
+function createBoard(str) {
+  const matrix = [];
+  let idx = 0;
+  for (let i = 0; i < 9; i += 1) {
+    matrix[i] = [];
+    for (let j = 0; j < 9; j += 1) {
+      matrix[i].push(str[idx]);
+      idx += 1
+    }
+  }
+  return matrix;
+}
+
+function findEmpty(matrix) {
+  let result = null;
+  for (let i = 0; i < matrix.length; i += 1) {
+    for (let j = 0; j < matrix.length; j++) {
+      if(matrix[i][j] === '-'){
+        return [i, j];
+      }
+    }
+  }
+}
+
 const { iteratee } = require("lodash")
 
 // How you represent your board is up to you!
