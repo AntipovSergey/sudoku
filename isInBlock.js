@@ -1,5 +1,4 @@
 const isInBlock = (value, y, x, board) => {
-  
   // const findFrom = (num) => {
   //   for (let i = num; i >= 0; i--) {
   //     if (i % 3 === 0) return i;
@@ -26,3 +25,5 @@ const isInBlock = (value, y, x, board) => {
   }
   return true;
 };
+
+module.exports = isInBlock;
