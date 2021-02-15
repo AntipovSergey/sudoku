@@ -1,8 +1,3 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-
 function createBoard(str) {
   const matrix = [];
   let idx = 0;
@@ -27,26 +22,21 @@ function findEmpty(matrix) {
   }
 }
 
-const { iteratee } = require("lodash")
-
-// How you represent your board is up to you!
-function solve(boardString) {
-
-}
-const checkVertical = (board, y, x) => {
+const checkVertical = (board, x) => {
   let allvariants = ['1','2','3','4','5','6','7','8','9'];
-  let news = [];
   for(let i = 0; i < board.length; i += 1){
-    // allvariants = allvariants.filter(el => el !== board[i][x]);
-    if (board[i][x].push(news)) {
-      return false;
-    }
+     allvariants = allvariants.filter(el => el !== board[i][x]);
   }
-  return true;
-  // return allvariants;
+  return allvariants;
 } 
 
-console.log(checkVertical(board, 0,2))
+const checkGorizontal = (board, y, arr) => {
+  let allvariants = arr;
+  for(let i = 0; i < board.length; i += 1){
+     allvariants = allvariants.filter(el => el !== board[y][i]);
+  }
+  return allvariants;
+} 
 
 const board = [
   ['1','-','5','8','-','2','-','-','-'],
@@ -60,47 +50,23 @@ const board = [
   ['6','-','-','3','-','8','9','-','-']
   ] 
 
-// console.log(board);
 
-// const gorizontal = (arr, y, x) => {
-//   // let 
-//   for (let i = 0; i < arr.length; i++) {
-//     // const element = arr[i];
-//     if(board[i] === '-') {
-//     
-//   }
-// }
+// How you represent your board is up to you!
+function solve(boardString) {
+  const board = createBoard(boardString);
+  const coord = findEmpty(board);
 
+  const [x, y] = coord;
 
-  
-// let gorizontal = function() {
-//   const find = (board) => {
-//     for (let i = 0; i < 9; i++) {
-//       for (let j = 0; j < 9; j++) {
-//         if(board[i][j] === '-') {
-//             return [i,j];
-//       } else if(board[i][j] != j ) {
-              // return false;
-//         }
-//     }
-//   }
-// }
+  const vertical = checkVertical(board, y);
+  const gorizontal = checkGorizontal(board, x, vertical);
 
+  console.log(gorizontal);
 
-const board = [
-['1','-','5','8','-','2','-','-','-'],
-['-','9','-','-','7','6','4','-','5'],
-['2','-','-','4','-','-','8','1','9'],
-['-','1','9','-','-','7','3','-','6'],
-['7','6','2','-','8','3','-','9','-'],
-['-','-','-','-','6','1','-','5','-'],
-['-','-','7','6','-','-','-','3','-'],
-['4','3','-','-','2','-','5','-','1'],
-['6','-','-','3','-','8','9','-','-']
-] 
+}
+let text = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
 
-
-// pos = [0, 1]
+solve(text)
 
 function blockCheckout(board) {
   let newArr = [];
@@ -112,27 +78,7 @@ function blockCheckout(board) {
     newArr.push(arr);
   }
   return newArr;
-  // const size = 9;
-  // const boxSize = 3;
-  // let boxRow;
-  // let boxCol;
-
-  // for (let i = 0; i < size; i++) {
-  //   for (let j = 0; j < size; j++) {
-  //     boxRow = Math.floor(board[i] / boxSize) * boxSize;
-  //     boxCol = Math.floor(board[i][j] / boxSize) * boxSize;
-  //   }
-  // }
-
-  // for (let i = boxRow; i < boxRow + boxSize; i++) {
-  //   for (let j = boxCol; j < boxCol + boxSize; j++) {
-  //     if (board[i][j] === num && )
-  //   }
-    
-  // }
 }
-console.log(blockCheckout(board));
-
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
