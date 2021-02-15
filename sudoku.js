@@ -9,6 +9,20 @@ const { iteratee } = require("lodash")
 function solve(boardString) {
 
 }
+const checkVertical = (board, y, x) => {
+  let allvariants = ['1','2','3','4','5','6','7','8','9'];
+  let news = [];
+  for(let i = 0; i < board.length; i += 1){
+    // allvariants = allvariants.filter(el => el !== board[i][x]);
+    if (board[i][x].push(news)) {
+      return false;
+    }
+  }
+  return true;
+  // return allvariants;
+} 
+
+console.log(checkVertical(board, 0,2))
 
 const board = [
   ['1','-','5','8','-','2','-','-','-'],
