@@ -32,7 +32,7 @@ function solve(boardString) {
   let boardCopy = [];
   console.log('board start:\n', prettyBoard(board));
   solveEasy(board);
-
+  //console.log();
   return board;
 }
 
@@ -64,11 +64,25 @@ function solveEasy(board, boardCopy = []) {
       }
     }
   }
+  console.log(getTwoEmpty(board))
   return board;
 }
 
 function solveMedium(board, boardCopy = []) {}
 
+function getTwoEmpty(board) {
+  let tmpArr = [...board] // если сломалось смотреть сюда
+  let possible = []
+  for(let i = 0; i < tmpArr.length; i++){
+    if((tmpArr[i].filter((el) => el === '-').length) == 2){
+      possible.push([i, tmpArr[i].indexOf('-')], [i, tmpArr[i].lastIndexOf('-')])
+      for (let j = 1; j <= tmpArr[i].length; j++){
+        if(!tmpArr[i].includes(j.toString())) possible.push(j);
+      }
+      return possible;
+    }
+  }
+}
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
