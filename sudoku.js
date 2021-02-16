@@ -28,20 +28,34 @@ const puzzles = [
 // How you represent your board is up to you!
 function solve(boardString) {
   // const board = strToArr(boardString);
-  const board = strToArr(puzzles[5]);
-  let boardCopy = [];
+  const board = strToArr(puzzles[6]);
+  // let boardCopy = [];
   console.log('board start:\n', prettyBoard(board));
   solveEasy(board);
-  console.log('board after first Easy:\n', prettyBoard(board));
 
-  if (!isSolved(board)) {
-    if (getTwoEmptyInRow(board)) {
-      solveMedium(board, getTwoEmptyInRow(board));
-    }
-    if (getThreeEmptyInRow(board)) {
-      solveMedium(board, getThreeEmptyInRow(board));
-    }
-  }
+  // if (getTwoEmptyInRow(board)) {
+  //   solveMedium(board, getTwoEmptyInRow(board));
+  // }
+  // if (getThreeEmptyInRow(board)) {
+  //   solveMedium(board, getThreeEmptyInRow(board));
+  // }
+  // if (getThreeEmptyInColumn(board).length > 0) {
+  //   getThreeEmptyInColumn(board).forEach((guess) => {
+  //     solveMedium(board, guess);
+  //   });
+  // }
+
+  // if (!isSolved(board)) {
+  //   if (getTwoEmptyInRow(board)) {
+  //     solveMedium(board, getTwoEmptyInRow(board));
+  //   }
+  //   if (getThreeEmptyInRow(board)) {
+  //     solveMedium(board, getThreeEmptyInRow(board));
+  //   }
+  //   if (getThreeEmptyInColumn(board)) {
+  //     solveMedium(board, getThreeEmptyInColumn(board));
+  //   }
+  // }
   return board;
 }
 
@@ -73,9 +87,6 @@ function solveEasy(board, boardCopy = []) {
       }
     }
   }
-
-  // console.log('getTwoEmptyInRow', getTwoEmptyInRow(board));
-  // console.log('getThreeEmptyInRow', getThreeEmptyInRow(board));
   return board;
 }
 
@@ -94,10 +105,6 @@ function solveMedium(board, guessArray, boardCopy = []) {
       boardCopy[coord1[0]][coord1[1]] = val1.toString();
       boardCopy[coord2[0]][coord2[1]] = val2.toString();
     }
-    // } else {
-    //   // boardCopy[coord1[0]][coord1[1]] = val2.toString();
-    //   // boardCopy[coord2[0]][coord2[1]] = val1.toString();
-    // }
 
     solveEasy(boardCopy);
 
@@ -135,7 +142,7 @@ function solveMedium(board, guessArray, boardCopy = []) {
     solveEasy(boardCopy);
     if (isSolved) {
       board = boardCopy;
-      console.log('solved', prettyBoard(board));
+      console.log('solved1', prettyBoard(board));
     } else {
       boardCopy[coord1[0]][coord1[1]] = val2.toString();
       boardCopy[coord2[0]][coord2[1]] = val3.toString();
@@ -143,7 +150,7 @@ function solveMedium(board, guessArray, boardCopy = []) {
       solveEasy(boardCopy);
       if (isSolved) {
         board = boardCopy;
-        console.log('solved', prettyBoard(board));
+        console.log('solved2', prettyBoard(board));
       } else {
         boardCopy[coord1[0]][coord1[1]] = val3.toString();
         boardCopy[coord2[0]][coord2[1]] = val1.toString();
@@ -151,7 +158,7 @@ function solveMedium(board, guessArray, boardCopy = []) {
         solveEasy(boardCopy);
         if (isSolved) {
           board = boardCopy;
-          console.log('solved', prettyBoard(board));
+          console.log('solved3', prettyBoard(board));
         } else {
           boardCopy[coord1[0]][coord1[1]] = val1.toString();
           boardCopy[coord2[0]][coord2[1]] = val3.toString();
@@ -159,7 +166,7 @@ function solveMedium(board, guessArray, boardCopy = []) {
           solveEasy(boardCopy);
           if (isSolved) {
             board = boardCopy;
-            console.log('solved', prettyBoard(board));
+            console.log('solved4', prettyBoard(board));
           } else {
             boardCopy[coord1[0]][coord1[1]] = val3.toString();
             boardCopy[coord2[0]][coord2[1]] = val2.toString();
@@ -167,7 +174,7 @@ function solveMedium(board, guessArray, boardCopy = []) {
             solveEasy(boardCopy);
             if (isSolved) {
               board = boardCopy;
-              console.log('solved', prettyBoard(board));
+              console.log('solved5', prettyBoard(board));
             } else {
               boardCopy[coord1[0]][coord1[1]] = val2.toString();
               boardCopy[coord2[0]][coord2[1]] = val1.toString();
@@ -175,7 +182,7 @@ function solveMedium(board, guessArray, boardCopy = []) {
               solveEasy(boardCopy);
               if (isSolved) {
                 board = boardCopy;
-                console.log('solved', prettyBoard(board));
+                console.log('solved6', prettyBoard(board));
               } else {
                 console.log('END');
               }
@@ -184,20 +191,6 @@ function solveMedium(board, guessArray, boardCopy = []) {
         }
       }
     }
-
-    // boardCopy[coord1[0]][coord1[1]] = val1.toString();
-    // boardCopy[coord2[0]][coord2[1]] = val2.toString();
-
-    // if (isSolved(boardCopy)) {
-    //   console.log(prettyBoard(boardCopy));
-    //   console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
-    // } else {
-    //   boardCopy[coord1[0]][coord1[1]] = val2.toString();
-    //   boardCopy[coord2[0]][coord2[1]] = val1.toString();
-
-    //   console.log(prettyBoard(boardCopy));
-    //   console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
-    // }
   }
 }
 
@@ -233,6 +226,38 @@ function getThreeEmptyInRow(board) {
     }
   }
 }
+
+function getThreeEmptyInColumn(board) {
+  let tmpArr = [...board]; // если сломалось смотреть сюда
+  let result = [];
+  let possible = [];
+  console.log(prettyBoard(board));
+
+  for (let x = 0; x < board.length; x++) {
+    let rowNum = x;
+    for (let y = 0; y < board.length; y++) {
+      if (tmpArr[y][x] === '-') {
+        possible.push([y, x]);
+      }
+    }
+
+    if (possible.length <= 3) {
+      let str = '';
+      for (let k = 0; k < board.length; k++) {
+        if (tmpArr[k][rowNum] !== '-') str += tmpArr[k][rowNum];
+      }
+      for (let k = 1; k <= 9; k++) {
+        if (!str.split('').includes(k.toString())) {
+          possible.push(k.toString());
+        }
+      }
+      result.push(JSON.parse(JSON.stringify(possible)));
+      possible.length = 0;
+    }
+  }
+  return result;
+}
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
