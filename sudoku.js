@@ -53,38 +53,96 @@ function blockCheckout(board, arrValue, x, y) {
   }
 
   const result = arrValue.filter(el => !el.includes(newArr));
-  // console.log(result);
-  // console.log(board[x][y]);
+  board[x][y] = result;
+  
 
-  board[x][y] = result[0];
-  // console.log(board);
   return board;
-
 }
 
 
-
-
-
-// How you represent your board is up to you!
-function solve(boardString) {
-  const board = createBoard(boardString);
+function singleNum(matrix) {
+  for (let i = 0; i < matrix.length; i += 1) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (matrix[i][j].length === 1) {
+        matrix[i][j] = matrix[i][j][0];
+      }
+    }
+  }
   
+  return matrix;
+}
+
+// let text = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+let text = '--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3';
+
+// console.log(createBoard(text));
+// How you represent your board is up to you!
+let count = 0;
+
+function lengthCheck (board, bLength) {
+  
+}
+
+function solve(board, lastBoard) {
   const coord = findEmpty(board);
-  if(!findEmpty(board)) return board; 
+  
+  const prevBoard = [...JSON.parse(JSON.stringify(lastBoard))];
 
+  console.log(prevBoard.toString(), 'prev');
+  console.log(board.toString(), 'Board', '\n');
+  
+  if(!findEmpty(board)) {
+    if () {
+
+    }
+    // if (prevBoard.toString() === board.toString()) {
+    //   return board;
+    // }
+    // for (let i = 0; i < board.length; i += 1) {
+    //   for (let j = 0; j < board.length; j++) {
+    //     if (board[i][j].length > 1) {
+    //       board[i][j] = '-';
+    //     }
+    //   }
+    // }
+    // if(findEmpty(board)) {
+    //   solve(board, prevBoard);
+    // }
+    
+    return board;
+  } 
+
+  
   const [x, y] = coord;
-
+  
   const vertical = checkVertical(board, y);
   const gorizontal = checkGorizontal(board, x, vertical);
-
+  
   const value =  blockCheckout(board, gorizontal, x, y);
-  console.log(value);
+  const updateBoard = singleNum(value);
 
+
+  // if (prevBoard.toString() === lastBoard.toString()) {
+  //   return updateBoard;
+  // }
+  
+  // console.log((updateBoard.includes('-')));
+  
+  // console.log(prevBoard.every((v,i)=>v === updateBoard[i]));
+  // if (!(updateBoard.flat(Infinity).includes('-'))) {
+  //   return updateBoard;
+  // }
+
+
+  
+
+  return solve(updateBoard, board);
+  
+  
 }
-let text = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-solve(text)
 
+const board = createBoard(text);
+console.log(solve(board, board));
 
 
 // Returns a boolean indicating whether
