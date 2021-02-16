@@ -28,23 +28,27 @@ const puzzles = [
 // How you represent your board is up to you!
 function solve(boardString) {
   // const board = strToArr(boardString);
-  const board = strToArr(puzzles[0]);
+  const board = strToArr(puzzles[5]);
   let boardCopy = [];
   console.log('board start:\n', prettyBoard(board));
   solveEasy(board);
+  console.log('board after first Easy:\n', prettyBoard(board));
+
   if (!isSolved(board)) {
-    // solveMedium(board);
+    if (getTwoEmptyInRow(board)) {
+      solveMedium(board, getTwoEmptyInRow(board));
+    }
+    if (getThreeEmptyInRow(board)) {
+      solveMedium(board, getThreeEmptyInRow(board));
+    }
   }
-  //console.log();
   return board;
 }
 
 function solveEasy(board, boardCopy = []) {
   const checkArr = [];
 
-  // while (board.join('') !== boardCopy.join('')) {
-  let r = 0;
-  while (r < 20) {
+  while (board.join('') !== boardCopy.join('')) {
     boardCopy.length = 0;
     boardCopy = [...JSON.parse(JSON.stringify(board))];
 
@@ -68,41 +72,141 @@ function solveEasy(board, boardCopy = []) {
         checkArr.length = 0;
       }
     }
-    console.log(board.toString());
-    r+=1;
   }
 
-  console.log(prettyBoard(board));
-  console.log(getThreeEmpty(board));
+  // console.log('getTwoEmptyInRow', getTwoEmptyInRow(board));
+  // console.log('getThreeEmptyInRow', getThreeEmptyInRow(board));
   return board;
 }
 
-function solveMedium(board, boardCopy = []) {
-  boardCopy = [...JSON.parse(JSON.stringify(board))];
-  const [coord1, coord2, val1, val2] = getTwoEmpty(board);
-  boardCopy[coord1[0]][coord1[1]] = val1.toString();
-  boardCopy[coord2[0]][coord2[1]] = val2.toString();
-  if (isSolved(boardCopy)) {
-    console.log(prettyBoard(boardCopy));
-    console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
-  } else {
-    boardCopy[coord1[0]][coord1[1]] = val2.toString();
-    boardCopy[coord2[0]][coord2[1]] = val1.toString();
+function solveMedium(board, guessArray, boardCopy = []) {
+  console.log('guessArray', guessArray);
+  console.log('guessArray board', prettyBoard(board));
+  const checkArr = [];
+
+  if (guessArray.length === 4) {
+    boardCopy = [...JSON.parse(JSON.stringify(board))];
+    const [coord1, coord2, val1, val2] = guessArray;
+    if (
+      isInVertical(val1.toString(), coord1[0], coord1[1], board) &&
+      isInBlock(val1.toString(), coord1[0], coord1[1], board)
+    ) {
+      boardCopy[coord1[0]][coord1[1]] = val1.toString();
+      boardCopy[coord2[0]][coord2[1]] = val2.toString();
+    }
+    // } else {
+    //   // boardCopy[coord1[0]][coord1[1]] = val2.toString();
+    //   // boardCopy[coord2[0]][coord2[1]] = val1.toString();
+    // }
+
+    solveEasy(boardCopy);
+
+    if (isSolved(boardCopy)) {
+      board = boardCopy;
+    } else {
+      console.log('else');
+      boardCopy[coord1[0]][coord1[1]] = val2.toString();
+      boardCopy[coord2[0]][coord2[1]] = val1.toString();
+      solveEasy(boardCopy);
+      board = boardCopy;
+      console.log('boardChange', prettyBoard(board));
+    }
+
+    console.log('board = boardCopy', prettyBoard(board));
+
+    if (isSolved(boardCopy)) {
+      console.log(prettyBoard(boardCopy));
+      console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
+    }
 
     console.log(prettyBoard(boardCopy));
     console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
   }
+  // =============================================================
+  if (guessArray.length === 6) {
+    boardCopy = [...JSON.parse(JSON.stringify(board))];
+    const [coord1, coord2, coord3, val1, val2, val3] = guessArray;
+    const vals = [val1, val2, val3];
+
+    boardCopy[coord1[0]][coord1[1]] = val1.toString();
+    boardCopy[coord2[0]][coord2[1]] = val2.toString();
+    boardCopy[coord3[0]][coord3[1]] = val3.toString();
+
+    solveEasy(boardCopy);
+    if (isSolved) {
+      board = boardCopy;
+      console.log('solved', prettyBoard(board));
+    } else {
+      boardCopy[coord1[0]][coord1[1]] = val2.toString();
+      boardCopy[coord2[0]][coord2[1]] = val3.toString();
+      boardCopy[coord3[0]][coord3[1]] = val1.toString();
+      solveEasy(boardCopy);
+      if (isSolved) {
+        board = boardCopy;
+        console.log('solved', prettyBoard(board));
+      } else {
+        boardCopy[coord1[0]][coord1[1]] = val3.toString();
+        boardCopy[coord2[0]][coord2[1]] = val1.toString();
+        boardCopy[coord3[0]][coord3[1]] = val2.toString();
+        solveEasy(boardCopy);
+        if (isSolved) {
+          board = boardCopy;
+          console.log('solved', prettyBoard(board));
+        } else {
+          boardCopy[coord1[0]][coord1[1]] = val1.toString();
+          boardCopy[coord2[0]][coord2[1]] = val3.toString();
+          boardCopy[coord3[0]][coord3[1]] = val2.toString();
+          solveEasy(boardCopy);
+          if (isSolved) {
+            board = boardCopy;
+            console.log('solved', prettyBoard(board));
+          } else {
+            boardCopy[coord1[0]][coord1[1]] = val3.toString();
+            boardCopy[coord2[0]][coord2[1]] = val2.toString();
+            boardCopy[coord3[0]][coord3[1]] = val1.toString();
+            solveEasy(boardCopy);
+            if (isSolved) {
+              board = boardCopy;
+              console.log('solved', prettyBoard(board));
+            } else {
+              boardCopy[coord1[0]][coord1[1]] = val2.toString();
+              boardCopy[coord2[0]][coord2[1]] = val1.toString();
+              boardCopy[coord3[0]][coord3[1]] = val3.toString();
+              solveEasy(boardCopy);
+              if (isSolved) {
+                board = boardCopy;
+                console.log('solved', prettyBoard(board));
+              } else {
+                console.log('END');
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // boardCopy[coord1[0]][coord1[1]] = val1.toString();
+    // boardCopy[coord2[0]][coord2[1]] = val2.toString();
+
+    // if (isSolved(boardCopy)) {
+    //   console.log(prettyBoard(boardCopy));
+    //   console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
+    // } else {
+    //   boardCopy[coord1[0]][coord1[1]] = val2.toString();
+    //   boardCopy[coord2[0]][coord2[1]] = val1.toString();
+
+    //   console.log(prettyBoard(boardCopy));
+    //   console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
+    // }
+  }
 }
 
-function getTwoEmpty(board) {
+function getTwoEmptyInRow(board) {
   let tmpArr = [...board]; // если сломалось смотреть сюда
   let possible = [];
   for (let i = 0; i < tmpArr.length; i++) {
     if (tmpArr[i].filter((el) => el === '-').length == 2) {
-      possible.push(
-        [i, tmpArr[i].indexOf('-')],
-        [i, tmpArr[i].lastIndexOf('-')]
-      );
+      possible.push([i, tmpArr[i].indexOf('-')], [i, tmpArr[i].lastIndexOf('-')]);
       for (let j = 1; j <= tmpArr[i].length; j++) {
         if (!tmpArr[i].includes(j.toString())) possible.push(j);
       }
@@ -111,14 +215,14 @@ function getTwoEmpty(board) {
   }
 }
 
-function getThreeEmpty(board) {
+function getThreeEmptyInRow(board) {
   let tmpArr = [...board]; // если сломалось смотреть сюда
   let possible = [];
   for (let i = 0; i < tmpArr.length; i++) {
     if (tmpArr[i].filter((el) => el === '-').length == 3) {
       possible.push(
         [i, tmpArr[i].indexOf('-')],
-        [i, tmpArr[i].indexOf('-', tmpArr[i].indexOf('-'))],
+        [i, tmpArr[i].indexOf('-', tmpArr[i].indexOf('-') + 1)],
         [i, tmpArr[i].lastIndexOf('-')]
       );
       for (let j = 1; j <= tmpArr[i].length; j++) {
@@ -157,7 +261,7 @@ function prettyBoard(board) {
   return consoleString;
 }
 
-console.log(prettyBoard(solve()));
+console.log('result\n', prettyBoard(solve()));
 
 // Exports all the functions to use them in another file.
 module.exports = {
