@@ -28,10 +28,13 @@ const puzzles = [
 // How you represent your board is up to you!
 function solve(boardString) {
   // const board = strToArr(boardString);
-  const board = strToArr(puzzles[5]);
+  const board = strToArr(puzzles[6]);
   let boardCopy = [];
   console.log('board start:\n', prettyBoard(board));
   solveEasy(board);
+  if (!isSolved(board)) {
+    // solveMedium(board);
+  }
   //console.log();
   return board;
 }
@@ -68,16 +71,34 @@ function solveEasy(board, boardCopy = []) {
   return board;
 }
 
-function solveMedium(board, boardCopy = []) {}
+function solveMedium(board, boardCopy = []) {
+  boardCopy = [...JSON.parse(JSON.stringify(board))];
+  const [coord1, coord2, val1, val2] = getTwoEmpty(board);
+  boardCopy[coord1[0]][coord1[1]] = val1.toString();
+  boardCopy[coord2[0]][coord2[1]] = val2.toString();
+  if (isSolved(boardCopy)) {
+    console.log(prettyBoard(boardCopy));
+    console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
+  }else{
+  boardCopy[coord1[0]][coord1[1]] = val2.toString();
+  boardCopy[coord2[0]][coord2[1]] = val1.toString();
+
+  console.log(prettyBoard(boardCopy));
+  console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
+  }
+}
 
 function getTwoEmpty(board) {
-  let tmpArr = [...board] // если сломалось смотреть сюда
-  let possible = []
-  for(let i = 0; i < tmpArr.length; i++){
-    if((tmpArr[i].filter((el) => el === '-').length) == 2){
-      possible.push([i, tmpArr[i].indexOf('-')], [i, tmpArr[i].lastIndexOf('-')])
-      for (let j = 1; j <= tmpArr[i].length; j++){
-        if(!tmpArr[i].includes(j.toString())) possible.push(j);
+  let tmpArr = [...board]; // если сломалось смотреть сюда
+  let possible = [];
+  for (let i = 0; i < tmpArr.length; i++) {
+    if (tmpArr[i].filter((el) => el === '-').length == 2) {
+      possible.push(
+        [i, tmpArr[i].indexOf('-')],
+        [i, tmpArr[i].lastIndexOf('-')]
+      );
+      for (let j = 1; j <= tmpArr[i].length; j++) {
+        if (!tmpArr[i].includes(j.toString())) possible.push(j);
       }
       return possible;
     }
