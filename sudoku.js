@@ -28,7 +28,7 @@ const puzzles = [
 // How you represent your board is up to you!
 function solve(boardString) {
   // const board = strToArr(boardString);
-  const board = strToArr(puzzles[6]);
+  const board = strToArr(puzzles[0]);
   let boardCopy = [];
   console.log('board start:\n', prettyBoard(board));
   solveEasy(board);
@@ -42,7 +42,9 @@ function solve(boardString) {
 function solveEasy(board, boardCopy = []) {
   const checkArr = [];
 
-  while (board.join('') !== boardCopy.join('')) {
+  // while (board.join('') !== boardCopy.join('')) {
+  let r = 0;
+  while (r < 20) {
     boardCopy.length = 0;
     boardCopy = [...JSON.parse(JSON.stringify(board))];
 
@@ -66,8 +68,12 @@ function solveEasy(board, boardCopy = []) {
         checkArr.length = 0;
       }
     }
+    console.log(board.toString());
+    r+=1;
   }
-  console.log(getTwoEmpty(board))
+
+  console.log(prettyBoard(board));
+  console.log(getThreeEmpty(board));
   return board;
 }
 
@@ -79,12 +85,12 @@ function solveMedium(board, boardCopy = []) {
   if (isSolved(boardCopy)) {
     console.log(prettyBoard(boardCopy));
     console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
-  }else{
-  boardCopy[coord1[0]][coord1[1]] = val2.toString();
-  boardCopy[coord2[0]][coord2[1]] = val1.toString();
+  } else {
+    boardCopy[coord1[0]][coord1[1]] = val2.toString();
+    boardCopy[coord2[0]][coord2[1]] = val1.toString();
 
-  console.log(prettyBoard(boardCopy));
-  console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
+    console.log(prettyBoard(boardCopy));
+    console.log('solveeasy\n', prettyBoard(solveEasy(boardCopy)));
   }
 }
 
@@ -100,6 +106,25 @@ function getTwoEmpty(board) {
       for (let j = 1; j <= tmpArr[i].length; j++) {
         if (!tmpArr[i].includes(j.toString())) possible.push(j);
       }
+      return possible;
+    }
+  }
+}
+
+function getThreeEmpty(board) {
+  let tmpArr = [...board]; // если сломалось смотреть сюда
+  let possible = [];
+  for (let i = 0; i < tmpArr.length; i++) {
+    if (tmpArr[i].filter((el) => el === '-').length == 3) {
+      possible.push(
+        [i, tmpArr[i].indexOf('-')],
+        [i, tmpArr[i].indexOf('-', tmpArr[i].indexOf('-'))],
+        [i, tmpArr[i].lastIndexOf('-')]
+      );
+      for (let j = 1; j <= tmpArr[i].length; j++) {
+        if (!tmpArr[i].includes(j.toString())) possible.push(j);
+      }
+
       return possible;
     }
   }
