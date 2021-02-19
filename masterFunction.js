@@ -19,23 +19,22 @@ function sudokuContainer(sudoku) {
   return subarray
 }
 
-let sudokuStart = sudokuContainer(sudoku)
-
 // ------------------------------------------------------------------------------------------------------
 // Мастер функция
 
 function walker(sudoku) {
-  sudoku.forEach(element => {
+  let sudokuArray = sudokuContainer(sudoku)
+  sudokuArray.forEach(element => {
     console.log(element);
     element.forEach(el => {
-      if(isEmpty(el)) {
-        if(isHorizontal() && isVertical() && isBox()) {
-          fillBlock()
-        } 
-      }
+      // if(isEmpty(el)) {
+      //   if(isHorizontal() && isVertical() && isBox()) {
+      //     fillBlock()
+      //   } 
+      // }
     });
   });
 }
 
-console.log(walker(sudokuStart));
+console.log(walker(sudoku));
 
