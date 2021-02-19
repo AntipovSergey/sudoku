@@ -1,8 +1,8 @@
-// const {isEmpty} = require('./isEmpty')
+const {isEmpty} = require('./isEmpty')
 // const {isHorizontal} = require('./isHorizontal')
 // const {isVertical} = require('./isVertical')
 // const {isBox} = require('./isBox')
-// const {fillBlock} = require('./fillBlock')
+const {fillBlock} = require('./fillBlock')
 
 // ---------------------------------------------------------------------------------------------------
 // Перевод строки в двумерный массив
