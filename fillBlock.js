@@ -14,7 +14,6 @@ function fillBlock(array,num,i,j){
     }
   }
 
-
     module.exports = {
       fillBlock,
     }
