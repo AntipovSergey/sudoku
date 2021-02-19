@@ -10,6 +10,7 @@ function createArray(string) {
   return newArray
 }
 
+
 console.table(createArray(string))
 
 
