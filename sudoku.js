@@ -11,6 +11,9 @@ let search = function placeNumber(board) {
       if(board[str][col] == '-'){
         return [str, col]
       }
+      else{
+        return 'Судока заполнена'
+      }
     }
   }
 }
