@@ -1,0 +1,23 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "recursion.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ondrinevg/project-sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ondrinevg/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/ondrinevg/project-sudoku#readme",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}
