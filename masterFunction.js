@@ -1,7 +1,7 @@
 // const {isEmpty} = require('./isEmpty')
-// const {isHorizontal} = require('./isHorizontal')
-// const {isVertical} = require('./isVertical')
-// const {isBox} = require('./isBox')
+// const {isHorizontalGood} = require('./isHorizontalGood')
+// const {isVerticalGood} = require('./isVerticalGood')
+// const {isBoxGood} = require('./isBox')
 // const {fillBlock} = require('./fillBlock')
 
 // ---------------------------------------------------------------------------------------------------
@@ -27,11 +27,15 @@ function walker(sudoku) {
   sudokuArray.forEach(element => {
     console.log(element);
     element.forEach(el => {
-      // if(isEmpty(el)) {
-      //   if(isHorizontal() && isVertical() && isBox()) {
-      //     fillBlock()
-      //   } 
-      // }
+      if(isEmpty(el)) {
+        for (let digit = 1; digit < 9; digit++) {
+        if(isHorizontalGood() && isVerticalGood() && isBoxGood()) {
+          el = digit
+        } else {
+          rescueRecursion()
+        }
+      }
+    }
     });
   });
 }
