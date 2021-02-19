@@ -3,6 +3,7 @@ const fs = require('fs');
 // Use functions from sudoku.js file.
 const sudoku = require('./sudoku');
 
+// console.log(sudoku);
 // The sudoku puzzles that your program will solve can be found
 // in the sudoku-puzzles.txt file.
 //

@@ -33,18 +33,13 @@ function checkBoard(board, row, col) {
 
 
 
+const searchEmpty = searchEmpty(board)
 
+solve(boardString){
+  (searchEmpty === null) ? true : false
+  
 
-// solve(boardString){
-
-
-
-
-
-
-
-
-// }
+}
 
 
 
