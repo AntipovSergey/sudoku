@@ -1,14 +1,4 @@
-const board = [
-  [0, 5, 1, 3, 6, 2, 7, 0, 0],
-  [0, 4, 0, 0, 5, 8, 0, 0, 0],
-  [0, 0, 0, 4, 0, 0, 0, 2, 5],
-  [0, 8, 0, 0, 0, 0, 9, 0, 3],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [7, 0, 5, 0, 0, 0, 0, 8, 0],
-  [1, 2, 0, 0, 0, 9, 0, 0, 0],
-  [0, 0, 0, 2, 8, 0, 0, 6, 0],
-  [0, 0, 8, 5, 3, 4, 2, 9, 0]
-];
+
 /* На вход функции подаются board, row = i, value */
 const checkRow = ((board, row, value) => {
  for(let i = 0; i < board[row].length; i++) {
@@ -51,8 +41,3 @@ const checkSquare = ((board, row, column, value) => {
 	checkSquare
 }
 
-
-
-//  console.log('checkRow:',checkRow(board,3, 4));
-//  console.log(checkColumn(board,4, 3));
- console.log(checkSquare(board, 8, 8, 6));
