@@ -1,3 +1,4 @@
+const sudoku = require("./sudoku");
 let board =
   "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 let board2 =
@@ -28,13 +29,26 @@ let board14 =
   "----------2-65-------18--4--9----6-4-3---57-------------------73------9----------";
 let board15 =
   "---------------------------------------------------------------------------------";
-
+let checkBox = boxMaiker(board);
+function boxMaiker(board) {
+  board = board.match(/(\S{3})/g);
+  let arrBoxes = [];
+  let alreadyIncludesInd = [];
+  for (let i = 0; i < board.length; i++) {
+    if (!alreadyIncludesInd.includes(i)) {
+      let a = [board[i], board[i + 3], board[i + 6]].join("").split(",");
+      arrBoxes.push(a);
+      alreadyIncludesInd.push(i, i + 3, i + 6);
+    }
+  }
+  return arrBoxes;
+}
 function solve(boardString) {
   for (let row = 0; row < 9; row += 1) {
     for (let col = 0; col < 9; col += 1) {
       if (boardString[row][col] === "-") {
         for (let probNum = 1; probNum <= 9; probNum += 1) {
-          if (isSolved(row, col, probNum, boardString)) {
+          if (isSolved(row, col, probNum, boardString) && checkBox) {
             boardString[row][col] = probNum;
             if (solve(boardString)) {
               return boardString;
@@ -49,29 +63,14 @@ function solve(boardString) {
   }
   return boardString;
 }
-
 function isSolved(row, col, probNum, board) {
   for (let i = 0; i < board.length; i++) {
     if (board[row][i] == probNum || board[i][col] == probNum) {
       return false;
     }
   }
-
-  const topStart = Math.floor(row / 3) * 3;
-  const bottomEnd = Math.floor(row / 3) * 3 + 3;
-  const leftStart = Math.floor(col / 3) * 3;
-  const rightEnd = Math.floor(col / 3) * 3 + 3;
-
-  for (let row = topStart; row < bottomEnd; row++) {
-    for (let col = leftStart; col < rightEnd; col++) {
-      if (board[row][col] == probNum) {
-        return false;
-      }
-    }
-  }
   return true;
 }
-
 function prettyBoard(board) {
   let arr = board.split("");
   let tempArr = [];
@@ -83,13 +82,4 @@ function prettyBoard(board) {
   }
   return sudoku;
 }
-// let boardString = prettyBoard(board);
-
 console.table(solve(prettyBoard(board)));
-// console.log(solve(boardString));
-// console.log(prettyBoard(board));
-module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
-};
