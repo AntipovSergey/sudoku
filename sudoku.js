@@ -14,6 +14,40 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
+   if ( Math.sqrt(board.length) % 1 !== 0) {   //  Квадр корень числа
+      return false
+   }
+   
+   let size = board.length;
+   let emptyValue = firstElement(size);  //  Пустое значение
+
+      if ( emptyValue === null) {
+         return true
+      }
+
+      for (let i = 1; i < size + 1; i++) {
+         const checkValue = i.toString();
+         const conformity = solve(size, emptyValue, checkValue); //  соответствие значению
+
+         // console.log('isSolved ===> ', isValid);
+
+      if (conformity) {  //  Если соответствует значению
+
+         // console.log(checkValue);
+
+         size[emptyValue[0]][emptyValue[1]] = conformity;
+
+         if (isSolved(size)) {
+            return true;
+         } 
+   
+            size[emptyValue[0]][emptyValue[1]] = "-";
+      }
+   }  
+         return false;
+}
+   
+
    // let arr = [1,'-',4,5];
    // let arr2 = [1,3,4,'-', 8]
 
@@ -33,8 +67,6 @@ function isSolved(board) {
 // console.log(firstElement(arr));
 // console.log(firstElement(arr2));
 
-
-}
 
 
 // Takes in a board in some form and
