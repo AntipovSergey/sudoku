@@ -37,7 +37,7 @@ function sudokuData (puzzle) {
   return sudoku
 }
   
-console.table(sudokuData(puzzle))
+// console.table(sudokuData(puzzle))
 
 
 
