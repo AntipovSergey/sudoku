@@ -14,6 +14,26 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
+   // let arr = [1,'-',4,5];
+   // let arr2 = [1,3,4,'-', 8]
+
+ //  Получение первого элемента
+
+ const firstElement = (sizeBord) => {
+    for (let i = 0; i < sizeBord.length; i++) {
+       for (let k = 0; k < sizeBord.length; k++) {
+          if (sizeBord[i][k] === '-') {
+             return [i, k];
+          }
+       }
+    }
+    return null
+ }
+
+// console.log(firstElement(arr));
+// console.log(firstElement(arr2));
+
+
 }
 
 
