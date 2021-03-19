@@ -28,23 +28,4 @@ function isSolved(board, row, col, s) {
 }
 
 function prettyBoard(board) {
-  let side = Math.sqrt(board.length);
-  let res = [];
 
-  for (let i = 0; i < board.length; i += side) {
-    let a = board.slice(-board.length + i, -board.length + side + i);
-    res.push(a.split(""));
-  }
-
-  res.pop();
-  let a = board.slice(-side);
-  res.push(a.split(""));
-
-  return res;
-}
-
-module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
-};
