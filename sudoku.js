@@ -7,6 +7,17 @@ function solve(boardString) {
 
 }
 
+function sudokuData (puzzle) {
+  let puzzleArr = puzzle.match(/.{1,9}/g)
+  let puzzleArrData = []
+  for (let i=0; i<puzzleArr.length; i++) {
+    puzzleArrData.push(puzzleArr[i].split(''))
+  }
+  
+  
+  return puzzleArrData
+}
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
