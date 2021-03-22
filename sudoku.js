@@ -7,10 +7,9 @@ function solve(boardString) {
   const resultArr = [];
   const boardArr = boardString.split('');
   while (boardArr.length > 0) {
-    result.push(boardArr.splice(0, 9));
+    resultArr.push(boardArr.splice(0, 9));
   }
   return resultArr;
-}
 }
 
 
