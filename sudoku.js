@@ -12,8 +12,25 @@ function solve(boardString) {
   
   return resultArr;
 }
-console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
 
+const checkCell=(num, array, i, j)=>{
+  if (array[i].includes(num)) return false;
+ 
+  for (let f=0; f<array.length; f++){
+    if (array[f][j] === num) {
+     return false;
+    }}
+     const boxRow=Math.floor(i/3)*3;
+     const boxCol=Math.floor(j/3)*3;
+     for (let n=boxRow; n<boxRow+3; n++){
+     for (let m=boxCol; m<boxCol+3; m++){
+       if (array[n][m] === num) {
+         return false;
+       }
+  }
+  return true;
+ }
+ }
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -21,29 +38,34 @@ console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---
 // form `solve` returns.
 function isSolved(board) { 
   const arr=solve(board);
-  const possibleArr=[[0,1], []];
+  // console.log(arr)
+  let possibleArr=[];
   for (let i=0; i<arr.length; i++){
     for (let j=0; j<arr.length; j++){
       if (arr[i][j]==='-'){
-
-
         for (let k=1; k<10; k++){
         if (checkCell(k, arr, i, j)){
-              possibleArr.push(k)
-            }
-      }
+          possibleArr.push(k)
+          console.log(possibleArr)
+        }
+      } 
+    if (possibleArr.length === 1) {
+      arr[i][j] = possibleArr[0];
+    } else {
+      possibleArr = [];
     }
+    } 
+
   }
 
 }
-
-const checkCell=(num, array, i, j)=>{
- if (array[i].includes(num)) return false;
-
- for (let f=0; f<array.length; f++){
-   if (array[f][j]. includes)
- }
+return arr;
 }
+console.log(isSolved('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
+
+
+
+
 
 //                         [5, -, 4, 6, -, 8, 9, -, 2],
 //                         [6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -59,10 +81,10 @@ const checkCell=(num, array, i, j)=>{
 
 
 
-// const boxRow=Math.floor(r/boxSize)*boxSize;
-// const boxCol=Math.floor(c/boxSize)*boxSize;
-// for (let i=boxRow; i<boxRow+boxSize; i++){
-//   for (let j=boxCol; j<boxCol+boxSize; j++){
+// const boxRow=Math.floor(r/3)*3;
+// const boxCol=Math.floor(c/3)*3;
+// for (let i=boxRow; i<boxRow+3; i++){
+//   for (let j=boxCol; j<boxCol+3; j++){
 
 //   }
 // }
