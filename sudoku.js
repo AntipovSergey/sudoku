@@ -1,7 +1,7 @@
 // Функция создания массива судоку
 
-
 function arrBoard(puzzle) {
+  const board = [];
 
   let board =[]
   
@@ -11,11 +11,8 @@ function arrBoard(puzzle) {
     board.push(arr)
     end+=9
   }
-  return board
-  
+  return board;
 }
-
-
 
 // Алгоритм решения судоку
 
@@ -106,22 +103,22 @@ let board = arrBoard(boardString)   //  С помошью функции arrBoar
     return board;
 };
 
-
 // Проверка результата работы функции solve
 function isSolved(board) {
 
 
 }
 
-
 // Функция вывода строки в стандартный вид(не массив)
 function prettyBoard(board) {
-
+  return board.forEach((element) => {
+    console.log(element.join(' '));
+  });
 }
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+  solve,
+  isSolved,
+  prettyBoard,
+};
