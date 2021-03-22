@@ -61,12 +61,12 @@ function isSolved(board) {
   solution(arr);
   console.log(solution(arr));
   while (arr.flat().indexOf('-')!==-1){
-    solution(arr)
+    solution(arr);
   }
   // console.log(prettyBoard(arr))
   return prettyBoard(arr);
 }
-console.log(isSolved('---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----'))
+console.log(isSolved('--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3'))
 
 function prettyBoard(board) {
   return board.join('\n');
