@@ -26,9 +26,6 @@ function solve(boardString) {
     table.push(array);
     // console.log(splittedLine)
   }
-  // const innerArray = [];
-  // for (let j = 0; j < 9; j++) {
-  //   if (j !== '-') {
 
   console.log(table);
 }
