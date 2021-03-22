@@ -11,7 +11,7 @@ const sudoku = require('./sudoku');
 
 // Возвращает строку судоку которую нужно решить
 function sudokuParse(content, puzzleNumber = 0) {
-  let puzzle = content.split('\n')[puzzleNumber];
+  const puzzle = content.split('\n')[puzzleNumber];
   console.log(puzzle);
   return puzzle;
 }
@@ -20,14 +20,13 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+  const puzzle = sudokuParse(data);
 
-  let solvedPuzzle = sudoku.solve(puzzle);  // Запуск функции solve из файла sudoku,в качестве аргумента которой передается неформатированная строка полученная из функции sudokuParse! Результат данной функции далжна быть строка в неформатьрованном виде(функция PrettyBoard из sudoku.js) которая передается дальше для проверки!
+  const solvedPuzzle = sudoku.solve(puzzle); // Запуск функции solve из файла sudoku,в качестве аргумента которой передается неформатированная строка полученная из функции sudokuParse! Результат данной функции далжна быть строка в неформатьрованном виде(функция PrettyBoard из sudoku.js) которая передается дальше для проверки!
   if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
+    console.log('The board was solved!');
     console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
+  } else {
     console.log("The board wasn't solved :(");
   }
 }
@@ -36,6 +35,5 @@ function readAndSolve(err, data) {
 fs.readFile(
   './sudoku-puzzles.txt',
   'utf-8',
-  readAndSolve
+  readAndSolve,
 );
-
