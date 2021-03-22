@@ -20,7 +20,7 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+  let puzzle = sudokuParse(data, 14);
 
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
@@ -36,6 +36,5 @@ function readAndSolve(err, data) {
 fs.readFile(
   './sudoku-puzzles.txt',
   'utf-8',
-  readAndSolve
+  readAndSolve,
 );
-
