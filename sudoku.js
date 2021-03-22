@@ -4,7 +4,13 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  const resultArr = [];
+  const boardArr = boardString.split('');
+  while (boardArr.length > 0) {
+    result.push(boardArr.splice(0, 9));
+  }
+  return resultArr;
+}
 }
 
 
