@@ -9,7 +9,7 @@ const sudoku = require('./sudoku');
 // Remember, the file has newline characters at the end of each line,
 // so you should remove them.
 
-// Gets one puzzle from the text file.
+// Возвращает строку судоку которую нужно решить
 function sudokuParse(content, puzzleNumber = 0) {
   let puzzle = content.split('\n')[puzzleNumber];
   console.log(puzzle);
@@ -22,7 +22,7 @@ function readAndSolve(err, data) {
   }
   let puzzle = sudokuParse(data);
 
-  let solvedPuzzle = sudoku.solve(puzzle);
+  let solvedPuzzle = sudoku.solve(puzzle);  // Запуск функции solve из файла sudoku,в качестве аргумента которой передается неформатированная строка полученная из функции sudokuParse! Результат данной функции далжна быть строка в неформатьрованном виде(функция PrettyBoard из sudoku.js) которая передается дальше для проверки!
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
     console.log(sudoku.prettyBoard(solvedPuzzle));
