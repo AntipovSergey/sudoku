@@ -2,6 +2,9 @@
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
+
+const { parse } = require("path");
+
 // How you represent your board is up to you!
 function solve(boardString) {
   const resultArr = [];
@@ -61,12 +64,22 @@ function isSolved(board) {
   solution(arr);
   console.log(solution(arr));
   while (arr.flat().indexOf('-')!==-1){
-    solution(arr)
+    const copyArr=JSON.parse(JSON.stringify(arr));
+    solution(arr);
+    if (copyArr.flat().join('')===arr.flat().join('')){
+      console.log('Doesnt work');
+      nextLevelCheck(arr);
+      break;
+    }
   }
   // console.log(prettyBoard(arr))
-  return prettyBoard(arr);
+  return console.log(prettyBoard(arr));
 }
 console.log(isSolved('---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----'))
+
+function nextLevelCheck(array){
+  
+}
 
 function prettyBoard(board) {
   return board.join('\n');
