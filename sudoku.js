@@ -22,16 +22,43 @@ const resultArr = [];
 resultArr.push(rowVerticale1, rowVerticale2, rowVerticale3, rowVerticale4, rowVerticale5, rowVerticale6, rowVerticale7, rowVerticale8, rowVerticale9)
 return resultArr;
 }
-const board = solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+const board = solve('--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3');
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (board[i][j] == '-') {
+        for (let k = 1; k <= 9; k++) {
+          if (isValid(board, i, j, k)) {
+            board[i][j] = `${k}`;
+          if (isSolved(board)) {
+           return true;
+          } else {
+           board[i][j] = '-';
+          }
+         }
+       }
+       return false;
+     }
+   }
+  }
+  return true;
 }
-
+function isValid(board, row, col, k) {
+  for (let i = 0; i < 9; i++) {
+      const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+      const n = 3 * Math.floor(col / 3) + i % 3;
+      if (board[row][i] == k || board[i][col] == k || board[m][n] == k) {
+        return false;
+      }
+  }
+  return true;
+}
+console.log(isSolved(board));
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -48,7 +75,14 @@ function prettyBoard(board) {
 		// console.log(board);
         return prettyBord;
 }
-console.log(prettyBoard(board));
+// console.log(prettyBoard(board));
+
+
+
+
+
+
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
@@ -56,3 +90,4 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
