@@ -98,7 +98,7 @@ console.log(isSolved('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  return board.join('\n');
 }
 
 // Exports all the functions to use them in another file.
