@@ -5,7 +5,7 @@
 // How you represent your board is up to you!
 function solve(boardString) {
   const arrayStrSolve = boardString.split('');
-  let resultArr = [];
+  const resultArr = [];
 
   for (let i = 0; i < arrayStrSolve.length / 9; i += 1) {
     resultArr[i] = arrayStrSolve.slice((i * 9), (i * 9) + 9);
@@ -57,10 +57,6 @@ function isSolved(board) {
 function prettyBoard(board) {
   const prettyBord = board.map((item) => item.join(' ')).join('\n');
   return prettyBord;
-  // if (el === '-') {
-  //   return '-';
-  // }).join(' ')).join('\n');
-  // console.log(board);
 }
 
 // Exports all the functions to use them in another file.
