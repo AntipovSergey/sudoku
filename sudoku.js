@@ -1,154 +1,91 @@
-
 // тестовая строка с данными судоку
-const line =
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+let line =
+  "----------2-65-------18--4--9----6-4-3---57-------------------73------9----------";
 
-// 1-5 8-2 ---
-// -9- -76 4-5
-// 2-- 4-- 819
-// -19 --7 3-6
-// 762 -83 -9-
-// --- -61 -5-
-// --7 6-- -3-
-// 43- -2- 5-1
-// 6-- 3-8 9--
 
-// создаем массив массивов и помещаем его в переменную table
-function makeTable(boardString) { 
-  const table = [];
-  const splittedLine = line.split('');
-  for(let elem of splittedLine) {
-    console.log('elem', elem)
-    if (elem === '-') elem = 0;
-  };
-  console.log('splittedLine', splittedLine);
-  for (let i = 0; i < 9; i++) {
-    const array = [];
-    for (let j = 0; j < 9; j++) {
-      array.push(Number(splittedLine.shift()));
+// функция для создания массива массивов и вывода доски в переменную board
+function makeTable(boardString) {
+  const boardNew = boardString.split('');
+  let newArr = [];
+  for (let i = 0; i < boardNew.length; i += 9) {
+    newArr.push(boardNew.slice(i, i + 9))
+  }
+  return newArr;
+}
+const board = makeTable(line);
 
-      // if (splittedLine[i] === '-' || splittedLine[j] === '-') splittedLine[j][i] = 0;
+// основная функция решателя судоку
+let solveSudoku = function (board) {
+
+  // функция поиска '-' элемента в переменной board
+  const isEmpty = (board) => {
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        if (board[r][c] === '-') {
+          return [r, c];
+        }
+      }
     }
-    table.push(array);
+          return null;
   }
-  return table;
-}
 
-const table = makeTable(line);
-console.log('table', table);
+  // функция проверки NUM в ROW, COLUMN и BOX
+  const allCheck = (num, pos, board) => {
+    const [r, c] = pos;
 
-// создаем функцию чтобы найти row и column пустого элемента
-function isEmpty(table, row, column) {
-  let done = false;
-  const res = [-1, -1];
-  while (!done) {
-    if (row == 9) {
-      done = true;
-    } else if (table[row][column] === '-') {
-      res[0] = row;
-      res[1] = column;
-      done = true;
-    } else if (column < 8) {
-      column++;
-    } else {
-      row++;
-      column = 0;
+    // проверка на нахождение NUM в ROW
+    for (let i = 0; i < 9; i++) {
+      if (board[i][c] === num && i !== r) {
+        return false;
+      }
     }
-  }
-  return res;
 
-  // for (let i = 0; i < table.length; i++) {
-  //   for (let j = 0; j < table[i].length; j++) {
-  //     if (table[i][j] === '-') {
-  //       return [i,j];
-  //     }
-  //   }
-  // }
-  // return 'solved';
-}
+    // проверка на нахождение NUM в COLUMN
+    for (let i = 0; i < 9; i++) {
+      if (board[r][i] === num && i !== c) {
+        return false;
+      }
+    }
 
-// создаем функцию, которая проверяет всё
-function allCheck(table, row, column, num) {
-  return rowCheck(table, row, num) && columnCheck(table, column, num) && boxCheck(table, row, column, num);
-}
-function rowCheck(table, row, num) {
-  for (let column = 0; column < 9; column++) {
-    if (table[row][column] === num)
-        return false;
-  }
-        return true;
-}
-function columnCheck(table, column, num) {
-  for (let row = 0; row < 9; row++) {
-    if (table[row][column] === num)
-        return false;
-  }
-        return true;
-}
-function boxCheck(table, row, column, num) {
-  row = Math.floor(row / 3) * 3;
-  column = Math.floor(column / 3) * 3;
-  for (let r = 0; r < 3; r++) {
-    for (let c = 0; c < 3; c++) {
-      if (table[row + r][column + c] === num)
+
+    // проверка на нахождение NUM в BOX
+    const boxRow = Math.floor(r / 3) * 3;
+    const boxCol = Math.floor(c / 3) * 3;
+
+    for (let i = boxRow; i < boxRow + 3; i++) {
+      for (let j = boxCol; j < boxCol + 3; j++) {
+        if (board[i][j] === num && i !== r && j !== c) {
           return false;
+        }
+      }
     }
           return true;
   }
-}
 
-function solve(table, row = 0, column = 1) {
-  const step = isEmpty(table, row, column);
-  row = step[0];
-  column = step[1];
+  // функция-рекурсия для подстановки NUM вместо '-'
+  const solve = () => {
+    const step = isEmpty(board);
 
-  if (row === -1) {
-    // console.log(table);
-    return true;
-  }
-
-  for (let num = 1; num <=9; num++) {
-    if (allCheck(table, row, column, num)) {
-      // console.log('allCheck', allCheck(table, row, column, num))
-      table[row][column] = num.toString();
-      if (solve(table, row, column)) {
-        return 'solved';
-      }
-      table[row][column] = '-';
+    if (step === null) {
+      return true;
     }
+    for (let i = 1; i < 9 + 1; i++) {
+      const currNum = i.toString();
+      const isValid = allCheck(currNum, step, board);
+      if (isValid) {
+        const [x, y] = step;
+        board[x][y] = currNum;
+        if (solve()) {
+          return true;
+        }
+        board[x][y] = '-';
+      }
+    }
+    return false;
   }
-  return false;
-}
 
-console.log(solve(table));
-// const [i, j] = isEmpty(board);
-
-// console.log(i);
-// console.log(j);
-
-// console.log(solve(line));
-
-
-
-
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) { }
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) { }
-
-// Exports all the functions to use them in another file.
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
+  solve();
+  return board;
 };
 
-
+console.table(solveSudoku(board));
