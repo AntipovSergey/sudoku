@@ -1,4 +1,6 @@
 const {solve, isSolved, prettyBoard} = require('../sudoku.js')
+const {readAndSolve}=require('../runner.js');
+
 
 describe('Solving Sudoku', () => {
   describe('solving', () => {}
@@ -14,6 +16,10 @@ it('throw erorr if str2 length less then 81', () => {
     solve(str2)}
   ).toThrow('Invalid Input')
 });
+// let str3='1-58-22---9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+// it('Console.log the board wasnt solved if sudoku is incorrect', ()=>{
+// expect(fs.readFile('./sudoku-puzzles.txt','utf-8',readAndSolve)).toBe("The board wasn't solved :(");
+// })
 
 })
 

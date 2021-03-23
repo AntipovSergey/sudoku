@@ -3,6 +3,7 @@
 // How you represent your board is up to you!
 function solve(boardString) {
   let arr = [];
+  
   if (checkStr(boardString)){
     const boardArr = boardString.split('');
   
@@ -17,13 +18,9 @@ function solve(boardString) {
   }
 }
 
-function checkStr (str){
-  let arrayCheck = []
-   for (let i=0; i<str.length; i++){
-    
-    arrayCheck.push(str[i].search(/([1-9]|[-])/g) ) 
-}
-  return !arrayCheck.some(elem => elem === -1)
+
+function checkStr(str){
+  return str.split('').length===81? true:false;
 }
 
 function solution(arr) {
