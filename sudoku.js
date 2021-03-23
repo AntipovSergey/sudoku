@@ -1,28 +1,4 @@
 
-//console.log(solve('3---------5-7-3--8----28-7-7------43-----------39-41-54--3--8--1---4----968---2--'))
-
-
-// Веб часть!
-for (let i=0; i<=80; i++){
-  document.querySelector('.wrapper').innerHTML+=`<div class="cell"></div>`
-}
-// for (let i=0; i<80; i++){
-//   document.querySelectorAll('.cell')[0].textContent = sudokuParse(data)
-// }
-document.querySelector('.button').addEventListener('click', function(){
-    let boardSudoku = document.querySelector('input').value
-    for (let i=0; i<=80; i++){
-      document.querySelectorAll('.cell')[i].textContent = boardSudoku.split('')[i]
-    }
-    setTimeout(()=>{
-      for (let i=0; i<=80; i++){
-        document.querySelectorAll('.cell')[i].textContent = solve(boardSudoku).flat()[i]
-      }
-    },1500)
-  document.querySelector('.wrapper').classList.toggle('wrapper_transparent')
-})
-
-
 // How you represent your board is up to you!
 function solve(boardString) {
   let arr = [];
@@ -36,15 +12,13 @@ function solve(boardString) {
 }
 
 function solution(arr) {
-//let positiveArr = []
 for (let i=0; i<arr.length; i++) {
   for (let j=0; j<arr.length; j++) {
     if (arr[i][j] === '-') {
       for (let k = 1; k < 10; k++) {
         if (checkCell(arr, i, j, k)) {
-          //positiveArr.push(k)
           arr[i][j] = k.toString();
-          //console.log(positiveArr, i, j)
+          console.log(k, i, j)
           if (solution(arr)) {
            return true;
           } else {
@@ -52,7 +26,6 @@ for (let i=0; i<arr.length; i++) {
           }
         }
       }
-    //console.log(positiveArr)
     return false;
    }
  }
@@ -80,15 +53,10 @@ function checkCell(array, i, j, num){
   return true;
  }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-
 function isSolved(board) { 
-  return board.flat().join('').indexOf("-")==-1 ? true : false
+  return board.flat().join('').indexOf("-")===-1 ? true : false
 }
-console.log(isSolved('---------------------------------------------------------------------------------'))
+console.log(isSolved('-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--'))
 
 
 function prettyBoard(board) {
@@ -98,12 +66,12 @@ function prettyBoard(board) {
 
 
 
-//Exports all the functions to use them in another file.
-// module.exports = {
-// 	solve: solve,
-// 	isSolved: isSolved,
-// 	prettyBoard: prettyBoard
-// }
+// Exports all the functions to use them in another file.
+module.exports = {
+	solve: solve,
+	isSolved: isSolved,
+	prettyBoard: prettyBoard
+}
 
 
 
