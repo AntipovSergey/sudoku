@@ -3,9 +3,9 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
+function solve(boardString) { // создаем массив массивов из одной строки
   const arrayStrSolve = boardString.split('');
-  let resultArr = [];
+  const resultArr = [];
 
   for (let i = 0; i < arrayStrSolve.length / 9; i += 1) {
     resultArr[i] = arrayStrSolve.slice((i * 9), (i * 9) + 9);
@@ -14,32 +14,32 @@ function solve(boardString) {
 }
 
 // Поиск числа для пустых клеток; k - числа от 1 до 9
-function lookingForNumber(board, row, col, k) {
+function lookingForNumber(board, row, col, k) { // вспомогательная функция для isSolved()
   for (let i = 0; i < 9; i += 1) {
-    const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
-    const n = 3 * Math.floor(col / 3) + (i % 3);
-    if (Number(board[row][i]) === k || Number(board[i][col]) === k || Number(board[m][n]) === k) {
-      return false;
+    const m = 3 * Math.floor(row / 3) + Math.floor(i / 3); // ищет сегмент квадрат один
+    const n = 3 * Math.floor(col / 3) + (i % 3); // выделает 3 квадрата в ряд
+    if (Number(board[row][i]) === k || Number(board[i][col]) === k || Number(board[m][n]) === k) { // поиск нужной цифры
+      return false; // если совпадение есть
     }
   }
-  return true;
+  return true; // если нет совпадения
 }
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
+function isSolved(board) { // передаем результат solve
   for (let x = 0; x < 9; x += 1) {
     for (let y = 0; y < 9; y += 1) {
-      if (board[x][y] === '-') {
+      if (board[x][y] === '0') {
         for (let k = 1; k <= 9; k += 1) {
           if (lookingForNumber(board, x, y, k)) {
             board[x][y] = `${k}`;
-            if (isSolved(board)) {
+            if (isSolved(board)) { // заново если false
               return true;
             }
-            board[x][y] = '-';
+            board[x][y] = '0';
           }
         }
         return false;
@@ -60,8 +60,8 @@ function prettyBoard(board) {
 }
 
 // Exports all the functions to use them in another file.
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
+// module.exports = {
+//   solve,
+//   isSolved,
+//   prettyBoard,
+// };
