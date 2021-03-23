@@ -64,21 +64,22 @@ let solveSudoku = function (board) {
 
   // функция-рекурсия для подстановки NUM вместо '-'
   const solve = () => {
-    const step = isEmpty(board);
+    const step = isEmpty(board); // step это местоположение элемента '-'
 
     if (step === null) {
       return true;
     }
-    for (let i = 1; i < 9 + 1; i++) {
+    for (let i = 1; i <= 9; i++) {
       const currNum = i.toString();
-      const isValid = allCheck(currNum, step, board);
-      if (isValid) {
-        const [x, y] = step;
-        board[x][y] = currNum;
+      const checks = allCheck(currNum, step, board);
+      if (checks) {
+        const row = step[0];
+        const col = step[1];
+        board[row][col] = currNum;
         if (solve()) {
           return true;
         }
-        board[x][y] = '-';
+        board[row][col] = '-';
       }
     }
     return false;
