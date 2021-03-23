@@ -1,29 +1,5 @@
 
-console.log(solve('---------------------------------------------------------------------------------'))
-
-
-// Веб часть!
-for (let i=0; i<=80; i++){
-  document.querySelector('.wrapper').innerHTML+=`<div class="cell"></div>`
-}
-
-document.querySelector('.button').addEventListener('click', function(){
-    let boardSudoku = document.querySelector('input').value
-    for (let i=0; i<=80; i++){
-      document.querySelectorAll('.cell')[i].textContent = boardSudoku.split('')[i]
-    }
-    setTimeout(()=>{
-      for (let i=0; i<=80; i++){
-        if (document.querySelectorAll('.cell')[i].textContent !== solve(boardSudoku).flat()[i]){
-          document.querySelectorAll('.cell')[i].style.color = 'red'
-        }
-        document.querySelectorAll('.cell')[i].textContent = solve(boardSudoku).flat()[i]
-      }
-    },1500)
-    for (let i=0; i<=80; i++){
-        document.querySelectorAll('.cell')[i].style.color = '#000'
-    }
-})
+console.log(solve('--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--'))
 
 
 // How you represent your board is up to you!
@@ -39,28 +15,29 @@ function solve(boardString) {
 }
 
 function solution(arr) {
-//let positiveArr = []
 for (let i=0; i<arr.length; i++) {
   for (let j=0; j<arr.length; j++) {
     if (arr[i][j] === '-') {
       for (let k = 1; k < 10; k++) {
         if (checkCell(arr, i, j, k)) {
-          //positiveArr.push(k)
           arr[i][j] = k.toString();
-          console.log(k, i, j)
-          //console.log(positiveArr, i, j)
+          console.log(`число ${k}`, i, j)
           if (solution(arr)) {
            return true;
           } else {
+            console.log('откат')
             arr[i][j] = '-';
           }
         }
       }
-    //console.log(positiveArr)
+    console.log('false')
     return false;
    }
  }
 }
+//solution1(i,j=1 => solution2(i,j=3 => solution3(false =>  solution2(false => solution1(
+  // i,j = "-" => i,j=2 => solution
+
 return arr;
 }
 
@@ -84,13 +61,8 @@ function checkCell(array, i, j, num){
   return true;
  }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-
 function isSolved(board) { 
-  return board.flat().join('').indexOf("-")==-1 ? true : false
+  return board.flat().join('').indexOf("-") === -1 ? true : false
 }
 
 
@@ -98,15 +70,12 @@ function prettyBoard(board) {
   return board.join('\n');
 }
 
-
-
-
 //Exports all the functions to use them in another file.
-// module.exports = {
-// 	solve: solve,
-// 	isSolved: isSolved,
-// 	prettyBoard: prettyBoard
-// }
+module.exports = {
+	solve: solve,
+	isSolved: isSolved,
+	prettyBoard: prettyBoard
+}
 
 
 
