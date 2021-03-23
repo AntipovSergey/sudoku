@@ -3,9 +3,7 @@
 
 class Sudoku {
   constructor(initString = '000000000000000000000000000000000000000000000000000000000000000000000000000000000') {
- 
     const startValues = initString.split('').filter((x) => '1234567890'.includes(x)).map((x) => Number(x));
-
 
     // создадим 81 ячейку
     this.body = [];
@@ -73,7 +71,7 @@ class Sudoku {
   }
 
   keydownHandler(event, cell) {
-    if ('1234567890'.includes(event.key)) {
+    if ('123456789'.includes(event.key)) {
       cell.number = parseInt(event.key);
     } else if (['Backspace', 'Delete'].includes(event.key)) {
       if (cell.started === true) {
@@ -84,6 +82,39 @@ class Sudoku {
       if (item.number === cell.number) {
         cell.important = true;
         item.important = true;
+      } else {
+        item.important = false;
+      }
+    }
+
+    const row = this.getRow(cell.y);
+    for (let i = 0; i < row.length; i++) {
+      if ((cell.x != row[i].x) && (cell.number === row[i].number)) {
+        row[i].error = true;
+        cell.error = true;
+      } else {
+        cell.error = false;
+        row[i].error = false;
+      }
+    }
+    const column = this.getColumn(cell.x);
+    for (let i = 0; i < column.length; i++) {
+      if ((cell.y != column[i].y) && (cell.number === column[i].number)) {
+        cell.error = true;
+        column[i].error = true;
+      } else {
+        cell.error = false;
+        column[i].error = false;
+      }
+    }
+    const segment = this.getSegment(cell.s);
+    for (let i = 0; i < segment.length; i++) {
+      if ((cell.id != segment[i].id) && (cell.number === segment[i].number)) {
+        cell.error = true;
+        segment[i].error = true;
+      } else {
+        cell.error = false;
+        segment[i].error = false;
       }
     }
 
@@ -178,7 +209,7 @@ class Sudoku {
         cell.element.classList.add('important-cell');
       }
       if (cell.error) {
-        cell.element.classList.add('.error');
+        cell.element.classList.add('error');
       }
     }
   }

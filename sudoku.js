@@ -18,6 +18,7 @@ function lookingForNumber(board, row, col, k) { // вспомогательна�
   for (let i = 0; i < 9; i += 1) {
     const m = 3 * Math.floor(row / 3) + Math.floor(i / 3); // ищет сегмент квадрат один
     const n = 3 * Math.floor(col / 3) + (i % 3); // выделает 3 квадрата в ряд
+    // eslint-disable-next-line max-len
     if (Number(board[row][i]) === k || Number(board[i][col]) === k || Number(board[m][n]) === k) { // поиск нужной цифры
       return false; // если совпадение есть
     }

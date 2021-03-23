@@ -1,7 +1,23 @@
+body {
+  background-color: #B0E0E6;
+}
+.container {
+  display: flex;
+  margin: 35px auto;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Ranchers', cursive;
+  width: 1370px;
+  margin-bottom: 10px;
+  background: url('img/klipartz.com.png')  no-repeat;
+  background-position: 90% 100%;
+}
+
 .sudoku-game {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: center;
 }
 
 .sudoku-segment {
@@ -42,8 +58,9 @@
 .sudoku-cell.error {
   color: red;
 }
-.button {
-  background-color: #4babc9; /* Green */
+.button,
+.button2 {
+  background-color: #4babc9;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -52,4 +69,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+.button {
+  margin-right: 20px;
 }
