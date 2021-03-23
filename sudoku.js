@@ -1,14 +1,27 @@
 
 function solve(boardString) {
   let arr = [];
-  const boardArr = boardString.split('');
+  if (checkStr(boardString)){
+    const boardArr = boardString.split('');
   
-  for (let i=0; i<boardArr.length; i++){
-    arr.push(boardArr.splice(0,9))
+    for (let i=0; i<boardArr.length; i++){
+      arr.push(boardArr.splice(0,9))
   }
-  solution(arr)
-  console.log(arr.join());
-  return arr
+    solution(arr)
+    console.log(arr.join());
+    return arr
+  } else {
+    throw Error('Invalid Input');
+  }
+}
+console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--'));
+function checkStr (str){
+  let arrayCheck = []
+   for (let i=0; i<str.length; i++){
+    
+    arrayCheck.push(str[i].search(/([1-9]|[-])/g) ) 
+}
+  return !arrayCheck.some(elem => elem === -1)
 }
 
 function solution(arr) {
