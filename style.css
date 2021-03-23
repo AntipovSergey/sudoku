@@ -1,0 +1,94 @@
+*, *:before, *:after{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+a {
+	text-decoration: none;
+} 
+.stat{
+  display: grid;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.container{
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  box-shadow: 2px 1px 2px 2px rgba(27, 27, 27, 0.553);
+  transition: all .5s ease-in;
+}
+.wrapper_transparent{
+  opacity: 1;
+}
+.cell{
+  font-family: 'Russo One', sans-serif;
+  user-select: none;
+  font-size: 48px;
+  text-shadow: 2px 2px 1px rgba(150, 150, 150, 0.88);
+  width: 64px;
+  height: 64px;
+  border: 1px solid #111;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .2  5s ease-in;
+}
+.cell:hover{
+  background-color:rgba(236, 232, 232, 0.88);
+  transform: scale(1.03);
+  box-shadow: 2px 1px 2px 2px rgba(27, 27, 27, 0.553);
+}
+#inputBox{
+  margin-bottom: 35px;
+}
+input{
+  border-radius: 5px;
+  padding-left: 5px;
+  min-width: 520px;
+  height: 40px;
+  font-size: 30px;
+  outline: none;
+  border: none;
+  padding-left: 5px;
+  box-shadow: 1px 2px 1px 1.5px rgba(20, 2, 2, 0.55); 
+  transition: all .33s ease-in;
+}
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-size: 30px;
+  background-color: rgb(218, 221, 218);
+  color: #000;
+  border-radius: 3px;
+  text-decoration: none;
+  margin-top: 10px;
+  box-shadow: 2px 1px 2px 2px rgba(27, 27, 27, 0.553);
+  transition: all .15s ease-in;
+  cursor: pointer;
+  user-select: none;
+}
+.button:hover{
+  background-color:rgba(236, 232, 232, 0.88);
+}
+.button:active{
+  transform: scale(0.97);
+  box-shadow: 1px 0.5px 1px 1px rgba(27, 27, 27, 0.553);
+}
