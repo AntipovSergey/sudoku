@@ -6,7 +6,6 @@ class Sudoku {
  
     const startValues = initString.split('').filter((x) => '1234567890'.includes(x)).map((x) => Number(x));
 
-    console.log(startValues);
 
     // создадим 81 ячейку
     this.body = [];
@@ -94,7 +93,6 @@ class Sudoku {
 
   focusHandler(event, cell) {
     cell.selected = true;
-    console.log(cell);
 
     for (const item of this.getRow(cell.y)) {
       item.supported = true;
@@ -164,7 +162,7 @@ class Sudoku {
 
   viewUpdate() {
     for (const cell of this.body) {
-      cell.element.classList.remove('supported-cell', 'selected-cell', 'important-cell');
+      cell.element.classList.remove('supported-cell', 'selected-cell', 'important-cell', 'error');
       cell.element.value = cell.number ? cell.number : '';
 
       if (cell.supported) {
