@@ -13,7 +13,8 @@ const line =
 // 43- -2- 5-1
 // 6-- 3-8 9--
 
-function makeTable(boardString) { // создаем массив массивов и помещаем его в переменную table
+// создаем массив массивов и помещаем его в переменную table
+function makeTable(boardString) { 
   const table = [];
   const splittedLine = line.split("");
 
@@ -28,71 +29,61 @@ function makeTable(boardString) { // создаем массив массиво�
 }
 
 const table = makeTable(line);
-// const param = isEmpty(table); // результат вычисления isEmpty
-// const row = param[0];
-// const column = param[1];
 
 // создаем функцию чтобы найти row и column пустого элемента
 function isEmpty(table) {
-  for (let i = 0; i < table.length; i++) {
-    for (let j = 0; j < table[i].length; j++) {
-      if (table[i][j] === '-') {
-        return [i, j];
-      }
-    }
-  }
-  return 'solved';
+  
 }
 
-// создаем функцию, которая проверяет row, column, box
-function checks(table, param, num) {
-  let row = param[0];
-  let column = param[1];
-  // берем число от 1 до 9 и проверяем подходит ли оно
-  for (let i = 0; i < 9; i++) { // для row
-    if (table[row][i] === num && i !== row) {
-      return false;
-    }
+// создаем функцию, которая проверяет всё
+function allCheck(table, row, column, num) {
+  return rowCheck(table, row, num) && columnCheck(table, column, num) && boxCheck(table, row, column, num);
+}
+function rowCheck(table, row, num) {
+  for (let i = 0; i < 9; i++) {
+    if (table[row][i] === num)
+        return false;
   }
-
-  for (let i = 0; i < 9; i++) { // для column
-    if (table[i][column] === num && i !== column) {
-      return false;
-    }
+        return true;
+}
+function columnCheck(table, column, num) {
+  for (let i = 0; i < 9; i++) {
+    if (table[i][column] === num)
+        return false;
   }
-
-  row = Math.floor(row / 3) * 3; // для квадратов
+        return true;
+}
+function boxCheck(table, row, column, num) {
+  row = Math.floor(row / 3) * 3;
   column = Math.floor(column / 3) * 3;
   for (let r = 0; r < 3; r++) {
     for (let c = 0; c < 3; c++) {
-      if (table[row + r][column + c] === num && r !== row && c !== column) return false;
+      if (table[row + r][column + c] === num)
+          return false;
     }
+          return true;
   }
-
-  return true;
 }
 
-function solve(table) {
-  const param = isEmpty(table); // результат вычисления isEmpty
+function solve(table, row = 0, column = 1) {
+  const step = isEmpty(table);
+  row = step[0];
+  column = step[1];
+
   if (isEmpty(table) === 'solved') {
     console.log(table);
     return true;
   }
 
-  for (let num = 1; num <= 9; num++) {
-    if (checks(table, param, num)) {
-      row = param[0];
-      column = param[1];
+  for (let num = 1; num <=9; num++) {
+    if (allCheck(table, row, column, num)) {
       table[row][column] = num.toString();
-
       if (solve(table, row, column)) {
         return true;
       }
-
       table[row][column] = '-';
     }
   }
-
   return false;
 }
 
