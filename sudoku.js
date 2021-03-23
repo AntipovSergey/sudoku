@@ -1,6 +1,7 @@
 
 function solve(boardString) {
   let arr = [];
+  
   if (checkStr(boardString)){
     const boardArr = boardString.split('');
   
@@ -14,14 +15,10 @@ function solve(boardString) {
     throw Error('Invalid Input');
   }
 }
-console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--'));
-function checkStr (str){
-  let arrayCheck = []
-   for (let i=0; i<str.length; i++){
-    
-    arrayCheck.push(str[i].search(/([1-9]|[-])/g) ) 
-}
-  return !arrayCheck.some(elem => elem === -1)
+
+
+function checkStr(str){
+  return str.split('').length===81? true:false;
 }
 
 function solution(arr) {
