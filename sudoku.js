@@ -1,7 +1,11 @@
+
+
+
+
 // Функция создания массива судоку
 
+
 function arrBoard(puzzle) {
-  const board = [];
 
   let board =[]
   
@@ -11,8 +15,11 @@ function arrBoard(puzzle) {
     board.push(arr)
     end+=9
   }
-  return board;
+  return board
+  
 }
+
+
 
 // Алгоритм решения судоку
 
@@ -74,34 +81,44 @@ let board = arrBoard(boardString)   //  С помошью функции arrBoar
   }
 
   function solving() {                        // Рекурсивная функция
-    const currPos = findEmpty(board)
 
-    if (currPos === null) {
+   
+    
+    
+    const currentPos = findEmpty(board)
+
+    if (currentPos === null) {
       return true
     }
-    for (let i = 1; i < size + 1; i++) {
+    for (let i = 1; i < 10; i++) {
 
-      const currNum = i.toString()      // Приводим число к строке
+      const currentNum = i.toString()      // Приводим число к строке
       
-      if ( validate(currNum, currPos, board) ) {    // Узнаем подходящее число
-        const x = currPos[0]
-        const y = currPos[1]
-        board[x][y] = currNum                  // Предполагаем что оно правильное 
-
-        if (solving()) {
+      if ( validate(currentNum, currentPos, board) ) {    // Узнаем подходящее число
+        const x = currentPos[0]
+        const y = currentPos[1]
+        board[x][y] = currentNum                  // Предполагаем что оно правильное 
+        console.log(`Текущая позиция :${currentPos}`)
+        console.log(`Текущее вероятное число :${currentNum}`)
+        console.table(board)
+        if (solving()) {                // Сама рекурсия
           return true
         }
-
+        
         board[x][y] = '-'         // Возврат на пердыдущее состояние
+        // console.log(`Текущая позиция :${currentPos}`)
+        // console.log(`Текущее вероятное число :${currentNum}`)
+        // console.table(board)
       }
     }
 
     return false
   }
 
-    solving();            // Сама рекурсия
+    solving()  ;            
     return board;
 };
+
 
 // Проверка результата работы функции solve
 function isSolved(board) {
@@ -109,16 +126,15 @@ function isSolved(board) {
 
 }
 
+
 // Функция вывода строки в стандартный вид(не массив)
-function prettyBoard(board) {
-  return board.forEach((element) => {
-    console.log(element.join(' '));
-  });
+function prettyBoard(board) {аап
+
 }
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
+	solve: solve,
+	isSolved: isSolved,
+	prettyBoard: prettyBoard
+}
