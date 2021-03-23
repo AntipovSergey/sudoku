@@ -1,3 +1,7 @@
+const { parse } = require("path");
+
+
+
 // Use filesystem.
 const fs = require('fs');
 // Use functions from sudoku.js file.
@@ -10,7 +14,7 @@ const sudoku = require('./sudoku');
 // so you should remove them.
 
 // Gets one puzzle from the text file.
-function sudokuParse(content, puzzleNumber = 5) {
+function sudokuParse(content, puzzleNumber = 7) {
   let puzzle = content.split('\n')[puzzleNumber];
   console.log(puzzle);
   return puzzle;
@@ -25,7 +29,7 @@ function readAndSolve(err, data) {
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
+    console.table(sudoku.prettyBoard(solvedPuzzle));
   }
   else {
     console.log("The board wasn't solved :(");
@@ -38,4 +42,7 @@ fs.readFile(
   'utf-8',
   readAndSolve
 );
+
+
+
 
