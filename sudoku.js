@@ -16,12 +16,18 @@ const line =
 // создаем массив массивов и помещаем его в переменную table
 function makeTable(boardString) { 
   const table = [];
-  const splittedLine = line.split("");
-
+  const splittedLine = line.split('');
+  for(let elem of splittedLine) {
+    console.log('elem', elem)
+    if (elem === '-') elem = 0;
+  };
+  console.log('splittedLine', splittedLine);
   for (let i = 0; i < 9; i++) {
     const array = [];
     for (let j = 0; j < 9; j++) {
-      array.push(splittedLine.shift());
+      array.push(Number(splittedLine.shift()));
+
+      // if (splittedLine[i] === '-' || splittedLine[j] === '-') splittedLine[j][i] = 0;
     }
     table.push(array);
   }
@@ -29,10 +35,36 @@ function makeTable(boardString) {
 }
 
 const table = makeTable(line);
+console.log('table', table);
 
 // создаем функцию чтобы найти row и column пустого элемента
-function isEmpty(table) {
-  
+function isEmpty(table, row, column) {
+  let done = false;
+  const res = [-1, -1];
+  while (!done) {
+    if (row == 9) {
+      done = true;
+    } else if (table[row][column] === '-') {
+      res[0] = row;
+      res[1] = column;
+      done = true;
+    } else if (column < 8) {
+      column++;
+    } else {
+      row++;
+      column = 0;
+    }
+  }
+  return res;
+
+  // for (let i = 0; i < table.length; i++) {
+  //   for (let j = 0; j < table[i].length; j++) {
+  //     if (table[i][j] === '-') {
+  //       return [i,j];
+  //     }
+  //   }
+  // }
+  // return 'solved';
 }
 
 // создаем функцию, которая проверяет всё
@@ -40,15 +72,15 @@ function allCheck(table, row, column, num) {
   return rowCheck(table, row, num) && columnCheck(table, column, num) && boxCheck(table, row, column, num);
 }
 function rowCheck(table, row, num) {
-  for (let i = 0; i < 9; i++) {
-    if (table[row][i] === num)
+  for (let column = 0; column < 9; column++) {
+    if (table[row][column] === num)
         return false;
   }
         return true;
 }
 function columnCheck(table, column, num) {
-  for (let i = 0; i < 9; i++) {
-    if (table[i][column] === num)
+  for (let row = 0; row < 9; row++) {
+    if (table[row][column] === num)
         return false;
   }
         return true;
@@ -66,20 +98,21 @@ function boxCheck(table, row, column, num) {
 }
 
 function solve(table, row = 0, column = 1) {
-  const step = isEmpty(table);
+  const step = isEmpty(table, row, column);
   row = step[0];
   column = step[1];
 
-  if (isEmpty(table) === 'solved') {
-    console.log(table);
+  if (row === -1) {
+    // console.log(table);
     return true;
   }
 
   for (let num = 1; num <=9; num++) {
     if (allCheck(table, row, column, num)) {
+      // console.log('allCheck', allCheck(table, row, column, num))
       table[row][column] = num.toString();
       if (solve(table, row, column)) {
-        return true;
+        return 'solved';
       }
       table[row][column] = '-';
     }
@@ -87,7 +120,7 @@ function solve(table, row = 0, column = 1) {
   return false;
 }
 
-solve(table);
+console.log(solve(table));
 // const [i, j] = isEmpty(board);
 
 // console.log(i);
@@ -117,3 +150,5 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+
