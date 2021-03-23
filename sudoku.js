@@ -1,17 +1,29 @@
 
-console.log(solve('--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--'))
-
 
 // How you represent your board is up to you!
 function solve(boardString) {
   let arr = [];
-  const boardArr = boardString.split('');
+  if (checkStr(boardString)){
+    const boardArr = boardString.split('');
   
-  for (let i=0; i<boardArr.length; i++){
-    arr.push(boardArr.splice(0,9))
+    for (let i=0; i<boardArr.length; i++){
+      arr.push(boardArr.splice(0,9))
   }
-  solution(arr)
-  return arr
+    solution(arr)
+    console.log(arr.join());
+    return arr
+  } else {
+    throw Error('Invalid Input');
+  }
+}
+
+function checkStr (str){
+  let arrayCheck = []
+   for (let i=0; i<str.length; i++){
+    
+    arrayCheck.push(str[i].search(/([1-9]|[-])/g) ) 
+}
+  return !arrayCheck.some(elem => elem === -1)
 }
 
 function solution(arr) {
@@ -21,7 +33,6 @@ for (let i=0; i<arr.length; i++) {
       for (let k = 1; k < 10; k++) {
         if (checkCell(arr, i, j, k)) {
           arr[i][j] = k.toString();
-          console.log(`число ${k}`, i, j)
           if (solution(arr)) {
            return true;
           } else {
@@ -35,9 +46,6 @@ for (let i=0; i<arr.length; i++) {
    }
  }
 }
-//solution1(i,j=1 => solution2(i,j=3 => solution3(false =>  solution2(false => solution1(
-  // i,j = "-" => i,j=2 => solution
-
 return arr;
 }
 
