@@ -1,7 +1,4 @@
 
-console.log(solve('---------------------------------------------------------------------------------'))
-
-
 // Веб часть!
 for (let i=0; i<=80; i++){
   document.querySelector('.wrapper').innerHTML+=`<div class="cell"></div>`
@@ -9,24 +6,43 @@ for (let i=0; i<=80; i++){
 
 document.querySelector('.button').addEventListener('click', function(){
     let boardSudoku = document.querySelector('input').value
+    if (boardSudoku.length === 81 && checkStr(boardSudoku)){
+    let cell =document.querySelectorAll('.cell')
+
     for (let i=0; i<=80; i++){
-      document.querySelectorAll('.cell')[i].textContent = boardSudoku.split('')[i]
+      cell[i].textContent = boardSudoku.split('')[i]
     }
-    setTimeout(()=>{
+    document.querySelector('.ii').textContent = `Думаю...`
+
+    setTimeout(() => {
       for (let i=0; i<=80; i++){
         if (document.querySelectorAll('.cell')[i].textContent !== solve(boardSudoku).flat()[i]){
           document.querySelectorAll('.cell')[i].style.color = 'red'
         }
         document.querySelectorAll('.cell')[i].textContent = solve(boardSudoku).flat()[i]
       }
-    },1500)
+      document.querySelector('.ii').textContent = `...`
+    }, 100)
+    
     for (let i=0; i<=80; i++){
         document.querySelectorAll('.cell')[i].style.color = '#000'
     }
+    } else {
+      document.querySelector('.alert').classList.add('alert2_active')
+      setTimeout(() => {
+        document.querySelector('.alert').classList.remove('alert2_active')
+      }, 2300)
+    }
 })
+let checkStr = function (str){
+  let arrayCheck = []
+   for (let i=0; i<str.length; i++){
+    
+    arrayCheck.push(str[i].search(/([1-9]|[-])/g) ) 
+}
+  return !arrayCheck.some(elem => elem === -1)
+}
 
-
-// How you represent your board is up to you!
 function solve(boardString) {
   let arr = [];
   const boardArr = boardString.split('');
@@ -39,16 +55,13 @@ function solve(boardString) {
 }
 
 function solution(arr) {
-//let positiveArr = []
+let cell = document.querySelectorAll('.cell')
 for (let i=0; i<arr.length; i++) {
   for (let j=0; j<arr.length; j++) {
     if (arr[i][j] === '-') {
       for (let k = 1; k < 10; k++) {
         if (checkCell(arr, i, j, k)) {
-          //positiveArr.push(k)
           arr[i][j] = k.toString();
-          console.log(k, i, j)
-          //console.log(positiveArr, i, j)
           if (solution(arr)) {
            return true;
           } else {
@@ -56,7 +69,6 @@ for (let i=0; i<arr.length; i++) {
           }
         }
       }
-    //console.log(positiveArr)
     return false;
    }
  }
@@ -84,11 +96,6 @@ function checkCell(array, i, j, num){
   return true;
  }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-
 function isSolved(board) { 
   return board.flat().join('').indexOf("-")==-1 ? true : false
 }
@@ -100,13 +107,6 @@ function prettyBoard(board) {
 
 
 
-
-//Exports all the functions to use them in another file.
-// module.exports = {
-// 	solve: solve,
-// 	isSolved: isSolved,
-// 	prettyBoard: prettyBoard
-// }
 
 
 
