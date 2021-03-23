@@ -1,4 +1,6 @@
 
+
+// How you represent your board is up to you!
 function solve(boardString) {
   let arr = [];
   
@@ -22,7 +24,6 @@ function checkStr(str){
 }
 
 function solution(arr) {
-
 for (let i=0; i<arr.length; i++) {
   for (let j=0; j<arr.length; j++) {
     if (arr[i][j] === '-') {
@@ -32,11 +33,12 @@ for (let i=0; i<arr.length; i++) {
           if (solution(arr)) {
            return true;
           } else {
+            console.log('откат')
             arr[i][j] = '-';
           }
         }
       }
-    //console.log(positiveArr)
+    console.log('false')
     return false;
    }
  }
@@ -64,21 +66,21 @@ function checkCell(array, i, j, num){
   return true;
  }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-
 function isSolved(board) { 
-  return board.flat().join('').indexOf("-")==-1 ? true : false
+  return board.flat().join('').indexOf("-") === -1 ? true : false
 }
 
 
 function prettyBoard(board) {
   return board.join('\n');
 }
+
+//Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+
+
