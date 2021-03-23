@@ -13,10 +13,7 @@ const line =
 // 43- -2- 5-1
 // 6-- 3-8 9--
 
-
-function solve(boardString) {
-
-  // создаем массив массивов и помещаем его в переменную table
+function makeTable(boardString) { // создаем массив массивов и помещаем его в переменную table
   const table = [];
   const splittedLine = line.split("");
 
@@ -29,41 +26,77 @@ function solve(boardString) {
   }
   return table;
 }
-const table = solve(line);
+
+const table = makeTable(line);
+// const param = isEmpty(table); // результат вычисления isEmpty
+// const row = param[0];
+// const column = param[1];
 
 // создаем функцию чтобы найти row и column пустого элемента
 function isEmpty(table) {
   for (let i = 0; i < table.length; i++) {
     for (let j = 0; j < table[i].length; j++) {
       if (table[i][j] === '-') {
-        return [i, j]
+        return [i, j];
       }
     }
   }
-  return null;
+  return 'solved';
 }
-// результат вычисления isEmpty
-const param = isEmpty(table);
-const row = param[0];
-const column = param[1];
 
 // создаем функцию, которая проверяет row, column, box
-function checks(table, row, column) {
+function checks(table, param, num) {
+  let row = param[0];
+  let column = param[1];
   // берем число от 1 до 9 и проверяем подходит ли оно
-  for (let i = 1; i <= 9; i++) {
-    if (table[row][column] === i) {
+  for (let i = 0; i < 9; i++) { // для row
+    if (table[row][i] === num && i !== row) {
       return false;
     }
-    
   }
+
+  for (let i = 0; i < 9; i++) { // для column
+    if (table[i][column] === num && i !== column) {
+      return false;
+    }
+  }
+
+  row = Math.floor(row / 3) * 3; // для квадратов
+  column = Math.floor(column / 3) * 3;
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      if (table[row + r][column + c] === num && r !== row && c !== column) return false;
+    }
+  }
+
+  return true;
 }
 
+function solve(table) {
+  const param = isEmpty(table); // результат вычисления isEmpty
+  if (isEmpty(table) === 'solved') {
+    console.log(table);
+    return true;
+  }
 
+  for (let num = 1; num <= 9; num++) {
+    if (checks(table, param, num)) {
+      row = param[0];
+      column = param[1];
+      table[row][column] = num.toString();
 
+      if (solve(table, row, column)) {
+        return true;
+      }
 
+      table[row][column] = '-';
+    }
+  }
 
+  return false;
+}
 
-
+solve(table);
 // const [i, j] = isEmpty(board);
 
 // console.log(i);
