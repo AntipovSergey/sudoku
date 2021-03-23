@@ -7,6 +7,7 @@ function solve(boardString) {
     arr.push(boardArr.splice(0,9))
   }
   solution(arr)
+  console.log(arr.join());
   return arr
 }
 
@@ -18,7 +19,6 @@ for (let i=0; i<arr.length; i++) {
       for (let k = 1; k < 10; k++) {
         if (checkCell(arr, i, j, k)) {
           arr[i][j] = k.toString();
-          console.log(k, i, j)
           if (solution(arr)) {
            return true;
           } else {
