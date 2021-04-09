@@ -246,9 +246,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
-	console.table(board);
-
+	return board.map((row) => row.join('') + '\n').join('');
 }
 
 // Exports all the functions to use them in another file.
