@@ -1,14 +1,5 @@
-
-const createLocation = (row, col) => {
-	let object = {
-	  row: row,
-	  col: col,
-	}
-	return object
-  }
-
   
-const createLocation = (row, col) => {
+const createLoc = (row, col) => {
 	let object = {
 	  row: row,
 	  col: col,
@@ -87,11 +78,11 @@ const createLocation = (row, col) => {
   
   function getCubeIndex(val)
   {
-	  if(row < 3)
+	  if(val < 3)
 	  {
 		  return 0;
 	  }
-	  else if(row < 6)
+	  else if(val < 6)
 	  {
 		  return 1;
 	  }
@@ -109,7 +100,7 @@ const createLocation = (row, col) => {
   function checkSquare(arr, board, loc)
   {
 	  const cubes = generateCubes();
-	  const {cRow, cCol} = getCubeAt(loc);
+	  const { 0 : cRow, 1 : cCol} = getCubeAt(loc);
 	  const checkCube = cubes[cRow][cCol];
   
 	  for(let i = 0; i < checkCube.length; i += 1)
@@ -140,9 +131,9 @@ const createLocation = (row, col) => {
 			if(emptyElement(board,createLoc(row,col)))
 			{
 				let arr = ['1','2','3','4','5','6','7','8','9'];
-				checkHorizontal(arr, board, createLoc(row,loc));
-				checkVertical(arr, board, createLoc(row,loc));
-				checkSquare(arr, board, createLoc(row,loc));
+				checkHorizontal(arr, board, createLoc(row,col));
+				checkVertical(arr, board, createLoc(row,col));
+				checkSquare(arr, board, createLoc(row,col));
 
 				if(arr.length == 1)
 				{
@@ -158,6 +149,72 @@ const createLocation = (row, col) => {
 	}
   }
 
+
+  function checkHorizontals(board){
+	
+	const arrValues = '123456789'.split('');
+	
+	return board.every((row) => 
+	  {
+		for(let val of arrValues)
+		{
+		  if(!row.includes(val))
+		  {
+			return false
+		  }
+		}
+		return true;
+	  })
+  }
+  
+  function checkVerticals(board){
+	
+	let arr = [];
+	
+	for(let col = 0; col < 9; col += 1)
+	{
+	  let addArr = [];
+	  for(let row = 0; row < 9; row += 1)
+	  {
+		addArr.push(board[row][col]);
+	  }
+	  arr.push(addArr);
+	}
+	
+	return checkHorizontals(arr);
+  }
+  
+  function checkBoxes(board){
+	
+	let checkArr = [];
+	let boardInLineArr = board[0];
+  
+	for(let i = 1; i < board.length; ++i)
+	{
+	  boardInLineArr = boardInLineArr.concat(board[i]);
+	}
+  
+	for(let g = 0; g < 72;)
+	{
+	  let boxArr = [];
+	  for(let j = 0; j < 3; j += 1, g += 1)
+	  {
+		for(let k = 0; k < 3; ++k)
+		{
+		  boxArr.push(boardInLineArr[g + (k * 9)]);
+		}
+	  }
+	  checkArr.push(boxArr);
+	  if((g % 9) == 0)
+	  {
+		g += 18;
+	  }
+   }
+  
+	  return checkHorizontals(checkArr);
+  }
+  
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -166,6 +223,8 @@ const createLocation = (row, col) => {
 function solve(boardString) {
 	const board = convertStringToBoard(boardString);
 	trySolveWithSingleMatch(board);
+	console.table(board);
+	return board;
 }
 
 
@@ -175,6 +234,7 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 
+	return checkHorizontals(board) && checkVerticals(board) && checkBoxes(board);
 }
 
 
@@ -185,6 +245,8 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {
 
+	console.table(board);
+
 }
 
 // Exports all the functions to use them in another file.
@@ -193,3 +255,5 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+solve('--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3');
