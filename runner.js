@@ -27,11 +27,11 @@ function readAndSolve(err, data) {
 
     let solvedPuzzle = sudoku.solve(puzzle);
     if (sudoku.isSolved(solvedPuzzle)) {
-      console.log("The board was solved!");
-      console.log(sudoku.prettyBoard(solvedPuzzle));
+      console.log('\x1b[32m%s\x1b[0m', "The board was solved!");
+      console.log('\x1b[33m%s\x1b[0m', sudoku.prettyBoard(solvedPuzzle));
     }
     else {
-      console.log("The board wasn't solved :(");
+      console.log('\x1b[31m%s\x1b[0m', "The board wasn't solved :(");
     }
   }
 }
