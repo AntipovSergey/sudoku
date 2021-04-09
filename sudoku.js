@@ -66,11 +66,14 @@ const createLoc = (row, col) => {
 	  
 	  for(let row = 0; row < 9; row += 3)
 	  {
+		  let cubeRow = [];
 		  for(let col = 0; col < 9; col += 3)
 		  {
 			  const cube = createCube(createLoc(row,col));
-			  cubes.push(cube);
+			  cubeRow.push(cube);
 		  }
+
+		  cubes.push(cubeRow);
 	  }
   
 	  return cubes;
@@ -102,7 +105,7 @@ const createLoc = (row, col) => {
 	  const cubes = generateCubes();
 	  const { 0 : cRow, 1 : cCol} = getCubeAt(loc);
 	  const checkCube = cubes[cRow][cCol];
-  
+	  
 	  for(let i = 0; i < checkCube.length; i += 1)
 	  {
 		  const { row, col } = checkCube[i];
@@ -223,7 +226,6 @@ const createLoc = (row, col) => {
 function solve(boardString) {
 	const board = convertStringToBoard(boardString);
 	trySolveWithSingleMatch(board);
-	console.table(board);
 	return board;
 }
 
