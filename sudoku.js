@@ -123,7 +123,40 @@ const createLocation = (row, col) => {
 		  }
 	  }
   }
+
+  function emptyElement(board, loc)
+  {
+	  return board[loc.row][loc.col] == '-';
+  }
   
+  function trySolveWithSingleMatch(board){
+
+	const oldBoard = copyBoard(board);
+
+	for(let row = 0; row < board.length; row += 1)
+	{
+		for(let col = 0; col < board.length; col += 1)
+		{
+			if(emptyElement(board,createLoc(row,col)))
+			{
+				let arr = ['1','2','3','4','5','6','7','8','9'];
+				checkHorizontal(arr, board, createLoc(row,loc));
+				checkVertical(arr, board, createLoc(row,loc));
+				checkSquare(arr, board, createLoc(row,loc));
+
+				if(arr.length == 1)
+				{
+					board[row][col] = arr[0];
+				}
+			}
+		}
+	}
+
+	if(!equalBoards(oldBoard, board))
+	{
+		trySolveWithSingleMatch(board);
+	}
+  }
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -131,8 +164,8 @@ const createLocation = (row, col) => {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
-
+	const board = convertStringToBoard(boardString);
+	trySolveWithSingleMatch(board);
 }
 
 
