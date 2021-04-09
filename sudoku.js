@@ -3,25 +3,86 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-let borderString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
+let borderString =
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 function solve(boardString) {
-  let bigArray = []
+  let bigArray = [];
   const horizont = []; // Горизонатльные строки
   const num = boardString.replace(/-/g, 0);
-  const row0 = horizont.push(num.slice(0, 9).split("").map((el) => Number(el)));
-  const row1 = horizont.push(num.slice(9, 18).split("").map((el) => Number(el)));
-  const row2 = horizont.push(num.slice(18, 27).split("").map((el) => Number(el)));
-  const row3 = horizont.push(num.slice(27, 36).split("").map((el) => Number(el)));
-  const row4 = horizont.push(num.slice(36, 45).split("").map((el) => Number(el)));
-  const row5 = horizont.push(num.slice(45, 54).split("").map((el) => Number(el)));
-  const row6 = horizont.push(num.slice(54, 63).split("").map((el) => Number(el)));
-  const row7 = horizont.push(num.slice(63, 72).split("").map((el) => Number(el)));
-  const row8 = horizont.push(num.slice(72, 81).split("").map((el) => Number(el)));
+  const row0 = horizont.push(
+    num
+      .slice(0, 9)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row1 = horizont.push(
+    num
+      .slice(9, 18)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row2 = horizont.push(
+    num
+      .slice(18, 27)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row3 = horizont.push(
+    num
+      .slice(27, 36)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row4 = horizont.push(
+    num
+      .slice(36, 45)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row5 = horizont.push(
+    num
+      .slice(45, 54)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row6 = horizont.push(
+    num
+      .slice(54, 63)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row7 = horizont.push(
+    num
+      .slice(63, 72)
+      .split("")
+      .map((el) => Number(el))
+  );
+  const row8 = horizont.push(
+    num
+      .slice(72, 81)
+      .split("")
+      .map((el) => Number(el))
+  );
   const colArr = []; // Временное хранилище столбцов
   for (let i = 0; i < horizont.length; i++) {
+    //Don't touch!!!
+    let div = document.createElement("div");
+    div.className = "sudoku_board_cell";
     for (let j = 0; j < horizont.length; j++) {
       colArr.push(horizont[j][i]);
+
+      //Don't touch!!!
+      let input = document.createElement('input')
+      input.className = 'nubmerBox'
+      input.type = Text
+      if(horizont[i][j] !== 0){
+       input.value = horizont[i][j]
+      } else {
+       input.style.backgroundColor = 'red'
+      }
+      div.append(input)
     }
+    document.querySelector('.sudoku_box').append(div)
   }
   const vert = []; // Вертикальные строки
   const col0 = vert.push(colArr.slice(0, 9));
@@ -34,8 +95,8 @@ function solve(boardString) {
   const col7 = vert.push(colArr.slice(63, 72));
   const col8 = vert.push(colArr.slice(72, 81));
   // console.table (vert);
-  bigArray.push (horizont, vert)
-  return bigArray
+  bigArray.push(horizont, vert);
+  return bigArray;
 }
 // console.table(
 //   solve(
@@ -47,43 +108,42 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(solve) {
- const horizont = solve[0]
- const vert = solve[1]
- let resArr = solve[1]
- 
- for(let i = 0; i < horizont[0].length; i++){
-   if (horizont[0][i] !== 0){
-     continue
-   } else {
-    let n = 1
-    let temp1 = horizont[0].includes(n)
-    console.log (temp1)
-    let temp2 = vert[0].includes(n)
-    if (temp1 === true || temp2 === true) {
-      n++
+  const horizont = solve[0];
+  const vert = solve[1];
+  let resArr = solve[1];
+
+  for (let i = 0; i < horizont[0].length; i++) {
+    if (horizont[0][i] !== 0) {
+      continue;
+    } else {
+      let n = 1;
+      let temp1 = horizont[0].includes(n);
+      console.log(temp1);
+      let temp2 = vert[0].includes(n);
+      if (temp1 === true || temp2 === true) {
+        n++;
+      }
+      resArr[0][i] = n;
     }
-    resArr[0][i] = n
-   }
- }
-
- for(let i = 0; i < horizont[1].length; i++){
-  if (horizont[1][i] !== 0){
-    continue
-  } else {
-   let n = 1
-   let temp1 = horizont[1].includes(n)
-   let temp2 = vert[1].includes(n)
-   if (temp1 === true || temp2 === true) {
-     n++
-   }
-   resArr[1][i] = n
   }
-}
 
+  for (let i = 0; i < horizont[1].length; i++) {
+    if (horizont[1][i] !== 0) {
+      continue;
+    } else {
+      let n = 1;
+      let temp1 = horizont[1].includes(n);
+      let temp2 = vert[1].includes(n);
+      if (temp1 === true || temp2 === true) {
+        n++;
+      }
+      resArr[1][i] = n;
+    }
+  }
 
-  return resArr
+  return resArr;
 }
-console.table (isSolved (solve(borderString)))
+console.table(isSolved(solve(borderString)));
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
