@@ -1,21 +1,22 @@
-​const boardSize = 9;
+
+const boardSize = 9;
 const boardBoxSize = 3;
-​
+
 function validate(num, position, board) {
   [row, col] = position;
- //по строкам
+  //String validator
   for (let i = 0; i < boardSize; i += 1) {
     if (board[i][col] === num && i !== row) {
       return false;
     }
   }
-  //по колонкам
+  //Column validator
   for (let i = 0; i < boardSize; i += 1) {
     if (board[row][i] === num && i !== col) {
       return false;
     }
   }
-  // по боксам
+  // Box validator
   const boxRow = Math.floor(row / boardBoxSize) * boardBoxSize;
   const boxColumn = Math.floor(col / boardBoxSize) * boardBoxSize;
   for (let i = boxRow; i < boxRow + boardBoxSize; i += 1) {

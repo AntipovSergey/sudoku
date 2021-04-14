@@ -11,7 +11,7 @@ let filename = "./sudoku-puzzles.txt";
 function solver(board) {
   const boardSize = 9;
 
- // Let's start recursion to add numbers in empty spaces
+  // Let's start recursion to add numbers in empty spaces
 
   function recursion() {
     const currentPos = findEmpty(board);
@@ -35,4 +35,4 @@ function solver(board) {
   recursion();
   return board;
 }
-console.table(solver(parser(filename, 14)));
+console.table(solver(parser(filename, 7)));
