@@ -37,9 +37,33 @@ function prettyBoard(board) {
 
 }
 
+let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+
+function emptyArray() {
+  const arr = [];
+  for(let i=0; i<9; i++) {
+    arr.push([]);
+  }
+  fillArray(arr,str);
+  return arr;
+}
+
+function fillArray(arr,string) {
+  let count = 0;
+  for(let i=0; i<string.length; i++) {
+    arr[count].push(string[i]);
+    if(arr[count].length === 9) {
+      count++
+    }
+  }
+}
+
+emptyArray();
+
 // Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
   isSolved: isSolved,
   prettyBoard: prettyBoard
+
 }
