@@ -6,7 +6,13 @@
 function solve(boardString) {
 
 }
-
+let arr=[]
+for (let i=0;i<9; i++){
+  arr[i]=arr1.substr(i*9,9);
+}
+for (let j=0;j<arr.length;j++){
+arr[j]=arr[j].split('')
+}
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
