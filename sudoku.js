@@ -7,6 +7,17 @@ function solve(boardString) {
 
 }
 
+function findEmpty(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === '-') {
+        return [i, j]
+      }
+      }
+    }
+    return -1
+  }
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -28,7 +39,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
