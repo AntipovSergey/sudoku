@@ -39,3 +39,4 @@ fs.readFile(
   readAndSolve
 );
 
+console.log(fs)
