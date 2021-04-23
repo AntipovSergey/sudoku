@@ -7,6 +7,10 @@ function solve(boardString) {
 
 }
 
+
+
+
+//
 function findEmpty(arr) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
@@ -18,6 +22,31 @@ function findEmpty(arr) {
     return -1
   }
 
+
+  function validatePosition(num, position, board) {
+
+    const [row, column] = position;
+  
+    // Find Row
+    for (let i = 0; i < board.length; i++) {
+      if (board[row][i] === num) return false
+    }
+  
+    // Find Column
+    for (let i = 0; i < board.length; i++) {
+      if (board[i][column] === num) return false
+    }
+  
+    // Find Section's
+    const boxStartRow = Math.floor(r / 3) * 3;
+    const boxStartColumn = Math.floor(c / 3) * 3;
+    for (let i = boxStartRow; i < boxStartRow + 3; i++) {
+      for (let j = boxStartColumn; j < boxStartColumn + 3; j++) {
+        if(board[i][j] === num) return false
+      }
+    }
+    return true
+  }
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
