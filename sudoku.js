@@ -40,19 +40,18 @@ let strH = '';
   strH;
   strV;
 
-  // console.log('arrH:', arrH);
-  // console.log('arrV:', arrV);
+  console.log('arrH:', arrH);
+  console.log('arrV:', arrV);
   //Выполняем проверку
-
-  // const CONST = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  // const x2 = [];
+  const rangeToCheck = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const exclusionNums = []; 
 
   // for (let o = 0; o < 9; o++) {
-  //   if (!arr.includes(CONST[o])) {
-  //     x2.push(CONST[o]);
+  //   if (!arr.includes(rangeToCheck[o])) {
+  //     exclusionNums.push(rangeToCheck[o]);
   //   }
   // }
-  // console.log(x2); // результат от строки
+  // console.log(exclusionNums); // результат от строки
 }
 
 console.log(solve(arr))
