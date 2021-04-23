@@ -15,6 +15,7 @@ function solve(boardString) {
 function isSolved(board) {
 
 }
+z
 
 
 // Takes in a board in some form and
