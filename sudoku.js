@@ -4,7 +4,19 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  // заполняем массив
+  const arr = [];
+    for(let i=0; i<9; i++) {
+      arr.push([]);
+    }
+        let count = 0;
+    for(let i=0; i<boardString.length; i++) {
+      arr[count].push(boardString[i]);
+      if(arr[count].length === 9) {
+        count++
+      }
+    }
+      return arr;
 }
 
 
@@ -38,8 +50,8 @@ function findEmpty(arr) {
     }
   
     // Find Section's
-    const boxStartRow = Math.floor(r / 3) * 3;
-    const boxStartColumn = Math.floor(c / 3) * 3;
+    const boxStartRow = Math.floor(row / 3) * 3;
+    const boxStartColumn = Math.floor(column / 3) * 3;
     for (let i = boxStartRow; i < boxStartRow + 3; i++) {
       for (let j = boxStartColumn; j < boxStartColumn + 3; j++) {
         if(board[i][j] === num) return false
@@ -53,7 +65,17 @@ function findEmpty(arr) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  let position = findEmpty(board);
+  for(let i=1; i<10; i++) {
+    if(validatePosition(i,position,board)) {
+      const [a,b] = position;
+      board[a][b] = i;
+    }
+  }
+  if(position === -1) {
+    return board;
+  }
+  isSolved(board);
 }
 
 
@@ -68,26 +90,7 @@ function prettyBoard(board) {
 
 let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-function emptyArray() {
-  const arr = [];
-  for(let i=0; i<9; i++) {
-    arr.push([]);
-  }
-  fillArray(arr,str);
-  return arr;
-}
 
-function fillArray(arr,string) {
-  let count = 0;
-  for(let i=0; i<string.length; i++) {
-    arr[count].push(string[i]);
-    if(arr[count].length === 9) {
-      count++
-    }
-  }
-}
-
-emptyArray();
 
 // Exports all the functions to use them in another file.
 module.exports = {
