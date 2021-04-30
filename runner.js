@@ -20,11 +20,14 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
-  let puzzleArr = sudoku.multiArr(puzzle);
-  let empty = sudoku.findEmptyCell(puzzleArr);
-  console.log(empty);
-  console.log(puzzleArr);
+  const puzzle = sudokuParse(data);
+  const puzzleArr = sudoku.multiArr(puzzle);
+  const squareArr = sudoku.squareCellRunner(puzzleArr);
+  const horizontalArr = sudoku.horizontalRunner(puzzleArr);
+  const verticalArr = sudoku.verticalRunner(puzzleArr);
+
+  console.log(verticalArr);
+  // let empty = sudoku.findEmptyCell(puzzleArr);
   let solvedPuzzle = sudoku.solve(puzzleArr);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");

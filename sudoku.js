@@ -1,3 +1,33 @@
+const horizontalRunner = (horArr) => {
+  let str = "";
+  let arr = [];
+  for (let i = 0; i < horArr.length; i++) {
+    for (let j = 0; j < horArr.length; j++) {
+      str += horArr[i][j];
+      if (str.length === 9) {
+        arr.push(str);
+        str = "";
+      }
+    }
+  }
+  return arr;
+};
+
+const verticalRunner = (verArr) => {
+  let str = "";
+  let arr = [];
+  for (let i = 0; i < verArr.length; i++) {
+    for (let j = 0; j < verArr.length; j++) {
+      str += verArr[j][i];
+      if (str.length === 9) {
+        arr.push(str);
+        str = "";
+      }
+    }
+  }
+  return arr;
+};
+
 const squareCellRunner = (squareArr) => {
   let str = "";
   let arr = [];
@@ -52,7 +82,6 @@ function findEmptyCell(table) {
     for (let col = 0; col < 9; col++) {
       if (table[str][col] === "-") {
         coordinatesEmptyCell = [str, col];
-        console.log(coordinatesEmptyCell);
       }
     }
   }
@@ -85,6 +114,8 @@ function prettyBoard(board) {}
 // Exports all the functions to use them in another file.
 
 module.exports = {
+  verticalRunner: verticalRunner,
+  horizontalRunner: horizontalRunner,
   squareCellRunner: squareCellRunner,
   findEmptyCell: findEmptyCell,
   multiArr: multiArr,
