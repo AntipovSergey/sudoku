@@ -54,7 +54,6 @@ function findEmptyCell(table) {
         coordinatesEmptyCell = [str, col];
         console.log(coordinatesEmptyCell);
       }
-      п;
     }
   }
   return null;
