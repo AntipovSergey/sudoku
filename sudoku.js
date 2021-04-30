@@ -25,39 +25,48 @@ function createArr(boardString) {
   
   return newArr
 }
-//console.table(createArr(sudoku))
 
-
-function mainCheck(boardString) {
+console.table(createArr(sudoku))
 let sudokuArray = createArr(sudoku);
+
+function mainCheck(sudokuArray) {
 
 for (let i = 0; i < sudokuArray.length; i++) {
   for (let j = 0; j < sudokuArray[i].length; j++) {
-
-  }
-}
-  return sudokuArray
-}
-//console.table(makeHor(sudoku))
-
-function searchHor(num) {
-  let arrSearchHor = mainCheck(sudoku);
-
-  for (let i = 0; i < arrSearchHor.length; i++) {
-    for (let j = 0; j < arrSearchHor[i].length; j++ ) {
-      if(arrSearchHor[i][j] === num) return false 
+    if (sudokuArray[i][j] === '-') {
+      for (let num = 1; num <= 9; num += 1) {
+        if (checkValidNum(sudokuArray, num, i, j)) {
+          
+        }
       }
-  }
+      findHor(sudokuArray, i, j)
+        }
+      } 
+    }
+  return false
+}
+  
+function checkValidNum(arr, num, row, col) {
+  return checkRow(arr, num, row, col) && checkCol(arr, num, row, col) && checkSmallSquare(arr, num, row, col)
+}
 
+
+function checkRow (arr, num, row, col) {
+  let currentRow = arr[row]
+  return currentRow.includes(num)
+}
+
+function checkCol(arr, num, row, col) {
+  for (let index = 0; index < arr.length; index++) {
+    if (arr[index][col] === num) return false
+  }
   return true
 }
-//console.log(searchHor(63));
+
+function check
 
 
-
-function solve(boardString) {
-
-}
+console.table(mainCheck(sudoku));
 
 
 
@@ -80,9 +89,9 @@ function prettyBoard(board) {
 
 }
 
-// Exports all the functions to use them in another file.
-module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+// // Exports all the functions to use them in another file.
+// module.exports = {
+// 	solve: solve,
+// 	isSolved: isSolved,
+// 	prettyBoard: prettyBoard
+// }
