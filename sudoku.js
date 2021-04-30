@@ -3,7 +3,7 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
+function solve(boardString) {  //reshenie
 
 }
 
@@ -12,7 +12,7 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
+function isSolved(board) { //validator
 
 }
 
@@ -22,7 +22,7 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
+function prettyBoard(board) { //выводит доску
 
 }
 
@@ -32,3 +32,43 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+let sudoku = [
+  ['3','.','4','.'],
+  ['.','1','.','2'],
+  ['.','4','.','3'],
+  ['2','.','1','.']  
+]
+
+
+
+const validate = (num, pos, board) => {
+  const [r,c] = pos;
+  //Проверка на уникальность в строке
+  for (let i = 0; i < size; i++) {
+    if (board[i][c] === num && i !== r) { 
+      return false;
+    }
+  }
+
+  //Проверка на уникальность в колонках
+  for (let i = 0; i < size; i++) {
+    if (board[r][i] === num && i !== c)
+      return false;
+  }
+
+  //Проверка на уникальность в секции/квадрате
+  const boxRow = Math.floor(r / boxSize) * boxSize;
+  const boxCol = Math.floor(c / boxSize) * boxSize; // получаем начало сектора
+
+  for (let i = boxRow; i < boxRow + boxSize; i++) {
+    for (let j = boxCol; j < boxCol + boxSize; j++) {
+      if (board[i][j] === num && i !== r && j !== c) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+
