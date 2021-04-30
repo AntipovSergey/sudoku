@@ -1,3 +1,17 @@
+// const multiArr = (boardString) => {
+//   boardString.split("");
+//   let str = "";
+//   let multiArr = [];
+//   for (let i = 0; i < boardString.length; i++) {
+//     str += boardString[i];
+
+//     if (str.length === 9) {
+//       multiArr.push(str.split(""));
+//       str = "";
+//     }
+//   }
+//   return multiArr;
+// };
 const multiArr = (boardString) => {
   boardString.split("");
   let str = "";
@@ -12,12 +26,28 @@ const multiArr = (boardString) => {
   }
   return multiArr;
 };
+
+function findEmptyCell(table) {
+  let coordinatesEmptyCell;
+  for (let str = 0; str < 9; str++) {
+    for (let col = 0; col < 9; col++) {
+      if (table[str][col] === "-") {
+        coordinatesEmptyCell = [str, col]
+        console.log(coordinatesEmptyCell);
+      }п
+    }
+  }
+  return null;
+}
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {}
+function solve(boardString) {
+  console.log(boardString);
+}
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
@@ -34,24 +64,11 @@ function isSolved(board) {
 function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
+
 module.exports = {
+  findEmptyCell: findEmptyCell,
   multiArr: multiArr,
   solve: solve,
   isSolved: isSolved,
   prettyBoard: prettyBoard,
 };
-
-//   console.log(arr);
-
-// boardString.split("");
-//   let str = "";
-//   let multiArr = [];
-//   for (let i = 0; i < boardString.length; i++) {
-//     str += boardString[i];
-
-//     if (str.length === 9) {
-//       multiArr.push(str.split(""));
-//       str = "";
-//     }
-//   }
-//   return multiArr;
