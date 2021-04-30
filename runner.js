@@ -22,6 +22,8 @@ function readAndSolve(err, data) {
   }
   let puzzle = sudokuParse(data);
   let puzzleArr = sudoku.multiArr(puzzle);
+  let empty = sudoku.findEmptyCell(puzzleArr);
+  console.log(empty);
   console.log(puzzleArr);
   let solvedPuzzle = sudoku.solve(puzzleArr);
   if (sudoku.isSolved(solvedPuzzle)) {
