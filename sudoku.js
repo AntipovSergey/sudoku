@@ -14,23 +14,44 @@ function createArr(boardString) {
   for (let i = 0; i < size; i++) {
     newArr.push(sudokuArr.splice(0, size))
   }
+  
+  for (let i = 0; i < newArr.length; i++) {
+    for (let j = 0; j < newArr[i].length; j++) {
+      if (newArr[i][j] !== '-') {
+        newArr[i][j] = Number(newArr[i][j])
+      }
+    }
+  }
+  
   return newArr
 }
+//console.table(createArr(sudoku))
 
 
-function makeHor(boardString) {
+function mainCheck(boardString) {
 let sudokuArray = createArr(sudoku);
 
 for (let i = 0; i < sudokuArray.length; i++) {
   for (let j = 0; j < sudokuArray[i].length; j++) {
-    if (sudokuArray[i][j] !== '-') {
-      sudokuArray[i][j] = Number(sudokuArray[i][j])
-    }
+
   }
 }
-return sudokuArray
+  return sudokuArray
 }
-console.table(makeHor(sudoku))
+//console.table(makeHor(sudoku))
+
+function searchHor(num) {
+  let arrSearchHor = mainCheck(sudoku);
+
+  for (let i = 0; i < arrSearchHor.length; i++) {
+    for (let j = 0; j < arrSearchHor[i].length; j++ ) {
+      if(arrSearchHor[i][j] === num) return false 
+      }
+  }
+
+  return true
+}
+//console.log(searchHor(63));
 
 
 
