@@ -3,7 +3,6 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {}
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -55,3 +54,6 @@ function makeStructure(string) {
 }
 
 console.table(makeStructure(str));
+=======
+  prettyBoard: prettyBoard
+}
