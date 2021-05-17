@@ -54,6 +54,3 @@ function makeStructure(string) {
 }
 
 console.table(makeStructure(str));
-=======
-  prettyBoard: prettyBoard
-}
