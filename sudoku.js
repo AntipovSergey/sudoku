@@ -18,11 +18,11 @@ function isSolved(board) {}
 function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
-module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
-};
+// module.exports = {
+//   solve: solve,
+//   isSolved: isSolved,
+//   prettyBoard: prettyBoard,
+// };
 
 function changeOnZero(string) {
   const newString = string.replace(/-/gi, 0);
@@ -53,4 +53,4 @@ function makeStructure(string) {
   return boardArr;
 }
 
-console.table(makeStructure(str));
+console.table(makeStructure(changeOnZero(str)));
