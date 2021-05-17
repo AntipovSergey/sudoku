@@ -3,6 +3,19 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
+function changeOnZero(string) {
+  const newString = string.replace(/-/gi, 0);
+  return newString;
+}
+
+// console.log(changeOnZero("1-58-2----9--764-52--4--819-19--73-6776---3-43--2-5-16--3-89---"));
+
+
+
+
+
+
 function solve(boardString) {
 
 }
@@ -28,7 +41,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
