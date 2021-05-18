@@ -84,6 +84,7 @@ function solve(boardArr) {
   return false;
 }
 solve(boardArr);
+
 function isSolved() {
   if (searchZero(boardString) === null) {
     return true;
@@ -99,10 +100,12 @@ function prettyBoard(board) {
   return board;
 }
 
+
+
 // Exports all the functions to use them in another file.
-module.exports = {
-  createBoard,
-  solve,
-  isSolved,
-  prettyBoard,
-};
+// module.exports = {
+//   createBoard,
+//   solve,
+//   isSolved,
+//   prettyBoard,
+// };
