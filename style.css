@@ -19,11 +19,27 @@
   justify-content: center;
   flex-direction: column;
 }
-
-#button {
-  height: 80px;
-  width: 100px;
-  margin: auto;
-  margin-top: 25px;
+.button {
+  display: flex;
+ 
+  justify-content: center; 
 }
 
+button {
+  height: 80px;
+  width: 100px;
+  /* margin: auto; */
+  margin-top: 25px;
+  border-radius: 5px;
+  font-size: 18px;
+ 
+
+}
+#button{
+  background-color: black;
+  color: aliceblue;
+}
+
+#buttonSudoku{
+background-color: chocolate;
+}

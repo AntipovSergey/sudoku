@@ -42,8 +42,6 @@ const data = [
 
 const button = document.getElementById('button');
 const lines = document.getElementsByClassName('line');
-
-
 // 105802000
 // 090076405
 // 200400819
@@ -54,19 +52,37 @@ const lines = document.getElementsByClassName('line');
 // 430020501
 // 600308900
 
-button.addEventListener('click', () => {
-  console.log(lines);
-  for (let i = 0; i < 81; i += 1) {
-    lines[i].innerText = data[0][i];
+let newSudoku = 0;
+const buttonSudoku = document.getElementById('buttonSudoku');
+buttonSudoku.addEventListener('click', () => {
+  if (newSudoku > data.length - 1) {
+    newSudoku = 0;
   }
-  const board = createBoard(data[0]);
+  newSudoku++;
+  pullData();
+});
+
+let board = createBoard(data[newSudoku]);
+function pullData() {
+  
+  for (let i = 0; i < 81; i += 1) {
+    lines[i].innerText = data[newSudoku][i];
+  }
   solve(board);
+
+}
+
+button.addEventListener('click', () => {
+  
+  pullData();
   button.addEventListener('click', () => {
     if (isSolved()) {
       console.log(board);
-      for (let i = 0; i < 81; i++) {
-        lines[i].innerText = board[i][i]
-
+      for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+          lines[j + (i * 9)].innerText = board[i][j];
+          //console.log(board[i][j]);
+        }
       }
     }
   })

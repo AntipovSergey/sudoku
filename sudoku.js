@@ -103,9 +103,9 @@ function prettyBoard(board) {
 
 
 // Exports all the functions to use them in another file.
-// module.exports = {
-//   createBoard,
-//   solve,
-//   isSolved,
-//   prettyBoard,
-// };
+module.exports = {
+  createBoard,
+  solve,
+  isSolved,
+  prettyBoard,
+};
