@@ -22,20 +22,15 @@ function readAndSolve(err, data) {
   }
   let puzzle = sudokuParse(data);
 
-  let solvedPuzzle = sudoku.solve(puzzle);
+  let board = sudoku.createBoard(puzzle);
+  let solvedPuzzle = sudoku.solve(board);
   if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
+    console.log('The board was solved!');
+    console.table(sudoku.prettyBoard(board));
+  } else {
     console.log("The board wasn't solved :(");
   }
 }
 
 // Reads file and sends data from it to the readAndSolve function.
-fs.readFile(
-  './sudoku-puzzles.txt',
-  'utf-8',
-  readAndSolve
-);
-
+fs.readFile('./sudoku-puzzles.txt', 'utf-8', readAndSolve);
