@@ -1,20 +1,9 @@
+/* eslint-disable spaced-comment */
 let boardString =
-  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+  '----------2-65-------18--4--9----6-4-3---57-------------------73------9----------';
 
-// находим 0 и вычисляем его координаты
-function searchZero(board) {
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === 0) {
-        console.log([i, j]);
-        return [i, j];
-      }
-    }
-  }
-  return null;
-}
-
-function solve(boardString) {
+//создаем доску
+function createBoard(boardString) {
   //замена на '0'
   const newString = boardString.replace(/-/gi, 0);
 
@@ -36,24 +25,23 @@ function solve(boardString) {
     return row;
   }
   return boardArr;
-  // if (!isSolved()) {
-  // }
 }
+let boardArr = createBoard(boardString);
 
-let boardArr = solve(boardString);
-
-function isSolved() {
-  if (searchZero(boardString) === null) {
-    return true;
+// находим 0 и вычисляем его координаты
+function searchZero(board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === 0) {
+        // console.log([i, j]);
+        return [i, j];
+      }
+    }
   }
-  return false;
+  return null;
 }
 
-let coordZero = searchZero(boardArr);
-
-console.log(checkZero(coordZero, boardArr));
-console.table(boardArr);
-
+//проверяем подходит ли Num  по трем параметрам
 function checkZero(coordZero, board, num = 1) {
   const r = coordZero[0];
   const c = coordZero[1];
@@ -74,12 +62,47 @@ function checkZero(coordZero, board, num = 1) {
   }
   return true;
 }
+//решатель, который запускается рекурсивно
+function solve(boardArr) {
+  //базовый случай
+  if (searchZero(boardArr) === null) {
+    return true;
+  }
+  const coordZero = searchZero(boardArr);
+  for (let num = 1; num <= 9; num++) {
+    const checkZ = checkZero(coordZero, boardArr, num);
+    if (checkZ) {
+      const r = coordZero[0];
+      const c = coordZero[1];
+      boardArr[r][c] = num;
+      if (solve(boardArr)) {
+        return true;
+      }
+      boardArr[r][c] = 0;
+    }
+  }
+  return false;
+}
+solve(boardArr);
+function isSolved() {
+  if (searchZero(boardString) === null) {
+    return true;
+  }
+  return false;
+}
 
-function prettyBoard(board) {}
+// let coordZero = searchZero(boardArr);
+
+// console.log(checkZero(coordZero, boardArr));
+
+function prettyBoard(board) {
+  return board;
+}
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
+  createBoard,
+  solve,
+  isSolved,
+  prettyBoard,
 };
