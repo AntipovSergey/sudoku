@@ -1,8 +1,9 @@
 // Use filesystem.
-const fs = require('fs');
+const fs = require("fs");
+const customParser = require("./parser");
 // Use functions from sudoku.js file.
-const sudoku = require('./sudoku');
-const shamilCheck = require('./shamil');
+const sudoku = require("./sudoku");
+const shamilCheck = require("./shamil");
 
 // The sudoku puzzles that your program will solve can be found
 // in the sudoku-puzzles.txt file.
@@ -12,9 +13,8 @@ const shamilCheck = require('./shamil');
 
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
-  let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  return puzzle;
+  let puzzle = content.split("\n")[puzzleNumber];
+  return customParser(puzzle);
 }
 
 function readAndSolve(err, data) {
@@ -22,21 +22,16 @@ function readAndSolve(err, data) {
     throw err;
   }
   let puzzle = sudokuParse(data);
-
+  console.log("Исходная судоку");
+  sudoku.prettyBoard(puzzle);
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
     console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
+  } else {
     console.log("The board wasn't solved :(");
   }
 }
 
 // Reads file and sends data from it to the readAndSolve function.
-fs.readFile(
-  './sudoku-puzzles.txt',
-  'utf-8',
-  readAndSolve
-);
-
+fs.readFile("./sudoku-puzzles.txt", "utf-8", readAndSolve);
