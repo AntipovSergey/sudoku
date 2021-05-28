@@ -14,9 +14,16 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  
+  strBoard = board.join('');
+  let tire = /-/;
+  let result = strBoard.match(tire);
+  if (result > 0) {
+    console.log(board, 'not solve')
+  } else {
+    console.log(board, 'SOLVE!!!')
+  }
 }
-
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -29,9 +36,9 @@ let sudokuBoard = []
     sudokuBoard.push(board.slice(i, i + 9))
   }
     
-return sudokuBoard
+return sudokuBoard;
 }
-console.log(prettyBoard(content))
+//console.log(prettyBoard(content))
 
 // Exports all the functions to use them in another file.
 module.exports = {
@@ -39,3 +46,6 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+
+isSolved(prettyBoard(content))
