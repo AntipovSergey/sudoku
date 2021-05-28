@@ -23,8 +23,14 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  let result =''
+  for (let i = 0; i < board.length; i++) {
+    result += board[i].join(' ') + '\n'
+ }
+ return result
 }
+
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
