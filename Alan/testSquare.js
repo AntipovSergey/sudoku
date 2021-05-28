@@ -10,14 +10,14 @@ function testSquare(arr) {
     /(\d)\,(\d)\,(\d)\,(\d)\,(\d)\,(\d)\,(\d)\,(\d)\,(\d)/g,
     "$1$2$3$4$5$6$7$8$9"
   );
-  // console.log(arrToString);
+  console.log(arrToString);
   let result = [arrToString[0]];
-  // console.log(result);
+  console.log(result);
   for (let i = 1; i < arrToString.length; i++) {
-    // console.log(result.includes(arrToString[0]));
+    console.log(result.includes(arrToString[0]));
     if (result.includes(arrToString[i])===false) {
       result.push(arrToString[i]);
-      // console.log(result);
+      console.log(result);
     }else if (result.includes(arrToString[i]) === true) {
       return false
     }

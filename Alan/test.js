@@ -6,7 +6,7 @@ let result = [];
 for (let i = 0; i < stringFromArr.length; i = i + 10) {
   result.push(transitArr.slice(i, i + 9));
 }
-console.log(result);
+// console.log(result);
 
 
 let aru = [
@@ -29,4 +29,4 @@ function transformArray(Arr, ArrLength){
   return newArr;
 }
 console.table(aru)
-console.table(transformArray(aru, 3));
+console.log(transformArray(aru, 3));
