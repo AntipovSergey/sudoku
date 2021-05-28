@@ -3,7 +3,6 @@ const fs = require("fs");
 const customParser = require("./parser");
 // Use functions from sudoku.js file.
 const sudoku = require("./sudoku");
-const shamilCheck = require("./shamil");
 
 // The sudoku puzzles that your program will solve can be found
 // in the sudoku-puzzles.txt file.

@@ -1,16 +1,3 @@
-
-var sudoku = [
-  [0, 0, 3, 0, 0, 8, 2, 0, 4],
-  [0, 2, 0, 0, 6, 4, 0, 1, 0],
-  [9, 0, 0, 0, 0, 0, 0, 0, 8],
-  [0, 8, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 6, 9, 8, 0],
-  [0, 0, 0, 0, 0, 0, 5, 0, 0],
-  [0, 0, 4, 9, 0, 7, 0, 3, 0],
-  [8, 0, 0, 0, 0, 1, 0, 0, 0],
-  [0, 7, 0, 0, 5, 0, 4, 0, 0],
-];
-
 function checkMatchInBlock(sudoku, i, j, arrayPossible) {
   let startSquareCoordX = Math.floor(i / 3) * 3;
   let startSquareCoordY = Math.floor(j / 3) * 3;
@@ -28,3 +15,4 @@ function checkMatchInBlock(sudoku, i, j, arrayPossible) {
   return arrayPossible;
 }
 
+module.exports = checkMatchInBlock;
