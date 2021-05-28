@@ -22,7 +22,7 @@ function readAndSolve(err, data) {
     throw err;
   }
   let puzzle = sudokuParse(data);
-  console.log("Исходная судоку");
+  console.log("Original board");
   sudoku.prettyBoard(puzzle);
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
@@ -30,6 +30,7 @@ function readAndSolve(err, data) {
     console.log(sudoku.prettyBoard(solvedPuzzle));
   } else {
     console.log("The board wasn't solved :(");
+    sudoku.prettyBoard(puzzle);
   }
 }
 
