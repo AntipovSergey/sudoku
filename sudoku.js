@@ -1,17 +1,9 @@
 const fs = require('fs');
-// const path = "/sudoku-puzzles.txt"
 const data = fs.readFileSync("./sudoku-puzzles.txt", "utf8").split("\n");
 
-function solve(boardString, i) {
-    let board = boardString[i] ? boardString[i].replace(/-/g, 0).match(/(\d{9})/g, '$1 ') : "Закончились таблицы, sorry";
+function solve(boardString) {
 
-    for (let i = 0; i < board.length; i++) {
-        board[i] = board[i].split('');
-    }
-
-    return board;
 }
-console.log(solve(data, 11521));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -27,8 +19,14 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
+function prettyBoard(board, i) {
+    let board = boardString[i] ? boardString[i].replace(/-/g, 0).match(/(\d{9})/g, '$1 ') : "Закончились таблицы, sorry";
 
+    for (let i = 0; i < board.length; i++) {
+        board[i] = board[i].split('');
+    }
+
+    return board;
 }
 
 // Exports all the functions to use them in another file.
