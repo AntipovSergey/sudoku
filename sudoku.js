@@ -17,14 +17,39 @@ function solve(boardString) {
   }
   return newArr;
 }
-console.log(solve(string));
+console.table(solve(string));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
 
+function isValid(board,row,col,number) {
+    function isValidRow(board,row,number) {
+        return board[row].includes(number)
+        }
+	function isValidCol() {
+		
+	}
+	function isValidSquare() {
+		}
+}
+
+function isSolved(board) {
+	for (let row = 0; row < board.length; row++){
+		for (let col = 0; col < board.length; col++){
+			if ( board[row][col] === '-') {
+				for (let number = 1; number < 9; number++) {
+					board[row][col] = number;
+					if (isValid(board,row,col,number)) {
+						if(isSolved(board)) return board;
+						else board[row][col] = '-'
+					}
+					return false;
+				}
+			}
+		}
+	}
 }
 
 

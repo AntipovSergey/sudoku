@@ -1,9 +1,21 @@
-let tex = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+let arr1 = [
+    '2', '9', '-',
+    '5', '-', '-',
+    '-', '-', '7'
+  ]
+function isValid(board,row,col,number) {
+    function isValidRow(arr) {
+        return arr.includes(number)
+        }
+// 	function isValidCol() {
+		
+// 	}
+// 	function isValidSquare() {
+		
+// 	}
+// isValidRow(arr)
+// }
 
-function solve(boardString) {
-    let arr = []
-    for (let i = 0; i <= boardString.length; i++) {
-                
-    }
-    }
-    console.log(solve(tex));
+// isValid()
+
+   console.log(isValidRow(arr1));
