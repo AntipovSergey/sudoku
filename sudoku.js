@@ -37,27 +37,27 @@ const getFreeCand = (x, y, sudoku) => {
 
 }
 // console.log('getFreeCand');
-// const resuult = getFreeCand(0, 0, sudoku)
+// const resuult = getFreeCand(1, 0, sudoku)
 // console.log(resuult);
 
 
 
 function solve(boardString) {
 
-  //console.table(boardString);
+   let board = boardString.replace(/-/g, 0).match(/(\d{9})/g, '$1 ');
 
-  for (let x = 0; x < boardString.length; x++) {
-    for (let y = 0; y < boardString[x].length; y++) {
+      for (let i = 0; i < board.length; i++) {
+          board[i] = board[i].split('');
+      }    
+  
 
-
+  for (let x = 0; x < board.length; x++) {
+    for (let y = 0; y < board[x].length; y++) {
       //function rowCol (){
-      if (boardString[x][y] == 0) {
-        boardString[x][y] = getFreeCand(x,y,sudoku)
+      if (board[x][y] == 0) {
 
-
-
+         board[x][y] = getFreeCand(x,y,sudoku).length==1 ? getFreeCand(x,y,sudoku)[0] : getFreeCand(x,y,sudoku);
       }
-      return boardString
       //console.log(boardString[x][y], '=SV==>', !Array.isArray(boardString[x][y]), 'boardString[x] ==>', boardString[x][y]);
 
       // if (!Array.isArray(boardString[x][y])) {
@@ -67,7 +67,9 @@ function solve(boardString) {
 
       // }
     }
-  }
+  
+  }console.log(board)
+  return board
 
 
 
@@ -121,7 +123,7 @@ function solve(boardString) {
   // }
   // }
 }
-console.log(solve(sudoku))
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
