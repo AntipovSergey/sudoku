@@ -1,12 +1,17 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(boardString) {
+const fs = require('fs');
+// const path = "/sudoku-puzzles.txt"
+const data = fs.readFileSync("./sudoku-puzzles.txt", "utf8").split("\n");
 
+function solve(boardString, i) {
+    let board = boardString[i] ? boardString[i].replace(/-/g, 0).match(/(\d{9})/g, '$1 ') : "Закончились таблицы, sorry";
+
+    for (let i = 0; i < board.length; i++) {
+        board[i] = board[i].split('');
+    }
+
+    return board;
 }
-
+console.log(solve(data, 11521));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
