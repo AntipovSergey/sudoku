@@ -4,28 +4,35 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 const sudoku = [
-[1,[1,2,3,4,5,6,7,8,9],5,8,0,2,0,0,0]
-[0,9,0,0,7,6,4,0,5]
-[2,0,0,4,0,0,8,1,9]
-[0,1,9,0,0,7,3,0,6]
-[7,6,2,0,8,3,0,9,0]
-[0,0,0,0,6,1,0,5,0]
-[0,0,7,6,0,0,0,3,0]
-[4,3,0,0,2,0,5,0,1]
-[6,0,0,3,0,8,9,0,0]
+[1,0,5,8,0,2,0,0,0],
+[0,9,0,0,7,6,4,0,5],
+[2,0,0,4,0,0,8,1,9],
+
+[0,1,9,0,0,7,3,0,6],
+[7,6,2,0,8,3,0,9,0],
+[0,0,0,0,6,1,0,5,0],
+
+[0,0,7,6,0,0,0,3,0],
+[4,3,0,0,2,0,5,0,1],
+[6,0,0,3,0,8,9,0,0],
 ]
 
-const candidates = [1,2,3,4,5,6,7,8,9]
+const candidates = {1,2,3,4,5,6,7,8,9}
 
 
 function solve(boardString) {
-  for (let x = 0; x < sudoku.length; x++){
-    for (let y = 0; y < sudoku[0].length; y++){
-      function rowCol (){
-        if ( sudoku[x][y] != 0){
-          
+
+   for (let x = 0; x < boardString.length; x++){
+    for (let y = 0; y < boardString[x].length; y++){
+      
+    
+  
+      //function rowCol (){
+        if ( boardString[x][y] == 0){
+          boardString[x][y] = candidates
+          boardString[x], boardString[y]
         }
-      }
+    }
      
      
      
@@ -56,19 +63,20 @@ function solve(boardString) {
 
 
 
-      function col (){
+      // function col (){
 
-      }
+      // }
 
 
 
-      function sqr (){
+      // function sqr (){
 
-      }
-    }
-  }
+      // }
+  //   }
+  // }
 }
-
+}
+console.log(solve(sudoku))
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -84,9 +92,15 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
+function prettyBoard(board, i) {
+//     let board = boardString[i] ? boardString[i].replace(/-/g, 0).match(/(\d{9})/g, '$1 ') : "Закончились таблицы, sorry";
 
-}
+//     for (let i = 0; i < board.length; i++) {
+//         board[i] = board[i].split('');
+//     }
+
+//     return board;
+ }
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
