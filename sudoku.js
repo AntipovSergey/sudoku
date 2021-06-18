@@ -1,8 +1,13 @@
-const fs = require('fs');
-const data = fs.readFileSync("./sudoku-puzzles.txt", "utf8").split("\n");
 
 function solve(boardString) {
-
+    const board = boardString
+        .replace(/-/g, 0)
+        .match(/(\d{9})/g, '$1 ');
+        
+    for (let i = 0; i < board.length; i++) {
+        board[i] = board[i].split('');
+    }    
+    return board
 }
 
 // Returns a boolean indicating whether
@@ -19,14 +24,8 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board, i) {
-    let board = boardString[i] ? boardString[i].replace(/-/g, 0).match(/(\d{9})/g, '$1 ') : "Закончились таблицы, sorry";
+function prettyBoard(board) {
 
-    for (let i = 0; i < board.length; i++) {
-        board[i] = board[i].split('');
-    }
-
-    return board;
 }
 
 // Exports all the functions to use them in another file.
