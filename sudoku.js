@@ -28,12 +28,18 @@ function isValid(board,row,col,number) {
 	function isValidRow() {
 
 	}
-	function isValidCol() {
-		
+	function isValidCol(board, col, number) {
+		let arr = []
+		for (let row = 0; row < 9; row ++) {
+			arr.push(board[row][col])
+		}
+		return isValidRow(arr,row,number)
 	}
 	function isValidSquare() {
 		
 	}
+	if (isValidRow() && isValidCol() && isValidSquare()) return true
+	else return false
 }
 
 function isSolved(board) {
@@ -41,8 +47,8 @@ function isSolved(board) {
 		for (let col = 0; col < board.length; col++){
 			if ( board[row][col] === '-') {
 				for (let number = 1; number < 9; number++) {
-					board[row][col] = number;
 					if (isValid(board,row,col,number)) {
+						board[row][col] = number;
 						if(isSolved(board)) return board;
 						else board[row][col] = '-'
 					}
