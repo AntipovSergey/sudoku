@@ -24,14 +24,23 @@ console.log(solve(contentInObj));
 // The input board will be in whatever
 // form `solve` returns.
 
+
 function isValid(board, row, col, number) {
 
-  function isValidRow() {
+  function isValidRow(number, board, row) {
+    return board[row].includes(number)
   }
 
-  function isValidCol() {
-
+  function isValidCol(board, col, number) {
+    let arr = []
+    for (let row = 0; row < 9; row++) {
+      arr.push(board[row][col])
+    }
+    return isValidRow(arr, row, number)
   }
+
+
+
   function isValidSquare(number, board, i, j) {
     let newArr = [];
     let rowIndex = Math.floor(i / 3) * 3;
