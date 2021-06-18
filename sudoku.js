@@ -65,13 +65,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-<<<<<<< HEAD
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-=======
   solve: solve,
   isSolved: isSolved,
   prettyBoard: prettyBoard
->>>>>>> master
 }
