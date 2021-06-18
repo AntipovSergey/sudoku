@@ -1,5 +1,5 @@
 const fs = require('fs');
-const contentFromTextFile = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
+//const contentFromTextFile = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -7,8 +7,8 @@ const contentFromTextFile = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 
-let string =
-  "29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9";
+// let string =
+//   "29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9";
 
 function solve(boardString) {
   let newArr = [];
@@ -17,46 +17,58 @@ function solve(boardString) {
   }
   return newArr;
 }
-console.log(solve(string));
+console.log(solve(contentInObj));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 
-function isValid(board,row,col,number) {
-	function isValidRow() {
 
-	}
-	function isValidCol(board, col, number) {
-		let arr = []
-		for (let row = 0; row < 9; row ++) {
-			arr.push(board[row][col])
-		}
-		return isValidRow(arr,row,number)
-	}
-	function isValidSquare() {
-		
-	}
-	if (isValidRow() && isValidCol() && isValidSquare()) return true
-	else return false
+function isValid(board, row, col, number) {
+
+  function isValidRow(number, board, row) {
+    return board[row].includes(number)
+  }
+
+  function isValidCol(board, col, number) {
+    let arr = []
+    for (let row = 0; row < 9; row++) {
+      arr.push(board[row][col])
+    }
+    return isValidRow(arr, row, number)
+  }
+
+
+
+  function isValidSquare(number, board, i, j) {
+    let newArr = [];
+    let rowIndex = Math.floor(i / 3) * 3;
+    let colIndex = Math.floor(j / 3) * 3;
+    for (let row = rowIndex; row < (rowIndex + 3); row++) {
+      for (let col = colIndex; col < (colIndex + 3); col++) {
+        newArr.push(board[row][col]);
+      }
+    }
+    return isValidRow(number, newArr);
+  }
 }
 
 function isSolved(board) {
-	for (let row = 0; row < board.length; row++){
-		for (let col = 0; col < board.length; col++){
-			if ( board[row][col] === '-') {
-				for (let number = 1; number < 9; number++) {
-					if (isValid(board,row,col,number)) {
-						board[row][col] = number;
-						if(isSolved(board)) return board;
-						else board[row][col] = '-'
-					}
-					return false;
-				}
-			}
-		}
-	}
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board.length; col++) {
+      if (board[row][col] === '-') {
+        for (let number = 1; number < 9; number++) {
+          if (isValid(board, row, col, number)) {
+            board[row][col] = number;
+            if (isSolved(board)) return board;
+            else board[row][col] = '-'
+          }
+          return false;
+        }
+      }
+    }
+  }
 }
 
 
@@ -69,7 +81,7 @@ function prettyBoard(board) {
 
 }
 
-// Exports all the functions to use them in another file.
+//Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
   isSolved: isSolved,
