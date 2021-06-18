@@ -23,8 +23,34 @@ console.log(solve(string));
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
 
+function isValid(board,row,col,number) {
+	function isValidRow() {
+
+	}
+	function isValidCol() {
+		
+	}
+	function isValidSquare() {
+		
+	}
+}
+
+function isSolved(board) {
+	for (let row = 0; row < board.length; row++){
+		for (let col = 0; col < board.length; col++){
+			if ( board[row][col] === '-') {
+				for (let number = 1; number < 9; number++) {
+					board[row][col] = number;
+					if (isValid(board,row,col,number)) {
+						if(isSolved(board)) return board;
+						else board[row][col] = '-'
+					}
+					return false;
+				}
+			}
+		}
+	}
 }
 
 
@@ -39,7 +65,13 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
+<<<<<<< HEAD
+	solve: solve,
+	isSolved: isSolved,
+	prettyBoard: prettyBoard
+=======
   solve: solve,
   isSolved: isSolved,
   prettyBoard: prettyBoard
+>>>>>>> master
 }
