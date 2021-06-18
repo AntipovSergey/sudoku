@@ -1,5 +1,6 @@
 const fs = require('fs');
-const contentFromTextFile = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
+console.log(process.env.PWD)
+const contentFromTextFile = fs.readFileSync('/home/ites/Documents/Elbrus/Phase 1/1w5d/project-sudoku/sudoku-puzzles.txt', 'utf-8');
 const contentInObj = contentFromTextFile.split('\n').map((elem)=>{
 	return elem.split(',')
 })
@@ -23,12 +24,12 @@ function isValidRow(number, board, row) {
 	return board[row].includes(number)
 }
 
-function isValidCol(board, col, number) {
+function isValidCol(board, col, number, row) {
 	let arr = []
-	for (let row = 0; row < 9; row++) {
-		arr.push(board[row][col])
+	for (let i = 0; i < 9; i++) {
+		arr.push(board[i][col])
 	}
-	return isValidRow(arr, row, number)
+	return isValidRow(number, arr, row)
 }
 
 function isValidSquare(number, board, row, col) {
@@ -39,12 +40,13 @@ function isValidSquare(number, board, row, col) {
 		for (let j = colIndex; j < (colIndex + 3); j++) {
 			newArr.push(board[i][j]);
 		}
+    return newArr
 	}
-	return isValidRow(number, newArr);
+	return isValidRow(number, newArr, row);
 }
 
 function isValid(board, row, col, number) {
-	return (isValidRow(number, board, row) && isValidCol(board, col, number) && isValidSquare(number, board, row, col)) 
+	return (isValidRow(number, board, row) && isValidCol(board, col, number, row) && isValidSquare(number, board, row, col)  ) 
 }
 
 function isSolved(board) {
@@ -52,8 +54,8 @@ function isSolved(board) {
     for (let col = 0; col < board.length; col++) {
       if (board[row][col] === '-') {
         for (let number = 1; number <= 9; number++) {
+              board[row][col] = number;
           if (isValid(board, row, col, number)) {
-            board[row][col] = number;
             if (isSolved(board)) return board;
             else board[row][col] = '-'
           }
