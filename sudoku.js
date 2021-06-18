@@ -32,11 +32,13 @@ function isSolved(arrArrs) {
   for (let i = 0; i < arrArrs.length; i++) {
     for (let j = 0; j < arrArrs[i].length; j++) {
       if (arrArrs[i][j] === 0) {
-        arrArrs[i][j]++;
+        
         for (let k = 0; k <= 9; k++) {
-          if (!arrArrs[i].includes(k) && !vertical(arrArrs, j).includes(k)) {
+          if (!arrArrs[i].includes(k) && !vertical(arrArrs, j).includes(k) && !square(arrArrs, i, j).includes(k)) {
             arrArrs[i][j] = k;
             break;
+          // } else {
+          //   arrArrs[i][j] = k;
           }
         }
       } 
@@ -44,6 +46,18 @@ function isSolved(arrArrs) {
   }
   console.table(arrArrs)
   return arrArrs;
+}
+
+function square(arrArrs, i, j) {
+  let arr = [];
+  let row = Math.floor(i / 3) * 3;
+  let column = Math.floor(j / 3) * 3;
+  for (let i = row; i < row + 3; i++) {
+    for (let j = column; j < column + 3; j++) {
+      arr.push(arrArrs[i][j])
+    }
+  }
+  return arr;
 }
 
 function vertical(arrArrs, j) {
