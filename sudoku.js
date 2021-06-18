@@ -38,25 +38,25 @@ function isValid(board,row,col,number) {
 	function isValidSquare() {
 		
 	}
-	if (isValidRow() && isValidCol() && isValidSquare()) return true
-	else return false
+	return (isValidRow() && isValidCol() && isValidSquare()) 
 }
 
 function isSolved(board) {
 	for (let row = 0; row < board.length; row++){
 		for (let col = 0; col < board.length; col++){
 			if ( board[row][col] === '-') {
-				for (let number = 1; number < 9; number++) {
+				for (let number = 1; number <= 9; number++) {
 					if (isValid(board,row,col,number)) {
 						board[row][col] = number;
 						if(isSolved(board)) return board;
 						else board[row][col] = '-'
 					}
-					return false;
 				}
+				return false;
 			}
 		}
 	}
+	return board
 }
 
 
