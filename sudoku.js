@@ -26,8 +26,7 @@ console.log(solve(contentInObj));
 
 function isValid(board, row, col, number) {
 
-  function isValidRow(number, board, row) {
-    return board[row].includes(number);
+  function isValidRow() {
   }
 
   function isValidCol() {
