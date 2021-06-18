@@ -4,7 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+	
 }
 
 
@@ -13,7 +13,15 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+	for (let i = 0; i < board.length; i++){
+		for (let j = 0; j < board.length; j++){
+			if ( board[i][j] === '-') {
+				for (let n = 1; n < 9; n++) {
+					board[i][j] = n
+				}
+			}
+		}
+	}
 }
 
 
