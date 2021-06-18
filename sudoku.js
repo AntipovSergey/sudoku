@@ -4,24 +4,31 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  // let board = []; 
+  // let newStr = boardString.replace(/\-/g, 0);
+  // while (newStr.length) {
+  //   board.push(Array.from(newStr.substring(0, 9)));
+  //   newStr = newStr.substring(9);
+  // }
+  // return board;
 }
 
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
+
+// // Returns a boolean indicating whether
+// // or not the provided board is solved.
+// // The input board will be in whatever
+// // form `solve` returns.
 function isSolved(board) {
 
 }
 
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
+// // Takes in a board in some form and
+// // returns a String that's well formatted
+// // for output to the screen.
+// // The input board will be in whatever
+// // form `solve` returns.
 function prettyBoard(board) {
 
 }
