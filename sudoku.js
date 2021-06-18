@@ -3,8 +3,22 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
 
+function solve(boardString) {
+  let arrArrs = [];
+  let arr = [];
+  reg = /(.{9})/gmi;
+  arrArrs = boardString.match(reg);
+  for (let elem of arrArrs) {
+    arr.push(elem.split(''));
+  }
+  // for (let i = 0; i < arr.length; i++) {
+  //   for (let j = 0; j < arr[i].length; j++) {
+  //     if (arr[i][j] )
+  //   }
+  // }
+  console.log(arr);
+  return arr;
 }
 
 
