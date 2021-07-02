@@ -2,10 +2,23 @@
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
+
+// const { strict } = require("assert/strict");
+
 // How you represent your board is up to you!
 function solve(boardString) {
+  const boardSudoko = [];
 
+  let str;
+
+  for (let i = 0; i < boardString.length; i += 9) {
+  str = boardString.slice(i , i+9).split('');
+  boardSudoko.push(str);
+  }
+  isSolved(boardSudoko);
 }
+
+
 
 
 // Returns a boolean indicating whether
@@ -13,6 +26,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
+
 
 }
 
