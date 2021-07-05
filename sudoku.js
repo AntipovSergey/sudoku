@@ -1,50 +1,51 @@
+/* eslint-disable max-len */
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  const sudokuBoard = boardString.split('').map((el) => Number(el) ? Number(el) : null);
+  const sudokuBoard = boardString.split('').map((el) => Number(el) ? Number(el) : null); // Превращение строки в массив с заменой всех 'не чисел' на null
   const sudokuArr = [];
-  let transudokuArr=[[],[],[],[],[],[],[],[],[]];
+  const transudokuArr = [[], [], [], [], [], [], [], [], []];
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   if (boardString.length > 81) return 'Неправильный формат судоку';
 
-  for (let i = 0; i < boardString.length; i += 9) {
+  for (let i = 0; i < boardString.length; i += 9) {  // Распределение строки по 9 символов (цифры и не только)
     sudokuArr.push(sudokuBoard.slice(i, i + 9));
   }
-  // return sudokuArr;
-  for (let i = 0; i < sudokuArr.length; i += 1) {
-    let saveLength = countLength;
-    let countLength = 0;
+  for (let i = 0; i < sudokuArr.length; i += 1) {  // Проверка 'строк' на заполненость
     if (sudokuArr[i].reduce((acc, el) => acc + Number(el)) === 45) {
-      // console.log(countLength);
       continue;
     }
-    else (sudokuArr[i].filter( (el) => Number(el) ? countLength +=1 : countLength +=0 ) );
-    // console.log(countLength);
+    else {
+      const indexes = sudokuArr[i].map((x, i) => x === null ? i : -1).filter(x => x >= 0); // [[ 1, null, 2, null,7, null, null, 4,6], [null, 9, null, 1, 6, null, null, 3, null],]
+      const numbersArr = sudokuArr[i].filter(x => )
+      }
+    }
+    return sudokuArr;
   }
-  for (let i=0; i<sudokuArr.length; i++){
-    for (let j=0; j<sudokuArr[i].length;j++){
+
+  for (let i = 0; i < sudokuArr.length; i++) {  // Транспонирование матрицы , для проверки ее 'столбов'
+    for (let j = 0; j < sudokuArr[i].length; j++) {
       transudokuArr[i].push(sudokuArr[j][i])
     }
   }
-  let countLength = 0;
-  for (let i = 0; i < transudokuArr.length; i += 1) {
 
+  for (let i = 0; i < transudokuArr.length; i += 1) { // Проверка 'столбцов' на заполненость
+    let countLength = 0;
     if (transudokuArr[i].reduce((acc, el) => acc + Number(el)) === 45) {
-      // console.log(countLength);
       continue;
     }
-    else {(transudokuArr[i].filter( (el) => Number(el) ? countLength +=1 : countLength +=0 ));
-     if (countLength >
-      console.log(countLength);
+    else {
+      (transudokuArr[i].filter((el) => Number(el) );
     }
   }
-  return transudokuArr
+  return transudokuArr;
 }
 
-console.table(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
+console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
