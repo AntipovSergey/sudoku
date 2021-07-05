@@ -14,6 +14,7 @@ function solve(boardString) {
   }
   // return sudokuArr;
   for (let i = 0; i < sudokuArr.length; i += 1) {
+    let saveLength = countLength;
     let countLength = 0;
     if (sudokuArr[i].reduce((acc, el) => acc + Number(el)) === 45) {
       // console.log(countLength);
