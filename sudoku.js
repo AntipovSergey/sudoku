@@ -6,6 +6,7 @@
 function solve(boardString) {
   const sudokuBoard = boardString.split('').map((el) => Number(el) ? Number(el) : null);
   const sudokuArr = [];
+  let transudokuArr=[[],[],[],[],[],[],[],[],[]];
 
   if (boardString.length > 81) return 'Неправильный формат судоку';
 
@@ -22,9 +23,27 @@ function solve(boardString) {
     else (sudokuArr[i].filter( (el) => Number(el) ? countLength +=1 : countLength +=0 ) );
     // console.log(countLength);
   }
+  for (let i=0; i<sudokuArr.length; i++){
+    for (let j=0; j<sudokuArr[i].length;j++){
+      transudokuArr[i].push(sudokuArr[j][i])
+    }
+  }
+  let countLength = 0;
+  for (let i = 0; i < transudokuArr.length; i += 1) {
+
+    if (transudokuArr[i].reduce((acc, el) => acc + Number(el)) === 45) {
+      // console.log(countLength);
+      continue;
+    }
+    else {(transudokuArr[i].filter( (el) => Number(el) ? countLength +=1 : countLength +=0 ));
+     if (countLength >
+      console.log(countLength);
+    }
+  }
+  return transudokuArr
 }
 
-solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+console.table(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
