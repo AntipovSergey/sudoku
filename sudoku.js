@@ -149,7 +149,6 @@ function prettyBoard(board) {
   }
   return sudokuArr;
 }
- //console.table(prettyBoard('123456789fffffffffzzzzzzzzzooooooooojjjjjjjjjnnnnnnnnnmmmmmmmmmlllllllllkkkkkkkkk'))
 
 // Exports all the functions to use them in another file.
 module.exports = {
