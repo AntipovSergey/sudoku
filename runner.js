@@ -22,6 +22,7 @@ function sudokuParse(content, puzzleNumber = 0) {
 }
 
 let board = sudokuParse(content, 14);
+// console.log(board);
 
 let solve = function (board) {
   //Это длина строки и сектора
