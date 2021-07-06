@@ -111,7 +111,7 @@ function solve(boardString) {
   
     const solutionObj = pickRandomSolution(solutions); // вот и решение подъехало
     sudokuArr[solutionObj.rowIndex][solutionObj.colIndex] = solutionObj.solNumber; // ааакуратненько карандашиком пишем на поле судоку
-  } while (sudokuArr.reduce((acc,x) => acc + x.filter(x => x === null).length, 0)>0); // повторяем пока есть пустые места (да, надо бы проверить на отсутствие решений еще)
+   while (sudokuArr.reduce((acc,x) => acc + x.filter(x => x === null).length, 0)>0); // повторяем пока есть пустые места (да, надо бы проверить на отсутствие решений еще)
 
   return sudokuArr;
 }
@@ -149,7 +149,7 @@ function prettyBoard(board) {
   }
   return sudokuArr;
 }
-// console.table(prettyBoard('123456789fffffffffzzzzzzzzzooooooooojjjjjjjjjnnnnnnnnnmmmmmmmmmlllllllllkkkkkkkkk'))
+ //console.table(prettyBoard('123456789fffffffffzzzzzzzzzooooooooojjjjjjjjjnnnnnnnnnmmmmmmmmmlllllllllkkkkkkkkk'))
 
 // Exports all the functions to use them in another file.
 module.exports = {
