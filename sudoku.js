@@ -1,62 +1,83 @@
-let boardString = [
-  ['1', '-', '5', '8', '-', '2', '-', '-', '-'],
-  ['-', '9', '-', '-', '7', '6', '4', '-', '5'],
-  ['2', '-', '-', '4', '-', '-', '8', '1', '9'],
-  ['-', '1', '9', '-', '-', '7', '3', '-', '6'],
-  ['7', '6', '2', '-', '8', '3', '-', '9', '-'],
-  ['-', '-', '-', '-', '6', '1', '-', '5', '-'],
-  ['-', '-', '7', '6', '-', '-', '-', '3', '-'],
-  ['4', '3', '-', '-', '2', '-', '5', '-', '1'],
-  ['6', '-', '-', '3', '-', '8', '9', '-', '-'],
-];
+// let { board } = require('./runner');
 
-// function solve(boardString) {
-//   for (let i = 0; i < boardString.length; i++) {
-//     for (let j = 0; j < boardString.length; j++) {
-//       if (boardString[i][j] === '-') {
-//         boardString[i][j] = String(
-//           Math.round(1 - 0.5 + Math.random() * (9 - 1 + 1))
-//         );
+// let solve = function (board) {
+//   const size = 9;
+//   const sectorSize = 3;
+
+//   const findEmpty = (board) => {
+//     for (let r = 0; r < size; r++) {
+//       for (let c = 0; c < size; c++) {
+//         if (board[r][c] === 0) {
+//           return [r, c];
+//         }
 //       }
 //     }
-//   }
-//   return boardString;
-// }
+//     return null;
+//   };
 
-// console.log(solve(boardString));
+//   const validate = (num, pos, board) => {
+//     const [r, c] = pos;
 
-function isSolved(boardString) {
-  function solve(boardString) {
-    for (let i = 0; i < boardString.length; i++) {
-      for (let j = 0; j < boardString.length; j++) {
-        if (boardString[i][j] === '-') {
-          boardString[i][j] = String(
-            Math.round(1 - 0.5 + Math.random() * (9 - 1 + 1))
-          );
-        }
-      }
-    }
-    return boardString;
-  }
+//     //Этим циклом проверяем строки
+//     for (let i = 0; i < size; i++) {
+//       if (board[i][c] === num && i !== r) {
+//         return false;
+//       }
+//     }
 
-  let table = solve();
+//     //Этим циклом проверяем колонки
+//     for (let i = 0; i < size; i++) {
+//       if (board[r][i] === num && i !== c) {
+//         return false;
+//       }
+//     }
 
-  for (let i = 0; i < table.length; i++) {
-    let arr = Array.from(new Set(table[i]));
-    if (arr.length === table[i].length) {
-      return true;
-    } else {
-      return solve();
-    }
-  }
-}
+//     //Этим циклом проверяем сектора
+//     const boxRow = Math.floor(r / sectorSize) * sectorSize;
+//     const boxCol = Math.floor(c / sectorSize) * sectorSize;
 
-console.log(isSolved(boardString));
+//     for (let i = boxRow; i < boxRow + sectorSize; i++) {
+//       for (let j = boxCol; j < boxCol + sectorSize; j++) {
+//         if (board[i][j] === num && i !== r && j !== c) {
+//           return false;
+//         }
+//       }
+//     }
 
-// function prettyBoard(board) {}
+//     return true;
+//   };
 
-// module.exports = {
-//   solve: solve,
-//   isSolved: isSolved,
-//   prettyBoard: prettyBoard,
+//   const solve = () => {
+//     const currPos = findEmpty(board);
+
+//     if (currPos === null) {
+//       return true;
+//     }
+//     //console.log('------------------------------');
+//     for (let i = 1; i < size + 1; i++) {
+//       const currNum = +i.toString();
+//       const isValid = validate(currNum, currPos, board);
+//       //console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
+//       if (isValid) {
+//         const [x, y] = currPos;
+//         board[x][y] = currNum;
+
+//         if (solve()) {
+//           return true;
+//         }
+
+//         board[x][y] = 0;
+//       }
+//     }
+
+//     return false;
+//   };
+
+//   solve();
+//   return board;
 // };
+
+// console.table(board);
+// let table = solve(board);
+
+// module.exports = { table };
