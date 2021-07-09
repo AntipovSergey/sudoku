@@ -30,7 +30,14 @@ function solvingSudoku(string) {
     return arrayOfIndexesOfEmptyStrings
   };
   // go through emptycell ine by one
-  
+  const arrOfIndexforemptyString = findAllEmptyCells(board)
+  for (let i = 0; i < arrOfIndexforemptyString.length; i++) {
+    const indexOfArray = arrOfIndexforemptyString[0];
+    const indexOfElement = arrOfIndexforemptyString[1];
+    // call fucntion finding posible numbers x-asic
+    // if array lengthcall function finding possible numbers y-asic
+    //
+  }
 }
 
 
