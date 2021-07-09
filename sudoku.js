@@ -3,8 +3,13 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
-
+function arrayBoardFromStringBoard(boardString) {
+  const arrOfStr = boardString.match(/.{9}/g)
+  const result = [];
+  for (let i = 0; i < arrOfStr.length; i ++) {
+    result.push(arrOfStr[i].split(''))
+  }
+  return result
 }
 
 
