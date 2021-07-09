@@ -1,8 +1,14 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+const fs = require("fs")
+let boardString = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8')
+
+function solve(boardString) {
+  let newStr =  boardString.replace(/\-/gm, 0)
+
+  return newStr.match(/.{9}/gm).map(el => el.split(''))
+}
+
+
+ console.log(solve(boardString)) 
 function findEmptyCell(board) {
   let emptyCellLocation = [];
   for (let row = 0; row < board.length; row++) {
@@ -94,4 +100,3 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
-git 
