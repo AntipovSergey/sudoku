@@ -4,7 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 const fs = require("fs");
-const boardString = fs.readFileSync('./sudoku-puzzles.txt','utf-8');
+const boardString = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
 function boardToArray(boardString, n) {
   const boardChanged = boardString.replace(/-/gmi, 0);
@@ -28,50 +28,21 @@ function checkNum(array) {
 }
 console.log(checkNum(array));
 
-// function checkCube(row, col, value) {
-//   row = Math.floor(row / 3) * 3;
-//   col = Math.floor(col / 3) * 3;
-//   let isFound = false;
-//   for (let i = 0; i < 3; i++) {
-//       for (let j = 0; j < 3; j++) {
-//           if (grid[row + i][col + j] == value) isFound = true;
-//       }
-//   }
-//   return isFound;
+const rowcol = checkNum(array);
+console.log(rowcol);
+const randomInteger = (min, max) => {
+  const randomNumber = min + Math.random() * (max - min);
+  return Math.round(randomNumber);
+};
+function randomSudoku(array, rowcol) {
+  let randomResult = array.slice(0,);
+  for (let i = 0; i < rowcol.length; i++) {
+    for (let j = 0; j < rowcol.length; j++) {
+      randomResult[rowcol[i]][rowcol[j]] = randomInteger(1, 9);
+    }
+  }
+  return randomResult;
+}
+const randomResult = randomSudoku(array, rowcol);
+console.table(randomResult);
 
-// function check(board, row, col, num) {
-//   for (let i = 0; i < 10; i++) {
-//       const rowCube = 3 * Math.floor(row / 3) + Math.floor(i / 3);
-//       const colCube = 3 * Math.floor(col / 3) + i % 3;
-//       if (board[row][i] == num || board[i][col] == num || board[rowCube][colCube] == num) {
-//         return false;
-//       }
-//   }
-//   return true;
-// }
-
-
-// // Returns a boolean indicating whether
-// // or not the provided board is solved.
-// // The input board will be in whatever
-// // form `solve` returns.
-// function isSolved(board) {
-
-// }
-
-
-// // Takes in a board in some form and
-// // returns a String that's well formatted
-// // for output to the screen.
-// // The input board will be in whatever
-// // form `solve` returns.
-// function prettyBoard(board) {
-  
-// }
-
-// // Exports all the functions to use them in another file.
-// module.exports = {
-// 	solve: solve,
-// 	isSolved: isSolved,
-// 	prettyBoard: prettyBoard
-// }
