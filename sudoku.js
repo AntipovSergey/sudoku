@@ -10,7 +10,8 @@ function solve(boardString) {
   let z = [];
   for (let i = 0; i <= 8; i++) {
     for (let j = 0; j <= 8; j++) {
-      arr.push(boardString[x]);
+      if(boardString[x] === '-') arr.push(0);
+      else arr.push(+boardString[x]);
       x += 1;
     }
     z.push(arr);
