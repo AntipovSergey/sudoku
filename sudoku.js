@@ -1,34 +1,29 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
 function solve(boardString) {
-
+  return boardString.match(/.{9}/gm).map(el => el.split('').map(el => el === '-' ? 0 : +el));
 }
 
-
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === 0) {
+        for (let k = 1; k <= 9; k++) {
+          if (checkValid(board, i, j, k)) {
+            board[i][j] = k;
+            if (isSolved(board)) return board; 
+            else board[i][j] = 0;
+          }
+        } return false
+      }
+    }
+  } return true;
 }
 
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-
+function checkValid(board, row, col, num) {
+  for (let i = 0; i < 9; i++) {
+    let m = Math.floor(row / 3) * 3 + Math.floor(i / 3);
+    let n = Math.floor(col / 3) * 3 + i % 3;
+    if (board[row][i] === num || board[i][col] === num || board[m][n] === num) return false;
+  } return true;
 }
 
-// Exports all the functions to use them in another file.
-module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+module.exports = { solve, isSolved }
