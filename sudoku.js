@@ -77,6 +77,24 @@ function searchWordVertical(num, arr) {
   return false;
 }
 
+function getBlockRestrictedNumbers(cellCoordinates, board) {
+	let prevRow = 0;
+	let prevCol = 0;
+	for( let i = 2; i <= 8; i+=3) {
+		if (cellCoordinates[0] < i+3) {
+			for(let j = 2; j <= 8; j+=3){
+				if (cellCoordinates[1] < j+3){
+					const restrictedNumbers = board.slice(prevRow, i+1).map(elem => elem.slice(prevCol, j+1)).flat()
+					return restrictedNumbers.filter(el => Number(el))
+
+				}
+				prevCol += 3
+			}
+		}
+		prevRow += 3
+	}
+}
+
 const sudokuZero = prettyBoard(RAW_SUDOKU_FILE)["0"];
 let isInVertical = searchWordVertical(6, sudokuZero);
 let isInHorizontal = searchWordHorizontal(9, sudokuZero);
