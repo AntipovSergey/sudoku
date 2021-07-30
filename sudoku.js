@@ -3,6 +3,18 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+let board = [[5, [1, 2, 3, 4, 5, 6, 7, 8, 9], 0, 0, 0, 0, 0, 1, 2],
+[0, [1, 2, 3, 4, 5, 6, 7, 8, 9], 0, 0, 0, 0, 0, 0, 0],
+[0, 0, 0, 3, 4, 2, 5, 6, 7],
+[8, 0, 9, 7, 6, 1, 4, 2, 3],
+[4, 0, 6, 8, 5, 3, 7, 9, 1],
+[7, 0, 3, 9, 2, 4, 8, 5, 6],
+[9, 0, 1, 5, 3, 7, 2, 8, 4],
+[2, 0, 7, 4, 1, 9, 6, 3, 5],
+[3, 4, 5, 2, 8, 6, 1, 7, 9]];
+
+
+
 function transformPuzzle(puzzleString) {
   let arr = puzzleString.split('');
   let wholePizza = [];
@@ -18,25 +30,13 @@ function transformPuzzle(puzzleString) {
 }
 
 function replaceEmpty(board) {
-  for(let i = 0; i < 9; i++) {
-    for(let j = 0; j < 9; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       if (board[i][j] === '-') board[i][j] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     }
   }
 }
 
-let board = [[5, '-' , 0, 0, 0, 0, 0, 1, 2],
-[0, [1, 2, 3, 4, 5, 6, 7, 8, 9], 0, 0, 0, 0, 0, 0, 0],
-[0, 6, 0, 3, 4, 2, 5, 6, 7],
-[8, 5, 9, 7, 6, 1, 4, 2, 3],
-[4, 2, 6, 8, 5, 3, 7, 9, 1],
-[7, 1, 3, 9, 2, 4, 8, 5, 6],
-[9, 6, 1, 5, 3, 7, 2, 8, 4],
-[2, 8, 7, 4, 1, 9, 6, 3, 5],
-[3, 4, 5, 2, 8, 6, 1, 7, 9]];
-
-replaceEmpty(board);
-console.log(board); 
 
 
 function testSquare(x, y, el, board) {
@@ -116,8 +116,8 @@ function testSquare(x, y, el, board) {
       }
     }
     for (let i = 0; i < el.length; i++) {
-      
-      if (square.includes(el[i])) {  el[i] = "d";}
+
+      if (square.includes(el[i])) { el[i] = "d"; }
     }
     board[x][y] = el.filter((elem, i) => elem !== 'd')
   }
@@ -126,15 +126,43 @@ function testSquare(x, y, el, board) {
 }
 
 
-function solve(board) {
+function testHorizontal(x, y, el, arr) {
+  el = arr[x][y];
+  if (Array.isArray(el)) {
+    // let possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < el.length; j++) {
+        if (el[j] === arr[x][i]) el[j] = 'd';
+      }
+    }
+    arr[x][y] = el.filter(el => el !== 'd');
+  }
+}
 
+function testVert(x, y, el, arr) {
+  el = arr[x][y];
+  if (Array.isArray(el)) {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < el.length; j++) {
+        if (el[j] === arr[i][y]) el[j] = 'd'
+      }
+
+    }
+    arr[x][y] = el.filter(el => el !== 'd');
+
+
+  }
+}
+
+
+function solve(board) {
+  board = replaceEmpty(board);
 
   for (let i = 0; i < 9; i++) {
 
     for (let j = 0; j < 9; j++) {
 
-      testVertical(i, j, board);
-
+      testVert(i, j, board);
       testHorizontal(i, j, board);
       testSquare(i, j, board);
 
@@ -145,6 +173,7 @@ function solve(board) {
 
 
 }
+
 
 
 // Returns a boolean indicating whether
