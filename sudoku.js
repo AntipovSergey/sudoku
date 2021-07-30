@@ -54,27 +54,24 @@ function prettyBoard(file) {
 }
 
 //Получаем массив чисел которые уже есть в строке
-function getRectrictedHorizontal(gitarr) {
-  let ArrElemToString = arr.map((el) => el.join(""));
-  let rectrictNumbersHorizontal = [];
-  for (let i = 0; i < ArrElemToString.length; i++) {
-    if (ArrElemToString[i] !== "-")
-      rectrictNumbersHorizontal.push(ArrElemToString[i]);
-  }
-  return rectrictNumbersHorizontal;
+function getRectrictedHorizontal (cellCoordinates,arr) {
+  const currentRow = arr[cellCoordinates[0]].filter(el => Number(el))
+  return currentRow;  
 }
 
+
 //Получаем массив чисел которые уже есть в столбце
-function getRectrictedVertical(arr) {
+function getRectrictedVertical (cellCoordinates, arr) {
+  let restrictNumbersVertical = [];
   for (let i = 0; i < arr.length; i++) {
-    let rectrictNumbersVertical = [];
+    let arrTemp = []
     for (let j = 0; j < arr.length; j++) {
-      if (arr[j][i] !== "-") {
-        rectrictNumbersVertical.push(arr[j][i]);
-      }
+      arrTemp.push(arr[j][i])     
     }
-    return rectrictNumbersVertical;
+    restrictNumbersVertical.push(arrTemp)
   }
+  
+  return restrictNumbersVertical[cellCoordinates[1]].filter(el => Number(el))
 }
 
 function getBlockRestrictedNumbers(cellCoordinates, board) {
@@ -102,10 +99,12 @@ function getSharedRestrictedNumbers(verticalNumbers, horizontalNumbers, blockNum
 }
 
 const sudokuZero = prettyBoard(RAW_SUDOKU_FILE)["0"];
-let isInVertical = searchWordVertical(6, sudokuZero);
-let isInHorizontal = searchWordHorizontal(9, sudokuZero);
+// let isInVertical = searchWordVertical(6, sudokuZero);
+// let isInHorizontal = searchWordHorizontal(9, sudokuZero);
 
-console.log(getRectrictedHorizontal(sudokuZero));
+let cellCoordinates = [5,5]
+console.log(getRectrictedVertical (cellCoordinates,sudokuZero))
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
