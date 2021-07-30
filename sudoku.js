@@ -4,7 +4,9 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+	let parsedArray = parse(boardString)
 
+	return parsedArray;
 }
 
 
@@ -24,6 +26,14 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {
 
+}
+
+// преобразователь строчки в массив
+
+ function parse (string) {
+	 // let newStr =  string.replace(/\-/gm, 0);
+	 let arraySudoku = string.match(/.{9}/gm).map(el => el.split(''));
+	 return arraySudoku;
 }
 
 // Exports all the functions to use them in another file.
