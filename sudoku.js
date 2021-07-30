@@ -4,7 +4,9 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+	let parsedArray = parse(boardString)
 
+	return parsedArray;
 }
 
 
@@ -26,19 +28,17 @@ function prettyBoard(board) {
 
 }
 
+// преобразователь строчки в массив
+
+ function parse (string) {
+	 // let newStr =  string.replace(/\-/gm, 0);
+	 let arraySudoku = string.match(/.{9}/gm).map(el => el.split(''));
+	 return arraySudoku;
+}
+
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
-}
-
-let arrayOfCheckedNums = [1,5,8];
-for (let i = 0; i < string.length ; i++) {
-	let resultStr = "";
-	if (string[i].includes(ITEMFROM)){
-		// PUSH нужный элемент
-		// +
-		// 	если нужный элемент подходит, то выписываем его в наш проверяющий массив
-	}
 }
