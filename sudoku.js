@@ -58,6 +58,7 @@ let oldboardString =
 
 //разделение общего массива на квадраты
 function solve(boardString) {
+
 let subString =  boardString.join('').replace(/,/g, "")
 let subarray = []
 let subsubsubarray = []
@@ -104,6 +105,7 @@ for(let i = 0; i<finalArrayF.length; i++){
   }
 }
 return finalArrayB
+
 }
 //повтор разбияения массива
 
@@ -157,6 +159,14 @@ function newFunc2(test3){
 //function prettyBoard(board) {
 
 //}
+
+// преобразователь строчки в массив
+
+ function parse (string) {
+	 // let newStr =  string.replace(/\-/gm, 0);
+	 let arraySudoku = string.match(/.{9}/gm).map(el => el.split(''));
+	 return arraySudoku;
+}
 
 // Exports all the functions to use them in another file.
 //module.exports = {
