@@ -28,10 +28,10 @@ function prettyBoard(file) {
 }
 
 function renderBoard(board) {
-	for (const row of board) {
-		console.log(row.join(''))
-	}
-	console.log()
+  for (const row of board) {
+    console.log(row.join(""));
+  }
+  console.log();
 }
 
 function getCellCoordinates(board) {
@@ -55,25 +55,24 @@ function getRectrictedHorizontal(cellCoordinates, arr) {
 
 //Получаем массив чисел которые уже есть в столбце
 function getRectrictedVertical(cellCoordinates, arr) {
-  let restrictNumbersVertical = [];
+  let currentCol = [];
   for (let i = 0; i < arr.length; i++) {
     let arrTemp = [];
     for (let j = 0; j < arr.length; j++) {
       arrTemp.push(arr[j][i]);
     }
-    restrictNumbersVertical.push(arrTemp);
+    currentCol.push(arrTemp);
   }
-
-  return restrictNumbersVertical[cellCoordinates[1]].filter((el) => Number(el));
+  return currentCol[cellCoordinates[1]].filter((el) => Number(el));
 }
 
 function getBlockRestrictedNumbers(cellCoordinates, board) {
   let prevRow = 0;
   let prevCol = 0;
   for (let i = 2; i <= 8; i += 3) {
-    if (cellCoordinates[0] < i + 3) {
+    if (cellCoordinates[0] < i + 1) {
       for (let j = 2; j <= 8; j += 3) {
-        if (cellCoordinates[1] < j + 3) {
+        if (cellCoordinates[1] < j + 1) {
           const restrictedNumbers = board
             .slice(prevRow, i + 1)
             .map((elem) => elem.slice(prevCol, j + 1))
@@ -92,7 +91,18 @@ function getSharedRestrictedNumbers(
   horizontalNumbers,
   blockNumbers
 ) {
-  return [].concat(verticalNumbers, horizontalNumbers, blockNumbers);
+  const restrictedNumbers = [].concat(
+    verticalNumbers,
+    horizontalNumbers,
+    blockNumbers
+  );
+  const resultArray = [];
+  for (const number of restrictedNumbers) {
+    if (!resultArray.includes(number)) {
+      resultArray.push(number);
+    }
+  }
+  return resultArray;
 }
 
 // Returns a boolean indicating whether
@@ -109,33 +119,35 @@ function isSolved(board) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  const sudokuBoard = prettyBoard(boardString)["1"];
-	const coordinatesArray = getCellCoordinates(sudokuBoard);
-	let counter =0
-  // while (counter < 1000) {
+  const sudokuBoard = prettyBoard(boardString)["0"];
+  const coordinatesArray = getCellCoordinates(sudokuBoard);
+  let counter = 0;
+  while (!isSolved(sudokuBoard || counter < 100)) {
     for (let i = 0; i < coordinatesArray.length; i++) {
-			const currCoordinate = coordinatesArray[i]
+      const currCoordinate = coordinatesArray[i];
       const vert = getRectrictedVertical(currCoordinate, sudokuBoard);
       const hori = getRectrictedHorizontal(currCoordinate, sudokuBoard);
       const block = getBlockRestrictedNumbers(currCoordinate, sudokuBoard);
       const shared = getSharedRestrictedNumbers(vert, hori, block);
-			const candidates = "123456789".split("").filter((el) => !shared.includes(el));
-			console.log(`restricted: ${shared}, candidates: ${candidates}, coordinate: ${currCoordinate}`)
-			if(candidates.length == 1) {
-				const [row, col] = currCoordinate;
-				sudokuBoard[row][col] = candidates[0]
-				// console.log(candidates, sudokuBoard, currCoordinate, coordinatesArray.length)
-				renderBoard(sudokuBoard)
-				coordinatesArray.splice(i,1)
-				i -= 1;
-			}
+      const candidates = "123456789"
+        .split("")
+        .filter((el) => !shared.includes(el));
+      // console.log(
+      //   `coords: ${currCoordinate}, candidates: ${candidates}, shared: ${shared}, coordnatesArray.length ${coordinatesArray.length}`
+      // );
+      if (candidates.length === 1) {
+        const [row, col] = currCoordinate;
+        sudokuBoard[row][col] = candidates[0];
+        renderBoard(sudokuBoard);
+        coordinatesArray.splice(i, 1);
+        i -= 1;
+      }
     }
-		// console.log('Done FOR', coordinatesArray,)
-		counter +=1
+    counter += 1;
   }
-// }
+}
 
-solve(RAW_SUDOKU_FILE)
+solve(RAW_SUDOKU_FILE);
 
 // Exports all the functions to use them in another file.
 module.exports = {
