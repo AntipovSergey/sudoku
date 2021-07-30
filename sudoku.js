@@ -44,7 +44,7 @@ function prettyBoard(file) {
 function searchWordHorizontal (num,arr) {
   let ArrElemToString = arr.map(el => el.join(''))
   for (let i = 0; i < ArrElemToString.length; i++) {
-    if(ArrElemToString[i].includes(num)) {
+    if(ArrElemToString[i].includes(num+'')) {
       return true;
     }
     
@@ -59,14 +59,18 @@ function searchWordVertical (num,arr) {
     for (let j = 0; j < arr.length; j++) {
       verticalWord += arr[j][i]      
     }
-    if(verticalWord.includes(num)) {
+    if(verticalWord.includes(num+'')) {
       return true
     }
   }
   return false
 }
 
-console.log(prettyBoard(RAW_SUDOKU_FILE))
+const sudokuZero = prettyBoard(RAW_SUDOKU_FILE)['0']
+let isInVertical = searchWordVertical(6, sudokuZero)
+let isInHorizontal = searchWordHorizontal(9, sudokuZero)
+
+console.log(isInVertical, isInHorizontal)
 
 // Exports all the functions to use them in another file.
 module.exports = {
