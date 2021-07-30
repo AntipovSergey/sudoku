@@ -32,3 +32,13 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+let arrayOfCheckedNums = [1,5,8];
+for (let i = 0; i < string.length ; i++) {
+	let resultStr = "";
+	if (string[i].includes(ITEMFROM)){
+		// PUSH нужный элемент
+		// +
+		// 	если нужный элемент подходит, то выписываем его в наш проверяющий массив
+	}
+}
