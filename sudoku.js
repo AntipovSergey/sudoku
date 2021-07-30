@@ -17,12 +17,12 @@ function isSolved(board) {}
 function getCellCoordinates(board) {
   const coordinateArray = [];
   for (let row = 0; row < board.length; row++) {
-		for (let col = 0; col < board[row].length; col++) {
-			const colIndex = board[row][col];
-			if (colIndex != -1) {
-				coordinateArray.push([row, col]);
-			}
-		}
+    for (let col = 0; col < board[row].length; col++) {
+      const colIndex = board[row][col];
+      if (colIndex != -1) {
+        coordinateArray.push([row, col]);
+      }
+    }
   }
   return coordinateArray;
 }
@@ -54,55 +54,58 @@ function prettyBoard(file) {
 }
 
 //Получаем массив чисел которые уже есть в строке
-function getRectrictedHorizontal (arr) {
-  let ArrElemToString = arr.map(el => el.join(''))
-  let rectrictNumbersHorizontal = []
+function getRectrictedHorizontal(gitarr) {
+  let ArrElemToString = arr.map((el) => el.join(""));
+  let rectrictNumbersHorizontal = [];
   for (let i = 0; i < ArrElemToString.length; i++) {
-    if(ArrElemToString[i] !== '-')
-    rectrictNumbersHorizontal.push(ArrElemToString[i] )    
+    if (ArrElemToString[i] !== "-")
+      rectrictNumbersHorizontal.push(ArrElemToString[i]);
   }
   return rectrictNumbersHorizontal;
-  
 }
+
 //Получаем массив чисел которые уже есть в столбце
-function getRectrictedVertical (arr) {
+function getRectrictedVertical(arr) {
   for (let i = 0; i < arr.length; i++) {
     let rectrictNumbersVertical = [];
     for (let j = 0; j < arr.length; j++) {
-      if(arr[j][i] !== '-') {
-       rectrictNumbersVertical.push(arr[j][i])     
+      if (arr[j][i] !== "-") {
+        rectrictNumbersVertical.push(arr[j][i]);
       }
     }
-    return rectrictNumbersVertical
+    return rectrictNumbersVertical;
   }
-  
 }
 
-
-
 function getBlockRestrictedNumbers(cellCoordinates, board) {
-	let prevRow = 0;
-	let prevCol = 0;
-	for( let i = 2; i <= 8; i+=3) {
-		if (cellCoordinates[0] < i+3) {
-			for(let j = 2; j <= 8; j+=3){
-				if (cellCoordinates[1] < j+3){
-					const restrictedNumbers = board.slice(prevRow, i+1).map(elem => elem.slice(prevCol, j+1)).flat()
-					return restrictedNumbers.filter(el => Number(el))
-				}
-				prevCol += 3
-			}
-		}
-		prevRow += 3
-	}
+  let prevRow = 0;
+  let prevCol = 0;
+  for (let i = 2; i <= 8; i += 3) {
+    if (cellCoordinates[0] < i + 3) {
+      for (let j = 2; j <= 8; j += 3) {
+        if (cellCoordinates[1] < j + 3) {
+          const restrictedNumbers = board
+            .slice(prevRow, i + 1)
+            .map((elem) => elem.slice(prevCol, j + 1))
+            .flat();
+          return restrictedNumbers.filter((el) => Number(el));
+        }
+        prevCol += 3;
+      }
+    }
+    prevRow += 3;
+  }
+}
 
+function getSharedRestrictedNumbers(verticalNumbers, horizontalNumbers, blockNumbers) {
+	return [].concat(verticalNumbers, horizontalNumbers, blockNumbersg)
 }
 
 const sudokuZero = prettyBoard(RAW_SUDOKU_FILE)["0"];
 let isInVertical = searchWordVertical(6, sudokuZero);
 let isInHorizontal = searchWordHorizontal(9, sudokuZero);
 
-console.log(getCellCoordinates(sudokuZero));
+console.log(getRectrictedHorizontal(sudokuZero));
 
 // Exports all the functions to use them in another file.
 module.exports = {
