@@ -12,8 +12,10 @@ const sudoku = require('./sudoku');
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
   let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  return puzzle;
+  //console.log(puzzle);
+  //return puzzle;
+  let transformedPuzzle = sudoku.transformPuzzle(puzzle);
+  return transformedPuzzle;
 }
 
 function readAndSolve(err, data) {
