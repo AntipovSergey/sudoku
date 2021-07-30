@@ -41,25 +41,49 @@ function prettyBoard(file) {
 	return boardsContainer;
 }
 //Поиск числа в горизонтальной строке
-function searchWordHorizontal (num,arr) {
+function searchWordHorizontal (cellCoordinates,arr) {
   let ArrElemToString = arr.map(el => el.join(''))
   for (let i = 0; i < ArrElemToString.length; i++) {
-    if(ArrElemToString[i].includes(num)) {
+    if(ArrElemToString[i].includes(cellCoordinates + '')) {
       return true;
     }
     
   }
   return false;
 }
+//Получаем массив чисел которые уже есть в строке
+function getRectrictedHorizontal (arr) {
+  let ArrElemToString = arr.map(el => el.join(''))
+  let rectrictNumbersHorizontal = []
+  for (let i = 0; i < ArrElemToString.length; i++) {
+    if(ArrElemToString[i] !== '-')
+    rectrictNumbersHorizontal.push(ArrElemToString[i] )    
+  }
+  return rectrictNumbersHorizontal;
+  
+}
+//Получаем массив чисел которые уже есть в столбце
+function getRectrictedVertical (arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let rectrictNumbersVertical = [];
+    for (let j = 0; j < arr.length; j++) {
+      if(arr[j][i] !== '-') {
+       rectrictNumbersVertical.push(arr[j][i])     
+      }
+    }
+    return rectrictNumbersVertical
+  }
+  
+}
 
 // Поиск числа в вертикальной строке
-function searchWordVertical (num,arr) {
+function searchWordVertical (cellCoordinates,arr) {
   for (let i = 0; i < arr.length; i++) {
     let verticalWord = '';
     for (let j = 0; j < arr.length; j++) {
       verticalWord += arr[j][i]      
     }
-    if(verticalWord.includes(num)) {
+    if(verticalWord.includes(cellCoordinates + '')) {
       return true
     }
   }
@@ -67,6 +91,26 @@ function searchWordVertical (num,arr) {
 }
 
 console.log(prettyBoard(RAW_SUDOKU_FILE))
+
+let coordinate = [a,b]
+
+function checkForValidCell (arr) {
+  let blocks = []
+  for (let i = 0; i < 8; i += 2) {
+    for (let j = 0; j < 8; j += 2) {
+      blocks.push([])
+      /*
+      Если на текущую ячейку один кандидат то мы туда вписываем число и все
+      Если на ячейку несколько кандидатов то мы запускаем еще раз функцию и делаем это до тех пор пока не найдем ячейку с одним кандидатом
+      */
+    }
+    
+  }
+}
+
+function getElements ()
+
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
