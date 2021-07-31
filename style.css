@@ -1,0 +1,12 @@
+body {
+background-color: black;  
+}
+
+tr {
+  min-width: 200px;  
+}
+
+td {
+  text-align: center;  
+  min-width: 150px;  
+}

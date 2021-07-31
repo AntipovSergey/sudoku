@@ -17,7 +17,7 @@ fs.readFile(
 // so you should remove them.
 
 // Gets one puzzle from the text file.
-function sudokuParse(content, puzzleNumber = 0) {
+function sudokuParse(content, puzzleNumber = 15) {
   let puzzle = content.split('\n')[puzzleNumber];
   console.log()
   let transformedPuzzle = sudoku.transformPuzzle(puzzle);

@@ -3,17 +3,15 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-let board = [[5, [1, 2, 3, 4, 5, 6, 7, 8, 9], 0, 0, 0, 0, 0, 1, 2],
-[0, [1, 2, 3, 4, 5, 6, 7, 8, 9], 0, 0, 0, 0, 0, 0, 0],
-[0, 0, 0, 3, 4, 2, 5, 6, 7],
-[8, 0, 9, 7, 6, 1, 4, 2, 3],
-[4, 0, 6, 8, 5, 3, 7, 9, 1],
-[7, 0, 3, 9, 2, 4, 8, 5, 6],
-[9, 0, 1, 5, 3, 7, 2, 8, 4],
-[2, 0, 7, 4, 1, 9, 6, 3, 5],
-[3, 4, 5, 2, 8, 6, 1, 7, 9]];
 
 
+
+function allFull(board) {
+ for (let index = 0; index < array.length; index++) {
+   const element = array[index];
+   
+ }
+}
 
 function transformPuzzle(puzzleString) {
   let arr = puzzleString.split('');
@@ -26,13 +24,21 @@ function transformPuzzle(puzzleString) {
     }
     wholePizza.push(pizzaSlice);
   }
+  for(let item of wholePizza) {
+    for (let k = 0; k < item.length; k++) {
+      if(typeof item[k] == '-') ; 
+      else {
+        item[k] = +item[k];
+      }
+    }
+  }
   return wholePizza;
 }
 
 function replaceEmpty(board) {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      if (board[i][j] === '-') board[i][j] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      if (isNaN(board[i][j])) board[i][j] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     }
   }
 }
@@ -154,32 +160,99 @@ function testVert(x, y, el, arr) {
   }
 }
 
+function testBoard(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < 9; j++) {
+      if(Array.isArray(arr[i][j]) && arr[i][j].length > 1) return false;
+    }
+  }
+  return true;
+}
+
+function changeOne(arr) {
+  for(let i = 0; i < arr.length; i++) {
+    for(let j = 0; j < 9; j++) {
+      if(arr[i][j].length === 1) {
+        arr[i][j] = arr[i][j][0];
+      }
+    }
+  }
+}
 
 function solve(board) {
-  board = replaceEmpty(board);
-
+  replaceEmpty(board);
+  let k = 0;
+while(k < 10000) {
   for (let i = 0; i < 9; i++) {
-
     for (let j = 0; j < 9; j++) {
-
-      testVert(i, j, board);
-      testHorizontal(i, j, board);
-      testSquare(i, j, board);
-
-
+      testVert(i, j, board[i][j], board);
+      testHorizontal(i, j, board[i][j], board);
+      testSquare(i, j, board[i][j], board);
     }
-
   }
+  k++;
+  changeOne(board);
+} 
+return board;
+   
+}
 
+function hardSolve (board) {
+ 
+ for (let i = 0; i < board.length; i++) {
+   for(let j = 0; j < 9; j++) {
+if(Array.isArray(board[i][j]) && board[i][j].length == 2) {
+  if(Math.round(Math.random())) board[i][j].shift();
+  else board[i][j].pop();
+}
+solve(board);  
+   }
+ }
 
 }
+
+let oneCase = '----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----'
+onceCase = transformPuzzle(oneCase);
+let board = onceCase;
+
+
+let p = 10;
+outer: while(p > 0) {
+let copy1 = [];
+  for (let i = 0; i < board.length; i++) {
+    copy1.push(board[i].slice());
+  }
+
+  solve(copy1); 
+  hardSolve(copy1);  
+  if(isSolved(copy1)) {
+    browserBoard(copy1);
+    alert('Yeah, Baby! =)');
+    break outer;
+  }
+  p--;
+}
+
+
+/* let superCycles = 2;
+while(superCycles) {
+  
+solve(copy1);
+hardSolve(copy1);
+superCycles--;
+if(isSolved(copy1)) break; 
+}
+browserBoard(copy1);
+if(isSolved(copy1)) alert('Yeah, Baby! =)))))') */
+
+
 
 
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
-// form `solve` returns.
+// form `solve` returns
 
 
 
@@ -206,7 +279,8 @@ function isSolved(board) {
     prop.sort();
     for (let i = 0; i < 9; i++) {
       if (prop[i] != etalon[i]) {
-        return 'Try again!';
+/*         console.log('square!!!!!!!!!!!', square)
+ */        return false;
       }
 
     }
@@ -218,7 +292,8 @@ function isSolved(board) {
     propp.sort();
     for (let i = 0; i < 9; i++) {
       if (propp[i] != etalon[i]) {
-        return 'Try again!';
+        console.log('horizontal!!!!!!!!!!!!!', propp);
+        return false;
       }
 
     }
@@ -237,17 +312,51 @@ function isSolved(board) {
   for (let prop of column) {
     for (let i = 0; i < 9; i++) {
       if (prop[i] != etalon[i]) {
-        return 'Try again!';
+        console.log('vertical!!!!!!!!!!!!', prop)
+        return false;
       }
 
 
     }
   }
 
-  return 'Finished!';
+  return true;
 }
 
 
+function browserBoard(board) {
+  let table = document.getElementById("table");
+        let arr = board;
+ 
+        for (let i = 0; i < arr.length; i++) {
+            let tr = document.createElement("tr");  
+            for (let j = 0; j < arr[i].length; j++) {
+                let td = document.createElement("td");
+                if(i <= 2) {
+                  if(j <= 2) { td.style.background = "grey"; } else if (j >= 6) {
+                    td.style.background = "midnightblue";
+                  } else
+                  td.style.background = "white";
+                }
+                if(i > 2 && i < 6) { 
+                 if(j > 2 && j < 6) { td.style.background = "darkcyan"; } else if(j >= 6) {
+                   td.style.background = "orange";
+                 } else
+                  td.style.background = "blue"; }
+                if(i >= 6 && i < 9) {
+                  if(j > 2 && j < 6) { td.style.background = "red"; } else if(j >= 6) {
+                    td.style.background = "maroon";
+                  } else
+                td.style.background = "yellow"; 
+                }
+                  
+                
+                td.textContent = arr[i][j];
+                tr.append(td);
+            }
+            table.append(tr);
+        }
+}
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
