@@ -28,10 +28,15 @@ function prettyBoard(file) {
 }
 
 function renderBoard(board) {
+  let i = 1;
+  console.log('___________________');
   for (const row of board) {
-    console.log(row.join(""));
+    console.log(`${row.slice(0,3).join('|')}  ${row.slice(3,6).join('|')}  ${row.slice(6,9).join('|')}`);
+    if (i % 3 === 0) {
+      console.log()
+    }
+    i += 1
   }
-  console.log();
 }
 
 function getCellCoordinates(board) {
