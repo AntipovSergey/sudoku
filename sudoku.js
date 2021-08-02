@@ -21,8 +21,8 @@ function getPossibleValues(arr) {
 
 function findEmpty(board) {
   const emptyCell = '.';
-  for (let r = 0; r < board.length; i++) {
-    for (let c = 0; c < board.length; c++) {
+  for (let r = 0; r < board.length; r += 1) {
+    for (let c = 0; c < board.length; c += 1) {
       if (board[r][c] === emptyCell) {
         return [r, c];
       }
