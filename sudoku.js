@@ -5,19 +5,28 @@
 // How you represent your board is up to you!
 // Принимает строку => возвращает решенную строку
 
+
+// const input = [
+//   ['4', '3', '1', '2'],
+//   ['.', '2', '.', '.'],
+//   ['.', '.', '3', '.'],
+//   ['.', '.', '2', '.'],
+// ];
+
+function solve(boardString) {
+}
+
+function getPossibleValues(arr) {
+  const allPossibleNums = [1, 2, 3, 4];
+  // return [] возможных значений
+}
+
 let input = [
     ["4", ".", "1", "."],
     [".", "2", ".", "."],
     [".", ".", "3", "."],
     [".", ".", "2", "."],
 ];
-
-
-function solve(boardString) {}
-
-function getPossibleValues(arr) {
-  const allPossibleNums = [1, 2, 3, 4];
-}
 
 function findEmpty(board) {
     let emptyCell = '.';
@@ -44,8 +53,21 @@ function searchVertical(arr, y) {
   return nums.filter((el) => el !== '.');
 }
 
+// найти заполненные значения в ячейке
 function searchInCell(arr) {
-  // return [] найденных значений
+
+  const [r, c] = findEmpty(arr);
+  const row = Math.floor(r / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
+  const col = Math.floor(c / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
+  const cellArr = [];
+
+  for (let i = row; i < row + Math.sqrt(arr.length); i += 1) {
+    for (let j = col; j < col + Math.sqrt(arr.length); j += 1) {
+      if (arr[i][j] !== '.') cellArr.push(arr[i][j]);
+    }
+  }
+
+  return cellArr;
 }
 
 // Returns a boolean indicating whether
