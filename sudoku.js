@@ -5,27 +5,34 @@
 // How you represent your board is up to you!
 // Принимает строку => возвращает решенную строку
 
-// let input = [
-//     ["4", ".", "1", "."],
-//     [".", "2", ".", "."],
-//     [".", ".", "3", "."],
-//     [".", ".", "2", "."],
-// ];
+let input = [
+    ["4", ".", "1", "."],
+    [".", "2", ".", "."],
+    [".", ".", "3", "."],
+    [".", ".", "2", "."],
+];
 
-function solve(boardString) {
-}
+
+function solve(boardString) {}
 
 function getPossibleValues(arr) {
   const allPossibleNums = [1, 2, 3, 4];
-  // return [] возможных значений
 }
 
 function findEmpty(board) {
-  // return [x, y] или null(если массив заполнен целиком)
+    let emptyCell = '.';
+    for (let r = 0; r < board.length; i++) {
+        for (let c = 0; c < board.length; c++) {
+            if (board[r][c] === emptyCell) {
+                return [r, c];
+            }
+        }
+        return null;
+    }
 }
 
-function searchHorisontal(arr) {
-  // return [] найденных значений
+function searchHorisontal(input,x=0) {
+  return input[x].filter(x=>x!=='.')
 }
 
 function searchVertical(arr, y) {
