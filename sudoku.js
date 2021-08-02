@@ -5,43 +5,34 @@
 // How you represent your board is up to you!
 // Принимает строку => возвращает решенную строку
 
+const input = [
+  ['4', '3', '1', '2'],
+  ['.', '2', '.', '.'],
+  ['.', '.', '3', '.'],
+  ['.', '.', '2', '.'],
+];
 
-// const input = [
-//   ['4', '3', '1', '2'],
-//   ['.', '2', '.', '.'],
-//   ['.', '.', '3', '.'],
-//   ['.', '.', '2', '.'],
-// ];
-
-function solve(boardString) {
-}
+function solve(boardString) {}
 
 function getPossibleValues(arr) {
   const allPossibleNums = [1, 2, 3, 4];
   // return [] возможных значений
 }
 
-let input = [
-    ["4", ".", "1", "."],
-    [".", "2", ".", "."],
-    [".", ".", "3", "."],
-    [".", ".", "2", "."],
-];
-
 function findEmpty(board) {
-    let emptyCell = '.';
-    for (let r = 0; r < board.length; i++) {
-        for (let c = 0; c < board.length; c++) {
-            if (board[r][c] === emptyCell) {
-                return [r, c];
-            }
-        }
-        return null;
+  const emptyCell = '.';
+  for (let r = 0; r < board.length; i++) {
+    for (let c = 0; c < board.length; c++) {
+      if (board[r][c] === emptyCell) {
+        return [r, c];
+      }
     }
+    return null;
+  }
 }
 
-function searchHorisontal(input,x=0) {
-  return input[x].filter(x=>x!=='.')
+function searchHorisontal(input, x = 0) {
+  return input[x].filter((x) => x !== '.');
 }
 
 function searchVertical(arr, y) {
@@ -55,7 +46,6 @@ function searchVertical(arr, y) {
 
 // найти заполненные значения в ячейке
 function searchInCell(arr) {
-
   const [r, c] = findEmpty(arr);
   const row = Math.floor(r / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
   const col = Math.floor(c / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
