@@ -12,25 +12,29 @@ let input = [
     [".", ".", "2", "."],
 ];
 
-function solve(boardString) {
-}
+
+function solve(boardString) {}
 
 function getPossibleValues(arr) {
     let allPossibleNums = [1, 2, 3, 4];
-	// return [] возможных значений
+    // return [] возможных значений
 }
 
 function findEmpty(board) {
-    // return [x, y] или null(если массив заполнен целиком)
+    let emptyCell = '.';
+    for (let r = 0; r < board.length; i++) {
+        for (let c = 0; c < board.length; c++) {
+            if (board[r][c] === emptyCell) {
+                return [r, c];
+            }
+        }
+        return null;
+    }
 }
 
 function searchHorisontal(input,x=0) {
-  
   return input[x].filter(x=>x!=='.')
-  
-    //return [] найденных значений
 }
-console.log(searchHorisontal(input))
 
 function searchVertical(arr) {
     //return [] найденных значений
