@@ -5,12 +5,12 @@
 // How you represent your board is up to you!
 // Принимает строку => возвращает решенную строку
 
-// let input = [
-//     ["4", ".", "1", "."],
-//     [".", "2", ".", "."],
-//     [".", ".", "3", "."],
-//     [".", ".", "2", "."],
-// ];
+let input = [
+    ["4", ".", "1", "."],
+    [".", "2", ".", "."],
+    [".", ".", "3", "."],
+    [".", ".", "2", "."],
+];
 
 function solve(boardString) {
 }
@@ -24,9 +24,13 @@ function findEmpty(board) {
     // return [x, y] или null(если массив заполнен целиком)
 }
 
-function searchHorisontal(arr) {
+function searchHorisontal(input,x=0) {
+  
+  return input[x].filter(x=>x!=='.')
+  
     //return [] найденных значений
 }
+console.log(searchHorisontal(input))
 
 function searchVertical(arr) {
     //return [] найденных значений
