@@ -6,11 +6,12 @@
 // Принимает строку => возвращает решенную строку
 
 let input = [
-    ["4", "3", "1", "."],
+    ["4", ".", "1", "."],
     [".", "2", ".", "."],
     [".", ".", "3", "."],
     [".", ".", "2", "."],
 ];
+
 
 function solve(boardString) {}
 
@@ -31,10 +32,8 @@ function findEmpty(board) {
     }
 }
 
-console.log(findEmpty(input));
-
-function searchHorisontal(arr) {
-    //return [] найденных значений
+function searchHorisontal(input,x=0) {
+  return input[x].filter(x=>x!=='.')
 }
 
 function searchVertical(arr) {
