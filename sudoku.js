@@ -5,35 +5,46 @@
 // How you represent your board is up to you!
 // Принимает строку => возвращает решенную строку
 
-// let input = [
-//     ["4", ".", "1", "."],
-//     [".", "2", ".", "."],
-//     [".", ".", "3", "."],
-//     [".", ".", "2", "."],
+// const input = [
+//   ['4', '3', '1', '2'],
+//   ['.', '2', '.', '.'],
+//   ['.', '.', '3', '.'],
+//   ['.', '.', '2', '.'],
 // ];
 
 function solve(boardString) {
 }
 
 function getPossibleValues(arr) {
-    let allPossibleNums = [1, 2, 3, 4];
-	// return [] возможных значений
+  const allPossibleNums = [1, 2, 3, 4];
+  // return [] возможных значений
 }
 
 function findEmpty(board) {
-    // return [x, y] или null(если массив заполнен целиком)
 }
 
 function searchHorisontal(arr) {
-    //return [] найденных значений
+  // return [] найденных значений
 }
 
 function searchVertical(arr) {
-    //return [] найденных значений
+  // return [] найденных значений
 }
 
+// найти заполненные значения в ячейке
 function searchInCell(arr) {
-    //return [] найденных значений
+  const [r, c] = findEmpty(arr);
+  const row = Math.floor(r / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
+  const col = Math.floor(c / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
+  const cellArr = [];
+
+  for (let i = row; i < row + Math.sqrt(arr.length); i += 1) {
+    for (let j = col; j < col + Math.sqrt(arr.length); j += 1) {
+      if (arr[i][j] !== '.') cellArr.push(arr[i][j]);
+    }
+  }
+
+  return cellArr;
 }
 
 // Returns a boolean indicating whether
@@ -53,7 +64,7 @@ function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
-    solve: solve,
-    isSolved: isSolved,
-    prettyBoard: prettyBoard,
+  solve,
+  isSolved,
+  prettyBoard,
 };
