@@ -16,24 +16,29 @@ function solve(boardString) {
 }
 
 function getPossibleValues(arr) {
-    let allPossibleNums = [1, 2, 3, 4];
-	// return [] возможных значений
+  const allPossibleNums = [1, 2, 3, 4];
+  // return [] возможных значений
 }
 
 function findEmpty(board) {
-    // return [x, y] или null(если массив заполнен целиком)
+  // return [x, y] или null(если массив заполнен целиком)
 }
 
 function searchHorisontal(arr) {
-    //return [] найденных значений
+  // return [] найденных значений
 }
 
-function searchVertical(arr) {
-    //return [] найденных значений
+function searchVertical(arr, y) {
+  // return [] найденных значений
+  const nums = [];
+  for (let i = 0; i < arr.length; i += 1) {
+    nums.push(arr[i][y]);
+  }
+  return nums.filter((el) => el !== '.');
 }
 
 function searchInCell(arr) {
-    //return [] найденных значений
+  // return [] найденных значений
 }
 
 // Returns a boolean indicating whether
@@ -53,7 +58,7 @@ function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
-    solve: solve,
-    isSolved: isSolved,
-    prettyBoard: prettyBoard,
+  solve,
+  isSolved,
+  prettyBoard,
 };
