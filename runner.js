@@ -23,6 +23,7 @@ function readAndSolve(err, data) {
   const puzzle = sudokuParse(data);
 
   const solvedPuzzle = sudoku.solve(puzzle);
+  // console.log(solvedPuzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log('The board was solved!');
     console.log(sudoku.prettyBoard(solvedPuzzle));
@@ -30,6 +31,7 @@ function readAndSolve(err, data) {
     console.log("The board wasn't solved :(");
   }
 }
+
 
 // Reads file and sends data from it to the readAndSolve function.
 fs.readFile('./sudoku-puzzles.txt', 'utf-8', readAndSolve);
