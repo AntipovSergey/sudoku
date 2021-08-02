@@ -27,8 +27,8 @@ function findEmpty(board) {
         return [r, c];
       }
     }
-    return null;
   }
+  return null;
 }
 
 function searchHorisontal(input, x = 0) {
