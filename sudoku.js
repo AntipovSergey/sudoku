@@ -17,9 +17,9 @@
 //   ['.', '.', '2', '.', '4', '3', '1', '2', '8'],
 // ];
 
-const string = '----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----';
+const string = '---7754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----';
 const input = '12--3------1--4-';
-const str2 = '---------------------------------------------------------------------------------';
+const str2 = '----------2-65-------18--4--9----6-4-3---57-------------------73------9----------';
 function parseString(str) {
   let newStr = str;
   const result = [];
@@ -36,8 +36,7 @@ function parseString(str) {
 }
 
 // Проверить доску, проверила валидна ли доска => вернула true/false
-function isValid(board) {
-}
+function isValid(board) {}
 
 // Решить доску
 function solve(boardString) {
@@ -126,6 +125,7 @@ function searchInSector(arr, r, c) {
 // The input board will be in whatever
 // form `solve` returns.
 // сумма всех эл-в массива = 405, по строкам = 45, по столбцам = 45
+
 function isSolved(board) {
   let calSumBoard = 0;
   for (let i = 1; i < board.length + 1; i += 1) {
@@ -144,7 +144,6 @@ function isSolved(board) {
   && sumBoard === calSumBoard) return true;
 }
 
-
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
@@ -152,7 +151,11 @@ function isSolved(board) {
 // form `solve` returns.
 // форматирует массив в 9 строк по 9 символов
 function prettyBoard(board) {
-
+  let str = '';
+  for (let i = 0; i < board.length; i += 1) {
+    str += `${board[i].join(' ')}\n`;
+  }
+  return str;
 }
 
 // Exports all the functions to use them in another file.
