@@ -35,11 +35,11 @@ function parseString(str) {
   return result;
 }
 
-// Принимает доску, проверила валидна ли доска => вернула true/false
+// Проверить доску, проверила валидна ли доска => вернула true/false
 function isValid(board) {
-
 }
 
+// Решить доску
 function solve(boardString) {
   const board = parseString(boardString);
   //if (isValid) ... 
@@ -47,15 +47,13 @@ function solve(boardString) {
   return board;
 }
 
-console.table(solve(str2));
-
+// Заполнить пустые ячейки
 function fillEmptyCell(arrBoard) {
   const coordinates = findEmpty(arrBoard);
   if (!coordinates) {
     return true;
   }
   const posValues = getPossibleValues(arrBoard, coordinates);
-
   for (let i = 0; i < posValues.length; i += 1) {
     arrBoard[coordinates[0]][coordinates[1]] = posValues[i];
     if (fillEmptyCell(arrBoard)) {
@@ -63,10 +61,10 @@ function fillEmptyCell(arrBoard) {
     }
     arrBoard[coordinates[0]][coordinates[1]] = '-';
   }
-
   return false;
 }
 
+// Получить массив возможных значений
 function getPossibleValues(arr, coordinates) {
   const [r, c] = coordinates;
   const allPossibleNums = [];
@@ -82,6 +80,7 @@ function getPossibleValues(arr, coordinates) {
   return allPossibleNums.filter((el) => !uniq.includes(el));
 }
 
+// Найти позицию пустой ячейки
 function findEmpty(board) {
   const emptyCell = '-';
   for (let r = 0; r < board.length; r += 1) {
@@ -94,10 +93,12 @@ function findEmpty(board) {
   return null;
 }
 
+// Найти все имеющиеся в строке
 function searchHorizontal(input, x) {
   return input[x].filter((x) => x !== '-');
 }
 
+// Найти все имеющиеся в столбце
 function searchVertical(arr, y) {
   const nums = [];
   for (let i = 0; i < arr.length; i += 1) {
@@ -106,19 +107,17 @@ function searchVertical(arr, y) {
   return nums.filter((el) => el !== '-');
 }
 
-// найти заполненные значения в ячейке
+// Найти заполненные значения в ячейке
 function searchInSector(arr, r, c) {
   const boardSize = Math.sqrt(arr.length);
   const row = Math.floor(r / boardSize) * boardSize;
   const col = Math.floor(c / boardSize) * boardSize;
   const cellArr = [];
-
   for (let i = row; i < row + boardSize; i += 1) {
     for (let j = col; j < col + boardSize; j += 1) {
       if (arr[i][j] !== '-') cellArr.push(arr[i][j]);
     }
   }
-
   return cellArr;
 }
 
