@@ -42,7 +42,7 @@ function isValid(board) {
 // Решить доску
 function solve(boardString) {
   const board = parseString(boardString);
-  //if (isValid) ... 
+  // if (isValid) ...
   fillEmptyCell(board);
   return board;
 }
@@ -127,8 +127,23 @@ function searchInSector(arr, r, c) {
 // form `solve` returns.
 // сумма всех эл-в массива = 405, по строкам = 45, по столбцам = 45
 function isSolved(board) {
-
+  let calSumBoard = 0;
+  for (let i = 1; i < board.length + 1; i += 1) {
+    calSumBoard += i;
+  }
+  calSumBoard *= board.length;
+  const sumBoard = board.flat().reduce((acc, el) => acc + (+el), 0);
+  const sumRowBoard = board.map((el) => el.reduce((acc, item) => acc + (+item), 0));
+  const calSumColBoard = [];
+  for (let i = 0; i < board.length; i += 1) {
+    calSumColBoard.push(searchVertical(board, i));
+  }
+  const sumColBoard = calSumColBoard.map((el) => el.reduce((acc, item) => acc + (+item), 0));
+  if ([...new Set(sumColBoard)].length === 1
+  && [...new Set(sumRowBoard)].length === 1
+  && sumBoard === calSumBoard) return true;
 }
+
 
 // Takes in a board in some form and
 // returns a String that's well formatted
