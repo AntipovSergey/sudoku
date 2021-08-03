@@ -52,9 +52,9 @@ function getPossibleValues(arr) {
   const [r, c] = findEmpty(arr);
   const allPossibleNums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const allNums = [
-    ...searchHorisontal(arr, r),
+    ...searchHorizontal(arr, r),
     ...searchVertical(arr, c),
-    ...searchInCell(arr, r, c),
+    ...searchInSector(arr, r, c),
   ];
   const uniq = [...new Set(allNums)];
   return allPossibleNums.filter((el) => !uniq.includes(el));
@@ -72,7 +72,7 @@ function findEmpty(board) {
   return null;
 }
 
-function searchHorisontal(input, x) {
+function searchHorizontal(input, x) {
   return input[x].filter((x) => x !== '-');
 }
 
@@ -85,13 +85,14 @@ function searchVertical(arr, y) {
 }
 
 // найти заполненные значения в ячейке
-function searchInCell(arr, r, c) {
-  const row = Math.floor(r / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
-  const col = Math.floor(c / Math.sqrt(arr.length)) * Math.sqrt(arr.length);
+function searchInSector(arr, r, c) {
+  const boardSize = Math.sqrt(arr.length);
+  const row = Math.floor(r / boardSize) * boardSize;
+  const col = Math.floor(c / boardSize) * boardSize;
   const cellArr = [];
 
-  for (let i = row; i < row + Math.sqrt(arr.length); i += 1) {
-    for (let j = col; j < col + Math.sqrt(arr.length); j += 1) {
+  for (let i = row; i < row + boardSize; i += 1) {
+    for (let j = col; j < col + boardSize; j += 1) {
       if (arr[i][j] !== '-') cellArr.push(arr[i][j]);
     }
   }
