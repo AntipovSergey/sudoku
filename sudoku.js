@@ -17,8 +17,9 @@
 //   ['.', '.', '2', '.', '4', '3', '1', '2', '8'],
 // ];
 
-const string = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-
+const string = '----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----';
+const input = '12--3------1--4-';
+const str2 = '---------------------------------------------------------------------------------';
 function parseString(str) {
   let newStr = str;
   const result = [];
@@ -34,23 +35,44 @@ function parseString(str) {
   return result;
 }
 
-function replacer(value, arr, r, c) {
-  arr[r][c] = value;
+// Принимает доску, проверила валидна ли доска => вернула true/false
+function isValid(board) {
+
 }
 
 function solve(boardString) {
   const board = parseString(boardString);
-  // while (findEmpty(board) && ) {
-  // const value = getPossibleValues(board);
-  // const [r, c] = findEmpty(board);
-  // if (value.length === 1) replacer(value[0], board, r, c);
-  // }
+  //if (isValid) ... 
+  fillEmptyCell(board);
   return board;
 }
 
-function getPossibleValues(arr) {
-  const [r, c] = findEmpty(arr);
-  const allPossibleNums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.table(solve(str2));
+
+function fillEmptyCell(arrBoard) {
+  const coordinates = findEmpty(arrBoard);
+  if (!coordinates) {
+    return true;
+  }
+  const posValues = getPossibleValues(arrBoard, coordinates);
+
+  for (let i = 0; i < posValues.length; i += 1) {
+    arrBoard[coordinates[0]][coordinates[1]] = posValues[i];
+    if (fillEmptyCell(arrBoard)) {
+      return true;
+    }
+    arrBoard[coordinates[0]][coordinates[1]] = '-';
+  }
+
+  return false;
+}
+
+function getPossibleValues(arr, coordinates) {
+  const [r, c] = coordinates;
+  const allPossibleNums = [];
+  for (let i = 1; i < arr.length + 1; i += 1) {
+    allPossibleNums.push(i);
+  }
   const allNums = [
     ...searchHorizontal(arr, r),
     ...searchVertical(arr, c),
@@ -104,16 +126,20 @@ function searchInSector(arr, r, c) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-// Принимает строку, ищет прочерки => если прочерки есть - false, нет - true
-function isSolved(board) {}
+// сумма всех эл-в массива = 405, по строкам = 45, по столбцам = 45
+function isSolved(board) {
+
+}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-// форматирует строку в 9 строк по 9 символов
-function prettyBoard(board) {}
+// форматирует массив в 9 строк по 9 символов
+function prettyBoard(board) {
+
+}
 
 // Exports all the functions to use them in another file.
 module.exports = {
