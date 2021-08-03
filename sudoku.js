@@ -36,7 +36,30 @@ function parseString(str) {
 }
 
 // Проверить доску, проверила валидна ли доска => вернула true/false
-function isValid(board) {}
+function isValid(arrBoard, strBoard) {
+  if (!Number.isInteger(Math.sqrt(strBoard.length))) return false;
+  console.log(arrBoard);
+  // проверка по строкам и столбцам
+  for (let i = 0; i < arrBoard.length; i += 1) {
+    const rowMatches = searchHorizontal(arrBoard, i);
+    const colMatches = searchVertical(arrBoard, i);
+
+    const uniqRowMathes = [...new Set(rowMatches)];
+    const uniqColMathes = [...new Set(colMatches)];
+
+    if (rowMatches.length !== uniqRowMathes.length || colMatches.length !== uniqColMathes.length) return false;
+  }
+  // проверка по секторам
+  for (let i = 0; i < arrBoard.length; i += Math.sqrt(arrBoard.length)) {
+    for (let j = 0; j < arrBoard.length; j += Math.sqrt(arrBoard.length)) {
+      const sectorMatches = searchInSector(arrBoard, i, j);
+      const uniqSectorMathes = [...new Set(sectorMatches)];
+      if (sectorMatches.length !== uniqSectorMathes.length) return false;
+    }
+  }
+
+  return true;
+}
 
 // Решить доску
 function solve(boardString) {
