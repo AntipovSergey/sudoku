@@ -1,0 +1,24 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "dependencies": {
+    "jest": "^27.0.6",
+    "npm": "^7.21.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kGudvin/project-sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kGudvin/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/kGudvin/project-sudoku#readme"
+}
