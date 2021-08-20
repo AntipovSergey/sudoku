@@ -4,10 +4,51 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
-  
-  solve()
+function stringToArray81(string) {
+  const StringArr = [];
+  for (let i = 0; i < 81; i+=9) {
+    StringArr.push(string.slice(i, i + 9).split(''));
+  }
 }
+function solve(boardString) {
+  const dashPos = boardString.indexOf('-');
+  if (dashPos < 0) return boardString;
+  const indexes = getIndexes(dashPos);
+  if (indexes.length !== 3) {
+    console.log('Нет перешифрованных индексов indexes');
+    return;
+  }
+  const currentColumn = indexes[0];
+  const currentRow = indexes[1];
+  const currentSquare = indexes[2];
+  const boardStringArr = stringToArray81(boardString);
+  const currentColumnArrTested = testSlicedArr(sliceArrayCol(boardStringArr,currentColumn));
+  const currentRowArrTested = testSlicedArr(boardStringArr[currentRow]);
+  const currentSquareArrTested = testSlicedArr(sliceArraySquare(boardStringArr,currentSquare));
+
+  const arrUniqueNums = oneByOne(currentColumnArr,currentRowArr,currentSquareArr);
+  
+  if (arrUniqueNums.length === 1) {
+    const boardStringArrLinear = boardString.split('');
+    boardStringArrLinear[dashPos] = arrUniqueNums[0];
+    const newBoardString = boardStringArrLinear.join('');
+    const result = solve(newBoardString);
+    if (isSolved(result)) return result;
+  }
+  if (arrUniqueNums.length > 1){
+    for (let i = 0; i < arrUniqueNums.length; i++) {
+      const boardStringArrLinear = boardString.split('');
+      boardStringArrLinear[dashPos] = arrUniqueNums[0];
+      const newBoardString = boardStringArrLinear.join('');
+      const result = solve(newBoardString);
+      if (isSolved(result)) {
+        return result;
+      } 
+    }
+  }
+  return false;
+}
+
 let board = [[1, 4, 5, 3, 5, 3, 6, 7, 2],
 [1, 4, 5, 3, 5, 3, 6, 7, 2],
 [1, 4, 5, 3, 5, 3, 6, 7, 2],
@@ -20,21 +61,14 @@ let board = [[1, 4, 5, 3, 5, 3, 6, 7, 2],
 ]
 
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
-}
 function sliceArrayCol(arr, col) {
   let column = [];
   for (let i = 0; i < 8; i++) {
     column.push(arr[col][i])
-
   }
-  return column
-
+  return column;
 }
+
 function sliceArraySquare(arr, sq) {
   let square = [];
   let obji ={
@@ -72,9 +106,21 @@ function sliceArraySquare(arr, sq) {
      i++
      }
   return square
-  }
+}
 
-function isSolved(board) {}
+function isSolved(board) {
+  const boardArr = stringToArray81(board);
+  for (let i = 1; i < boardArr.length; i++) {
+    if (!testSlicedArr(boardArr[i])) return false;
+  }
+  for (let i = 0;i < 9; i++) {
+    if (!testSlicedArr(sliceArrayCol(boardArr, i))) return false;
+  }
+  for (let i = 0;i < 9; i++) {
+    if (!testSlicedArr(sliceArraySquare(boardArr, i))) return false;
+  }
+  return true;
+}
 
 function testSlicedArr(arr) {
   let sum = 0;
