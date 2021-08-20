@@ -4,7 +4,8 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  
+  solve()
 }
 
 
