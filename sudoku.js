@@ -13,6 +13,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
+  
 
 }
 
@@ -22,6 +23,9 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+//9 гор 
+//9 верт
+//
 function prettyBoard(board) {
 
 }
