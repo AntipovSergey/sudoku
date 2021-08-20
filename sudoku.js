@@ -4,7 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  
+
 }
 
 
@@ -23,8 +23,17 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  let result = "";
+  for (let innarr of board) {
+    let row = "";
+    for (let elem of innarr) {
+      row += (row == "") ? elem : " " + elem;
+    }
+    result += row + "\n";
+  }
+  return result;
 }
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
