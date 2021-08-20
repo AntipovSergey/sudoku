@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -17,7 +18,6 @@ let board = [[1, 4, 5, 3, 5, 3, 6, 7, 2],
 [1, 4, 5, 3, 5, 3, 6, 7, 2],
 [1, 4, 5, 3, 5, 3, 6, 7, 2]
 ]
-
 
 
 // Returns a boolean indicating whether
@@ -119,11 +119,19 @@ console.log(testSlicedArr(arr));
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-//9 гор
-//9 верт
-//
-function prettyBoard(board) {}
 
+function prettyBoard(board) {
+  const prettyBoardStr = board.map((elem) => elem.join(' ')).join('\n');
+  console.log(prettyBoardStr);
+}
+
+const sudokuStr = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+const sudokuArr = [];
+for (let i = 0; i < 81; i+=9) {
+  sudokuArr.push(sudokuStr.slice(i, i + 9).split(''));
+}
+console.table(sudokuArr);
+prettyBoard(sudokuArr);
 // Exports all the functions to use them in another file.
 module.exports = {
   sliceArray,
