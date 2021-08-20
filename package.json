@@ -1,0 +1,23 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "clear; jest spec/*[sS]pec.js -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurdjian/project-sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gurdjian/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/gurdjian/project-sudoku#readme",
+  "dependencies": {
+    "jest": "^27.0.6"
+  }
+}
