@@ -8,7 +8,7 @@ function solve(boardString) {
 const newStr = boardString.match(met)
 let result  = []
 newStr.forEach((el) => result.push(el.split('')))
-console.table(result)
+//console.table(result)
 let numbersForCheck = ['1','2','3','4','5','6','7','8','9']
 
 let qdr0 = []
@@ -82,7 +82,7 @@ for(let x = 6; x <= 8; x++){
   }
 }
 
-console.log(qdr0,qdr4,qdr8)
+//console.log(qdr0,qdr4,qdr8)
 for(let i =0 ; i < 9; i++){
   for(let j = 0; j < 9; j++){
     if(result[i][j]=== '-'){
@@ -92,7 +92,7 @@ for(let i =0 ; i < 9; i++){
         currentColumnArr.push(result[m][j])
       }
       let currentColumn = currentColumnArr.join('')
-      console.log(currentRow, currentColumn)
+      //console.log(currentRow, currentColumn)
       for(let k = 0; k < numbersForCheck.length; k++){
         if(currentRow.includes(numbersForCheck[k]) || currentColumn.includes(numbersForCheck[k])){
           continue
@@ -114,15 +114,23 @@ function isSolved(board) {
 return true;
 }
 
-console.table(isSolved(board))
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  let result = "";
+  for (let innarr of board) {
+    let row = "";
+    for (let elem of innarr) {
+      row += (row == "") ? elem : " " + elem;
+    }
+    result += row + "\n";
+  }
+  return result;
 }
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
