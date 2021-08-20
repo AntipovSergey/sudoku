@@ -110,8 +110,8 @@ return result
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(boardString) {
-  
+function isSolved(board) {
+return true;
 }
 
 console.table(isSolved(board))
