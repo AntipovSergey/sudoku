@@ -12,7 +12,7 @@ function solve(boardString) {}
 function isSolved(board) {}
 
 function testSlicedArr(arr) {
-  let sum = 0;
+  let numArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
   // let num = {
   //   1: 0,
   //   2: 0,
@@ -24,7 +24,6 @@ function testSlicedArr(arr) {
   //   8: 0,
   //   9: 0,
   // };
-  let numArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
   let outNum = [];
 
   for (let j = 0; j < numArr.length; j++) {
@@ -41,24 +40,16 @@ function testSlicedArr(arr) {
   //     outNum.push(item);
   //   }
   //   sum += num[item];
-  // }
+  
   // if (sum == 9) {
   //   return true;
   // } else return false;
 }
 let arr = ["1", "-", "5", "8", "-", "2", "-", "-", "-"]; //1-58-2---
 console.log(testSlicedArr(arr));
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-//9 гор
-//9 верт
-//
+
 function prettyBoard(board) {}
 
-// Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
   isSolved: isSolved,
