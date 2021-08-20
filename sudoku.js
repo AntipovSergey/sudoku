@@ -134,7 +134,6 @@ console.table(sudokuArr);
 prettyBoard(sudokuArr);
 // Exports all the functions to use them in another file.
 module.exports = {
-  sliceArray,
   isSolved,
   solve,
   isSolved,
