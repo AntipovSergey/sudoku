@@ -3,8 +3,11 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
 
+function solve(boardString) {
+for (let i = 0; i < boardString.length; i++){
+
+}
 }
 
 
@@ -23,9 +26,13 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+let str = '';
+for (let i = 0; i < board.length; i++){
+  str += `${board[i].join('  ')}\n` +`\n`
 }
-
+return str;
+}
+console.log(prettyBoard([[1,4,'-',3,2,4,2,4,4],[1,2,4,5,6,6,],[4,5],[4,5]]));
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
