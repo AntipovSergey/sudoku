@@ -16,12 +16,12 @@ const numtest = 9;
 function checkNum(arr, arrIndex, num) {
   const [s, p] = arrIndex;
 
-  for (let j = 0; j < 9; j++) {
-    if (num === arr[s][j]) return false;
+  for (let j = 0; j < 9; j += 1) {
+    if (num === +arr[s][j]) return false;
   }
 
-  for (let i = 0; i < 9; i++) {
-    if (num === arr[i][p]) return false;
+  for (let i = 0; i < 9; i += 1) {
+    if (num === +arr[i][p]) return false;
   }
 
   const obj = {
@@ -30,17 +30,19 @@ function checkNum(arr, arrIndex, num) {
   const str = obj[s];
   const pos = obj[p]; // pos - position
 
-  for (let l = pos; l < pos + 3; l++) {
-    if (num === arr[str][l]) return false;
+  for (let l = pos; l < pos + 3; l += 1) {
+    if (num === +arr[str][l]) return false;
   }
-  for (let l = pos; l < pos + 3; l++) {
-    if (num === arr[str + 1][l]) return false;
+  for (let l = pos; l < pos + 3; l += 1) {
+    if (num === +arr[str + 1][l]) return false;
   }
-  for (let l = pos; l < pos + 3; l++) {
-    if (num === arr[str + 2][l]) return false;
+  for (let l = pos; l < pos + 3; l += 1) {
+    if (num === +arr[str + 2][l]) return false;
   }
 
   return true;
 }
 
-console.log(checkNum(arrtest, arrIndextest, numtest));
+module.exports = {
+  checkNum,
+};

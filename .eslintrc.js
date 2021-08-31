@@ -13,5 +13,8 @@ module.exports = {
   },
   rules: {
     'max-len': 0,
+    'no-param-reassign': 0,
+    'no-unused-vars': 0,
+    'no-useless-escape': 0,
   },
 };
