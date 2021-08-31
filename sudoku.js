@@ -21,14 +21,21 @@ function solve(arrayOfStrings) {
     }
   } return arrayOfStrings;
 }
-console.table(solve(getSudokuPuzzle(16)));
+const resultOfSolve = solve(getSudokuPuzzle(8));
 
-function isSolved() {
+function isSolved(resultOfSolve) {
+  if (resultOfSolve === false) {
+    return false;
+  }
+  return true;
 }
+const resultisSolved = isSolved(resultOfSolve);
 
-function prettyResult() {
-
+function prettyResult(resultisSolved) {
+  if (resultisSolved === false) console.log('Решения нет');
+  console.table(resultOfSolve);
 }
+prettyResult();
 
 module.exports = {
   solve,
