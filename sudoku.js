@@ -36,7 +36,7 @@ function prettyResult(indexArr) {
   if (resultisSolved === false) console.log('Решения нет');
   console.table(resultisSolved);
 }
-prettyResult(11);
+prettyResult(process.argv[2]);
 
 module.exports = {
   solve,
