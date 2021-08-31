@@ -30,7 +30,6 @@ const resultOfSolve = solve(getSudokuPuzzle(indexArr));
   return resultOfSolve;
 }
 
-
 function prettyResult(indexArr) {
   const resultisSolved = isSolved(indexArr);
   if (resultisSolved === false) console.log('Решения нет');

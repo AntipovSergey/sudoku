@@ -30,14 +30,10 @@ function checkNum(arr, arrIndex, num) {
   const str = obj[s];
   const pos = obj[p]; // pos - position
 
-  for (let l = pos; l < pos + 3; l += 1) {
-    if (num === +arr[str][l]) return false;
-  }
-  for (let l = pos; l < pos + 3; l += 1) {
-    if (num === +arr[str + 1][l]) return false;
-  }
-  for (let l = pos; l < pos + 3; l += 1) {
-    if (num === +arr[str + 2][l]) return false;
+  for (let k = str; k < str + 3; k += 1) {
+    for (let l = pos; l < pos + 3; l += 1) {
+      if (num === +arr[k][l]) return false;
+    }
   }
 
   return true;
