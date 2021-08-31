@@ -21,7 +21,7 @@ function solve(arrayOfStrings) {
     }
   } return arrayOfStrings;
 }
-console.table(solve(getSudokuPuzzle(16)));
+console.table(solve(getSudokuPuzzle(11)));
 
 function isSolved() {
 }
