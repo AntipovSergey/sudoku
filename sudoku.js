@@ -41,7 +41,16 @@ function validator (curNum, board ,curPos) {
 	}
 	return true;
 };
-function solve(boardString) {}
+function solve(boardString) {
+    if (i === 81) {
+      return 'kill yourself';
+    }
+    if (candidate()) {
+      board[coordinateX][coordinateY] = candidate;
+      return solve(board, coordinates, candidate, i++);
+    }
+    return solve(board, coordinates, candidate);
+};
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
