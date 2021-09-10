@@ -15,8 +15,19 @@ function boardToArray(sudokuString) {
   return nestedArrayNumbers;
 }
 
-function solve(boardString) {}
-=======
+let coordinates = {};
+
+function findEmpty(board) {
+  for (let i = 0; i < size; i++) {
+    for (let q = 0; q < size; q++) {
+      if(board[i][q] === "-"){
+        coordinates.x = q
+        coordinates.y = i
+        return true
+      }
+    }
+  }
+}
 function validator (curNum, board ,curPos) {
 	//row validation
 	for(let i = 0; i <= size; i++) if(board[curPos.y][i] === curNum) return false; 
@@ -30,7 +41,16 @@ function validator (curNum, board ,curPos) {
 	}
 	return true;
 };
-
+function solve(boardString) {
+    if (i === 81) {
+      return 'kill yourself';
+    }
+    if (candidate()) {
+      board[coordinateX][coordinateY] = candidate;
+      return solve(board, coordinates, candidate, i++);
+    }
+    return solve(board, coordinates, candidate);
+};
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -51,7 +71,6 @@ function prettyBoard(nestedArrayNumbers) {
   }
   return prettySudoku;
 }
-console.log(prettyBoard(sudoku));
 
 // Exports all the functions to use them in another file.
 module.exports = {
