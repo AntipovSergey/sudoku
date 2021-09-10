@@ -19,8 +19,15 @@ function convertBoard(str) {
 	return newBoard;
 }
 
+function getInitialPossibleValues() {
+	return [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((result, num) => { 
+		result[num] = true;
+		return result;
+	}, {});
+}
+
 function scanRow(board, rowI) {
-	const possibleValues = getNumberSummary();
+	const possibleValues = getInitialPossibleValues();
 	let result = { possibleIndices: [], possibleValues: [] };
 
 	for (let colI = 0; colI < 9; ++colI) {
@@ -41,7 +48,7 @@ function scanRow(board, rowI) {
 }
 
 function scanColumn(board, colI) {
-	const possibleValues = getNumberSummary();
+	const possibleValues = getInitialPossibleValues();
 	let result = { possibleIndices: [], possibleValues: [] };
 
 	for (let rowI = 0; rowI < 9; ++rowI) {
@@ -62,7 +69,7 @@ function scanColumn(board, colI) {
 }
 
 function scanSquare(board, squareRowI, squareColI) {
-	const possibleValues = getNumberSummary();
+	const possibleValues = getInitialPossibleValues();
 	let result = { possibleIndices: [], possibleValues: [] };
 
 	for (let rowI = 3*squareRowI; rowI < 3*(squareRowI + 1); ++rowI) {
@@ -95,6 +102,20 @@ function getPossibleValuesForCell(board, rowI, colI) {
 
 }
 
+let sampleBoard = [
+	[1, 0, 5, 8, 0, 2, 0, 0, 0],
+	[0, 9, 0, 0, 7, 6, 4, 0, 5],
+	[2, 0, 0, 4, 0, 0, 8, 1, 9],
+	[0, 1, 9, 0, 0, 7, 3, 0, 6],
+	[7, 6, 2, 0, 8, 3, 0, 9, 0],
+	[0, 0, 0, 0, 6, 1, 0, 5, 0],
+	[0, 0, 7, 6, 0, 0, 0, 3, 0],
+	[4, 3, 0, 0, 2, 0, 5, 0, 1],
+	[6, 0, 0, 3, 0, 8, 9, 0, 0]
+];
+
+// console.log(getPossibleValuesForCell(sampleBoard, 4, 6));
+
 function getEmptyCells(board) {
 	let cellsQueue = [];
 
@@ -109,11 +130,57 @@ function getEmptyCells(board) {
 	return cellsQueue;
 }
 
+function solveInner(board) {
+	let emptyCellsIndices = getEmptyCells(board);
+	let [rowI, colI] = emptyCellsIndices[emptyCellsIndices.length - 1];
+
+	const possibleValues = getPossibleValuesForCell(board, rowI, colI);
+
+	for (let possibleValue of possibleValues)
+	{
+		if ( solveInnerRecurr(board, emptyCellsIndices, possibleValue, emptyCellsIndices.length) ) {
+			break;
+		}
+	}
+
+	return board;
+}
+
+function solveInnerRecurr(board, emptyCellsIndices, proposedCellValue, emptyCellsLength) {
+	let success = false;
+	
+	let curCellIndices = emptyCellsIndices[emptyCellsLength - 1];
+	let [rowI, colI] = curCellIndices;
+
+	board[rowI][colI] = proposedCellValue;
+	--emptyCellsLength;
+
+	curCellIndices = emptyCellsIndices[emptyCellsLength - 1];
+	[rowI, colI] = curCellIndices;
+
+	let possibleValues = getPossibleValuesForCell(rowI, colI);
+
+	if ( possibleValues.length !== 0 ) {
+		for (let possibleValue of possibleValues)
+		{
+			if ( solveInnerRecurr(board, emptyCellsIndices, possibleValue, emptyCellsLength) ) {
+				success = true;
+				break;
+			}
+		}
+		return success;
+	} else {
+		return false;
+	}
+}
+
 function solveInnerIter(board) {
 	let cellsQueue = getEmptyCells(board);
-	let maxIterCount = 100;
-	let valuesSummary;
 
+	let maxIterCount = 100;
+
+	let valuesSummary;
+	console.table(board);
 	while ( cellsQueue.length !== 0 && maxIterCount !== 0 ) {
 		valuesSummary = {};
 		for (let i = 0; i < cellsQueue.length; ++i) {
@@ -130,12 +197,21 @@ function solveInnerIter(board) {
 		--maxIterCount;
 	}
 
+	console.log(Object.values(valuesSummary).length);
+
 	return board;
 }
 
-function solve(boardString) {
-	return solveInnerIter(convertBoard(boardString));
+function solve2(boardString) {
+	solveInnerIter(convertBoard(boardString));
 }
+
+function solve1(boardString) {
+	solveInner(convertBoard(boardString));
+}
+
+solve1("----------2-65-------18--4--9----6-4-3---57-------------------73------9----------");
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
