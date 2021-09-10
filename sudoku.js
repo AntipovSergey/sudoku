@@ -7,6 +7,21 @@ function solve(boardString) {
 
 }
 
+let coordinates = {}
+function findEmpty(board) {
+  for (let i = 0; i < size; i++) {
+    for (let q = 0; q < size; q++) {
+      if(board[i][q] === "-"){
+        coordinates.x = q
+        coordinates.y = i
+        return true
+      }
+    }
+  }
+  
+}
+
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
