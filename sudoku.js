@@ -15,8 +15,24 @@ function boardToArray(sudokuString) {
   return nestedArrayNumbers;
 }
 
+
+let coordinates = {}
+function findEmpty(board) {
+  for (let i = 0; i < size; i++) {
+    for (let q = 0; q < size; q++) {
+      if(board[i][q] === "-"){
+        coordinates.x = q
+        coordinates.y = i
+        return true
+      }
+    }
+  }
+  
+}
+
+
 function solve(boardString) {}
-=======
+
 function validator (curNum, board ,curPos) {
 	//row validation
 	for(let i = 0; i <= size; i++) if(board[curPos.y][i] === curNum) return false; 
