@@ -16,6 +16,21 @@ function boardToArray(sudokuString) {
 }
 
 function solve(boardString) {}
+=======
+function validator (curNum, board ,curPos) {
+	//row validation
+	for(let i = 0; i <= size; i++) if(board[curPos.y][i] === curNum) return false; 
+	//column validation
+	for(let i = 0; i <= size; i++) if(board[i][curPos.x] === curNum) return false; 
+	//box validation
+	const startBoxCoordinateX = Math.floor(curpos.x / 3);
+	const startBoxCoordinateY = Math.floor(curpos.y / 3);
+	for(let i = startBoxCoordinateY; i < 3; i++) {
+		for(let j = startBoxCoordinateX; k+j < 3; j++) return false;
+	}
+	return true;
+};
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -40,7 +55,7 @@ console.log(prettyBoard(sudoku));
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard,
-};
+	solve: solve,
+	isSolved: isSolved,
+	prettyBoard: prettyBoard
+}
