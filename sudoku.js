@@ -55,17 +55,14 @@ function checkSquare(board, squareRowI, squareColI) {
   for (let rowI = 3 * squareRowI; rowI < 3 * (squareRowI + 1); ++rowI) {
     for (let colI = 3 * squareColI; colI < 3 * (squareColI + 1); ++colI) {
       if (obj[board[rowI][colI]] === true) {
-        qwuareCheck += 1
+        squareCheck += 1
       } else {
         return false;
       }
     }
   }
-  return qwuareCheck;
+  return squareCheck;
 }
-console.log(checkColumn());
-console.log(checkRow());
-console.log(checkSquare());
 
 
 
