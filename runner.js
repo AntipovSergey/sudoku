@@ -16,7 +16,7 @@ function sudokuParse(content, puzzleNumber = 0) {
   return puzzle;
 }
 
-function readAndSolve(err, data) {
+function readAndSolve(err, data) {git 
   if (err) {
     throw err;
   }
@@ -38,4 +38,5 @@ fs.readFile(
   'utf-8',
   readAndSolve
 );
+
 
