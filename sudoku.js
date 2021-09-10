@@ -1,82 +1,66 @@
-// Takes a board as a string in the format
-	// you see in the puzzle file. Returns
-	// something representing a board after
-	// your solver has tried to solve it.
-	// How you represent your board is up to you!
-	
-	function boardToArray(sudokuString) {
-		const arrayOfString = sudokuString.match(/.{9}/g);
-		const nestedArrayOfString = arrayOfString.map((el) => el.split(""));
-		const nestedArrayNumbers = nestedArrayOfString.map((el) =>
-			el.map((element) =>
-				element === "-" ? (element = "-") : (element = +element)
-			)
-		);
-		return nestedArrayNumbers;
-	}
-	let originBoard = boardToArray('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
-	let ourBoard = [].concat(originBoard);
+function sudokuSuperSolver (string) {
+	//глобальные переменные
+	let solveIndicator = false;
+	let originBoard = boardToArray(string);
+	let ourBoard = [].concat(originBoard); // копия массива 
 	const size = originBoard.length;
-	let position = {};
-	let candidate;
-	
+	//Запуск и вывод  ---- >
+	solve(originBoard);
+	return [solveIndicator, ourBoard];
+	// Парсер строки //
+	function boardToArray(sudokuString) {
+			const arrayOfString = sudokuString.match(/.{9}/g);
+			const nestedArrayOfString = arrayOfString.map((el) => el.split(""));
+			const nestedArrayNumbers = nestedArrayOfString.map((el) =>
+				el.map((element) =>
+					element === "-" ? (element = "-") : (element = +element)
+				)
+			);
+			return nestedArrayNumbers;
+	}
+	// Поиск ячейки которую нужно решить
 	function findEmpty(board) {
-		for (let i = 0; i < size; i++) {
-			for (let q = 0; q < size; q++) {
-				if(board[i][q] === "-"){
-					position.x = q;
-					position.y = i;
-					return true;
+		for (let y = 0; y < size; y++) {
+			for (let x = 0; x < size; x++) {
+				if(board[y][x] === "-") {
+					return {x:x, y:y};
 				}
 			}
 		}
+		return 'Нечего решать!';
 	}
-	function validator (num, board ,curPos) {
+	//Логика отбора кандидатов
+	function validator (num, board, curPos) {
 			//row validation
-			for(let i = 0; i <= size; i++) if(board[curPos.y][i] === num) return false; 
+			for(let i = 0; i < size; i++) if(board[curPos.y][i] === num && i !== curPos.x) return false; 
 			//column validation
-			for(let i = 0; i <= size; i++) if(board[i][curPos.x] === num) return false; 
+			for(let i = 0; i < size; i++) if(board[i][curPos.x] === num && i !== curPos.y) return false; 
 			//box validation
-			const startBoxCoordinateX = Math.floor(curpos.x / 3);
-			const startBoxCoordinateY = Math.floor(curpos.y / 3);
-			for(let i = startBoxCoordinateY; i < 3; i++) {
-				for(let j = startBoxCoordinateX; k+j < 3; j++) if(board[curPos.y][curPos.x] === num) return false;
+			const startBoxCoordinateX = Math.floor(curPos.x / 3) * 3; // Поиск самой верхней -
+			const startBoxCoordinateY = Math.floor(curPos.y / 3) * 3; // левой ячейки в квадрате 3х3
+			for(let i = 0; i < 3; i++) {
+				for(let j = 0; j < 3; j++) if(board[i+startBoxCoordinateY][j + startBoxCoordinateX] === num) return false;
 			}
 			return true;
-		}
-	
-	function solve(board, countCalls=0) {
-			countCalls++;
-			console.log(countCalls);
-			if (countCalls === 200) {
-				return false;
+	}
+	// Рекурсивый алгоритм поиска в глубину
+	function solve(board) {
+			let position = findEmpty(originBoard);
+			if(position === 'Нечего решать!') {
+				solveIndicator = true;
+				return ourBoard;
 			}
-			let candidate;
-			findEmpty(board);
-			for(let i = 1; i < 9; i++){
+			for(let i = 1; i <= size; i++) {
 				if(validator(i, board, position)) {
-					ourBoard[position.y][position.x] = candidate;
-					if(solve(board, countCalls)) {
-						return board;
-					}
+					ourBoard[position.y][position.x] = i;
+					if(solve(ourBoard)) {
+						return true;
+					} 
+					ourBoard[position.y][position.x] = '-';
 				}
 			}
-				console.log('Кирилл где-то косякнул')
-				ourBoard[position.y][position.x] = '-';
-			}
-	
-	// Returns a boolean indicating whether
-	// or not the provided board is solved.
-	// The input board will be in whatever
-	// form `solve` returns.
-	function isSolved(board) {}
-	
-	// Takes in a board in some form and
-	// returns a String that's well formatted
-	// for output to the screen.
-	// The input board will be in whatever
-	// form `solve` returns.
-	
+	}
+	// выгрузка в консоль в красивом виде
 	function prettyBoard(nestedArrayNumbers) {
 		let prettySudoku = "\n";
 		for (let i = 0; i < nestedArrayNumbers.length; i++) {
@@ -85,12 +69,7 @@
 		return prettySudoku;
 	}
 	
-	
-	// Exports all the functions to use them in another file.
-	module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard,
-	boardToArray: boardToArray,
 	}
+	
+	module.exports = sudokuSuperSolver;
 	
