@@ -9,7 +9,6 @@ function solve(boardString) {
 
 
 
-
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
@@ -27,6 +26,7 @@ function isSolved(board) {
 function prettyBoard(board) {
 
 }
+
 
 
 
