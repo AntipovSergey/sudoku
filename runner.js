@@ -22,7 +22,7 @@ function readAndSolve(err, data) {
   }
   let puzzle = sudokuParse(data);
 
-  let solvedPuzzle = sudoku.solve(puzzle);
+  let solvedPuzzle = sudoku.boardToArray(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
     console.log(sudoku.prettyBoard(solvedPuzzle));
