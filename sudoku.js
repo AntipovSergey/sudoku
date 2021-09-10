@@ -7,19 +7,6 @@ function solve(boardString) {
 
 }
 
-let coordinates = {}
-function findEmpty(board) {
-  for (let i = 0; i < size; i++) {
-    for (let q = 0; q < size; q++) {
-      if(board[i][q] === "-"){
-        coordinates.x = q
-        coordinates.y = i
-        return true
-      }
-    }
-  }
-  
-}
 
 
 
@@ -41,6 +28,42 @@ function prettyBoard(board) {
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let coordinates = {}
+function findEmpty(board) {
+  for (let i = 0; i < size; i++) {
+    for (let q = 0; q < size; q++) {
+      if(board[i][q] === "-"){
+        coordinates.x = q
+        coordinates.y = i
+        return true
+      }
+    }
+  }
+  
+}
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
