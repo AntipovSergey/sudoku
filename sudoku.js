@@ -67,79 +67,84 @@ function checkSquare(board, squareRowI, squareColI) {
   return squareCheck;
 }
 
+function passRowLoop(board, inputIndices, loopBodyCallback) {
+    let breakLoop = false;
+
+    for (let colI = 0; colI < 9 && !breakLoop; ++colI) {
+		breakLoop = loopBodyCallback(board, inputIndices.rowI, colI);
+	}
+
+    return breakLoop;
+}
+
+function passColumnLoop(board, inputIndices, loopBodyCallback) {
+    let breakLoop = false;
+
+    for (let rowI = 0; rowI < 9 && !breakLoop; ++rowI) {
+		breakLoop = loopBodyCallback(board, rowI, inputIndices.colI);
+	}
+
+    return breakLoop;
+}
+
+function passSquareLoop(board, inputIndices, loopBodyCallback) {
+    let breakLoop = false;
+    let {sqrRowI, sqrColI} = inputIndices;
+
+    for (let rowI = 3*sqrRowI; rowI < 3*(sqrRowI + 1) && !breakLoop; ++rowI) {
+		for (let colI = 3*sqrColI; colI < 3*(sqrColI + 1)  && !breakLoop; ++colI) {
+			breakLoop = loopBodyCallback(board, rowI, colI);
+		}
+	}
+
+    return breakLoop;
+}
+
+function scanContainer(board, inputIndices, passContainerCallback) {
+    const isNumberValid = getNumberSummary();
+	let validValues = [];
+
+    let loopBodyCallback = (board, rowI, colI) => {
+        const curNumber = board[rowI][colI];
+
+        if ( curNumber !== 0 ) {
+			isNumberValid[curNumber] = false;
+		}
+
+        return false;
+    }
+
+    passContainerCallback(board, inputIndices, loopBodyCallback);
+
+    for (let num = 1; num < 10; ++num) {
+		if ( isNumberValid[num] === true ) {
+			validValues.push(num);
+		}
+	}
+
+	return validValues;
+}
+
 function scanRow(board, rowI) {
-	const possibleValues = getNumberSummary();
-	let result = { possibleIndices: [], possibleValues: [] };
-
-	for (let colI = 0; colI < 9; ++colI) {
-		if ( board[rowI][colI] === 0 ) {
-			result.possibleIndices.push(colI);
-		} else {
-			possibleValues[board[rowI][colI]] = false;
-		}
-	}
-
-	for (let num = 1; num < 10; ++num) {
-		if ( possibleValues[num] === true ) {
-			result.possibleValues.push(num);
-		}
-	}
-
-	return result;
+    return scanContainer(board, {rowI: rowI}, passRowLoop);
 }
 
 function scanColumn(board, colI) {
-	const possibleValues = getNumberSummary();
-	let result = { possibleIndices: [], possibleValues: [] };
-
-	for (let rowI = 0; rowI < 9; ++rowI) {
-		if ( board[rowI][colI] === 0 ) {
-			result.possibleIndices.push(rowI);
-		} else {
-			possibleValues[board[rowI][colI]] = false;
-		}
-	}
-
-	for (let num = 1; num < 10; ++num) {
-		if ( possibleValues[num] === true ) {
-			result.possibleValues.push(num);
-		}
-	}
-
-	return result;
+    return scanContainer(board, {colI: colI}, passColumnLoop);
 }
 
 function scanSquare(board, squareRowI, squareColI) {
-	const possibleValues = getNumberSummary();
-	let result = { possibleIndices: [], possibleValues: [] };
-
-	for (let rowI = 3*squareRowI; rowI < 3*(squareRowI + 1); ++rowI) {
-		for (let colI = 3*squareColI; colI < 3*(squareColI + 1); ++colI) {
-			if ( board[rowI][colI] === 0 ) {
-				result.possibleIndices.push([rowI, colI]);
-			} else {
-				possibleValues[board[rowI][colI]] = false;
-			}
-		}
-	}
-
-	for (let num = 1; num < 10; ++num) {
-		if ( possibleValues[num] === true ) {
-			result.possibleValues.push(num);
-		}
-	}
-
-	return result;
+    return scanContainer(board, {sqrRowI: squareRowI, sqrColI: squareColI}, passSquareLoop);
 }
 
-function getPossibleValuesForCell(board, rowI, colI) {
-	let rowPossibleValues = scanRow(board, rowI).possibleValues;
-	let colPossibleValues = scanColumn(board, colI).possibleValues;
-	let sqrPossibleValues = scanSquare(board, Math.floor(rowI/3), Math.floor(colI/3)).possibleValues;
+function getValidValuesForCell(board, rowI, colI) {
+    let rowValidValues = scanRow(board, rowI);
+	let colValidValues = scanColumn(board, colI);
+	let sqrValidValues = scanSquare(board, Math.floor(rowI/3), Math.floor(colI/3));
 
-	return rowPossibleValues
-		.filter((value) => colPossibleValues.includes(value))
-		.filter((value) => sqrPossibleValues.includes(value));
+	return rowValidValues
+		.filter((value) => colValidValues.includes(value))
+		.filter((value) => sqrValidValues.includes(value));
 
 }
 
@@ -167,7 +172,7 @@ function solveInnerIter(board) {
 		for (let i = 0; i < cellsQueue.length; ++i) {
 			const [rowI, colI] = cellsQueue[i];
 			const key = `${rowI}${colI}`;
-			valuesSummary[key] = getPossibleValuesForCell(board, rowI, colI);
+			valuesSummary[key] = getValidValuesForCell(board, rowI, colI);
 
 			if ( valuesSummary[key].length === 1 ) {
 				board[rowI][colI] = valuesSummary[key][0];
@@ -183,13 +188,13 @@ function solveInnerIter(board) {
 
 function isRecursionSuccessful(board, emptyCells, cellI) {
 	let [rowI, colI] = emptyCells[cellI];
-	let possibleValues = getPossibleValuesForCell(board, rowI, colI);
+	let validValues = getValidValuesForCell(board, rowI, colI);
 
 	cellI += 1;
 	
 	if ( cellI < emptyCells.length ) {
-		for (let possibleValue of possibleValues) {
-			board[rowI][colI] = possibleValue;
+		for (let validValue of validValues) {
+			board[rowI][colI] = validValue;
 			if ( isRecursionSuccessful(board, emptyCells, cellI) === true ) {
 				return true;
 			}
