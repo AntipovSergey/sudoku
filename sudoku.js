@@ -1,10 +1,4 @@
 
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-
 function convertBoard(str) {
   const numberArr = str.replace(/\-/g, '0').split('')
   let newBoard = []
@@ -159,6 +153,9 @@ function getEmptyCells(board) {
 	return cellsQueue;
 }
 
+
+
+
 function solveInnerIter(board) {
 	let cellsQueue = getEmptyCells(board);
 	let maxIterCount = 100;
@@ -182,6 +179,7 @@ function solveInnerIter(board) {
 
 	return board;
 }
+
 
 function isRecursionSuccessful(board, emptyCells, cellI) {
 	let [rowI, colI] = emptyCells[cellI];
@@ -210,6 +208,14 @@ function startRecursion(board, emptyCells) {
     return board;
 }
 
+
+
+
+// Takes a board as a string in the format
+// you see in the puzzle file. Returns
+// something representing a board after
+// your solver has tried to solve it.
+// How you represent your board is up to you!
 function solve(boardString) {
     // итеративное решение (решает первые 5 задач):
 	// return solveInnerIter(convertBoard(boardString));
@@ -221,13 +227,26 @@ function solve(boardString) {
     return startRecursion(board, emptyCells);
 }
 
-console.table(solve("--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--"))
-
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
+function isSolved(board) {
+    let everyCheckSuccessful = true;
 
+    for (let checkNumber = 0; checkNumber < 9 && everyCheckSuccessful; ++checkNumber) {
+        everyCheckSuccessful = 
+            checkRow(board, checkNumber) && 
+            checkColumn(board, checkNumber) && 
+            checkSquare(board, Math.floor(checkNumber/3), Math.floor(checkNumber/3));
+    }
+
+    return everyCheckSuccessful;
+}
+
+const board = solve("1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--");
+console.table(board)
+console.log(isSolved(board));
 
 
 // Takes in a board in some form and
@@ -235,9 +254,6 @@ console.table(solve("--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-
-
-
 function prettyBoard(board) {
   let resultStr = ''
   //if (board === undefined) return resultStr
