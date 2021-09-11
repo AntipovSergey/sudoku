@@ -185,20 +185,16 @@ function solveInnerIter(board) {
 function isRecursionSuccessful(board, emptyCells, cellI) {
 	let [rowI, colI] = emptyCells[cellI];
 	let validValues = getValidValuesForCell(board, rowI, colI);
-
-	cellI += 1;
 	
-	if ( cellI < emptyCells.length ) {
-		for (let validValue of validValues) {
-			board[rowI][colI] = validValue;
-			if ( isRecursionSuccessful(board, emptyCells, cellI) === true ) {
-				return true;
-			}
-			board[rowI][colI] = 0;
-		}
-	} else {
-		return true;
-	}
+    cellI += 1;
+
+    for (let validValue of validValues) {
+        board[rowI][colI] = validValue;
+        if ( cellI === emptyCells.length || isRecursionSuccessful(board, emptyCells, cellI) === true ) {
+            return true;
+        }
+        board[rowI][colI] = 0;
+    }
 
 	return false;
 }
