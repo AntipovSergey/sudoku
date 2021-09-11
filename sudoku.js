@@ -218,14 +218,16 @@ function startRecursion(board, emptyCells) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-    // итеративное решение (решает первые 5 задач):
-	// return solveInnerIter(convertBoard(boardString));
-
-    // рекурсивное решение (решает все варианты (правильно ли?)):
+    const useRecursiveSolver = true;
     let board = convertBoard(boardString);
-    const emptyCells = getEmptyCells(board);
 
-    return startRecursion(board, emptyCells);
+    if ( useRecursiveSolver ) {
+        const emptyCells = getEmptyCells(board);
+        return startRecursion(board, emptyCells);
+    } 
+    else {
+        return solveInnerIter(convertBoard(boardString));
+    }
 }
 
 // Returns a boolean indicating whether
@@ -245,7 +247,7 @@ function isSolved(board) {
     return everyCheckSuccessful;
 }
 
-const board = solve("---------------------------------------------------------------------------------");
+const board = solve("1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--");
 console.table(board)
 console.log(isSolved(board));
 
