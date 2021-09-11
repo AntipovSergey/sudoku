@@ -4,6 +4,22 @@
   "description": "## Введение",
   "main": "runner.js",
   "scripts": {
+    "start": "node ./runner.js 0",
+    "task0":  "node ./runner.js 0",
+    "task1":  "node ./runner.js 1",
+    "task2":  "node ./runner.js 2",
+    "task3":  "node ./runner.js 3",
+    "task4":  "node ./runner.js 4",
+    "task5":  "node ./runner.js 5",
+    "task6":  "node ./runner.js 6",
+    "task7":  "node ./runner.js 7",
+    "task8":  "node ./runner.js 8",
+    "task9":  "node ./runner.js 9",
+    "task10": "node ./runner.js 10",
+    "task11": "node ./runner.js 11",
+    "task12": "node ./runner.js 12",
+    "task13": "node ./runner.js 13",
+    "task14": "node ./runner.js 14",
     "test": "jest ./spec/sudoku.spec.js"
   },
   "repository": {
