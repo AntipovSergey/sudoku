@@ -101,13 +101,14 @@ function checkContainer(board, inputIndices, passContainerCallback) {
 
     let checkPassageCallback = (board, rowI, colI) => {
         const curNumber = board[rowI][colI];
+        const zeroAppeared = curNumber === 0;
         const numberMetBefore = ( numberMet[curNumber] === true );
 
-        if ( !numberMetBefore ) {
+        if ( !zeroAppeared && !numberMetBefore ) {
             numberMet[curNumber] = true;
         }
 
-        return !numberMetBefore; //if number met before, then stop the passage
+        return !zeroAppeared && !numberMetBefore; //if number is equal to zero or was met before, then stop the passage
     };
 
     return passContainerCallback(board, inputIndices, checkPassageCallback);
@@ -244,7 +245,7 @@ function isSolved(board) {
     return everyCheckSuccessful;
 }
 
-const board = solve("1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--");
+const board = solve("---------------------------------------------------------------------------------");
 console.table(board)
 console.log(isSolved(board));
 
@@ -266,6 +267,6 @@ function prettyBoard(board) {
 // Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
-//   isSolved: isSolved,
+  isSolved: isSolved,
   prettyBoard: prettyBoard
 }
