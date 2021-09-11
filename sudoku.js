@@ -19,15 +19,15 @@ function convertBoard(str) {
   return newBoard
 }
 
-function getNumberSummary() {
+function makeNumbersSummary(fillValue) {
   return [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((result, num) => {
-    result[num] = true;
+    result[num] = fillValue;
     return result;
   }, {});
 }
 
 function checkRow(board, rowI) {
-  const obj = getNumberSummary();
+  const obj = makeNumbersSummary();
   let rowCheck = 0;
   for (let colI = 0; colI < 9; ++colI) {
     if (obj[board[rowI][colI]] === true) {
@@ -40,7 +40,7 @@ function checkRow(board, rowI) {
 }
 
 function checkColumn(board, colI) {
-  const obj = getNumberSummary();
+  const obj = makeNumbersSummary();
   let colCheck = 0
   for (let rowI = 0; rowI < 9; ++rowI) {
     if (obj[board[rowI][colI]] === true) {
@@ -53,7 +53,7 @@ function checkColumn(board, colI) {
 }
 
 function checkSquare(board, squareRowI, squareColI) {
-  const obj = getNumberSummary();
+  const obj = makeNumbersSummary();
   let squareCheck = 0;
   for (let rowI = 3 * squareRowI; rowI < 3 * (squareRowI + 1); ++rowI) {
     for (let colI = 3 * squareColI; colI < 3 * (squareColI + 1); ++colI) {
@@ -101,10 +101,10 @@ function passSquareLoop(board, inputIndices, loopBodyCallback) {
 }
 
 function scanContainer(board, inputIndices, passContainerCallback) {
-    const isNumberValid = getNumberSummary();
+    const isNumberValid = makeNumbersSummary(true);
 	let validValues = [];
 
-    let loopBodyCallback = (board, rowI, colI) => {
+    let scanPassageCallback = (board, rowI, colI) => {
         const curNumber = board[rowI][colI];
 
         if ( curNumber !== 0 ) {
@@ -114,7 +114,7 @@ function scanContainer(board, inputIndices, passContainerCallback) {
         return false;
     }
 
-    passContainerCallback(board, inputIndices, loopBodyCallback);
+    passContainerCallback(board, inputIndices, scanPassageCallback);
 
     for (let num = 1; num < 10; ++num) {
 		if ( isNumberValid[num] === true ) {
