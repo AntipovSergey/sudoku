@@ -19,6 +19,9 @@ function convertBoard(str) {
   return newBoard
 }
 
+
+
+
 function makeNumbersSummary(fillValue) {
   return [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((result, num) => {
     result[num] = fillValue;
@@ -26,46 +29,6 @@ function makeNumbersSummary(fillValue) {
   }, {});
 }
 
-function checkRow(board, rowI) {
-  const obj = makeNumbersSummary();
-  let rowCheck = 0;
-  for (let colI = 0; colI < 9; ++colI) {
-    if (obj[board[rowI][colI]] === true) {
-      rowCheck += 1
-    } else {
-      return false; b
-    }
-  }
-  return rowCheck;
-}
-
-function checkColumn(board, colI) {
-  const obj = makeNumbersSummary();
-  let colCheck = 0
-  for (let rowI = 0; rowI < 9; ++rowI) {
-    if (obj[board[rowI][colI]] === true) {
-      colCheck += 1
-    } else {
-      return false;
-    }
-  }
-  return colCheck;
-}
-
-function checkSquare(board, squareRowI, squareColI) {
-  const obj = makeNumbersSummary();
-  let squareCheck = 0;
-  for (let rowI = 3 * squareRowI; rowI < 3 * (squareRowI + 1); ++rowI) {
-    for (let colI = 3 * squareColI; colI < 3 * (squareColI + 1); ++colI) {
-      if (obj[board[rowI][colI]] === true) {
-        squareCheck += 1
-      } else {
-        return false;
-      }
-    }
-  }
-  return squareCheck;
-}
 
 function passRowLoop(board, inputIndices, loopBodyCallback) {
     let breakLoop = false;
@@ -99,6 +62,7 @@ function passSquareLoop(board, inputIndices, loopBodyCallback) {
 
     return breakLoop;
 }
+
 
 function scanContainer(board, inputIndices, passContainerCallback) {
     const isNumberValid = makeNumbersSummary(true);
@@ -136,6 +100,39 @@ function scanColumn(board, colI) {
 function scanSquare(board, squareRowI, squareColI) {
     return scanContainer(board, {sqrRowI: squareRowI, sqrColI: squareColI}, passSquareLoop);
 }
+
+
+function checkContainer(board, inputIndices, passContainerCallback) {
+    let numberMet = makeNumbersSummary(false);
+
+    let checkPassageCallback = (board, rowI, colI) => {
+        const curNumber = board[rowI, colI];
+        const numberMetBefore = ( numberMet[curNumber] === true );
+
+        if ( !numberMetBefore ) {
+            numberMet[curNumber] = true;
+        }
+
+        return numberMetBefore; //if number met before, then stop the passage
+    };
+
+    return passContainerCallback(board, inputIndices, checkPassageCallback);
+}
+
+function checkRow(board, rowI) {
+    return checkContainer(board, { rowI: rowI }, passRowLoop);
+}
+
+function checkColumn(board, colI) {
+    return checkContainer(board, { colI: colI }, passColumnLoop);
+}
+
+function checkSquare(board, squareRowI, squareColI) {
+    return checkContainer(board, { sqrRowI: squareRowI, sqrColI: squareColI }, passSquareLoop);
+}
+
+
+
 
 function getValidValuesForCell(board, rowI, colI) {
     let rowValidValues = scanRow(board, rowI);
