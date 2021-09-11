@@ -31,36 +31,36 @@ function makeNumbersSummary(fillValue) {
 
 
 function passRowLoop(board, inputIndices, loopBodyCallback) {
-    let breakLoop = false;
+    let lastPredicateTrue = true;
 
-    for (let colI = 0; colI < 9 && !breakLoop; ++colI) {
-		breakLoop = loopBodyCallback(board, inputIndices.rowI, colI);
+    for (let colI = 0; colI < 9 && lastPredicateTrue; ++colI) {
+		lastPredicateTrue = loopBodyCallback(board, inputIndices.rowI, colI);
 	}
 
-    return breakLoop;
+    return lastPredicateTrue;
 }
 
 function passColumnLoop(board, inputIndices, loopBodyCallback) {
-    let breakLoop = false;
+    let lastPredicateTrue = true;
 
-    for (let rowI = 0; rowI < 9 && !breakLoop; ++rowI) {
-		breakLoop = loopBodyCallback(board, rowI, inputIndices.colI);
+    for (let rowI = 0; rowI < 9 && lastPredicateTrue; ++rowI) {
+		lastPredicateTrue = loopBodyCallback(board, rowI, inputIndices.colI);
 	}
 
-    return breakLoop;
+    return lastPredicateTrue;
 }
 
 function passSquareLoop(board, inputIndices, loopBodyCallback) {
-    let breakLoop = false;
+    let lastPredicateTrue = true;
     let {sqrRowI, sqrColI} = inputIndices;
 
-    for (let rowI = 3*sqrRowI; rowI < 3*(sqrRowI + 1) && !breakLoop; ++rowI) {
-		for (let colI = 3*sqrColI; colI < 3*(sqrColI + 1)  && !breakLoop; ++colI) {
-			breakLoop = loopBodyCallback(board, rowI, colI);
+    for (let rowI = 3*sqrRowI; rowI < 3*(sqrRowI + 1) && lastPredicateTrue; ++rowI) {
+		for (let colI = 3*sqrColI; colI < 3*(sqrColI + 1)  && lastPredicateTrue; ++colI) {
+			lastPredicateTrue = loopBodyCallback(board, rowI, colI);
 		}
 	}
 
-    return breakLoop;
+    return lastPredicateTrue;
 }
 
 
