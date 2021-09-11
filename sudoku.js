@@ -18,12 +18,14 @@ function convertBoard(str) {
   }
   return newBoard
 }
+
 function getNumberSummary() {
   return [1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((result, num) => {
     result[num] = true;
     return result;
   }, {});
 }
+
 function checkRow(board, rowI) {
   const obj = getNumberSummary();
   let rowCheck = 0;
@@ -36,6 +38,7 @@ function checkRow(board, rowI) {
   }
   return rowCheck;
 }
+
 function checkColumn(board, colI) {
   const obj = getNumberSummary();
   let colCheck = 0
@@ -178,9 +181,45 @@ function solveInnerIter(board) {
 	return board;
 }
 
-function solve(boardString) {
-	return solveInnerIter(convertBoard(boardString));
+function isRecursionSuccessful(board, emptyCells, cellI) {
+	let [rowI, colI] = emptyCells[cellI];
+	let possibleValues = getPossibleValuesForCell(board, rowI, colI);
+
+	cellI += 1;
+	
+	if ( cellI < emptyCells.length ) {
+		for (let possibleValue of possibleValues) {
+			board[rowI][colI] = possibleValue;
+			if ( isRecursionSuccessful(board, emptyCells, cellI) === true ) {
+				return true;
+			}
+			board[rowI][colI] = 0;
+		}
+	} else {
+		return true;
+	}
+
+	return false;
 }
+
+function startRecursion(board, emptyCells) {
+    const solved = isRecursionSuccessful(board, emptyCells, 0);
+
+    return board;
+}
+
+function solve(boardString) {
+    // итеративное решение (решает первые 5 задач):
+	// return solveInnerIter(convertBoard(boardString));
+
+    // рекурсивное решение (решает все варианты (правильно ли?)):
+    let board = convertBoard(boardString);
+    const emptyCells = getEmptyCells(board);
+
+    return startRecursion(board, emptyCells);
+}
+
+console.table(solve("--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--"))
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -209,6 +248,6 @@ function prettyBoard(board) {
 // Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
-  isSolved: isSolved,
+//   isSolved: isSolved,
   prettyBoard: prettyBoard
 }
