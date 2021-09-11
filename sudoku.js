@@ -75,7 +75,7 @@ function scanContainer(board, inputIndices, passContainerCallback) {
 			isNumberValid[curNumber] = false;
 		}
 
-        return false;
+        return true; //continue the passage anyway
     }
 
     passContainerCallback(board, inputIndices, scanPassageCallback);
@@ -106,14 +106,14 @@ function checkContainer(board, inputIndices, passContainerCallback) {
     let numberMet = makeNumbersSummary(false);
 
     let checkPassageCallback = (board, rowI, colI) => {
-        const curNumber = board[rowI, colI];
+        const curNumber = board[rowI][colI];
         const numberMetBefore = ( numberMet[curNumber] === true );
 
         if ( !numberMetBefore ) {
             numberMet[curNumber] = true;
         }
 
-        return numberMetBefore; //if number met before, then stop the passage
+        return !numberMetBefore; //if number met before, then stop the passage
     };
 
     return passContainerCallback(board, inputIndices, checkPassageCallback);
