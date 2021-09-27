@@ -20,6 +20,7 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
+
   let puzzle = sudokuParse(data);
 
   let solvedPuzzle = sudoku.solve(puzzle);
@@ -38,4 +39,5 @@ fs.readFile(
   'utf-8',
   readAndSolve
 );
+
 
