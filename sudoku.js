@@ -59,6 +59,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
+  return board.join(' ').replace(/(..................)/g, "$1\n");
 }
 
 // Exports all the functions to use them in another file.
