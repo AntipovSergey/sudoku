@@ -54,20 +54,23 @@ console.log(correctNum(pars(0), 3, 0, 1));
 // How you represent your board is up to you!
 function solve(arrBoard) {
   const size = 9;
-  const box = 3;
 
   for (let r = 0; r < size; r++) {
     for (let c = 0; c < size; c++) {
       if (arrBoard[r][c] === '-') {
         for (let num = 9; num >= 1; num--) {
-          if (correctNum(arrBoard, num) === true) {
+          if (correctNum(arrBoard, num, r, c) === true) {
             arrBoard[r][c] = num;
-            solve(arrBoard)
+            if (solve(arrBoard)) {
+              return true;
+            }
+            arrBoard[r][c] = '-';
           }
         }
       }
     }
   }
+  return false
 }
 
 
