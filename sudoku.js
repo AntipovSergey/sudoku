@@ -10,7 +10,6 @@ function pars(index) {
 	let res = [[], [], [], [], [], [], [], [], []];
 
 	for (let i of allSudoku[index]) {
-		console.log(typeof(i));
 		(i != '-') ? res[count[1]].push(Number(i)) : res[count[1]].push(i);
 		count[0]++;
 		(count[0] % 9 === 0) ? count[1]++ : null;
@@ -18,7 +17,35 @@ function pars(index) {
 	return res
 }
 
-console.log(pars(0));
+console.table(pars(0));
+
+//
+function correctNum(arrBoard, num, r, c) {
+	const obj = {
+    0: 0, 1: 0, 2: 0, 3: 3, 4: 3, 5: 3, 6: 6, 7: 6, 8: 6,
+  };
+
+	for (let i =0; i < arrBoard.length; i++) {
+		if (arrBoard[r][i] === num) {
+			return false;
+		}
+		if (arrBoard[i][c] === num) {
+			return false;
+		}
+	}
+	for (let j = obj[r]; j <= obj[r] + 2; j++) {
+		for (let x = obj[c]; x <= obj[c] + 2; x++) {
+			if(arrBoard[obj[r]][obj[c]] === num) {
+				return false;
+			}
+		}
+	}
+
+	return true
+}
+
+console.log(correctNum(pars(0), 3, 0, 1));
+
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
