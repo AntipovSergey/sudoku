@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku</title>
+  <link rel="stylesheet" href="default.css">
+</head>
+<body>
+  <header>
+    <h1>Sudoku Challenge &#129302;</h1>
+    <form action="#">
+      <label for="flevel">Specify Sudoku Level:</label>
+      <input type="number" id="flevel" name="flevel" value="" placeholder="0-15" required pattern="/\b([1-9]|1[0-5])\b/gm">
+      <input type="submit" value="Submit">
+    </form>
+  </header>
+
+  <main>
+    <div class="table">
+      <!--Таблица 1 для варианта с пустыми клетками-->
+      <table id="table-1">
+        <tr>
+          <th>----</th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>6</th>
+          <th>7</th>
+          <th>8</th>
+        </tr>
+        <tr>
+          <th>0</th>
+        </tr>
+        <tr>
+          <th>1</th>
+        </tr>
+        <tr>
+          <th>2</th>
+        </tr>
+        <tr>
+          <th>3</th>
+        </tr>
+        <tr>
+          <th>4</th>
+        </tr>
+        <tr>
+          <th>5</th>
+        </tr>
+        <tr>
+          <th>6</th>
+        </tr>
+        <tr>
+          <th>7</th>
+        </tr>
+        <tr>
+          <th>8</th>
+        </tr>
+      </table>
+      <!--Таблица 1 для варианта с пустыми клетками-->
+
+      <!--Кнопка "Решить"-->
+       <button>Solve</button>
+    </div>
+
+    <div class="table">
+      <!-- Display: none !-->
+      <!--Таблица 2 для варианта с заполненными клетками-->
+      <table id="table-2">
+        <tr>
+          <th>----</th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+          <th>5</th>
+          <th>6</th>
+          <th>7</th>
+          <th>8</th>
+        </tr>
+        <tr>
+          <th>0</th>
+        </tr>
+        <tr>
+          <th>1</th>
+        </tr>
+        <tr>
+          <th>2</th>
+        </tr>
+        <tr>
+          <th>3</th>
+        </tr>
+        <tr>
+          <th>4</th>
+        </tr>
+        <tr>
+          <th>5</th>
+        </tr>
+        <tr>
+          <th>6</th>
+        </tr>
+        <tr>
+          <th>7</th>
+        </tr>
+        <tr>
+          <th>8</th>
+        </tr>
+      </table>
+      <!--Таблица 2 для варианта с заполненными клетками-->
+    </div>
+  </main>
+
+  <footer>
+    <a href="https://github.com/Anakhom" target="_blank">Anastasia Khomchenko</a>
+    <a href="https://github.com/Sterioboy" target="_blank">Kirill Bondarenko</a>
+    <a href="https://github.com/EgorBartuli" target="_blank">Egor Bartuli</a>
+    <a href="https://github.com/DaryaGoloviznina" target="_blank">Darya Goloviznina</a>
+  </footer>
+  <script src="sudoku.js"></script>
+</body>
+</html>
