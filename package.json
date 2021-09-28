@@ -2,7 +2,9 @@
   "name": "project-sudoku",
   "version": "1.0.0",
   "description": "## Введение",
-  "main": "pars.js",
+
+  "main": "runner.js",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +18,12 @@
   "bugs": {
     "url": "https://github.com/Antselovalnikov/project-sudoku/issues"
   },
-  "homepage": "https://github.com/Antselovalnikov/project-sudoku#readme"
+
+  "homepage": "https://github.com/Antselovalnikov/project-sudoku#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2"
+  }
+
 }
