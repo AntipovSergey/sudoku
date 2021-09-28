@@ -17,7 +17,7 @@ function pars(index) {
 	return res
 }
 
-console.table(pars(0));
+// console.table(pars(0));
 
 //
 function correctNum(arrBoard, num, r, c) {
@@ -44,7 +44,7 @@ function correctNum(arrBoard, num, r, c) {
 	return true
 }
 
-console.log(correctNum(pars(0), 3, 0, 1));
+// console.log(correctNum(pars(0), 3, 0, 1));
 
 
 // Takes a board as a string in the format
@@ -62,15 +62,16 @@ function solve(arrBoard) {
           if (correctNum(arrBoard, num, r, c) === true) {
             arrBoard[r][c] = num;
             if (solve(arrBoard)) {
-              return true;
+              return arrBoard;
             }
             arrBoard[r][c] = '-';
           }
         }
+        return false;
       }
     }
   }
-  return false
+  return arrBoard;
 }
 
 
@@ -91,6 +92,8 @@ function isSolved(board) {
 function prettyBoard(board) {
   return board.join(' ').replace(/(..................)/g, "$1\n");
 }
+console.log(prettyBoard(solve(pars(0))));
+// console.table(solve(pars(0)))
 
 // Exports all the functions to use them in another file.
 module.exports = {
