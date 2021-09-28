@@ -7,7 +7,7 @@ function buttons (func1=1, func2=1) {
 	let button2 = document.querySelector("#button-2");
 
 	button1.addEventListener('click', () => {
-		if (uIwD.flevel.value > 15) {
+		if (uIwD.flevel.value > 14) {
 			alert ("You entered a wrong number!");
 		}
 		// (B) CREATE HTML TABLE STRING
