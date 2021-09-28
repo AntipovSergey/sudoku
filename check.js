@@ -1,21 +1,9 @@
-const boardTest = [
-  ['-', '-', '5', '-', '3', '-', '-', '8', '1'],
-  ['9', '-', '2', '8', '5', '-', '-', '6', '-'],
-  ['6', '-', '-', '-', '-', '4', '-', '5', '-'],
-  ['-', '-', '7', '4', '-', '2', '8', '3', '-'],
-  ['3', '4', '9', '7', '6', '-', '-', '-', '5'],
-  ['-', '-', '8', '3', '-', '-', '4', '9', '-'],
-  ['1', '5', '-', '-', '8', '7', '-', '-', '2'],
-  ['-', '9', '-', '-', '-', '-', '6', '-', '-'],
-  ['-', '2', '6', '-', '4', '9', '5', '-', '3'],
-];
-const arrayOfIndexes = [0, 0];
-const number = 4;
+// const boardStringFromPars = require('./pars');
 
 function checkNumber(board, coordinates, numb) {
   const row = coordinates[0];
   const col = coordinates[1];
-  // console.log(board[0].join('').indexOf(`${numb}`))
+  
 
   // проверяем совпадения по строкам
   for (let j = 0; j < 9; j += 1) {
@@ -38,7 +26,6 @@ function checkNumber(board, coordinates, numb) {
     7: 6,
     8: 6,
   };
-  // row=0 col =0
   const str = object[row];
   const pos = object[col];
 
@@ -49,8 +36,8 @@ function checkNumber(board, coordinates, numb) {
   }
   return true;
 }
-console.log(checkNumber(boardTest, arrayOfIndexes, number));
 
-// module.exports = {
-//   checkNumber
-// };
+
+module.exports = {
+  checkNumber,
+};
