@@ -13,13 +13,14 @@
     <form action="#">
       <label for="flevel">Specify Sudoku Level:</label>
       <input type="number" id="flevel" name="flevel" value="" placeholder="0-15" required pattern="/\b([1-9]|1[0-5])\b/gm">
-      <input type="submit" value="Submit">
+      <!--Button 1-->
+      <input id="button-1" type="submit" value="Submit">
     </form>
   </header>
 
   <main>
-    <div class="table">
-      <!--Таблица 1 для варианта с пустыми клетками-->
+    <div id="table">
+      <!--Таблица 1 для варианта с пустыми клетками
       <table id="table-1">
         <tr>
           <th>----</th>
@@ -61,15 +62,10 @@
           <th>8</th>
         </tr>
       </table>
-      <!--Таблица 1 для варианта с пустыми клетками-->
+      Таблица 1 для варианта с пустыми клетками-->
 
-      <!--Кнопка "Решить"-->
-       <button>Solve</button>
-    </div>
-
-    <div class="table">
       <!-- Display: none !-->
-      <!--Таблица 2 для варианта с заполненными клетками-->
+      <!--Таблица 2 для варианта с заполненными клетками
       <table id="table-2">
         <tr>
           <th>----</th>
@@ -111,7 +107,10 @@
           <th>8</th>
         </tr>
       </table>
-      <!--Таблица 2 для варианта с заполненными клетками-->
+      Таблица 2 для варианта с заполненными клетками-->
+
+      <!--Кнопка "Решить"-->
+       <button id="button-2">Solve</button>
     </div>
   </main>
 
