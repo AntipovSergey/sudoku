@@ -3,13 +3,10 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-const testArr = [
-  '1-58-2---', '-9--764-5',
-  '2--4--819', '-19--73-6',
-  '762-83-9-', '----61-5-',
-  '--76---3-', '43--2-5-1',
-  '6--3-89--'
-];
+const { checkNumber } = require('./check'); 
+const { parsing } = require('./pars');
+const { argv } = require('process');
+
 
 function solve(boardString) {
   for (let r = 0; r < boardString.length; r += 1) {
@@ -17,11 +14,11 @@ function solve(boardString) {
       let findEmpty = boardString[r][c];
       if (findEmpty === '-') {
         for (let num = 1; num <= 9; num += 1) {
-          if (isSolved(boardString, [r,c], num)) {
+          if (checkNumber(boardString, [r,c], num)) {
             findEmpty = num;
             if (solve(boardString)) {
               return boardString;
-            } 
+            }
           } findEmpty = '-';
         } 
       } return false;
@@ -29,16 +26,14 @@ function solve(boardString) {
   }
   return boardString;
 }
+// solve(boardStringFromPars);
 
-console.log(solve(testArr));
+// function isSolved (boardString) {
+//   const result = solve(parsing(boardString));
+//   if (result === false) return false;
+//   return boardString;
+// }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(testArr, [r,c], num) {
-  return true;
-}
 
 
 // Takes in a board in some form and
@@ -46,13 +41,14 @@ function isSolved(testArr, [r,c], num) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
-}
-
+// function prettyBoard(boardString) {
+//   const result = isSolved(boardString);
+//   if (result === false) console.log('Решения нет');
+//   console.table(result);
+// }
+// prettyBoard(process.argv[1]);
+// console.log(process.argv);
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+ solve,
 }
