@@ -25,7 +25,7 @@ function pars(index) {
   ''
 ]
 
-  
+
 	let count = [0,0];
 	let res = [[], [], [], [], [], [], [], [], []];
 
@@ -39,7 +39,6 @@ function pars(index) {
 
 // console.table(pars(0));
 
-//
 function correctNum(arrBoard, num, r, c) {
 	const obj = {
     0: 0, 1: 0, 2: 0, 3: 3, 4: 3, 5: 3, 6: 6, 7: 6, 8: 6,
@@ -64,7 +63,7 @@ function correctNum(arrBoard, num, r, c) {
 	return true
 }
 
-// console.log(correctNum(pars(0), 3, 0, 1));
+//console.log(correctNum(pars(0), 3, 0, 1));
 
 
 // Takes a board as a string in the format
@@ -117,9 +116,11 @@ function prettyBoard(board) {
 console.table(solve(pars(1)))
 
 // Exports all the functions to use them in another file.
+/*
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
 	prettyBoard: prettyBoard,
   pars
 }
+*/
