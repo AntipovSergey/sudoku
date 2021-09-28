@@ -39,3 +39,4 @@ fs.readFile(
   readAndSolve
 );
 
+const {solve, isSolved, prettyBoard} = require('./sudoku')
