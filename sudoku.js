@@ -28,11 +28,11 @@ function solve(boardString) {
 }
 // solve(boardStringFromPars);
 
-// function isSolved (boardString) {
-//   const result = solve(parsing(boardString));
-//   if (result === false) return false;
-//   return boardString;
-// }
+function isSolved (boardString) {
+  const result = solve(parsing(boardString));
+  if (result === false) return false;
+  return boardString;
+}
 
 
 
@@ -41,12 +41,12 @@ function solve(boardString) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-// function prettyBoard(boardString) {
-//   const result = isSolved(boardString);
-//   if (result === false) console.log('Решения нет');
-//   console.table(result);
-// }
-// prettyBoard(process.argv[1]);
+function prettyBoard(boardString) {
+  const result = isSolved(boardString);
+  if (result === false) console.log('Решения нет');
+  console.table(result);
+}
+prettyBoard(process.argv[2]);
 // console.log(process.argv);
 // Exports all the functions to use them in another file.
 module.exports = {
