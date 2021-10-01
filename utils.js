@@ -34,8 +34,7 @@ function getPossibleNums(arr, arr2, arr3) {
 
 //——> arr with nums
 
-function hasPossibleNums(arr, arr2, arr3) {
-}
+function hasPossibleNums(arr, arr2, arr3) {}
 
 //——> true or false
 
