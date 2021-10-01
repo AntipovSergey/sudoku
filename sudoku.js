@@ -4,7 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+// вернуть массив с 9 масивами (одна игра)
 }
 
 
@@ -25,6 +25,7 @@ function isSolved(board) {
 function prettyBoard(board) {
 
 }
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
