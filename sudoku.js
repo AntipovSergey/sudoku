@@ -15,9 +15,6 @@ function packInStr(board) {
   return board.map((el) => el.join('')).join('');
 }
 
-// const data = parse('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
-// console.table(data);
-
 function getRowNumbers(rowIndex, board) {
   return board[rowIndex];
 }
@@ -58,9 +55,7 @@ function diffArray(etalon, arr) {
   return etalon.filter((el) => !arr.includes(el));
 }
 
-//console.log(diffArray([1, 2, 3, 4, 5, 6, 7, 8, 9], [2, 3]));
-
-function solve(boardString) {
+function baseSolve(boardString) {
   const board = parse(boardString);
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -76,7 +71,7 @@ function solve(boardString) {
         if (decisions.length === 1) {
           [board[i][j]] = [decisions];
           const packedBoard = packInStr(board);
-          return solve(packedBoard);
+          return baseSolve(packedBoard);
         }
       }
     }
@@ -84,20 +79,18 @@ function solve(boardString) {
   return packInStr(board);
 }
 
-const board = parse(
-  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-);
-// console.table(board);
-// console.log('------------------------------------------------------');
-// console.log(packInStr(board))
-console.log('---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----');
-console.table(solve('---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----'));
+function solve(boardString) {
+  const board = baseSolve(boardString);
+  return parse(board);
+}
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {}
+function isSolved(boardString) {
+  //const boardString = packInStr(board);
+}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
