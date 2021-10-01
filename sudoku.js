@@ -7,14 +7,18 @@ function parse(str) {
   let result = [];
   for (let i = 0; i < str.length / 9; i++) {
     result.push(str.slice(i * 9, i * 9 + 9));
-}
+  }
   return result.map((elem) => elem.split(''));
+}
+
+function packInStr(board) {
+  return board.map((el) => el.join('')).join('');
 }
 
 // const data = parse('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
 // console.table(data);
 
-function getRowNumbers (rowIndex, board) {
+function getRowNumbers(rowIndex, board) {
   return board[rowIndex];
 }
 
@@ -25,7 +29,6 @@ function getColumnNumbers(columnIndex, board) {
   }
   return result;
 }
-
 
 function getSquareNumbers(rowIndex, columnIndex, board) {
   const squares = {
@@ -43,50 +46,69 @@ function getSquareNumbers(rowIndex, columnIndex, board) {
   const strIndex = `${rowIndex}${columnIndex}`;
   let currentSquare;
   for (let key of keys) {
-    //console.log(squares[key])
     if (squares[key].includes(strIndex)) {
       currentSquare = squares[key];
     }
   }
-  //console.log(currentSquare);
   const elemsInSquare = currentSquare.map((el) => board[el[0]][el[1]]);
   return elemsInSquare;
 }
 
+function diffArray(etalon, arr) {
+  return etalon.filter((el) => !arr.includes(el));
+}
+
+//console.log(diffArray([1, 2, 3, 4, 5, 6, 7, 8, 9], [2, 3]));
 
 function solve(boardString) {
   const board = parse(boardString);
-  //console.table(board);
-  //return getColumnNumbers(0, board);
-  return getRowNumbers(0, board);
-  
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === '-') {
+        const excludedNumbers = [
+          ...getSquareNumbers(i, j, board),
+          ...getColumnNumbers(j, board),
+          ...getRowNumbers(i, board),
+        ].filter((el) => el !== '-');
+        const uniqeExcludedNumbers = [...new Set(excludedNumbers)].sort();
+        const etalon = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        const decisions = diffArray(etalon, uniqeExcludedNumbers);
+        if (decisions.length === 1) {
+          [board[i][j]] = [decisions];
+          const packedBoard = packInStr(board);
+          return solve(packedBoard);
+        }
+      }
+    }
+  }
+  return packInStr(board);
 }
 
-const board = parse('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
-  console.table(board);
-  console.log(getSquareNumbers(6, 8, board));
+const board = parse(
+  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+);
+// console.table(board);
+// console.log('------------------------------------------------------');
+// console.log(packInStr(board))
+console.log('---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----');
+console.table(solve('---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----'));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
-
-}
-
+function isSolved(board) {}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard,
+};
