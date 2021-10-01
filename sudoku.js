@@ -3,12 +3,22 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
 function solve(boardString) {
+  let boardArr =  boardString.split('')
+  let newArr = []
+  for (let i = 0; i <= 8; i++) {
+   let res = boardArr.slice(0,9)
+    boardArr.splice(0,9)
+    newArr.push(res)
+  } return newArr
 
-}
+  }
 
 
-// Returns a boolean indicating whether
+
+
+// Returns``an indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
@@ -23,7 +33,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+return console.table(board);
 }
 
 // Exports all the functions to use them in another file.
