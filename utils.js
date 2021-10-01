@@ -12,7 +12,7 @@ function getPossibleNumsInHorizontal(board, i, j) {
 }
 // ——> arr Set with numbers
 
-function getPossibleNumsInVertica(board, i, j) {
+function getPossibleNumsInVertical(board, i, j) {
   const currentNums = [];
 
   for (let k = 0; k < 9; k++) {
@@ -60,6 +60,6 @@ module.exports = {
   getRandomNumFromArr,
   hasPossibleNums,
   getPossibleNumsInSquare,
-  getPossibleNumsInVertica,
+  getPossibleNumsInVertica: getPossibleNumsInVertical,
   getPossibleNumsInHorizontal,
 };
