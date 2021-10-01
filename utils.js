@@ -1,49 +1,84 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-use-before-define */
+/* eslint-disable linebreak-style */
 function getBoard(str) {
   const arr = [...str.split('')];
-  const result = []
+  const result = [];
   for (let i = 0; i < 81; i += 9) {
-    result.push(arr.slice(i, i + 9))
+    result.push(arr.slice(i, i + 9));
   }
-  return result
+
+  const board = result.map((el) => el.map((e) => {
+    if (!Number.isNaN(+e)) {
+      return +e;
+    }
+    return '-';
+  }));
+  return board;
 }
 
 function getPossibleNumsInHorizontal(board, i, j) {
-
+  const res = [];
+  for (let k = 0; k < 9; k++) {
+    if (typeof board[i][j + k] === 'number') res.push(board[i][j + k]);
+  }
+  return getPossibleNums(res);
 }
-// ——> arr Set with numbers
 
 function getPossibleNumsInVertica(board, i, j) {
+  const currentNums = [];
 
+  for (let k = 0; k < 9; k++) {
+    if (Number.isInteger(board[i + k][j]))
+      currentNums.push(board[i + k][j])
+  }
+
+  return getPossibleNums(currentNums);
 }
-//——> arr Set with numbers
 
 function getPossibleNumsInSquare(board, i, j) {
+  const i0 = Math.floor(i / 3) * 3;
+  const j0 = Math.floor(j / 3) * 3;
+  const arr = [];
 
+  for (let k = 0; k < 3; k++) {
+    for (let m = 0; m < 3; m++) {
+      const num = board[i0 + k][j0 + m];
+      if (typeof num === 'number' && !arr.includes(num)) {
+        arr.push(num);
+      }
+    }
+  }
+
+  return getPossibleNums(arr);
 }
-//——> arr Set with numbers
 
 function getPossibleNums(arr, arr2, arr3) {
   if (!arr2) {
-    const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    return arr.filter((x) => !nums.includes(x));
+    const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    return nums.filter((x) => !arr.includes(x));
   }
 
   return arr.filter((x) => arr2.includes(x)).filter((x) => arr3.includes(x));
-
 }
 
-//——> arr with nums
-
-function hasPossibleNums(arr, arr2, arr3) {}
-
-//——> true or false
+function hasPossibleNums(arr, arr2, arr3) {
+  const possibleNums = getPossibleNums(arr, arr2, arr3);
+  return possibleNums.length > 0;
+}
 
 function getRandomNumFromArr(arr) {
-  let index = Math.floor(Math.random() * (arr.length));
-  return arr[index]
+  const index = Math.floor(Math.random() * (arr.length));
+
+  return arr[index];
 }
 
-let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+const str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+
+// const board = getBoard(str);
+// console.table(board);
+// console.log(getPossibleNumsInSquare(board, 0, 1));
+// console.log(getPossibleNumsInSquare(board, 1, 3));
 
 module.exports = {
   getBoard,
