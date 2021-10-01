@@ -22,6 +22,7 @@ function getPossibleNumsInHorizontal(board, i, j) {
   for (let k = 0; k < 9; k++) {
     if (typeof board[i][j + k] === 'number') res.push(board[i][j + k]);
   }
+
   return getPossibleNums(res);
 }
 // ——> arr Set with numbers
@@ -35,7 +36,7 @@ function getPossibleNumsInVertica(board, i, j) {
     if (Number.isInteger(board[i + k][j]))
       currentNums.push(board[i + k][j])
     }
-   
+
   return getPossibleNums(currentNums);
 }
 // ——> arr Set with numbers
@@ -48,8 +49,9 @@ function getPossibleNumsInSquare(board, i, j) {
 
 function getPossibleNums(arr, arr2, arr3) {
   if (!arr2) {
+    // console.log(arr);
     const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    return arr.filter((x) => !nums.includes(x));
+    return nums.filter((x) => !arr.includes(x));
   }
 
   return arr.filter((x) => arr2.includes(x)).filter((x) => arr3.includes(x));
@@ -69,9 +71,9 @@ function getRandomNumFromArr(arr) {
 
 const str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-
-console.log(getBoard(str));
-
+const board1 = getBoard(str);
+console.table(board1);
+console.log(getPossibleNumsInHorizontal(board1, 0, 0));
 
 module.exports = {
   getBoard,
