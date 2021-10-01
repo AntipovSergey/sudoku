@@ -3,6 +3,7 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+//git init
 function solve(boardString) {
 
 }
