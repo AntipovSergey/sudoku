@@ -3,6 +3,10 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
+const content = 
+
+
 function solve(boardString) {
 
 }
