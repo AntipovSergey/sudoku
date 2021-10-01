@@ -3,16 +3,16 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function parse(str) {
-  let result = [];
-  for (let i = 0; i < str.length / 9; i++) {
-    result.push(str.slice(i * 9, i * 9 + 9));
-  }
-  return result.map((elem) => elem.split(''));
-}
 
-function packInStr(board) {
-  return board.map((el) => el.join('')).join('');
+
+function parse(boardString) {
+  let boardArr =  boardString.split('')
+  let newArr = []
+  for (let i = 0; i <= 8; i++) {
+   let res = boardArr.slice(0,9)
+    boardArr.splice(0,9)
+    newArr.push(res)
+  } return newArr
 }
 
 function getRowNumbers(rowIndex, board) {
@@ -55,6 +55,10 @@ function diffArray(etalon, arr) {
   return etalon.filter((el) => !arr.includes(el));
 }
 
+function prettyBoard(board) {
+  return console.table(board);
+}
+
 function baseSolve(boardString) {
   const board = parse(boardString);
   for (let i = 0; i < board.length; i++) {
@@ -88,6 +92,7 @@ let reference = 0;
 for (let i = 1; i <= 9; i++) {
   reference += i;
 }
+
 function isSolved(board) {
   for (let i = 0; i < board.length; i++) {
     const row = board[i];
@@ -135,4 +140,4 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
-};
+}
