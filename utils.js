@@ -22,6 +22,7 @@ function getPossibleNumsInHorizontal(board, i, j) {
   for (let k = 0; k < 9; k++) {
     if (typeof board[i][j + k] === 'number') res.push(board[i][j + k]);
   }
+
   return getPossibleNums(res);
 }
 
@@ -55,6 +56,7 @@ function getPossibleNumsInSquare(board, i, j) {
 
 function getPossibleNums(arr, arr2, arr3) {
   if (!arr2) {
+    // console.log(arr);
     const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     return nums.filter((x) => !arr.includes(x));
   }
@@ -75,10 +77,6 @@ function getRandomNumFromArr(arr) {
 
 const str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-// const board = getBoard(str);
-// console.table(board);
-// console.log(getPossibleNumsInSquare(board, 0, 1));
-// console.log(getPossibleNumsInSquare(board, 1, 3));
 
 module.exports = {
   getBoard,
