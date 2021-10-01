@@ -38,4 +38,5 @@ fs.readFile(
   'utf-8',
   readAndSolve
 );
-
+let board = arr => arr.join('\n');
+console.log()
