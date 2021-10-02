@@ -1,8 +1,3 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
 function parse(str) {
   let result = [];
   for (let i = 0; i < str.length / 9; i++) {
@@ -15,8 +10,23 @@ function packInStr(board) {
   return board.map((el) => el.join('')).join('');
 }
 
+function flatten(arr) {
+  const flattened = [];
+  const flat = (arr) => {
+    arr.forEach((el) => {
+      if (Array.isArray(el)) {
+        flat(el);
+      } else {
+        flattened.push(el);
+      }
+    });
+  };
+  flat(arr);
+  return flattened;
+}
+
 function getRowNumbers(rowIndex, board) {
-  return board[rowIndex];
+  return board[rowIndex].filter((el) => el !== '-');
 }
 
 function getColumnNumbers(columnIndex, board) {
@@ -24,7 +34,7 @@ function getColumnNumbers(columnIndex, board) {
   for (let i = 0; i < board.length; i++) {
     result.push(board[i][columnIndex]);
   }
-  return result;
+  return result.filter((el) => el !== '-');
 }
 
 function getSquareNumbers(rowIndex, columnIndex, board) {
@@ -48,15 +58,28 @@ function getSquareNumbers(rowIndex, columnIndex, board) {
     }
   }
   const elemsInSquare = currentSquare.map((el) => board[el[0]][el[1]]);
-  return elemsInSquare;
+  return elemsInSquare.filter((el) => el !== '-');
 }
 
 function diffArray(etalon, arr) {
   return etalon.filter((el) => !arr.includes(el));
 }
 
-function baseSolve(boardString) {
-  const board = parse(boardString);
+function testBoard(i, j, board) {
+  const elem = board[i][j];
+  const newBoard = [...board.map((row) => [...row])];
+  newBoard[i][j] = '-';
+  const columnNumbers = getColumnNumbers(j, newBoard);
+  const rowNumbers = getRowNumbers(i, newBoard);
+  const squareNumbers = getSquareNumbers(i, j, newBoard);
+  return (
+    !columnNumbers.includes(elem) &&
+    !rowNumbers.includes(elem) &&
+    !squareNumbers.includes(elem)
+  );
+}
+
+function baseSolve(board) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === '-') {
@@ -69,27 +92,87 @@ function baseSolve(boardString) {
         const etalon = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
         const decisions = diffArray(etalon, uniqeExcludedNumbers);
         if (decisions.length === 1) {
-          [board[i][j]] = [decisions];
-          const packedBoard = packInStr(board);
-          return baseSolve(packedBoard);
+          const newBoard = [...board.map((row) => [...row])];
+          newBoard[i][j] = decisions[0];
+          return baseSolve(newBoard);
         }
       }
     }
   }
-  return packInStr(board);
+  return board;
+}
+
+function commonSolve(board, firstResultFinded) {
+  if (firstResultFinded.first) return;
+  const result = [];
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (firstResultFinded.first) break;
+      if (!testBoard(i, j, board)) {
+        result.push({
+          board: [],
+          result: false,
+        });
+        return result;
+      }
+      if (board[i][j] === '-') {
+        const excludedNumbers = [
+          ...getSquareNumbers(i, j, board),
+          ...getColumnNumbers(j, board),
+          ...getRowNumbers(i, board),
+        ];
+        const uniqeExcludedNumbers = [...new Set(excludedNumbers)].sort();
+        const etalon = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        const decisions = diffArray(etalon, uniqeExcludedNumbers);
+        const boardsDecision = [];
+        for (let k = 0; k < decisions.length; k++) {
+          if (firstResultFinded.first) break;
+          const newBoard = [...board.map((row) => [...row])];
+          newBoard[i][j] = decisions[k];
+          const newBoardString = newBoard;
+          const iter = commonSolve(newBoardString, firstResultFinded);
+          boardsDecision.push(iter);
+        }
+        return boardsDecision;
+      }
+    }
+  }
+  if (!packInStr(board).includes('-')) {
+    firstResultFinded.first = true;
+    return {
+      board: [...board.map((row) => [...row])],
+      result: true,
+    };
+  }
 }
 
 function solve(boardString) {
-  const board = baseSolve(boardString);
-  return parse(board);
+  const firstResultFinded = {
+    first: false,
+  };
+  const board = parse(boardString);
+  const baseBoard = baseSolve(board);
+  if (!packInStr(baseBoard).includes('-')) {
+    return baseBoard;
+  }
+  const solvedBoard = commonSolve(baseBoard, firstResultFinded);
+  const [result] = flatten(solvedBoard);
+  return result.board;
 }
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(boardString) {
-  //const boardString = packInStr(board);
+function isSolved(board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (!testBoard(i, j, board)) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 // Takes in a board in some form and
@@ -97,7 +180,9 @@ function isSolved(boardString) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  return console.table(board);
+}
 
 // Exports all the functions to use them in another file.
 module.exports = {
