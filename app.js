@@ -2,33 +2,33 @@ const fs = require("fs");
 let data = fs.readFileSync('./sudoku-puzzles.txt', "utf8");
 
 let data2 = data.split("\n");
-data2 = data2[4];
+data2 = data2[14];
 
-newArr = [];
 newArr2 = [];
 for (let i = 0; i < data2.length; i+= 9) {
   newArr = data2.slice(i, i + 8);
   newArr2.push(newArr.split(''));
 }
-console.log(newArr2)
 
-const nineToNine = newArr2
-console.log(nineToNine.join('\n').replace(/,/g, ' '));
-console.log('-----------------')
-sodokoSolver(nineToNine);
-console.log(nineToNine.join('\n').replace(/,/g, ' '));
+const coub9x9 = newArr2
 
-function isValid(board, row, col, k) {
+console.log('---------------')
+console.log(coub9x9.join('\n').replace(/,/g, ' '));
+console.log('---------------')
+sodokoSolver(coub9x9);
+console.log(coub9x9.join('\n').replace(/,/g, ' '));
+console.log('---------------')
+
+function isValid(sudoBoard, vertical, horisontal, num) {
   for (let i = 0; i < 9; i++) {
-      const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
-      const n = 3 * Math.floor(col / 3) + i % 3;
-      if (board[row][i] == k || board[i][col] == k || board[m][n] == k) {
+      const m = 3 * Math.floor(vertical / 3) + Math.floor(i / 3);
+      const n = 3 * Math.floor(horisontal / 3) + i % 3;
+      if (sudoBoard[vertical][i] == num || sudoBoard[i][horisontal] == num || sudoBoard[m][n] == num) {
         return false;
       }
   }
   return true;
 }
-
 
 function sodokoSolver(data) {
 for (let i = 0; i < 9; i++) {
@@ -50,4 +50,3 @@ for (let i = 0; i < 9; i++) {
 }
 return true;
 }
-
