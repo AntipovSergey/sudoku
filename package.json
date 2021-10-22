@@ -1,0 +1,23 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "jest spec/*[sS]pec.js -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelSobolev/project-sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelSobolev/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/MichaelSobolev/project-sudoku#readme",
+  "dependencies": {
+    "jest": "^27.3.1"
+  }
+}
