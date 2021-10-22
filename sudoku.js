@@ -26,13 +26,18 @@ const findEmpty = (board) => {
   return "false";
 };
 
-let random
+
 
 
 
 let sudokuTest = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
 function solve(boardString) {
   let board = prettyBoard(boardString)
+// Подаём НАШЕ число 
+for (let i = 1; i <= 9; i++) {
+  let num = i
+
+}
   let coordinates = findEmpty(board)
 console.log(coordinates)
 
