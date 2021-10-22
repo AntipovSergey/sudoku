@@ -8,6 +8,47 @@ function solve(boardString) {
 }
 
 
+const findEmpty = (board) => {
+  // find '.'
+  const size = 9;
+  // size of the whole table
+  const boxSize = 3;
+  // size of the box
+
+  // Найти пустую клетку
+  // На входе полная таблица
+  // Итерируемся через строки
+    for (let row = 0; row < size; row++) {
+      //  Итерируемся по строке выбирая c  значения 
+        for (let column = 0; column < size; column++) {
+           // Если элемент в строке r и на её позиции column  
+           // === '.'
+            if(board[row][column] === '.') {
+                return [row,column];
+            }
+        }
+    }
+    return 'ready';
+}
+
+
+
+containerForSquareCheck(board)
+let board = [
+  ["5", "3", "5", "3", "7", ".", ".", ".", "."],
+  ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+  [".", "9", "8", ".", ".", ".", ".", "6", "."],
+  ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+  ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+  ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+  [".", "6", ".", ".", ".", ".", "2", "8", "."],
+  [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+  [".", ".", ".", ".", "8", ".", ".", "7", "9"]
+]; 
+console.log(
+  findEmpty(board)
+);
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
@@ -24,6 +65,29 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {
 
+}
+
+function crossCheck(array, position) {
+  // column право-лево
+  let [row, column] = position;
+  let number = array[row][column];
+
+  for (let i = 0; i < array.length; i++) {
+    let row = position[0];
+    let column = position[1];
+    
+    
+    for (let i = 0; i < array.length; i++) {
+      for (let g = 0; g < array.length; g++) {
+        if (+array[row][g] === num) {
+          return false;
+        } else if (+array[i][column] === num) {
+          return false
+        }
+      }
+    }
+      return true;
+  }
 }
 
 // Exports all the functions to use them in another file.
