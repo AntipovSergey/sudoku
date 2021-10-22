@@ -52,11 +52,11 @@ function findEmpty(board) {
   const size = 9;
   // Найти пустую клетку
   // На входе полная таблица
-  // Итерируемся через строки
+  // Итерируемся через массивы массивов
   for (let row = 0; row < size; row++) {
-    //  Итерируемся по строке выбирая c  значения
+    //  Итерируемся по массиву выбирая массивы с значениями
     for (let column = 0; column < size; column++) {
-      // Если элемент в строке r и на её позиции column
+      // Если элемент в строке row и на озиции column
       // === '.'
       if (board[row][column] === "-") {
         return [row, column];
@@ -66,7 +66,7 @@ function findEmpty(board) {
   return false;
 }
 
-function isSolved(board) {} // We don't have time for this one
+function isSolved(board) {} // We didn't have enough time for this one
 
 function test(board, coordinates, target) {
   return (
