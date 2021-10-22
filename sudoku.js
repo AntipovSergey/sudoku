@@ -22,10 +22,14 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+
 function prettyBoard(board) {
-
+let reg = /.{9}/g
+let arr = board.match(reg)
+// список строк
+let newArr = arr.map((board) => board.split(''))
+return newArr
 }
-
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
