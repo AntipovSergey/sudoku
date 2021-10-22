@@ -93,6 +93,29 @@ function isSolved(board) {}
 // form `solve` returns.
 function prettyBoard(board) {}
 
+function crossCheck(array, position) {
+  // column право-лево
+  let [row, column] = position;
+  let number = array[row][column];
+
+  for (let i = 0; i < array.length; i++) {
+    let row = position[0];
+    let column = position[1];
+    
+    
+    for (let i = 0; i < array.length; i++) {
+      for (let g = 0; g < array.length; g++) {
+        if (+array[row][g] === num) {
+          return false;
+        } else if (+array[i][column] === num) {
+          return false
+        }
+      }
+    }
+      return true;
+  }
+}
+
 // Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
