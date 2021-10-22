@@ -1,15 +1,49 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-const findEmpty = (board) => {
+function solve(boardString) {
+  let board = parseBoard(boardString);
+  insertNumber(board); // Вставляем числа
+  return board;
+}
+
+function parseBoard(board) {
+  let reg = /.{9}/g;
+  let arr = board.match(reg);
+  // список строк
+  let newArr = arr.map((board) => board.split(""));
+  return newArr;
+}
+
+function prettyBoard(board) {
+  console.table(board);
+}
+
+function insertNumber(board) {
+  let coordinates = findEmpty(board);
+  if (!coordinates) {
+    return board;
+  }
+  // Перебираем числа для вставки
+  for (let i = 1; i <= 9; i++) {
+    let target = i;
+    // Проверяем может ли стоять здесь num
+    if (test(board, coordinates, target)) {
+      let finalTarget = target;
+      deployNumber(board, coordinates, target);
+      insertNumber(board);
+    }
+  }
+  // insertNumber(board)
+  // Бесконечная рекурсия
+}
+
+function deployNumber(board, cord, number) {
+  const row = cord[0];
+  const col = cord[1];
+  board[row][col] = number;
+}
+
+function findEmpty(board) {
   // find '.'
   const size = 9;
-  // size of the whole table
-  const boxSize = 3;
-  // size of the box
-
   // Найти пустую клетку
   // На входе полная таблица
   // Итерируемся через строки
@@ -23,112 +57,18 @@ const findEmpty = (board) => {
       }
     }
   }
-  return "false";
-};
-
-
-
-
-
-let sudokuTest = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-function solve(boardString) {
-  let board = prettyBoard(boardString)
-// Подаём НАШЕ число 
-for (let i = 1; i <= 9; i++) {
-  let num = i
-
-}
-  let coordinates = findEmpty(board)
-console.log(coordinates)
-
-
-
-
-
-
-
- return board 
-}
-console.table(solve(sudokuTest)); 
-
-
-
-  
-
-
-
-function squareCheck(arr, pos, target) {
-  let tests = {0:/[0-2]/, 3:/[3-5]/, 6:/[6-8]/}
-  const [row,column] = pos;
-  let startRow;
-  let startColumn;
-  let element;
-  
-  // Приведение к нормальной точке отсчёта)
-  for (i in tests){
-    regex = tests[i]
-    if(regex.test(row)){
-      startRow = i
-    }
-    if(regex.test(column)){
-      startColumn = i
-    } 
-  }
-  console.log(startRow, startColumn);
-  
-  for (let i = startRow; i < startRow + 3; i++){
-    for (let j = startColumn; j < startColumn + 3; j++){
-      element = arr[i][j]
-      if (element !== '-'){
-        if(Number(element) === target){
-          return false
-        } 
-        
-      }
-    }
-  }
-  // Совпадение
-  // На входе полная таблица
-  
-  return true;
+  return false;
 }
 
-let board = [
-  ["5", "3", "5", "3", "7", ".", ".", ".", "."],
-  ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-  [".", "9", "8", ".", ".", ".", ".", "6", "."],
-  ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-  ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-  ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-  [".", "6", ".", ".", ".", ".", "2", "8", "."],
-  [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-  [".", ".", ".", ".", "8", ".", ".", "7", "9"],
-];
-// console.log(
-//   squareCheck(board, [1,1],3)
-// );
+function isSolved(board) {} // We don't have time for this one
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {}
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-let x = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-function prettyBoard(board) {
-  let reg = /.{9}/g
-  let arr = board.match(reg)
-  // список строк
-  let newArr = arr.map((board) => board.split(''))
-  return newArr
+function test(board, coordinates, target) {
+  return (
+    squareCheck(board, coordinates, target) &&
+    crossCheck(board, coordinates, target)
+  );
 }
-
-function crossCheck(array, position) {
+function crossCheck(array, position, num) {
   // column право-лево
   let [row, column] = position;
   let number = array[row][column];
@@ -136,46 +76,57 @@ function crossCheck(array, position) {
   for (let i = 0; i < array.length; i++) {
     let row = position[0];
     let column = position[1];
-    
-    
+
     for (let i = 0; i < array.length; i++) {
       for (let g = 0; g < array.length; g++) {
         if (+array[row][g] === num) {
           return false;
         } else if (+array[i][column] === num) {
-          return false
+          return false;
         }
       }
     }
-      return true;
+    return true;
   }
 }
-// console.log(prettyBoard(x));
+
+function squareCheck(arr, pos, target) {
+  let tests = { 0: /[0-2]/, 3: /[3-5]/, 6: /[6-8]/ };
+  const [row, column] = pos;
+  let startRow;
+  let startColumn;
+  let element;
+
+  // Приведение к нормальной точке отсчёта)
+  for (i in tests) {
+    regex = tests[i];
+    if (regex.test(row)) {
+      startRow = i;
+    }
+    if (regex.test(column)) {
+      startColumn = i;
+    }
+  }
+  // Тест
+  for (let i = startRow; i < startRow + 3; i++) {
+    for (let j = startColumn; j < startColumn + 3; j++) {
+      element = arr[i][j];
+      if (element !== "-") {
+        if (Number(element) === target) {
+          return false;
+        }
+      }
+    }
+  }
+  // Совпадение
+  // На входе полная таблица
+
+  return true;
+}
+
 // Exports all the functions to use them in another file.
 module.exports = {
   solve: solve,
   isSolved: isSolved,
-  prettyBoard: prettyBoard
-}
-
-
-//
-// function nextEmptySpot(board) {
-//   for (let i = 0; i < 9; i++) {
-//     for (let j = 0; j < 9; j++) {
-//       if (board[i][j] === '-')
-//         return [i, j]
-
-//     }
-//   }
-//   return [-1, -1]
-// }
-
-// function checkRow(board, row, value){
-//   for (let i = 0; i < board; i++) {
-    
-    
-//   }
-// }
-//   prettyBoard: prettyBoard,
-// };
+  prettyBoard: prettyBoard,
+};
