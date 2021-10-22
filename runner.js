@@ -29,7 +29,6 @@ function readAndSolve(err, data) {
   }
   else {
     sudoku.prettyBoard(solvedPuzzle);
-
     console.log("The board wasn't solved :(");
   }
 }
