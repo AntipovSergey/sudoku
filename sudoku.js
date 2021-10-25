@@ -1,13 +1,13 @@
-const sudokuParse = require('./runner')
-let arr = sudokuParse()
-console.log(typeof arr)
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
+function solve(str) {
+  
+
+
   function findSpace(arr) {
     for (let i = 0; i < arr.length; i++) {
       for (let j = 0; j < arr.length; j++) {
@@ -45,8 +45,10 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-  // делаем красивую таблицу
+  let reg = /.{9}/g
+  let arr
 }
+
 
 // Exports all the functions to use them in another file.
 module.exports = {

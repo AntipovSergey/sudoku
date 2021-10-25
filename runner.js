@@ -15,7 +15,7 @@ function sudokuParse(content, puzzleNumber = 0) {
   console.log(puzzle);
   return puzzle;
 }
-
+console.log(sudokuParse)
 function readAndSolve(err, data) {
   if (err) {
     throw err;
@@ -39,4 +39,4 @@ fs.readFile(
   readAndSolve
 );
 
-module.exports = {sudokuParse}
+module.exports
