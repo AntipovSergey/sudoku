@@ -4,8 +4,27 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  function findSpace(boardString) {
+    for (let i = 0; i < boardString.length; i++) {
+      for (let j = 0; j < boardString.length; j++) {
+        if (boardString[i][j] === '-') {
+          return [i, j]
+        }
+      }
+    }
+    return null
+  }
 
 }
+// сплитим входящую строку 
+// должны получить в итоге многомерный массив 9*9 - функция
+
+// находим через циклы индексы элементов, которые равны "-". Получаем координаты "-" return i, j = foo()
+//  в arr[i][j] = Math.floor(Math.random(10 - 1) + 1) 
+// предварительная проверка на строку столбец и блок
+//если 12 строка тру то возвращаемся на 10 строку 
+// 
+
 
 
 // Returns a boolean indicating whether
@@ -13,7 +32,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  // проверка на соответствие
 }
 
 
@@ -23,12 +42,12 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  // делаем красивую таблицу
 }
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
