@@ -39,3 +39,4 @@ fs.readFile(
   readAndSolve
 );
 
+module.exports = {sudokuParse}

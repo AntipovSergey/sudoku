@@ -1,20 +1,23 @@
+const sudokuParse = require('./runner')
+let arr = sudokuParse()
+console.log(typeof arr)
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  function findSpace(boardString) {
-    for (let i = 0; i < boardString.length; i++) {
-      for (let j = 0; j < boardString.length; j++) {
+  function findSpace(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr.length; j++) {
         if (boardString[i][j] === '-') {
-          return [i, j]
+          return [i, j] 
         }
       }
     }
     return null
   }
-
 }
 // сплитим входящую строку 
 // должны получить в итоге многомерный массив 9*9 - функция
