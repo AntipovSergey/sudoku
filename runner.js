@@ -1,7 +1,7 @@
 // Use filesystem.
 const fs = require('fs');
 // Use functions from sudoku.js file.
-const sudoku = require('./sudoku');
+const sudoku = require('./sudoku.js');
 // const sudoku = require('./sudoku-puzzles');
 
 // The sudoku puzzles that your program will solve can be found
@@ -21,7 +21,7 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+  let puzzle = sudokuParse(data, 9);
 
   let solvedPuzzle = sudoku.solve(puzzle); //тут обращаемся к нашей функции solve внутри объекта и кладем в нее пазлы
   if (sudoku.isSolved(solvedPuzzle)) { //тут обращаемся к isSolved внутри объекта и проверяем его на на тру или фолз

@@ -32,7 +32,7 @@ function blockCheck(board, i, j, number) {
 // Принимает доску в виде строки в формате, который вы видите в файле головоломки. 
 // Возвращает что-то, представляющее доску, после того, как решатель попытался ее решить. 
 // Как вы представляете свою доску, зависит от вас!
-let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+// let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
 
 
 function ifelse(data) {
@@ -48,13 +48,13 @@ function ifelse(data) {
 
 }
 
-
+function solve(str) {
+  return solver(ifelse(str))
+}
 // console.table(solve(str))
-console.log(solve(ifelse(str)))
+// console.log(solve((str)))
 
-function solve(ifelse(data)) {
-  arr = data
-
+function solver(arr) {
 
   for (let row = 0; row < arr.length; row++) {
 
@@ -64,23 +64,25 @@ function solve(ifelse(data)) {
         // checkArr.push(row, col)
         for (let count = 1; count <= 9; count++) {
 
-          if (horizontalСheck(arr, count, row) !== false && verticalСheck(arr, count, col) !== false && blockCheck(arr, row, col, count) !== false) {
+          if (horizontalСheck(arr, count, row) !== false &&
+            verticalСheck(arr, count, col) !== false &&
+            blockCheck(arr, row, col, count) !== false) {
             arr[row][col] = String(count)
-          }
-          if (solve(arr)) {
-            return true
-          } else {
+            if (solver(arr)) {
+              return arr
+            }
             arr[row][col] = '-'
           }
         }
         return false
       }
-
     }
 
   }
-  return true
+
+  return arr
 }
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -89,13 +91,11 @@ function solve(ifelse(data)) {
 // Возвращает логическое значение, указывающее, решена ли заданная доска. 
 // Поле ввода будет в той форме, в которой возвращается «решение».
 function isSolved(board) {
-
-  if (!board.includes('-')) {
-    return true
-  } else {
+  if (board === false) {
     return false
+  } else {
+    return true
   }
-
 }
 
 
@@ -109,7 +109,13 @@ function isSolved(board) {
 // Принимает доску в той или иной форме и возвращает строку, хорошо отформатированную для вывода на экран. 
 // Поле ввода будет в той форме, в которой возвращается «решение».
 function prettyBoard(board) {
-
+  let a = board.join('\n')
+   
+    let regexp = (/([0-9]{1})\W*([0-9]{1})\W*([0-9]{1})\W*([0-9]{1})\W*([0-9]{1})\W*([0-9]{1})\W*([0-9]{1})\W*([0-9]{1})\W*([0-9]{1})\W*/g)
+    let regspace = /(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)(\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*\d{1}\W\d{1}\W\d{1}\W*)/g 
+   let b =  a.replace(regexp, '|$1 $2 $3 | $4 $5 $6 | $7 $8 $9 | \n')
+   return b.replace(regspace, '-----------------------\n|$1$2$3-----------------------\n|$4$5$6-----------------------\n|$7$8$9-----------------------\n')
+ 
 }
 
 // Exports all the functions to use them in another file.
