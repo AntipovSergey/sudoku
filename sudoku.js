@@ -33,34 +33,53 @@ function blockCheck(board, i, j, number) {
 // Возвращает что-то, представляющее доску, после того, как решатель попытался ее решить. 
 // Как вы представляете свою доску, зависит от вас!
 let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-console.table(solve(str))
-// console.log(solve(str))
-function solve(boardString) {
+
+
+function ifelse(data) {
   let checkArr = []
-
-  for (let ind = 0; ind < str.length; ind += 9) {
-    checkArr.push(str.slice(ind, ind + 9).split(''))
-
+  if (Array.isArray(data)) {
+    return data
+  } else {
+    for (let ind = 0; ind < data.length; ind += 9) {
+      checkArr.push(data.slice(ind, ind + 9).split(''))
+    }
+    return checkArr
   }
-  for (let row = 0; row < checkArr.length; row++) {
 
-    for (let col = 0; col < checkArr.length; col++) {
+}
 
-      if (checkArr[row][col] === '-') {
+
+// console.table(solve(str))
+console.log(solve(ifelse(str)))
+
+function solve(ifelse(data)) {
+  arr = data
+
+
+  for (let row = 0; row < arr.length; row++) {
+
+    for (let col = 0; col < arr.length; col++) {
+
+      if (arr[row][col] === '-') {
         // checkArr.push(row, col)
         for (let count = 1; count <= 9; count++) {
 
-          if (horizontalСheck(checkArr, count, row) &&  verticalСheck(checkArr, count, col) &&  blockCheck(checkArr, row, col, count)) {
-            checkArr[row][col] = String(count)
-          } 
+          if (horizontalСheck(arr, count, row) !== false && verticalСheck(arr, count, col) !== false && blockCheck(arr, row, col, count) !== false) {
+            arr[row][col] = String(count)
+          }
+          if (solve(arr)) {
+            return true
+          } else {
+            arr[row][col] = '-'
+          }
         }
-
+        return false
       }
 
     }
 
   }
-  return checkArr
+  return true
 }
 
 // Returns a boolean indicating whether
@@ -98,5 +117,5 @@ function prettyBoard(board) {
 module.exports = {
   solve: solve,
   isSolved: isSolved,
-  prettyBoard: prettyBoard 
+  prettyBoard: prettyBoard
 }
