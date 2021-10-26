@@ -21,7 +21,7 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data, 9);
+  let puzzle = sudokuParse(data);
 
   let solvedPuzzle = sudoku.solve(puzzle); //тут обращаемся к нашей функции solve внутри объекта и кладем в нее пазлы
   if (sudoku.isSolved(solvedPuzzle)) { //тут обращаемся к isSolved внутри объекта и проверяем его на на тру или фолз
