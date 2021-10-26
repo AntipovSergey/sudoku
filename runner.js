@@ -22,12 +22,12 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+  let puzzle = sudokuParse(data, Number(process.argv[2]) - 1);
 
   let solvedPuzzle = sudoku.solve(puzzle); //тут обращаемся к нашей функции solve внутри объекта и кладем в нее пазлы
   if (sudoku.isSolved(solvedPuzzle)) { //тут обращаемся к isSolved внутри объекта и проверяем его на на тру или фолз
     console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle)); // тут мы превращаем это в доску судоку
+    chalkAnimation.rainbow(sudoku.prettyBoard(solvedPuzzle)); // тут мы превращаем это в доску судоку
   }
   else {
     console.log("The board wasn't solved :("); //если не решено
