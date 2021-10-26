@@ -1,6 +1,6 @@
 
 // const sudokuParse = require('./runner')
-const str = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+const str = "1-58-2---9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -20,58 +20,85 @@ function solve(str) {
 
   const table = getArray(str);
   function findSpace(checkTable) {    
-    for (let r = 0; r < table.length; r++) {
-      for (let c = 0; c < table.length; c++) {
-        if (table[r][c] === '-') {         
-          return  [r, c]
+    for (let r = 0; r < checkTable.length; r++) {
+      for (let c = 0; c < checkTable.length; c++) {
+        if (checkTable[r][c] === '-') {                           
+          return  [r, c]     
         }
       }
     }
     return null;
   }
-  findSpace(table)
+ 
   
-  
-  function checkNum(position, table) {   
-    console.log('check1')
-    for (let i = 1; i <= 9; i++) {
-      let num = i          
+  const position = findSpace(table)
+ 
+  function checkNum(num ,pos, board) { 
+
+    let [r,c] = pos
+    // console.log(board) //выдет в консоли таблицу судоку
+    // console.log(pos) // выдает в консоль координаты первой пустой клетки
+    
+    // for (let n = 1; n <= 9; n++) {
+      
+    //   let num = n   
+       
+      // по вертикали     
       for (let i = 0; i < 9; i++) {
-        if (table[i][c] == String(num)) {
+        if (board[i][c] ==  String(num) && i !==r) {
+          console.log(board[i][c])
           return false
         }
       }
-
-      for (let j = 0; j < 9; j++) {
-        if (table[r][j] == String(num) && j !== c) {
+      // по горизонтали
+      for (let i = 0; i < 9; i++) {
+        if (board[r][i] == String(num) && i !== c) {
+          console.log(board[r][i])
           return false
         }
       }
       //запихнуть в тело цикла
-      if (i == 0 || 1 || 2) { return i = 0 }
-      else if (i == 3 || 4 || 5) { return i = 3 }
-      else if (i == 6 || 7 || 8) { return i = 6 }
+      if (r == 0 || 1 || 2) { return r = 0 }
+      else if ( r == 3 || 4 || 5) { return r = 3 }
+      else if (r == 6 || 7 || 8) { return r = 6 }
 
-      if (j == 0 || 1 || 2) { return j = 0 }
-      else if (j == 3 || 4 || 5) { return j = 3 }
-      else if (j == 6 || 7 || 8) { return j = 6 }
+      if (c == 0 || 1 || 2) { return r = 0 }
+      else if (c == 3 || 4 || 5) { return r = 3 }
+      else if (c == 6 || 7 || 8) { return r = 6 }
 
-      for (let r = i; r < i + 3; r++) {
-        for (let c = j; c < j + 3; j++) {
-          if (table[r][c] == String(num)&& i !== r && c !==j) {
+      for (let i = r; i < r + 3; i++) {
+        for (let j = c; j < c + 3; j++) {
+          if (board[r][c] == String(num)&& i !== r && j !== c) {
             return false 
           }
         }
       }  
-       table[r][c] = num 
+      // table[r][c] = num 
       //  solve()          
-       return table
-    }    
-    // if (findSpace(table) == null) { return table }
+      //return table
+    
+        
+    // // if (findSpace(table) == null) { return table }]
+    
   }
-  checkNum()
+  checkNum(7, position, table)
+return 'check solve'
 }
 console.log(solve(str))
+
+// ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
+// │ (index) │  0  │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │
+// ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
+// │    0    │ '1' │ '-' │ '5' │ '8' │ '-' │ '2' │ '-' │ '-' │ '-' │
+// │    1    │ '-' │ '9' │ '-' │ '-' │ '7' │ '6' │ '4' │ '-' │ '5' │
+// │    2    │ '2' │ '-' │ '-' │ '4' │ '-' │ '-' │ '8' │ '1' │ '9' │
+// │    3    │ '-' │ '1' │ '9' │ '-' │ '-' │ '7' │ '3' │ '-' │ '6' │
+// │    4    │ '7' │ '6' │ '2' │ '-' │ '8' │ '3' │ '-' │ '9' │ '-' │
+// │    5    │ '-' │ '-' │ '-' │ '-' │ '6' │ '1' │ '-' │ '5' │ '-' │
+// │    6    │ '-' │ '-' │ '7' │ '6' │ '-' │ '-' │ '-' │ '3' │ '-' │
+// │    7    │ '4' │ '3' │ '-' │ '-' │ '2' │ '-' │ '5' │ '-' │ '1' │
+// │    8    │ '6' │ '-' │ '-' │ '3' │ '-' │ '8' │ '9' │ '-' │ '-' │
+// └─────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
 
 // сплитим входящую строку 
 // должны получить в итоге многомерный массив 9*9 - функция
