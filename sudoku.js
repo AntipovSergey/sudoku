@@ -121,7 +121,11 @@ function prettyBoard(board) {
 // Exports all the functions to use them in another file.
 // Экспортирует все функции, чтобы использовать их в другом файле.
 module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard
+  solve,
+  isSolved,
+  prettyBoard,
+  ifelse,
+  horizontalСheck,
+    verticalСheck,
+    blockCheck
 }

@@ -1,3 +1,4 @@
+const chalkAnimation = require('chalk-animation');
 // Use filesystem.
 const fs = require('fs');
 // Use functions from sudoku.js file.
@@ -40,3 +41,6 @@ fs.readFile(
   readAndSolve
 );
 
+module.exports = {
+    sudokuParse
+}
