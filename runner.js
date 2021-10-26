@@ -15,6 +15,8 @@ function sudokuParse(content, puzzleNumber = 0) {
   console.log(puzzle);
   return puzzle;
 }
+console.log(sudokuParse);
+
 
 function readAndSolve(err, data) {
   if (err) {
@@ -33,9 +35,6 @@ function readAndSolve(err, data) {
 }
 
 // Reads file and sends data from it to the readAndSolve function.
-fs.readFile(
-  './sudoku-puzzles.txt',
-  'utf-8',
-  readAndSolve
-);
+fs.readFile('./sudoku-puzzles.txt', 'utf-8', readAndSolve);
 
+module.exports = {sudokuParse}
