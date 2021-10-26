@@ -1,6 +1,6 @@
 
 // const sudokuParse = require('./runner')
-const str = "1-58-2---9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+const str = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89---";
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -36,39 +36,48 @@ function solve(str) {
   function checkNum(num ,pos, board) { 
 
     let [r,c] = pos
-    // console.log(board) //выдет в консоли таблицу судоку
+    
+    console.table(board) //выдет в консоли таблицу судоку
     // console.log(pos) // выдает в консоль координаты первой пустой клетки
     
     // for (let n = 1; n <= 9; n++) {
       
     //   let num = n   
        
-      // по вертикали     
+      //по вертикали   
       for (let i = 0; i < 9; i++) {
-        if (board[i][c] ==  String(num) && i !==r) {
+        if (board[i][c] == String(num) && i !==r) {
           console.log(board[i][c])
           return false
         }
       }
-      // по горизонтали
+      // //по горизонатли
       for (let i = 0; i < 9; i++) {
         if (board[r][i] == String(num) && i !== c) {
           console.log(board[r][i])
           return false
         }
       }
+
+
       //запихнуть в тело цикла
-      if (r == 0 || 1 || 2) { return r = 0 }
-      else if ( r == 3 || 4 || 5) { return r = 3 }
-      else if (r == 6 || 7 || 8) { return r = 6 }
+      if (r == 0 || r ==1 || r ==2) { r = 0 }
+      else if ( r == 3 ||r == 4 || r ==5) { r = 3 }
+      else if (r == 6 || r ==7 || r ==8) { r = 6 }
+      
 
-      if (c == 0 || 1 || 2) { return r = 0 }
-      else if (c == 3 || 4 || 5) { return r = 3 }
-      else if (c == 6 || 7 || 8) { return r = 6 }
-
+      if (c == 0 || c ==1 || c ==2) { c = 0 }
+      else if (c == 3 || c ==4 || c ==5) { c = 3 }
+      else if (c == 6 || c ==7 || c ==8) { c = 6 }
+      
+    console.log({r,c})
       for (let i = r; i < r + 3; i++) {
+        
         for (let j = c; j < c + 3; j++) {
-          if (board[r][c] == String(num)&& i !== r && j !== c) {
+          console.log(i,j,board[i][j],num)
+          if (board[i][j] === String(num)) {
+
+            console.log(board[i][j])
             return false 
           }
         }
@@ -79,14 +88,13 @@ function solve(str) {
     
         
     // // if (findSpace(table) == null) { return table }]
-    
+    return true
   }
-  checkNum(7, position, table)
+  console.log(checkNum(7, position, table))
 return 'check solve'
 }
 console.log(solve(str))
 
-// ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
 // │ (index) │  0  │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │
 // ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
 // │    0    │ '1' │ '-' │ '5' │ '8' │ '-' │ '2' │ '-' │ '-' │ '-' │
@@ -98,7 +106,6 @@ console.log(solve(str))
 // │    6    │ '-' │ '-' │ '7' │ '6' │ '-' │ '-' │ '-' │ '3' │ '-' │
 // │    7    │ '4' │ '3' │ '-' │ '-' │ '2' │ '-' │ '5' │ '-' │ '1' │
 // │    8    │ '6' │ '-' │ '-' │ '3' │ '-' │ '8' │ '9' │ '-' │ '-' │
-// └─────────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┴─────┘
 
 // сплитим входящую строку 
 // должны получить в итоге многомерный массив 9*9 - функция
@@ -142,7 +149,7 @@ module.exports = {
 // ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┬─────┐
 // │ (index) │  0  │  1  │  2  │  3  │  4  │  5  │  6  │  7  │  8  │
 // ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┼─────┤
-// │    0    │ '1' │ '-' │ '5' │ '8' │ '-' │ '2' │ '-' │ '-' │ '-' │
+// │    0    │ '1' │ '4' │ '5' │ '8' │ '-' │ '2' │ '-' │ '-' │ '-' │
 // │    1    │ '-' │ '9' │ '-' │ '-' │ '7' │ '6' │ '4' │ '-' │ '5' │
 // │    2    │ '2' │ '-' │ '-' │ '4' │ '-' │ '-' │ '8' │ '1' │ '9' │
 // │    3    │ '-' │ '1' │ '9' │ '-' │ '-' │ '7' │ '3' │ '-' │ '6' │
