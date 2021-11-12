@@ -11,7 +11,15 @@ function makeBoard (str) {
   }
   return result
 }
-console.table(makeBoard(boardStr));
+// console.log(makeBoard(boardStr));
+
+function render (boardSolved) {
+  let result = boardSolved.map((x) => x = x.join(' ')).join('\n')
+  return result
+}
+console.log(render(testBoard))
+
+
  /*Возвращает массив оставшихся кандидатов*/
 // coordinates = [x,y], где x строка, y столбец 
 
@@ -43,7 +51,7 @@ function columnSearch (board, candidates, coordinates) {
 
 
   
-console.log(columnSearch(testBoard, candidates, coordinates))
+// console.log(columnSearch(testBoard, candidates, coordinates))
   
 
 

@@ -1,8 +1,8 @@
 const boardStr =
   '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-const candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let candidates = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const testBoard = makeBoard(boardStr);
-const coordinates = [3, 4];
+const coordinates = [1, 3];
 
 function makeBoard(str) {
   let result = [];
@@ -12,7 +12,42 @@ function makeBoard(str) {
   }
   return result;
 }
-// console.table(makeBoard(boardStr))
+
+console.table(iterator(testBoard,coordinates))
+
+
+function iterator(board, coordinates){
+  // function getCoordinates(board){
+  //   for (let i = 0; i < board.length; i++) {
+  //     for (let j = 0; j < board[i].length; j++) {
+  //       if(board[i][j]==='-'){
+          
+  //       }
+  //       return [i,j]
+  //     }
+  //   }
+  // }
+  
+  //let coordinates = getCoordinates(board)
+   
+
+  let candidates1 = lineSearch(board, candidates, coordinates)
+  let candidates2 = columnSearch(board, candidates1, coordinates)
+  let candidates3 = squareSearch(board, candidates2, coordinates)
+  
+  const insertNumber = (board, candidates, coordinates) => {
+    
+    board[coordinates[0]][coordinates[1]] = candidates.join('');
+    return board;
+  };
+
+  return insertNumber(board, candidates3, coordinates)
+}
+
+
+
+
+
 /*Возвращает массив оставшихся кандидатов*/
 // coordinates = [x,y], где x строка, y столбец
 
@@ -30,6 +65,7 @@ function lineSearch(board, candidates, coordinates) {
     return survivCandidates;
   }
 }
+
 function columnSearch (board, candidates, coordinates) {
   let result = []
   let arr = []
@@ -171,6 +207,8 @@ function squareSearch (board, candidates, coordinates) {
 
 
 
+
 module.exports = {
   makeBoard,
 };
+
