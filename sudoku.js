@@ -3,6 +3,7 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+//Конечная функция, которая отобьражает правильно решения судоку
 function solve(boardString) {
 
 }
@@ -12,6 +13,7 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
+// Решение удалось или нет
 function isSolved(board) {
 
 }
@@ -22,6 +24,7 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+// Эта штука делает из массива красивую форму судоку в виде строки с переносами
 function prettyBoard(board) {
 
 }

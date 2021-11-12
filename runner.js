@@ -2,6 +2,7 @@
 const fs = require('fs');
 // Use functions from sudoku.js file.
 const sudoku = require('./sudoku');
+// const sudokuPuzzle = fs.readFileSync('./sudoku-puzzles.txt')
 
 // The sudoku puzzles that your program will solve can be found
 // in the sudoku-puzzles.txt file.
@@ -15,12 +16,14 @@ function sudokuParse(content, puzzleNumber = 0) {
   console.log(puzzle);
   return puzzle;
 }
+// sudokuParse()
 
 function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
   let puzzle = sudokuParse(data);
+  
 
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
