@@ -3,6 +3,15 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+function solve(boardString) {
+
+}
+
+
+// Returns a boolean indicating whether
+// or not the provided board is solved.
+// The input board will be in whatever
+// form `solve` returns.
 function isSolved(board) {
 
 	const xBoard = board.Math.floor(x / 3) * 3
@@ -18,15 +27,6 @@ function isSolved(board) {
 		}
 	  }
 	}
-
-
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
-
-}
 
 
 // Takes in a board in some form and
