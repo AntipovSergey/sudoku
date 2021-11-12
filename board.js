@@ -16,15 +16,14 @@ function makeBoard(str) {
 /*Возвращает массив оставшихся кандидатов*/
 // coordinates = [x,y], где x строка, y столбец
 
-function lineSearch(board, candidates, coordinates) {}
 
-function columnSearch(board, candidates) {
-  if (board.length === 1) {
-    return board;
-  }
-}
+
+
+
+function squareSearch (board, candidates) {
 
 function squareSearch(board, candidates) {
+
   if (board.length === 1) {
     return board;
   }
