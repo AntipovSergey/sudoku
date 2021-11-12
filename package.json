@@ -1,0 +1,19 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "jest test spec js -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitryZheltoukhov/project-sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitryZheltoukhov/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/DmitryZheltoukhov/project-sudoku#readme"
+}
