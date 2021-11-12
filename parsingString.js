@@ -13,6 +13,6 @@ const swapStrNum = resultArr.map((el) => el.map((el) => Number(el)))
 return swapStrNum
 }
 
-console.log(parsingString(sudocuString))
+
 
 
