@@ -58,7 +58,24 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {}
+
+function isSolved(board) {
+
+	const xBoard = board.Math.floor(x / 3) * 3
+	const yBoard = board.Math.floor(y / 3) * 3
+	
+	  for (let y = 0; y <= yBoard; y += 1) {
+		for (let x = 0; x <= xBoard; x += 1) {
+		  if (xBoard[y][x] === n || yBoard[x][y] === n){
+			return false
+		  } else {
+			return true 
+		  }
+		}
+	  }
+	}
+
+
 
 // Takes in a board in some form and
 // returns a String that's well formatted
