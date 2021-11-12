@@ -16,18 +16,15 @@ function makeBoard (str) {
 
 function lineSearch (board, candidates, coordinates) {
 
- 
 }
 
 function columnSearch (board, candidates) {
-
   if (board.length === 1) {
     return board
   }
 }
 
 function squareSearch (board, candidates) {
-
   if (board.length === 1) {
     return board
   }
