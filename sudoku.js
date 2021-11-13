@@ -56,8 +56,9 @@ function boardToArray(board) {
 }
 
 const arrBoard = boardToArray(board);
-// prettyBoard(board);
-console.log(horizontalSolver(arrBoard));
+const solveHorizontal = horizontalSolver(arrBoard);
+
+console.log(prettyBoard(solveHorizontal.join().replaceAll(',', '')));
 
 // Exports all the functions to use them in another file.
 module.exports = {
