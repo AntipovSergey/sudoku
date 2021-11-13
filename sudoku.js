@@ -19,7 +19,12 @@ function isSolved(board) {}
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  const result = board.split('').join(' ');
+  for (let i = 0; i < result.length; i += 18) {
+    console.log(result.slice(i, i + 18));
+  }
+}
 
 function boardToArray(board) {
   const newBoard = [];
@@ -29,7 +34,8 @@ function boardToArray(board) {
   return newBoard;
 }
 
-console.log(boardToArray(board));
+// console.log(boardToArray(board));
+prettyBoard(board);
 
 // Exports all the functions to use them in another file.
 module.exports = {
