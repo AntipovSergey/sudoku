@@ -1,10 +1,19 @@
-function empty(board) {
-  for (let i = 0; i < board[0].length; i++) {
-    for (let k = 0; k < board[0].length; k++) {
-      if (board[i][k] === 0) {
+const fs = require('fs');
+const sudokuParse = require('./runner');
+const content = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
+
+const board = sudokuParse(content, 1);
+
+function empty(boar) {
+  for (let i = 0; i < boar.length; i++) {
+    for (let k = 0; k < boar[i].length; k++) {
+      if (boar[i][k] === 0) {
         return [i, k];
       }
     }
   }
-  return "done";
+  return null;
 }
+console.log(empty(board));
+module.exports = empty;
+

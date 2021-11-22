@@ -1,7 +1,7 @@
 // Use filesystem.
 const fs = require('fs');
 // Use functions from sudoku.js file.
-const sudoku = require('./sudoku');
+// const sudoku = require('./sudoku');
 const content = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
 // The sudoku puzzles that your program will solve can be found
@@ -27,9 +27,9 @@ function sudokuParse(cont, puzzleNumber = 0) {
   return tempArray;
 }
 
-const board = sudokuParse(content, 1);
-console.table(board);
-
+//const board = sudokuParse(content, 1);
+//console.table(board);
+/*
 function readAndSolve(err, data) {
   if (err) {
     throw err;
@@ -45,7 +45,7 @@ function readAndSolve(err, data) {
     console.log("The board wasn't solved :(");
   }
 }
-
+*/
 // Reads file and sends data from it to the readAndSolve function.
 /*
 fs.readFile(
