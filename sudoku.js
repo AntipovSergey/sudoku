@@ -1,4 +1,4 @@
-// Takes a board as a string in the format
+// Takes a board as a string in the format Принимает доску в виде строки 
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
@@ -27,8 +27,11 @@ function prettyBoard(board) {
 }
 
 // Exports all the functions to use them in another file.
-module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+
+
+
+// module.exports = {
+// 	solve: solve,
+// 	isSolved: isSolved,
+// 	prettyBoard: prettyBoard
+// }
