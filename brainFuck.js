@@ -14,3 +14,4 @@ function brainFuck(board) {
   }
 }
 
+module.exports = brainFuck;
