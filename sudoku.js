@@ -11,5 +11,16 @@ let arrSudoky = text
   }))
 console.table(arrSudoky)
 
-
+function findStick(arrEdit) {
+  newArr = []
+  for (let i = 0; i < arrEdit.length; i++) {
+    for (let j = 0; j < arrEdit[i].length; j++) {
+      if (arrEdit[i][j] === null) {
+        newArr.push([i, j])
+      }
+    }
+  }
+  return newArr
+}
+console.log(findStick(arrSudoky))
 
