@@ -14,7 +14,7 @@
 // ];
 
 function checkVars(board, index2) {
-  const vars = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const vars = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const s = index2[0];
   const l = index2[1];
 
@@ -37,8 +37,9 @@ function checkVars(board, index2) {
   const sectorL = Math.floor(l / 3) * 3;
 
   // Цикл поиска по квадрату
-  for (let i = sectorL; i < sectorL + 3; i++) {
-    for (let j = sectorS; j < sectorS + 3; j++) {
+  for (let i = sectorS; i < sectorS + 3; i++) {
+    for (let j = sectorL; j < sectorL + 3; j++) {
+      
       for (let m = 0; m < vars.length; m++) {
         if (board[i][j] === vars[m]) vars.splice(m, 1);
       }
