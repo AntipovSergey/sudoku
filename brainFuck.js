@@ -11,7 +11,6 @@ function brainFuck(board) {
     newBoard[coordinates[0]][coordinates[1]] = possibleValues[i];
     let nextStep = brainFuck(newBoard);
     if (Array.isArray(nextStep)) return nextStep;
-    //if (i === possibleValues.length - 1) return null
   }
   return null
 }

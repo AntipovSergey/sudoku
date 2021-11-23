@@ -12,8 +12,8 @@ function sudokuParse(content, puzzleNumber = 0) {
   return brainFuck(arr);
 }
 
-console.table(sudokuParse(sudokuPuzzles, 14));
-// for (let index = 0; index < 15; index++) {
-//   console.table(sudokuParse(sudokuPuzzles, index));
-// }
+//console.table(sudokuParse(sudokuPuzzles, 14));
+ for (let index = 0; index < 15; index++) {
+   console.table(sudokuParse(sudokuPuzzles, index));
+ }
 
