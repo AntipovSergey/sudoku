@@ -33,4 +33,16 @@ function rowSearch(findStick, board) {
   return digit
 }
 
-
+//Поис по вертикали судоку
+function columnSearch(arrSudoky, findStick, rowSearch) {
+    let x = findStick[0] // 
+    let y = findStick[1] // 
+    arr = [];
+    for (let i = 0; i < arrSudoky.length; i++){
+        if (arrSudoky[i][y] !== null) {
+                arr.push(arrSudoky[i][y])
+        }
+    }
+    result = futureVal[x].filter(el => !~arr.indexOf(el));
+    return result
+}
