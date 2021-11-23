@@ -1,82 +1,32 @@
 const fs = require('fs');
 const sudokuParse = require('./runner');
+
 const content = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
-const board = sudokuParse(content, 1);
-
 const empty = require('./empty');
-let arrNew = empty(board);
-
-const checkGV = require('./test');
-// const numb = checkGV(board, arrNew[0], arrNew[1], );
-
+const check = require('./test');
 const checkSector = require('./checkSector');
-// const checkS = checkSector(board, numb, arrNew);
 
-function numbers(boardQ, x, y) {
-  if (empty(boardQ) === null) {
-    return boardQ;
+const board = sudokuParse(content, 14);
+
+console.table(board);
+function numbers(board2, arrNew2) {
+  if (empty(board2) === null) {
+    return true;
   }
-  if (empty(boardQ)) {
-    for (let i = 1; i <= 9; i++) {
-      if (checkGV(boardQ, x, y, i) && checkSector(boardQ, i, arrNew)) {
-        boardQ[arrNew[0]][arrNew[1]] = i;
+  const x = arrNew2[0];
+  const y = arrNew2[1];
+  for (let i = 1; i < 10; i++) {
+    if (check(board2, arrNew2, i) && checkSector(board2, i, arrNew2)) {
+      board[x][y] = i;
+      if (numbers(board, empty(board))) {
+        return board;
       }
-      // console.log(board);
-    }
-    for (let i = 1; i <= 9; i++) {
-      console.table(boardQ);
+      board[x][y] = 0;
     }
   }
-  return numbers(boardQ, arrNew[0], arrNew[1]);
+  return false;
 }
-console.table(numbers(board, arrNew[0], arrNew[1]));
+console.table(numbers(board, empty(board)));
 
-
-
-
-
-/*
-function run(boardRun) {
-  if (empty(boardRun) === null) {
-    return boardRun;
-  }
-  numbers(boardRun, arrNew[0], arrNew[1], checkGV);
-
-}
-console.table(run(board));*/
-
-
-// Принимает доску как строку в формате
-// вы видите в файле головоломки. Возврат
-// что-то, представляющее доску после
-// ваш решатель попытался решить эту проблему.
-// Как вы представляете свою доску, зависит от вас!
-function solve(bool) {
-  
-}
-
-
-// Возвращает логическое значение, указывающее,
-// или нет решена предоставленная плата.
-// Плата ввода будет в любом
-// форма возвращает «решение».
-function isSolved(bor) {
-
-}
-
-// Принимает доску в той или иной форме и
-// возвращает хорошо отформатированную строку
-// для вывода на экран.
-// Плата ввода будет в любом
-// форма возвращает «решение».
-function prettyBoard(board) {
-
-}
-
-// Exports all the functions to use them in another file.
-module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
-}
+module.exports = numbers;

@@ -1,26 +1,14 @@
+function check(arr4, tempArray4, num4) {
+  const x = tempArray4[0];
+  const y = tempArray4[1];
 
-const fs = require('fs');
-const content = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
-
-const sudokuParse = require('./runner');
-const board = sudokuParse(content, 1);
-
-const empty = require('./empty');
-const arrNew = empty(board);
-
-
-function checkGV(arr, x, y, num) {
   const arrDop = [];
-  for (let i = 0; i < arr.length; i++) {
-    arrDop.push(arr[i][y]);
+  for (let i = 0; i < arr4.length; i++) {
+    arrDop.push(arr4[i][y]);
   }
-  if (!arr[x].includes(num) && !arrDop.includes(num)) {
+  if (!arr4[x].includes(num4) && !arrDop.includes(num4)) {
     return true;
   } return false;
 }
-// console.log(checkGV(board, arrNew[0], arrNew[1]));
 
-
-
-
-module.exports = checkGV;
+module.exports = check;
