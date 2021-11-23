@@ -27,7 +27,6 @@ function checkVars(board, index2) {
   // Цикл поиска по квадрату
   for (let i = sectorS; i < sectorS + 3; i++) {
     for (let j = sectorL; j < sectorL + 3; j++) {
-      
       for (let m = 0; m < vars.length; m++) {
         if (board[i][j] === vars[m]) vars.splice(m, 1);
       }
@@ -36,4 +35,3 @@ function checkVars(board, index2) {
   return vars;
 }
 module.exports = checkVars;
-
