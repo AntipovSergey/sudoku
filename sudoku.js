@@ -46,3 +46,22 @@ function columnSearch(arrSudoky, findStick, rowSearch) {
     result = futureVal[x].filter(el => !~arr.indexOf(el));
     return result
 }
+
+function searchInSquare (elemArr, sudArr, resultsArr) {
+    const topOfSquare = [];
+    topOfSquare.push(Math.floor(elemArr[0] / 3) * 3);
+    topOfSquare.push(Math.floor(elemArr[1] / 3) * 3);
+    for (let i = topOfSquare[1]; i < (topOfSquare[1] + 3); i++) {
+        for (let j = topOfSquare[0]; j < (topOfSquare[0] + 3); j++) {
+            if (resultsArr.includes(sudArr[j][i])) {
+                resultsArr.splice(resultsArr.indexOf(sudArr[j][i]), 1) 
+            }
+            
+        }
+        
+    }
+    if (resultsArr.length === 1) {
+            sudArr[elemArr[0]][elemArr[1]] = resultsArr[0];
+        }
+    return sudArr
+}
