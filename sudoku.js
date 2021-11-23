@@ -9,7 +9,7 @@ let arrSudoky = text
       return Number(el)
     }
   }))
-console.table(arrSudoky)
+
 
 function findStick(arrEdit) {
   newArr = []
@@ -22,5 +22,15 @@ function findStick(arrEdit) {
   }
   return newArr
 }
-console.log(findStick(arrSudoky))
+
+function rowSearch(findStick, board) {
+  const digit = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  for (let i = 0; i < board[findStick[0]].length; i++) {
+    if (digit.includes(board[findStick[0]][i])) {
+      digit.splice(digit.indexOf(board[findStick[0]][i]), 1)
+    }
+  }
+  return digit
+}
+
 
