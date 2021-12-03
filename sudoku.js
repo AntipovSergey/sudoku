@@ -3,6 +3,11 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+// Принимает доску как строку в формате
+// вы видите в файле головоломки. Возврат
+// что-то, представляющее доску после
+// ваш решатель пытался решить эту проблему.
+// Как вы представляете свою доску, зависит от вас!
 function solve(boardString) {
 
 }
@@ -12,6 +17,10 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
+// Возвращает логическое значение, указывающее,
+// или нет решена предоставленная плата.
+// Плата ввода будет в любом
+// возврат из формы `resolve`.
 function isSolved(board) {
 
 }
@@ -22,11 +31,17 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+// Принимает доску в той или иной форме и
+// возвращает хорошо отформатированную строку
+// для вывода на экран.
+// Плата ввода будет в любом
+// возврат из формы `resolve`.
 function prettyBoard(board) {
 
 }
 
 // Exports all the functions to use them in another file.
+// Экспортирует все функции, чтобы использовать их в другом файле.
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
