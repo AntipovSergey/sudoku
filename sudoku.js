@@ -1,32 +1,41 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+const findEmpty = require('./find')
+
+// Принимает доску как строку в формате
+// вы видите в файле головоломки. Возврат
+// что-то, представляющее доску после
+// ваш решатель попытался решить эту проблему.
+// Как вы представляете свою доску, зависит от вас!
 function solve(boardString) {
+  // let arr = boardString.split('')
+
+  // let board = []
+  // let size = 9
+  // while (arr.length > 0) board.push(arr.splice(0, size))
+  // return board
+
 
 }
 
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
+// Возвращает логическое значение, указывающее,
+// или нет решена предоставленная плата.
+// Плата ввода будет в любом
+// возврат из формы `resolve`.
 function isSolved(board) {
-
+  console.table(board)
+  return true
 }
 
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
+// Принимает доску в той или иной форме и
+// возвращает хорошо отформатированную строку
+// для вывода на экран.
+// Плата ввода будет в любом
+// возврат из формы `resolve`.
 function prettyBoard(board) {
-
+return 
 }
 
-// Exports all the functions to use them in another file.
+// Экспортирует все функции, чтобы использовать их в другом файле.
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
