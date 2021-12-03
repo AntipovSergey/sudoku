@@ -14,24 +14,33 @@ const sudoku = require('./sudoku');
 // Получает одну головоломку из текстового файла.
 function sudokuParse(content, puzzleNumber = 0) {
   let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  return puzzle;
+  let puzzleArray = puzzle.split('').map((el => el.replace(/-/g, '.')));
+  const newMass = []
+
+  while(puzzleArray.length > 0) {
+    newMass.push(puzzleArray.splice(0, 9))
+  }
+
+  return newMass
 }
+
 
 function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
-
+  let puzzle = sudokuParse(data, 14);
+  let puzzleCpy = puzzle.slice()
+  console.table(puzzleCpy)
   let solvedPuzzle = sudoku.solve(puzzle);
-  if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
-    console.log("The board wasn't solved :(");
-  }
+  console.table(solvedPuzzle)
+  // if (sudoku.isSolved(solvedPuzzle)) {
+  //   console.log("The board was solved!");
+  //   console.log(sudoku.prettyBoard(solvedPuzzle));
+  // }
+  // else {
+  //   console.log("The board wasn't solved :(");
+  // }
 }
 
 // Reads file and sends data from it to the readAndSolve function. 
