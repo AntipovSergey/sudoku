@@ -24,7 +24,10 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {
  // комментарий 1
- //комментарий для STEP2
+ //комментарий для 
+  //комментарий для step3
+
+
 }
 
 // Exports all the functions to use them in another file.
