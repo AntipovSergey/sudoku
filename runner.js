@@ -10,13 +10,26 @@ const sud = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 // so you should remove them.
 
 // Gets one puzzle from the text file.
+
 function sudokuParse(content, puzzleNumber = 0) {
   let puzzle = content.split('\n')[puzzleNumber]
-    .match(/(.{9})/g)
-    .map(elem => elem.split(''))
-  console.table(puzzle);
-  return puzzle;
+ .split('')
+  let newBoard = []
+  for (let i = 0; i < puzzle.length; i++) {
+    newBoard.push(puzzle.splice(0, 9))
+  }
+  console.log(newBoard);
+  return newBoard
 }
+
+
+function readAndSolve(err, data) {
+  if (err) {
+    throw err;
+  }
+  
+  let puzzle = sudokuParse(data);
+
 
 
 sudokuParse(sud, 0);
