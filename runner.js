@@ -10,11 +10,18 @@ const sudoku = require('./sudoku');
 // so you should remove them.
 
 // Gets one puzzle from the text file.
+
 function sudokuParse(content, puzzleNumber = 0) {
-  let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  return puzzle;
+  let puzzle = content.split('\n')[puzzleNumber]
+    .split('')
+  let newBoard = []
+  for (let i = 0; i < puzzle.length; i++) {
+    newBoard.push(puzzle.splice(0, 9))
+  }
+  console.log(newBoard);
+  return newBoard
 }
+
 
 function readAndSolve(err, data) {
   if (err) {
