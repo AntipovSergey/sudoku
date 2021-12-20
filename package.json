@@ -1,0 +1,23 @@
+{
+  "name": "sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node sudoku.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bravo303/project-sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bravo303/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/Bravo303/project-sudoku#readme",
+  "devDependencies": {
+    "eslint": "^8.5.0"
+  }
+}
