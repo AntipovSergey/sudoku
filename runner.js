@@ -1,59 +1,25 @@
-// Use filesystem.
-const fs = require('fs');
-// Use functions from sudoku.js file.
-//const sudoku = require('./sudoku');
-const sud = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
-// The sudoku puzzles that your program will solve can be found
-// in the sudoku-puzzles.txt file.
-//
-// Remember, the file has newline characters at the end of each line,
-// so you should remove them.
-
-// Gets one puzzle from the text file.
+// const fs = require('fs');
+// const sudoku = require('./sudoku');
+// const sud = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
 function sudokuParse(content, puzzleNumber = 0) {
-  let puzzle = content.split('\n')[puzzleNumber]
- .split('')
-  let newBoard = []
-  for (let i = 0; i < puzzle.length; i++) {
-    newBoard.push(puzzle.splice(0, 9))
+  const puzzle = content.split('\n')[puzzleNumber]
+    .split('');
+  const newBoard = [];
+  for (let i = 0; i < puzzle.length; i += 1) {
+    newBoard.push(puzzle.splice(0, 9));
   }
-  console.log(newBoard);
-  return newBoard
+  // console.log(newBoard);
+  // eslint-disable-next-line arrow-body-style
+  const arrBoard = newBoard.map((el) => {
+    return el.map((elem) => {
+      if (elem === '-') {
+        return 0;
+      } return Number(elem);
+    });
+  });
+  return arrBoard;
 }
 
-
-function readAndSolve(err, data) {
-  if (err) {
-    throw err;
-  }
-  
-  let puzzle = sudokuParse(data);
-
-
-
-sudokuParse(sud, 0);
-
-// function readAndSolve(err, data) {
-//   if (err) {
-//     throw err;
-//   }
-//   let puzzle = sudokuParse(data);
-
-//   let solvedPuzzle = sudoku.solve(puzzle);
-//   if (sudoku.isSolved(solvedPuzzle)) {
-//     console.log("The board was solved!");
-//     console.log(sudoku.prettyBoard(solvedPuzzle));
-//   }
-//   else {
-//     console.log("The board wasn't solved :(");
-//   }
-// }
-
-// // Reads file and sends data from it to the readAndSolve function.
-// fs.readFile(
-//   './sudoku-puzzles.txt',
-//   'utf-8',
-//   readAndSolve
-// );
-
+module.exports = sudokuParse;
+// console.table(sudokuParse(sud, 0));

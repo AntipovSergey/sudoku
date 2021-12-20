@@ -1,5 +1,4 @@
-//const [a, b] = arr
-
+/* eslint-disable no-plusplus */
 function checkSector(board, num, position) {
   const sector = 3;
   const [a, b] = position;
@@ -14,5 +13,4 @@ function checkSector(board, num, position) {
   }
   return true;
 }
-//module.exports = checkSector;
-
+module.exports = checkSector;
