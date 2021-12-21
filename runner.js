@@ -1,5 +1,6 @@
 // Use filesystem.
 const fs = require('fs');
+const { solve, findEmpty } = require('./sudoku');
 // Use functions from sudoku.js file.
 const sudoku = require('./sudoku');
 
@@ -23,6 +24,8 @@ function readAndSolve(err, data) {
   let puzzle = sudokuParse(data);
 
   let solvedPuzzle = sudoku.solve(puzzle);
+  console.table(solvedPuzzle)
+  console.log(findEmpty)
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
     console.log(sudoku.prettyBoard(solvedPuzzle));
