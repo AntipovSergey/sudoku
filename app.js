@@ -4,7 +4,7 @@ const data = fs.readFileSync('./sudoku-puzzles.txt',
 console.log('получаем всё\n', data)
 
 
-function solve(data) {
+function getBoard(data) {
   let sudokuBoard = [];
   for (let i = 0; i < 81; i += 9) {
     sudokuBoard.push(data.slice(i, i + 9).split(''))
@@ -12,9 +12,10 @@ function solve(data) {
   return sudokuBoard
 }
 console.log('отрисовываем доску')
-console.table(solve(data))
+console.table(getBoard(data))
 
-const board = solve(data);
+const board = getBoard(data);
+
 function findEmpty() {
   for (let horizon = 0; horizon < 9; horizon++) {
     for (let vertical = 0; vertical < 9; vertical++) {
@@ -34,15 +35,23 @@ console.log(findEmpty(board))
 
 // переходит к следующему и пока пустые значения не закончатся
 // если не находит значение то откатывается назад и проверяет предыдущие значения 
-const empty = (board) => {...}
+function solve (){
 
 
-function check() {
+  return getBoard;
+}
+
+let emptyValue = findEmpty(board)
+// console.log('ddd', emptyValue); 
+function check(emptyValue, board) {
+  const horizon = emptyValue[0];
+  const vertical = emptyValue[1];
   const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  
-  let value = findEmpty(board)
-  for (i = 0; i < arr.length; i++) {
-
+  //идем по строке
+  for (i = 0; i <= 9; i++) {
+    for(j = 0; j < digits.length; j++){
+      if(board[horizon][i] === digits[j])
+    }
   }
 
 }
