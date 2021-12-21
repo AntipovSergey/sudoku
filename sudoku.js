@@ -1,13 +1,8 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
 
 const solve = (boardString) => {
 // Создаем доску
   const board = [];
-  console.log(boardString);
+  // console.log(boardString);
   for (let i = 0; i < 9; i++) {
     board.push(
       boardString.slice(i * 9, i * 9 + 9)
@@ -69,7 +64,7 @@ const solve = (boardString) => {
     return true;
   };
 // Заполняем судоку
-  const fill = () => {
+  const fillSudoku = () => {
     const currPos = findEmpty(board);
 
     if (currPos === null) {
@@ -79,57 +74,50 @@ const solve = (boardString) => {
       const currNum = i.toString();
       const isValid = validate(currNum, currPos, board);
       if (isValid) {
-        const [x, y] = currPos;
-        board[x][y] = currNum;
+        const [a, b] = currPos;
+        board[a][b] = currNum;
 
-        if (fill()) {
+        if (fillSudoku()) {
           return true;
         }
 
-        board[x][y] = '.';
+        board[a][b] = '.';
       }
     }
     return false;
   }
-  fill();
+  fillSudoku();
   return board;
 }
 
-// solve(boardString);
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(fun ) {
-  const newArr = fun;
-  for ( let i = 0; i < 9; i++ ) {
-    for ( let j = 0; j < 9; j++) {
-      if ( newArr[i][j]!== ".") {
-        return true;
-      }else{
-        return false;
-      }
+
+// проверка на number 
+function isSolved(fun) {
+  const arr = fun.flat()
+  for ( let i = 0; i < arr.length; i++ ) { 
+    if (Number(arr[i])) {
+      return true;
+    }
+    else {
+      return false;
     }
   }
-  
 }
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
+// функуция "красиво" 
 function prettyBoard(sol) {
-let array = sol.join("\n")
-let newArr = [];
-for ( i = 0; i < array.length; i++) {
-if ( array[i] !== ",") {
-  newArr.push(array[i]);
+  let array = sol.join("\n") 
+  let newArr = [];
+  for ( i = 0; i < array.length; i++) {
+    if ( array[i] !== ",") {
+    newArr.push(array[i]);
+    }
+  }
+  let array2 = newArr.join(" ");
+  return ` ${array2}`;
 }
-}
-let array2 = newArr.join(" ");
-return array2;
-}
+
+
 
 // Exports all the functions to use them in another file.
 module.exports = {

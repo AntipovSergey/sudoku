@@ -23,7 +23,7 @@ function readAndSolve(err, data) {
 
 
   const solvedPuzzle = sudoku.solve(puzzle);
-  console.log(solvedPuzzle);
+  // console.log(solvedPuzzle);
 
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log('The board was solved!');
