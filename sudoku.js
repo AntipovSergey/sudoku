@@ -1,8 +1,8 @@
 /* eslint-disable no-plusplus */
-const fs = require('fs');
+// const fs = require('fs');
 const sudokuParse = require('./runner');
 
-const content2 = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
+// const content2 = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
 const empty = require('./findEmpty');
 const check = require('./index');
@@ -38,9 +38,9 @@ function fc(content, number_) {
 
   numbers(board, empty(board));
   console.log('Output >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', number_);
-  // console.table(board);
+  console.table(board);
   return board;
 }
-console.table(fc(content2, 14));
+// console.table(fc(content2, 14));
 
 module.exports = fc;
