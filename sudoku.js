@@ -4,7 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 
-function solve(boardString) {
+const solve = (boardString) => {
 // Создаем доску
   const board = [];
   console.log(boardString);
@@ -35,8 +35,10 @@ function solve(boardString) {
     return null;
   };
 // Встречается ли это число в после
+
   const validate = (num, pos, board) => {
     const [r, c] = pos;
+
 
     // Проверяем строки 
     for (let i = 0; i < size; i++) {
@@ -67,7 +69,7 @@ function solve(boardString) {
     return true;
   };
 // Заполняем судоку
-  const solve1 = () => {
+  const fill = () => {
     const currPos = findEmpty(board);
 
     if (currPos === null) {
@@ -80,7 +82,7 @@ function solve(boardString) {
         const [x, y] = currPos;
         board[x][y] = currNum;
 
-        if (solve1()) {
+        if (fill()) {
           return true;
         }
 
@@ -91,7 +93,8 @@ function solve(boardString) {
     return false;
   };
 
-  solve1();
+  fill();
+
   return board;
 }
 
@@ -100,8 +103,17 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
-
+function isSolved(solve) {
+// console.log('solve>>>', solve)
+  return solve.map((el) => el.map((val) => {
+    for (let i = 0; i < val.length; i++) {
+      if (val.indexOf(val[i]) !== val.lastIndexOf(val[i])) {
+        return false
+      } else {
+        return true
+      }
+    }
+  }))
 }
 
 // Takes in a board in some form and

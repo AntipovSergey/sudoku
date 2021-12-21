@@ -12,8 +12,6 @@ const sudoku = require('./sudoku');
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
   const puzzle = content.split('\n')[puzzleNumber];
-  console.log('content>>>', content);
-  console.log('puzzle>>>', puzzle);
   return puzzle;
 }
 
@@ -22,10 +20,10 @@ function readAndSolve(err, data) {
     throw err;
   }
   const puzzle = sudokuParse(data);
-  console.log('puzzle >>>', puzzle);
+
 
   const solvedPuzzle = sudoku.solve(puzzle);
-  console.table(solvedPuzzle);
+  console.log(solvedPuzzle);
 
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log('The board was solved!');

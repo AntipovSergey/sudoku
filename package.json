@@ -4,7 +4,8 @@
   "description": "## Введение",
   "main": "runner.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node runner.js"
   },
   "repository": {
     "type": "git",
