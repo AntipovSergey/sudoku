@@ -89,12 +89,9 @@ const solve = (boardString) => {
         board[x][y] = '.';
       }
     }
-
     return false;
-  };
-
+  }
   fill();
-
   return board;
 }
 
@@ -103,17 +100,18 @@ const solve = (boardString) => {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(solve) {
-// console.log('solve>>>', solve)
-  return solve.map((el) => el.map((val) => {
-    for (let i = 0; i < val.length; i++) {
-      if (val.indexOf(val[i]) !== val.lastIndexOf(val[i])) {
-        return false
-      } else {
-        return true
+function isSolved(fun ) {
+  const newArr = fun;
+  for ( let i = 0; i < 9; i++ ) {
+    for ( let j = 0; j < 9; j++) {
+      if ( newArr[i][j]!== ".") {
+        return true;
+      }else{
+        return false;
       }
     }
-  }))
+  }
+  
 }
 
 // Takes in a board in some form and
@@ -121,8 +119,16 @@ function isSolved(solve) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
+function prettyBoard(sol) {
+let array = sol.join("\n")
+let newArr = [];
+for ( i = 0; i < array.length; i++) {
+if ( array[i] !== ",") {
+  newArr.push(array[i]);
+}
+}
+let array2 = newArr.join(" ");
+return array2;
 }
 
 // Exports all the functions to use them in another file.
