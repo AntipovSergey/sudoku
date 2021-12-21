@@ -6,6 +6,7 @@
 
 function solve(boardString) {
   const board = [];
+  console.log(boardString);
   for (let i = 0; i < 9; i++) {
     board.push(
       boardString.slice(i * 9, i * 9 + 9)
@@ -17,6 +18,8 @@ function solve(boardString) {
         }),
     );
   }
+ 
+
   const size = 9;
   const boxSize = 3;
   
@@ -31,25 +34,55 @@ function solve(boardString) {
   return null;
 }
 
+//
 
 function solveOne (board) {
   const currPos = findEmpty(board)
+  console.log(currPos, "currPos");
   if (currPos === null) {
     return true;
+  }  
+  for ( let i = 1; i < size+1 ; i++) {
+    const currNum = i;
+    const isvalid = validate(currNum,currPos,board);
+  } return false;
+}
+console.log(solveOne(board));
+
+function validate(num,pos,board) {
+  const [r,c] = pos;
+  // проверка (rows) 
+  for ( let i = 0; i < size; i++) {
+    if (board[i][c] === num && i !== r) {
+      return false;
+    }
   }
-  
-for ( let i = 0; i < size ; i++) {
-  const currNum = i;
-  const isvalid = validate( currNum,currPos,board);
-} return false;
-}
- function validate(num,pos,board) {
-const [r,c] = pos;
-for ( let i = 0; i < size; i++) {
-  
-}
+  console.log();
+  // проверка (col) 
+  for ( let i = 0; i < size; i++) {
+    if (board[r][i] === num && i !== c) {
+      return false;
+    }
  }
+ //проверка 3x3
+  const boxRow = Math.floor(currentRow / 3) * 3;
+  const boxCol = Math.floor(currentCol / 3) * 3;
+    for (let i = 1; i < boxRow + 3; i++) {
+    for (let j = 1; i < boxCol + 3; j++) {
+      if (board[i][j] === currentNum && i !== currentRow && j !== currentCol) {
+        return false; //!== currentRow && j !== currentCol исключает проверку текущего числа
+      }
+    }
+  }
+  console.log(boxRow, "row");
+  console.log(boxCol, "col");
+
+
+  return true;
 }
+}
+
+
 
 
 // solve(boardString);
