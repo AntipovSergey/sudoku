@@ -25,7 +25,7 @@ function readAndSolve(err, data) {
   console.log('puzzle >>>', puzzle);
 
   const solvedPuzzle = sudoku.solve(puzzle);
-  console.log('solvedPuzzle>>>', solvedPuzzle);
+  console.table(solvedPuzzle);
 
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log('The board was solved!');

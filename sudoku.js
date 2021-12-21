@@ -5,6 +5,7 @@
 // How you represent your board is up to you!
 
 function solve(boardString) {
+// Создаем доску
   const board = [];
   console.log(boardString);
   for (let i = 0; i < 9; i++) {
@@ -13,77 +14,86 @@ function solve(boardString) {
         .split('')
         .map((el) => {
           if (el === '-') {
-            return 0;
-          } return Number(el);
+            return '.';
+          } return el;
         }),
     );
   }
- 
-
+  // Задаем размер поля
   const size = 9;
+  // Задаем размер поля 3х3
   const boxSize = 3;
-  
-  function findEmpty(board)  {
-  for (let r = 0; r < size; r++) {
-    for ( let c = 0; c < size; c++) {
-      if ( board[r][c] === 0) {
-        return [r,c];
+  // Ищем пустые клетки и меняем их на точки
+  const findEmpty = (board) => {
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board[r][c] === '.') {
+          return [r, c];
+        }
       }
     }
-  }
-  return null;
-}
+    return null;
+  };
+// Встречается ли это число в после
+  const validate = (num, pos, board) => {
+    const [r, c] = pos;
 
-//
+    // Проверяем строки 
+    for (let i = 0; i < size; i++) {
+      if (board[i][c] === num && i !== r) {
+        return false;
+      }
+    }
 
-function solveOne (board) {
-  const currPos = findEmpty(board)
-  console.log(currPos, "currPos");
-  if (currPos === null) {
+    // Проверяем колонны
+    for (let i = 0; i < size; i++) {
+      if (board[r][i] === num && i !== c) {
+        return false;
+      }
+    }
+
+    // Проверяем 3х3 квадрат 
+    const boxRow = Math.floor(r / boxSize) * boxSize;
+    const boxCol = Math.floor(c / boxSize) * boxSize;
+
+    for (let i = boxRow; i < boxRow + boxSize; i++) {
+      for (let j = boxCol; j < boxCol + boxSize; j++) {
+        if (board[i][j] === num && i !== r && j !== c) {
+          return false;
+        }
+      }
+    }
+
     return true;
-  }  
-  for ( let i = 1; i < size+1 ; i++) {
-    const currNum = i;
-    const isvalid = validate(currNum,currPos,board);
-  } return false;
-}
-console.log(solveOne(board));
+  };
+// Заполняем судоку
+  const solve1 = () => {
+    const currPos = findEmpty(board);
 
-function validate(num,pos,board) {
-  const [r,c] = pos;
-  // проверка (rows) 
-  for ( let i = 0; i < size; i++) {
-    if (board[i][c] === num && i !== r) {
-      return false;
+    if (currPos === null) {
+      return true;
     }
-  }
-  console.log();
-  // проверка (col) 
-  for ( let i = 0; i < size; i++) {
-    if (board[r][i] === num && i !== c) {
-      return false;
-    }
- }
- //проверка 3x3
-  const boxRow = Math.floor(currentRow / 3) * 3;
-  const boxCol = Math.floor(currentCol / 3) * 3;
-    for (let i = 1; i < boxRow + 3; i++) {
-    for (let j = 1; i < boxCol + 3; j++) {
-      if (board[i][j] === currentNum && i !== currentRow && j !== currentCol) {
-        return false; //!== currentRow && j !== currentCol исключает проверку текущего числа
+    for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, board);
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (solve1()) {
+          return true;
+        }
+
+        board[x][y] = '.';
       }
     }
-  }
-  console.log(boxRow, "row");
-  console.log(boxCol, "col");
 
+    return false;
+  };
 
-  return true;
+  solve1();
+  return board;
 }
-}
-
-
-
 
 // solve(boardString);
 // Returns a boolean indicating whether
@@ -92,9 +102,7 @@ function validate(num,pos,board) {
 // form `solve` returns.
 function isSolved(board) {
 
-
 }
-
 
 // Takes in a board in some form and
 // returns a String that's well formatted
