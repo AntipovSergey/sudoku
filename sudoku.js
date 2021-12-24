@@ -3,7 +3,10 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+const { strictEqual } = require('assert');
 const fs = require('fs');
+
+
 const text = fs.readFileSync('./project-sudoku/sudoku-puzzles.txt', 'utf-8').split('\n')[0]
 function solve(boardString) {
   let arr = []
@@ -13,6 +16,7 @@ function solve(boardString) {
 return console.table(arr);
 }
 solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')
+
 
 
 // Returns a boolean indicating whether
@@ -32,6 +36,17 @@ function isSolved(board) {
 function prettyBoard(board) {
 
 }
+
+function randomNum (str){
+	let num = 0;
+	for ( let i=0;i<str.length; i+=1 ){
+		if (str[i] === '-'){
+			 return Math.floor(Math.random()*9)
+			}			
+		}
+	}
+	console.log (randomNum('1-58-2----9-'))
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
