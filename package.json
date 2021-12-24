@@ -1,0 +1,29 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "jest spec/sudoku.spec.js",
+    "start": "node runner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexGunin/project-sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexGunin/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/AlexGunin/project-sudoku#readme",
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  },
+  "dependencies": {
+    "jest": "^27.4.5"
+  }
+}
