@@ -3,21 +3,15 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-
 function getUpdateTable(matrixSudoku) {
-	console.log('START')
 	for (let row = 0; row < matrixSudoku.length; row += 1) {
 		const curRow = matrixSudoku[row];
 		for (let col = 0; col < curRow.length; col += 1) {
-			if(matrixSudoku[row][col] === '-') {
-				const check = checker(row,col,matrixSudoku);
-				if(check) {
-					matrixSudoku[row][col] = check;
-				}
-				else{
-					matrixSudoku[row][col] = check;
-				}
+			const check = checker(row,col,matrixSudoku);
+			if(matrixSudoku[row][col] === '-' && check) {
+				matrixSudoku[row][col] = check;
 			}
+
 		}
 	}
 
@@ -47,7 +41,7 @@ function getAllowedValue(row,col,arr){
 
 function checker(row,col,arr) {
 	const allowValue = getAllowedValue(row,col,arr)
-	return allowValue.length === 1 ? allowValue[0] : allowValue
+	return allowValue.length === 1 ? allowValue[0] : null
 }
 
 function getVerticalLine(col,arr){
@@ -92,7 +86,15 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+	const solvedPuzzle = board.flat()
+	return solvedPuzzle.reduce((acc,cur,i)=> {
+		if(i % 9 === 0)  {
+			acc += "\n"+`${cur} `
+			return acc
+		}
+		acc += ` ${cur} `
+		return acc
+	},'')
 }
 
 // Exports all the functions to use them in another file.
