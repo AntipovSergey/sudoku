@@ -26,9 +26,27 @@ function prettyBoard(board) {
 
 }
 
+function f0(boardString) {
+	const arr0 = []
+	let k = 0;
+	for (let i = 0; i < 9; i++) {
+		arr0[i] = []
+		for (let j = 0; j < 9; j++) {
+			arr0[i].push(boardString[k])
+			k++
+		}
+		arr0.push(arr0[i])
+		arr0.pop()
+	}
+	return arr0;
+}
+
+
+
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
 	isSolved: isSolved,
-	prettyBoard: prettyBoard
+	prettyBoard: prettyBoard,
+	f0: f0
 }
