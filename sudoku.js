@@ -3,7 +3,12 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+const fs = require('fs');
+const text = fs.readFileSync('./project-sudoku/sudoku-puzzles.txt', 'utf-8')
+console.log(text)
 function solve(boardString) {
+
+
 
 }
 
