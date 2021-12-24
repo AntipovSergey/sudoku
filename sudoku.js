@@ -3,17 +3,29 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-const { strictEqual } = require('assert');
-const fs = require('fs');
 
-
-const text = fs.readFileSync('./project-sudoku/sudoku-puzzles.txt', 'utf-8').split('\n')[0]
-function solve(boardString) {
+function randomNum (str){
+	let num = 0;
+	
+	for ( let i=0;i<str.length; i+=1 ){
+	  let random = Math.floor(Math.random()*9);
+		if (str[i] === '-'){
+			  str[i]= random;
+			}			
+		}
+		return str
+	}
+	
+function solve(str) {
+  
   let arr = []
-  for(let i = 0; i < boardString.length; i+=9){
- arr.push(boardString.split('').slice(i,i+9))
+  for(let i = 0; i < str.length; i+=9){
+    let a = str.split('').slice(i,i+9)
+ arr.push(randomNum(a))
   }
-return console.table(arr);
+  
+  
+return console.log(arr);
 }
 solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')
 
@@ -54,3 +66,12 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+function solve(boardString) {
+  let arr = []
+  for(let i = 0; i < boardString.length; i+=9){
+arr.push(boardString.split('').slice(i,i+9))
+  }
+return console.log(arr);
+}
+solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
