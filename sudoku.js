@@ -1,3 +1,4 @@
+
 function f2(i, j, arr0) {
   for (let k = 0; k < 9; ++k) {
     arr0[i].push(arr0[k][j])
@@ -20,10 +21,6 @@ function solve(boardString) {
   
 }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
 function isSolved(board) {
 
 }
@@ -64,4 +61,3 @@ module.exports = {
   f3,
   f0: f0
 }
-
