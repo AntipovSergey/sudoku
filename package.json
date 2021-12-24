@@ -1,0 +1,23 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "jest spec/*[sS]pec.js -i",
+    "start": "node runner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyeibs/project-sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyeibs/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/cyeibs/project-sudoku#readme",
+  "dependencies": {
+    "jest": "^27.4.5"
+  }
+}
