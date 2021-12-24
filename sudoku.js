@@ -4,8 +4,8 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 const fs = require('fs');
-const text = fs.readFileSync('./project-sudoku/sudoku-puzzles.txt', 'utf-8')
-console.log(text)
+const text = fs.readFileSync('./project-sudoku/sudoku-puzzles.txt', 'utf-8').split('\n')[0]
+console.log(text.split(''))
 function solve(boardString) {
 
 
