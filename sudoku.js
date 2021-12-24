@@ -5,17 +5,18 @@
 // How you represent your board is up to you!
 const { strictEqual } = require('assert');
 const fs = require('fs');
-const text = fs.readFileSync('./project-sudoku/sudoku-puzzles.txt', 'utf-8')
-console.log(text)
-// function solve(boardString) {
-// 	const Array = [];
-// 	for(let i = 0;i < 0; i+=1 )	({
-// 		// Array.push(string.slice(i,i+8).split(''));
-// 	}
-// 	// console.table(Array);
-// 	return Array
 
-// }
+
+const text = fs.readFileSync('./project-sudoku/sudoku-puzzles.txt', 'utf-8').split('\n')[0]
+function solve(boardString) {
+  let arr = []
+  for(let i = 0; i < boardString.length; i+=9){
+ arr.push(boardString.split('').slice(i,i+9))
+  }
+return console.table(arr);
+}
+solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')
+
 
 
 // Returns a boolean indicating whether
