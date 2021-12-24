@@ -1,4 +1,5 @@
 
+
 function f2(i, j, arr0) {
   for (let k = 0; k < 9; ++k) {
     arr0[i].push(arr0[k][j])
@@ -20,17 +21,26 @@ function f2(i, j, arr0) {
 function solve(boardString) {
   
 }
+function f4(arr1, arr2) {
+  const arr3 = []
+  for (let i = 0; i < arr1.length; ++i) {
+      if (arr2.includes(arr1[i])) {
+          arr3.push(arr1[i])
+      }
+  }
+  return arr3
+}
 
 function isSolved(board) {
 
 }
 
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
+// Принимает доску в той или иной форме и
+// возвращает хорошо отформатированную строку
+// для вывода на экран.
+// Плата ввода будет в любом
+// возврат из формы `resolve`.
 function prettyBoard(board) {
 
 }
@@ -57,7 +67,9 @@ module.exports = {
 	solve: solve,
 	isSolved: isSolved,
 	prettyBoard: prettyBoard,
+  f4: f4,
   f2,
   f3,
   f0: f0
+
 }
