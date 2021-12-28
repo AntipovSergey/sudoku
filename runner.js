@@ -12,7 +12,6 @@ const sudoku = require('./sudoku');
 // Получает одну головоломку из текстового файла.
 function sudokuParse(content, puzzleNumber = 0) {
   const puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
   return puzzle;
 }
 
@@ -22,7 +21,9 @@ function readAndSolve(err, data) {
   }
   const puzzle = sudokuParse(data);
   const arr = sudoku.f0(puzzle);
-  console.log(sudoku.f2(0, 1, arr));
+  const arr1 = sudoku.f2(0, 1, arr);
+  console.log(sudoku.f4(arr1, [3, 4, 6, 7, 8]));
+  console.log(sudoku.f3(0, 1, arr));
 
   const solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
@@ -39,3 +40,7 @@ fs.readFile(
   'utf-8',
   readAndSolve,
 );
+
+module.exports = {
+  sudokuParse,
+};

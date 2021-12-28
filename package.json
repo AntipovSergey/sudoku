@@ -4,7 +4,7 @@
   "description": "## Введение",
   "main": "runner.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "jest"
   },
   "repository": {
@@ -21,6 +21,7 @@
   "devDependencies": {
     "eslint": "^8.5.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3"
+    "eslint-plugin-import": "^2.25.3",
+    "jest": "^27.4.5"
   }
 }
