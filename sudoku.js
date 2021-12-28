@@ -4,6 +4,7 @@ function f0(boardString) {
   return new Array(9).fill(new Array(9).fill(0)).map((item) => item.map(() => boardString[++s]));
 }
 
+// fills digit instead '-'
 function f1(arr) {
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
@@ -44,20 +45,16 @@ function f3(row, col, arr) {
 function f4(arr1, arr2) {
   return arr1.filter((item) => arr2.includes(item));
 }
+
+// return count of simbol '-'
 function f5(arr) {
   return arr.reduce((accum, item) => accum + item.reduce((acc, elem) => (elem === '-' ? acc + 1 : acc), 0), 0);
 }
 
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+// starts function f1 for every simbol '-'
 function solve(boardString) {
   const arr = f0(boardString);
-  console.table(arr);
   let count = f5(arr);
-  console.log(count);
   while (count > 0) {
     f1(arr, count);
     count -= 1;
@@ -65,24 +62,15 @@ function solve(boardString) {
   return arr;
 }
 
+// checks if array contain simbol '-'
 function isSolved(board) {
-
-}
-
-// Принимает доску в той или иной форме и
-// возвращает хорошо отформатированную строку
-// для вывода на экран.
-// Плата ввода будет в любом
-// возврат из формы `resolve`.
-function prettyBoard(board) {
-
+  return !f5(board);
 }
 
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
   isSolved,
-  prettyBoard,
   f0,
   f1,
   f2,
