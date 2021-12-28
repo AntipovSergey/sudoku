@@ -2,6 +2,7 @@ const fs = require('fs');
 const {
   f0,
   f2,
+  f3,
   f4,
 } = require('../sudoku');
 
@@ -29,9 +30,15 @@ describe('check functions', () => {
     expect(f2(2, 4, arr)).toEqual([3, 5]);
     expect(f2(2, 1, arr)).toEqual([5, 7]);
   });
+  it('test f3', () => {
+    expect(f3(0, 1, arr)).toEqual([3, 4, 6, 7, 8]);
+    expect(f3(2, 4, arr)).toEqual([1, 3, 5, 9]);
+    expect(f3(2, 1, arr)).toEqual([3, 4, 6, 7, 8]);
+  });
   it('test f4', () => {
     expect(f4([4, 7], [1, 2, 3, 4, 8, 7])).toEqual([4, 7]);
     expect(f4([3], [4, 6, 3])).toEqual([3]);
     expect(f4([1, 2, 3], [1, 2, 3])).toEqual([1, 2, 3]);
+    expect(f4(f3(0, 1, arr), f2(0, 1, arr))).toEqual([4, 7]);
   });
 });
