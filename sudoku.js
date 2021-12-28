@@ -4,22 +4,8 @@ function f0(boardString) {
 }
 
 function f2(i, j, arr0) {
-  const arr4 = [...arr0[i]].concat(new Array(9).fill(0).map((item, index) => arr0[index][j]));
-  const arr5 = new Array(9).fill(0).filter((item, index, arr) => !arr.includes(index + 1));
-
-  // for (let k = 0; k < 9; k += 1) {
-  //   arr0[i].push(arr0[k][j]);
-  // }
-  // const arr1 = [];
-  // for (let x = 1; x < 10; x += 1) {
-  //   const number = x.toString();
-  //   if (!arr0[i].includes(number)) {
-  //     arr1.push(number);
-  //   }
-  // }
-  console.table(arr0);
-  console.log(arr4);
-  console.log(arr5);
+  const arr = [...arr0[i]].concat(new Array(9).fill(0).map((item, index) => arr0[index][j]));
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9].filter((item) => !arr.includes(item.toString()));
 }
 
 // Takes a board as a string in the format
