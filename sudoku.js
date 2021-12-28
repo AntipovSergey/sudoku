@@ -4,6 +4,21 @@ function f0(boardString) {
   return new Array(9).fill(new Array(9).fill(0)).map((item) => item.map(() => boardString[++s]));
 }
 
+function f1(arr) {
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; j += 1) {
+      let concidence = [];
+      if (arr[i][j] === '-') {
+        concidence = f4(f3(i, j, arr), f2(i, j, arr));
+      }
+      if (concidence.length === 1) {
+        arr[i][j] = concidence[0].toString();
+      }
+    }
+  }
+  return arr;
+}
+
 // search in row and column
 function f2(i, j, arr0) {
   const arr = [...arr0[i]].concat(new Array(9).fill(0).map((item, index) => arr0[index][j]));
@@ -15,7 +30,6 @@ function f3(row, col, arr) {
   const result = [];
   const leftCol = Math.floor(col / 3) * 3;
   const topRow = Math.floor(row / 3) * 3;
-
   for (let i = topRow; i < topRow + 3; i += 1) {
     for (let j = leftCol; j < leftCol + 3; j += 1) {
       if (arr[i][j] !== '-') {
@@ -30,6 +44,9 @@ function f3(row, col, arr) {
 function f4(arr1, arr2) {
   return arr1.filter((item) => arr2.includes(item));
 }
+function f5(arr) {
+  return arr.reduce((accum, item) => accum + item.reduce((acc, elem) => (elem === '-' ? acc + 1 : acc), 0), 0);
+}
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -37,7 +54,15 @@ function f4(arr1, arr2) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
+  const arr = f0(boardString);
+  console.table(arr);
+  let count = f5(arr);
+  console.log(count);
+  while (count > 0) {
+    f1(arr, count);
+    count -= 1;
+  }
+  return arr;
 }
 
 function isSolved(board) {
@@ -59,7 +84,9 @@ module.exports = {
   isSolved,
   prettyBoard,
   f0,
+  f1,
   f2,
   f3,
   f4,
+  f5,
 };

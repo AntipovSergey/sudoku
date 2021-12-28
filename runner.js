@@ -10,7 +10,7 @@ const sudoku = require('./sudoku');
 // так что вы должны их удалить.
 
 // Получает одну головоломку из текстового файла.
-function sudokuParse(content, puzzleNumber = 0) {
+function sudokuParse(content, puzzleNumber = 5) {
   const puzzle = content.split('\n')[puzzleNumber];
   return puzzle;
 }
@@ -21,11 +21,15 @@ function readAndSolve(err, data) {
   }
   const puzzle = sudokuParse(data);
   const arr = sudoku.f0(puzzle);
-  const arr1 = sudoku.f2(0, 1, arr);
-  console.log(sudoku.f4(arr1, [3, 4, 6, 7, 8]));
-  console.log(sudoku.f3(0, 1, arr));
+  // console.table(arr);
+  // const arr1 = sudoku.f2(0, 1, arr);
+  // console.log(sudoku.f3(0, 1, arr));
+  // console.log(sudoku.f4(arr1, [3, 4, 6, 7, 8]));
+  // console.table(sudoku.f1(arr));
+  // console.log(sudoku.f5(arr));
 
   const solvedPuzzle = sudoku.solve(puzzle);
+  console.table(solvedPuzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log('The board was solved!');
     console.log(sudoku.prettyBoard(solvedPuzzle));
