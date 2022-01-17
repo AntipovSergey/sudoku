@@ -1,27 +1,40 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(boardString) {
+const fs = require('fs');
+const sudoku = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
+
+function sudokuParse(content, puzzleNumber = 0) {
+  return content.split('\n')[puzzleNumber];
 }
 
+let puzzle = sudokuParse(sudoku, 0);
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
+function solve(puzzle) {
+  let board = [];
+  let rowBoard = [];
+  for (let i = 0; i < puzzle.length; i++) {
+    rowBoard.push(puzzle[i]);
+    if (rowBoard.length === 9) {
+      board.push(rowBoard);
+      rowBoard = [];
+    }
+  }
+  return board;
+}
+
+console.table(solve(puzzle));
+
+// Создать функцию, которая будет находить пустые ячейки getEmptyCell
+// Создать функцию, которая будет находить возможное решение для ряда
+// Создать функцию, которая будет находить возможное решение для столбца
+// Создать функцию, которая будет определять квадрат для текущей ячейки
+// Создать функцию, которая будет находить возможное решение для квадрата
+// Создать функцию проверки, на правильное заполнение доски судоку, если True то возращаем заполненную доску, а если False Err
 function isSolved(board) {
 
 }
 
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
+
 function prettyBoard(board) {
 
 }
