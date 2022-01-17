@@ -6,7 +6,7 @@ function sudokuParse(content, puzzleNumber = 0) {
   return content.split('\n')[puzzleNumber];
 }
 
-let puzzle = sudokuParse(sudoku, 0);
+let puzzle = sudokuParse(sudoku, 15);
 
 function solve(puzzle) {
   let board = [];
@@ -71,8 +71,27 @@ function getAvailableSolutions(board, cell) {
 
 
 function isSolved(board) {
-
+for (let row = 0; row < board.length; row++) {
+ if (board[row].reduce((accum, currentValue) => 
+  accum + Number(currentValue), 0) != 45) return false
+  }
+  for (let col = 0; col < board.length; col++){
+    let sum = 0;
+    for (let row = 0; row < board[col].length; row++){
+      sum += board[row][col];
+    }
+    if (sum != 45) return false
+  }
+  for (let qr = 0; qr < board.length; qr+=3) {
+    for (let qc = 0; qc < board.length; qc+=3){
+      let quad = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3))
+    }
+    if (quad.reduce((accum, currentValue) => 
+    accum + Number(currentValue), 0) != 45) return false
+  }
+  return true;
 }
+console.log(isSolved(solve(puzzle)));
 
 
 
