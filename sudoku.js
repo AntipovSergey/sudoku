@@ -48,6 +48,28 @@ function getEmptyCell(board) {
 console.log(getEmptyCell(solve(puzzle)));
 
 
+
+function getAvailableSolutions(board, cell) {
+  let solutions = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+  //console.log('Start: ', solutions)
+  solutions = solutions.filter((el) => !board[cell.row].includes(el)) // отфильтровали все решения по ряду
+  //console.log('Filter row: ', solutions)
+
+  for (let r = 0; r < board.length; r++) {
+    solutions = solutions.filter((el) => el !== board[r][cell.col]) // отфильтровали все решения по столбцу
+  }
+  //console.log('Filter col: ', solutions)
+
+  let qr = Math.floor(cell.row / 3) * 3 // координаты верхнего левого угла квадрата
+  let qc = Math.floor(cell.col / 3) * 3
+  let quad = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3)) // вырезали квадрат из доски
+
+  solutions = solutions.filter((el) => !quad.includes(el))  // отфильтровали все решения по квадрату
+  //console.log('Filter quad: ', solutions)
+  return solutions
+}
+
+
 function isSolved(board) {
 
 }
