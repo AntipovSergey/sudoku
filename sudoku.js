@@ -29,6 +29,25 @@ console.table(solve(puzzle));
 // Создать функцию, которая будет определять квадрат для текущей ячейки
 // Создать функцию, которая будет находить возможное решение для квадрата
 // Создать функцию проверки, на правильное заполнение доски судоку, если True то возращаем заполненную доску, а если False Err
+
+function getEmptyCell(board) {
+  let listEmptyCell = {
+    row: -1,
+    col: -1,
+  };
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board[row].length; col++) {
+      if (board[row][col] === '-') {
+        listEmptyCell.row = row;
+        listEmptyCell.col = col;
+      }
+    }
+  }
+  return listEmptyCell;
+}
+console.log(getEmptyCell(solve(puzzle)));
+
+
 function isSolved(board) {
 
 }
@@ -44,4 +63,4 @@ module.exports = {
 	solve: solve,
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
-}
+};
