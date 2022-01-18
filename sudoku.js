@@ -2,11 +2,15 @@ const fs = require('fs');
 const sudoku = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 
 
+function prettyBoard(board) {
+  return board.map((el) => el.join(' ')).join('\n')
+}
+
 function sudokuParse(content, puzzleNumber = 0) {
   return content.split('\n')[puzzleNumber];
 }
 
-let puzzle = sudokuParse(sudoku, 15);
+let puzzle = sudokuParse(sudoku, 14);
 
 function solve(puzzle) {
   let board = [];
@@ -21,7 +25,7 @@ function solve(puzzle) {
   return board;
 }
 
-console.table(solve(puzzle));
+// console.table(solve(puzzle));
 
 // Создать функцию, которая будет находить пустые ячейки getEmptyCell
 // Создать функцию, которая будет находить возможное решение для ряда
@@ -40,14 +44,14 @@ function getEmptyCell(board) {
       if (board[row][col] === '-') {
         listEmptyCell.row = row;
         listEmptyCell.col = col;
+        return listEmptyCell;
       }
     }
   }
-  return listEmptyCell;
 }
-console.log(getEmptyCell(solve(puzzle)));
+// console.log(getEmptyCell(solve(puzzle)));
 
-function isNotSolved (board) {
+function isNotSolved(board) {
   for (let row = 0; row < board.length; row++) {
     if (board[row].includes('-')) return true;
   }
@@ -75,37 +79,50 @@ function getAvailableSolutions(board, cell) {
 
 
 function isSolved(board) {
-for (let row = 0; row < board.length; row++) {
- if (board[row].reduce((accum, currentValue) => 
-  accum + Number(currentValue), 0) != 45) return false
+  for (let row = 0; row < board.length; row++) {
+    if (board[row].reduce((accum, currentValue) =>
+      accum + Number(currentValue), 0) != 45) return false
   }
-  for (let col = 0; col < board.length; col++){
+
+  for (let col = 0; col < board.length; col++) {
     let sum = 0;
-    for (let row = 0; row < board[col].length; row++){
-      sum += board[row][col];
+    for (let row = 0; row < board[col].length; row++) {
+      sum += Number(board[row][col]);
     }
     if (sum != 45) return false
   }
-  for (let qr = 0; qr < board.length; qr+=3) {
-    for (let qc = 0; qc < board.length; qc+=3){
+
+  for (let qr = 0; qr < board.length; qr += 3) {
+    for (let qc = 0; qc < board[qr].length; qc += 3) {
       let quad = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3))
+      if (quad.reduce((accum, currentValue) => accum + Number(currentValue), 0) != 45) return false
     }
-    if (quad.reduce((accum, currentValue) => 
-    accum + Number(currentValue), 0) != 45) return false
   }
   return true;
 }
-console.log(isSolved(solve(puzzle)));
+// console.log(isSolved(solve(puzzle)));
 
 
-
-function prettyBoard(board) {
-
+function recourseSudoku(board) {
+  if (isNotSolved(board)) {
+    let cell = getEmptyCell(board)
+    let solutions = getAvailableSolutions(board, cell)
+    for (let i = 0; i < solutions.length; i++) {
+      board[cell.row][cell.col] = solutions[i]
+      recourseSudoku(board)
+      if (!isNotSolved(board)) return board
+      board[cell.row][cell.col] = '-'
+    }
+  }
 }
+
+let sudokuSolved = recourseSudoku(solve(puzzle))
+console.log(prettyBoard(sudokuSolved));
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 };
