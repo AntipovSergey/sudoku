@@ -47,7 +47,11 @@ function getEmptyCell(board) {
 }
 console.log(getEmptyCell(solve(puzzle)));
 
-
+function isNotSolved (board) {
+  for (let row = 0; row < board.length; row++) {
+    if (board[row].includes('-')) return true;
+  }
+}
 
 function getAvailableSolutions(board, cell) {
   let solutions = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
