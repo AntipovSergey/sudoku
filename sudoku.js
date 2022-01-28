@@ -1,12 +1,26 @@
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  const board = boardString.split('').reduce((acc, el, ind) => {
+    const i = Math.trunc(ind / 9);
+    if (acc[i] === undefined) acc[i] = [];
+    acc[i].push(el);
+    return acc;
+  }, []);
+
+  for (let i = 0; i < board.length; i += 1) {
+    for (let j = 0; j < board.length; j += 1) {
+      if (board[i][j] !== '-') continue;
+      const variants = [];
+      
+    }
+  }
 
 }
-
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -15,7 +29,6 @@ function solve(boardString) {
 function isSolved(board) {
 
 }
-
 
 // Takes in a board in some form and
 // returns a String that's well formatted
