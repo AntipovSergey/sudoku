@@ -1,12 +1,32 @@
+const {getArr, getStr} = require('./VareraJan.js')
+
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  const originMassive = (typeof(boardString) === 'string') ? getArr(boardString) : boardString
+  let checkReplace = 0;
+  // проверка на возможность проставить число
+  const getReplace = [0, 1, 'X'];
+  if (getReplace.length !== 0) {
+    const i = getReplace[0];
+    const j = getReplace[1];
+    const num = getReplace[2];
+    originMassive[i].splice(j, 1, num);
+    checkReplace += 1;
+  }
 
+  // if (checkReplace) {
+  //   // eslint-disable-next-line no-const-assign
+  //   originMassive = solve(originMassive);
+  // }
+  return getStr(originMassive);
 }
 
+console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
