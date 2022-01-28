@@ -36,7 +36,7 @@ function Checking () {
 
   //Check Column
   const possVar2 = [] //Возможные числа скорректированные на столбец 
-  for (let num = 1; num < 9; num++){
+  for (let num = 1; num <= 9; num++){
       if (arrColumn.includes(num.toString()) === false) {
         if (possVar.includes(num)) {
           possVar2.push(num)
@@ -47,7 +47,7 @@ function Checking () {
   //Создание переменных
   const boxSize = Math.sqrt(puzzle.length);
   const boxRow = Math.floor(r/boxSize)*boxSize
-  const boxColumn = boxRow + 2
+  // const boxColumn = boxRow + 2
   const possVar3 = []
   
   //Box in Array
@@ -76,4 +76,4 @@ function Checking () {
 }
 
 
-// console.log(Checking());
+console.log(Checking());
