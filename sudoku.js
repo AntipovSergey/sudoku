@@ -24,7 +24,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  return true;
+  return board.includes(0);
 }
 
 
