@@ -20,15 +20,17 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+  for (let i = 0; i < 5; i++) {
+    let puzzle = sudokuParse(data, i);
 
-  let solvedPuzzle = sudoku.solve(puzzle);
-  if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
-    console.log("The board wasn't solved :(");
+    let solvedPuzzle = sudoku.solve(puzzle);
+    if (sudoku.isSolved(solvedPuzzle)) {
+      console.log("\x1B[32mThe board was solved!\x1B[0m");
+      console.log(sudoku.prettyBoard(solvedPuzzle));
+    }
+    else {
+      console.log("\x1B[31m The board wasn't solved :( \x1B[0m");
+    }
   }
 }
 
