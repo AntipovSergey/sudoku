@@ -14,7 +14,6 @@ function solveRecursive(board, variant, indI, indJ) {
   let i = indJ === board.length - 1 ? indI + 1 : indI;
 
   for (; i < board.length; i += 1) {
-    let found = false;
     let wereSmth = false;
     for (let j = 0; j < board[i].length; j += 1) {
       if (bufBoard[i][j] !== '-') continue;
@@ -29,12 +28,10 @@ function solveRecursive(board, variant, indI, indJ) {
           return true;
         }
       }
-      if (!found) {
-        bufBoard[indI][indJ] = '-';
-        return false;
-      }
+      bufBoard[indI][indJ] = '-';
+      return false;
     }
-    if (!found && wereSmth) {
+    if (wereSmth) {
       bufBoard[indI][indJ] = '-';
       return false;
     }
