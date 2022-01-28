@@ -4,7 +4,7 @@ function createArray () {
   const array = []
   const newStr = anyString.replaceAll('-', '0');
   const arrayNumbers = newStr.split('')
-  for (let i = 0; i <= 9; i++) {
+  for (let i = 0; i < 9; i++) {
     array.push(arrayNumbers.slice((i * 9),((i + 1) * 9)))
   }
   return array;
