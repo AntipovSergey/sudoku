@@ -20,8 +20,6 @@ function isSolvedColumns(arr, cor, num){
   return true;
 }
 
-console.log(isSolvedColumns(invalidBoard, [4,4], 4))
-
 
 function isSolvedRows(arr, cor, num){
   for(i = 0 ; i < arr.length; i++){
@@ -33,7 +31,6 @@ function isSolvedRows(arr, cor, num){
   return true;
 }
 
-console.log(isSolvedRows(invalidBoard, [3,0], 2))
 
 
 module.exports = {isSolvedColumns, isSolvedRows}
