@@ -1,6 +1,5 @@
 function possibleVariants(indI, indJ, board) {
   const res = '123456789'.split('');
-  
 }
 
 // Takes a board as a string in the format
@@ -9,7 +8,6 @@ function possibleVariants(indI, indJ, board) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-
   const board = boardString.split('').reduce((acc, el, ind) => {
     const i = Math.trunc(ind / 9);
     if (acc[i] === undefined) acc[i] = [];
@@ -31,14 +29,14 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (board[i][j] === '-'){
-        return false
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; i += 1) {
+      if (board[i][j] === '-') {
+        return false;
       }
     }
   }
-  return true
+  return true;
 }
 
 // Takes in a board in some form and
@@ -47,12 +45,28 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-  return board.reduce((acc,el) => acc + el.join(' ') + '\n','')
+  return board.reduce((acc, el) => acc + el.join(' ') + '\n', '');
+}
+
+function solveBox(board, r, c) {
+  const boxSize = 3;
+  const res = [];
+  const boxRow = Math.floor(r / boxSize) * boxSize;
+  const boxCol = Math.floor(c / boxSize) * boxSize;
+
+  for (let i = 0; i < boxRow + boxSize; i += 1) {
+    for (let j = 0; j < boxCol + boxSize; i += 1) {
+      if (i !== r && j !== c && board[i][j] !== '-') {
+        res.push(board[i][j]);
+      }
+    }
+  }
+  return res;
 }
 
 // Exports all the functions to use them in another file.
 module.exports = {
-	solve: solve,
-	isSolved: isSolved,
-	prettyBoard: prettyBoard
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
 }
