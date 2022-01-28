@@ -2,18 +2,6 @@ const {
   eugenFunc: checkNum,
 } = require('check-numbers');
 
-const sudoku = [
-  [0, 9, 4, 0, 0, 0, 8, 3, 0],
-  [0, 0, 2, 3, 0, 6, 7, 4, 0],
-  [0, 5, 7, 2, 8, 0, 1, 0, 0],
-  [2, 0, 0, 4, 0, 0, 0, 0, 0],
-  [5, 0, 1, 7, 6, 0, 4, 2, 9],
-  [0, 0, 0, 9, 2, 8, 0, 6, 0],
-  [1, 3, 0, 0, 0, 0, 9, 8, 0],
-  [0, 4, 6, 8, 3, 1, 0, 5, 0],
-  [0, 0, 8, 0, 0, 0, 0, 0, 0]
-];
-
 function solveSudokuLinear(sudoku) {
   let isSolveChanged = true;
 
@@ -37,8 +25,6 @@ function solveSudokuLinear(sudoku) {
 
   return sudoku;
 }
-
-console.log(solveSudokuLinear(sudoku));
 
 module.exports = {
   solveSudokuLinear,
