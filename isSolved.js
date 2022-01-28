@@ -20,4 +20,3 @@ function isSolvedColumns(arr, cor, num){
   return true;
 }
 
-console.log(isSolvedColumns(invalidBoard, [4,4], 4))
