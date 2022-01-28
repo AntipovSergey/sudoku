@@ -6,8 +6,8 @@
 
 const size = 9;
 const findZero = (arr) => {
-  for (let row = 0; row < size; r++) {
-    for (let column = 0; column < size; c++) {
+  for (let row = 0; row < size; row++) {
+    for (let column = 0; column < size; column++) {
       if (arr[row][column] === 0) {
         return [row, column];
       }
@@ -19,21 +19,18 @@ const findZero = (arr) => {
 
 const checkPosition = (i, coord, parseBoard) => {
   const [row, column] = coord;
-  let resultRow = true;
-  let resultColumn = true;
-  for (let j = 0; j < parseBoard[row].length; i++) {
-    if (parseBoard[row][j] === i) { return resultRow = false; }
+
+  for (let j = 0; j < parseBoard[row].length; j++) {
+    if (parseBoard[row][j] === i) { return false; }
   }
 
-
-  for (let j = 0; j < parseBoard[column].length; i++) {
-    if (parseBoard[column][j] === i) { return resultColumn = false; }
+  for (let j = 0; j < parseBoard[column].length; j++) {
+    if (parseBoard[column][j] === i) { return false; }
   }
-
-  if ((resultColumn === false) || (resultColumn === false)) { return false }
 
   return true;
 }
+
 
 function solve(boardString) {
   //main - новая игра (доска)
@@ -41,85 +38,58 @@ function solve(boardString) {
 
   return solveAll(parsedBoard)
 }
-function parseBoard(arr) {
-  let main = []
-  for (let i = 0; i < arr.length; i += 9) {
-
-    main.push(arr.slice(i, i + 9).split(''));
-
-  }
-  for (let i = 0; i < main.length; i++) {
-    main[i] = main[i].map((el) => {
-      if (el === "-") {
-        return el = 0;
-      }
-      return el = parseInt(el)
-    })
-
-  }
-  return main
-}
-console.table(parseBoard(boardString));
 
 function parseBoard(arr) {
   let main = []
   for (let i = 0; i < arr.length; i += 9) {
-
-    main.push(arr.slice(i, i + 9).split(''));
-
-  }
-  for (let i = 0; i < main.length; i++) {
-    main[i] = main[i].map((el) => {
-      if (el == "-") {
-        return el = 0;
-      }
-      return el = parseInt(el)
-    })
-
-  }
-  return main
+    main.push(arr.slice(i, i + 9).replace(/-/gi, 0).split(''))//.map((el) => +el));
+  } return main;
 }
 
 function solveAll(board) {
-  const coord = findZero(parsedBoard)
-  const [r, c] = coord
+  const coord = findZero(board)
+
   if (coord) {
+    const [r, c] = coord
     for (let i = 1; i <= size; i++) {
-      if (checkPosition(i, coord, parsedBoard)) {
+      if (checkPosition(i, coord, board)) {
         board[r][c] = i;
-        if (solveAll(board[r][c])) {
-
+        if (solveAll(board)) {
+          return board
         }
-
       }
     }
-
-
-
-    return false // доска не решается
-  }
-
-  // Returns a boolean indicating whether
-  // or not the provided board is solved.
-  // The input board will be in whatever
-  // form `solve` returns.
-  function isSolved(board) {
+  } else {
+    console.log(board)
+    return board;
 
   }
 
+  return false
+}
 
-  // Takes in a board in some form and
-  // returns a String that's well formatted
-  // for output to the screen.
-  // The input board will be in whatever
-  // form `solve` returns.
-  function prettyBoard(board) {
 
-  }
+// Returns a boolean indicating whether
+// or not the provided board is solved.
+// The input board will be in whatever
+// form `solve` returns.
+function isSolved(board) {
+  console.log(board);
+}
 
-  // Exports all the functions to use them in another file.
-  module.exports = {
-    solve: solve,
-    isSolved: isSolved,
-    prettyBoard: prettyBoard
-  }
+
+// Takes in a board in some form and
+// returns a String that's well formatted
+// for output to the screen.
+// The input board will be in whatever
+// form `solve` returns.
+function prettyBoard(board) {
+
+}
+
+// Exports all the functions to use them in another file.
+module.exports = {
+  solve: solve,
+  isSolved: isSolved,
+  prettyBoard: prettyBoard
+}
