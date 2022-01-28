@@ -12,7 +12,7 @@
 // ];
 
 function checkNum(y, x, array) {
-  let entryNum = [1, 2, 3, 4, 5, 6, 7, 8, 9,]
+  let entryNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,]
   //let arr =[]
   for (let i = 0; i < array.length; i++) {
     entryNum.push(array[i][x])
