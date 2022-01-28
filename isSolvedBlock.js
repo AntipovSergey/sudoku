@@ -44,3 +44,6 @@ function isSolvedBlock(board, arr, num) {
 
 console.log(isSolvedBlock(validBoard, [7, 7], 3));
 
+module.exports = isSolvedBlock;
+
+
