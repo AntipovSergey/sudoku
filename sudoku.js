@@ -9,6 +9,7 @@ function possibleVariants(indI, indJ, board) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+
   const board = boardString.split('').reduce((acc, el, ind) => {
     const i = Math.trunc(ind / 9);
     if (acc[i] === undefined) acc[i] = [];
@@ -30,7 +31,14 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (board[i][j] === '-'){
+        return false
+      }
+    }
+  }
+  return true
 }
 
 // Takes in a board in some form and
