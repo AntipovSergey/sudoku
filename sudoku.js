@@ -1,7 +1,43 @@
-const {row, column} = require('./hh');
+const { row, column } = require('./hh');
 
 function possibleVariants(indI, indJ, board) {
   const res = '123456789'.split('');
+  const current = row(board, indI, indJ).concat(column(board, indI, indJ))
+    .concat(solveBox(board, indI, indJ));
+  return res.filter((el) => !current.includes(el));
+}
+
+function solveRecursive(board, variant, indI, indJ) {
+  const bufBoard = board;
+  bufBoard[indI][indJ] = variant;
+  if (isSolved(board)) return true;
+  let i = indJ === board.length - 1 ? indI + 1 : indI;
+
+  for (; i < board.length; i += 1) {
+    let wereSmth = false;
+    for (let j = 0; j < board[i].length; j += 1) {
+      if (bufBoard[i][j] !== '-') continue;
+      wereSmth = true;
+      const variants = possibleVariants(i, j, bufBoard);
+      if (!variants.length) {
+        bufBoard[indI][indJ] = '-';
+        return false;
+      }
+      for (let k = 0; k < variants.length; k += 1) {
+        if (solveRecursive(bufBoard, variants[k], i, j)) {
+          return true;
+        }
+      }
+      bufBoard[indI][indJ] = '-';
+      return false;
+    }
+    if (wereSmth) {
+      bufBoard[indI][indJ] = '-';
+      return false;
+    }
+  }
+  bufBoard[indI][indJ] = '-';
+  return false;
 }
 
 // Takes a board as a string in the format
@@ -10,19 +46,38 @@ function possibleVariants(indI, indJ, board) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  if (!boardString.length) {
+    console.log('there is nothing to solve');
+    return [];
+  }
   const board = boardString.split('').reduce((acc, el, ind) => {
     const i = Math.trunc(ind / 9);
     if (acc[i] === undefined) acc[i] = [];
     acc[i].push(el);
     return acc;
   }, []);
-
-  for (let i = 0; i < board.length; i += 1) {
-    for (let j = 0; j < board.length; j += 1) {
-      if (board[i][j] !== '-') continue;
-      // const variants = possibleVariants();
+  let i = 0;
+  let j = 0;
+  let found = false;
+  for (i = 0; i < board.length; i += 1) {
+    for (j = 0; j < board[i].length; j += 1) {
+      if (board[i][j] === '-') {
+        found = true;
+        break;
+      }
+    }
+    if (found) {
+      break;
     }
   }
+
+  const variants = possibleVariants(i, j, board);
+  for (let k = 0; k < variants.length; k += 1) {
+    if (solveRecursive(board, variants[k], i, j)) {
+      break;
+    }
+  }
+
   return board;
 }
 
@@ -31,9 +86,9 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  // let a = board.split(',');
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board.length; j++) {
+  if(!board.length) return;
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; j += 1) {
       if (board[i][j] === '-') {
         return false;
       }
@@ -57,9 +112,9 @@ function solveBox(board, r, c) {
   const boxRow = Math.floor(r / boxSize) * boxSize;
   const boxCol = Math.floor(c / boxSize) * boxSize;
 
-  for (let i = 0; i < boxRow + boxSize; i += 1) {
-    for (let j = 0; j < boxCol + boxSize; i += 1) {
-      if (i !== r && j !== c && board[i][j] !== '-') {
+  for (let i = boxRow; i < boxRow + boxSize; i += 1) {
+    for (let j = boxCol; j < boxCol + boxSize; j += 1) {
+      if ((i !== r || j !== c) && board[i][j] !== '-') {
         res.push(board[i][j]);
       }
     }
@@ -69,8 +124,7 @@ function solveBox(board, r, c) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve: solve,
-  isSolved: isSolved,
-  prettyBoard: prettyBoard
-}
-
+	solve: solve,
+	isSolved: isSolved,
+	prettyBoard: prettyBoard,
+};
