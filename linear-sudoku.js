@@ -4,7 +4,6 @@ const {
 
 function solveSudokuLinear(sudoku) {
   let isSolveChanged = true;
-  let numbersCount = 0;
 
   while (isSolveChanged) {
     loop: for (let i = 0; i < sudoku.length; i++) {

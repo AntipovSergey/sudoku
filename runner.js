@@ -30,6 +30,7 @@ function readAndSolve(err, data) {
     }
     else {
       console.log("\x1B[31m The board wasn't solved :( \x1B[0m");
+      console.log(sudoku.prettyBoard(solvedPuzzle));
     }
   }
 }
