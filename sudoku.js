@@ -7,22 +7,23 @@ const {checking} = require('./Serjik');
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
+function solve(boardString, acc = 0) {
   let originMassive = (typeof(boardString) === 'string') ? getArr(boardString) : boardString
   let checkReplace = 0;
   // проверка на возможность проставить число
   const getReplace = checking(originMassive);
+  for (let i = 0; i < originMassive.length; i++) {
+    for (let j = 0; j < originMassive[i].length; j++) {
+      if (originMassive[i][j] === 'X') {
+        originMassive[i][j] = '-';
+        checkReplace += 1;
+      }
+    }
+  }
   
-  // if (getReplace.length !== 0) {
-  //   const i = getReplace[0];
-  //   const j = getReplace[1];
-  //   const num = getReplace[2];
-  //   originMassive[i].splice(j, 1, num);
-  //   checkReplace += 1;
-  // }
 
-  if (!checkReplace) return originMassive;
-  else return originMassive = solve(originMassive);
+  if (!checkReplace || acc === checkReplace) return originMassive;
+  else return originMassive = solve(originMassive, checkReplace);
   
 }
 
