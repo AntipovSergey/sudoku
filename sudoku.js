@@ -1,10 +1,11 @@
+const {solveSudokuLinear} = 'linear-sudoku';
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-<<<<<<< HEAD
   const lineArr = boardString.split('').map(ch => (ch === '-')? 0 : +ch);
   let sudokuArr = [];
   for (let i = 0; i < 9; i++) {
@@ -12,11 +13,13 @@ function solve(boardString) {
     for (let j = 0; j < 9; j++){
       line.push(lineArr[i * 9 + j]);
     }
-    sudokuArr.push(line);
+    sudokuArr.push(line);  // Создаем массив 9 х 9 с исходными цифрами. Где цифры нет, ставим 0
   }
 
+  sudokuArr = solveSudokuLinear(sudokuArr);
+
   // console.log(sudokuArr);
-  return sudokuArr;
+  return sudokuArr;        // Возвращаем массив, заполненный значениями после решения Судоку
 }
 
 
@@ -35,14 +38,16 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-  let res = '\x1B[36m┌───┬───┬───┬───┬───┬───┬───┬───┬───┐\n';
+  let res = '\x1B[90m┌───┬───┬───┬───┬───┬───┬───┬───┬───┐\n';
   for (let i = 0; i < 9; i++) {
     let s = '';
     for (let j = 0; j < 9; j++) {
-      s += (j === 8)? `\x1B[36m│ \x1B[0m${board[i][j]}` : `\x1B[36m│ \x1B[0m${board[i][j]} `;
+      if (board[i][j] !== 0) {
+        s += (j === 8)? `\x1B[90m│ \x1B[32m${board[i][j]}` : `\x1B[90m│ \x1B[32m${board[i][j]} `;
+      } else s += (j === 8)? '\x1B[90m│ \x1B[91m■' : '\x1B[90m│ \x1B[91m■ ';
     }
-    res += s + '\x1B[36m │\n';
-    if (i < 8) res += '\x1B[36m├───┼───┼───┼───┼───┼───┼───┼───┼───┤\n';
+    res += s + '\x1B[90m │\n';
+    if (i < 8) res += '\x1B[90m├───┼───┼───┼───┼───┼───┼───┼───┼───┤\n';
   }
   res += '└───┴───┴───┴───┴───┴───┴───┴───┴───┘\x1B[0m\n';
   return res;
