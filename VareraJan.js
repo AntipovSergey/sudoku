@@ -10,7 +10,7 @@ function getArr(string) {
 function getStr(arr) {
   let str = '';
   arr.forEach((item) => str += item.join(''))
-  return str
+  return str;
 }
 
 module.exports = {getArr, getStr}
