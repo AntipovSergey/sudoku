@@ -12,13 +12,14 @@ function solve(boardString) {
   let checkReplace = 0;
   // проверка на возможность проставить число
   const getReplace = checking(originMassive);
-  if (getReplace.length !== 0) {
-    const i = getReplace[0];
-    const j = getReplace[1];
-    const num = getReplace[2];
-    originMassive[i].splice(j, 1, num);
-    checkReplace += 1;
-  }
+  
+  // if (getReplace.length !== 0) {
+  //   const i = getReplace[0];
+  //   const j = getReplace[1];
+  //   const num = getReplace[2];
+  //   originMassive[i].splice(j, 1, num);
+  //   checkReplace += 1;
+  // }
 
   if (!checkReplace) return originMassive;
   else return originMassive = solve(originMassive);
