@@ -1,37 +1,45 @@
-
+const {isSolvedColumns, isSolvedRows} = require('./isSolved')
 
 const anyBoard = [
-  [ 5, 5, 0, 6, 2, 0, 9, 1, 2 ],
-  [ 6, 7, 2, 1, 9, 5, 0, 0, 8 ],
-  [ 1, 0, 8, 3, 0, 2, 5, 6, 7 ],
-  [ 8, 5, 0, 7, 6, 1, 4, 2, 0 ],
-  [ 0, 2, 6, 8, 5, 3, 7, 9, 1 ],
-  [ 7, 1, 3, 0, 2, 0, 8, 5, 6 ],
-  [ 9, 6, 1, 5, 3, 7, 2, 0, 4 ],
-  [ 2, 8, 7, 0, 1, 9, 6, 3, 5 ],
-  [ 3, 4, 5, 2, 8, 6, 1, 7, 9 ],
-];
+  [1, 0, 5, 8, 0, 2, 0, 0, 0],
+  [0, 9, 0, 0, 7, 6, 4, 0, 5],
+  [2, 0, 0, 4, 0, 0, 8, 1, 9],
+  [0, 1, 9, 0, 0, 7, 3, 0, 6],
+  [7, 6, 2, 0, 8, 3, 0, 9, 0],
+  [0, 0, 0, 0, 6, 1, 0, 5, 0],
+  [0, 0, 7, 6, 0, 0, 0, 3, 0],
+  [4, 3, 0, 0, 2, 0, 5, 0, 1],
+  [6, 0, 0, 3, 0, 8, 9, 0, 0]
+]
 
 function findFirstEmpty(board) {
   for (let i = 0; i < board.length; i += 1) {
-    for (let j = 0; j < board[0].length; j += 1){
-      if (board[i][j] === 0) return [i,j]
+    for (let j = 0; j < board[i].length; j += 1){
+      if (board[i][j] === 0) return [i,j];
     }
   }
+  return -1;
+}
+
+function isBoardValidAfterInsert(board, coords, num){
+  return (isSolvedColumns(board, coords, num) && isSolvedRows(board, coords, num));
 }
 
 function solve(board) {
   let copyOfBoard = [...board];
 
-  for (let i = 1; i <= 9; i += 1) {
-    const currentEmptyPos = findFirstEmpty(copyOfBoard);
-    
-    copyOfBoard[currentEmptyPos[0],currentEmptyPos[1]] = i;
+  const currentEmptyPos = findFirstEmpty(copyOfBoard);
 
-    solve(board)
+  if(currentEmptyPos === -1) return copyOfBoard;
+
+  for (let i = 1; i <= 9; i += 1) {
+    if (isBoardValidAfterInsert(copyOfBoard, currentEmptyPos, i)) {
+      copyOfBoard[currentEmptyPos[0]][currentEmptyPos[1]] = i;
+      solve(copyOfBoard);
+    }
   }
 
-  return board;
+  return copyOfBoard;
 }
 
 console.table(solve(anyBoard));
