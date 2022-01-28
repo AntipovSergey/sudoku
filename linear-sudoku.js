@@ -1,26 +1,29 @@
-const {
-  checkNum,
-} = require('./check-numbers');
+<<<<<<< HEAD
+//const sudoku = ;
 
 function solveSudokuLinear(sudoku) {
   let isSolveChanged = true;
-  let start = 0;
-  let count = 0;
+  let numbersCount = 0;
+  let startI = 0;
+  let startj = 0;
 
-  const go = () => {
-    console.log(count);
-    for (let i = start; i < 81; i++) {
-      count++;
-      let x = Math.floor(i / 9);
-      let y = i % 9;
-      if (sudoku[x][y] === 0) {
-        let allowedNumbers = checkNum(x, y, sudoku);
-        if (allowedNumbers.length === 1) {
-          sudoku[x][y] = allowedNumbers[0];
-          return true;
-        } else {
-          start = i + 1;
-          return false;
+  while (isSolveChanged) {
+    loop: for (let i = startI; i < sudoku.length; i++) {
+      for (let j = startJ; j < sudoku.length; i++) {
+        if (sudoku[i][j] === 0) {
+          let allowedNumbers = eugenFunc(i, j);
+          if (allowedNumbers.length === 1) {
+            sudoku[i][j] = allowedNumbers[0];
+            startI = (j < 9) ? i : i + 1;
+            startJ = (j < 9) ? j + 1 : 0;
+            isSolveChanged = (startI == sudoku.length) ? false : true;
+            numbersCount++;
+          }
+          break loop;
+        }
+        numbersCount++;
+        if (i == sudoku.length - 1 && j == sudoku.length - 1) {
+          isSolveChanged = false;
         }
       }
     }
@@ -33,9 +36,9 @@ function solveSudokuLinear(sudoku) {
     }
   }
 
-  return sudoku;
+  return [sudoku, numbersCount === 81];
 }
 
-module.exports = {
-  solveSudokuLinear,
-}
+// module.exports = {
+//   eugenFunc,
+// }
