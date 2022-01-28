@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //const sudoku = ;
 
 function solveSudokuLinear(sudoku) {
@@ -25,6 +26,13 @@ function solveSudokuLinear(sudoku) {
           isSolveChanged = false;
         }
       }
+    }
+  } 
+
+  while (count !== 81) {
+    if (go()) {
+      start = 0;
+      count = 0;
     }
   }
 
