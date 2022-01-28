@@ -25,7 +25,7 @@ const checkPosition = (i, coord, parseBoard) => {
   }
 
   for (let j = 0; j < parseBoard[column].length; j++) {
-    if (parseBoard[column][j] === i) { return false; }
+    if (parseBoard[j][column] === i) { return false; }
   }
 
   return true;
@@ -42,7 +42,7 @@ function solve(boardString) {
 function parseBoard(arr) {
   let main = []
   for (let i = 0; i < arr.length; i += 9) {
-    main.push(arr.slice(i, i + 9).replace(/-/gi, 0).split(''))//.map((el) => +el));
+    main.push(arr.slice(i, i + 9).replace(/-/gi, 0).split('').map((el) => +el));
   } return main;
 }
 
@@ -53,18 +53,16 @@ function solveAll(board) {
     const [r, c] = coord
     for (let i = 1; i <= size; i++) {
       if (checkPosition(i, coord, board)) {
-        board[r][c] = i;
+        board[r][c] = i
         if (solveAll(board)) {
           return board
         }
+        board[r][c] = 0;
       }
     }
   } else {
-    console.log(board)
     return board;
-
   }
-
   return false
 }
 
@@ -74,7 +72,7 @@ function solveAll(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  console.log(board);
+  console.table(board);
 }
 
 
