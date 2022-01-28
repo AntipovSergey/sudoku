@@ -4,7 +4,19 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+<<<<<<< HEAD
+  const lineArr = boardString.split('').map(ch => (ch === '-')? 0 : +ch);
+  let sudokuArr = [];
+  for (let i = 0; i < 9; i++) {
+    let line = [];
+    for (let j = 0; j < 9; j++){
+      line.push(lineArr[i * 9 + j]);
+    }
+    sudokuArr.push(line);
+  }
 
+  // console.log(sudokuArr);
+  return sudokuArr;
 }
 
 
@@ -13,7 +25,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  return board.includes(0);
 }
 
 
@@ -23,8 +35,20 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  let res = '\x1B[36m┌───┬───┬───┬───┬───┬───┬───┬───┬───┐\n';
+  for (let i = 0; i < 9; i++) {
+    let s = '';
+    for (let j = 0; j < 9; j++) {
+      s += (j === 8)? `\x1B[36m│ \x1B[0m${board[i][j]}` : `\x1B[36m│ \x1B[0m${board[i][j]} `;
+    }
+    res += s + '\x1B[36m │\n';
+    if (i < 8) res += '\x1B[36m├───┼───┼───┼───┼───┼───┼───┼───┼───┤\n';
+  }
+  res += '└───┴───┴───┴───┴───┴───┴───┴───┴───┘\x1B[0m\n';
+  return res;
 }
+
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
