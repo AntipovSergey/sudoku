@@ -10,39 +10,34 @@ function possibleVariants(indI, indJ, board) {
 function solveRecursive(board, variant, indI, indJ) {
   const bufBoard = board;
   bufBoard[indI][indJ] = variant;
-  // console.log(variant);
   if (isSolved(board)) return true;
+  let i = indJ === board.length - 1 ? indI + 1 : indI;
 
-  for (let i = indI; i < board.length; i += 1) {
+  for (; i < board.length; i += 1) {
     let found = false;
+    let wereSmth = false;
     for (let j = 0; j < board[i].length; j += 1) {
-      
       if (bufBoard[i][j] !== '-') continue;
-      
+      wereSmth = true;
       const variants = possibleVariants(i, j, bufBoard);
-      
       if (!variants.length) {
         bufBoard[indI][indJ] = '-';
         return false;
       }
-      
       for (let k = 0; k < variants.length; k += 1) {
         if (solveRecursive(bufBoard, variants[k], i, j)) {
-          found = true;
-          break;
+          return true;
         }
       }
-      
       if (!found) {
-        break;
+        bufBoard[indI][indJ] = '-';
+        return false;
       }
     }
-    
-    if (!found) {
+    if (!found && wereSmth) {
       bufBoard[indI][indJ] = '-';
       return false;
     }
-
   }
   bufBoard[indI][indJ] = '-';
   return false;
@@ -54,6 +49,10 @@ function solveRecursive(board, variant, indI, indJ) {
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  if (!boardString.length) {
+    console.log('there is nothing to solve');
+    return [];
+  }
   const board = boardString.split('').reduce((acc, el, ind) => {
     const i = Math.trunc(ind / 9);
     if (acc[i] === undefined) acc[i] = [];
@@ -90,6 +89,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
+  if(!board.length) return;
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
       if (board[i][j] === '-') {
