@@ -1,25 +1,35 @@
 const {
-  eugenFunc: checkNum,
-} = require('check-numbers');
+  checkNum,
+} = require('./check-numbers');
 
 function solveSudokuLinear(sudoku) {
   let isSolveChanged = true;
+  let start = 0;
+  let count = 0;
 
-  while (isSolveChanged) {
-    loop: for (let i = 0; i < sudoku.length; i++) {
-      for (let j = 0; j < sudoku.length; i++) {
-        if (sudoku[i][j] === 0) {
-          let allowedNumbers = eugenFunc(i, j, sudoku);
-          if (allowedNumbers.length === 1) {
-            sudoku[i][j] = allowedNumbers[0];
-            isSolveChanged = (i == sudoku.length - 1 && j == sudoku.length - 1) ? false : true;
-          }
-          break loop;
-        }
-        if (i == sudoku.length - 1 && j == sudoku.length - 1) {
-          isSolveChanged = false;
+  const go = () => {
+    console.log(count);
+    for (let i = start; i < 81; i++) {
+      count++;
+      let x = Math.floor(i / 9);
+      let y = i % 9;
+      if (sudoku[x][y] === 0) {
+        let allowedNumbers = checkNum(x, y, sudoku);
+        if (allowedNumbers.length === 1) {
+          sudoku[x][y] = allowedNumbers[0];
+          return true;
+        } else {
+          start = i + 1;
+          return false;
         }
       }
+    }
+  } 
+
+  while (count !== 81) {
+    if (go()) {
+      start = 0;
+      count = 0;
     }
   }
 
