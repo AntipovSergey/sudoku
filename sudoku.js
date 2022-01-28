@@ -1,3 +1,7 @@
+function possibleVariants(indI, indJ, board) {
+  const res = '123456789'.split('');
+  
+}
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -15,11 +19,10 @@ function solve(boardString) {
   for (let i = 0; i < board.length; i += 1) {
     for (let j = 0; j < board.length; j += 1) {
       if (board[i][j] !== '-') continue;
-      const variants = [];
-      
+      // const variants = possibleVariants();
     }
   }
-
+  return board;
 }
 
 // Returns a boolean indicating whether
