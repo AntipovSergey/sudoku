@@ -1,6 +1,7 @@
 const {getArr, getStr} = require('./VareraJan');
 const {checking} = require('./Serjik');
-
+const getTable = require('./prettyBoard')
+const mariana = require('./isSolved')
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -20,14 +21,11 @@ function solve(boardString, acc = 0) {
       }
     }
   }
-  
-
   if (!checkReplace || acc === checkReplace) return originMassive;
   else return originMassive = solve(originMassive, checkReplace);
-  
 }
 
-console.table(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
+// console.table(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
 // console.table(solve('--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3'));
 
 // Returns a boolean indicating whether
@@ -35,7 +33,7 @@ console.table(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76-
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  return mariana(board)
 }
 
 
@@ -45,7 +43,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  // console.log(getTable(board))
 }
 
 // Exports all the functions to use them in another file.
@@ -54,3 +52,12 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
+
+
+const str = '--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3'
+const response = getStr(solve(str));
+
+const isResolve = isSolved(response);
+console.log(isResolve);
+getTable(response);
