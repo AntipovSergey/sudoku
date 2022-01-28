@@ -10,18 +10,25 @@ const anyBoard = [
   [ 3, 4, 5, 2, 8, 6, 1, 7, 9 ],
 ];
 
-
-function solve(board) {
-
-  function findFirstEmpty(board) {
-    for (let i = 0; i < board.length; i += 1) {
-      for (let j = 0; j < board[0].length; j += 1){
-        if (board[i][j] === 0) return [i,j]
-      }
+function findFirstEmpty(board) {
+  for (let i = 0; i < board.length; i += 1) {
+    for (let j = 0; j < board[0].length; j += 1){
+      if (board[i][j] === 0) return [i,j]
     }
   }
-  findFirstEmpty(board);
-
 }
 
-solve(anyBoard);
+function solve(board) {
+  let copyOfBoard = [...board];
+
+  for (let i = 1; i <= 9; i += 1) {
+    const currentEmptyPos = findFirstEmpty(copyOfBoard);
+    copyOfBoard[currentEmptyPos[0],currentEmptyPos[1]] = i;
+
+    solve(board)
+  }
+
+  return board;
+}
+
+console.table(solve(anyBoard));
