@@ -23,9 +23,16 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  const res = board.split('').reduce((acc, el, ind) => {
+    const i = Math.trunc(ind / 9);
+    if (acc[i] === undefined) acc[i] = [];
+    acc[i].push(el);
+    return acc
+  }, []);
+  console.log(res)
+  return res.reduce((acc,el) => acc + el.join(' ') + '\n','')
 }
-
+console.table(prettyBoard('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
 // Exports all the functions to use them in another file.
 module.exports = {
 	solve: solve,
