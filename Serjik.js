@@ -1,27 +1,21 @@
-const puzzle = [['1','-','5','8','-','2','-','-','-'],
-                ['-','9','-','-','7','6','4','-','5'],
-                ['2','-','-','4','-','-','8','1','9'],
-                ['-','1','9','-','-','7','3','-','6'],
-                ['7','6','2','-','8','3','-','9','-'],
-                ['-','-','-','-','6','1','-','5','-'],
-                ['-','-','7','6','-','-','-','3','-'],
-                ['4','3','-','-','2','-','5','-','1'],
-                ['6','-','-','3','-','8','9','-','-']];
-
-
-function findEmpty () {
+function findEmpty (puzzle) {
   for (let i = 0; i < puzzle.length; i++){
     for (let j = 0; j < puzzle[i].length; j++){
-      if (puzzle[i][j] === "-") return [i,j]
-    }
+      if (puzzle[i][j] === "-") return [i,j]; 
+    } 
   }
+  return false
 }
 
-function Checking () {
-  
+function checking(puzzle) {
 
   //Check row
-  const [r,c] = findEmpty();
+  const checkCoords = findEmpty(puzzle);
+  let r;
+  let c;
+  if (checkCoords) {
+    [r, c] = checkCoords;
+  } else return [];
   const possVar = []; //Будет иметь массив с числами, которых не хватает строке -> [ 3, 4, 6, 7, 9 ] для первой строки
   for (let num = 1; num <= 9; num++){
     if (puzzle[r].includes(num.toString()) === false) possVar.push(num); 
@@ -67,13 +61,25 @@ function Checking () {
     }
   }
 
-  if (possVar3.length = 1) {
+  if (possVar3.length === 1) {
     return [r, c, possVar3[0]]
-  } else {
-    return []
-  }
-
+  } else return []
+  
 }
 
+module.exports = {checking}
 
-console.log(Checking());
+// const puzzle = [['1','-','5','8','-','2','-','-','-'],
+//                 ['-','9','-','-','7','6','4','-','5'],
+//                 ['2','-','-','4','-','-','8','1','9'],
+//                 ['-','1','9','-','-','7','3','-','6'],
+//                 ['7','6','2','-','8','3','-','9','-'],
+//                 ['-','-','-','-','6','1','-','5','-'],
+//                 ['-','-','7','6','-','-','-','3','-'],
+//                 ['4','3','-','-','2','-','5','-','1'],
+//                 ['6','-','-','3','-','8','9','-','-']];
+
+
+// console.log(checking(puzzle));
+
+
