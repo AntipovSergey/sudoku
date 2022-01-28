@@ -26,20 +26,19 @@ function isBoardValidAfterInsert(board, coords, num){
 }
 
 function solve(board) {
-  let copyOfBoard = [...board];
 
-  const currentEmptyPos = findFirstEmpty(copyOfBoard);
+  const currentEmptyPos = findFirstEmpty(board);
 
-  if(currentEmptyPos === -1) return copyOfBoard;
+  if(currentEmptyPos === -1) return board;
 
   for (let i = 1; i <= 9; i += 1) {
-    if (isBoardValidAfterInsert(copyOfBoard, currentEmptyPos, i)) {
-      copyOfBoard[currentEmptyPos[0]][currentEmptyPos[1]] = i;
-      solve(copyOfBoard);
-    }
+    if (isBoardValidAfterInsert(board, currentEmptyPos, i)) {
+      board[currentEmptyPos[0]][currentEmptyPos[1]] = i;
+      solve(board);
+    } 
   }
 
-  return copyOfBoard;
+  return board;
 }
 
 console.table(solve(anyBoard));
