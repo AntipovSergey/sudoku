@@ -1,4 +1,4 @@
-const {solveSudokuLinear} = 'linear-sudoku';
+const {solveSudokuLinear} = require('./linear-sudoku');
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -16,12 +16,19 @@ function solve(boardString) {
     sudokuArr.push(line);  // Создаем массив 9 х 9 с исходными цифрами. Где цифры нет, ставим 0
   }
 
-  sudokuArr = solveSudokuLinear(sudokuArr);
+  sudokuArr = solveSudokuLinear(sudokuArr);                                    // Пытаемся решить судоку
+  //if (!isSolved(sudokuArr)) {                                                  // Если не решилось,
+  //  insertDigit(sudokuArr);                                                    // подставляем в первое пустое место подходящую цифру
+  //  sudokuArr = solve(sudokuArr.join('').map(x => (x === 0)? '-' : '' + x));   // и рекурсивно запускаем эту же функцию solve
+  //}
 
-  // console.log(sudokuArr);
   return sudokuArr;        // Возвращаем массив, заполненный значениями после решения Судоку
 }
 
+function insertDigit(sudokuArr) {
+  let ind = sudokuArr.indexOf(0);
+
+}
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
