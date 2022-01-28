@@ -1,27 +1,21 @@
-const puzzle = [['1','-','5','8','-','2','-','-','-'],
-                ['-','9','-','-','7','6','4','-','5'],
-                ['2','-','-','4','-','-','8','1','9'],
-                ['-','1','9','-','-','7','3','-','6'],
-                ['7','6','2','-','8','3','-','9','-'],
-                ['-','-','-','-','6','1','-','5','-'],
-                ['-','-','7','6','-','-','-','3','-'],
-                ['4','3','-','-','2','-','5','-','1'],
-                ['6','-','-','3','-','8','9','-','-']];
-
-
-function findEmpty () {
+function findEmpty (puzzle) {
   for (let i = 0; i < puzzle.length; i++){
     for (let j = 0; j < puzzle[i].length; j++){
-      if (puzzle[i][j] === "-") return [i,j]
-    }
+      if (puzzle[i][j] === "-") return [i,j]; 
+    } 
   }
+  return false
 }
 
-function Checking () {
-  
+function checking(puzzle) {
 
   //Check row
-  const [r,c] = findEmpty();
+  const checkCoords = findEmpty(puzzle);
+  let r;
+  let c;
+  if (checkCoords) {
+    [r, c] = checkCoords;
+  } else return puzzle;
   const possVar = []; //Будет иметь массив с числами, которых не хватает строке -> [ 3, 4, 6, 7, 9 ] для первой строки
   for (let num = 1; num <= 9; num++){
     if (puzzle[r].includes(num.toString()) === false) possVar.push(num); 
@@ -36,7 +30,7 @@ function Checking () {
 
   //Check Column
   const possVar2 = [] //Возможные числа скорректированные на столбец 
-  for (let num = 1; num < 9; num++){
+  for (let num = 1; num <= 9; num++){
       if (arrColumn.includes(num.toString()) === false) {
         if (possVar.includes(num)) {
           possVar2.push(num)
@@ -47,8 +41,8 @@ function Checking () {
   //Создание переменных
   const boxSize = Math.sqrt(puzzle.length);
   const boxRow = Math.floor(r/boxSize)*boxSize
-  const boxColumn = boxRow + 2
-  const possVar3 = []
+  // const boxColumn = boxRow + 2
+  let possVar3 = []
   
   //Box in Array
   const arrBox = [];
@@ -67,13 +61,26 @@ function Checking () {
     }
   }
 
-  if (possVar3.length = 1) {
-    return [r, c, possVar3[0]]
-  } else {
-    return []
-  }
-
+  if (possVar3.length === 1) {
+    puzzle[r][c] = possVar3[0];
+  } else {puzzle[r][c] = "X"
+  // console.table(puzzle);
 }
 
+  checking(puzzle);
+}
 
-// console.log(Checking());
+const puzzle = [['1','-','5','8','-','2','-','-','-'],
+                ['-','9','-','-','7','6','4','-','5'],
+                ['2','-','-','4','-','-','8','1','9'],
+                ['-','1','9','-','-','7','3','-','6'],
+                ['7','6','2','-','8','3','-','9','-'],
+                ['-','-','-','-','6','1','-','5','-'],
+                ['-','-','7','6','-','-','-','3','-'],
+                ['4','3','-','-','2','-','5','-','1'],
+                ['6','-','-','3','-','8','9','-','-']];
+
+
+console.log(checking(puzzle));
+
+module.exports = {checking}

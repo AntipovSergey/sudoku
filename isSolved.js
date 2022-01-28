@@ -1,10 +1,9 @@
 function isSolved(board) {
-
   if (typeof board !== 'string') return false;
 
   let sum = 0;
 
-  for ( let i = 0; i<board.length; i++ ){
+  for ( let i = 0; i < board.length; i++ ) {
     if (typeof parseInt(board[i]) !== 'number' || parseInt(board[i]) === 0) return false;
       else sum += Number(board[i]);
   }
@@ -13,3 +12,5 @@ function isSolved(board) {
 }
 
 module.exports = isSolved;
+
+console.log(isSolved('123456789123456789123456789123456789123456789123456789123456789123456789123456789'))
