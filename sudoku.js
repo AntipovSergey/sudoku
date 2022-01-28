@@ -1,6 +1,7 @@
+const {row, column} = require('./hh');
+
 function possibleVariants(indI, indJ, board) {
   const res = '123456789'.split('');
-  
 }
 
 // Takes a board as a string in the format
@@ -31,8 +32,9 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
+  // let a = board.split(',');
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
       if (board[i][j] === '-'){
         return false
       }
@@ -56,3 +58,4 @@ module.exports = {
 	isSolved: isSolved,
 	prettyBoard: prettyBoard
 }
+
