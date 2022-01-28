@@ -1,0 +1,19 @@
+{
+  "name": "project-sudoku",
+  "version": "1.0.0",
+  "description": "## Введение",
+  "main": "runner.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viktor-Vrazumitel/project-sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Viktor-Vrazumitel/project-sudoku/issues"
+  },
+  "homepage": "https://github.com/Viktor-Vrazumitel/project-sudoku#readme"
+}
