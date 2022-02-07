@@ -1,2 +1,18 @@
-const sudoku = require('../sudoku.js')
+const {
+  solve,
+  isSolved,
+  prettyBoard,
+} = require('../sudoku.js');
 
+describe('isSolved', () => {
+  it('No duplicates in small squares', () => {
+    expect(isSolved('123456789456789123789123456214365897365897214897214365531642978642978531978531642')).toBe(true);
+    expect(isSolved('123456789456789123789123456214365897365897214897214365531642978642978531978531644')).toBe(false);
+  });
+
+  it('No empty cells', () => {
+    expect(isSolved('123456798457198236869237145214365987375981462698724351531679824946812573782543619')).toBe(true);
+    expect(isSolved('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')).toBe(false);
+    expect(isSolved('1234567984571982368692371452143659873759814626987243515316798249468125737-2543619')).toBe(false);
+  });
+});
