@@ -4,13 +4,38 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-    let board = []
-    let arrBoardString = boardString.split('')
-    for (let i = 0; i < 9; i++) {
-        board.push(arrBoardString.splice(0, 9))
-    }
 
-    return board
+  let board =[]
+  let arrBoardString = boardString.split('')
+  for (let i = 0; i < 9; i++) {
+    board.push(arrBoardString.splice(0,9))
+  }
+
+
+  const solveElem = () => {
+      let elem = findElem(board)
+      if (elem === null) {
+          return true
+      }
+      for (let i = 1; i < 10; i++) {
+          let elemNumber = i.toString()
+          let isChecked = isSolved(elemNumber, elem, board)
+
+          if (isSolved) {
+              const [x, y] = elem
+              board[x][y] = elemNumber
+
+              if (solveElem()) {
+                  return true
+              }
+
+              board[x][y] = '-'
+          }
+      }
+      return false
+  }
+  solveElem()
+  return board
 }
 
 // Returns a boolean indicating whether
@@ -59,7 +84,6 @@ function findElem(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-
 
 
 function prettyBoard(board) {
