@@ -4,17 +4,37 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-<<<<<<< HEAD
-    console.log('first changes');
-=======
   let board =[]
   let arrBoardString = boardString.split('')
   for (let i = 0; i < 9; i++) {
     board.push(arrBoardString.splice(0,9))
   }
 
+
+  const solveElem = () => {
+      let elem = findElem(board)
+      if (elem === null) {
+          return true
+      }
+      for (let i = 1; i < 10; i++) {
+          let elemNumber = i.toString()
+          let isChecked = isSolved(elemNumber, elem, board)
+
+          if (isSolved) {
+              const [x, y] = elem
+              board[x][y] = elemNumber
+
+              if (solveElem()) {
+                  return true
+              }
+
+              board[x][y] = '-'
+          }
+      }
+      return false
+  }
+  solveElem()
   return board
->>>>>>> 253c31a540c95845b015b5dd2fe1aef8580937c8
 }
 
 // Returns a boolean indicating whether
@@ -75,7 +95,7 @@ function prettyBoard(board) {
   return result.join('')
 }
 
-console.log(prettyBoard(input))
+// console.log(prettyBoard(input))
 
 // Exports all the functions to use them in another file.
 module.exports = {
