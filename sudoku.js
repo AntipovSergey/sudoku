@@ -4,13 +4,47 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+
     let board = []
     let arrBoardString = boardString.split('')
     for (let i = 0; i < 9; i++) {
         board.push(arrBoardString.splice(0, 9))
-
     }
 
+    function findElem(board) {
+        for (let line = 0; line < 9; line++) {
+            for (let colum = 0; colum < 9; colum++) {
+                if (board[line][colum] === '-') {
+                    return [line, colum];
+                }
+            }
+        }
+        return null;
+    }
+
+    const solveElem = () => {
+        let elem = findElem(board)
+        if (elem === null) {
+            return true
+        }
+        for (let i = 1; i < 10; i++) {
+            let elemNumber = i.toString()
+            let isChecked = isSolved(elemNumber, elem, board)
+
+            if (isSolved) {
+                const [x, y] = elem
+                board[x][y] = elemNumber
+
+                if (solveElem()) {
+                    return true
+                }
+
+                board[x][y] = '-'
+            }
+        }
+        return false
+    }
+    solveElem()
     return board
 }
 
@@ -43,16 +77,6 @@ function isSolved(number, position, board) {
     return true
 }
 
-function findElem(board) {
-    for (let line = 0; line < 9; line++) {
-        for (let colum = 0; colum < 9; colum++) {
-            if (board[line][colum] === '-') {
-                return [line, colum];
-            }
-        }
-    }
-    return null;
-}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
