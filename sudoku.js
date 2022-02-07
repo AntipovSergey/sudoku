@@ -1,3 +1,9 @@
+const {
+  isSolvedBlocks,
+  isSolvedEmptyCells,
+  checkRaw
+} = require("./is-solved-blocks-empty.js");
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -18,17 +24,23 @@ function solve(boardString) {
   }
   return board
 }
-console.table(solve(sud1));
+// console.table(solve(sud1));
+
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 
-
-
 function isSolved(board) {
-
+  let result = []
+  result.push(isSolvedBlocks(board), isSolvedEmptyCells(board), checkRaw(board));
+  return result.includes(false) ? false : true
 }
+// console.log(isSolved('123456789456789123789123456214365897365897214897214365531642978642978531978531642'))
+// console.log(isSolved('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
+// console.log(isSolved('122456789456789123789123456214365897365897214897214365531642978642978531978531642'))
+  
 
 // Takes in a board in some form and
 // returns a String that's well formatted
@@ -43,7 +55,7 @@ function prettyBoard(board) {
 
 }
 
-prettyBoard()
+
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
