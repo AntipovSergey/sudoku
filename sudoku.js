@@ -3,6 +3,10 @@ const {
   isSolvedEmptyCells,
 } = require('./is-solved-blocks-empty.js');
 
+const {
+  checkRaw,
+  checkColumn
+} = require('./is-solved-checkRowAndColumn.js')
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -32,10 +36,12 @@ function solve(boardString) {
 
 function isSolved(board) {
   const result = [];
-  result.push(isSolvedBlocks(board), isSolvedEmptyCells(board));
+  result.push(isSolvedBlocks(board), isSolvedEmptyCells(board), checkRaw(board), checkColumn(board));
   return !result.includes(false);
 }
-
+ 
+// console.log(isSolved('123456789456789123789123456214365897365897214897214365531642978642978531978531642'))
+// console.log(isSolved('122456789456789123789123456214365897365897214897214365531642978642978531978531611'));
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
