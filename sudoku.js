@@ -4,19 +4,28 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 
-const fs = require('fs');
+//const fs = require('fs');
 
 //const sudoku = fs.readFileSync('./sudoku-puzzles.txt', 'utf8')
 //console.log(sudoku);
+
+const sud1 = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89---"
 function solve(boardString) {
-  console.log('first changes');
-
+  let board = [];
+  //console.log('--------', board);
+  for (let i = 0; i < 81; i += 9) {
+    board.push(boardString.slice(i, i + 9).split(''))
+  }
+  return board
 }
-
+console.table(solve(sud1));
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
+
+
+
 function isSolved(board) {
 
 }
@@ -29,8 +38,8 @@ function isSolved(board) {
 function prettyBoard(board) {
   const rows = new Array(9).fill('')
   const table = rows.map(row => row = new Array(9).fill(''))
-  console.table(table);
-
+  //console.table(table);
+  //console.log(rows);
 
 }
 
