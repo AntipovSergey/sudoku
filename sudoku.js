@@ -4,7 +4,13 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  console.log('first changes');
+  let board =[]
+  let arrBoardString = boardString.split('')
+  for (let i = 0; i < 9; i++) {
+    board.push(arrBoardString.splice(0,9))
+  }
+
+  return board
 }
 
 // Returns a boolean indicating whether
