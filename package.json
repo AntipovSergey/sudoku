@@ -4,7 +4,9 @@
   "description": "## Введение",
   "main": "sudoku.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "node sudoku.js"
+
   },
   "repository": {
     "type": "git",
