@@ -1,7 +1,6 @@
 const {
   isSolvedBlocks,
-  isSolvedEmptyCells,
-  checkRaw
+  isSolvedEmptyCells
 } = require("./is-solved-blocks-empty.js");
 
 // Takes a board as a string in the format
@@ -34,7 +33,7 @@ function solve(boardString) {
 
 function isSolved(board) {
   let result = []
-  result.push(isSolvedBlocks(board), isSolvedEmptyCells(board), checkRaw(board));
+  result.push(isSolvedBlocks(board), isSolvedEmptyCells(board));
   return result.includes(false) ? false : true
 }
 // console.log(isSolved('123456789456789123789123456214365897365897214897214365531642978642978531978531642'))
