@@ -1,4 +1,4 @@
-function prettyBoard(board) {
+function paintPrettyBoard(board) {
   let strings = '';
   strings += '-------------\n';
   for (let i = 0; i < 27; i += 9) {
@@ -37,4 +37,6 @@ function prettyBoard(board) {
   return strings;
 }
 
-console.log(prettyBoard('145892673893176425276435819519247386762583194384961752957614238438729561621358947'));
+// console.log(prettyBoard('145892673893176425276435819519247386762583194384961752957614238438729561621358947'));
+
+module.exports = paintPrettyBoard;

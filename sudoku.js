@@ -5,8 +5,12 @@ const {
 
 const {
   checkRaw,
-  checkColumn
-} = require('./is-solved-checkRowAndColumn.js')
+  checkColumn,
+} = require('./is-solved-checkRowAndColumn.js');
+
+const paintPrettyBoard = require('./pretty-board.js');
+
+const solveEasy = require('./solve-easy.js');
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -14,7 +18,7 @@ const {
 // How you represent your board is up to you!
 
 function solve(boardString) {
-
+  return solveEasy(boardString);
 }
 
 // Returns a boolean indicating whether
@@ -27,16 +31,14 @@ function isSolved(board) {
   result.push(isSolvedBlocks(board), isSolvedEmptyCells(board), checkRaw(board), checkColumn(board));
   return !result.includes(false);
 }
- 
-// console.log(isSolved('123456789456789123789123456214365897365897214897214365531642978642978531978531642'))
-// console.log(isSolved('122456789456789123789123456214365897365897214897214365531642978642978531978531611'));
+
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  return paintPrettyBoard(board);
 }
 
 // Exports all the functions to use them in another file.
