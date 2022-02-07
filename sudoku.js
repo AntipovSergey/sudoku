@@ -8,6 +8,7 @@ function solve(boardString) {
     let arrBoardString = boardString.split('')
     for (let i = 0; i < 9; i++) {
         board.push(arrBoardString.splice(0, 9))
+
     }
 
     return board
@@ -53,14 +54,11 @@ function findElem(board) {
     return null;
 }
 
-
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-
-
 
 function prettyBoard(board) {
     let result = [];
