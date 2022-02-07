@@ -3,9 +3,13 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+const fs = require('fs')
+const boardString = fs.readFileSync('./sudoku-puzzles.txt', 'utf8').split('\n');
+
 function solve(boardString) {
-  console.log('first changes');
+  
 }
+//console.log(solve(boardString))
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.

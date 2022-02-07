@@ -12,9 +12,15 @@ const sudoku = require('./sudoku');
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
   let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  console.log('parser');
-  return puzzle;
+  // let firstString = boardString[0];
+  let arrayString = (
+    puzzle.slice(0, 9) +' '+ puzzle.slice(9,18) + ' ' + puzzle.slice(18,27) + ' ' + 
+    puzzle.slice(27,36) + ' ' + puzzle.slice(36,45) + ' ' + puzzle.slice(45,54) + ' ' + 
+    puzzle.slice(54,63) + ' ' + puzzle.slice(63,72) + ' ' + puzzle.slice(72,81)
+  ).split(' ')
+  let inputBoard = arrayString.map((el) => el.split('')) // массив в котором 9 массивов (в которых 9 строк) [[1-9], [1-9], ...]
+  console.table(inputBoard);
+  return inputBoard;
 }
 
 function readAndSolve(err, data) {
