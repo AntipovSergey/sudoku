@@ -24,8 +24,6 @@ console.table(solve(sud1));
 // The input board will be in whatever
 // form `solve` returns.
 
-
-
 function isSolved(board) {
 
 }
