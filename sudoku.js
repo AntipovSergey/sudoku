@@ -4,9 +4,6 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-<<<<<<< HEAD
-    console.log('first changes');
-=======
   let board =[]
   let arrBoardString = boardString.split('')
   for (let i = 0; i < 9; i++) {
@@ -14,7 +11,6 @@ function solve(boardString) {
   }
 
   return board
->>>>>>> 253c31a540c95845b015b5dd2fe1aef8580937c8
 }
 
 // Returns a boolean indicating whether
