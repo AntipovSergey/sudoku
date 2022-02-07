@@ -10,6 +10,30 @@ function solve(boardString) {
     board.push(arrBoardString.splice(0,9))
   }
 
+
+  const solveElem = () => {
+      let elem = findElem(board)
+      if (elem === null) {
+          return true
+      }
+      for (let i = 1; i < 10; i++) {
+          let elemNumber = i.toString()
+          let isChecked = isSolved(elemNumber, elem, board)
+
+          if (isSolved) {
+              const [x, y] = elem
+              board[x][y] = elemNumber
+
+              if (solveElem()) {
+                  return true
+              }
+
+              board[x][y] = '-'
+          }
+      }
+      return false
+  }
+  solveElem()
   return board
 }
 
