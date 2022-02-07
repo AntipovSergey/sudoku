@@ -4,6 +4,7 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+
   let board =[]
   let arrBoardString = boardString.split('')
   for (let i = 0; i < 9; i++) {
@@ -62,10 +63,19 @@ function isSolved(number, position, board) {
                 return false
             }
         }
-
     }
     return true
+}
 
+function findElem(board) {
+    for (let line = 0; line < 9; line++) {
+        for (let colum = 0; colum < 9; colum++) {
+            if (board[line][colum] === '-') {
+                return [line, colum];
+            }
+        }
+    }
+    return null;
 }
 
 
@@ -75,12 +85,13 @@ function isSolved(number, position, board) {
 // The input board will be in whatever
 // form `solve` returns.
 
+
 function prettyBoard(board) {
-  let result = [];
-  for (let i = 0; i < board.length; i++){
-    result.push(board[i].join(' ') + '\n')
-  }
-  return result.join('')
+    let result = [];
+    for (let i = 0; i < board.length; i++) {
+        result.push(board[i].join(' ') + '\n')
+    }
+    return result.join('')
 }
 
 // Exports all the functions to use them in another file.
