@@ -3,8 +3,14 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
+const fs = require('fs');
+
+//const sudoku = fs.readFileSync('./sudoku-puzzles.txt', 'utf8')
+//console.log(sudoku);
 function solve(boardString) {
   console.log('first changes');
+
 }
 
 // Returns a boolean indicating whether
@@ -21,9 +27,14 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
+  const rows = new Array(9).fill('')
+  const table = rows.map(row => row = new Array(9).fill(''))
+  console.table(table);
+
 
 }
 
+prettyBoard()
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
