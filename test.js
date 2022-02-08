@@ -1,11 +1,16 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-const board = require('./runner.js')
-const { sudokuParse } = require('./runner.js');
-// Принимает отформатированную доску из функции sudokuParse. И решает судоку. 
+const fs = require('fs');
+
+const allBoard = fs.readFileSync('./sudoku-puzzles.txt', 'utf8').split('\n')
+const inputStr = allBoard[5]
+let arrayString = (
+  inputStr.slice(0, 9) +' '+ inputStr.slice(9,18) + ' ' + inputStr.slice(18,27) + ' ' + 
+  inputStr.slice(27,36) + ' ' + inputStr.slice(36,45) + ' ' + inputStr.slice(45,54) + ' ' + 
+  inputStr.slice(54,63) + ' ' + inputStr.slice(63,72) + ' ' + inputStr.slice(72,81)
+).split(' ');
+let inputBoard = arrayString.map((el) => el.split(''))
+
+// console.log(inputBoard)
+
 function solve(board) {
   const size = 9;
   const boxSize = 3;
@@ -19,7 +24,7 @@ function solve(board) {
         }
     }
     return null;
-}
+  }
   // проверяем валидность того или иного числа 
   const valid = (number, position, board) => {
     const [r, c] = position;
@@ -75,29 +80,5 @@ function solve(board) {
   solveBoard();
   return board;
 }
-const inputBoard = sudokuParse(content, puzzleNumber = 0)
-console.log(solve(inputBoard))
-
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
-
-}
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-
-}
-
-// Exports all the functions to use them in another file.
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
+console.table(inputBoard);
+console.table(solve(inputBoard));
