@@ -2,80 +2,101 @@
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
-// How you represent your board is up to you!
+// How you represent your board is up to you!x
+let str2 = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+
 function solve(boardString) {
-
-  let board =[]
-  let arrBoardString = boardString.split('')
-  for (let i = 0; i < 9; i++) {
-    board.push(arrBoardString.splice(0,9))
-  }
-
-function findElem(board) {
-    for (let line = 0; line < 9; line++) {
-        for (let colum = 0; colum < 9; colum++) {
-            if (board[line][colum] === '-') {
-                return [line, colum];
-            }
-        }
+    let arr = []
+    let arrBoardString = boardString.split('')
+    for (let i = 0; i < 9; i++) {
+        arr.push(arrBoardString.splice(0, 9))
     }
-    return null;
- }
-  
-  const solveElem = () => {
-      let elem = findElem(board)
-      if (elem === null) {
-          return true
-      }
-      for (let i = 1; i < 10; i++) {
-          let elemNumber = i.toString()
-          let isChecked = isSolved(elemNumber, elem, board)
-
-          if (isSolved) {
-              const [x, y] = elem
-              board[x][y] = elemNumber
-
-              if (solveElem()) {
-                  return true
-              }
-
-              board[x][y] = '-'
-          }
-      }
-      return false
-  }
-  solveElem()
-  return board
+    return arr
 }
+ let board = solve(str2)
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(number, position, board) {
-    let goriz = position[0];
-    let vertical = position[1]
-    let line = Math.floor(goriz / 3) * 3;
-    let colum = Math.floor(vertical / 3) * 3;
-    for (let elem = 0; elem < 9; elem++) {
-        if (board[elem][vertical] === number && elem !== goriz) {
-            return false
-        }
-    }
-    for (let el = 0; el < 9; el++) {
-        if (board[goriz][el] === number && el !== vertical) {
-            return false
-        }
-    }
-    for (let el = line; el < line + 3; el++) {
-        for (let ele = colum; ele < colum + 3; ele++) {
-            if (board[el][ele] === number && el !== goriz && ele !== vertical) {
-                return false
+function isSolved( board) {
+
+    const findEmpty = (board) => {
+        for (let r = 0; r < 9; r++) {
+            for (let c = 0; c < 9; c++) {
+                if(board[r][c] === '-') {
+                    return [r,c];
+                }
             }
         }
+        return null;
     }
-    return true
-}
+
+    const validate = (num, pos, board) => {
+        const [r,c] = pos;
+
+        //Check rows
+        for (let i = 0; i < 9; i++) {
+            if (board[i][c] === num && i !== r) {
+                return false;
+            }
+        }
+
+        //Check cols
+        for (let i = 0; i < 9; i++) {
+            if (board[r][i] === num && i !== c) {
+                return false;
+            }
+        }
+
+
+        //Check box
+        const boxRow = Math.floor( r/3 ) * 3;
+        const boxCol = Math.floor( c/3 ) * 3;
+
+        for (let i = boxRow; i < boxRow + 3; i++) {
+            for (let j = boxCol; j < boxCol + 3; j++) {
+                if (board[i][j] === num && i !== r && j !== c) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    const solution = () => {
+        const currPos = findEmpty(board);
+
+        if (currPos === null) {
+            return true;
+        }
+        //console.log('------------------------------');
+        for (let i = 1; i < 9 + 1; i++) {
+            const currNum = i.toString();
+            const isValid = validate(currNum, currPos, board);
+            //console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
+            if (isValid) {
+                const [x,y] = currPos;
+                board[x][y] = currNum;
+
+                if(solution()) {
+                    return true;
+                }
+
+                board[x][y] = '-';
+            }
+        }
+
+        return false;
+    }
+
+    solution();
+    return board;
+};
+
+console.log(isSolved(board))
 
 
 // Takes in a board in some form and
