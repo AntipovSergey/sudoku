@@ -3,110 +3,86 @@ const { kill } = require('process');
 const sudoku = fs.readFileSync('./sudoku-puzzles.txt', 'UTF8');
 
 const toPuzzle = (content, puzzleNumber = 0) => {
-  return content.split('\n')[puzzleNumber]
+  return content.split('\n')[puzzleNumber];
 };
 
-let puzzle = toPuzzle(sudoku, 4)
+let puzzle = toPuzzle(sudoku, 3);
 
-const generateBoard = (str) => {
+function generateBoard(str) {
   let arr = [];
   for (let i = 0; i < str.length; i += 9) {
     arr.push(str.slice(i, i + 9).split(''));
   }
   return arr;
 };
-console.log(generateBoard(puzzle))
 
-const testSolve = (board) => {
-  let x
-  let y
+function testSolve(board) {
+  let x;
+  let y;
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] === '-') {
-        x = i
-        y = j
-        if (filterString(board1, x, y).length === 1) {
-          board[i][j] = `${filterString(board1, x, y)}`
-        }
+        x = i;
+        y = j;
+        if (solution(board1, x, y).length === 1) {
+          board[i][j] = `${solution(board1, x, y)}`;
+        };
       };
     };
   };
-  if (board.join().includes('-')) return testSolve(board)
-  return board
+  if (board.join().includes('-')) return testSolve(board);
+  return board;
 };
 
-const filterString = (board, x, y) => {
+function solution(board, x, y) {
   let solution = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   solution = solution.filter((el) => !board[x].includes(el));
-  let colon = []
+  let colon = [];
   for (let p = 0; p < board.length; p++) {
-    colon.push(board[p][y])
+    colon.push(board[p][y]);
   }
-  solution = solution.filter((el) => !colon.includes(el))
-  //console.log(colon)!!!!!!!!!!!!!!!!!
+  solution = solution.filter((el) => !colon.includes(el));
 
-  let qr = Math.floor(x / 3) * 3
-  let qc = Math.floor(y / 3) * 3
-  let square = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3))
-  solution = solution.filter((el) => !square.includes(el))
-  //console.log(square, 'Квадрат')!!!!!!!!!!!!!!!
-  return solution
+  let qr = Math.floor(x / 3) * 3;
+  let qc = Math.floor(y / 3) * 3;
+  let square = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3));
+  solution = solution.filter((el) => !square.includes(el));
+  return solution;
 };
 
-let board1 = generateBoard(puzzle)
-console.log(testSolve(board1))
+let board1 = generateBoard(puzzle);
+// console.log(testSolve(board1));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function isSolved(board) {
+  for (let row = 0; row < board.length; row++) {
+    if ((board[row].reduce((acc, val) => Number(acc) + Number(val), 0)) != 45) {
+      return false;
+    }
+  }
+  for (let col = 0; col < board.length; col++) {
+    let sum = 0;
+    for (let i = 0; i < board.length; i++) {
+      sum += Number(board[i][col]);
+    }
+    if (sum != 45) return false;
+  }
+  for (let qr = 0; qr < board.length; qr += 3) {
+    for (let qc = 0; qc < board[qr].length; qc += 3) {
+      let square = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3));
+      if (square.reduce((acc, val) => Number(acc) + Number(val), 0) != 45) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
 
 const prettyBoard = (board) => {
   return board.join('\n').replace(/,/gi, ' ');
 };
 
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(boardString) {
-  console.log('first changes');
-}
+console.log(isSolved(testSolve(board1)));
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
+function recursionSudoku(board) {
 
 }
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-
-// Exports all the functions to use them in another file.
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
