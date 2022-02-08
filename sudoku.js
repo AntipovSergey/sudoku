@@ -2,11 +2,11 @@ const fs = require('fs');
 const { kill } = require('process');
 const sudoku = fs.readFileSync('./sudoku-puzzles.txt', 'UTF8');
 
-const toPuzzle = (content, puzzleNumber = 0) => {
+function toPuzzle(content, puzzleNumber = 0) {
   return content.split('\n')[puzzleNumber];
-};
+}
 
-let puzzle = toPuzzle(sudoku, 3);
+let puzzle = toPuzzle(sudoku, 13);
 
 function generateBoard(str) {
   let arr = [];
@@ -16,7 +16,7 @@ function generateBoard(str) {
   return arr;
 };
 
-function testSolve(board) {
+function getEmptyCell(board) {
   let x;
   let y;
   for (let i = 0; i < board.length; i++) {
@@ -24,34 +24,34 @@ function testSolve(board) {
       if (board[i][j] === '-') {
         x = i;
         y = j;
-        if (solution(board1, x, y).length === 1) {
-          board[i][j] = `${solution(board1, x, y)}`;
-        };
+        return [x, y];
       };
     };
   };
-  if (board.join().includes('-')) return testSolve(board);
-  return board;
 };
 
-function solution(board, x, y) {
+function isNotSolved(board) {
+  for (let row = 0; row < board.length; row++) {
+    if (board[row].includes('-')) return true;
+  }
+}
+
+function getAvailableSolutions(board, cell) {
   let solution = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  solution = solution.filter((el) => !board[x].includes(el));
+  solution = solution.filter((el) => !board[cell[0]].includes(el));
   let colon = [];
   for (let p = 0; p < board.length; p++) {
-    colon.push(board[p][y]);
+    colon.push(board[p][cell[1]]);
   }
   solution = solution.filter((el) => !colon.includes(el));
 
-  let qr = Math.floor(x / 3) * 3;
-  let qc = Math.floor(y / 3) * 3;
-  let square = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3));
+  let qr = Math.floor(cell[0] / 3) * 3;
+  let qc = Math.floor(cell[1] / 3) * 3;
+  let square = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3),
+    board[qr + 2].slice(qc, qc + 3));
   solution = solution.filter((el) => !square.includes(el));
   return solution;
 };
-
-let board1 = generateBoard(puzzle);
-// console.log(testSolve(board1));
 
 function isSolved(board) {
   for (let row = 0; row < board.length; row++) {
@@ -68,7 +68,8 @@ function isSolved(board) {
   }
   for (let qr = 0; qr < board.length; qr += 3) {
     for (let qc = 0; qc < board[qr].length; qc += 3) {
-      let square = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3), board[qr + 2].slice(qc, qc + 3));
+      let square = board[qr].slice(qc, qc + 3).concat(board[qr + 1].slice(qc, qc + 3),
+        board[qr + 2].slice(qc, qc + 3));
       if (square.reduce((acc, val) => Number(acc) + Number(val), 0) != 45) {
         return false;
       }
@@ -79,10 +80,22 @@ function isSolved(board) {
 
 const prettyBoard = (board) => {
   return board.join('\n').replace(/,/gi, ' ');
-};
-
-console.log(isSolved(testSolve(board1)));
-
-function recursionSudoku(board) {
-
 }
+
+// console.log(isSolved(testSolve(board1)));
+
+function recurseSudoku(board) {
+  if (isNotSolved(board)) {
+    let cell = getEmptyCell(board);
+    let solutions = getAvailableSolutions(board, cell);
+    for (let i = 0; i < solutions.length; i++) {
+      board[cell[0]][cell[1]] = solutions[i];
+      recurseSudoku(board);
+      if (!isNotSolved(board)) return board;
+      board[cell[0]][cell[1]] = '-';
+    }
+  }
+}
+
+let sudokuSolved = recurseSudoku(generateBoard(puzzle));
+console.log(prettyBoard(sudokuSolved));
