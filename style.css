@@ -3,28 +3,52 @@
   padding: 0;
 }
 
-table { 
+#root {
   margin: 30px;
-  border: 3px solid black; 
-  border-collapse: collapse;
+  padding-bottom: 50px;
+  width: 374px;
+  position: relative;
+}
+
+table {
   text-align: center; 
- }
- 
- td { 
+  border-collapse: collapse;
+  border: 2px solid black; 
+}
+
+td { 
   padding: 5px; 
   border: 1px dashed gray; 
   height: 30px;
   width: 30px;
  }
 
- .underline {
-  border-bottom-width: 3px;
-  border-bottom-color: black;
-  border-bottom-style: solid;
- }
+td:nth-child(3n) {
+  border-right: 2px solid black;
+}
 
- .right_line {
-   border-right-width: 3px;
-   border-right-color: black;
-   border-right-style: solid;
- }
+tr:nth-child(3n) {
+  border-bottom: 2px solid black;
+}
+
+#reset {
+  position: absolute;
+  bottom: 0px;
+  right: 100px;
+  padding: 5px 10px;
+  background-color: rgb(220, 48, 48);
+  font-size: 16px;
+  border: 2px solid black;
+  color: white;
+}
+
+#solution {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  padding: 5px 10px;
+  background-color: rgb(6, 109, 6);
+  font-size: 16px;
+  border: 2px solid black;
+  color: white;
+}
