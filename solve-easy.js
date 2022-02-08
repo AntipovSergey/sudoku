@@ -215,7 +215,11 @@ function solveEasy(boardString) {
   }
 
   const newBoardString = raws.map((el) => el.join('')).join('');
-  return (newBoardString.split('').includes('-')) ? solveEasy(newBoardString) : newBoardString;
+  try {
+    return (newBoardString.split('').includes('-')) ? solveEasy(newBoardString) : newBoardString;
+  } catch (err) {
+    return `Oooops, I can't solve it, too difficult :( \nError: ${err}`;
+  }
 
   // идем по массиву raws, ищем пустую ячейку
   // для пустой ячейки ищем возможные значения
