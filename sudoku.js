@@ -1,20 +1,20 @@
+function findElem(board) {
+    for (let line = 0; line < 9; line++) {
+        for (let colum = 0; colum < 9; colum++) {
+            if (board[line][colum] === '-') {
+                return [line, colum];
+            }
+        }
+    }
+    return null;
+}
+
 function solve(boardString) {
 
     let board = []
     let arrBoardString = boardString.split('')
     for (let i = 0; i < 9; i++) {
         board.push(arrBoardString.splice(0, 9))
-    }
-
-    function findElem(board) {
-        for (let line = 0; line < 9; line++) {
-            for (let colum = 0; colum < 9; colum++) {
-                if (board[line][colum] === '-') {
-                    return [line, colum];
-                }
-            }
-        }
-        return null;
     }
 
     const solveElem = () => {
