@@ -1,3 +1,11 @@
+
+function sudokuParse(content, puzzleNumber = 0) {
+    let puzzle = content.split('\n')[puzzleNumber];
+    console.log(puzzle);
+    console.log('parser');
+    return puzzle;
+}
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -13,7 +21,8 @@ function solve(boardString) {
     }
     return arr
 }
- let board = solve(str2)
+let boardStart = solve(str2)
+let board = solve(str2)
 
 
 // Returns a boolean indicating whether
@@ -106,18 +115,49 @@ console.log(isSolved(board))
 // form `solve` returns.
 
 
-function prettyBoard(board) {
-    let result = [];
-    for (let i = 0; i < board.length; i++) {
-        result.push(board[i].join(' ') + '\n')
+
+
+// Формирование сетки без чисел
+
+const root = document.querySelector('#root');
+
+function get_table(row_count, column_count) {
+    const outer_table = document.createElement('table');
+    for (let i = 0 ; i < row_count; i++) {
+        const row = document.createElement('tr')
+        outer_table.appendChild(row);
+        for (let i = 0 ; i < column_count; i++) {
+            const column = document.createElement('td')
+            row.appendChild(column);
+        }
     }
-    return result.join('')
+    return outer_table
 }
 
-// Exports all the functions to use them in another file.
-module.exports = {
-    solve,
-    isSolved,
-    prettyBoard,
-    board
-};
+const mainTable = get_table(9,9);
+
+root.appendChild(mainTable)
+
+
+
+// Формирование сетки START
+
+function fillSudoku(lst){
+    const line_lst = [].concat(...lst);
+    mainTable.querySelectorAll('td')
+        .forEach((td, i) => td.innerText=(line_lst[i] === '-') ? '' : line_lst[i]);
+}
+
+fillSudoku(boardStart)
+
+
+// Формирование сетки SOLUTION
+
+document.querySelector('#solution')
+    .addEventListener('click', () => fillSudoku(board));
+
+
+// Формирование сетки BACK
+
+document.querySelector('#reset')
+    .addEventListener('click', () => fillSudoku(boardStart));
