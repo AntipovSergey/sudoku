@@ -1,8 +1,3 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
 function solve(boardString) {
 
     let board = []
@@ -48,10 +43,6 @@ function solve(boardString) {
     return board
 }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
 function isSolved(number, position, board) {
     let goriz = position[0];
     let vertical = position[1]
@@ -77,13 +68,6 @@ function isSolved(number, position, board) {
     return true
 }
 
-
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-
 function prettyBoard(board) {
     let result = [];
     for (let i = 0; i < board.length; i++) {
@@ -92,7 +76,6 @@ function prettyBoard(board) {
     return result.join('')
 }
 
-// Exports all the functions to use them in another file.
 module.exports = {
     solve,
     isSolved,
