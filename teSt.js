@@ -1,3 +1,11 @@
+
+function sudokuParse(content, puzzleNumber = 0) {
+    let puzzle = content.split('\n')[puzzleNumber];
+    console.log(puzzle);
+    console.log('parser');
+    return puzzle;
+}
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -13,6 +21,7 @@ function solve(boardString) {
     }
     return arr
 }
+let boardStart = solve(str2)
 let board = solve(str2)
 
 
@@ -20,13 +29,13 @@ let board = solve(str2)
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
+function isSolved( board) {
 
     const findEmpty = (board) => {
         for (let r = 0; r < 9; r++) {
             for (let c = 0; c < 9; c++) {
-                if (board[r][c] === '-') {
-                    return [r, c];
+                if(board[r][c] === '-') {
+                    return [r,c];
                 }
             }
         }
@@ -34,7 +43,7 @@ function isSolved(board) {
     }
 
     const validate = (num, pos, board) => {
-        const [r, c] = pos;
+        const [r,c] = pos;
 
         //Check rows
         for (let i = 0; i < 9; i++) {
@@ -52,8 +61,8 @@ function isSolved(board) {
 
 
         //Check box
-        const boxRow = Math.floor(r / 3) * 3;
-        const boxCol = Math.floor(c / 3) * 3;
+        const boxRow = Math.floor( r/3 ) * 3;
+        const boxCol = Math.floor( c/3 ) * 3;
 
         for (let i = boxRow; i < boxRow + 3; i++) {
             for (let j = boxCol; j < boxCol + 3; j++) {
@@ -78,10 +87,10 @@ function isSolved(board) {
             const isValid = validate(currNum, currPos, board);
             //console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
             if (isValid) {
-                const [x, y] = currPos;
+                const [x,y] = currPos;
                 board[x][y] = currNum;
 
-                if (solution()) {
+                if(solution()) {
                     return true;
                 }
 
@@ -98,17 +107,57 @@ function isSolved(board) {
 
 console.log(isSolved(board))
 
-function prettyBoard(board) {
-    let result = [];
-    for (let i = 0; i < board.length; i++) {
-        result.push(board[i].join(' ') + '\n')
+
+// Takes in a board in some form and
+// returns a String that's well formatted
+// for output to the screen.
+// The input board will be in whatever
+// form `solve` returns.
+
+
+
+
+// Формирование сетки без чисел
+
+const root = document.querySelector('#root');
+
+function get_table(row_count, column_count) {
+    const outer_table = document.createElement('table');
+    for (let i = 0 ; i < row_count; i++) {
+        const row = document.createElement('tr')
+        outer_table.appendChild(row);
+        for (let i = 0 ; i < column_count; i++) {
+            const column = document.createElement('td')
+            row.appendChild(column);
+        }
     }
-    return result.join('')
+    return outer_table
 }
 
-module.exports = {
-    solve,
-    isSolved,
-    prettyBoard,
-    board
-};
+const mainTable = get_table(9,9);
+
+root.appendChild(mainTable)
+
+
+
+// Формирование сетки START
+
+function fillSudoku(lst){
+    const line_lst = [].concat(...lst);
+    mainTable.querySelectorAll('td')
+        .forEach((td, i) => td.innerText=(line_lst[i] === '-') ? '' : line_lst[i]);
+}
+
+fillSudoku(boardStart)
+
+
+// Формирование сетки SOLUTION
+
+document.querySelector('#solution')
+    .addEventListener('click', () => fillSudoku(board));
+
+
+// Формирование сетки BACK
+
+document.querySelector('#reset')
+    .addEventListener('click', () => fillSudoku(boardStart));
