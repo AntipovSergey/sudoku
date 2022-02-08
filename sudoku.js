@@ -78,11 +78,9 @@ function isSolved(board) {
   return true;
 }
 
-const prettyBoard = (board) => {
+function prettyBoard(board) {
   return board.join('\n').replace(/,/gi, ' ');
 }
-
-// console.log(isSolved(testSolve(board1)));
 
 function recurseSudoku(board) {
   if (isNotSolved(board)) {
@@ -98,4 +96,5 @@ function recurseSudoku(board) {
 }
 
 let sudokuSolved = recurseSudoku(generateBoard(puzzle));
+console.log(prettyBoard(generateBoard(puzzle)) + '\n');
 console.log(prettyBoard(sudokuSolved));
