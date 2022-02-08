@@ -37,6 +37,5 @@ function paintPrettyBoard(board) {
   return strings;
 }
 
-// console.log(prettyBoard('145892673893176425276435819519247386762583194384961752957614238438729561621358947'));
 
 module.exports = paintPrettyBoard;
