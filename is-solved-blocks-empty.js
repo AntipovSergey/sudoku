@@ -27,23 +27,6 @@ function isSolvedEmptyCells(board) {
   return !board.split('').includes('-');
 }
 
-// function checkRaw(board) {
-//   let raws = [];
-//   for (let i = 0; i < 81; i += 9) {
-//     raws.push(board.slice(i, i + 9).split(''));
-//   }
-
-//   let counter = 0
-//   for (let i = 0; i < raws.length; i += 1) {
-//     for (let j = 0; j < raws[i].length; j += 1) {
-//       if (raws[i].indexOf(raws[i][j]) !== raws[i].lastIndexOf(raws[i][j])) {
-//         counter += 1;
-//       }
-//     }
-//   }
-//   return counter > 0 ? false : true
-// }
-
 module.exports = {
   isSolvedBlocks,
   isSolvedEmptyCells,

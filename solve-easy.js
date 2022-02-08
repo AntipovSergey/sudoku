@@ -1,4 +1,4 @@
-function solve(boardString) {
+function solveEasy(boardString) {
   const raws = [];
   for (let i = 0; i < 81; i += 9) {
     raws.push(boardString.slice(i, i + 9).split(''));
@@ -215,9 +215,11 @@ function solve(boardString) {
   }
 
   const newBoardString = raws.map((el) => el.join('')).join('');
-  return (newBoardString.split('').includes('-')) ? solve(newBoardString) : newBoardString;
-
-  // return raws;
+  try {
+    return (newBoardString.split('').includes('-')) ? solveEasy(newBoardString) : newBoardString;
+  } catch (err) {
+    return `Oooops, I can't solve it, too difficult :( \nError: ${err}`;
+  }
 
   // идем по массиву raws, ищем пустую ячейку
   // для пустой ячейки ищем возможные значения
@@ -225,9 +227,4 @@ function solve(boardString) {
   // если получается ошибка - нет возможных значений, возвращаемся на ячейку назад
 }
 
-// console.log(solve('123456798457198236869237145214365987375981462698724351531679824946812573782543619'));
-
-const example = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-console.log(solve(example));
-const answer = '145892673893176425276435819519247386762583194384961752957614238438729561621358947';
-console.log(solve(example) === answer);
+module.exports = solveEasy;
