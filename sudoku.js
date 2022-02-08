@@ -27,7 +27,7 @@ function solve(boardString) {
   }
   return board;
 }
-// console.table(solve(sud1));
+ console.table(solve(sud1));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -39,7 +39,11 @@ function isSolved(board) {
   result.push(isSolvedBlocks(board), isSolvedEmptyCells(board), checkRaw(board), checkColumn(board));
   return !result.includes(false);
 }
- 
+
+
+
+
+
 // console.log(isSolved('123456789456789123789123456214365897365897214897214365531642978642978531978531642'))
 // console.log(isSolved('122456789456789123789123456214365897365897214897214365531642978642978531978531611'));
 // Takes in a board in some form and
