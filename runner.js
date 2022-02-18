@@ -1,10 +1,10 @@
 const { modelData } = require("./model.js");
+let model = modelData();
 // Переменные;
 // sudokuBoard - данные нашего поля;
 // row - данные ряда;
 // column - данные колоки;
 // valueFromTile - данные из solver;
-//
 //
 //
 // Validator - пропускает значения из функции solver для проверки
@@ -26,23 +26,25 @@ function validator(sudokuBoard, row, column, valueFromTile) {
   }
   return true;
 }
-function solver(data) {
+function solver(arr) {
   for (let i = 0; i < 9; i++) {
     // первым циклом проходим по горизонтальной строке и ищем индекс где находится "-"
     for (let j = 0; j < 9; j++) {
       // вторым циклом ищем индекс где находится "-" в вертикальмом столбце
-      if (data[i][j] == '-') {
-        // условие - если находит координаты где "-" запускается цикл, который подбирает цифру на это место 
+      if (arr[i][j] === "-") {
+        // условие - если находит координаты где "-" запускается цикл,
+        // который подбирает цифру на это
+        // место
         for (let k = 1; k <= 9; k++) {
-        // цикл подбора цифры
-          if (validator(data, i, j, k)) {
+          // цикл подбора цифры
+          if (validator(arr, i, j, k)) {
             // если функция "validator" дает true, подставляем цифру
-            data[i][j] = `${k}`;
-            if (solver(data)) {
-              // 
+            arr[i][j] = `${k}`;
+            if (solver(arr)) {
+              //
               return true;
             }
-            data[i][j] = '-';
+            arr[i][j] = "-";
             // если функция validator дает false то подставляется обратно "-"
           }
         }
@@ -52,5 +54,5 @@ function solver(data) {
   }
   return true;
 }
-console.table(solver())
-module.exports = { validator, solver };
+solver(model);
+console.table(model);
