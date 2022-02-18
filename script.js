@@ -1,30 +1,32 @@
 const fs = require('fs');
 
-function createField() {
-  const playFieldStr = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8').split('\r\n');
-  const lengField = 9;
-  const playFildArr = [];
-  for (let i = 0; i < lengField; i++) {
-    playFildArr[i] = [];
-    for (let j = 0; j < lengField; j++) {
-      playFildArr[i].push(playFieldStr[i][j]);
-    }
-  }
-  console.log(playFieldStr[0]);
-  console.table(playFildArr);
-  finndMatchVert(playFildArr, lengField)
-}
-createField()
+function createField(current) {
+  const playFieldStr = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8').split('\r\n').filter(e => e != '');
 
-function finndMatchVert(arr, leng) {
+  console.log(playFieldStr[current]);
+  const res = [];
+  for (let i = 0; i < playFieldStr[0].split('').length; i += 9) {
+    res.push(playFieldStr[0].split('').splice(i, 9))
+  }
+  finndMatchVert(res)
+}
+
+function finndMatchVert(arr) {
+  console.table(arr) 
   const arrToCheck = []
-  for (let i = 1; i <= leng; i++) {
+  for (let i = 1; i <= 9; i++) {
     arrToCheck.push(i)
   }
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length; j++) {
-      if (arr[j][i] == arrToCheck[i])
-        console.log(arrToCheck[i]);
+      console.log(arr[j][0]);
+      if (arr[j][i] === '-') {
+        let emptyСellX = i;
+        console.log(emptyСellX);
+        return
+      }
     }
   }
 }
+// console.log('Это arr ', arr[j][i]);
+createField(0)
