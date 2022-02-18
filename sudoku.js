@@ -12,6 +12,52 @@ function solve(boardString) {
     let row = boardString.slice(i, i + 9).split('');
     board.push(row);
   }
+  console.table(board)
+  //
+  function solveBoard(board) {
+    let boardSize = board.length;
+    let boxSize = Math.sqrt(boardSize);
+    
+    function searchEmpty(board) {
+      for (let i = 0; i < boardSize; i += 1) {
+        for (let j = 0; j < boardSize; j += 1) {
+          if (board[i][j] === '-') return [i, j];
+        }
+      }
+      return -1;
+    }
+    console.log(searchEmpty(board));
+
+    function uniq(num, pos, board) {
+      let [x, y] = pos;
+      for (let i = 0; i < boardSize; i += 1) {
+        if (board[x][i] === num) return false;
+        if (board[i][y] === num) return false;
+      }
+      return true
+    }
+
+    function fillNum(board) {
+      let currPos = searchEmpty(board);
+      
+      if (currPos === -1) return true
+
+      for (let i = 1; i <= boardSize; i += 1) {
+        let currNum = String(i);
+
+        let checkUniq = uniq(currNum, currPos, board);
+
+        if (checkUniq) {
+          console.log('i', currNum)
+        }
+
+      }
+    }
+
+    fillNum(board)
+  }
+
+  solveBoard(board)
 }
 console.log(solve(str))
 
