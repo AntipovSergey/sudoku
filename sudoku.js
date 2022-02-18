@@ -1,25 +1,25 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+// Принимает доску в виде строки в формате
+// вы видите в файле головоломки.Возвращает
+// нечто, представляющее собой доску после
+// ваш решатель пытался решить это.
+// То, как вы представляете свою доску, зависит от вас!
 function solve(boardString) {
   console.log('first changes');
 }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
+// Возвращает логическое значение, указывающее,
+// или решается не указанная плата.
+// Плата ввода будет в любом
+// форма `решить` возвращает.
 function isSolved(board) {
 
 }
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
+// Принимает доску в той или иной форме и
+// возвращает правильно отформатированную строку
+// для вывода на экран.
+// Плата ввода будет в любом
+// форма `решить` возвращает.
 function prettyBoard(board) {
 
 }
