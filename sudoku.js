@@ -4,7 +4,10 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 
-let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+let str1 = '-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7';
+let str2 = '----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----';
+let str3 = '---------------------------------------------------------------------------------';
+
 function solve(boardString) {
   let board = [];
   // цикл преобразует строку в массив 9х9
@@ -12,12 +15,14 @@ function solve(boardString) {
     let row = boardString.slice(i, i + 9).split('');
     board.push(row);
   }
-  console.table(board)
-  //
+  console.table(board);
+
+  // функция, решающая судоку
   function solveBoard(board) {
     let boardSize = board.length;
     let boxSize = Math.sqrt(boardSize);
     
+    // функция, которая находит координаты пустых клеток
     function searchEmpty(board) {
       for (let i = 0; i < boardSize; i += 1) {
         for (let j = 0; j < boardSize; j += 1) {
@@ -26,21 +31,29 @@ function solve(boardString) {
       }
       return -1;
     }
-    console.log(searchEmpty(board));
 
+    // функция, проверяющая уникальность очередного числа в текущую клетку судоку
     function uniq(num, pos, board) {
       let [x, y] = pos;
       for (let i = 0; i < boardSize; i += 1) {
         if (board[x][i] === num) return false;
         if (board[i][y] === num) return false;
       }
-      return true
+      let i2 = Math.floor(x / boxSize) * boxSize;
+      let j2 = Math.floor(y / boxSize) * boxSize;
+      for (let i = i2; i < i2 + boxSize; i += 1) {
+        for (let j = j2; j < j2 + boxSize; j += 1) {
+          if (board[i][j] === num) return false;
+        }
+      }
+      return true;
     }
 
-    function fillNum(board) {
+    // функция, заполняющая пустые клетки судоку
+    function fillСell(board) {
       let currPos = searchEmpty(board);
       
-      if (currPos === -1) return true
+      if (currPos === -1) return true;
 
       for (let i = 1; i <= boardSize; i += 1) {
         let currNum = String(i);
@@ -48,35 +61,46 @@ function solve(boardString) {
         let checkUniq = uniq(currNum, currPos, board);
 
         if (checkUniq) {
-          console.log('i', currNum)
+          let [x, y] = currPos;
+          board[x][y] = currNum;
+
+          if (fillСell(board)) {
+            return true;
+          }
+          board[x][y] = '-';
         }
-
       }
+      return false;
     }
-
-    fillNum(board)
+    fillСell(board);
   }
-
-  solveBoard(board)
+  solveBoard(board);
+  return board;
 }
-console.log(solve(str))
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  let numbers = board.join(',').split(',');
+  return (!numbers.includes('-'));
 }
-
+// isSolved(solve(str))
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  console.table(board);
+  let boardToStr = board.join('\n');
+  return boardToStr;
 }
+
+prettyBoard(solve(str1));
+prettyBoard(solve(str2));
+prettyBoard(solve(str3));
 
 // Exports all the functions to use them in another file.
 module.exports = {
