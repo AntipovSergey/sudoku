@@ -5,7 +5,7 @@ const fs = require("fs");
 const rawData = fs.readFileSync("./sudoku-puzzles.txt", "utf-8");
 
 // передаем номер строки из файла
-const numberSudoku = 12;
+const numberSudoku = Number(process.argv[2]);
 
 function modelData() {
   const str = rawData.split("\n")[numberSudoku];
