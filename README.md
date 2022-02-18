@@ -1,6 +1,8 @@
 # Судоку
 
 ## Введение
+## Egor Dmitriy Vasiliy
+
 
 ![Решение анимация](readme-assets/sequence.gif)
 
