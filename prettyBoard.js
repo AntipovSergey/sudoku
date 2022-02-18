@@ -18,4 +18,4 @@ function prettyBoard(arr) {
   });
   return puzzles;
 }
-console.log(prettyBoard(parsed()));
+console.log(prettyBoard(parsed));
