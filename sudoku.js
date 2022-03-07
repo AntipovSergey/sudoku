@@ -2,10 +2,10 @@ const fs = require('fs');
 
 const boardStringVar = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
 const boardString = boardStringVar.split('\n').map((el) => [...el]);
-//console.table(boardString[0]);
-//console.log(boardString[0],'boardString[0]');
 
-const sudocuFild = (strArr) => {
+console.log(boardString[14],'boardString[0]');
+// функция созд\многомерного массива
+const sudocuCollection = (strArr) => {
 let arrayIndex = -1;
   return strArr.reduce((final, curr, i) => {
     if (i % 9 === 0) {
@@ -17,9 +17,8 @@ let arrayIndex = -1;
     return final;
   }, []);
 }
-console.log(sudocuFild(boardString[13]))
-console.log(boardString[14]);
 
+console.log(sudocuCollection(boardString[1]));
 
 
 // Принимает доску как строку в формате
@@ -28,49 +27,86 @@ console.log(boardString[14]);
 // ваш решатель пытался ее решить.
 // То, как вы представляете свою доску, зависит от вас!
 
-function solve(sudocuFild) {
+let solveSudoku = function(board) {
   const size = 9;
   const boxSize = 3;
 
-  const findEmpty = (sudocuFild) => {
-    for(let r = 0; r < size; r += 1){
-      for(let c = 0; c < size; c += 1){
-        if(sudocuFild[r][c] === '-'){
-          return [r,c];
-        }
+  const findEmpty = (board) => {
+      for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+              if(board[r][c] === '-') {
+                  return [r,c];
+              }
+          }
       }
-    }
-    return null;
+      return null;
   }
-  const validate = (num, pos, sudocuFild) => {
-  const [r,c] = pos;
+
+  const validate = (num, pos, board) => {
+      const [r,c] = pos;
+
+      
+      for (let i = 0; i < size; i++) {
+          if (board[i][c] === num && i !== r) {
+              return false;
+          }
+      }
+
+      
+      for (let i = 0; i < size; i++) {
+          if (board[r][i] === num && i !== c) {
+              return false;
+          }
+      }
 
 
-  // проверка строк
-  for(let i = 0; i < size; i += 1){
-    if(sudocuFild[r][c] === num){
+     
+      const boxRow = Math.floor( r/boxSize ) * boxSize;
+      const boxCol = Math.floor( c/boxSize ) * boxSize;
 
-    }
+      for (let i = boxRow; i < boxRow + boxSize; i++) {
+          for (let j = boxCol; j < boxCol + boxSize; j++) {
+              if (board[i][j] === num && i !== r && j !== c) {
+                  return false;
+              }
+          }
+      }
+
+      return true;
   }
-}
 
+  const solve = () => {
+      const currPos = findEmpty(board);
 
-  const solveSud = () => {
-   const currPos = findEmpty(sudocuFild);
-   if(currPos === null){
-     return true;
-   }
+      if (currPos === null) {
+          return true;
+      }
+     
+      for (let i = 1; i < size + 1; i++) {
+          const currNum = i.toString();
+          const isValid = validate(currNum, currPos, board);
+          
+          if (isValid) {
+              const [x,y] = currPos;
+              board[x][y] = currNum;
 
-   for(let i = 1; i < size + 1; i += 1){
-     const currNum = i.toString();
-     const isValid = validate(currNum, currPos, sudocuFild);
-   }
+              if(solve()) {
+                  return true;
+              }
 
-   return false;
+              board[x][y] = '-';
+          }
+      }
+
+      return false;
   }
- solveSud();
-  return sudocuFild;
-}
+
+  solve();
+  return board;
+};
+
+
+console.table(solveSudoku(sudocuCollection(boardString[1])));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -91,7 +127,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve,
+  solveSudoku,
   isSolved,
   prettyBoard,
 };
