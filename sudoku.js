@@ -1,11 +1,28 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+const fs = require('fs');
+
+const boardStringVar = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
+const boardString = boardStringVar.split('\n').map((el) => [...el]);
+console.table(boardString[0]);
+//console.log(boardString[0]);
+function abc(strArr){
+  let arr = [];
+  for(let i = 0;i < strArr.length; i+= 1){
+    if(i < 9) {
+      arr.push(strArr[i]);
+    }
+  }
+  return arr;
+}
+
+ console.log(abc(boardString[0]));
+// Принимает доску как строку в формате
+// вы видите в файле головоломки. Возвращает
+// что-то, представляющее доску после
+// ваш решатель пытался ее решить.
+// То, как вы представляете свою доску, зависит от вас!
+
 function solve(boardString) {
   console.log('first changes');
-  dafaFJNAF
 }
 
 // Returns a boolean indicating whether
