@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
+/* eslint-disable no-plusplus */
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -5,7 +8,7 @@
 // How you represent your board is up to you!
 
 function solve(boardTxt) {
-  let board = [];
+  const board = [];
   const boardString = boardTxt.split('');
   for (let i = 0; i < 9; i++) {
     board.push(boardString.slice(i * 9, i * 9 + 9));
@@ -18,31 +21,29 @@ function solve(boardTxt) {
   const findEmpty = (board) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if(board[r][c] === '-') {
-          return [r,c];
+        if (board[r][c] === '-') {
+          return [r, c];
         }
       }
     }
     return null;
-  }
+  };
 
   const validate = (num, pos, board) => {
-    const [r,c] = pos;
-    
+    const [r, c] = pos;
     for (let i = 0; i < size; i++) {
       if (board[i][c] === num && i !== r) {
         return false;
       }
     }
-    
     for (let i = 0; i < size; i++) {
       if (board[r][i] === num && i !== c) {
         return false;
       }
     }
 
-    const boxRow = Math.floor( r/boxSize ) * boxSize;
-    const boxCol = Math.floor( c/boxSize ) * boxSize;
+    const boxRow = Math.floor(r / boxSize) * boxSize;
+    const boxCol = Math.floor(c / boxSize) * boxSize;
 
     for (let i = boxRow; i < boxRow + boxSize; i++) {
       for (let j = boxCol; j < boxCol + boxSize; j++) {
@@ -52,36 +53,31 @@ function solve(boardTxt) {
       }
     }
     return true;
-  }
+  };
 
   const solve = () => {
     const currPos = findEmpty(board);
-
     if (currPos === null) {
       return true;
     }
-    
     for (let i = 1; i < size + 1; i++) {
       const currNum = i.toString();
       const isValid = validate(currNum, currPos, board);
-      
       if (isValid) {
-        const [x,y] = currPos;
+        const [x, y] = currPos;
         board[x][y] = currNum;
 
-        if(solve()) {
+        if (solve()) {
           return true;
         }
         board[x][y] = '-';
       }
     }
-
     return false;
-  }
+  };
   solve();
   return board;
-
-};
+}
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -94,31 +90,28 @@ function isSolved(board) {
   const findNumber = (board) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if(board[r][c]) {
-          return [r,c];
+        if (board[r][c]) {
+          return [r, c];
         }
       }
     }
     return null;
-  }
+  };
 
   const validate = (num, pos, board) => {
-    const [r,c] = pos;
-    
+    const [r, c] = pos;
     for (let i = 0; i < size; i++) {
       if (board[i][c] === num && i !== r) {
         return false;
       }
     }
-    
     for (let i = 0; i < size; i++) {
       if (board[r][i] === num && i !== c) {
         return false;
       }
     }
-
-    const boxRow = Math.floor( r/boxSize ) * boxSize;
-    const boxCol = Math.floor( c/boxSize ) * boxSize;
+    const boxRow = Math.floor(r / boxSize) * boxSize;
+    const boxCol = Math.floor(c / boxSize) * boxSize;
 
     for (let i = boxRow; i < boxRow + boxSize; i++) {
       for (let j = boxCol; j < boxCol + boxSize; j++) {
@@ -128,7 +121,7 @@ function isSolved(board) {
       }
     }
     return true;
-  }
+  };
 
   const solve = () => {
     const currPos = findNumber(board);
@@ -136,16 +129,15 @@ function isSolved(board) {
     if (currPos === null) {
       return true;
     }
-    
     for (let i = 1; i < size + 1; i++) {
       const currNum = i.toString();
       const isValid = validate(currNum, currPos, board);
-      
-      if (!isValid) return false
+
+      if (!isValid) return false;
     }
     solve();
     return true;
-  }
+  };
   return true;
 }
 
