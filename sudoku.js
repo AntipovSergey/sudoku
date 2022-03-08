@@ -80,8 +80,9 @@ function solve(boardTxt) {
   }
   solve();
   return board;
-
+  
 };
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
