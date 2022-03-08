@@ -110,3 +110,8 @@ footer {
   text-align: center;
   margin-top: 50px;
 }
+
+.footer-name {
+  font-size: 18px;
+  margin-top: 10px;
+}

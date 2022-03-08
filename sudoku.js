@@ -72,23 +72,35 @@ window.addEventListener('DOMContentLoaded', function (event) {
       event.preventDefault();
       const options = select.querySelectorAll('option');
       const count = options.length;
-      pushUnsolved(unsolvedArr);
-      for (let i = 0; i < cells.length; i++) {
-        if (cells[i].classList.contains('cell-solved')) cells[i].classList.remove('cell-solved');
-      }
-    })
-    
-    //Обработчик селекта - по изменению вызывает функцию заполнения поля начальными значениями
-    select.addEventListener('change', (event) => {
-      event.preventDefault();
-      if(select.value === '1')
-      {
-        pushUnsolved(unsolvedArr);
+      if (select.value === '') {
         for (let i = 0; i < cells.length; i++) {
           if (cells[i].classList.contains('cell-solved')) cells[i].classList.remove('cell-solved');
+          if (cells[i].classList.contains('cell-unsolved')) cells[i].classList.remove('cell-unsolved');
+          cells[i].textContent = '';
+        }
+      } else {
+        const n = select.value;
+        pushUnsolved(unsolvedArr);
+        console.table(unsolvedArr)
+        for (let i = 0; i < cells.length; i++) {
+          if (cells[i].classList.contains('cell-solved')) {
+            cells[i].classList.remove('cell-solved');
+            cells[i].textContent = '';
+          }
         }
       }
     })
+    //Обработчик селекта - по изменению вызывает функцию заполнения поля начальными значениями
+    // select.addEventListener('change', (event) => {
+    //   event.preventDefault();
+    //   if(select.value === '1')
+    //   {
+    //     pushUnsolved(unsolvedArr);
+    //     for (let i = 0; i < cells.length; i++) {
+    //       if (cells[i].classList.contains('cell-solved')) cells[i].classList.remove('cell-solved');
+    //     }
+    //   }
+    // })
     //Функция заполнения ячеек конечными значениями
     function pushSolved(solvedArr) {
       const data = solvedArr.flat(1);
@@ -96,6 +108,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
         if (!cells[i].textContent) {
           cells[i].textContent = data[i];
           cells[i].classList.add('cell-solved');
+          cells[i].classList.remove('cell-unsolved');
         }
       }
     }
