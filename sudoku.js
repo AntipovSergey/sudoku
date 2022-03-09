@@ -14,7 +14,7 @@ function solve(boardTxt) {
     board.push(boardString.slice(i * 9, i * 9 + 9));
   }
   console.log('Исходные данные для решения:');
-  console.table(board);
+  console.table(board.map((el) => el.map((el) => (el === '-' ? 0 : Number(el)))));
   const size = 9;
   const boxSize = 3;
 
@@ -148,7 +148,7 @@ function isSolved(board) {
 // form `solve` returns.
 function prettyBoard(board) {
   console.log('Вариант решения:');
-  console.table(board);
+  console.table(board.map((el) => el.map(Number)));
 }
 
 // Exports all the functions to use them in another file.
