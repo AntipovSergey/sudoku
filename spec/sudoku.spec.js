@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+
 const { solve } = require('../sudoku.js');
 
 const str = '---------------------------------------------------------------------------------';
