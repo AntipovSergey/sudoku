@@ -45,7 +45,7 @@ function solve(boardString) {
 // форме, которую возвращает "решена".
 //
 function isSolved(board) {
-
+  console.log('aaa');
 }
 
 // Takes in a board in some form and
