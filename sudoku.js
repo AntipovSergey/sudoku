@@ -77,7 +77,7 @@ function isSolved(board) {
 // ```
 
 function prettyBoard(board) {
-
+return board.reduce((acc,el) => acc + el.join(' ') + '\n','');
 }
 
 // Exports all the functions to use them in another file.
