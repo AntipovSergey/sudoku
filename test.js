@@ -13,3 +13,30 @@
     return true
   }
 
+  function fillСell(board) {
+    let currPos = searchEmpty(board);
+
+    if (currPos === -1) return true;
+
+    for (let i = 1; i <= boardSize; i += 1) {
+      let currNum = String(i);
+
+      let checkUniq = uniq(currNum, currPos, board);
+
+      if (checkUniq) {
+        let [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (fillСell(board)) {
+          return true;
+        }
+        board[x][y] = '-';
+      }
+    }
+    return false;
+  }
+  fillСell(board);
+}
+solveBoard(board);
+return board;
+}
