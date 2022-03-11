@@ -45,7 +45,14 @@ function solve(boardString) {
 // форме, которую возвращает "решена".
 //
 function isSolved(board) {
-
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (board[i][j] === '-') {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 // Takes in a board in some form and
