@@ -44,7 +44,7 @@ function solve(boardString) {
 // Доска ввода будет в любой
 // форме, которую возвращает "решена".
 //
-function isSolved(board) {
+function isSolv(board) {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       if (board[i][j] === '-') {
@@ -54,7 +54,6 @@ function isSolved(board) {
   }
   return true;
 }
-
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
