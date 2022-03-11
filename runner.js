@@ -22,8 +22,15 @@ function readAndSolve(err, data) {
     throw err;
   }
   let puzzle = sudokuParse(data);
-
   let solvedPuzzle = sudoku.solve(puzzle);
+  let table = sudoku.makeTable(puzzle);
+  let isEmpty = sudoku.isEmptySlot(table, [0, 1]);
+  
+  console.log(isEmpty);
+  // for (let i = 0; i < table[i].length; i += 1) {
+  //   isEmpty
+  // }
+
   if (sudoku.isSolved(solvedPuzzle)) {
     console.log("The board was solved!");
     console.log(sudoku.prettyBoard(solvedPuzzle));
