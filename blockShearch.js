@@ -14,7 +14,7 @@ function blockSearch(arr, r, c, num) {
   for (let i = BoxRow; i < BoxRow + miniblok; i += 1) {
     for (let j = BoxCol; j < BoxCol + miniblok; j += 1) {
       if (arr[i][j] === num) {
-        console.log('sdf');
+        console.log('Цифра быть не может');
         return false;
       }
     }
