@@ -6,28 +6,46 @@
 function solve(boardString) {
   console.log('first changes');
 
-  function sudokuFill(arr) {
-    for (let i = 0; i < 9; i += 1) {
-      for (let j = 0; j < 9; j += 1) {
+  function solveSudokuFORGODSSAKE(arr) {
+    function checkEmpty(arr) {
+      for (let m = 0; m < arr.length; m += 1) {
+        for (let n = 0; n < arr[m].length; n += 1) {
+          if (arr[m][n] === '-') {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    if (!checkEmpty(arr)) { // basoviy sluchai
+      return arr;
+    }
 
+    const arrX = [];
+    const arrY = [];
+
+    for (let x = 0; x < arr.length; x += 1) {
+      for (let y = 0; y < arr[x].length; y += 1) {
+        if (arr[x][y] === '-') {
+          arrX.push(x);
+          arrY.push(y);
+        }
       }
     }
-
-    function a(arr) {
-    if proverka polnostiu zapolnen { //basoviy sluchai
+    for (let i = 1; i < 10; i += 1) {
+      const testArr = arr;
+      testArr[arrX[0]][arrY[0]] = i;
+      if (rules(testArr)) {
+        arr[arrX[0]][arrY[0]] = i;
+        arr = solveSudokuFORGODSSAKE(arr);
+        if (checkEmpty(arr)) {
+          arr[arrX[0]][arrY[0]] = '-';
+        }
+      }
+    }
     return arr;
-    }
-    ishem diru - nam nuzhni (x, y)  //suda if??
-    for i 1 do 9 {
-    if proverkaPravil {
-    arr[x][y] = i
-    arr = a(arr) // СЮДА ИФ?? ili arr = a(arr)
-    if arr ne zapolnen {sdelat' diru x,y}
-    }
-    }
-    )
-    return arr;
-    }
+  }
+}
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
