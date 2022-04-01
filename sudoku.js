@@ -6,7 +6,7 @@
 function solve(boardString) {
   console.log('first changes');
 }
-
+console.log('TEST');
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
