@@ -1,8 +1,8 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+const sudokuParse = require('./ranner');
+
+const initialBoard = sudokuParse(process.argv[2]);
+let tempBoard = JSON.parse(JSON.stringify(initialBoard));
+
 function solve(boardString) {
   while (checkResult(initialBoard)) {
     for (let i = 0; i < initialBoard.length; i++) {
@@ -21,34 +21,26 @@ function solve(boardString) {
 }
 
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function checkResult(board) {
 
 }
 
 
 
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
-  console.log(Привет);
+  
 
 }
 
-function validate() {
-
+const checkResult = function (board) {
+  for (let i = 0; i < initialBoard.length; i++) {
+    for (let j = 0; j < initialBoard.length; j++) {
+      if (board[i][j] === '.') return true;
+    }
+  }
+  return false;
 }
 
-// 
 
-// Exports all the functions to use them in another file.
 module.exports = {
   solve,
   isSolved,
