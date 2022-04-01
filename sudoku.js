@@ -12,6 +12,7 @@ function isSolved(board) {
 }
 
 
+
 function prettyBoard(board) {
   
 
@@ -25,6 +26,7 @@ const checkResult = function (board) {
   }
   return false;
 }
+
 
 module.exports = {
   solve,
