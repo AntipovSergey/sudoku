@@ -3,6 +3,9 @@ const sudokuParse = require('./ranner');
 const initialBoard = sudokuParse(process.argv[2]);
 let tempBoard = JSON.parse(JSON.stringify(initialBoard));
 
+
+
+
 function solve(boardString) {
   while (checkResult(initialBoard)) {
     for (let i = 0; i < initialBoard.length; i++) {
@@ -20,6 +23,16 @@ function solve(boardString) {
   }
 }
 
+  
+    for (let i = 0; i < initialBoard.length; i++) {
+      for (let j = 0; j < initialBoard.length; j++) {
+        if (Array.isArray(tempBoard[i][j]) && tempBoard[i][j].length === 1) {
+          initialBoard[i][j] = `${tempBoard[i][j][0]}`;
+        }
+      }
+    }
+    /
+    tempBoard = JSON.parse(JSON.stringify(initialBoard));
 
 
 }
@@ -39,6 +52,7 @@ const checkResult = function (board) {
   }
   return false;
 }
+
 
 
 module.exports = {
