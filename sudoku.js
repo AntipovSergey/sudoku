@@ -39,15 +39,38 @@ findEmptyCell is required function
   // index 'i' is for columns
 
 
-    //check boxes
+  //check boxes
   // index 'i' is for columns
 
 
 
-// recursive method for sudoku
-// variable 'x' is for rows
-// variable 'y' is for columns
+  // recursive method for sudoku
+  // variable 'x' is for rows
+  // variable 'y' is for columns
+  const solve = () => {
+    const currPos = findEmpty(board);
 
+    if (currPos === null) {
+      return true;
+    }
+
+    for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, board);
+
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (solve()) {
+          return true;
+        }
+        board[x][y] = '.';
+      }
+    }
+
+    return false;
+  }
 
 
 }
