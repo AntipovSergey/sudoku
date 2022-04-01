@@ -1,30 +1,45 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+const sudokuParse = require('./ranner');
+
+const initialBoard = sudokuParse(process.argv[2]);
+let tempBoard = JSON.parse(JSON.stringify(initialBoard));
+
+
+
+
 function solve(boardString) {
-  console.log('first changes');
+  while (checkResult(initialBoard)) {
+    for (let i = 0; i < initialBoard.length; i++) {
+      for (let j = 0; j < initialBoard.length; j++) {
+        if (tempBoard[i][j] === '.') {
+          tempBoard[i][j] = [];
+          for (let k = 1; k <= 9; k++) {
+            if (checkLine(tempBoard, [i, j], k) && checkColumn(tempBoard, [i, j], k) && checkBox(tempBoard, [i, j], k)) {
+              tempBoard[i][j].push(k);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
+  
+    for (let i = 0; i < initialBoard.length; i++) {
+      for (let j = 0; j < initialBoard.length; j++) {
+        if (Array.isArray(tempBoard[i][j]) && tempBoard[i][j].length === 1) {
+          initialBoard[i][j] = `${tempBoard[i][j][0]}`;
+        }
+      }
+    }
+    /
+    tempBoard = JSON.parse(JSON.stringify(initialBoard));
+
 
 }
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
 
-}
 
-function validate () {
+
 
   const checkline = function (board,index,number) {
     for (let i = 0; i < board.length; i++ ) {
@@ -44,9 +59,23 @@ function validate () {
     return true
   }
   
+
+  
+
 }
 
-// Exports all the functions to use them in another file.
+const checkResult = function (board) {
+  for (let i = 0; i < initialBoard.length; i++) {
+    for (let j = 0; j < initialBoard.length; j++) {
+      if (board[i][j] === '.') return true;
+    }
+  }
+  return false;
+
+}
+
+
+
 module.exports = {
   solve,
   isSolved,
