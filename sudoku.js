@@ -38,6 +38,11 @@ findEmptyCell is required function
 
   //check columns
   // index 'i' is for columns
+  for (let i = 0; i < size; i++) {
+    if (board[r][i] === num && i !== c) {
+        return false;
+    }
+}
 
   //check boxes
   // index 'i' is for columns
