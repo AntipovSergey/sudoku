@@ -1,3 +1,4 @@
+
 function solve(boardString) {
   let initialBoard = [];
   for (let i = 0; i < boardString.length; i += 9) {
@@ -7,14 +8,15 @@ function solve(boardString) {
   console.table(initialBoard);
 
 
+
   while (checkResult(initialBoard)) {
     for (let i = 0; i < initialBoard.length; i++) {
       for (let j = 0; j < initialBoard.length; j++) {
-        if (tempBoard[i][j] === '.') {
-          tempBoard[i][j] = [];
+        if (initialBoard[i][j] === '.') {
+          initialBoard[i][j] = [];
           for (let k = 1; k <= 9; k++) {
-            if (checkLine(tempBoard, [i, j], k) && checkColumn(tempBoard, [i, j], k) && checkBox(tempBoard, [i, j], k)) {
-              tempBoard[i][j].push(k);
+            if (checkLine(initialBoard, [i, j], k) && checkColumn(initialBoard, [i, j], k) && checkBox(initialBoard, [i, j], k)) {
+              initialBoard[i][j].push(k);
             }
           }
         }
@@ -26,16 +28,10 @@ function solve(boardString) {
 
   for (let i = 0; i < initialBoard.length; i++) {
     for (let j = 0; j < initialBoard.length; j++) {
-      if (Array.isArray(tempBoard[i][j]) && tempBoard[i][j].length === 1) {
-        initialBoard[i][j] = `${tempBoard[i][j][0]}`;
+      if (Array.isArray(initialBoard[i][j]) && initialBoard[i][j].length === 1) {
+        initialBoard[i][j] = `${initialBoard[i][j][0]}`;
       }
     }
-  }
-
-  tempBoard = JSON.parse(JSON.stringify(initialBoard));
-
-
-}
 
 
 
@@ -44,6 +40,7 @@ function solve(boardString) {
 const checkLine = function (board, index, number) {
   for (let i = 0; i < board.length; i++) {
     if (number === Number(board[index[0]][i])) {
+
     }
     return false
   }
