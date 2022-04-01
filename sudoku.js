@@ -20,7 +20,11 @@ findEmptyCell is required function
   // in validate we check row, column and boxes
 
   // check row
-  // index 'i' is for row
+  for (let i = 0; i < size; i++) {
+    if (board[i][c] === num && i !== r) {
+        return false;
+    }
+}
 
   //check columns
   // index 'i' is for columns
