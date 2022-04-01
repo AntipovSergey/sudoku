@@ -13,6 +13,16 @@ findEmptyCell is required function
  variable 'r' is row
  variable 'c' is column
 */
+  const findEmpty = (board) => {
+    for (let r = 0; r < size; r += 1) {
+      for (let c = 0; c < size; c += 1) {
+        if (board[r][c] === '.') {
+          return [r, c];
+        }
+      }
+    }
+    return null;
+  }
 
   /* checking whether number is valid in current cell
   function isNumAcceptableInCell (num, pos, board)*/
@@ -20,15 +30,17 @@ findEmptyCell is required function
   // in validate we check row, column and boxes
 
   // check row
-  // index 'i' is for row
+  for (let i = 0; i < size; i++) {
+    if (board[i][c] === num && i !== r) {
+        return false;
+    }
+}
 
   //check columns
   // index 'i' is for columns
 
-
   //check boxes
   // index 'i' is for columns
-  
 
 
   // recursive method for sudoku
@@ -52,32 +64,26 @@ findEmptyCell is required function
         if (solve()) {
           return true;
         }
-        board[x][y] = '.';
+        board[x][y] = ".";
       }
     }
 
     return false;
-  }
-
-
-
+  };
 }
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
-}
+function isSolved(board) {}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
