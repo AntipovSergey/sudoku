@@ -38,5 +38,4 @@ fs.readFile(
   './sudoku-puzzles.txt',
   'utf-8',
   readAndSolve
-);
-
+); 
