@@ -3,6 +3,23 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
+
+let board = [
+  ["5", "3", ".", ".", "7", ".", ".", ".", "."],
+  ["6", ".", ".", "1", "9", "5", ".", ".", "."],
+  [".", "9", "8", ".", ".", ".", ".", "6", "."],
+  ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+  ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+  ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+  [".", "6", ".", ".", ".", ".", "2", "8", "."],
+  [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+  [".", ".", ".", ".", "8", ".", ".", "7", "9"]
+];
+
+
+
+
 function solve(boardString) {
   //get sizes of Sudoku
   const size = 9;
@@ -28,8 +45,12 @@ findEmptyCell is required function
   function isNumAcceptableInCell (num, pos, board)*/
 
   // in validate we check row, column and boxes
+  const validate = (num, pos, board) => {
+    const [r, c] = pos;
+    
 
-  // check row
+
+  // check rows
   for (let i = 0; i < size; i++) {
     if (board[i][c] === num && i !== r) {
         return false;
@@ -84,8 +105,13 @@ findEmptyCell is required function
 
     return false;
   };
-}
+  solve();
+  return board;
+};
 
+console.table(board);
+  console.table(solveSudoku(input));
+  
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
