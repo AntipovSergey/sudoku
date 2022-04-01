@@ -7,3 +7,4 @@ const findEmpty = (board) => {
     }
   }
 };
+module.exports = findEmpty;
