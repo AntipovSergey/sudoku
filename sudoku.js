@@ -1,8 +1,9 @@
-const sudokuParse = require('./ranner');
+const sudokuParse = require('./runner');
 
 const initialBoard = sudokuParse(process.argv[2]);
 let tempBoard = JSON.parse(JSON.stringify(initialBoard));
 
+console.log(tempBoard);
 
 
 
@@ -31,17 +32,16 @@ function solve(boardString) {
         }
       }
     }
-    /
+    
     tempBoard = JSON.parse(JSON.stringify(initialBoard));
 
 
-}
 
 
 
 
 
-  const checkline = function (board,index,number) {
+  const checkLine = function (board,index,number) {
     for (let i = 0; i < board.length; i++ ) {
      if (number === Number(board[index[0]][i])) {
      }
@@ -62,7 +62,7 @@ function solve(boardString) {
 
   
 
-}
+
 
 const checkResult = function (board) {
   for (let i = 0; i < initialBoard.length; i++) {
