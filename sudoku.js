@@ -1,8 +1,8 @@
 
 const fs = require('fs');
-const sudoku = require('./sudoku-puzzles.txt');
+const sudoku = require('./sudoku');
 
-const createNewArrayOfTxtFile = function (){};
+const zero = function 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
