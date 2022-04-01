@@ -1,6 +1,5 @@
 
 const fs = require('fs');
-const sudoku = require('./sudoku');
 
 const zero = function 
 // Takes a board as a string in the format
