@@ -1,3 +1,5 @@
+const rules = require('./')
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -6,7 +8,7 @@
 function solve(boardString) {
   console.log('first changes');
 
-  function solveSudokuFORGODSSAKE(arr) {
+  function solution(arr) {
     function checkEmpty(arr) {
       for (let m = 0; m < arr.length; m += 1) {
         for (let n = 0; n < arr[m].length; n += 1) {
@@ -37,7 +39,7 @@ function solve(boardString) {
       testArr[arrX[0]][arrY[0]] = i;
       if (rules(testArr)) {
         arr[arrX[0]][arrY[0]] = i;
-        arr = solveSudokuFORGODSSAKE(arr);
+        arr = solution(arr);
         if (checkEmpty(arr)) {
           arr[arrX[0]][arrY[0]] = '-';
         }
