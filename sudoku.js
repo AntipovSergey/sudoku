@@ -1,3 +1,5 @@
+const { strToArr } = require('./strToArr')
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -5,6 +7,7 @@
 // How you represent your board is up to you!
 function solve(boardString) {
   console.log('first changes');
+
 }
 
 // Returns a boolean indicating whether
