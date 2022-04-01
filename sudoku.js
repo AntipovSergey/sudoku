@@ -21,6 +21,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
+  console.log(Привет);
 
 }
 
