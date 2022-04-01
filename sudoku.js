@@ -26,6 +26,24 @@ function prettyBoard(board) {
 
 function validate () {
 
+  const checkline = function (board,index,number) {
+    for (let i = 0; i < board.length; i++ ) {
+     if (number === Number(board[index[0]][i])) {
+     }
+     return false
+    }
+    return true
+  }
+  
+  const checkColumn = function (board, index, number) {
+    for (let i = 0; i < board.length; i++) {
+      if (number === Number(board[i][index[1]])) {
+      }
+      return false
+    }
+    return true
+  }
+  
 }
 
 // Exports all the functions to use them in another file.
