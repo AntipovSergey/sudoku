@@ -24,7 +24,27 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  let result = '';
+  for (let index = 0; index < board.length; index++) {
+    for (let i = 0; i < 3; i++) {
+      result += board[index][i] + ' ';
+    }
+    result += ' ';
+    for (let i = 3; i < 6; i++) {
+      result += board[index][i] + ' ';
+    }
+    result += ' ';
+    for (let i = 6; i < 9; i++) {
+      result += board[index][i] + ' ';
+    }
+    result += `\n`;
+    if(index === 2) {
+      result += `\n`;
+    } else if(index === 5){
+      result += `\n`;
+    }
+  }
+    return result;
 }
 
 // Exports all the functions to use them in another file.
