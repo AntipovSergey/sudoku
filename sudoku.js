@@ -13,6 +13,16 @@ findEmptyCell is required function
  variable 'r' is row
  variable 'c' is column
 */
+  const findEmpty = (board) => {
+    for (let r = 0; r < size; r += 1) {
+      for (let c = 0; c < size; c += 1) {
+        if (board[r][c] === '.') {
+          return [r, c];
+        }
+      }
+    }
+    return null;
+  }
 
   /* checking whether number is valid in current cell
   function isNumAcceptableInCell (num, pos, board)*/
