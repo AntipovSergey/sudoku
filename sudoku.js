@@ -25,11 +25,8 @@ findEmptyCell is required function
   //check columns
   // index 'i' is for columns
 
-
   //check boxes
   // index 'i' is for columns
-
-
 
   // recursive method for sudoku
   // variable 'x' is for rows
@@ -52,32 +49,26 @@ findEmptyCell is required function
         if (solve()) {
           return true;
         }
-        board[x][y] = '.';
+        board[x][y] = ".";
       }
     }
 
     return false;
-  }
-
-
-
+  };
 }
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {
-}
+function isSolved(board) {}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Exports all the functions to use them in another file.
 module.exports = {
