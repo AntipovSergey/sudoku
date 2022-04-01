@@ -28,7 +28,7 @@ findEmptyCell is required function
 
   //check boxes
   // index 'i' is for columns
-
+  
 
 
   // recursive method for sudoku
