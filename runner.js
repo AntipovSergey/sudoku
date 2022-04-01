@@ -29,6 +29,6 @@ function readAndSolve(err, data) {
 fs.readFile(
   './sudoku-puzzles.txt',
   'utf-8',
-  readAndSolve
+  readAndSolve,
 );
 

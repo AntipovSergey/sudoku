@@ -21,7 +21,7 @@ function prettyBoard(board) {
 const checkResult = function (board) {
   for (let i = 0; i < initialBoard.length; i++) {
     for (let j = 0; j < initialBoard.length; j++) {
-      if (board[i][j] === '-') return true;
+      if (board[i][j] === '.') return true;
     }
   }
   return false;
