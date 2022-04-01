@@ -22,8 +22,8 @@ function readAndSolve(err, data) {
 
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
+    // console.log("The board was solved!");
+    // console.log(sudoku.prettyBoard(solvedPuzzle));
   }
   else {
     console.log("The board wasn't solved :(");
@@ -37,3 +37,4 @@ fs.readFile(
   readAndSolve,
 );
 
+module.exports = sudokuParse
