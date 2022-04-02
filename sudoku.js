@@ -10,9 +10,45 @@ const { strToArr } = require('./strToArr')
 
 // Разбиение строки на массив
 function solve(boardString) {
-  console.log('first changes');
- isSolved
-  strToArr(boardString)
+   {
+    function checkEmpty(arr) {
+      for (let m = 0; m < arr.length; m += 1) {
+        for (let n = 0; n < arr[m].length; n += 1) {
+          if (arr[m][n] === '-') {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    if (!checkEmpty(arr)) { // basoviy sluchai
+      return arr;
+    }
+
+    const arrX = [];
+    const arrY = [];
+
+    for (let x = 0; x < arr.length; x += 1) {
+      for (let y = 0; y < arr[x].length; y += 1) {
+        if (arr[x][y] === '-') {
+          arrX.push(x);
+          arrY.push(y);
+        }
+      }
+    }
+    for (let i = 1; i < 10; i += 1) {
+      const testArr = arr;
+      testArr[arrX[0]][arrY[0]] = i;
+      if (rules(testArr)) {
+        arr[arrX[0]][arrY[0]] = i;
+        arr = solution(arr);
+        if (checkEmpty(arr)) {
+          arr[arrX[0]][arrY[0]] = '-';
+        }
+      }
+    }
+    return arr;
+  }
 
 
   return board
@@ -40,18 +76,6 @@ function isSolved(board) {
 //Выводит заполненную доску на экран(Возможно консоль тейбл)
 
 function prettyBoard(board) {
-
-
-  //Проверка горизонт
-
-
-  // Проверка верткаль
-
-
-  //Проверка блок
-
-  //Функця собирающая внутренний массив
-
 
   let result = '';
   for (let index = 0; index < board.length; index++) {
