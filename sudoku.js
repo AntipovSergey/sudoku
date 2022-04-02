@@ -1,4 +1,8 @@
+
+const rules = require('./isSolved')
+
 const { strToArr } = require('./strToArr')
+
 
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
@@ -10,7 +14,8 @@ const { strToArr } = require('./strToArr')
 
 // Разбиение строки на массив
 function solve(boardString) {
-   {
+
+  function solution(arr) {
     function checkEmpty(arr) {
       for (let m = 0; m < arr.length; m += 1) {
         for (let n = 0; n < arr[m].length; n += 1) {
@@ -50,8 +55,12 @@ function solve(boardString) {
     return arr;
   }
 
+ isSolved
+  strToArr(boardString)
+
 
   return board
+
 
 
 
