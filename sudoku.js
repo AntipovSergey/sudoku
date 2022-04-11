@@ -55,6 +55,11 @@ const maxItemStr = (arr) => {
   return minIndex;
 };
 
+function checker(arr) {
+  let nums = [1,2,3,4,5,6,7,8,9]
+  return nums.filter((x) => !arr[0].includes(x) && !arr[1].includes(x) && !arr[2].includes(x))
+}
+
 // console.log(blok(board9x9, 7, 6));
 // console.log(blok(board9x9, 0, 0))
 
@@ -82,12 +87,18 @@ function prettyBoard(board) {
 // Exports all the functions to use them in another file.
 
 const main = () => {
-  const board9x9 = getCreateBoard9x9(getStringFromFile(0));
+  let board9x9 = getCreateBoard9x9(getStringFromFile(0));
   const minIndexStr = maxItemStr(board9x9);
   const indexColumn = board9x9[minIndexStr].indexOf('-');
   const needBlock = blok(board9x9, indexColumn, minIndexStr);
   const arr = [board9x9[minIndexStr], column(board9x9, indexColumn).join(''), needBlock];
-  return arr;
+  const neededNums = checker(arr)
+  if (neededNums.length === 1) {
+    board9x9[minIndexStr] = board9x9[minIndexStr].split('');
+    board9x9[minIndexStr][indexColumn] = neededNums[0];
+    board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+  }
+  return board9x9.join('\n');
 };
 console.log(main());
 module.exports = {
