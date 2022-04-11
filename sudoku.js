@@ -19,16 +19,38 @@
 // }
 function solve(boardString) {
   console.log('first changes');
-  let board = [...Array(9)].map(line => [...Array(9)])
+  let board = [...Array(9)].map(line => [...Array(9)]);
+  let boardCols = [...Array(9)].map(line => [...Array(9)]);
   let arr = boardString.split('');
-  let index = 0
-  for(let i = 0; i < board.length; i++) {
-    for(let j = 0; j < board.length; j++) {
-      board[i][j] = arr[index]
+  let index = 0;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      board[i][j] = arr[index];
+      boardCols[j][i] = arr[index];
       index++
     }
   }
-  console.table(board);
+  console.table(boardCols);
+  for (let i = 0; i < 9; i++) {
+    checkRow(board[i]);
+    checkRow(boardCols[i]);
+  }
+}
+
+function checkRow(row) {
+  let num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let rowNums = row.filter((el) => el !== '-').map((el) => Number(el));
+  let res = num.filter((el) => !rowNums.includes(el));
+  console.log(res);
+  return res;
+}
+
+function checkCols(col) {
+  let num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let colNums = col.filter((el) => el !== '-').map((el) => Number(el));
+  let res = num.filter((el) => !colNums.includes(el));
+  console.log(res);
+  return res;
 }
 
 // Returns a boolean indicating whether
@@ -36,7 +58,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  return (!board.includes('-'))
+  // return (!board.includes('-'));
 }
 
 // let table = [
