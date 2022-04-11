@@ -6,6 +6,7 @@
 function solve(boardString) {
   console.log('first changes');
 }
+console.log(solve());
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -20,8 +21,8 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-
+function prettyBoard(string) {
+  return string.split(/(.{9})/).filter((el) => el).map((el) => el.split(''));
 }
 
 // Exports all the functions to use them in another file.
