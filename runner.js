@@ -29,6 +29,7 @@ function readAndSolve(err, data) {
     console.log(sudoku.prettyBoard(solvedPuzzle));
   } else {
     console.log("The board wasn't solved :(");
+    console.log(sudoku.prettyBoard(puzzle));
   }
 }
 
