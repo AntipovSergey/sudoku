@@ -47,7 +47,8 @@ const maxItemStr = (arr) => {
   let minIndex = 0;
   let strIndex = arr.length;
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].split('').filter((x) => x == '-').length <= strIndex) {
+    if (arr[i].split('').filter((x) => x == '-').length <= strIndex
+    && arr[i].split('').filter((x) => x == '-').length > 0) {
       strIndex = arr[i].split('').filter((x) => x == '-').length;
       minIndex = i;
     }
@@ -56,8 +57,8 @@ const maxItemStr = (arr) => {
 };
 
 function checker(arr) {
-  let nums = [1,2,3,4,5,6,7,8,9]
-  return nums.filter((x) => !arr[0].includes(x) && !arr[1].includes(x) && !arr[2].includes(x))
+  const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  return nums.filter((x) => !arr[0].includes(x) && !arr[1].includes(x) && !arr[2].includes(x));
 }
 
 // console.log(blok(board9x9, 7, 6));
@@ -88,18 +89,65 @@ function prettyBoard(board) {
 
 const main = () => {
   let board9x9 = getCreateBoard9x9(getStringFromFile(0));// первая строка из тхт
-  const minIndexStr = maxItemStr(board9x9); // строка с минимальным колличеством пропусков
-  const indexColumn = board9x9[minIndexStr].indexOf('-'); // индекс столбца с минимальным колличеством пропусков
-  const needBlock = blok(board9x9, indexColumn, minIndexStr); // блоки в котором находится пропуск
-  const arr = [board9x9[minIndexStr], column(board9x9, indexColumn).join(''), needBlock]; // цифры которым не должен быть равен пропуск 
-  const neededNums = checker(arr)
-  if (neededNums.length === 1) {
-    board9x9[minIndexStr] = board9x9[minIndexStr].split('');
-    board9x9[minIndexStr][indexColumn] = neededNums[0];
-    board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+  for (let i = 0; i < 54; i++) {
+    const minIndexStr = maxItemStr(board9x9); // строка с минимальным колличеством пропусков
+    const indexColumn = board9x9[minIndexStr].indexOf('-'); // индекс столбца с минимальным колличеством пропусков
+    const needBlock = blok(board9x9, minIndexStr, indexColumn); // блоки в котором находится пропуск
+    const arr = [board9x9[minIndexStr], column(board9x9, indexColumn).join(''), needBlock]; // цифры которым не должен быть равен пропуск
+    const neededNums = checker(arr);
+    // console.log(neededNums);
+
+    if (neededNums.length === 1) {
+      board9x9[minIndexStr] = board9x9[minIndexStr].split('');
+      board9x9[minIndexStr][indexColumn] = neededNums[0];
+      board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+    } else {
+      board9x9[minIndexStr] = board9x9[minIndexStr].split('');
+      board9x9[minIndexStr][indexColumn] = '+';
+      board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+    }
+  }
+  board9x9=board9x9.map((el)=>el.replaceAll('+', '-'))
+  console.log(board9x9)
+  for (let j = 0; j < 54; j++) {
+    const minIndexStr = maxItemStr(board9x9); // строка с минимальным колличеством пропусков
+    const indexColumn = board9x9[minIndexStr].indexOf('-'); // индекс столбца с минимальным колличеством пропусков
+    const needBlock = blok(board9x9, minIndexStr, indexColumn); // блоки в котором находится пропуск
+    const arr = [board9x9[minIndexStr], column(board9x9, indexColumn).join(''), needBlock]; // цифры которым не должен быть равен пропуск
+    const neededNums = checker(arr);
+    // console.log(neededNums);
+
+    if (neededNums.length === 1) {
+      board9x9[minIndexStr] = board9x9[minIndexStr].split('');
+      board9x9[minIndexStr][indexColumn] = neededNums[0];
+      board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+    } else {
+      board9x9[minIndexStr] = board9x9[minIndexStr].split('');
+      board9x9[minIndexStr][indexColumn] = '+';
+      board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+    }
+  }
+  board9x9=board9x9.map((el)=>el.replaceAll('+', '-'))
+  console.log(board9x9)
+  for (let j = 0; j < 54; j++) {
+    const minIndexStr = maxItemStr(board9x9); // строка с минимальным колличеством пропусков
+    const indexColumn = board9x9[minIndexStr].indexOf('-'); // индекс столбца с минимальным колличеством пропусков
+    const needBlock = blok(board9x9, minIndexStr, indexColumn); // блоки в котором находится пропуск
+    const arr = [board9x9[minIndexStr], column(board9x9, indexColumn).join(''), needBlock]; // цифры которым не должен быть равен пропуск
+    const neededNums = checker(arr);
+    // console.log(neededNums);
+
+    if (neededNums.length === 1) {
+      board9x9[minIndexStr] = board9x9[minIndexStr].split('');
+      board9x9[minIndexStr][indexColumn] = neededNums[0];
+      board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+    } else {
+      board9x9[minIndexStr] = board9x9[minIndexStr].split('');
+      board9x9[minIndexStr][indexColumn] = '+';
+      board9x9[minIndexStr] = board9x9[minIndexStr].join('');
+    }
   }
   return board9x9.join('\n');
-
 };
 console.log(main());
 module.exports = {
