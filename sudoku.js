@@ -20,7 +20,37 @@ return el.join('')
 const column = (arr, index) => arr.map((el) => el[index]);// получение столбца 
   
 }
-console.log(getCreateBoard9x9(getStringFromFile(0)).join('\n'))
+console.log(getCreateBoard9x9(getStringFromFile(0)).join('\n'));
+
+const board9x9 = getCreateBoard9x9(getStringFromFile(0));
+
+
+const blok = (arr, column, str ) => {
+let endStr = 0
+  if (str < 3) {
+ endStr = 3
+} else if (str < 6) {
+  endStr = 6
+} else {
+  endStr = 9
+}
+let endColumn = 0
+  if (column < 3) {
+    endColumn = 3
+  } else if (column < 6) {
+    endColumn = 6
+  } else {
+    endColumn = 9
+  }
+  let board3x3 = []
+  for (let i = endColumn - 3; i < endColumn; i++) {
+    board3x3.push(arr[i].slice(endStr - 3, endStr));
+  }
+  return board3x3.join('\n')
+}
+
+console.log(blok(board9x9, 7, 6))
+// console.log(blok(board9x9, 0, 0))
 
 
 
@@ -54,12 +84,3 @@ module.exports = {
   prettyBoard,
 };
 
-1 - 5 8 - 2 - - -     4  7 
-- 9 - - 7 6 4 - 5
-2 - - 4 - - 8 1 9
-- 1 9 - - 7 3 - 6
-7 6 2 - 8 3 - 9 -   5 
-- - - - 6 1 - 5 -
-- - 7 6 - - - 3 -
-4 3 - - 2 - 5 - 1
-6 - - 3 - 8 9 - -
