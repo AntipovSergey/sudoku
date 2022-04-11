@@ -16,6 +16,8 @@ return newArr.map((el,index)=>{el=tmp.slice(0,9);
 tmp = tmp.slice(9)
 return el.join('')
 })
+
+const column = (arr, index) => arr.map((el) => el[index]);// получение столбца 
   
 }
 console.log(getCreateBoard9x9(getStringFromFile(0)).join('\n'));
@@ -81,6 +83,4 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
-
-
 
