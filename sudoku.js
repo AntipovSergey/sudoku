@@ -5,6 +5,17 @@
 // How you represent your board is up to you!
 function solve(boardString) {
   console.log('first changes');
+  let arr = boardString.split('');
+  console.log(arr)
+  let newArr = [];
+  for (let i = 0; i < arr.length; i += 9) {
+    newArr.push([
+      [arr[i], arr[i + 1], arr[i + 2]],
+      [arr[i + 3], arr[i + 4], arr[i + 5]],
+      [arr[i + 6], arr[i + 7], arr[i + 8]]
+    ])
+  }
+  console.table(newArr);
 }
 
 // Returns a boolean indicating whether
