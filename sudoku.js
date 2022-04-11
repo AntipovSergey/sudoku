@@ -35,7 +35,19 @@ const cellCheck = (board) => {
     }
   }
 };
-console.log(cellCheck(board))
+// console.log(cellCheck(board))
+// заполняем пустые клетки
+const cellFill = (board) => {
+  const position = cellCheck(board);
+  // получаем массив из двух значений [г,в]
+  const [g, v] = position;
+  for (let i = 1; i <= 9; i++) {
+    if(board[g].indexOf(i) === -1)
+    position = i
+  }
+  console.log(position);
+};
+console.log(cellFill(board));
 
 function isSolved(board) {
 
