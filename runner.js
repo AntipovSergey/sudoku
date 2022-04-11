@@ -17,6 +17,10 @@ function sudokuParse(content, puzzleNumber = 0) {
   return puzzle;
 }
 
+const stolbi2 = (arr,index)=>{
+  return arr.map((el)=>el[index])
+  }
+
 function readAndSolve(err, data) {
   if (err) {
     throw err;
