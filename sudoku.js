@@ -20,8 +20,8 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
-  return board.split(/(.{9})/).filter(el => el).map(el => el.split(''))
+function prettyBoard(string) {
+  return string.split(/(.{9})/).filter((el) => el).map((el) => el.split(''));
 }
 
 // Exports all the functions to use them in another file.
