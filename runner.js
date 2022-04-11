@@ -23,7 +23,7 @@ function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
-  const puzzle = sudokuParse(data);
+  const puzzle = sudokuParse(data,5);
 
   const solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {

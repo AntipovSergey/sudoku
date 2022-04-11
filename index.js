@@ -79,7 +79,7 @@ const main = () => {
   //   ourField[minUnkX] = ourField[minUnkX].split('')
   //   ourField[minUnkX][neededY] = answer
   //   ourField[minUnkX] = ourField[minUnkX].join('')
-  
+
   // }
   // ourField = ourField.map(x => x.replaceAll('0', '-'))
   // console.log(ourField.join('\n'))
@@ -87,7 +87,7 @@ const main = () => {
   // console.log(getBlock(ourField, 2, 3))
 }
 
-main()
+// main()
 
 
 
