@@ -21,7 +21,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  return board.split(/(.{9})/).filter(el => el).map(el => el.split(''))
 }
 
 // Exports all the functions to use them in another file.
