@@ -3,7 +3,14 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+//преобразует строку в массив 
+let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
 function solve(boardString) {
+  let arr = []
+  for(let i = 0; i < boardString.length; i +=9) {
+    arr.push(boardString.slice(i, i+9).split(''))
+  }
+  return arr
   console.log('first changes');
 }
 
@@ -11,6 +18,7 @@ function solve(boardString) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
+//проверяет решилась или нет 
 function isSolved(board) {
 
 }
@@ -20,8 +28,10 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
+//приводит к виду доски 
 function prettyBoard(board) {
-
+  let el = board.join('\n').replaceAll(',','')
+  console.table(el);
 }
 
 // Exports all the functions to use them in another file.
