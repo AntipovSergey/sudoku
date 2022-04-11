@@ -82,11 +82,11 @@ function prettyBoard(board) {
 // Exports all the functions to use them in another file.
 
 const main = () => {
-  const board9x9 = getCreateBoard9x9(getStringFromFile(0));
-  const minIndexStr = maxItemStr(board9x9);
-  const indexColumn = board9x9[minIndexStr].indexOf('-');
-  const needBlock = blok(board9x9, indexColumn, minIndexStr);
-  const arr = [board9x9[minIndexStr], column(board9x9, indexColumn).join(''), needBlock];
+  const board9x9 = getCreateBoard9x9(getStringFromFile(0));// первая строка из тхт
+  const minIndexStr = maxItemStr(board9x9);// строка с минимальным колличеством пропусков
+  const indexColumn = board9x9[minIndexStr].indexOf('-');// индекс столбца с минимальным колличеством пропусков
+  const needBlock = blok(board9x9, indexColumn, minIndexStr);// блоки в котором находится пропуск
+  const arr = [board9x9[minIndexStr], column(board9x9, indexColumn).join(''), needBlock];// цифры которым не должен быть равен пропуск 
   return arr;
 };
 console.log(main());
