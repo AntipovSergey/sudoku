@@ -1,3 +1,4 @@
+
 //преобразует строку в массив
 let boardString =
   "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
@@ -22,6 +23,7 @@ const cellCheck = (board) => {
   }
   return null;
 };
+
 
 function isSolved(board) {
   for (let i = 0; i < board.length; i++) {
@@ -117,6 +119,29 @@ function prettyBoard(board) {
   let el = board.join("\n").replaceAll(",", "");
   console.table(el);
 }
+
+//добавил число в одну ячейку и тормознул, как перезапустить, продлить цикл 
+// const cellFill = (board) => {
+//  const [g, v] = cellCheck(board);
+//   for (let i = 1; i <= 9; i++) {
+//     console.log([g, v],'элемент');
+//       console.log(i, 'i');
+//     console.log(row(board, g, i));
+//   if(row(board, g, i) === true){
+//     console.log(column(board, v, i));
+//    if(column(board, v, i) === true) {
+//     console.log(square(board, g, v, i));
+//     if(square(board, g, v, i) == true) {
+//       board[g][v] = i;
+//       break;
+//     } 
+//   }
+// }
+// }
+// return board
+// }; 
+
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
