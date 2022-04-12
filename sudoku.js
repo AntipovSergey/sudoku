@@ -86,6 +86,7 @@ console.table(cellFill(board));
 
 //приводит к виду доски 
 //работает, возвращает таблицу
+//привести все цифры к number
 function prettyBoard(board) {
   let el = board.join('\n').replaceAll(',','')
   console.table(el);
