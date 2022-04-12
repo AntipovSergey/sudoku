@@ -75,7 +75,7 @@ function prettyBoard(board) {
 
 // Exports all the functions to use them in another file.
 
-const solve2 = (boardString) => {
+const solve = (boardString) => {
   let board9x9 = getCreateBoard9x9(boardString);// первая строка из тхт
   for (let j = 0; j < 10; j++) {
     for (let i = 0; i < 81; i++) {
@@ -104,7 +104,7 @@ const solve2 = (boardString) => {
   return board9x9;
 };
 
-const solve = (boardString) => {
+const solve13 = (boardString) => {
   const board9x9 = getCreateBoard9x9(boardString).map((x) => x.split(''));
   return abc(board9x9);
 };
@@ -112,18 +112,14 @@ const solve = (boardString) => {
 const abc = (board) => {
   for (let row = 0; row < 9; row++) {
     for (let column = 0; column < 9; column++) {
-      // console.log(board)
-      const needBlock = getBlock(board, row, column);
-      const neededNums = checker([board[row], getColumn(board, column).join(''), needBlock]);
       if (board[row][column] === '-') {
         for (let i = 1; i <= 9; i++) {
-          if (neededNums.includes(i)) {
-            board[row][column] = i;
-            if (abc(board)) return board;
-            board[row][column] = '-';
+          board[row][column] = i;
+          if (board[row].filter((x) => x == i).length == 1 && getBlock(board, row, column).split('').filter((x) => x == i).length == 1 && getColumn(board, column).filter((x) => x == i).length == 1) {
+            if (abc(board)) { return board; }
           }
         }
-        return false;
+        board[row][column] = '-'; return false;
       }
     }
   }
@@ -135,6 +131,11 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+// if(1==2)
+// console.log('azaza')
+// else
+// console.log('ggg')
 
-
+// console.log(solve(getStringFromFile(3)).join('\n'))
 // console.log(main(getStringFromFile(9)));
+ console.log(solve13(getStringFromFile(4)).join('\n'))
