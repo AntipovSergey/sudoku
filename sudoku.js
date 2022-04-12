@@ -1,3 +1,4 @@
+const fs = require('fs');
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -80,13 +81,19 @@ function solve(puzzle) {
   return board;
 }
 
-
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  // const size = 9;
+  // const box = 3;
+  for (let i = 0; i < board.length; i += 1) {
+    if (board[i].includes('-')) {
+      return false;
+    }
+  }
+  return true;
 }
 
 // Takes in a board in some form and
@@ -94,8 +101,8 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(string) {
-
+function prettyBoard(board) {
+  fs.writeFileSync('./solvedPuzzle', board.join('\n'), 'utf-8');
 }
 
 // Exports all the functions to use them in another file.
@@ -104,3 +111,20 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+// }
+// if(res.length===0){
+//   return true
+// }
+// return false
+// }
+
+// function checkCol(){
+//   let res = []
+//   for(let i = 0;i<size;i++){
+//     for(let j = 0; j<size;){
+//       res.push(board[i[j]])
+//     }
+//     return res
+//   }
+// }
