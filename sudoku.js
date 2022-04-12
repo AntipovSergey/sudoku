@@ -10,7 +10,7 @@
 // const boardString = '----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----'
 // const boardString = '3---------5-7-3--8----28-7-7------43-----------39-41-54--3--8--1---4----968---2--'
 // const boardString = '3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-'
-const boardString = '-2-5----48-5--------48-9-2------5-73-9-----6-25-9------3-6-18--------4-71----4-9-'
+const boardString = '-2-5----48-5--------48-9-2------5-73-9-----6-25-9------3-6-18--------4-71----4-9-';
 // const boardString = '--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--'
 // const boardString = '----------2-65-------18--4--9----6-4-3---57-------------------73------9----------'
 // const boardString = '---------------------------------------------------------------------------------'
@@ -25,7 +25,6 @@ function solve(boardString) {
   }
   return arr;
 }
-
 // находит первый свободный элемент и возвращает позицию
 // работает! [g, v]
 const cellCheck = (board) => {
@@ -37,11 +36,9 @@ const cellCheck = (board) => {
   return null;
 };
 
-
 function isSolved(board) {
- 
-}
 
+}
 // проверяет элемент в строке
 // работает, возвращает тру если нет цифры в строке
 const row = (board, g, i) => {
@@ -50,7 +47,6 @@ const row = (board, g, i) => {
   }
   return false;
 };
-
 // работает, тру если элемента нет в столбце
 const column = (board, v, i) => {
   let total = 0;
@@ -64,7 +60,6 @@ const column = (board, v, i) => {
   }
   return false;
 };
-
 // работает, если находит цифру в квадрате - возвращает фолс
 const square = (board, g, v, i) => {
   let total = 0;
@@ -80,7 +75,6 @@ const square = (board, g, v, i) => {
   }
   return false;
 };
-
 // добавил число в одну ячейку и тормознул, как перезапустить, продлить цикл
 const cellFill = (board) => {
   const currPos = cellCheck(board);
@@ -101,13 +95,11 @@ const cellFill = (board) => {
 };
 // console.table(board);
 const result = cellFill(board);
-
 function prettyBoard(board) {
   const el = board.join('\n').replaceAll(',', '');
   return el;
 }
 console.table(prettyBoard(result));
-
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
