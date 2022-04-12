@@ -3,7 +3,8 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve() {
+function solve(puzzle) {
+  const board = puzzle.split(/(.{9})/).filter((el) => el).map((el) => el.split(''));
   const size = 9;
   const boxSize = 3;
 
@@ -50,17 +51,15 @@ function solve() {
     return true;
   };
 
-  const solveProgress = (board) => {
+  const solveProgress = () => {
     const currPos = findEmpty(board);
 
     if (currPos === null) {
       return true;
     }
-    console.log('------------------------------');
     for (let i = 1; i < size + 1; i++) {
       const currNum = i.toString();
       const isValid = validate(currNum, currPos, board);
-      console.log('currPos ', currPos, 'currNum ', currNum, 'isValid ', isValid);
       if (isValid) {
         const [x, y] = currPos;
         board[x][y] = currNum;
@@ -77,9 +76,10 @@ function solve() {
   };
 
   solveProgress();
+  console.table(board);
   return board;
 }
-console.log(solve());
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -95,7 +95,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(string) {
-  return string.split(/(.{9})/).filter((el) => el).map((el) => el.split(''));
+
 }
 
 // Exports all the functions to use them in another file.
