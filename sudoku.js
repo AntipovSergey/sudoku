@@ -1,10 +1,23 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
 // преобразует строку в массив
-const str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+// const boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+// const boardString = '--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3'
+// const boardString = '29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9'
+// const boardString = '-8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-'
+// const boardString = '6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--'
+// const boardString = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----'
+// const boardString = '-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--'
+// const boardString = '-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7'
+// const boardString = '----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----'
+// const boardString = '3---------5-7-3--8----28-7-7------43-----------39-41-54--3--8--1---4----968---2--'
+// const boardString = '3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-'
+const boardString = '-2-5----48-5--------48-9-2------5-73-9-----6-25-9------3-6-18--------4-71----4-9-'
+// const boardString = '--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--'
+// const boardString = '----------2-65-------18--4--9----6-4-3---57-------------------73------9----------'
+// const boardString = '---------------------------------------------------------------------------------'
+
+const board = solve(boardString);
+
+// работает, возвращает массив с массивами
 function solve(boardString) {
   const arr = [];
   for (let i = 0; i < boardString.length; i += 9) {
@@ -12,64 +25,88 @@ function solve(boardString) {
   }
   return arr;
 }
-console.log(solve(str));
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
 
-// const board = [
-//   ['5', '3', '.', '.', '7', '.', '.', '.', '.'],
-//   ['6', '.', '.', '1', '9', '5', '.', '.', '.'],
-//   ['.', '9', '8', '.', '.', '.', '.', '6', '.'],
-//   ['8', '.', '.', '.', '6', '.', '.', '.', '3'],
-//   ['4', '.', '.', '8', '.', '3', '.', '.', '1'],
-//   ['7', '.', '.', '.', '2', '.', '.', '.', '6'],
-//   ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
-//   ['.', '.', '.', '4', '1', '9', '.', '.', '5'],
-//   ['.', '.', '.', '.', '8', '.', '.', '7', '9'],
-// ];
-
-/* !!!! пишем функцию которая позволяет находить ПЕРВЫЙ свободный элемент в нашей матрице
-   и будет возвращать эту позицию */
-// const cellCheck = (board) => {
-//   for (let i = 0; i < board.length; i++) {
-//     for (let j = 0; j < board.length; j++) {
-//       if (board[i][j] === '-') {
-//         return [i, j];
-//       }
-//     }
-//   }
-// };
-// console.log(cellCheck(board));
-// console.log(cellCheck(board))
-// заполняем пустые клетки
-const cellFill = (board) => {
-  const position = cellCheck(board);
-  // получаем массив из двух значений [г,в]
-  const [g, v] = position;
-  for (let i = 1; i <= 9; i++) {
-    if (board[g].indexOf(i) === -1) { position = i; }
+// находит первый свободный элемент и возвращает позицию
+// работает! [g, v]
+const cellCheck = (board) => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] == '-') return [i, j];
+    }
   }
-  console.log(position);
+  return null;
 };
 
-console.log(cellFill(board));
 
 function isSolved(board) {
-
+ 
 }
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-// приводит к виду доски
+// проверяет элемент в строке
+// работает, возвращает тру если нет цифры в строке
+const row = (board, g, i) => {
+  if (board[g].indexOf(i.toString()) == -1) {
+    return true;
+  }
+  return false;
+};
+
+// работает, тру если элемента нет в столбце
+const column = (board, v, i) => {
+  let total = 0;
+  for (let j = 0; j < board.length; j++) {
+    if (Number(board[j][v]) == i) {
+      total += 1;
+    }
+  }
+  if (total < 1) {
+    return true;
+  }
+  return false;
+};
+
+// работает, если находит цифру в квадрате - возвращает фолс
+const square = (board, g, v, i) => {
+  let total = 0;
+  const g2 = Math.floor(g / 3) * 3;
+  const v2 = Math.floor(v / 3) * 3;
+  for (let j = g2; j < g2 + 3; j++) {
+    for (let y = v2; y < v2 + 3; y++) {
+      if (board[j][y] == i) total++;
+    }
+  }
+  if (total < 1) {
+    return true;
+  }
+  return false;
+};
+
+// добавил число в одну ячейку и тормознул, как перезапустить, продлить цикл
+const cellFill = (board) => {
+  const currPos = cellCheck(board);
+  if (currPos === null) return true;
+  const [g, v] = cellCheck(board);
+  for (let i = 1; i <= 9; i++) {
+    if (row(board, g, i) === true) {
+      if (column(board, v, i) === true) {
+        if (square(board, g, v, i) === true) {
+          board[g][v] = i.toString();
+          if (cellFill(board)) return board;
+          board[g][v] = '-';
+        }
+      }
+    }
+  }
+  return false;
+};
+// console.table(board);
+const result = cellFill(board);
+
 function prettyBoard(board) {
   const el = board.join('\n').replaceAll(',', '');
-  console.table(el);
+  return el;
 }
+console.table(prettyBoard(result));
 
 // Exports all the functions to use them in another file.
 module.exports = {
