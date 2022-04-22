@@ -69,6 +69,7 @@ const board = [
 ];
 
 function groupCheck(board, indexRow, indexColumn, options) {
+  let total = 0;
   const row = Math.floor(indexRow / 3) * 3; // старт строки
   console.log(row);
   const colomn = Math.floor(indexColumn / 3) * 3; // старт столбца
@@ -79,10 +80,13 @@ function groupCheck(board, indexRow, indexColumn, options) {
   console.log(endColomn);
   for (let yy = colomn; yy < endColomn; yy += 1) { // цикл проверки первого ряда в группе
     for (let xx = row; xx < endRow; xx += 1) {
-      if (options.indexOf(board[xx][yy]) !== -1) options.splice(options.indexOf(board[xx][yy]), 1);
-      console.log(options)
+      if (board[yy][xx] === options) total ++
     }
   }
+  if (total < 1) {
+    return true;
+  }
+  return false;
 }
 console.log(groupCheck(board, 2, 7, [1, 3]));
 
