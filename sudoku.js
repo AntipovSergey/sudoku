@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -20,8 +22,10 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {
 
+function prettyBoard(board) {
+  const myString = fs.readFileSync('./sudoku-puzzles.txt', 'uft-8').split('\n');
+  console.log(myString);
 }
 
 // Exports all the functions to use them in another file.
