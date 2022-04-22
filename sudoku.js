@@ -3,18 +3,39 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
+// Custom function: delete item from array
+function removeItem(arr, value) {
+  return arr.filter((ele) => ele != value);
+}
+
 function solve(boardString) {
   console.log('first changes');
-    let board = [];
-    for (let i = 0; i < 9; i++) {
-        let boardRow = [];
-        for (let k = i; k < 81; k+=9) {
-            boardRow.push(boardString[k]);
-        }
-        board.push(boardRow);
+
+  // Convert string into array[array of numbers]
+  const board = [];
+  for (let i = 0; i < 81; i += 9) {
+    board.push(boardString.replaceAll('-', 0).slice(i, i + 9).split('').map(Number));
+  }
+  console.table(board);
+  //   console.log(board);
+
+  return board;
+}
+
+function checkString(board, x, y) {
+  let options = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  for (let i = 0; i < 9; i++) {
+    for (let rowI = 0; rowI < 9; rowI++) {
+      if (options.includes(board[x][rowI])) {
+        options = removeItem(options, board[x][rowI]);
+      }
     }
-    console.log(board);
-    return board;
+  }
+  if (options.length === 1) board[x][y] = [...options];
+
+  return checkColumn(board, x, y, options);
 }
 
 // Returns a boolean indicating whether
