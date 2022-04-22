@@ -5,6 +5,16 @@
 // How you represent your board is up to you!
 function solve(boardString) {
   console.log('first changes');
+    let board = [];
+    for (let i = 0; i < 9; i++) {
+        let boardRow = [];
+        for (let k = i; k < 81; k+=9) {
+            boardRow.push(boardString[k]);
+        }
+        board.push(boardRow);
+    }
+    console.log(board);
+    return board;
 }
 
 // Returns a boolean indicating whether
