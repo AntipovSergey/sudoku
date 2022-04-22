@@ -1,38 +1,17 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-function solve(boardString) {
-  const arr1 = [];
-  for (let i = 0; i < boardString.length; i += 9) {
-    const arr1Slicced = boardString.slice(i, i + 9).split('');
-    arr1.push(arr1Slicced)
+
+const fs = require('fs');
+const data = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8');
+const array =  data.split("\n");
+array.pop()
+
+function sudoku  (el, x, arr1){
+for (let i = 0; i < arr1[x].length; i++) {
+  if (Number(arr1[x][i]) !==el) {
+  return true
   }
-  return arr1
 }
-  console.log(solve("1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"));
-
-// Returns a boolean indicating whether
-// or not the provided board is solved.
-// The input board will be in whatever
-// form `solve` returns.
-function isSolved(board) {
-
+return false
 }
 
-// Takes in a board in some form and
-// returns a String that's well formatted
-// for output to the screen.
-// The input board will be in whatever
-// form `solve` returns.
-function prettyBoard(board) {
+console.log(sudoku(8,0,array))
 
-}
-
-// Exports all the functions to use them in another file.
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
