@@ -20,8 +20,13 @@ function solve(boardString) {
   console.table(board);
   //   console.log(board);
 
-  return board;
+//   return board;
+  return runner(board);
 }
+
+
+// console.log(solve(boardString));
+
 
 function checkString(board, x, y) {
   let options = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -35,8 +40,24 @@ function checkString(board, x, y) {
   }
   if (options.length === 1) board[x][y] = [...options];
 
-  return checkColumn(board, x, y, options);
+//   return checkVertical(board, x, y, options);
 }
+
+// Runner
+function runner(board) {
+    for ( let y = 0; y < board.length; y++) {
+        for (let x = 0; x <board.length; x++) {
+            if (board[y][x] === 0) {
+                console.log(board[y][x]);
+                return checkString(board, x, y);
+            }
+        }
+    }
+}
+// console.log(runner(solve(boardString)));
+
+
+
 
 // Функция принимает на вход "готовую" доску, 
 // индекс "пустого" элемента и оставшиеся
@@ -46,14 +67,14 @@ function checkString(board, x, y) {
 // тогда возвращает доску и заново запускает runner().
 // Если остался массив возможных вариантов, вызывает поиск по группам и 
 // отдает доску, индексы и оставшиеся возможные варианты.
-function checkVertical(board, indX, indY, options){
-  for (y = 0; y < board.length; y += 1){
-      let newOptions = options.map((el) => {})
-      if (options.length === 1) {
-        board[indY][indX] = options[0]
-      }
-  }
-}
+// function checkVertical(board, indX, indY, options){
+//   for (y = 0; y < board.length; y += 1){
+//       let newOptions = options.map((el) => {})
+//       if (options.length === 1) {
+//         board[indY][indX] = options[0]
+//       }
+//   }
+// }
 // const board = solve(boardString);
 
 const board = [
@@ -68,23 +89,23 @@ const board = [
   [1, 3, 0, 2, 4, 0, 6, 9, 0],
 ];
 
-function groupCheck(board, indexRow, indexColumn, options) {
-  const row = Math.floor(indexRow / 3) * 3; // старт строки
-  console.log(row);
-  const colomn = Math.floor(indexColumn / 3) * 3; // старт столбца
-  console.log(colomn);
-  const endRow = row + 3; // старт строки
-  console.log(endRow);
-  const endColomn = colomn + 3; // старт столбца
-  console.log(endColomn);
-  for (let yy = colomn; yy < endColomn; yy += 1) { // цикл проверки первого ряда в группе
-    for (let xx = row; xx < endRow; xx += 1) {
-      if (options.indexOf(board[xx][yy]) !== -1) options.splice(options.indexOf(board[xx][yy]), 1);
-      console.log(options)
-    }
-  }
-}
-console.log(groupCheck(board, 2, 7, [1, 3]));
+// function groupCheck(board, indexRow, indexColumn, options) {
+//   const row = Math.floor(indexRow / 3) * 3; // старт строки
+//   console.log(row);
+//   const colomn = Math.floor(indexColumn / 3) * 3; // старт столбца
+//   console.log(colomn);
+//   const endRow = row + 3; // старт строки
+//   console.log(endRow);
+//   const endColomn = colomn + 3; // старт столбца
+//   console.log(endColomn);
+//   for (let yy = colomn; yy < endColomn; yy += 1) { // цикл проверки первого ряда в группе
+//     for (let xx = row; xx < endRow; xx += 1) {
+//       if (options.indexOf(board[xx][yy]) !== -1) options.splice(options.indexOf(board[xx][yy]), 1);
+//       console.log(options)
+//     }
+//   }
+// }
+// console.log(groupCheck(board, 2, 7, [1, 3]));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
@@ -108,5 +129,5 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
-  groupCheck,
+//   groupCheck,
 };
