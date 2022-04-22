@@ -1,9 +1,23 @@
+const arrRevers = [...arr1];
+
+function revers(boardString) {
+  for (let i = 0; i < boardString.length; i++) {
+    for (let j = i + 1; j < boardString.length; j++) {
+      const arr2 = boardString[i][j];
+      boardString[i][j] = boardString[j][i];
+      boardString[j][i] = arr2;
+    }
+  }
+  return boardString;
+}
+console.log(revers(arrRevers));
+
 // Takes a board as a string in the format
-// you see in the puzzle file. Returns
+// you see in the boardString file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-function solve(boardString) {
+function solve(bboardString) {
   console.log('first changes');
 }
 
@@ -30,3 +44,4 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
