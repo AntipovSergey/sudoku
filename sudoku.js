@@ -27,6 +27,7 @@ function prettyBoard(board) {
   const myString = fs.readFileSync('./sudoku-puzzles.txt', 'uft-8').split('\n');
   console.log(myString);
 }
+console.log('Check')
 
 // Exports all the functions to use them in another file.
 module.exports = {
