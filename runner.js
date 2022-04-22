@@ -11,16 +11,18 @@ const sudoku = require('./sudoku');
 
 // Gets one puzzle from the text file.
 function sudokuParse(content, puzzleNumber = 0) {
+    console.log(content);
   const puzzle = content.split('\n')[puzzleNumber];
   console.log(puzzle);
   console.log('parser');
   return puzzle;
 }
-console.log(sudokuParse())
+// console.log(sudokuParse())
 function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
+  console.log(data);
   const puzzle = sudokuParse(data);
 
   const solvedPuzzle = sudoku.solve(puzzle);
@@ -33,8 +35,10 @@ function readAndSolve(err, data) {
 }
 
 // Reads file and sends data from it to the readAndSolve function.
-fs.readFileSync(
+const data = fs.readFileSync(
   './sudoku-puzzles.txt',
   'utf-8',
-  readAndSolve,
+//   readAndSolve,
 );
+readAndSolve(null,data)
+// console.log(data);
