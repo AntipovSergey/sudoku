@@ -7,6 +7,7 @@ const fs = require('fs');
 // How you represent your board is up to you!
 function solve(boardString) {
   console.log('first changes');
+  qweqweqw
 }
 
 // Returns a boolean indicating whether
