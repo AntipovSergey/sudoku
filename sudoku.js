@@ -1,10 +1,26 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+// Принимает доску как строку в формате
+// вы видите в файле головоломки. Возвращает
+// что-то, представляющее доску после
+// ваш решатель пытался ее решить.
+// То, как вы представляете свою доску, зависит от вас!
+function strToArr(puzzle) {
+  return puzzle.split('');
+}
+// strToArr();
+
+function rowToSqr(array) {
+  const size = 9; // размер подмассива
+  const result = []; // массив в который будет выведен результат.
+  for (let i = 0; i < Math.ceil(array.length / size); i += 1) {
+    result[i] = array.slice((i * size), (i * size) + size);
+  }
+  return result;
+}
+
 function solve(boardString) {
-  console.log('first changes');
+  console.log(strToArr(boardString));
+  let arr =  
+  console.log(rowToSqr(result[0]));
 }
 
 // Returns a boolean indicating whether
