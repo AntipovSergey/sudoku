@@ -10,107 +10,113 @@ function removeItem(arr, value) {
 }
 
 function solve(boardString) {
-  console.log('first changes');
+  // console.log('first changes');
 
   // Convert string into array[array of numbers]
   const board = [];
   for (let i = 0; i < 81; i += 9) {
     board.push(boardString.replaceAll('-', 0).slice(i, i + 9).split('').map(Number));
   }
-  console.table(board);
-  //   console.log(board);
-
+  // console.table(board); // testing
+  //   console.log(board); // testing
+'
+'
 //   return board;
   return runner(board);
 }
 
-
-// console.log(solve(boardString));
+// Runner
+function runner(board, indexRow = 0, indexColumn = 0) {
+  console.table(board) // testing
+  if (arguments.length > 1){
+    for ( let y = indexColumn; y < board.length; y++) {
+      x = 0
+      for (let x = indexRow; x <board.length; x++) {
+        // console.log(board[y][x]); // testing
+          if (board[y][x] === 0) {
+            return checkString(board, x, y);
+          }
+      }
+  }
+  }
+    for ( let y = 0; y < board.length; y++) {
+        for (let x = 0; x <board.length; x++) {
+          // console.log(board[y][x]); // testing
+            if (board[y][x] === 0) {
+              return checkString(board, x, y);
+            }
+        }
+    }
+};
 
 
 function checkString(board, x, y) {
   let options = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  for (let i = 0; i < 9; i++) {
-    for (let rowI = 0; rowI < 9; rowI++) {
-      if (options.includes(board[x][rowI])) {
-        options = removeItem(options, board[x][rowI]);
-      }
+  for (let rowI = 0; rowI < 9; rowI++) {
+    // console.log(board[x][rowI]) // testing
+    if (options.includes(board[y][rowI])) {
+      // console.log(board[y][rowI]) // testing
+      // console.table(options) // testing
+      options = removeItem(options, board[y][rowI]);
+      // console.table(options) // testing
+      if (options.length === 1){
+        board[x][y] = [...options];
+        console.table(board)
+        console.log(board)[y[rowI]
+        break                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+      } 
     }
   }
-  if (options.length === 1) board[x][y] = [...options];
-
-//   return checkVertical(board, x, y, options);
+  return checkColumn(board, x, y, options);
 }
 
-// Runner
-function runner(board) {
-    for ( let y = 0; y < board.length; y++) {
-        for (let x = 0; x <board.length; x++) {
-            if (board[y][x] === 0) {
-                console.log(board[y][x]);
-                return checkString(board, x, y);
-            }
-        }
+
+// Check column
+
+function checkColumn(board, indX, indY, options){
+  for (let y = 0; y < board.length; y += 1){
+    // console.log(board[y][indX]) // testing
+    if (options.includes(board[y][indX])) options = removeItem(options, board[y][indX])
+    // console.log(options) // testing
+    if (options.length === 1) {
+      board[indY][indX] = options[0]
+      console.log(board)
+      console.log[indY][indX]
+      break
+      // return runner(board)
     }
+  }
+  return groupCheck(board, indX, indY, options)
 }
-// console.log(runner(solve(boardString)));
-
-
-
-
-// Функция принимает на вход "готовую" доску, 
-// индекс "пустого" элемента и оставшиеся
-// возможные варианты для этого места.
-// В процессе проверки, вычитает из массива возможных вариантов те цифры, что есть уже по вертикали.
-// На выход, ессли остался только один возможные вариант,
-// тогда возвращает доску и заново запускает runner().
-// Если остался массив возможных вариантов, вызывает поиск по группам и 
-// отдает доску, индексы и оставшиеся возможные варианты.
-// function checkVertical(board, indX, indY, options){
-//   for (y = 0; y < board.length; y += 1){
-//       let newOptions = options.map((el) => {})
-//       if (options.length === 1) {
-//         board[indY][indX] = options[0]
-//       }
-//   }
-// }
-// const board = solve(boardString);
-
-const board = [
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-  [1, 3, 0, 2, 4, 0, 6, 9, 0],
-];
 
 
 function groupCheck(board, indexRow, indexColumn, options) {
-  let total = 0;
   const row = Math.floor(indexRow / 3) * 3; // старт строки
-  console.log(row);
+  // console.log(row); // testing
   const colomn = Math.floor(indexColumn / 3) * 3; // старт столбца
-  console.log(colomn);
-  const endRow = row + 3; // старт строки
-  console.log(endRow);
-  const endColomn = colomn + 3; // старт столбца
-  console.log(endColomn);
+  // console.log(colomn); // testing
+  const endRow = row + 2; // старт строки
+  // console.log(endRow); // testing
+  const endColomn = colomn + 2; // старт столбца
+  // console.log(endColomn); // testing
   for (let yy = colomn; yy < endColomn; yy += 1) { // цикл проверки первого ряда в группе
     for (let xx = row; xx < endRow; xx += 1) {
-      if (board[yy][xx] === options) total ++
+      // console.log(board[yy][xx]) // testing
+      // console.table(options) // testing
+      if (options.includes(board[yy][xx])) options = removeItem(options, board[yy][xx])
+      if (options.length === 1) {
+        board[indexColumn][indexRow] = options[0]
+        console.table(board)
+        console.log(board[indexColumn][indexRow])
+        break
+        // return runner(board)
+      }
     }
   }
-  if (total < 1) {
-    return true;
-  }
-  return false;
+  return runner(board, indexRow+1)
 }
-console.log(groupCheck(board, 2, 7, [1, 3]));
+// console.log(groupCheck(board, 2, 7, [1, 3]));
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
