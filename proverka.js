@@ -96,5 +96,4 @@ function addIscl(i, g, arr, arrB) {
 
   
   module.exports = {proverka,getNumbers,getArray,addIscl}
-
-
+// 
