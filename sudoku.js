@@ -12,7 +12,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  console.log('isSolved', board);
 }
 
 // Takes in a board in some form and
