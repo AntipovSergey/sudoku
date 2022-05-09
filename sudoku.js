@@ -1,3 +1,21 @@
+function checkRow(arr, pos, num) {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[pos[0]][i] === num) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkColumn(arr, pos, num) {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i][pos[1]] === num) {
+      return false;
+    }
+  }
+  return true;
+}
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
