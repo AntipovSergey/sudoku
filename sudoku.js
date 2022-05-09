@@ -9,6 +9,25 @@ function createArrays(boardString) {
 }
 const test =
 	'1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+
+function checkRow(arr, pos, num) {
+	for (let i = 0; i < arr.length; i += 1) {
+		if (arr[pos[0]][i] === num) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function checkColumn(arr, pos, num) {
+	for (let i = 0; i < arr.length; i += 1) {
+		if (arr[i][pos[1]] === num) {
+			return false;
+		}
+	}
+	return true;
+}
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
