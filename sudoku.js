@@ -1,8 +1,21 @@
+function findEmpty(arr) {
+  let arrN = []
+  for (let i = 0; i < arr.length; i++) {
+    for (let g = 0; g < arr[i].length; g++) {
+      if (arr[i][[g]] === "-") {
+        arrN.push([i,g])
+      }
+    }
+  }
+  return arrN
+}
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
 function solve(boardString) {
   console.log('first changes');
 }
