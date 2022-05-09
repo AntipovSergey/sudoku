@@ -23,6 +23,36 @@ function checkSquare(num, pos, board) {
 // const boxRow = Math.floor(7 / 3) * 3;   0*3
 // const boxCol = Math.floor(7 / 3) * 3;   0*3
 
+function createArrays(boardString) {
+  const result = [];
+  const boardArr = boardString.split("");
+  while (boardArr.length > 0) {
+    result.push(boardArr.splice(0, 9));
+  }
+  console.log(result);
+  return result;
+}
+const test =
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+
+function checkRow(arr, pos, num) {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[pos[0]][i] === num) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function checkColumn(arr, pos, num) {
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i][pos[1]] === num) {
+      return false;
+    }
+  }
+  return true;
+}
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -43,7 +73,11 @@ function isSolved(board) {}
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {}
+
+function prettyBoard(board) {
+  return board.join("\n");
+}
+console.log(prettyBoard(createArrays(test)));
 
 // Exports all the functions to use them in another file.
 module.exports = {
