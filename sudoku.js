@@ -70,7 +70,12 @@ function checkNum(arr, pos, num) {
   );
 }
 // Заполнение доски простыми подстановками одного возможного варианта в несколько итераций
+<<<<<<< HEAD
+
+function fillBoard(board, prevBoard = '') {
+=======
 function fillBoard(board, prevBoard = "") {
+>>>>>>> 03806fa1b2b4936338880b72934f62bb8c75018e
   const emptyPosArr = findEmpty(board);
   const numArr = [];
   const boardIn = board.map((el) => el.join("")).join("");
@@ -96,6 +101,7 @@ function fillBoard(board, prevBoard = "") {
   }
   return fillBoard(board, boardIn);
 }
+
 // Заполнение доски с помощью перебора всех возможных вариантов
 function fillBoardSmart(board, emptyPosArr, curPos) {
   if (curPos === emptyPosArr.length) {
