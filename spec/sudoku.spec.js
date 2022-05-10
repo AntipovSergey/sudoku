@@ -25,7 +25,7 @@ describe("Test for checkSquare, checkRow, checkColum", () => {
   });
   describe("Test for checkColum", () => {
     it("Should return true no double in column", () => {
-      expect(sudoku.checkColumn(board, pos, "4")).toBe(true);
+      expect(sudoku.checkColumn(board, pos, "1")).toBe(true);
     });
   });
 });
