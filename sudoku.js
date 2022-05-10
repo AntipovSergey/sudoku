@@ -11,7 +11,7 @@ function solve(boardString) {
 
   const arr = [];
   let coordinate;
-  for(let i = 0; i < board.length; i = i + 9){
+  for(let i = 0; i < board.length; i = i + 12){
   
       arr.push(board.slice(i, i + 9).split(''));
       }
