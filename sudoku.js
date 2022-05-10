@@ -19,7 +19,7 @@ function checkSquare(arr, pos, num) {
 
   for (let i = boxRow; i < boxRow + 3; i++) {
     for (let j = boxCol; j < boxCol + 3; j++) {
-      if (board[i][j] === num) {
+      if (arr[i][j] === num) {
         return false;
       }
     }
