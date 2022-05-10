@@ -19,7 +19,7 @@ function checkSquare(arr, pos, num) {
 
   for (let i = boxRow; i < boxRow + 3; i++) {
     for (let j = boxCol; j < boxCol + 3; j++) {
-      if (arr[i][j] === num) {
+      if (arr[i][j] === num && i !== r && j !== c) {
         return false;
       }
     }
@@ -46,7 +46,7 @@ function createArrays(boardString) {
 // Проверяем подходит ли число по вертикали
 function checkRow(arr, pos, num) {
   for (let i = 0; i < arr.length; i += 1) {
-    if (arr[pos[0]][i] === num) {
+    if (arr[pos[0]][i] === num && i !== pos[1]) {
       return false;
     }
   }
@@ -55,7 +55,7 @@ function checkRow(arr, pos, num) {
 // Проверяем подходит ли число по горизонтали
 function checkColumn(arr, pos, num) {
   for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i][pos[1]] === num) {
+    if (arr[i][pos[1]] === num && i !== pos[0]) {
       return false;
     }
   }
@@ -122,6 +122,17 @@ function fillBoardSmart(board, emptyPosArr, curPos) {
   return false;
 }
 
+function checkInputBoard(board) {
+  return board.every((el, index, arr) => {
+    for (let i = 0; i < el.length; i += 1) {
+      const check = el[i];
+      if (el[i] !== '-' && !checkNum(arr, [index, i], el[i])) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -130,10 +141,12 @@ function fillBoardSmart(board, emptyPosArr, curPos) {
 function solve(boardString) {
   const boardArr = createArrays(boardString);
   let emptyPosArr = [];
+  console.log(checkInputBoard(boardArr));
+  if (checkInputBoard(boardArr)) {
+    fillBoard(boardArr); // Сначала заполняем доску всеми однозначными вариантами числа
 
-  fillBoard(boardArr); // Сначала заполняем доску всеми однозначными вариантами числа
+    emptyPosArr = findEmpty(boardArr); // Получаем все позиции оставшихся пустых клеток
 
-  emptyPosArr = findEmpty(boardArr); // Получаем все позиции оставшихся пустых клеток
 
   if (emptyPosArr.length > 0) {
     // Если остались пыстые клетки то заполняем их перебором
