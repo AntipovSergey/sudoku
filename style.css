@@ -50,8 +50,8 @@ html{
 	font: inherit;
   }
 .container {
-	width: 900px;
-	height: 900px;
+	width: 450px;
+	height: 450px;
 	background-color: rgb(220, 248, 188);
 	display: flex;
 	flex-wrap: wrap;
@@ -60,8 +60,8 @@ html{
 }
 
 .box {
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 	display: flex;
 	background-color: aqua;
 	border: 2px solid black;
