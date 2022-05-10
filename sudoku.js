@@ -1,19 +1,27 @@
+// Собираем в двумерный массив все позиции пустых клеток в формате [<позиция по горизонтали>, <позиция по вертикали>]
 function findEmpty(arr) {
-  let arrN = []
+  const arrN = [];
   for (let i = 0; i < arr.length; i++) {
     for (let g = 0; g < arr[i].length; g++) {
-      if (arr[i][[g]] === "-") {
-        arrN.push([i,g])
+      if (arr[i][[g]] === '-') {
+        arrN.push([i, g]);
       }
     }
   }
+<<<<<<< HEAD
   return arrN
 }
 
 //num - подставляемое число
 
+=======
+  return arrN;
+}
+// num - подставляемое число
+// Проверяем подходит ли число в кубе
+>>>>>>> 0a16680309209c2f926a98fe36d77a461d673a1e
 function checkSquare(arr, pos, num) {
-  const [r, c] = pos; //Деструктуризация получаем данные о позиции
+  const [r, c] = pos; // Деструктуризация получаем данные о позиции
   const boxRow = Math.floor(r / 3) * 3;
   const boxCol = Math.floor(c / 3) * 3;
 
@@ -26,26 +34,24 @@ function checkSquare(arr, pos, num) {
   }
   return true;
 }
-
-//example [1,1] - верхний левый угол  [0,0]
+// example [1,1] - верхний левый угол  [0,0]
 // const boxRow = Math.floor(1 / 3) * 3;   0*3
 // const boxCol = Math.floor(1 / 3) * 3;   0*3
 
-//example [7,7] - верхний левый угол  [6,6]
+// example [7,7] - верхний левый угол  [6,6]
 // const boxRow = Math.floor(7 / 3) * 3;   0*3
 // const boxCol = Math.floor(7 / 3) * 3;   0*3
 
+// Собираем входящую строку с судоку в двумерный массив
 function createArrays(boardString) {
   const result = [];
-  const boardArr = boardString.split("");
+  const boardArr = boardString.split('');
   while (boardArr.length > 0) {
     result.push(boardArr.splice(0, 9));
   }
-  console.log(result);
   return result;
 }
-
-
+// Проверяем подходит ли число по вертикали
 function checkRow(arr, pos, num) {
   for (let i = 0; i < arr.length; i += 1) {
     if (arr[pos[0]][i] === num) {
@@ -54,7 +60,7 @@ function checkRow(arr, pos, num) {
   }
   return true;
 }
-
+// Проверяем подходит ли число по горизонтали
 function checkColumn(arr, pos, num) {
   for (let i = 0; i < arr.length; i += 1) {
     if (arr[i][pos[1]] === num) {
@@ -63,10 +69,61 @@ function checkColumn(arr, pos, num) {
   }
   return true;
 }
+// Общая проверка подходит ли число по всем правилам
+function checkNum(arr, pos, num) {
+  return checkColumn(arr, pos, num) && checkRow(arr, pos, num) && checkSquare(arr, pos, num);
+}
+// Заполнение доски простыми подстановками одного возможного варианта в несколько итераций
+function fillBoard(board, prevBoard = '') {
+  const emptyPosArr = findEmpty(board);
+  const numArr = [];
+  const boardIn = board.map((el) => el.join('')).join('');
 
+  if (board.flat().indexOf('-') === -1) {
+    return true;
+  }
+  if (prevBoard === boardIn) {
+    return false;
+  }
 
-function checkNum (arr, pos, num) {
-  return checkColumn(arr, pos, num) && checkRow(arr, pos, num) && checkSquare(arr, pos, num)
+  for (let i = 0; i < emptyPosArr.length; i++) {
+    for (let j = 1; j < 10; j++) {
+      if (checkNum(board, emptyPosArr[i], j.toString())) {
+        numArr.push(j.toString());
+      }
+    }
+    if (numArr.length === 1) {
+      const [posR, posC] = emptyPosArr[i];
+      board[posR][posC] = numArr[0];
+    }
+    numArr.length = 0;
+  }
+  return fillBoard(board, boardIn);
+}
+// Заполнение доски с помощью перебора всех возможных вариантов
+function fillBoardSmart(board, emptyPosArr, curPos) {
+  if (curPos === emptyPosArr.length) {
+    return true;
+  }
+
+  const numArr = [];
+  const [posR, posC] = emptyPosArr[curPos];
+  const boardArr = board;
+
+  for (let i = 1; i < 10; i += 1) {
+    if (checkNum(board, [posR, posC], i.toString())) {
+      numArr.push(i.toString());
+    }
+  }
+
+  for (let i = 0; i < numArr.length; i += 1) {
+    boardArr[posR][posC] = numArr[i];
+    if (fillBoardSmart(board, emptyPosArr, curPos + 1)) {
+      return true;
+    }
+    boardArr[posR][posC] = '-';
+  }
+  return false;
 }
 
 // Takes a board as a string in the format
@@ -76,40 +133,24 @@ function checkNum (arr, pos, num) {
 // How you represent your board is up to you!
 
 function solve(boardString) {
-  const boardArr = createArrays(boardString)
-  const emptyPosArr = findEmpty(boardArr)
-  const numArr = []
-  for (let i = 0; i < emptyPosArr.length; i++) {
-    for (var j = 1; j < 10; j++) {
-      if (checkNum (boardArr, emptyPosArr[i], j)) {
-        numArr.push(j)
-      }
-    }
-    if (numArr.length > 1) {
-      console.log(numArr);
-    } else {
-      boardArr[emptyPosArr[i][0]][emptyPosArr[i][1]] = numArr[0]
-    }
+  const boardArr = createArrays(boardString);
+  let emptyPosArr = [];
+
+  fillBoard(boardArr); // Сначала заполняем доску всеми однозначными вариантами числа
+
+  emptyPosArr = findEmpty(boardArr); // Получаем все позиции оставшихся пустых клеток
+
+  if (emptyPosArr.length > 0) { // Если остались пыстые клетки то заполняем их перебором
+    fillBoardSmart(boardArr, emptyPosArr, 0);
   }
-
-
-
-
-  console.log("first changes");
+  return boardArr;
 }
-
-
-
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  let arr = solve(board)
-  if (findEmpty(arr).length !== 0) {
-    return false
-  }
-  return true
+  return !board.flat().includes('-');
 }
 
 // Takes in a board in some form and
@@ -119,13 +160,19 @@ function isSolved(board) {
 // form `solve` returns.
 
 function prettyBoard(board) {
-  return board.join("\n");
+  return board.map((el) => el.join(' ')).join('\n');
 }
-console.log(prettyBoard(createArrays(test)));
 
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
   isSolved,
   prettyBoard,
-}
+  findEmpty,
+  checkSquare,
+  createArrays,
+  checkRow,
+  checkColumn,
+  fillBoard,
+  fillBoardSmart,
+};
