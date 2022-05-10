@@ -5,18 +5,7 @@ const solveSudoku = (resultBoard) => {
   function solvet(resultBoard) {
     const board = [];
     for (let i = 0; i < 9; i++) {
-      board.push(
-        resultBoard
-          .slice(i * 9, i * 9 + 9)
-          .split("")
-          .map((el) => {
-            if (el === "-") {
-              return ".";
-            }
-
-            return el;
-          })
-      );
+      board.push(resultBoard.slice(i * 9, i * 9 + 9).split(""));
     }
     return board;
   }
@@ -25,7 +14,7 @@ const solveSudoku = (resultBoard) => {
   const findEmpty = (emptySudoku) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if (emptySudoku[r][c] === ".") {
+        if (emptySudoku[r][c] === "-") {
           return [r, c];
         }
       }
@@ -83,7 +72,7 @@ const solveSudoku = (resultBoard) => {
           return true;
         }
 
-        emptySudoku[x][y] = ".";
+        emptySudoku[x][y] = "-";
       }
     }
 
