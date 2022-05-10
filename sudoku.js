@@ -125,7 +125,6 @@ function fillBoardSmart(board, emptyPosArr, curPos) {
 function checkInputBoard(board) {
   return board.every((el, index, arr) => {
     for (let i = 0; i < el.length; i += 1) {
-      const check = el[i];
       if (el[i] !== '-' && !checkNum(arr, [index, i], el[i])) {
         return false;
       }
@@ -152,6 +151,8 @@ function solve(boardString) {
     // Если остались пыстые клетки то заполняем их перебором
     fillBoardSmart(boardArr, emptyPosArr, 0);
   }
+  console.log(prettyBoard(boardArr));
+  console.log(boardArr);
   return boardArr;
 }
 // Returns a boolean indicating whether
@@ -171,7 +172,6 @@ function isSolved(board) {
 function prettyBoard(board) {
   return board.map((el) => el.join(" ")).join("\n");
 }
-
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
