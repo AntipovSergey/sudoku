@@ -3,7 +3,7 @@ function findEmpty(arr) {
   const arrN = [];
   for (let i = 0; i < arr.length; i++) {
     for (let g = 0; g < arr[i].length; g++) {
-      if (arr[i][[g]] === '-') {
+      if (arr[i][[g]] === "-") {
         arrN.push([i, g]);
       }
     }
@@ -19,7 +19,7 @@ function checkSquare(arr, pos, num) {
 
   for (let i = boxRow; i < boxRow + 3; i++) {
     for (let j = boxCol; j < boxCol + 3; j++) {
-      if (arr[i][j] === num) {
+      if (arr[i][j] === num && i !== r && j !== c) {
         return false;
       }
     }
@@ -37,7 +37,7 @@ function checkSquare(arr, pos, num) {
 // Собираем входящую строку с судоку в двумерный массив
 function createArrays(boardString) {
   const result = [];
-  const boardArr = boardString.split('');
+  const boardArr = boardString.split("");
   while (boardArr.length > 0) {
     result.push(boardArr.splice(0, 9));
   }
@@ -46,7 +46,7 @@ function createArrays(boardString) {
 // Проверяем подходит ли число по вертикали
 function checkRow(arr, pos, num) {
   for (let i = 0; i < arr.length; i += 1) {
-    if (arr[pos[0]][i] === num) {
+    if (arr[pos[0]][i] === num && i !== pos[1]) {
       return false;
     }
   }
@@ -55,7 +55,7 @@ function checkRow(arr, pos, num) {
 // Проверяем подходит ли число по горизонтали
 function checkColumn(arr, pos, num) {
   for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i][pos[1]] === num) {
+    if (arr[i][pos[1]] === num && i !== pos[0]) {
       return false;
     }
   }
@@ -63,16 +63,24 @@ function checkColumn(arr, pos, num) {
 }
 // Общая проверка подходит ли число по всем правилам
 function checkNum(arr, pos, num) {
-  return checkColumn(arr, pos, num) && checkRow(arr, pos, num) && checkSquare(arr, pos, num);
+  return (
+    checkColumn(arr, pos, num) &&
+    checkRow(arr, pos, num) &&
+    checkSquare(arr, pos, num)
+  );
 }
 // Заполнение доски простыми подстановками одного возможного варианта в несколько итераций
+<<<<<<< HEAD
 
 function fillBoard(board, prevBoard = '') {
+=======
+function fillBoard(board, prevBoard = "") {
+>>>>>>> 03806fa1b2b4936338880b72934f62bb8c75018e
   const emptyPosArr = findEmpty(board);
   const numArr = [];
-  const boardIn = board.map((el) => el.join('')).join('');
+  const boardIn = board.map((el) => el.join("")).join("");
 
-  if (board.flat().indexOf('-') === -1) {
+  if (board.flat().indexOf("-") === -1) {
     return true;
   }
   if (prevBoard === boardIn) {
@@ -115,28 +123,42 @@ function fillBoardSmart(board, emptyPosArr, curPos) {
     if (fillBoardSmart(board, emptyPosArr, curPos + 1)) {
       return true;
     }
-    boardArr[posR][posC] = '-';
+    boardArr[posR][posC] = "-";
   }
   return false;
 }
 
+function checkInputBoard(board) {
+  return board.every((el, index, arr) => {
+    for (let i = 0; i < el.length; i += 1) {
+      if (el[i] !== '-' && !checkNum(arr, [index, i], el[i])) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
-
 function solve(boardString) {
   const boardArr = createArrays(boardString);
   let emptyPosArr = [];
+  console.log(checkInputBoard(boardArr));
+  if (checkInputBoard(boardArr)) {
+    fillBoard(boardArr); // Сначала заполняем доску всеми однозначными вариантами числа
 
-  fillBoard(boardArr); // Сначала заполняем доску всеми однозначными вариантами числа
+    emptyPosArr = findEmpty(boardArr); // Получаем все позиции оставшихся пустых клеток
 
-  emptyPosArr = findEmpty(boardArr); // Получаем все позиции оставшихся пустых клеток
 
-  if (emptyPosArr.length > 0) { // Если остались пыстые клетки то заполняем их перебором
+  if (emptyPosArr.length > 0) {
+    // Если остались пыстые клетки то заполняем их перебором
     fillBoardSmart(boardArr, emptyPosArr, 0);
   }
+  console.log(prettyBoard(boardArr));
+  console.log(boardArr);
   return boardArr;
 }
 // Returns a boolean indicating whether
@@ -144,7 +166,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  return !board.flat().includes('-');
+  return !board.flat().includes("-");
 }
 
 // Takes in a board in some form and
@@ -154,9 +176,8 @@ function isSolved(board) {
 // form `solve` returns.
 
 function prettyBoard(board) {
-  return board.map((el) => el.join(' ')).join('\n');
+  return board.map((el) => el.join(" ")).join("\n");
 }
-
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
