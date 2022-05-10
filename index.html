@@ -5,9 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./button.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@1,600&family=Source+Sans+Pro:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
   <title>Super Sudoku</title>
 </head>
 <body>
+  <h1>TRY TO SOLVE SUDOKU</h1>
 <div class="container">
 <div class="box"></div>
 <div class="box"></div>
@@ -91,9 +94,15 @@
 <div class="box"></div>
 <div class="box"></div>
   </div>
-  <input type="text" size='81' id='input'>
-  <button id='fill'>Заполнить доску</button>
-  <button id='solve'>Решить судоку</button>
+  <input type="text" size='81' id='input' class="input">
+
+  
+  <div class="buttons">
+
+    <button id='fill' class="bubbly-button test">Fill board</button>
+  <button id='solve' class="bubbly-button test">Solve board
+  </button>
+</div>
   <script src="./index.js"></script>
 </body>
 </html>
