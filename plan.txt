@@ -1,0 +1,9 @@
+Супер план
+1. Написать функцию проверяющую доску на корректность
+2. Написать тесты
+  Катя - checkSquare, checkRow, checkColumn
+  Дима -  fillBoard, fillBoardSmart
+  Ваня - createArrays, findEmpty, isSolved, solve
+3. Сделать верстку
+4. Написать функцию заполнения доски в html
+5.
