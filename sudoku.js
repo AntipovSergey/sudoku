@@ -1,92 +1,127 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
-/////////////
-const board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-
-// console.log(board.length);
-function solve(boardString) {
-
-  const arr = [];
-  let coordinate;
-<<<<<<< HEAD
-  for (let i = 0; i < board.length; i = i + 10) {
-
-    arr.push(board.slice(i, i + 9).split(''));
-  }
-  console.log(arr);
-  // return arr;
-  for (let r = 0; r < board.length; r++) {
-    for (let c = 0; c < board[j].length; c++) {
-      coordinate = arr[r][c]; ///работает определили координату
-      if (coordinate === '-') {
-        return [r, c]
-=======
-  for(let i = 0; i < board.length; i = i + 12){
-  
-      arr.push(board.slice(i, i + 9).split(''));
->>>>>>> 7496921a4e16cdf2b7a5afbc0f192896b7e47df2
-      }
-
-      console.log(arr[r][c]);
+const solveSudoku = (resultBoard) => {
+  const size = 9;
+  const boxSize = 3;
+  // получение борда цифр и пустых элементов
+  function solvet(resultBoard) {
+    const board = [];
+    for (let i = 0; i < 9; i++) {
+      board.push(resultBoard.slice(i * 9, i * 9 + 9).split(""));
     }
+    return board;
   }
-
-  console.log('first changes');
-}
-console.log(solve(board));
-
-const emptySudoku = solvet(resultBoard);
-// поиск значений с точкой-пустых элементов
-const findEmpty = (emptySudoku) => {
+  const emptySudoku = solvet(resultBoard);
+  // поиск значений с точкой-пустых элементов
+  const findEmpty = (emptySudoku) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if (emptySudoku[r][c] === ".") {
+        if (emptySudoku[r][c] === "-") {
           return [r, c];
         }
       }
+    }
+    return null;
+  };
+  // валидация для подставленных значений
+  const validate = (num, pos, emptySudoku) => {
+    const [r, c] = pos;
 
-
-      //   console.log("first changes");
-      //   const board = [];
-      //   for (let i = 0; i < 9; i++) {
-      //     board.push(resultBoard.slice(i * 9, i * 9 + 9).split(""));
-      //   }
-      //   return board;
-      // }
-
-      // Returns a boolean indicating whether
-      // or not the provided board is solved.
-      // The input board will be in whatever
-      // form `solve` returns.
-      function isSolved(board) {}
-
-      // Takes in a board in some form and
-      // returns a String that's well formatted
-      // for output to the screen.
-      // The input board will be in whatever
-      // form `solve` returns.
-
-      //////красивая доска(работает в виде массива массивов)
-      function prettyBoard() {
-
-        //   for(let i = 0; i < board.length; i = i + 9){
-
-        //   arr.push(board.slice(i, i + 9).split(''));
-        //   }
-        // // console.log(arr);
-        //   return arr;
+    // проверка строк
+    for (let i = 0; i < size; i++) {
+      if (emptySudoku[i][c] === num && i !== r) {
+        return false;
       }
-      console.log(prettyBoard(board))
+    }
 
-      // function prettyBoard(board) {}
+    // проверка колонок
+    for (let i = 0; i < size; i++) {
+      if (emptySudoku[r][i] === num && i !== c) {
+        return false;
+      }
+    }
 
+    // проверка бокса
+    const boxRow = Math.floor(r / boxSize) * boxSize;
+    const boxCol = Math.floor(c / boxSize) * boxSize;
 
-      // Exports all the functions to use them in another file.
-      module.exports = {
-        solve,
-        isSolved,
-        prettyBoard,
-      };
+    for (let i = boxRow; i < boxRow + boxSize; i++) {
+      for (let j = boxCol; j < boxCol + boxSize; j++) {
+        if (emptySudoku[i][j] === num && i !== r && j !== c) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+  // заполнение пустых мест числами с проверкой самих чисел
+  const solve = () => {
+    const currPos = findEmpty(emptySudoku);
+
+    if (currPos === null) {
+      return true;
+    }
+    for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, emptySudoku);
+      // console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
+      if (isValid) {
+        const [x, y] = currPos;
+        emptySudoku[x][y] = currNum;
+
+        if (solve()) {
+          return true;
+        }
+
+        emptySudoku[x][y] = "-";
+      }
+    }
+
+    return false;
+  };
+
+  solve();
+  // console.table(one);
+  return emptySudoku;
+};
+
+function isSolved(solveSudoku) {
+  const c = solveSudoku.flat();
+  // console.log(c);
+  const resultLength = [];
+  for (let i = 0; i < c.length; i++) {
+    if (Number(c[i])) {
+      resultLength.push(c[i]);
+    }
+  }
+  if (resultLength.length !== 81) {
+    return false;
+  }
+  return true;
+}
+
+// isSolved(solveSudoku);
+// Takes in a board in some form and
+// returns a String that's well formatted
+// for output to the screen.
+// The input board will be in whatever
+// form `solve` returns.
+function prettyBoard(solveSudoku) {
+  const a = solveSudoku.join("\n");
+
+  const arr = [];
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== ",") {
+      arr.push(a[i]);
+    }
+  }
+
+  const result = arr.join(" ");
+
+  return ` ${result}`;
+}
+
+module.exports = {
+  solveSudoku,
+  isSolved,
+  prettyBoard,
+};
