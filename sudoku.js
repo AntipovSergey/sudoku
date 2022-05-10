@@ -11,6 +11,7 @@ function solve(boardString) {
 
   const arr = [];
   let coordinate;
+<<<<<<< HEAD
   for (let i = 0; i < board.length; i = i + 10) {
 
     arr.push(board.slice(i, i + 9).split(''));
@@ -22,6 +23,11 @@ function solve(boardString) {
       coordinate = arr[r][c]; ///работает определили координату
       if (coordinate === '-') {
         return [r, c]
+=======
+  for(let i = 0; i < board.length; i = i + 12){
+  
+      arr.push(board.slice(i, i + 9).split(''));
+>>>>>>> 7496921a4e16cdf2b7a5afbc0f192896b7e47df2
       }
 
       console.log(arr[r][c]);
