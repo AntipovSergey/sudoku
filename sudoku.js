@@ -71,7 +71,7 @@ function checkNum(arr, pos, num) {
 }
 // Заполнение доски простыми подстановками одного возможного варианта в несколько итераций
 
-function fillBoard(board, prevBoard = '') {
+function fillBoard(board, prevBoard = "") {
   const emptyPosArr = findEmpty(board);
   const numArr = [];
   const boardIn = board.map((el) => el.join("")).join("");
@@ -127,7 +127,7 @@ function fillBoardSmart(board, emptyPosArr, curPos) {
 function checkInputBoard(board) {
   return board.every((el, index, arr) => {
     for (let i = 0; i < el.length; i += 1) {
-      if (el[i] !== '-' && !checkNum(arr, [index, i], el[i])) {
+      if (el[i] !== "-" && !checkNum(arr, [index, i], el[i])) {
         return false;
       }
     }
@@ -147,10 +147,13 @@ function solve(boardString) {
     fillBoard(boardArr); // Сначала заполняем доску всеми однозначными вариантами числа
 
     emptyPosArr = findEmpty(boardArr); // Получаем все позиции оставшихся пустых клеток
+
     if (emptyPosArr.length > 0) {
       // Если остались пыстые клетки то заполняем их перебором
       fillBoardSmart(boardArr, emptyPosArr, 0);
     }
+    console.log(prettyBoard(boardArr));
+    console.log(boardArr);
     return boardArr;
   }
 }
@@ -159,7 +162,7 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  return !board.flat().includes('-');
+  return !board.flat().includes("-");
 }
 
 // Takes in a board in some form and
