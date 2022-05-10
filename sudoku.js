@@ -66,6 +66,7 @@ function checkNum(arr, pos, num) {
   return checkColumn(arr, pos, num) && checkRow(arr, pos, num) && checkSquare(arr, pos, num);
 }
 // Заполнение доски простыми подстановками одного возможного варианта в несколько итераций
+
 function fillBoard(board, prevBoard = '') {
   const emptyPosArr = findEmpty(board);
   const numArr = [];
@@ -92,6 +93,7 @@ function fillBoard(board, prevBoard = '') {
   }
   return fillBoard(board, boardIn);
 }
+
 // Заполнение доски с помощью перебора всех возможных вариантов
 function fillBoardSmart(board, emptyPosArr, curPos) {
   if (curPos === emptyPosArr.length) {
