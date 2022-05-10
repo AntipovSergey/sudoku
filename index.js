@@ -174,16 +174,9 @@ function isSolved(board) {
 function prettyBoard(board) {
   return board.map((el) => el.join(" ")).join("\n");
 }
-// Exports all the functions to use them in another file.
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-  findEmpty,
-  checkSquare,
-  createArrays,
-  checkRow,
-  checkColumn,
-  fillBoard,
-  fillBoardSmart,
-};
+
+function fillHTMLBoard() {
+  const input = document.getElementById('input');
+  const fillDiv = document.getElementsByClassName('box');
+  const boardArr = createArrays(input.value);
+}
