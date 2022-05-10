@@ -37,7 +37,11 @@ html{
   ul[class] {
 	list-style: none;
   }
-  
+  body{
+    font-family: 'Cabin', sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
   img {
 	max-width: 100%;
 	display: block;
@@ -56,14 +60,48 @@ html{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	
+  margin: 0 auto;
+
 }
 
 .box {
 	width: 50px;
 	height: 50px;
 	display: flex;
-	background-color: aqua;
+	background-color: rgb(243, 202, 245);
 	border: 2px solid black;
 	box-sizing: border-box;
+}
+
+h1{
+  margin: 100px auto;
+  font-size: 75PX;
+}
+.input{
+  margin: 50px 170px 15px;
+  padding: 15px;
+  background-color: rgb(243, 202, 245);
+}
+/**/
+.buttons{
+  margin: 0 auto;
+}
+
+.box {
+	width: 50px;
+	height: 50px;
+	display: flex;
+	background-color:rgb(243, 202, 245);
+	border: 2px solid black;
+	box-sizing: border-box;
+  text-align: center;
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+.boxText {
+  text-align: center;
+  font-size: 1.5em;
+  vertical-align: middle;
+  margin: 0 auto;
 }

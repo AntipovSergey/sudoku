@@ -147,22 +147,19 @@ function solve(boardString) {
     fillBoard(boardArr); // Сначала заполняем доску всеми однозначными вариантами числа
 
     emptyPosArr = findEmpty(boardArr); // Получаем все позиции оставшихся пустых клеток
-
-
-  if (emptyPosArr.length > 0) {
-    // Если остались пыстые клетки то заполняем их перебором
-    fillBoardSmart(boardArr, emptyPosArr, 0);
+    if (emptyPosArr.length > 0) {
+      // Если остались пыстые клетки то заполняем их перебором
+      fillBoardSmart(boardArr, emptyPosArr, 0);
+    }
+    return boardArr;
   }
-  console.log(prettyBoard(boardArr));
-  console.log(boardArr);
-  return boardArr;
 }
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-  return !board.flat().includes("-");
+  return !board.flat().includes('-');
 }
 
 // Takes in a board in some form and
@@ -177,6 +174,39 @@ function prettyBoard(board) {
 
 function fillHTMLBoard() {
   const input = document.getElementById('input');
-  const fillDiv = document.getElementsByClassName('box');
-  const boardArr = createArrays(input.value);
+  const fillDiv = document.getElementsByClassName('boxText');
+  //const boardArr = createArrays(input.value);
+  const inputVal = input.value;
+  const inputArr = inputVal.split('');
+
+  for (let i = 0; i < inputArr.length; i += 1) {
+    if (inputArr[i] !== '-') {
+      fillDiv[i].innerText = inputArr[i];
+    } else {
+      fillDiv[i].innerText = '';
+    }
+  }
 }
+
+function solveHTMLBoard() {
+  const input = document.getElementById('input');
+  const fillDiv = document.getElementsByClassName('boxText');
+  const inputVal = input.value;
+  let solvedBoard = solve(inputVal);
+  solvedBoard = solvedBoard.flat();
+
+  for (let i = 0; i < solvedBoard.length; i += 1) {
+    fillDiv[i].innerText = solvedBoard[i];
+  }
+}
+
+const btnFill = document.getElementById('fill');
+const btnSolve = document.getElementById('solve');
+
+btnFill.addEventListener('click', () => {
+  fillHTMLBoard();
+});
+
+btnSolve.addEventListener('click', () => {
+  solveHTMLBoard();
+});
