@@ -8,18 +8,10 @@ function findEmpty(arr) {
       }
     }
   }
-<<<<<<< HEAD
-  return arrN
-}
-
-//num - подставляемое число
-
-=======
   return arrN;
 }
 // num - подставляемое число
 // Проверяем подходит ли число в кубе
->>>>>>> 0a16680309209c2f926a98fe36d77a461d673a1e
 function checkSquare(arr, pos, num) {
   const [r, c] = pos; // Деструктуризация получаем данные о позиции
   const boxRow = Math.floor(r / 3) * 3;
