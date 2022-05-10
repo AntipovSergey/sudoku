@@ -1,0 +1,69 @@
+html{
+	box-sizing: border-box;
+  }
+  
+  *,
+  *::after,
+  *::before{
+	box-sizing: inherit;
+  }
+  
+  div[class]
+  ul[class],
+  ol[class] {
+	padding: 0;
+	margin: 0;
+  }
+  
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul[class],
+  ol[class],
+  li,
+  figure,
+  figcaption,
+  blockquote,
+  dl,
+  dd {
+	margin: 0;
+  }
+  
+  ul[class] {
+	list-style: none;
+  }
+  
+  img {
+	max-width: 100%;
+	display: block;
+  }
+  
+  input,
+  button,
+  textarea,
+  select {
+	font: inherit;
+  }
+.container {
+	width: 900px;
+	height: 900px;
+	background-color: rgb(220, 248, 188);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	
+}
+
+.box {
+	width: 100px;
+	height: 100px;
+	display: flex;
+	background-color: aqua;
+	border: 2px solid black;
+	box-sizing: border-box;
+}
