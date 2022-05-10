@@ -1,25 +1,27 @@
 {
-  "name": "sudoku",
-  "version": "1.0.0",
-  "description": "## Введение",
-  "main": "sudoku.js",
-  "scripts": {
-    "test": "jest spec/*[sS]pec.js -i"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/d26laushi/project-sudoku.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/d26laushi/project-sudoku/issues"
-  },
-  "homepage": "https://github.com/d26laushi/project-sudoku#readme",
-  "devDependencies": {
-    "eslint": "^8.8.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
-  }
+	"name": "sudoku",
+	"version": "1.0.0",
+	"description": "## Введение",
+	"main": "runner.js",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/d26laushi/project-sudoku.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/d26laushi/project-sudoku/issues"
+	},
+	"homepage": "https://github.com/d26laushi/project-sudoku#readme",
+	"devDependencies": {
+		"@types/jest": "^27.5.0",
+		"eslint": "^8.8.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.25.4",
+		"jest": "^28.1.0"
+	}
 }
