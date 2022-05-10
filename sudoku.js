@@ -10,7 +10,7 @@ const solveSudoku = (resultBoard) => {
     return board;
   }
   const emptySudoku = solvet(resultBoard);
-  // поиск значений с точкой-пустых элементов
+  // поиск значений и пустых элементов
   const findEmpty = (emptySudoku) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
