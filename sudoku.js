@@ -8,6 +8,7 @@ function findEmpty(arr) {
     }
   }
   return arrN
+}
 
 //num - подставляемое число
 
