@@ -32,4 +32,8 @@ module.exports = {
 };
 //start denis
 //start matiy
+//start banu_comit 2
+//git merge new mari
 //start banu
+//new str merge
+//new str merge banu
