@@ -10,17 +10,16 @@
 //   [".", ".", ".", ".", ".", ".", ".", ".", "."],
 // ];
 
-
 const fs = require('fs');
 const wordsArr = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8').trim()
-const {funGenSudoku} = require('./funGenSudoku.js');
-
+const {
+  funGenSudoku
+} = require('./funGenSudoku.js');
 let arr = funGenSudoku(wordsArr);
 // console.log(arr);
 let solveSudoku = function (board) {
   const size = 9;
   const boxSize = 3;
-
   const findEmpty = (board) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
@@ -34,25 +33,21 @@ let solveSudoku = function (board) {
 
   const validate = (num, pos, board) => {
     const [r, c] = pos;
-
     //Check rows
     for (let i = 0; i < size; i++) {
       if (board[i][c] === num && i !== r) {
         return false;
       }
     }
-    //Check cols
+    //Check cols проверка строки
     for (let i = 0; i < size; i++) {
       if (board[r][i] === num && i !== c) {
         return false;
       }
     }
-
-
-    //Check box
+    //Check box проверка квадрата
     const boxRow = Math.floor(r / boxSize) * boxSize;
     const boxCol = Math.floor(c / boxSize) * boxSize;
-
     for (let i = boxRow; i < boxRow + boxSize; i++) {
       for (let j = boxCol; j < boxCol + boxSize; j++) {
         if (board[i][j] === num && i !== r && j !== c) {
@@ -60,21 +55,19 @@ let solveSudoku = function (board) {
         }
       }
     }
-
     return true;
   }
-
   const solve = () => {
     const currPos = findEmpty(board);
 
     if (currPos === null) {
       return true;
     }
-    console.log('------------------------------');
+    // console.log('------------------------------');
     for (let i = 1; i < size + 1; i++) {
       const currNum = i.toString();
       const isValid = validate(currNum, currPos, board);
-      console.log('currPos ', currPos, 'currNum ', currNum, 'isValid ', isValid);
+      // console.log('currPos ', currPos, 'currNum ', currNum, 'isValid ', isValid);
       if (isValid) {
         const [x, y] = currPos;
         board[x][y] = currNum;
@@ -82,11 +75,9 @@ let solveSudoku = function (board) {
         if (solve()) {
           return true;
         }
-
         board[x][y] = '.';
       }
     }
-
     return false;
   }
   solve();
