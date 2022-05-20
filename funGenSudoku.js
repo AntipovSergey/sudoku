@@ -1,6 +1,4 @@
-const {
-  table
-} = require('console');
+
 const fs = require('fs');
 const wordsArr = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8').trim()
 // .split('\n');
@@ -14,7 +12,7 @@ function funGenSudoku() {
   let arrBigString = stringUdated.replace(/\-/gim, '.') //можно применить к всему txt и он вернёт 729 элементов
   // 105802000090076405200400819019007306762083090000061050007600030430020501600308900
   // return arrBigString
-  let arrSudoku = []
+  let funGenSudoku = []
   let w = 0;
   for (let i = 0; i < (arrBigString.length / 9); i++) {
     let arrSudokuNested = []
@@ -22,9 +20,9 @@ function funGenSudoku() {
       arrSudokuNested.push(arrBigString[w])
       w++
     }
-    arrSudoku.push(arrSudokuNested)
+    funGenSudoku.push(arrSudokuNested)
   }
-  return arrSudoku
+  return funGenSudoku
 }
 // console.table(funGenSudoku(wordsArr));
 let input = (funGenSudoku(wordsArr))
