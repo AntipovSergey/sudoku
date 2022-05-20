@@ -2,12 +2,6 @@ const fs = require('fs');
 const wordsArr = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8').trim()
 // .split('\n');
 
-
-
-
-
-
-
 function funGenSudoku(wordsArr) {
   // принимает массив из 9 строк и возвращает массив из 9 строк
   let stringUdated = ''; //81 элемент с тире
@@ -26,13 +20,10 @@ function funGenSudoku(wordsArr) {
       w++
     }
     arrSudoku.push(arrSudokuNested)
-
   }
   return arrSudoku
 }
-
 console.table(funGenSudoku(wordsArr));
-
 module.exports = {
   funGenSudoku
 };
