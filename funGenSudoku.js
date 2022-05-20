@@ -11,7 +11,7 @@ function funGenSudoku() {
   for (let d = 0; d < 81; d++) {
     stringUdated += wordsArr[d];
   }
-  let arrBigString = stringUdated.replace(/\-/gim, '0') //можно применить к всему txt и он вернёт 729 элементов
+  let arrBigString = stringUdated.replace(/\-/gim, '.') //можно применить к всему txt и он вернёт 729 элементов
   // 105802000090076405200400819019007306762083090000061050007600030430020501600308900
   // return arrBigString
   let arrSudoku = []
@@ -26,13 +26,13 @@ function funGenSudoku() {
   }
   return arrSudoku
 }
-console.table(funGenSudoku(wordsArr));
+// console.table(funGenSudoku(wordsArr));
 let input = (funGenSudoku(wordsArr))
 module.exports = {
   funGenSudoku,
 };
 // ---------------------------------------------------------------------------------------------------------------------
-
+/*
 
 let solveSudoku = function (board) {
   const size = 9
@@ -107,3 +107,4 @@ let solveSudoku = function (board) {
 }
 console.log(input);
 console.table(solveSudoku(input));
+*/
