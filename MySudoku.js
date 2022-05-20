@@ -34,7 +34,6 @@ let solveSudoku = function(board) {
               return false;
           }
       }
-
       //Check cols
       for (let i = 0; i < size; i++) {
           if (board[r][i] === num && i !== c) {
@@ -64,11 +63,11 @@ let solveSudoku = function(board) {
       if (currPos === null) {
           return true;
       }
-      //console.log('------------------------------');
+      console.log('------------------------------');
       for (let i = 1; i < size + 1; i++) {
           const currNum = i.toString();
           const isValid = validate(currNum, currPos, board);
-          //console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
+          console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
           if (isValid) {
               const [x,y] = currPos;
               board[x][y] = currNum;
@@ -88,5 +87,5 @@ let solveSudoku = function(board) {
   return board;
 };
 
-// console.table(arr);
-// console.table(solveSudoku(arr));
+console.table(arr);
+console.table(solveSudoku(arr));
