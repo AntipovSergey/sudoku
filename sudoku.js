@@ -23,9 +23,22 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  let res = '';
+  let counter = 1;
+ if (board === '') {
+   return 'Пустой судоку'
+ }
+  for (const char of board) {
+    if (counter < 9) {
+    res+= `${char} `;
+    counter++;
+  } else {
+    res+= `${char}\n`;
+    counter = 1;
+  }
 }
-
+  return res.trim();
+}
 // Exports all the functions to use them in another file.
 module.exports = {
   solve,
