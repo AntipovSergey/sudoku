@@ -1,8 +1,8 @@
-// Takes a board as a string in the format
-// you see in the puzzle file. Returns
-// something representing a board after
-// your solver has tried to solve it.
-// How you represent your board is up to you!
+Takes a board as a string in the format
+you see in the puzzle file. Returns
+something representing a board after
+your solver has tried to solve it.
+How you represent your board is up to you!
 function solve(boardString) {
   console.log('first changes');
 }
@@ -30,6 +30,8 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+<<<<<<< HEAD
+=======
 //start denis
 //start matiy
 //start banu_comit 2
@@ -37,3 +39,5 @@ module.exports = {
 //start banu
 //new str merge
 //new str merge banu
+//start rina
+>>>>>>> origin/rina
