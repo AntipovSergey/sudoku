@@ -27,7 +27,7 @@ function funGenSudoku() {
   return arrSudoku
 }
 console.table(funGenSudoku(wordsArr));
-
+let input = (funGenSudoku(wordsArr))
 module.exports = {
   funGenSudoku,
 };
@@ -99,10 +99,6 @@ let solveSudoku = function (board) {
 
       }
     }
-
-
-
-
 
     return false
   }
