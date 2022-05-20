@@ -9,3 +9,4 @@ function checkRow(board,emptyPos,num) {
   return result;
 }
 
+module.exports = checkRow

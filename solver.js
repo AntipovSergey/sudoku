@@ -27,7 +27,7 @@ function solver() {
 }
 solver()
 function validator(board,emptyPos,num) {
-  return checkRows() && checkCols() && checkBox() // ?
+  return checkRows(board,emptyPos,num) && checkCols(board,emptyPos,num) && checkBox(board,emptyPos,num) // ?
 }
 function checkEmpty() {
   // ????

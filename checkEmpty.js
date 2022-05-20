@@ -11,4 +11,4 @@ function checkEmpty (board) {
  }
 
 
-
+ module.exports = checkEmpty

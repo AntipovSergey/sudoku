@@ -1,12 +1,14 @@
 // функция проверяет наличие цифры в колонке
 function checkCols (board,emptyPos,num) {
-  let [row,col] = emptyPos
-  let curColmn = []
-   for (let i = 0; i < 9; i++) {
-    curColmn.push(board[i][col])
+  let result = true;
+  let [row, col] = emptyPos
+    for(let i = 0; i < 9; i++){
+      if(board[i][col] === num) {
+        result = false;
+      } 
   }
-  console.log(curColmn)
-  return !curColmn.includes(num)
+  return result;
 }
 
+module.exports = checkCols
 
