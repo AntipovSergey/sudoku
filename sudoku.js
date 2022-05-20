@@ -19,15 +19,11 @@ function solve(str) {
 
   function solver() {
     let emptyPos = checkEmpty(board) 
-    if (!emptyPos) {
-      return true
-    }
+    if (!emptyPos) {return true}
     for (let j=1;j<=9;j++) {
       if (validator(board,emptyPos,j.toString())) {
         board[emptyPos[0]][emptyPos[1]] = j.toString()
-        if (solver()) {
-          return true
-        }
+        if (solver()) {return true}
         board[emptyPos[0]][emptyPos[1]] = '-'
       }
     }

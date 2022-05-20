@@ -39,8 +39,8 @@ setInterval(() => {
     'utf-8',
     readAndSolve
   );
-if (puzzleNumber < 16) {
+if (puzzleNumber < 14) {
   puzzleNumber++
 }
-}, 2000);
+}, 1000);
 
