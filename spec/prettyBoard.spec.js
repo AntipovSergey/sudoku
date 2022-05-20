@@ -1,8 +1,5 @@
 const fs = require("fs");
-
-const sudoku = require('../sudoku.js')
 const { prettyBoard } = require("../sudoku.js")
-//console.log(prettyBoard)
 
 describe("prettyBoard", () => {
     let str1;
@@ -16,7 +13,7 @@ describe("prettyBoard", () => {
      prettyPuzzle1 = fs.readFileSync('./pretty-board1.txt','utf-8');
      prettyPuzzle2 = fs.readFileSync('./pretty-board2.txt','utf-8');
     });
-    
+
     it("should return prettyBoard", () => {
       expect(prettyBoard(str1)).toBe(prettyPuzzle1);
       expect(prettyBoard(str2)).toBe(prettyPuzzle2);
