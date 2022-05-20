@@ -5,6 +5,10 @@ const {funGenSudoku} = require('./funGenSudoku.js');
 
 function desk() {
   let arrSudoku = funGenSudoku();
+
+
+
+  
 return arrSudoku
 }
 
