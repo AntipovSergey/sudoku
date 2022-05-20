@@ -88,5 +88,5 @@ let solveSudoku = function(board) {
   return board;
 };
 
-console.table(arr);
-console.table(solveSudoku(arr));
+// console.table(arr);
+// console.table(solveSudoku(arr));
