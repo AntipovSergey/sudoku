@@ -7,9 +7,6 @@ let boardString = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8').slice(0, 81);
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  let str2 = boardString.match(/(.........)/g);
-  let str3 = str2.map((el) => el.split(''));
-  return str3;
   // console.log('first changes');
 }
 console.log(solve(boardString));
