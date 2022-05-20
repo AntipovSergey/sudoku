@@ -29,3 +29,4 @@ function lineSearch(arr, num) {
   return false;
 }
 console.log(lineSearch(arr, num));
+      

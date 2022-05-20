@@ -10,7 +10,7 @@ let board = [
   [".", ".", ".", ".", ".", ".", ".", ".", "."],
 ];
 
-let solveSudoku = function (board) {
+let solveSudoku = function(board) {
   const size = 9;
   const boxSize = 3;
 
