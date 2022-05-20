@@ -10,18 +10,17 @@ const sudoku = require('./sudoku');
 // so you should remove them.
 
 // Gets one puzzle from the text file.
-function sudokuParse(content, puzzleNumber = 0) {
+let puzzleNumber = 0
+function sudokuParse(content) {
   let puzzle = content.split('\n')[puzzleNumber];
-  console.log(puzzle);
-  console.log('parser');
   return puzzle;
 }
 
-function readAndSolve(err, data) {
+function readAndSolve(err, data, index) {
   if (err) {
     throw err;
   }
-  let puzzle = sudokuParse(data);
+  let puzzle = sudokuParse(data, index);
 
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
@@ -34,9 +33,14 @@ function readAndSolve(err, data) {
 }
 
 // Reads file and sends data from it to the readAndSolve function.
-fs.readFile(
-  './sudoku-puzzles.txt',
-  'utf-8',
-  readAndSolve
-);
+setInterval(() => {
+  fs.readFile(
+    './sudoku-puzzles.txt',
+    'utf-8',
+    readAndSolve
+  );
+if (puzzleNumber < 16) {
+  puzzleNumber++
+}
+}, 2000);
 
