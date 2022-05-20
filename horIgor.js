@@ -5,7 +5,7 @@ let puzzle = [
   [1, 0, 5, 8, 0, 2, 0, 0, 0],
 ]
 let num = 45
-function searchStraightLineInclude(puzzle, num) {
+function getResult(puzzle, num) {
 
   for (let i = 0; i < puzzle.length; i++) {
     const word = [];
@@ -17,5 +17,4 @@ function searchStraightLineInclude(puzzle, num) {
   return false;
 }
 
-
-console.log(searchStraightLineInclude(puzzle, num))
+console.log(getResult(puzzle, num))
