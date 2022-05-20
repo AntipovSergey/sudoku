@@ -4,7 +4,13 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  console.log('first changes');
+  let arr = []
+  for(let i=0; i<boardString.length; i+=9){
+    let newArr = boardString.slice(i, i + 9).split('')
+    arr.push(newArr)
+  }
+  return arr
+
 }
 
 // Returns a boolean indicating whether
@@ -12,8 +18,17 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  let newTree = ''
+  for(let i = 0; i< board.length; i++){
+    if( board[i] === '-'){
+    newTree += board[i].replace(board[i],'x')
+    }else if(typeof board[i] === 'number'){
+    newTree += board[i]
+    }
+  }
+  return newTree
 }
+
 
 // Takes in a board in some form and
 // returns a String that's well formatted
