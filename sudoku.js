@@ -14,6 +14,7 @@ function searchPos (board) {
             return [s,c];
         }
     }
+    
 }
 return null;
 }
