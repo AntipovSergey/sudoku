@@ -17,11 +17,13 @@ function sudokuParse(content, puzzleNumber = 0) {
   return puzzle;
 }
 
+
 function readAndSolve(err, data) {
   if (err) {
     throw err;
   }
   let puzzle = sudokuParse(data);
+  console.log(data)
 
   let solvedPuzzle = sudoku.solve(puzzle);
   if (sudoku.isSolved(solvedPuzzle)) {
@@ -39,4 +41,11 @@ fs.readFile(
   'utf-8',
   readAndSolve
 );
+// const str = fs.readFile(
+//   './sudoku-puzzles.txt',
+//   'utf-8'
+// );
+// console.log(readAndSolve(err, str))
+
+
 
