@@ -106,6 +106,7 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
+  return board.map((el) => el.join(' ')).join(' \n');
 }
 
 // Exports all the functions to use them in another file.
