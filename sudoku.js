@@ -4,6 +4,31 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+
+  const size = 9;
+  const boxSize = 3;
+  const arr = [];
+  let count = 0;
+  for (let i = 0; i < 9; i++) {
+    arr[i] = [];
+    for (let j = 0; j < 9; j++) {
+      arr[i][j] = boardString[count];
+      count++;
+    }
+  }
+  console.log('first changes');
+
+  const findEmpty = (arr) => { // Поиск пустых элементов
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (arr[r][c] === '-') {
+          return [r, c];
+        }
+      }
+    }
+    return null;
+  };
+
 	const solveInner = () => {
 		const currPos = findEmpty(arr);
 
@@ -26,6 +51,8 @@ function solve(boardString) {
 		}
 		return false;
 	};
+solveInner();
+  return arr;
 }
 
 // Returns a boolean indicating whether
