@@ -34,7 +34,39 @@ function solve(boardString) {
 // form `solve` returns.
 function isSolved(board) {
 }
-isSolved()
+
+const validate = (num, pos, arr) => {
+  const [r, c] = pos;
+  
+  // проверка строк
+  for (let i = 0; i < size; i++) {
+  if (arr[i][c] === num && i !== r) {
+  return false;
+  }
+  }
+  
+  // проверка колонок
+  for (let i = 0; i < size; i++) {
+  if (arr[r][i] === num && i !== c) {
+  return false;
+  }
+  }
+  
+  // проверка бокса
+  const boxRow = Math.floor(r / boxSize) * boxSize;
+  const boxCol = Math.floor(c / boxSize) * boxSize;
+  
+  for (let i = boxRow; i < boxRow + boxSize; i++) {
+  for (let j = boxCol; j < boxCol + boxSize; j++) {
+  if (arr[i][j] === num && i !== r && j !== c) {
+  return false;
+  }
+  }
+  }
+  
+  return true;
+  }; 
+
 // Takes in a board in some form and
 // returns a String that's well formatted
 // for output to the screen.
