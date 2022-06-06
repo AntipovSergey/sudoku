@@ -23,6 +23,7 @@ function solve(boardString) {
 
 }
 
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
@@ -46,3 +47,51 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+
+
+function newArray(str){
+  let arr = []
+  let str2 = str.split('')
+  while (str2.length > 0){
+    arr.push(str2.splice(0,9))
+  }
+  return arr
+}
+let arr = newArray(str)
+
+function findEmpty(arr){
+  let empty = []
+  for (let i = 0; i < arr.length; i++){
+    for(let j = 0; j < arr[i].length; j++){
+      if(arr[i][j] === '-'){
+        empty.push([i, j])
+      }
+    }
+  }
+  return empty
+}
+
+function createColumn(arr) {
+  let n = arr.length
+  let columnArr = [];
+  for (let i = 0; i <  n; i++){
+    columnArr[i] = []
+    for (let j = 0; j < n; j++){
+      columnArr[i][j] = arr[j][i]
+    }
+  }
+return columnArr
+}
+
+console.table(arr)
+console.table(createColumn(arr))
+//console.table(findEmpty(arr))
+
+function checkRow(arr){
+  for(let i = 0; i < arr.length; i++){
+    for(let j = 0; j< arr[i].length; j++){
+
+    }
+  }
+}
