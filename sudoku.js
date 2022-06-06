@@ -4,7 +4,28 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
-  console.log('first changes');
+	const solveInner = () => {
+		const currPos = findEmpty(arr);
+
+		if (currPos === null) {
+			return true;
+		}
+		for (let i = 1; i < size + 1; i++) {
+			const currNum = i.toString();
+			const isValid = validate(currNum, currPos, arr);
+			// console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
+			if (isValid) {
+				const [x, y] = currPos;
+				arr[x][y] = currNum;
+
+				if (solveInner()) {
+					return true;
+				}
+				arr[x][y] = '-';
+			}
+		}
+		return false;
+	};
 }
 
 // Returns a boolean indicating whether
@@ -12,7 +33,6 @@ function solve(boardString) {
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
 }
 
 const validate = (num, pos, arr) => {
@@ -53,12 +73,14 @@ const validate = (num, pos, arr) => {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
 }
+
+
+
 
 // Exports all the functions to use them in another file.
 module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
+	solve,
+	isSolved,
+	prettyBoard,
 };
