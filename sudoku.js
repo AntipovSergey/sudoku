@@ -7,6 +7,18 @@ function solve(boardString) {
   console.log('first changes');
 }
 
+function searchPos (board) {
+  for (let s = 0; s < 9; s++) {
+    for (let c = 0; c < 9; c++) {
+        if(board[s][c] == '-') {
+            return [s,c];
+        }
+    }
+}
+return null;
+}
+
+
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
