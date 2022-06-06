@@ -3,7 +3,18 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+function stringToTable(puzzle) {
+  const arr = puzzle.split('')
+  let board = []
+    for (let i = 0; i < arr.length; i += 9) {
+      let row = arr.slice(i, i + 9)
+      board.push(row)
+    }
+   return board 
+} 
+
 function solve(boardString) {
+
   console.log('first changes');
 }
 
@@ -29,4 +40,5 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  stringToTable
 };
