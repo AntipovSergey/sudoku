@@ -21,7 +21,18 @@ function isSolved(board) {
 // The input board will be in whatever
 // form `solve` returns.
 function prettyBoard(board) {
-
+  let arr = board.split('');
+  arr.splice(0, 0, '\n');
+  arr.splice(10, 0, '\n');
+  arr.splice(20, 0, '\n');
+  arr.splice(30, 0, '\n');
+  arr.splice(40, 0, '\n');
+  arr.splice(50, 0, '\n');
+  arr.splice(60, 0, '\n');
+  arr.splice(70, 0, '\n');
+  arr.splice(80, 0, '\n');
+  const result = arr.join(' ');
+  return result;
 }
 
 // Exports all the functions to use them in another file.
