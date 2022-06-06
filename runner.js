@@ -13,8 +13,6 @@ const sudoku = require('./sudoku');
 
 function sudokuParse(content, puzzleNumber = 1) {
 	let puzzle = content.split('\n')[puzzleNumber];
-	console.log(puzzle);
-	console.log('parser');
 	return puzzle;
 }
 
@@ -22,19 +20,17 @@ function readAndSolve(err, data) {
 	if (err) {
 		throw err;
 	}
-	let puzzle = sudokuParse(data);
+	let puzzle = sudokuParse(data, process.argv[2]);
 
 
-  let solvedPuzzle = sudoku.solve(puzzle);
-  // console.log(solvedPuzzle);
+	let solvedPuzzle = sudoku.solve(puzzle);
 
-  if (sudoku.isSolved(solvedPuzzle)) {
-    console.log("The board was solved!");
-    console.log(sudoku.prettyBoard(solvedPuzzle));
-  }
-  else {
-    console.log("The board wasn't solved :(");
-  }
+	if (sudoku.isSolved(solvedPuzzle)) {
+		console.log(sudoku.prettyBoard(solvedPuzzle));
+	}
+	else {
+		console.log("The board wasn't solved :(");
+	}
 }
 
 // Reads file and sends data from it to the readAndSolve function.
