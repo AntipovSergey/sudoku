@@ -16,6 +16,7 @@ function solve(puzzle) {
 function solveNumber(board) {
   //определяем позицию эл-нта "-"
   let position = searchPos(board);
+  //условие возврата решения
   if (searchPos(board) === null) {
     return board;
   }
@@ -32,16 +33,15 @@ function solveNumber(board) {
     let rowsColumns = isValid(board, row, col, number);
     let miniBoard = miniBoards(board, position, number);
     if (rowsColumns && miniBoard) {
-      board[position[0]][position[1]] = number;
+      board[row][col] = number;
       //Закручивание спирали
       if (solveNumber(board)) {
         return true;
       }
       //Раскручивание спирали
-      board[position[0]][position[1]] = `-`;
+      board[row][col] = `-`;
     }
   }
-  //условие возврата решения
   if (searchPos(board) === null) {
     return board;
   }
@@ -203,5 +203,5 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
-  stringToTable,
 };
+
