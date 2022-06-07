@@ -193,7 +193,10 @@ function isSolved(board) {
 // for output to the screen.
 // The input board will be in whatever
 // form `solve` returns.
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  const res = board.map(i => i.join(' | '));
+  return res.join('\n---------------------------------\n')
+}
 
 // Exports all the functions to use them in another file.
 module.exports = {
