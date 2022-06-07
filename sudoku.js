@@ -30,23 +30,23 @@ function nextEmptySpot(board) {
 
 function checkRow(board, row, value){
   for(let i = 0; i < board[row].length; i++) {
-  if(board[row][i] === value) {
-  return false;
-  }
+    if(board[row][i] === value) {
+      return false;
+    }
   }
   
   return true;
-  }
+}
   
-  function checkColumn(board, column, value){
+function checkColumn(board, column, value){
   for(var i = 0; i < board.length; i++) {
-  if(board[i][column] === value) {
-  return false;
-  }
+    if(board[i][column] === value) {
+      return false;
+    }
   }
   
   return true;
-  };
+};
 
 function checkSquare(board, row, column, value){
   boxRow = Math.floor(row / 3) * 3;
