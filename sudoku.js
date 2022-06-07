@@ -28,6 +28,26 @@ function nextEmptySpot(board) {
   return [-1, -1];
 }
 
+function checkRow(board, row, value){
+  for(let i = 0; i < board[row].length; i++) {
+  if(board[row][i] === value) {
+  return false;
+  }
+  }
+  
+  return true;
+  }
+  
+  function checkColumn(board, column, value){
+  for(var i = 0; i < board.length; i++) {
+  if(board[i][column] === value) {
+  return false;
+  }
+  }
+  
+  return true;
+  };
+
 function solve(boardString) {
 console.log('first changes');
 
