@@ -1,37 +1,44 @@
 //Решение задачи
 // вызываем формирование доски
-boardString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-let board = stringToTable(boardString);
-console.log(typeof board);
-
-function solve(board) {
+function solve(puzzle) {
   // console.log("first changes");
-
+  let board = stringToTable(puzzle);
+  solveNumber(board);
+  return board;
   // поиск позиции
+}
+
+function solveNumber(board) {
   let position = searchPos(board);
-
-  //переприсваиваем входные данные
-  let col = position[1];
-  let row = position[0];
-
-  //  Выход Условие
   if (searchPos(board) === null) {
     return board;
   }
-
-  //
-  // function recrution
+  let row = position[0];
+  let col = position[1];
   for (let i = 1; i < 10; i++) {
-    let rowsColumns = isValid(board, row, col, i);
-    let miniBoard = miniBoards(board, position, i);
+    const number = i.toString();
+    let rowsColumns = isValid(board, row, col, number);
+    let miniBoard = miniBoards(board, position, number);
     if (rowsColumns && miniBoard) {
-      board[position[0]][position[1]] = `${i}`;
-      console.log(board);
-      solve(board);
+      board[position[0]][position[1]] = number;
+      if (solveNumber(board)) {
+        return true;
+      }
+      board[position[0]][position[1]] = `-`;
     }
   }
+  if (searchPos(board) === null) {
+    return board;
+  }
+  return false;
 }
-console.log(solve(board));
+
+//переприсваиваем входные данные
+
+//  Выход Условие
+
+//
+// function recrution
 
 //формирование  доски
 function getArrayToString(puzzle) {
@@ -45,7 +52,7 @@ function getArrayToString(puzzle) {
 //Проверка строка столбец отдельно переприсвоить данные
 function isValid(board, row, col, k) {
   for (let i = 0; i < 9; i += 1) {
-    if (board[row][i] == k || board[i][col] == k) {
+    if (board[row][i] === k || board[i][col] === k) {
       return false;
     }
   }
@@ -65,9 +72,6 @@ function stringToTable(puzzle) {
 
 //проверка миниборда
 function miniBoards(board, position, number) {
-  let numbers = "";
-  numbers += number;
-
   let x = -1,
     y = -1;
   const miniBoard = [];
@@ -94,7 +98,7 @@ function miniBoards(board, position, number) {
       miniBoard.push(board[i][j]);
     }
   }
-  if (miniBoard.includes(numbers)) {
+  if (miniBoard.includes(number)) {
     return false;
   } else {
     return true;
@@ -117,7 +121,60 @@ function searchPos(board) {
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
-function isSolved(board) {}
+function isSolved(board) {
+  const copyBoard = [[], [], [], [], [], [], [], [], []];
+  const copyBoard2 = [[], [], [], [], [], [], [], [], []];
+  for (let i = 0; i < board.length; i++) {
+    const rows = board[i].slice();
+    for (let k = 1; k < 10; k++) {
+      copyBoard[i].push(board[i][k - 1]);
+      copyBoard2[i].push(board[i][k - 1]);
+      k = k.toString();
+      if (rows.includes(k)) {
+        rows.splice(rows.indexOf(k), 1);
+      }
+    }
+    //console.log(copyBoard, copyBoard2);
+    if (rows.length !== 0) {
+      return false;
+    }
+  }
+  while (copyBoard[0].length > 0) {
+    const columns = [];
+    for (let i = 0; i < board.length; i++) {
+      columns.push(copyBoard[i].pop());
+    }
+    for (let i = 1; i < 10; i++) {
+      i = i.toString();
+      if (columns.includes(i)) {
+        columns.splice(columns.indexOf(i), 1);
+      }
+    } //console.log(columns,copyBoard)
+    if (columns.length !== 0) {
+      return false;
+    }
+  }
+  while (copyBoard2[8].length > 0) {
+    for (let k = 0; k < 9; k += 3) {
+      const miniBoard = [];
+      for (let i = 0; i < 3; i++) {
+        miniBoard.push(copyBoard2[k].pop());
+        miniBoard.push(copyBoard2[k + 1].pop());
+        miniBoard.push(copyBoard2[k + 2].pop());
+      }
+      for (let i = 1; i < 10; i++) {
+        i = i.toString();
+        if (miniBoard.includes(i)) {
+          miniBoard.splice(miniBoard.indexOf(i), 1);
+        }
+      }
+      if (miniBoard.length !== 0) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
 
 // Takes in a board in some form and
 // returns a String that's well formatted
