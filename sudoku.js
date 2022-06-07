@@ -1,55 +1,54 @@
 //Решение задачи
-// вызываем формирование доски
 function solve(puzzle) {
   // console.log("first changes");
+
   let board = stringToTable(puzzle);
+  if (searchCount(board) > 80) {
+    for (let i = 1; i < 10; i++) {
+      board[0][i - 1] = i.toString();
+    }
+  }
   solveNumber(board);
+
   return board;
-  // поиск позиции
 }
 
 function solveNumber(board) {
+  //определяем позицию эл-нта "-"
   let position = searchPos(board);
   if (searchPos(board) === null) {
     return board;
   }
+
+  //переформатирование входных данных для фун-ции isValid
   let row = position[0];
   let col = position[1];
+
+  //Цикл поиска значения
   for (let i = 1; i < 10; i++) {
     const number = i.toString();
+
+    //Проверки
     let rowsColumns = isValid(board, row, col, number);
     let miniBoard = miniBoards(board, position, number);
     if (rowsColumns && miniBoard) {
       board[position[0]][position[1]] = number;
+      //Закручивание спирали
       if (solveNumber(board)) {
         return true;
       }
+      //Раскручивание спирали
       board[position[0]][position[1]] = `-`;
     }
   }
+  //условие возврата решения
   if (searchPos(board) === null) {
     return board;
   }
   return false;
 }
 
-//переприсваиваем входные данные
-
-//  Выход Условие
-
-//
-// function recrution
-
-//формирование  доски
-function getArrayToString(puzzle) {
-  const board = [];
-  for (let i = 0; i < 81; i += 9) {
-    board.push(puzzle.split("").slice(i, i + 9));
-  }
-  return board;
-}
-
-//Проверка строка столбец отдельно переприсвоить данные
+//Проверка строка столбец (отдельно переприсвоить данные)
 function isValid(board, row, col, k) {
   for (let i = 0; i < 9; i += 1) {
     if (board[row][i] === k || board[i][col] === k) {
@@ -115,6 +114,19 @@ function searchPos(board) {
     }
   }
   return null;
+}
+
+//15 сложность
+function searchCount(board) {
+  let count = 0;
+  for (let s = 0; s < 9; s++) {
+    for (let c = 0; c < 9; c++) {
+      if (board[s][c] === "-") {
+        count += 1;
+      }
+    }
+  }
+  return count;
 }
 
 // Returns a boolean indicating whether
