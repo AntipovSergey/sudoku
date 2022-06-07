@@ -1,7 +1,6 @@
 //Решение задачи
 // вызываем формирование доски
-boardString =
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+boardString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 let board = stringToTable(boardString);
 console.log(typeof board);
 
@@ -12,8 +11,8 @@ function solve(board) {
   let position = searchPos(board);
 
   //переприсваиваем входные данные
-  let row = position[1];
-  let col = position[0];
+  let col = position[1];
+  let row = position[0];
 
   //  Выход Условие
   if (searchPos(board) === null) {
@@ -27,7 +26,7 @@ function solve(board) {
     let miniBoard = miniBoards(board, position, i);
     if (rowsColumns && miniBoard) {
       board[position[0]][position[1]] = `${i}`;
-      // console.log(board);
+      console.log(board);
       solve(board);
     }
   }
