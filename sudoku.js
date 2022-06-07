@@ -154,13 +154,13 @@ function isSolved(board) {
       return false;
     }
   }
-  while (board[8].length > 0) {
+  while (copyBoard2[8].length > 0) {
     for (let k = 0; k < 9; k += 3) {
       const miniBoard = [];
       for (let i = 0; i < 3; i++) {
-        miniBoard.push(board[k].pop());
-        miniBoard.push(board[k + 1].pop());
-        miniBoard.push(board[k + 2].pop());
+        miniBoard.push(copyBoard2[k].pop());
+        miniBoard.push(copyBoard2[k + 1].pop());
+        miniBoard.push(copyBoard2[k + 2].pop());
       }
       for (let i = 1; i < 10; i++) {
         i = i.toString();
