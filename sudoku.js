@@ -1,3 +1,7 @@
+
+
+
+
 // Takes a board as a string in the format
 // you see in the puzzle file. Returns
 // something representing a board after
@@ -23,6 +27,14 @@ function isSolved(board) {
 function prettyBoard(board) {
 
 }
+//----------------------------IMPORTS---------------------------------------
+const {fullArrH, fullArrV, fullArrSqr} = require ('./CheckEmpty')
+console.log('111', fullArrSqr);
+
+
+
+
+
 
 //---------------------------Ищем пустые ячейки-----------------------------
 function findEmpty (board) {

@@ -1,4 +1,4 @@
-let arr = [
+/*let arr = [
 [1,0,5],     [8,0,2],     [0,0,0],
 [0,9,0],     [0,7,6],     [4,0,5],
 [2,0,0],     [4,0,0],     [8,1,9],
@@ -9,6 +9,15 @@ let arr = [
 [4,3,0],     [0,2,0] ,    [5,0,1],
 [6,0,0],     [3,0,8],     [9,0,0]
 ]
+*/
+
+const fs = require('fs');
+let filterContent = fs.readFileSync('sudoku-puzzles.txt', 'utf8') //доступ к файлу с цифрами
+let sud = filterContent.split('\n')[0];
+console.log(sud);
+const {numThree} = require ('./testKris')
+let arr = numThree
+console.log(arr);
 // --------------------------------------HORISONTAL--------------------------------------
 
 let arrH0 = `${arr[0]},${arr[1]},${arr[2]}`.split(',')
@@ -42,7 +51,7 @@ let fullArrH = [horisontalEmptyVariants(arrH0),
   horisontalEmptyVariants(arrH7),
   horisontalEmptyVariants(arrH8)] // массив из существующих чисел каждой горизонтали
 
-console.log('Массив существующих чисел в горизонталях:\n', horisontalEmptyVariants(fullArrH));
+//console.log('Массив существующих чисел в горизонталях:\n', horisontalEmptyVariants(fullArrH));
 
 
 // --------------------------------------VERTICALAL--------------------------------------
@@ -77,7 +86,7 @@ let fullArrV = [verticalEmptyVariants(arrV0),
   verticalEmptyVariants(arrV7),
   verticalEmptyVariants(arrV8)] // массив из существующих чисел каждой вертикали
 
-  console.log('Массив существующих чисел в вертикалях:\n',fullArrV);
+  //console.log('Массив существующих чисел в вертикалях:\n',fullArrV);
 
 
 
