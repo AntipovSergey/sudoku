@@ -1,0 +1,37 @@
+.header{
+   width: 100%;
+   height: 100px;
+   background-color: aqua;
+   border-radius: 15px;
+   margin-bottom: 20px;
+   position: relative;
+}
+.conteiner {
+width: 600px;
+height: 600px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-content: space-between;
+
+}
+.Cifra{
+   width: 65px;
+   height: 65px;
+   border: 3px solid black;
+}
+.sudoku {
+   height: 100px;
+}
+.elbrus{
+   height: 100px;
+   margin-left: 85%;
+}
+.text {
+   position: absolute;
+   top: 0px; left: -150px;
+   font-size: 100px;
+   font-family: Brush Script MT, Brush Script Std, cursive;
+   margin-left: 650px;
+
+}
