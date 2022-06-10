@@ -1,4 +1,4 @@
-const createBoard = require('./simBoard')
+// const createBoard = require('./simBoard')
 
 function row(boord, num, i, j){
         for (let k = 0; k < boord.length; k++){

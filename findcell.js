@@ -8,6 +8,7 @@ function findCell(board) {
       }
     }
   }
+  return false;
 }
 
 // console.log(findCell(board()));

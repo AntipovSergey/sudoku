@@ -1,28 +1,28 @@
 const map = require('./simBoard.js');
 const emtyCheck = require('./findcell.js');
-// const xYCheck = require('./xYCheck.js')
+const square = require('./small_cube.js')
 const row = require('./row.js')
 const column = require('./column.js')
-const squareCheck = require('')
 
+// const firstBoard = map();
 
-// const allMaps = map.sudokuMapShifter(9)
 function solveSudoku(arr) {
-   if (emtyCheck.findEmpty(arr) === false) { return true;}
+   if (emtyCheck(arr) === false) { return true;}
     for (let i = 1; i <= 9; i++) {  
-      const emtyIndex = emtyCheck.findEmpty(arr)
+      const emtyIndex = emtyCheck(arr)
       if (row(arr, i, emtyIndex[0], emtyIndex[1]) && column(arr, i, emtyIndex[0], emtyIndex[1]) && 
-      squareCheck(arr, i, emtyIndex[0], emtyIndex[1])) { 
-        arr[emtyIndex[1]][emtyIndex[0]] = i; 
+      square(arr, i, emtyIndex[0], emtyIndex[1])) { 
+        arr[emtyIndex[0]][emtyIndex[1]] = i; 
         if (solveSudoku(arr)) {
           return arr; 
-        } arr[emtyIndex[1]][emtyIndex[0]] = '-';
+        } arr[emtyIndex[0]][emtyIndex[1]] = '-';
       } 
     }
     return false;
   }
 
-solveSudoku() 
+// console.log(firstBoard); 
+
 // function solveAll(maps) {
 //   for (let i = 0; i < maps.length; i++) {
 //     console.table(solveSudoku(maps[i]));
@@ -30,3 +30,5 @@ solveSudoku()
 // }
 
 // solveAll(allMaps)
+
+console.table(solveSudoku(map()));

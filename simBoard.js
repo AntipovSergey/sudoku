@@ -9,5 +9,5 @@ function createBoard () {
     }
     return board
 }
-
+// console.log(createBoard ())
 module.exports = createBoard
