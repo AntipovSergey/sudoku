@@ -32,3 +32,4 @@ let array =
 
 // console.log(posOfFirstDyrka(array));
 //  console.log(numberFrom(array, posOfFirstDyrka(array)));
+module.exports = {rowCheck, posOfFirstDyrka};
