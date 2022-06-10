@@ -1,4 +1,4 @@
-//const matrix = require("./getSudoku");
+const matrix = require("./getSudoku");
 
 function checkLine(matrix, point) {
     let solvedInLine = [];
@@ -36,7 +36,7 @@ function checkColumn (matrix, point) {
 }
 
 function checkSquare (matrix, point) {
-    let blockSize = 2;
+    let blockSize = 3;
     let squareRow = Math.floor(point[0] / blockSize) * blockSize;
     let squareCol = Math.floor(point[1] / blockSize) * blockSize;
     let solvedInSquare = [];
@@ -52,7 +52,4 @@ function checkSquare (matrix, point) {
 }
 
 
-console.log(checkSquare([[1, 2,  3,  4], 
-                        [1, "-", 5 , "-"], 
-                        [1, "-", 5,  8], 
-                        [1, "-", 5,  8]],        [2, 3]));
+module.exports = {checkLine, checkColumn, checkSquare};
