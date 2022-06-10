@@ -2,7 +2,7 @@ const {
   checkLine,
   checkColumn,
   checkSqure
- } = require('./checkers.js')
+ } = require('./checkers.js');
 
 
 function validator(matrix, point) {
@@ -19,7 +19,7 @@ function validator(matrix, point) {
   };
 
   if (mabyArr.length !== 1) return false;
-  return mabyArr[0]
+  return mabyArr[0];
 };
 
 
