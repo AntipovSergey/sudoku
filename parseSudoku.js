@@ -13,5 +13,4 @@ for (let i = 0; i < arr.length; i+= 9) {
     return result;
 }
 
-console.log(getSudoku());
 module.exports = {getSudoku};
