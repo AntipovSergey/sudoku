@@ -1,8 +1,8 @@
-const createBoard = require('./simBoard');
+// const createBoard = require('./simBoard')
 
 function row(boord, num, i, j) {
   for (let k = 0; k < boord.length; k++) {
-    if (+boord[i][k] == num && j !== k) {
+    if (+boord[i][k] === num && j !== k) {
       return false;
     }
   }

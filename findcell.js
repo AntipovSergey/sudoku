@@ -1,4 +1,4 @@
-const board = require('./simBoard');
+const createBoard = require('./simBoard');
 
 function findCell(board) {
   for (let i = 0; i < board.length; i++) {
@@ -8,6 +8,7 @@ function findCell(board) {
       }
     }
   }
+  return false;
 }
 
 // console.log(findCell(board()));

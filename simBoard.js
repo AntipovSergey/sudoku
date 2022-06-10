@@ -11,15 +11,21 @@ function createBoard() {
 }
 
 function createAllBoard() {
-  let allBoard = fs.readFileSync('./sudoku-puzzles.txt', 'utf-8').split('\n');
+  let allBoard = fs
+    .readFileSync('./sudoku-puzzles.txt', 'utf-8')
+    .trim()
+    .split('\n');
   let allBoards = [];
-  let board = createBoard();
-  for (let i = 0; i < 15; i += 1) {
+  for (let i = 0; i < allBoard.length; i += 1) {
+    let board = [];
+    for (let j = 0; j < 81; j += 9) {
+      board.push(allBoard[i].split('').slice(j, j + 9));
+    }
     allBoards.push(board);
   }
   return allBoards;
 }
 
-console.table(createAllBoard());
-module.exports = createBoard;
+// console.log(createAllBoard());
+// module.exports = createBoard;
 module.exports = createAllBoard;

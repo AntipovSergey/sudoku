@@ -1,4 +1,4 @@
-const createBoard = require('./simBoard')
+// const createBoard = require('./simBoard')
 
 function smallCube(boord, num, i, j){
         for (let k = Math.floor(i/3)*3; k < (Math.floor(i/3)*3)+3; k++){    //y

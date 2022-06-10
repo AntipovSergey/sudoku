@@ -1,8 +1,8 @@
-const sudoku = require('../sudoku.js');
+// const sudoku = require('../sudoku.js');
 const createBoard = require('../simBoard');
-const runner = require('../runner');
+// const runner = require('../runner');
 const row = require('../row');
-const column = require('../column')
+const column = require('../column');
 
 describe('Проверка доски', () => {
   it('Доска - массив', () => {
@@ -25,10 +25,10 @@ describe('Проверка по горизонталь', () => {
 });
 
 describe('Проверка по вертикали', () => {
-    it('Можно ли поставить 2? должен вернуть false', () => {
-      expect(column(board, 2, 0, 1)).toBe(true);
-    });
-    it('Можно ли поставить 2? должен вернуть false', () => {
-      expect(column(board, 2, 2, 5)).toBe(false);
-    });
+  it('Можно ли поставить 2? должен вернуть false', () => {
+    expect(column(board, 2, 0, 1)).toBe(true);
   });
+  it('Можно ли поставить 2? должен вернуть false', () => {
+    expect(column(board, 2, 2, 5)).toBe(false);
+  });
+});
