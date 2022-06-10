@@ -4,8 +4,12 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 function solve(boardString) {
+  
+
   console.log('first changes');
 }
+
+
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
