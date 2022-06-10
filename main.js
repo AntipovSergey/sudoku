@@ -29,6 +29,7 @@ function solveSudoku(arr) {
 //   }
 // }
 
-// solveAll(allMaps)
+// solveAll(map()[4])
 
-console.table(solveSudoku(map()));
+// console.table(solveSudoku(map()[3]));
+console.table(solveSudoku(map()))
