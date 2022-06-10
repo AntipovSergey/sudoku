@@ -1,15 +1,17 @@
-const fs = require('fs')
-let text = fs.readFileSync('sudoku-puzzles.txt', 'utf-8');
-let board = text.split('\n')[0]
-// console.log(board)
+const fs = require('fs');
 
-function createBoard(board){
-    let arr = [];
-    for (let i = 0; i < board.length; i += 9) {
-        arr.push(board.slice(i, i+9).split(''))
-    }
-    console.table(arr)
-}
-console.log(createBoard(board))
+const text = fs.readFileSync('sudoku-puzzles.txt', 'utf-8');
+const board = text.split('\n')[0];
+// console.log(board);
 
-module.exports = {createBoard}
+const table = () => {
+  const arr = [];
+  for (let i = 0; i < board.length; i += 9) {
+    arr.push(board.slice(i, i + 9).split(''));
+  }
+//   console.table(arr)
+  return arr;
+};
+table(board);
+
+module.exports = table();
