@@ -26,7 +26,7 @@ let array =
  }
  }
 
- function numberFrom(array, num){
+ function rowCheck(array, num){
  return array[num[0]].filter((el) => el != '-');
  }
 
