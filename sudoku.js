@@ -31,5 +31,3 @@ module.exports = {
   prettyBoard,
 };
 
-
-console.log("hello")
