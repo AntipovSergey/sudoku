@@ -1,5 +1,7 @@
-const sudoku = require('../sudoku.js')
+const sudoku = require('../sudoku.js');
 
-describe ('Доска должна состоять из 9 строк и 9 столбцов', () => {
-    
-})
+describe('Проверка доски', () => {
+  it('Доска - массив', () => {
+    expect(Array.isArray(board())).toBe('true');
+  });
+});
