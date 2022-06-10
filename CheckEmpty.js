@@ -114,3 +114,6 @@ let fullArrSqr = [squareEmptyVariants(arrSqr0),
   squareEmptyVariants(arrSqr8)] // массив из существующих чисел каждого квадрата
 
 console.log('Массив существующих чисел в квадратах:\n',fullArrSqr)  
+
+
+module.exports = {fullArrH, fullArrV, fullArrSqr}
