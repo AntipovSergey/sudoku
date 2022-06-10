@@ -3,7 +3,17 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+const fs = require ('fs');
+const boardString = () => {
+ const arr = fs.readFileSync('./sudoku-puzzles.txt', 'utf8');
+ const result = arr.split('\n');
+ return result.map(elm => elm.split(''));
+};
+
+console.log(boardString());
 function solve(boardString) {
+
+
   console.log('first changes');
 }
 
