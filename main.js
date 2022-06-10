@@ -11,7 +11,8 @@ function solveSudoku(arr) {
    if (emtyCheck.findEmpty(arr) === false) { return true;}
     for (let i = 1; i <= 9; i++) {  
       const emtyIndex = emtyCheck.findEmpty(arr)
-      if (row(arr, i, emtyIndex[0], emtyIndex[1]) && column(arr, i, emtyIndex[0], emtyIndex[1]) && squareCheck.squareCheck(arr, i, emtyIndex[0], emtyIndex[1])) { 
+      if (row(arr, i, emtyIndex[0], emtyIndex[1]) && column(arr, i, emtyIndex[0], emtyIndex[1]) && 
+      squareCheck(arr, i, emtyIndex[0], emtyIndex[1])) { 
         arr[emtyIndex[1]][emtyIndex[0]] = i; 
         if (solveSudoku(arr)) {
           return arr; 
