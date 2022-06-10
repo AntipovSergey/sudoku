@@ -9,8 +9,24 @@ function solve(boardString) {
   
     const arr = fs.readFileSync('./sudoku-puzzles.txt', 'utf8');
     const result = arr.split('\n');
+    const newResult = result.map(elm => elm.split(''));
+    
    
-    return result.map(elm => elm.split(''));
+    // return result.map(elm => elm.split(''));
+
+    return result
+    .map((elem,index) => {
+     function chunk(arr, size) {
+       let newArray = [];
+         i = 0;
+       for (i; i < arr.length; i += size) {
+         newArray.push(arr.slice(i, i + size));
+       }
+       return newArray;
+     }
+     return chunk(elem,9);
+    });
+ 
   
   
 }
