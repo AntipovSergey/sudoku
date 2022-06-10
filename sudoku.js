@@ -4,25 +4,28 @@
 // your solver has tried to solve it.
 // How you represent your board is up to you!
 const fs = require ('fs');
-const boardString = () => {
- const arr = fs.readFileSync('./sudoku-puzzles.txt', 'utf8');
- const result = arr.split('\n');
- return result.map(elm => elm.split(''));
-};
 
-console.log(boardString());
 function solve(boardString) {
-
-
-  console.log('first changes');
+  
+    const arr = fs.readFileSync('./sudoku-puzzles.txt', 'utf8');
+    const result = arr.split('\n');
+   
+    return result.map(elm => elm.split(''));
+  
+  
 }
+
+console.log(solve());
 
 // Returns a boolean indicating whether
 // or not the provided board is solved.
 // The input board will be in whatever
 // form `solve` returns.
 function isSolved(board) {
-
+  // for (let i = 0; i < 8; i++) {
+  //   const element = array[i];
+    
+  // }
 }
 
 // Takes in a board in some form and
