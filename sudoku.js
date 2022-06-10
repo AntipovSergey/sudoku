@@ -3,8 +3,10 @@
 // something representing a board after
 // your solver has tried to solve it.
 // How you represent your board is up to you!
+
+
 function solve(boardString) {
-  console.log('first changes');
+  
 }
 
 // Returns a boolean indicating whether
@@ -30,3 +32,4 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
