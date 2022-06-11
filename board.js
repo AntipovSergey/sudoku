@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const text = fs.readFileSync('sudoku-puzzles.txt', 'utf-8');
-const board = text.split('\n')[0];
+const board = text.split('\n')[4];
 // console.log(board);
 
 const table = () => {
@@ -9,9 +9,9 @@ const table = () => {
   for (let i = 0; i < board.length; i += 9) {
     arr.push(board.slice(i, i + 9).split(''));
   }
-//   console.table(arr)
+  // console.log(arr);
   return arr;
 };
-table(board);
+// table(board);
 
 module.exports = table();
