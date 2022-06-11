@@ -16,7 +16,7 @@ function sudokuParse(content, puzzleNumber = 0) {
   console.log('parser');
   return puzzle;
 }
-
+/*
 function readAndSolve(err, data) {
   if (err) {
     throw err;
@@ -31,12 +31,12 @@ function readAndSolve(err, data) {
   else {
     console.log("The board wasn't solved :(");
   }
-}
+}*/
 
 // Reads file and sends data from it to the readAndSolve function.
 fs.readFile(
   './sudoku-puzzles.txt',
   'utf-8',
-  readAndSolve
+  //readAndSolve
 );
 
