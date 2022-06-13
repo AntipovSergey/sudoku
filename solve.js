@@ -17,14 +17,15 @@ const solveSudoku = function (boardSize) {
     const [r, c] = pos;
 
     // проверка чисел по горизонтали
-    for (let i = 0; i < 10; i++) {
+    // console.log('!!!!!!!', board, board[0].length);
+    for (let i = 0; i < 9; i++) {
       if (board[i][c] === num && i !== r) {
         return false;
       }
     }
 
     // проверка чисел по ветрикали
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
       if (board[r][i] === num && i !== c) {
         return false;
       }
