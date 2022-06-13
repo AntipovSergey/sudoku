@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const text = fs.readFileSync('sudoku-puzzles.txt', 'utf-8');
-const board = text.split('\n')[0];
+const board = text.split('\n')[6];
 // console.log(board);
 
 const table = () => {

@@ -1,23 +1,22 @@
 const tableBoard = require('./board');
 
-const solveSudoku = function (boardSize) {
+const solveSudoku = function (board) {
 // функция по поиску пустых квадратиков
-  function findEmpty(boardSize) {
-    for (let r = 0; r < boardSize.length; r++) {
-      for (let c = 0; c < boardSize[r].length; c++) {
-        if (boardSize[r][c] === '-') {
+  const findEmpty = (board) => {
+    for (let r = 0; r < board.length; r++) {
+      for (let c = 0; c < board.length; c++) {
+        if (board[r][c] === '-') {
           return [r, c]; // r - позиция в строке; c - позиция в столбце
         }
       }
     }
     return null;
-  }
+  };
 
   const checkBoard = (num, pos, board) => {
     const [r, c] = pos;
 
     // проверка чисел по горизонтали
-    // console.log('!!!!!!!', board, board[0].length);
     for (let i = 0; i < 9; i++) {
       if (board[i][c] === num && i !== r) {
         return false;
@@ -45,24 +44,24 @@ const solveSudoku = function (boardSize) {
   };
 
   const solve = () => {
-    const currPos = findEmpty(boardSize);
+    const currPos = findEmpty(board);
 
     if (currPos === null) {
       return true;
     }
 
     for (let i = 1; i < 10; i++) {
-      const currNum = i.toString;
-      const check = checkBoard(currNum, currPos, boardSize);
+      const currNum = i;
+      const check = checkBoard(currNum, currPos, board);
 
       if (check) {
         const [x, y] = currPos;
-        boardSize[x][y] = currNum;
+        board[x][y] = currNum;
 
         if (solve()) {
           return true;
         }
-        boardSize[x][y] = '-';
+        board[x][y] = '-';
       }
     }
 
@@ -70,7 +69,7 @@ const solveSudoku = function (boardSize) {
   };
 
   solve();
-  return boardSize;
+  return board;
 };
 // console.log(findEmpty(tableBoard));
-console.log(solveSudoku(tableBoard));
+console.table(solveSudoku(tableBoard));
