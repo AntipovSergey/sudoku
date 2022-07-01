@@ -1,4 +1,6 @@
 function validate(num, pos, board) {
+  const size = 9;
+  const boxSize = 3;
   const [r, c] = pos;
 
   for (let i = 0; i < size; i++) {
@@ -27,4 +29,6 @@ function validate(num, pos, board) {
   return true;
 }
 
-module.exports = validate;
+module.exports = {
+  validate,
+}

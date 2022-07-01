@@ -1,21 +1,17 @@
 
+const { findEmpty } = require("./findEmpty");
+const { validate } = require("./validate");
+const { parsing } = require("./parsing");
+const fs = require('fs');
 
-// let input = [
-//    ["5", "3", ".", ".", "7", ".", ".", ".", "."],
-//    ["6", ".", ".", "1", "9", "5", ".", ".", "."],
-//    [".", "9", "8", ".", ".", ".", ".", "6", "."],
-//    ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-//    ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-//    ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-//    [".", "6", ".", ".", ".", ".", "2", "8", "."],
-//    [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-//    [".", ".", ".", ".", "8", ".", ".", "7", "9"]
-// ];
+const board = parsing();
+// console.log(board);
 
-
-let solveS = function(board) {
+let solveS = function (board) {
+   console.log('-------------------', board);
    const size = 9;
    const boxSize = 3;
+   const pos = findEmpty(board);
 
    const solve = () => {
        const currPos = findEmpty(board);
@@ -36,7 +32,7 @@ let solveS = function(board) {
                    return true;
                }
 
-               board[x][y] = '.';
+               board[x][y] = '-';
            }
        }
 
@@ -47,6 +43,8 @@ let solveS = function(board) {
    return board;
 };
 
-// console.table(input);
-console.table(solveS(input));
+console.table(solveS(board));
+// console.table(solveS(input));
+
+
 

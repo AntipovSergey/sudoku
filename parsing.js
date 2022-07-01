@@ -1,20 +1,21 @@
 const fs = require('fs');
-const arrPuzzle = fs.readFileSync('./puzzles.txt','utf-8');
 
 
 // Первое судоку из файла
-const str = arrPuzzle.split('\n');
 
-function parsing(str) {
+function parsing() {
+  const arrPuzzle = fs.readFileSync('./puzzles.txt','utf-8');
+  const str = arrPuzzle.split('\n');
+  console.log(str)
   const board = [];
-  const newStr = str.split('');
+  const newStr = str[0].split('');
    for (let i = 0; i < newStr.length; i++) {
     board.push(newStr.splice(0, 9));
   }
   return board;
 }
 
-//console.table(parsing(str[0]));
+// console.table(parsing());
 
 
 module.exports = {
