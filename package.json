@@ -4,6 +4,7 @@
   "description": "## Введение",
   "main": "runner.js",
   "scripts": {
+    "try": "node psevdoKod.js",
     "start": "node runner.js"
   },
   "repository": {
