@@ -1,10 +1,16 @@
+const { parsing } = require("./parsing");
+const fs = require('fs');
+const arrPuzzle = fs.readFileSync('./puzzles.txt','utf-8');
 
 
-let solveSudoku = function(board) {
-    const size = 9;
-    const boxSize = 3;
+// Первое судоку из файла
+const str = arrPuzzle.split('\n');
 
-    const findEmpty = (board) => {
+const parsResult = parsing(str[0]);
+console.log(parsResult);
+
+
+    function findEmpty(parsResult) {
         for (let r = 0; r < size; r++) {
             for (let c = 0; c < size; c++) {
                 if(board[r][c] === '.') {
@@ -14,4 +20,5 @@ let solveSudoku = function(board) {
         }
         return null;
     }
-    
+
+// console.log(findEmpty());
