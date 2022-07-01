@@ -14,7 +14,7 @@ function parsing(str) {
   return board;
 }
 
-console.table(parsing(str[0]));
+//console.table(parsing(str[0]));
 
 
 module.exports = {

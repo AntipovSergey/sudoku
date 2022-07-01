@@ -21,4 +21,10 @@ console.log(parsResult);
         return null;
     }
 
-// console.log(findEmpty());
+console.log(findEmpty());
+
+
+module.exports = {
+    parsing,
+    findEmpty,
+}
