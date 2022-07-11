@@ -11,7 +11,7 @@ const fs = require('fs');
 function err(fileData) {
   const str = fs.readFileSync(fileData, 'utf-8');
   if (str.match(/[a-zA-Z]/g)) {
-    return 'error';
+    throw Error('Invalid Input');
   }
   return str
 }
