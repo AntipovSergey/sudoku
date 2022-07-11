@@ -11,7 +11,7 @@
 // ];
 
 
-// console.log(solv2(sud))
+// console.log(solved(sud))
 
 
 
@@ -32,4 +32,4 @@ function solved(arr) {
     }
 };
 
-exports.modules = solved;
+module.exports = solved;

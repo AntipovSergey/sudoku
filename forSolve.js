@@ -10,7 +10,7 @@ function arrCheck(arr, options) {
 
 function toColumns(main) {
   let columns = []
-  console.log(main)
+
   for (let i = 0; i < main.length; i++) {
     arr = []
     arr.push(main[0][i])
@@ -118,8 +118,10 @@ function switcher(main) {
 
 //console.log(switcher(main))
 
-module.exports = {switcher, 
-  arrCheck, 
-  coordinates, 
-  toColumns, 
-  toSquare};
+module.exports = {
+  switcher,
+  arrCheck,
+  coordinates,
+  toColumns,
+  toSquare
+};
