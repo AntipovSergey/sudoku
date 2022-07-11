@@ -5,7 +5,7 @@
  */
 const fs = require('fs');
 
-/*function makeArr() {
+function makeArr() {
   const str = fs.readFileSync('./puzzles.txt', 'utf-8');
   const puzzles = str
   .split('\n')
@@ -38,7 +38,9 @@ function solve(boardString) {
   return boardString
 }
 
-console.log(solve(bString))*/
+console.log(solve(bString))
+
+console('hello')
 
 
 
