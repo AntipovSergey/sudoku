@@ -31,7 +31,18 @@ console.log(isSolved(test))
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+
+  for(let i = 0; i < 9; i++) {
+    let newStr = board.slice(i*9, (i+1)*9);
+    let a = newStr.slice(0,3);
+    let b = newStr.slice(3,6);
+    let c = newStr.slice(6);
+  }
+  console.log(`${a} ${b} ${c}`);
+}
+console.log(prettyBoard(str));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
