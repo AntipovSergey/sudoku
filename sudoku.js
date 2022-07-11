@@ -11,19 +11,20 @@ function solve(boardString) {
     cellMap[rowInd] = row.split('').map((val, colInd) => new Cell(val, [rowInd, colInd]));
   });
 
-  return cellMap;
+  return cellMap.map((el) => el.map((cell) => cell.value ? cell.value : '-').join('')).join('');
 }
+const test = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+console.log(solve(test))
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 
 function isSolved(board) {
-  // В функцию solve в конец
-  return arr.join('');
-  // конец
-  return board.includes('');
+  return !board.includes('-');
 }
+console.log(isSolved(test))
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
