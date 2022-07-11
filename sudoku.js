@@ -8,11 +8,11 @@ function findDash (arr) {
 for(let z=0; z<arr.length; z++) {
   for (let j=0; j<arr[z].length; j++) {
  if(arr[z][j]==="-") {
-   return [z,j]
+   return [z,j];
  }
   }
 }
-return null
+return null;
 }
 
 
