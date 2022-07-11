@@ -16,7 +16,7 @@ function solve(boardString) {
     return null;
   }
   // проверяет валидность чисел в таблице
-  function validation(number, position, board) {
+  function validation(number, position, boardString) {
     const [r, c] = position;
 
     // Проверяем строки
@@ -36,27 +36,51 @@ function solve(boardString) {
     const boxC = Math.floor(c / 3) * 3;
     for (let i = boxR; i < boxR + 3; i++) {
       for (let j = boxC; j < boxC + 3; j++) {
-        if (board[i][k] === num && i !== r && i !== c) {
+        if (boardString[i][j] === number && i !== r && i !== c) {
           return false;
         }
       }
     }
     return true;
   }
+  function resultSolve() {
+    const currentPosition = getDash(boardString);
 
-    solve();
+    if (currentPosition === null) {
+        return true;
+    }
+    for (let i = 1; i < 10; i++) {
+        const currentNumber = i.toString();
+        const isValid = validation(currentNumber, currentPosition, boardString);
+        if (isValid) {
+            const [x,y] = currentPosition;
+            boardString[x][y] = currentNumber;
+
+            if(resultSolve()) {
+                return true;
+            }
+
+            boardString[x][y] = '-';
+        }
+    }
+
+    return false;
+}
+
+    resultSolve();
     return boardString;
   }
-}
 
-function isSolved (){
-  
-}
 
-/**
+  /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+function isSolved (){
+
+}
+
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -65,8 +89,8 @@ function isSolved (){
  */
 // const board1 = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-function prettyBoard(board) {
-  const parts = board.split(/(.{9})/).filter((O) => O);
+function prettyBoard(boardString) {
+  const parts = boardString.split(/(.{9})/).filter((O) => O);
   const result = parts.map((item) => item.split(''));
   const arr = `${[...result[0]]}\n${[...result[1]]}\n${[...result[2]]}\n${[...result[3]]}\n${[...result[4]]}\n${[...result[5]]}\n${[...result[6]]}\n${[...result[7]]}\n${[...result[8]]}`;
   const newresult = arr.replace(/[\,%]/g, ' ');
