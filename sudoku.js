@@ -3,7 +3,31 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
+const puzzles = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+
+function boardArray(str, length) {
+  const puzzlesArr = [];
+  for (let i = 0; i < str.length; i++) {
+    puzzlesArr.push(str[i]);
+  }
+
+  const newArr = [];
+
+  for (let i = 0; i < puzzlesArr.length; i += length) {
+    const targetArr = puzzlesArr.slice(i, i + length);
+    newArr.push(targetArr);
+  }
+  return newArr;
+}
+console.log(boardArray(puzzles, 9));
+
+
+
+
+
 function solve(boardString) {
+
 }
 
 /**
