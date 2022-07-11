@@ -30,7 +30,7 @@ function getArrayFromString(string) {
    return subarray;
  }
  
- console.log( getArrayFromString(getPuzzle()));
+ console.log(getArrayFromString(getPuzzle()));
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -61,7 +61,6 @@ function prettyBoard(board) {
 
   const finalArr = arr.toString().split(",").join("\n");
   return finalArr;
-
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
