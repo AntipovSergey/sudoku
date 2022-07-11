@@ -4,34 +4,36 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-  const format = 9;
-  const sector = 3;
-
   // функция проверяет, пустая ли ячейка
-  function getDash(board) {
-    for (let r = 0; r < format; r++) {
-      for (let c = 0; c < format; c++) {
-        if (board[r][c] === "-") {
+  function getDash(boardString) {
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        if (boardString[r][c] === '-') {
           return [r, c];
         }
       }
     }
     return null;
   }
-
   // проверяет валидность чисел в таблице
   function validation(number, position, board) {
     const [r, c] = position;
 
     // Проверяем строки
-    for (let i = 0; i < format; i++) {
-      if (board[i][c] === number && i !== r) {
+    for (let i = 0; i < 9; i++) {
+      if (boardString[i][c] === number && i !== r) {
+        return false;
+      }
+    }
+    // Проверка столбцов
+    for (let i = 0; i < 9; i++) {
+      if (boardString[r][i] === number && i !== c) {
         return false;
       }
     }
     // вычисляем границы внутренних блоков
-    let boxR = Math.floor(r / 3) * 3;
-    let boxC = Math.floor(c / 3) * 3;
+    const boxR = Math.floor(r / 3) * 3;
+    const boxC = Math.floor(c / 3) * 3;
     for (let i = boxR; i < boxR + 3; i++) {
       for (let j = boxC; j < boxC + 3; j++) {
         if (board[i][k] === num && i !== r && i !== c) {
@@ -41,14 +43,15 @@ function solve(boardString) {
     }
     return true;
   }
-  //Проверка столбцов
-  for (let i = 0; i < format; i++) {
-    if (board[r][i] === number && i !== c) {
-      return false;
-    }
+
+    solve();
+    return boardString;
   }
 }
 
+function isSolved (){
+  
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
