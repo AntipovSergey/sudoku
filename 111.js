@@ -1,5 +1,5 @@
 const boardStringToArray = (boardString) => {
-  const board1 = boardString.split('');
+  const board1 = boardString.split("");
   const board = [];
   for (let i = 0; i < board1.length; i += 9) {
     board.push(board1.slice(i, i + 9));
@@ -14,7 +14,7 @@ function solveSudoku(board) {
   const findEmpty = (board) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if (board[r][c] === '-') {
+        if (board[r][c] === "-") {
           return [r, c];
         }
       }
@@ -60,7 +60,7 @@ function solveSudoku(board) {
     if (currPos === null) {
       return true;
     }
-    // console.log('------------------------------');
+
     for (let i = 1; i < size + 1; i++) {
       const currNum = i.toString();
       const isValid = validate(currNum, currPos, board);
@@ -73,7 +73,7 @@ function solveSudoku(board) {
           return true;
         }
 
-        board[x][y] = '-';
+        board[x][y] = "-";
       }
     }
 
@@ -82,7 +82,13 @@ function solveSudoku(board) {
 
   solve();
   return board;
-};
+}
 
 // console.table(input);
-console.table(solveSudoku(boardStringToArray('---------------------------------------------------------------------------------')));
+console.table(
+  solveSudoku(
+    boardStringToArray(
+      "---------------------------------------------------------------------------------"
+    )
+  )
+);
