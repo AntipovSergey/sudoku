@@ -3,7 +3,9 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {}
+function takeFirstSudo() {}
+
+function solve(board) {}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -17,7 +19,11 @@ function isSolved(board) {}
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  let arr = board.map((el) => el.toString().split(",").join(" "));
+  let emptyStr = "---------------------------------";
+  let arr = board.map((el) => el.toString().split(",").join(" | "));
+  arr.splice(3, 0, emptyStr);
+  arr.splice(7, 0, emptyStr);
+
   const finalArr = arr.toString().split(",").join("\n");
   return finalArr;
 }
