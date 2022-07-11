@@ -15,6 +15,26 @@ console.log(a([['4','5','6'],['4','5','6'],['4','5','6']]));
 function solve(boardString) {
   
 }
+  
+
+function findDash (arr) {
+for(let z=0; z<arr.length; z++) {
+  for (let j=0; j<arr[z].length; j++) {
+ if(arr[z][j]==="-") {
+   return [z,j];
+ }
+  }
+}
+return null;
+}
+
+
+
+
+
+function solve(boardString) {
+
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
