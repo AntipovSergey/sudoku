@@ -104,6 +104,7 @@ function switcher(main) {
         let options = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         options = arrCheck(main[i], options)        //тест по строке
         options = arrCheck(columns[u], options)  //отсечение вариантов по столбцам
+
         //console.log(squares[coordinates(u, i)])
         options = arrCheck(squares[coordinates(u, i)], options)  //отсечение вариантов по квадратам
         if (options.length == 1) {
