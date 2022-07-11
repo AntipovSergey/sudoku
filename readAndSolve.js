@@ -9,8 +9,8 @@ function readAndSolve(error, fileData) {
   }
 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
-  const puzzles = fileData
-    .split('\n')
+  const puzzles = fileData // Создаёт массивы по переходу на новую строчку
+  .split('\n')
     .filter((line) => line !== '');
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
