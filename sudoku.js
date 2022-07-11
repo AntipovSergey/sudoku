@@ -23,7 +23,12 @@ function solve(boardString) {
   // проверяет валидность чисел в таблице
   function validation(number, position, board) {
     const [r, c] = position;
-
+  //Проверка столбцов
+        for (let i = 0; i < format; i++) {
+          if (board[r][i] === number && i !== c) {
+              return false;
+          }
+      }
 
   }
 
