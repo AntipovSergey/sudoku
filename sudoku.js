@@ -34,6 +34,15 @@ function solve(boardString) {
     // вычисляем границы внутренних блоков
     const boxR = Math.floor(r / 3) * 3;
     const boxC = Math.floor(c / 3) * 3;
+    for (let i = boxR; i < boxR + 3; i++) {
+      for (let j = boxC; j < boxC + 3; j++) {
+        if (board[i][k] === num && i !== r && i !== c) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
     solve();
     return boardString;
@@ -43,6 +52,7 @@ function solve(boardString) {
 function isSolved (){
   
 }
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
