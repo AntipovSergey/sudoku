@@ -15,7 +15,7 @@
 
 
 
-function solv(arr) {
+function solved(arr) {
     let count = 0;
     for (let i = 0; i < arr.length; i++) {
         let sum = arr[i].reduce((acc, val) => acc + val, 0)
@@ -31,3 +31,5 @@ function solv(arr) {
         return true
     }
 };
+
+exports.modules = solved;

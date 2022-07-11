@@ -10,7 +10,7 @@ function arrCheck(arr, options) {
 
 function toColumns(main) {
   let columns = []
-
+  console.log(main)
   for (let i = 0; i < main.length; i++) {
     arr = []
     arr.push(main[0][i])
@@ -29,7 +29,7 @@ function toColumns(main) {
   return columns
 }
 
-
+/* 
 let main = [
   [1, 0, 5, 8, 0, 2, 0, 0, 0],
   [0, 9, 0, 0, 7, 6, 4, 0, 5],
@@ -40,12 +40,13 @@ let main = [
   [0, 0, 7, 6, 0, 0, 0, 3, 0],
   [4, 3, 0, 0, 2, 0, 5, 0, 1],
   [6, 0, 0, 3, 0, 8, 9, 0, 0]
-]
+] */
 
 
 
 
 function toSquare(main) {
+
   let globalArr = []
 
   for (let i = 0; i < main.length; i = i + 3) { //main[i] - каждый вложенный массив
@@ -95,7 +96,7 @@ function coordinates(i, u) {
 function switcher(main) {
   let columns = toColumns(main)
   let squares = toSquare(main)
-  console.log(squares[8])
+  //console.log(squares[8])
   for (let i = 0; i < main.length; i++) {
     for (let u = 0; u < main[i].length; u++) {
 
@@ -103,6 +104,8 @@ function switcher(main) {
         let options = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         options = arrCheck(main[i], options)        //тест по строке
         options = arrCheck(columns[u], options)  //отсечение вариантов по столбцам
+
+        //console.log(squares[coordinates(u, i)])
         options = arrCheck(squares[coordinates(u, i)], options)  //отсечение вариантов по квадратам
         if (options.length == 1) {
           main[i][u] = (options[0])
@@ -112,4 +115,11 @@ function switcher(main) {
   }
   return main
 }
-console.log(switcher(main))
+
+//console.log(switcher(main))
+
+module.exports = {switcher, 
+  arrCheck, 
+  coordinates, 
+  toColumns, 
+  toSquare};
