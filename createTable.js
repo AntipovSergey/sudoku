@@ -17,4 +17,5 @@ function convertStringToBoard() {
   }  
   return board
 }
-module.exports = convertStringToBoard
+console.log(convertStringToBoard())
+// module.exports = convertStringToBoard
