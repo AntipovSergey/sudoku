@@ -1,5 +1,5 @@
 
-let options = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+let options = [7, 8, 9]
 
 function arrCheck(arr, options) {
 
@@ -7,7 +7,6 @@ function arrCheck(arr, options) {
 
   return options
 }
-console.log(arrCheck([6, 3, 8, 1, 2, 4, 5, 0, 0], options))
 
 function toColumns(main) {
   let columns = []
@@ -26,35 +25,86 @@ function toColumns(main) {
 
 
     columns.push(arr)
-    console.log(arr)
   }
   return columns
 }
 
 
 let main = [
-  [0, 9, 8, 1, 1, 1, 1, 1, 1],
-  [7, 9, 8, 2, 2, 2, 2, 2, 2],
-  [8, 9, 8, 3, 3, 3, 3, 3, 3],
-  [4, 4, 4, 4, 4, 4, 4, 4, 4],
-  [5, 5, 5, 5, 5, 5, 5, 5, 5],
-  [9, 0, 0, 0, 0, 0, 0, 0, 0],
-  [1, 0, 0, 0, 0, 0, 0, 0, 0],
-  [2, 0, 0, 0, 0, 0, 0, 0, 0],
-  [6, 0, 0, 0, 0, 0, 0, 0, 0],
-];
+  [1, 0, 5, 8, 0, 2, 0, 0, 0],
+  [0, 9, 0, 0, 7, 6, 4, 0, 5],
+  [2, 0, 0, 4, 0, 0, 8, 1, 9],
+  [0, 1, 9, 0, 0, 7, 3, 0, 6],
+  [7, 6, 2, 0, 8, 3, 0, 9, 0],
+  [0, 0, 0, 0, 6, 1, 0, 5, 0],
+  [0, 0, 7, 6, 0, 0, 0, 3, 0],
+  [4, 3, 0, 0, 2, 0, 5, 0, 1],
+  [6, 0, 0, 3, 0, 8, 9, 0, 0]
+]
+
+
+
+
+function toSquare(main) {
+  let globalArr = []
+
+  for (let i = 0; i < main.length; i = i + 3) { //main[i] - каждый вложенный массив
+
+    for (let u = 0; u < main[0].length; u = u + 3) {
+      let arr = []
+      arr.push(main[i][u])
+      arr.push(main[i][u + 1])
+      arr.push(main[i][u + 2])
+      arr.push(main[i + 1][u])
+      arr.push(main[i + 1][u + 1])
+      arr.push(main[i + 1][u + 2])
+      arr.push(main[i + 2][u])
+      arr.push(main[i + 2][u + 1])
+      arr.push(main[i + 2][u + 2])
+
+      globalArr.push(arr)
+    }
+  }
+  return globalArr
+}
+
+
+function coordinates(i, u) {
+  if (i <= 2 && u <= 2) {
+    return 1
+  } else if (3 <= i && i <= 5 && u <= 2) {
+    return 2
+  } else if (6 <= i && i <= 8 && u <= 2) {
+    return 3
+  } else if (i <= 2 && 3 <= u && u <= 5) {
+    return 4
+  } else if (3 <= i && i <= 5 && 3 <= u && u <= 5) {
+    return 5
+  } else if (6 <= i && i <= 8 && 3 <= u && u <= 5) {
+    return 6
+  } else if (i <= 2 && 6 <= u && u <= 8) {
+    return 7
+  } else if (3 <= i && i <= 6 && 6 <= u && u <= 8) {
+    return 8
+  } else if (6 <= i && i <= 8 && 6 <= u && u <= 8) {
+    return 9
+  }
+}
 
 
 function switcher(main) {
   let columns = toColumns(main)
-  console.log(columns)
+  let squares = toSquare(main)
+  console.log(squares[0])
   for (let i = 0; i < main.length; i++) {
     for (let u = 0; u < main[i].length; u++) {
 
       if (main[i][u] == 0) {
         let options = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        options = arrCheck(main[i], options)
-        options = arrCheck(columns[u], options)
+        options = arrCheck(main[i], options)        //тест по строке
+        options = arrCheck(columns[u], options)  //отсечение вариантов по столбцам
+        console.log(squares[coordinates(u, i)])
+        //options = arrCheck(squares[coordinates(u, i)], options)  //отсечение вариантов по квадратам
         if (options.length == 1) {
           main[i][u] = (options[0])
         }
