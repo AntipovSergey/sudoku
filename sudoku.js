@@ -18,6 +18,14 @@ function solve(boardString) {
     return null;
   }
 
+  function validation(number, position, board) {
+    const [r, c] = position;
+
+    
+  }
+
+
+
 }
 
 /**
