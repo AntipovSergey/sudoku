@@ -7,6 +7,7 @@ function solve(boardString) {
   const format = 9;
   const sector = 3;
 
+  // функция возвращает true/false, пустая ли ячейка 
   function getDash(board) {
     for (let r = 0; r < format; r++) {
       for (let c = 0; c < format; c++) {
@@ -24,9 +25,7 @@ function solve(boardString) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
 
-}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
