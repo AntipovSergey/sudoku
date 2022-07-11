@@ -36,11 +36,11 @@ function prettyBoard(board) {
 
   for(let i = 0; i < 9; i++) {
     let newStr = board.slice(i*9, (i+1)*9);
-
-    console.log(newStr);
-
+    let a = newStr.slice(0,3);
+    let b = newStr.slice(3,6);
+    let c = newStr.slice(6);
   }
-
+  console.log(`${a} ${b} ${c}`);
 }
 console.log(prettyBoard(str));
 
