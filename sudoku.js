@@ -7,7 +7,7 @@
 function solve(sudokuStr) {
 
 const size = 9;     // длина сектора
-const boxSize = 3;  // размер сектора
+const boxSize = 3  // размер сектора
 
   const findEmpty = (board) => {         // функция возвращает пустую позицыю в матрице
     for (let r = 0; r < size; r++) {     // проходим цыклом по строкам 
