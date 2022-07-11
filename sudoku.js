@@ -33,6 +33,13 @@ function solve(boardString) {
     let boxR = Math.floor(r/3) * 3;
     let boxC = Math.floor(c/3) * 3;
 
+  //Проверка столбцов
+        for (let i = 0; i < format; i++) {
+          if (board[r][i] === number && i !== c) {
+              return false;
+          }
+      }
+
   }
 }
 
