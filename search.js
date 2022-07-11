@@ -2,14 +2,22 @@ let indArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 18, 19, 20, 28, 37, 46, 55, 
 let fullArr = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 fullArr = fullArr.split('');
 
-function search(fullArr, indexArr, el = 1, result = []) {
+function searchEl(fullArr, indexArr, el = 1) {
   for (let i = 0; i < indexArr.length; i++) {
     if (fullArr[indexArr[i]] == el && el <= 9) {
-      return search(fullArr, indexArr, el += 1, result);
+      return searchEl(fullArr, indexArr, el += 1);
     }
-    
   }
-  result.push(el);
+  return el;
+}
+
+function search(fullArr, indArr) {
+  let element = searchEl(fullArr, indArr);
+  let result = [];
+  // result.push(element);
+  for (let i = element; i < 9; i++) {
+    result.push(searchEl(fullArr, indArr, i))
+  }
   return result;
 }
 
