@@ -7,7 +7,8 @@ function solve(boardString) {
   const format = 9;
   const sector = 3;
 
-  // функция возвращает true/false, пустая ли ячейка 
+
+  // функция проверяет, пустая ли ячейка
   function getDash(board) {
     for (let r = 0; r < format; r++) {
       for (let c = 0; c < format; c++) {
@@ -18,6 +19,15 @@ function solve(boardString) {
     }
     return null;
   }
+
+  // проверяет валидность чисел в таблице
+  function validation(number, position, board) {
+    const [r, c] = position;
+
+
+  }
+
+
 
 }
 
