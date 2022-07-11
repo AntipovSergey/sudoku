@@ -11,7 +11,7 @@ function solve(boardString) {
   function getDash(board) {
     for (let r = 0; r < format; r++) {
       for (let c = 0; c < format; c++) {
-        if (board[r][c] === '-') {
+        if (board[r][c] === "-") {
           return [r, c];
         }
       }
@@ -30,18 +30,25 @@ function solve(boardString) {
       }
     }
     // вычисляем границы внутренних блоков
-    let boxR = Math.floor(r/3) * 3;
-    let boxC = Math.floor(c/3) * 3;
-
-  //Проверка столбцов
-        for (let i = 0; i < format; i++) {
-          if (board[r][i] === number && i !== c) {
-              return false;
-          }
+    let boxR = Math.floor(r / 3) * 3;
+    let boxC = Math.floor(c / 3) * 3;
+    for (let i = boxR; i < boxR + 3; i++) {
+      for (let j = boxC; j < boxC + 3; j++) {
+        if (board[i][k] === num && i !== r && i !== c) {
+          return false;
+        }
       }
-
+    }
+    return true;
+  }
+  //Проверка столбцов
+  for (let i = 0; i < format; i++) {
+    if (board[r][i] === number && i !== c) {
+      return false;
+    }
   }
 }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
