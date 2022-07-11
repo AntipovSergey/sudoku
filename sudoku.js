@@ -3,7 +3,24 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
+function findDash (arr) {
+for(let z=0; z<arr.length; z++) {
+  for (let j=0; j<arr[z].length; j++) {
+ if(arr[z][j]==="-") {
+   return [z,j];
+ }
+  }
+}
+return null;
+}
+
+
+
+
+
 function solve(boardString) {
+
 }
 
 /**
