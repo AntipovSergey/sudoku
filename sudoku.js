@@ -54,6 +54,13 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  let emptyStr = "---------------------------------";
+  let arr = board.map((el) => el.toString().split(",").join(" | "));
+  arr.splice(3, 0, emptyStr);
+  arr.splice(7, 0, emptyStr);
+
+  const finalArr = arr.toString().split(",").join("\n");
+  return finalArr;
 
 }
 
