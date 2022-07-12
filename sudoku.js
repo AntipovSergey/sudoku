@@ -3,6 +3,49 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+  
+
+//! 1 BoardArray - Асланбек
+//! 2  findEmpty - Фариза
+//! 3 Секции - Антон
+//? 4 Сравнение по горизонтали - Влад
+//? 5 Сравнение по вертикали - Влад ?
+//? 6 Сравнение в секции - Антон
+//! 7 Вставка числа через цикл - Фариза
+//! 8 Откат на позицию назад - Антон
+//! 9 isSolved - Асланбек
+//! 10 pretyBoard
+
+ 
+function sectoin(cect, row, col) {
+
+  for (let i = Math.floor(row/3)*3; i < Math.floor(row/3)*3 + 3; i++) {
+    for (let j = Math.floor(col/3)*3; j < Math.floor(col/3)*3 + 3; j++) {
+      for (let i = 1; i <= 9; i++) {
+        const num = i;
+        if (cect[i][j] === num && i !==row && j!== col) return false;
+      }
+    }
+  }
+}
+
+const puzzles = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+
+function boardArray(str, length) {
+  const puzzlesArr = [];
+  for (let i = 0; i < str.length; i++) {
+    puzzlesArr.push(str[i]);
+  }
+
+  const newArr = [];
+
+  for (let i = 0; i < puzzlesArr.length; i += length) {
+    const targetArr = puzzlesArr.slice(i, i + length);
+    newArr.push(targetArr);
+  }
+  return newArr;
+}
+console.log(boardArray(puzzles, 9));
 
 
   
@@ -17,11 +60,20 @@ for(let z=0; z<arr.length; z++) {
 return null;
 }
 
-function checkDash(number, arr) {
-for( let i=0; i<arr.length; i++) {
-  
+function checkDash(number,position, arr) {
+    const position = [z,j];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i][j] === number && i !== z) {
+            return false;
+        }
+    }
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[z][i] === number && i !== j) {
+            return false;
+        }
+    }
 }
-}
+
 
 function solve(boardString) {
 
