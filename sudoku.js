@@ -1,18 +1,28 @@
-const switcher  = require('./forSolve.js');
+const switcher = require('./forSolve.js');
 const solved = require('./slav.js');
 const boardString = require('./createTable');
+
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
- let newString = boardString();
-function solve(newString) {
-    
-      console.log(newString.length)
-    return switcher(newString)
-   // console.log(boardString());
+let newString = boardString();
+function solve(newString, stepsNum = 0) {
+
+  if (stepsNum > 80) {
+    return newString.join(' \n')
+  }
+  stepsNum = stepsNum + 1
+
+  let result = switcher.switcher(newString)
+  if (solved(result) == false) {
+    return solve(result, stepsNum)
+  }
+
+  return newString.join(' \n')
+
 
 }
 
@@ -23,7 +33,7 @@ console.log(solve(newString))
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-   
+
 }
 
 /**

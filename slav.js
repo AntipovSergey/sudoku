@@ -11,7 +11,7 @@
 // ];
 
 
-// console.log(solv2(sud))
+// console.log(solved(sud))
 
 
 
@@ -20,7 +20,7 @@ function solved(arr) {
     for (let i = 0; i < arr.length; i++) {
         let sum = arr[i].reduce((acc, val) => acc + val, 0)
         let chekZero = arr[i].includes(0)
-        if (!chekZero && sum === 45) {
+        if (!chekZero /*&& sum === 45*/) {
             count += 1;
         } else {
             return false
@@ -32,4 +32,4 @@ function solved(arr) {
     }
 };
 
-exports.modules = solved;
+module.exports = solved;
