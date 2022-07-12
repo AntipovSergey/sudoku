@@ -1,0 +1,160 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Shadows Into Light", cursive, sans-serif;
+}
+
+.main {
+  height: 100vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(249, 250, 251, 0.968),
+      rgba(17, 24, 39, 0.949)
+    ),
+    url("sudoku-img.jpg");
+  background-size: cover;
+  background-position: top;
+  position: relative;
+}
+
+.welcome {
+  display: flex;
+  left: 28%;
+  padding-top: 6rem;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 5rem;
+  animation-name: moveInLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-25rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.section-buttons {
+  padding-top: 6rem;
+  /* padding-left: 7rem; */
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+button {
+  margin-right: 1rem;
+  font-family: "Shadows Into Light", cursive, sans-serif;
+  width: 9rem;
+  font-size: 2.2rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 10rem;
+  animation: moveInBottom 0.5s 0.75s;
+  animation-fill-mode: backwards;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(rgba(0, 0, 0, 0.171), 0.2);
+}
+button::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+.input-submit {
+  display: flex;
+}
+input {
+  text-decoration: none;
+  text-align: center;
+  margin-right: 1rem;
+  border: none;
+  border-radius: 10rem;
+  animation: moveInBottom 0.5s 0.75s;
+  animation-fill-mode: backwards;
+}
+
+::placeholder {
+  font-family: "Shadows Into Light", cursive, sans-serif;
+  color: rgba(128, 128, 128, 0.49);
+  font-size: 1.6rem;
+}
+
+.btn-reset {
+  background-color: rgba(0, 0, 0, 0.327);
+  color: white;
+}
+
+/* Below 850px */
+
+@media (max-width: 54em) {
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Below 570px */
+@media (max-width: 36em) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .section-buttons {
+    padding-top: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  input {
+    width: 7rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .welcome {
+    padding-top: 3rem;
+  }
+
+  button {
+    margin-bottom: 1rem;
+    width: 7rem;
+    font-size: 1.4rem;
+  }
+
+  ::placeholder {
+    font-size: 1rem;
+  }
+  .btn-reset {
+    margin-top: auto;
+  }
+}
