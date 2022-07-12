@@ -2,8 +2,8 @@
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
- 
- */   
+ */
+  
 
 //! 1 BoardArray - Асланбек
 //! 2  findEmpty - Фариза
@@ -92,6 +92,8 @@ function boardArray(str, length) {
 }
 console.table(boardArray(puzzles, 9));
 
+
+  
 function findDash (arr) {
 for(let z=0; z<arr.length; z++) {
   for (let j=0; j<arr[z].length; j++) {
@@ -103,12 +105,28 @@ for(let z=0; z<arr.length; z++) {
 return null;
 }
 
+<<<<<<< HEAD
+function checkDash(number,position, arr) {
+    const position = [z,j];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i][j] === number && i !== z) {
+            return false;
+        }
+    }
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[z][i] === number && i !== j) {
+            return false;
+        }
+    }
+}
+=======
 function reload () {
   if (solve() === true) return true;
   boardString[z][j] ='-';
 }
 
 
+>>>>>>> 7429c5d06eb9f0a371a156a8482fdef515b21fa1
 
 
 function solve(boardString) {
