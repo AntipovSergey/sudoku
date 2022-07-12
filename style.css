@@ -22,6 +22,7 @@ html {
  background-size: cover;
  background-position: top;
  position: relative;
+
 }
  
 .welcome {
@@ -30,6 +31,13 @@ html {
  padding-top: 6rem;
  justify-content: center;
  color: #c5e7ee;
+}
+
+img {
+  position: absolute;
+  height: 2rem;
+  width: 3rem;
+  opacity: 0;
 }
  
 h1 {
@@ -94,6 +102,7 @@ button::after {
 }
  
 input {
+  height: 3rem;
  text-decoration: none;
  text-align: center;
  margin-right: 1rem;
@@ -109,30 +118,32 @@ input {
  font-size: 1.6rem;
 }
  
-.reset {
+/* .reset {
  display: flex;
  justify-content: center;
  align-items: flex-end;
  padding-top: 48rem;
-}
+} */
  
 .global-table {
  display: flex;
  justify-content: space-between;
+ 
  width: 900px;
- height: 600px;
+ height: 300px;
  max-width: 100%;
  margin: 0 auto;
 }
  
 .unsolvedBlock{
+  margin-top: 5rem;
  border-radius: 10%;
  box-shadow: -2px 9px 33px 39px rgba(84, 186, 223, 0.2);
  letter-spacing: 5px;
- font-size: 25px;
+ font-size: 18px;
  padding: 10px 30px;
   width: 220px;
-  height: 400px;
+  height: 300px;
   background: #c5e7ee;
   opacity: 0.8;
   margin: 100px 0px 0 100px;
@@ -142,19 +153,58 @@ input {
  border-radius: 10%;
  box-shadow: -2px 9px 33px 39px rgba(84, 186, 223, 0.2);
  letter-spacing: 5px;
- font-size: 25px;
+ font-size: 18px;
  padding: 10px 30px;
   width: 220px;
-  height: 400px;
+  height: 300px;
   background: #c5e7ee;
   opacity: 0.8;
   margin: 100px 200px 0 0;
 }
 
+
+/* Below 864px */
 @media (max-width: 54em) {
   h1 {
     font-size: 4rem;
   }
+
+  .welcome {
+    padding-top: 1.5rem;
+  }
+  .global-table {
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    width: 900px;
+    height: 200px;
+    max-width: 100%;
+   
+   }
+   .unsolvedBlock{
+    
+    font-size: 10px;
+   
+     width: 160px;
+     height: 180px;
+     
+     opacity: 0.8;
+     margin:5rem 0 0 0;
+    
+   }
+    
+   .solvedBlock{
+   
+    font-size: 10px;
+   
+     width: 160px;
+     height: 180px;
+    
+     opacity: 0.8;
+     margin:2rem 0 0rem 0;
+     
+   }
 }
 
 /* Below 570px */
@@ -176,10 +226,11 @@ input {
   }
 
   .welcome {
-    padding-top: 3rem;
+    padding-top: 2rem;
   }
 
   button {
+    height: 2rem;
     margin-bottom: 1rem;
     width: 7rem;
     font-size: 1.4rem;
@@ -188,7 +239,16 @@ input {
   ::placeholder {
     font-size: 1rem;
   }
-  .btn-reset {
-    margin-top: auto;
+
+  img {
+    opacity: 1;
+    width: 7rem;
+    height: 5rem;
+    top:50%;
+    left: 5%;
+    animation-name: moveInLeft;
+ animation-duration: 2s;
+ animation-timing-function: ease-out;
   }
+  
 }
