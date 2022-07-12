@@ -69,7 +69,7 @@ function solved(arr) {
 
 };
 
-console.log(solved(sud))
+// console.log(solved(sud))
 
 
 module.exports = solved;
