@@ -1,7 +1,6 @@
 const switcher = require('./forSolve.js');
 const solved = require('./slav.js');
 const boardString = require('./createTable');
-const prettySudoku = require('./prettyBoard')
 
 
 /**
@@ -9,46 +8,51 @@ const prettySudoku = require('./prettyBoard')
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-let dif = 0;
-let newString = boardString(dif);
+let newString = boardString();
 
 function solve(newString, stepsNum = 0) {
 
-  if (stepsNum > 80) {
-    return newString
-  }
-  stepsNum = stepsNum + 1
+    if (stepsNum > 80) {
+        return newString;
+    }
+    stepsNum = stepsNum + 1
 
-  let result = switcher.switcher(newString)
-  if (solved(result) == false) {
-    return solve(result, stepsNum)
-  }
+    let result = switcher.switcher(newString)
+    if (solved(result) == false) {
+        return solve(result, stepsNum)
+    }
 
-  return newString
+    return newString;
+
+
 }
 
-console.log(prettySudoku(solve(newString)))
+// console.log(solve(newString))
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-    
+    let str = solved(board);
+    if (str === true) {
+        return "You win! \nFlawless victory.";
+    }
+    return "You lose!"
 }
-
+console.log(isSolved(solve(newString)));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-    
+
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
+    solve,
+    isSolved,
+    prettyBoard,
 };
