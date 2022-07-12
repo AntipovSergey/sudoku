@@ -8,17 +8,17 @@ const fs = require('fs');
 
 const fs = require('fs');
 
-function err(fileData) {
+/*function err(fileData) {
   const str = fs.readFileSync(fileData, 'utf-8');
   if (str.match(/[a-zA-Z]/g)) {
     throw Error('Invalid Input');
   }
   return str
-}
+}*/
 
-console.log(err('./ERRpuzzles.txt'))
+//console.log(err('./puzzles.txt'))
 
-function make() {
+/*function make() {
   
   const sudStr = makeArr();
   function makeArr() {
@@ -50,6 +50,7 @@ function make() {
 
 function solve(boardString) {
  
+<<<<<<< HEAD
 
  const size = 9;
  const boxSize = 3;
@@ -143,6 +144,9 @@ solve(sudokuStr)
 
 
 
+=======
+}*/
+>>>>>>> 9a98201 (readlast)
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -170,13 +174,9 @@ function prettyBoard(board) {
 
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
-/*module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};*/
 
-let solveSudoku = function(board) {
+
+function solve(board) {
   const size = 9;
   const boxSize = 3;
 
@@ -254,4 +254,13 @@ let solveSudoku = function(board) {
   return board;
 };
 
-console.table(solveSudoku(make()))
+//console.log(solve(make()))
+
+// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
+module.exports = {
+  solve,
+  isSolved,
+  prettyBoard,
+};
+
+//console.table(solveSudoku(make()))
