@@ -1,5 +1,5 @@
 // Подключить функции из файла sudoku.js.
-const sudoku = require('./sudoku');
+import { solve, isSolved, prettyBoard } from './sudoku';
 
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
@@ -27,10 +27,10 @@ function readAndSolve(error, fileData) {
   console.log(puzzle, '\n');
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = sudoku.solve(puzzle);
+  const solvedPuzzle = solve(puzzle);
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
-  if (!sudoku.isSolved(solvedPuzzle)) {
+  if (!isSolved(solvedPuzzle)) {
     console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
     return; // Если судоку не решён, завершить работу этой функции.
   }
@@ -40,7 +40,7 @@ function readAndSolve(error, fileData) {
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
-  console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
+  console.log(prettyBoard(solvedPuzzle), '\n');
 }
 
-module.exports = readAndSolve;
+export default readAndSolve;
