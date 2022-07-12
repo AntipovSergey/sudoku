@@ -16,7 +16,6 @@
   function prettySudoku(board) {
 
     console.log('\n    Welcome to Sudoku! \n')
-
   
     for (let i = 0; i < board.length; i++) {
         let row = board[i]

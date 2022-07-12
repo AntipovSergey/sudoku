@@ -42,5 +42,4 @@ function readAndSolve(error, fileData) {
   // игрового поля в строку в желаемом формате.
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
 }
-
 module.exports = readAndSolve;
