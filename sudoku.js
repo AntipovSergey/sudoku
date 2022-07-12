@@ -5,33 +5,29 @@
  
  */   
 
-
-
 //! 1 BoardArray - Асланбек
 //! 2  findEmpty - Фариза
 //! 3 Секции - Антон
 //? 4 Сравнение по горизонтали - Влад
 //? 5 Сравнение по вертикали - Влад ?
-//? 6 Сравнение в секции
-//! 7 Вставка числа через цикл
-//! 8 Откат на позицию назад
-//! 9 isSolved
+//? 6 Сравнение в секции - Антон
+//! 7 Вставка числа через цикл - Фариза
+//! 8 Откат на позицию назад - Антон
+//! 9 isSolved - Асланбек
 //! 10 pretyBoard
 
- */
-function a() {
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      return arr.push()
+ 
+function sectoin(cect, row, col) {
+
+  for (let i = Math.floor(row/3)*3; i < Math.floor(row/3)*3 + 3; i++) {
+    for (let j = Math.floor(col/3)*3; j < Math.floor(col/3)*3 + 3; j++) {
+      for (let i = 1; i <= 9; i++) {
+        const num = i;
+        if (cect[i][j] === num && i !==row && j!== col) return false;
+      }
     }
   }
-  return arr
-}
-console.log(a([['4','5','6'],['4','5','6'],['4','5','6']]));
-function solve(boardString) {
-  
-}
-  
+} 
 
 function findDash (arr) {
 for(let z=0; z<arr.length; z++) {
