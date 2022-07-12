@@ -60,8 +60,6 @@ function isValidBoard (number, position, board) { // принимаем числ
 
 
 
-
-
 function sectoin(cect, row, col) {
 
   for (let i = Math.floor(row/3)*3; i < Math.floor(row/3)*3 + 3; i++) {
