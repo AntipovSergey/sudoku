@@ -16,14 +16,57 @@
 //! 9 isSolved - Асланбек
 //! 10 pretyBoard
 
- 
+
+
+// Валидация игрового поля
+
+function isValidBoard (number, position, board) { // принимаем число, позицию и борд (инпут)
+  const [r, c] = position; // получаем ROW и COL из Position с помощью деструктуризации
+
+  // теперь нужно написать три проверки: число встречается единожды в строке, в колонке и в блоке
+
+  // проверка по строкам
+
+  for (let i = 0; i < size; i++) { // выше необходимо объявить переменную size (размер поля).
+    if (board[i][c] === number && i !== r) { // пров. все стр по фикс. кол, кроме тек. ячейки
+      return false; // если элемент в ячейке равен number, возвращаем фолс, так как необходимо,
+    }               // чтобы все элементы в колонке были уникальны.
+  }
+
+  // проверка по колонкам
+
+  for (let i = 0; i < size; i++) {
+    if (board[r][i] === number && i !== c) { // пров. все кол. по фиксированной строке, кроме тек.яч
+      return false;
+    }
+  }
+
+  // проверка внутри блока
+  // выше необходимо определить переменную blockSize - размер внутреннего блока (3, например)
+  const blockRow = Math.floor(r / blockSize) * blockSize; // см, в какой стр нач наш блок(верх\лево)
+  const blockCol = Math.floor(с / blockSize) * blockSize; // см, в какой кол нач наш блок
+
+  for (let i = blockRow; i < blockRow + blockSize; i++) { // проходимся по стр всего блока
+    for (let j = blockCol; j < blockCol + blockSize; j++) { // проходимся по кол всего блока
+      if (board[i][j] === number && i !== r && j !== c) { // см тек поз: если она === number (но кроме самой проверяемой ячейки)
+        return false; // то возвращаем фолс. Значит, ряд не уникален.
+      }
+    }
+  }
+
+  return true; // пров-ое число прошло все пров-ки. Если его встав в тек поз-ию, борд будет валидным
+}
+
+
+
+
 function sectoin(cect, row, col) {
 
   for (let i = Math.floor(row/3)*3; i < Math.floor(row/3)*3 + 3; i++) {
     for (let j = Math.floor(col/3)*3; j < Math.floor(col/3)*3 + 3; j++) {
       for (let i = 1; i <= 9; i++) {
         const num = i;
-        if (cect[i][j] === num && i !==row && j!== col) return false;
+        if (cect[i][j] === num && i !== row && j !== col) return false;
       }
     }
   }
@@ -45,7 +88,7 @@ function boardArray(str, length) {
   }
   return newArr;
 }
-console.log(boardArray(puzzles, 9));
+console.table(boardArray(puzzles, 9));
 
 
   
@@ -60,6 +103,7 @@ for(let z=0; z<arr.length; z++) {
 return null;
 }
 
+<<<<<<< HEAD
 function checkDash(number,position, arr) {
     const position = [z,j];
     for (let i = 0; i < arr.length; i++) {
@@ -73,6 +117,14 @@ function checkDash(number,position, arr) {
         }
     }
 }
+=======
+function reload () {
+  if (solve() === true) return true;
+  boardString[z][j] ='-';
+}
+
+
+>>>>>>> 7429c5d06eb9f0a371a156a8482fdef515b21fa1
 
 
 function solve(boardString) {
