@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
 const fs = require("fs");
 
-function getPuzzle() {
+function getPuzzle(sudoNum) {
   const puzzles = fs
     .readFileSync("./puzzles.txt", "utf-8")
     .split("\n")
     .filter((line) => line !== "");
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(process.argv[2]) || 1;
+  let puzzleNumber = Number(process.argv[2]) || sudoNum || 1;
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;
   }
@@ -34,11 +34,6 @@ function getArrayFromString(string) {
 
 // console.log(getArrayFromString(getPuzzle()));
 
-/**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
 function solve(board) {
   function getRowColIndex(sudo) {
     for (let r = 0; r < sudo.length; r++) {
@@ -97,7 +92,7 @@ function solve(board) {
         if (sudoSolve()) {
           return true;
         }
-        // board[r][c] = "-";
+        board[r][c] = "-";
       }
     }
     return false;
@@ -106,12 +101,9 @@ function solve(board) {
   return board;
 }
 
-console.log(solve(getArrayFromString(getPuzzle())));
+console.table(getArrayFromString(getPuzzle()));
+console.table(solve(getArrayFromString(getPuzzle())));
 
-// /**
-//  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-//  * Возвращает булевое значение — решено это игровое поле или нет.
-//  */
 function isSolved(board) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -123,11 +115,6 @@ function isSolved(board) {
   return true;
 }
 
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает строку с игровым полем для последующего вывода в консоль.
- * Подумай, как симпатичнее сформировать эту строку.
- */
 function prettyBoard(board) {
   const emptyStr = "---------------------------------";
   const arr = board.map((el) => el.toString().split(",").join(" | "));
@@ -138,9 +125,10 @@ function prettyBoard(board) {
   return finalArr;
 }
 
-// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  getPuzzle,
+  getArrayFromString,
 };
