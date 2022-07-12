@@ -27,7 +27,25 @@ function sectoin(cect, row, col) {
       }
     }
   }
-} 
+}
+
+const puzzles = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+
+function boardArray(str, length) {
+  const puzzlesArr = [];
+  for (let i = 0; i < str.length; i++) {
+    puzzlesArr.push(str[i]);
+  }
+
+  const newArr = [];
+
+  for (let i = 0; i < puzzlesArr.length; i += length) {
+    const targetArr = puzzlesArr.slice(i, i + length);
+    newArr.push(targetArr);
+  }
+  return newArr;
+}
+console.log(boardArray(puzzles, 9));
 
 function findDash (arr) {
 for(let z=0; z<arr.length; z++) {
@@ -39,6 +57,7 @@ for(let z=0; z<arr.length; z++) {
 }
 return null;
 }
+
 
 
 
