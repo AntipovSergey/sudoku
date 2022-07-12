@@ -15,8 +15,9 @@
 
   function prettySudoku(board) {
 
-
     console.log('\n    Welcome to Sudoku! \n')
+
+  
     for (let i = 0; i < board.length; i++) {
         let row = board[i]
         if (i % 3 === 0) {
@@ -34,8 +35,7 @@
             row[8], "|")
     }
     console.log("|=======|=======|=======|")
-
-    return '\n         Solved!'
+    return '';
 }
 
 
