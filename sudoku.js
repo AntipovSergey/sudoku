@@ -31,6 +31,7 @@ function getArrayFromString(string) {
   return subarray;
 }
 
+
 // console.log(getArrayFromString(getPuzzle()));
 
 /**
@@ -84,14 +85,14 @@ function solve(board) {
     for (let i = 1; i <= 9; i++) {
       const candidate = i.toString();
       const checkResult = solveCheck(candidate, emptySpace, board);
-      console.log(emptySpace, candidate, checkResult);
+      //console.log(emptySpace, candidate, checkResult);
       if (checkResult) {
         const [r, c] = emptySpace;
         board[r][c] = candidate;
         if (sudoSolve()) {
           return true;
         }
-        // board[r][c] = '-';
+   //     board[r][c] = '-';
       }
     }
     return false;
@@ -124,6 +125,8 @@ function prettyBoard(board) {
   const finalArr = arr.toString().split(',').join('\n');
   return finalArr;
 }
+
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
