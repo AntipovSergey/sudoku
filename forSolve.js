@@ -124,7 +124,7 @@ function switcher(main) {
   return main
 }
 
-//console.log(switcher(main))
+// console.log(switcher(main))
 
 module.exports = {
   switcher,

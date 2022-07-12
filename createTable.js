@@ -1,12 +1,8 @@
-
-
-//Укажи индекс это строки, которую нужно вывести из puzzles.txt
-
-
 function convertStringToBoard(dif) {
   const fs = require('fs')
   let readFile = fs.readFileSync('puzzles.txt', 'utf8')
   let splitText = readFile.split('\n')
+  //Укажи индекс это строки, которую нужно вывести из puzzles.txt
   let pickString = process.argv[2]
   let stringByIndex = splitText[pickString]
 
@@ -24,7 +20,7 @@ function convertStringToBoard(dif) {
   }
   return board
 }
-//console.log(convertStringToBoard())
+console.log(convertStringToBoard())
 
 module.exports = convertStringToBoard
 
