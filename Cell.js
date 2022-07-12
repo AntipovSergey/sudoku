@@ -1,13 +1,16 @@
 class Cell {
   constructor(val, coords) {
-    this.value = val === '-' ? undefined : val;
-    this.possibleValues = val === '-' ? [1, 2, 3, 4, 5, 6, 7, 8, 9] : [val];
+    this.value = val === '-' ? undefined : Number(val);
+    this.possibleValues = val === '-' ? [1, 2, 3, 4, 5, 6, 7, 8, 9] : [Number(val)];
     this.neighbours = { row: [], col: [], sq: [] };
     this.#initNeighbours(coords);
   }
 
-  #initNeighbours(coords) {
-    const [rowInd, colInd] = coords;
+  setVal() {
+    this.value = this.possibleValues.at(0);
+  }
+
+  #initNeighbours([rowInd, colInd]) {
     // for row neighbours
     for (let colIndNeig = 0; colIndNeig < 9; colIndNeig += 1) {
       this.neighbours.row.push([rowInd, colIndNeig]);

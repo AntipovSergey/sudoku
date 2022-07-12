@@ -1,20 +1,25 @@
-// const { Cell } = require('./Cell');
-// /**
-//  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
-//  * Возвращает игровое поле после попытки его решить.
-//  * Договорись со своей командой, в каком формате возвращать этот результат.
-//  */
-// function solve(boardString) {
-//   // eslint-disable-next-line max-len
-//   const cellMap = Array.from({ length: 9 }, (_, rowInd) => boardString.substring(rowInd * 9, (rowInd + 1) * 9));
-//   cellMap.forEach((row, rowInd) => {
-//     cellMap[rowInd] = row.split('').map((val, colInd) => new Cell(val, [rowInd, colInd]));
-//   });
 
-//   return cellMap.map((el) => el.map((cell) => cell.value ? cell.value : '-').join('')).join('');
-// }
-// const test = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-// console.log(solve(test))
+const { Cell } = require('./Cell');
+const { searchManager } = require('./searchManager');
+/**
+ * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
+ * Возвращает игровое поле после попытки его решить.
+ * Договорись со своей командой, в каком формате возвращать этот результат.
+ */
+function solve(boardString) {
+  // eslint-disable-next-line max-len
+  const cellMap = Array.from({ length: 9 }, (_, rowInd) => boardString.substring(rowInd * 9, (rowInd + 1) * 9));
+  cellMap.forEach((row, rowInd) => {
+    cellMap[rowInd] = row.split('').map((val, colInd) => new Cell(val, [rowInd, colInd]));
+  });
+
+  searchManager(cellMap);
+  // const cells = cellMap.flat();
+  // cells.forEach((cell) => console.log('possibleValues', cell.possibleValues, '\n'));
+
+  return cellMap.map((el) => el.map((cell) => (cell.value ? cell.value : '-')).join('')).join('');
+}
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -24,13 +29,14 @@
 function isSolved(board) {
   return !board.includes('-');
 }
-// console.log(isSolved(test))
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function prettyBoard(board) {
@@ -67,4 +73,5 @@ module.exports = {
   // solve,
   // isSolved,
   prettyBoard,
+
 };
