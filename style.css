@@ -91,7 +91,9 @@ button::after {
     transform: translate(0);
   }
 }
-
+.input-submit {
+  display: flex;
+}
 input {
   text-decoration: none;
   text-align: center;
@@ -108,6 +110,7 @@ input {
   font-size: 1.6rem;
 }
 
+<<<<<<< HEAD
 
 .global-table {
 	display: flex;
@@ -139,4 +142,53 @@ table td {
   justify-content: center;
   align-items: flex-end;
   padding-top: 48rem;
+=======
+.btn-reset {
+  background-color: rgba(0, 0, 0, 0.327);
+  color: white;
+}
+
+/* Below 850px */
+
+@media (max-width: 54em) {
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Below 570px */
+@media (max-width: 36em) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .section-buttons {
+    padding-top: 1.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  input {
+    width: 7rem;
+    height: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .welcome {
+    padding-top: 3rem;
+  }
+
+  button {
+    margin-bottom: 1rem;
+    width: 7rem;
+    font-size: 1.4rem;
+  }
+
+  ::placeholder {
+    font-size: 1rem;
+  }
+  .btn-reset {
+    margin-top: auto;
+  }
+>>>>>>> dac916760073e372ee16a0c32eab27e08085773c
 }
