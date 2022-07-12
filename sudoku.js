@@ -1,5 +1,6 @@
-const { Cell } = require('./Cell');
-const { searchManager } = require('./searchManager');
+// const { Cell } = require('./Cell');
+
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -12,9 +13,10 @@ function solve(boardString) {
     cellMap[rowInd] = row.split('').map((val, colInd) => new Cell(val, [rowInd, colInd]));
   });
 
-  searchManager(cellMap);
-  return cellMap.map((el) => el.map((cell) => (cell.value ? cell.value : '-')).join('')).join('');
+  return cellMap.map((el) => el.map((cell) => cell.value ? cell.value : '-').join('')).join('');
 }
+const test = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+console.log(solve(test))
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -24,28 +26,47 @@ function solve(boardString) {
 function isSolved(board) {
   return !board.includes('-');
 }
+console.log(isSolved(test))
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-  let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+let str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-  for(let i = 0; i < 9; i++) {
-    let newStr = board.slice(i*9, (i+1)*9);
-    let a = newStr.slice(0,3);
-    let b = newStr.slice(3,6);
-    let c = newStr.slice(6);
+function prettyBoard(board) {
+  let newStr;
+  for (let i = 0; i < 9; i++) {
+    newStr = board.slice(i * 9, (i + 1) * 9)
+
   }
-  console.log(`${a} ${b} ${c}`);
 }
 console.log(prettyBoard(str));
+const parentEl1 = document.querySelector('.sudocu__wrapper')
+
+function createEl() {
+  for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
+    const div = document.createElement('div');
+    div.classList.add('sudocu__items');
+    parentEl1.append(div)
+
+    for (let colIndex = 0; colIndex < 9; colIndex++) {
+        const div1 = document.createElement('div');
+        div1.classList.add('sudocu__item');
+        div1.innerText = str[rowIndex*9 + colIndex]
+        div.append(div1);
+    }
+  }
+}
+console.log(createEl());
+
+
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
-  solve,
-  isSolved,
+  // solve,
+  // isSolved,
   prettyBoard,
 };

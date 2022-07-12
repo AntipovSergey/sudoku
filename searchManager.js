@@ -13,7 +13,12 @@ function clearPossibleValues(cellMap, cell) {
       if (cellPossibleVals.length === 1) return;
       const indPosValToRemove = cellPossibleVals.indexOf(cell.value);
       if (indPosValToRemove === -1) return;
+      // console.log('cellPossibleVals before:', cellPossibleVals);
+      // const test = cellPossibleVals.splice(indPosValToRemove, 1);
+      // console.log('removed value:', test);
       cellPossibleVals.splice(indPosValToRemove, 1);
+      // console.log('cellPossibleVals after:', cellPossibleVals);
+      // console.log('\n');
     });
   });
 }
@@ -124,7 +129,6 @@ function searchManager(cellMap) {
         findedCells.push(cell);
       }
     });
-
     // ! second stage
     // * logic builded on theory about static positions in squares
     // * if we have same possibleValues in one row/cell of square
