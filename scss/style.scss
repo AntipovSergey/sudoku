@@ -5,16 +5,16 @@
 }
 
 .sudocu {
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    padding: 10px;
     &__wrapper {
-        
-        margin: 20px auto;
+        margin: 0px auto;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: space-around;
-        width: 452px;
-        height: 450px;
-        // border: 1px solid red;
         background-color: #ccebe0;
     }
     &__items {
@@ -30,11 +30,17 @@
     }
     &__item {
         height: 50px;
-        width: 49px;
+        width: 50px;
+        line-height: 50px;
+        text-align: center;
         border: 1px solid red;
         // border-bottom: 1px solid red;
     }
-    &__elem {
+ 
+}
+.btn {
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
 
-    }
 }
