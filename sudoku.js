@@ -50,6 +50,7 @@ function getArrayFromString(string) {
   return subarray;
 }
 
+
 // console.log(getArrayFromString(getPuzzle()));
 
 function solve(board) {
@@ -103,14 +104,20 @@ function solve(board) {
     for (let i = 1; i <= 9; i++) {
       const candidate = i.toString();
       const checkResult = solveCheck(candidate, emptySpace, board);
+
+      
+
       // console.log(emptySpace, candidate, checkResult);
+
       if (checkResult) {
         const [r, c] = emptySpace;
         board[r][c] = candidate;
         if (sudoSolve()) {
           return true;
         }
+
         board[r][c] = '-';
+
       }
     }
     return false;
@@ -143,6 +150,7 @@ function prettyBoard(board) {
   return finalArr;
 }
 
+
 // module.exports = {
 //   solve,
 //   isSolved,
@@ -150,3 +158,4 @@ function prettyBoard(board) {
 //   getPuzzle,
 //   getArrayFromString,
 // };
+
