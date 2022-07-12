@@ -110,6 +110,39 @@ input {
   font-size: 1.6rem;
 }
 
+<<<<<<< HEAD
+
+.global-table {
+	display: flex;
+	justify-content: center;
+	margin: 40px 0 0 0 ;
+}
+table {
+	border: 1px solid #000;
+	color: aliceblue;
+	text-align: center;
+	
+}
+
+table tr {
+	border: 1px solid #000;
+}
+
+table td {
+	padding: 5px 20px 5px 20px;
+	font-size: 22px;
+}
+.separator {
+	border-right: 1px solid black;
+	
+}
+
+.reset {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 48rem;
+=======
 .btn-reset {
   background-color: rgba(0, 0, 0, 0.327);
   color: white;
@@ -157,4 +190,5 @@ input {
   .btn-reset {
     margin-top: auto;
   }
+>>>>>>> dac916760073e372ee16a0c32eab27e08085773c
 }

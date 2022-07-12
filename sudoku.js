@@ -37,6 +37,8 @@ function getPuzzle(sudoNum) {
   return puzzle;
 }
 
+
+
 function getArrayFromString(string) {
   const arrayFromString = string.split('');
   const size = 9;

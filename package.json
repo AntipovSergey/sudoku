@@ -1,4 +1,31 @@
 {
+<<<<<<< HEAD
+	"name": "sudoku",
+	"version": "1.0.0",
+	"description": "## Введение",
+	"main": "runner.js",
+	"type": "module",
+	"scripts": {
+		"start": "node runner.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Elbrus-Bootcamp/project-sudoku.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Elbrus-Bootcamp/project-sudoku/issues"
+	},
+	"homepage": "https://github.com/Elbrus-Bootcamp/project-sudoku#readme",
+	"devDependencies": {
+		"eslint": "^8.19.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.26.0"
+	}
+}
+=======
   "name": "sudoku",
   "version": "1.0.0",
   "description": "## Введение",
@@ -25,3 +52,4 @@
     "jest": "^28.1.2"
   }
 }
+>>>>>>> dac916760073e372ee16a0c32eab27e08085773c
