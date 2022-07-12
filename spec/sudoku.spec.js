@@ -2,6 +2,7 @@
 
 const createTable = require('../createTable')
 const slav = require('../slav')
+const boardString = require('../createTable')
 
 describe('Тестим ф-ю "convertStringToBoard"', function() {
   it('Тип данных должен быть "object"', function() {
@@ -23,7 +24,7 @@ describe('Тестим ф-ю "solved"', function() {
       [1, 2, 3, 4, 5, 6, 7, 8, 9],
       [1, 2, 3, 4, 5, 6, 7, 8, 9],
   ];
-    expect(slav(arrayTrue)).toBe(true)
+    expect(slav(boardString)).toBe(true)
   })
   it('Результат должен быть "false", если сумма чисел в каждом вложенном массиве НЕ равна 45', function() {
     let arrayFalse = [
