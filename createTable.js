@@ -7,20 +7,20 @@ let pickString = 0
 let stringByIndex = splitText[pickString]
 
 function convertStringToBoard() {
-  let board = []  
+  let board = []
   for (let j = 0; j < stringByIndex.length; j += 9) {
     let arr = []
-    for (let i = j; i < j + 9 ; i++) {
-      if(isNaN(stringByIndex[i]) == true){
+    for (let i = j; i < j + 9; i++) {
+      if (isNaN(stringByIndex[i]) == true) {
         arr.push(0)
-        } else {
-          arr.push(Number(stringByIndex[i]))
-        }
+      } else {
+        arr.push(Number(stringByIndex[i]))
+      }
     }
     board.push(arr)
-  }  
+  }
   return board
 }
 //console.log(convertStringToBoard())
 
- module.exports = convertStringToBoard
+module.exports = convertStringToBoard

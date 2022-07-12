@@ -9,13 +9,16 @@ const boardString = require('./createTable');
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 let newString = boardString();
-function solve(newString) {
+function solve(newString, stepsNum = 0) {
 
-
+  if (stepsNum > 80) {
+    return newString.join(' \n')
+  }
+  stepsNum = stepsNum + 1
 
   let result = switcher.switcher(newString)
-  if (solved(newString) == false) {
-    return solve(result)
+  if (solved(result) == false) {
+    return solve(result, stepsNum)
   }
 
   return newString.join(' \n')

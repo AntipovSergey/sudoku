@@ -1,5 +1,5 @@
 
-let options = [7, 8, 9]
+
 
 function arrCheck(arr, options) {
 
@@ -29,18 +29,18 @@ function toColumns(main) {
   return columns
 }
 
-/* 
-let main = [
-  [1, 0, 5, 8, 0, 2, 0, 0, 0],
-  [0, 9, 0, 0, 7, 6, 4, 0, 5],
-  [2, 0, 0, 4, 0, 0, 8, 1, 9],
-  [0, 1, 9, 0, 0, 7, 3, 0, 6],
-  [7, 6, 2, 0, 8, 3, 0, 9, 0],
-  [0, 0, 0, 0, 6, 1, 0, 5, 0],
-  [0, 0, 7, 6, 0, 0, 0, 3, 0],
-  [4, 3, 0, 0, 2, 0, 5, 0, 1],
-  [6, 0, 0, 3, 0, 8, 9, 0, 0]
-] */
+
+// let main = [
+//   [1, 0, 5, 8, 0, 2, 0, 0, 0],
+//   [0, 9, 0, 0, 7, 6, 4, 0, 5],
+//   [2, 0, 0, 4, 0, 0, 8, 1, 9],
+//   [0, 1, 9, 0, 0, 7, 3, 0, 6],
+//   [7, 6, 2, 0, 8, 3, 0, 9, 0],
+//   [0, 0, 0, 0, 6, 1, 0, 5, 0],
+//   [0, 0, 7, 6, 0, 0, 0, 3, 0],
+//   [4, 3, 0, 0, 2, 0, 5, 0, 1],
+//   [6, 0, 0, 3, 0, 8, 9, 0, 0]
+// ]
 
 
 
@@ -69,7 +69,6 @@ function toSquare(main) {
   return globalArr
 }
 
-
 function coordinates(i, u) {
   if (i <= 2 && u <= 2) {
     return 0
@@ -93,6 +92,7 @@ function coordinates(i, u) {
 }
 
 
+
 function switcher(main) {
   let columns = toColumns(main)
   let squares = toSquare(main)
@@ -103,10 +103,18 @@ function switcher(main) {
       if (main[i][u] == 0) {
         let options = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         options = arrCheck(main[i], options)        //тест по строке
+        if (options.length == 1) {
+          main[i][u] = (options[0])
+        }
+        //console.log('after row ===>', options)
         options = arrCheck(columns[u], options)  //отсечение вариантов по столбцам
-
-        //console.log(squares[coordinates(u, i)])
+        if (options.length == 1) {
+          main[i][u] = (options[0])
+        }
+        //console.log('after column ===>', options)
         options = arrCheck(squares[coordinates(u, i)], options)  //отсечение вариантов по квадратам
+        //console.log('after square ===>', options)
+
         if (options.length == 1) {
           main[i][u] = (options[0])
         }
