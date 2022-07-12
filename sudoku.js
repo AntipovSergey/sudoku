@@ -15,7 +15,7 @@ let newString = boardString(dif);
 function solve(newString, stepsNum = 0) {
 
   if (stepsNum > 80) {
-    return newString.join(' \n')
+    return newString
   }
   stepsNum = stepsNum + 1
 
@@ -25,9 +25,6 @@ function solve(newString, stepsNum = 0) {
   }
 
   return newString
-
-  
-
 }
 
 console.log(prettySudoku(solve(newString)))
