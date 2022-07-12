@@ -15,6 +15,7 @@ function solve(boardString) {
 
   function findEmpty(boardArray) {
     for (let r = 0; r < size; r++) {
+      // eslint-disable-next-line no-plusplus
       for (let c = 0; c < size; c++) {
         if (boardArray[r][c] === '-') {
           return [r, c];
@@ -23,7 +24,6 @@ function solve(boardString) {
     }
     return null;
   }
-
   function validate(num, pos, boardArray) {
     const [r, c] = pos;
     for (let i = 0; i < size; i++) {
@@ -78,11 +78,10 @@ function isSolved(boardString) {
     return true;
   }
 }
-// console.log(solve());
+
 function prettyBoard(boardString) {
-  console.table(boardString);
-  return 'УРААА!!! МЫ РЕШИЛИ!!!';
-}
+  console.table(boardString)
+  return 'УРААААА, МЫ РЕШИЛИ!!!!'
 
 module.exports = {
   solve,
