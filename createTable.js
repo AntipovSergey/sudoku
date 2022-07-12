@@ -21,6 +21,5 @@ function convertStringToBoard(dif) {
   return board
 }
 //console.log(convertStringToBoard())
-
 module.exports = convertStringToBoard
 

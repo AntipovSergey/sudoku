@@ -22,7 +22,6 @@ rl.close();
  */
 
 
-
 let newString = boardString();
 
 function solve(newString, stepsNum = 0) {
@@ -47,6 +46,7 @@ function solve(newString, stepsNum = 0) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+
 function isSolved(board) {
     let str = solved(board);
     if (str === true) {

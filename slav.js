@@ -1,6 +1,5 @@
 const forSolve = require('./forSolve.js')
 
-
 function solved(arr) {
 
     let count = 0;
