@@ -1,8 +1,9 @@
 function solve(boardString) {
   const boxSize = 3;
   const size = 9;
-  // eslint-disable-next-line no-shadow
+
   function boardStringToArray(boardString) {
+    console.log(boardString);
     const board = boardString.split('');
     const boardArray = [];
     for (let i = 0; i < board.length; i += 9) {
@@ -11,11 +12,8 @@ function solve(boardString) {
     return boardArray;
   }
   const boardArray = boardStringToArray(boardString);
-  // eslint-disable-next-line no-shadow
+
   function findEmpty(boardArray) {
-    // eslint-disable-next-line no-shadow
-    const size = 9;
-    // eslint-disable-next-line no-plusplus
     for (let r = 0; r < size; r++) {
       // eslint-disable-next-line no-plusplus
       for (let c = 0; c < size; c++) {
@@ -26,7 +24,6 @@ function solve(boardString) {
     }
     return null;
   }
-  // eslint-disable-next-line no-shadow
   function validate(num, pos, boardArray) {
     const [r, c] = pos;
     for (let i = 0; i < size; i++) {
@@ -46,6 +43,7 @@ function solve(boardString) {
     }
     return true;
   }
+
   function generateNum() {
     const currPos = findEmpty(boardArray);
     if (currPos === null) {
@@ -68,23 +66,22 @@ function solve(boardString) {
   generateNum();
   return boardArray;
 }
-  function isSolved(boardString1) {
-    const size = 9;
-    for (let r = 0; r <= size; r++) {
-    
-      for (let c = 0; c <= size; c++) {
-        if (boardString1[r][c] === "-") {
-          return false;
-        }
+
+function isSolved(boardString) {
+  const size = 9;
+  for (let r = 0; r <= size; r++) {
+    for (let c = 0; c <= size; c++) {
+      if (boardString[r][c] === '-') {
+        return false;
       }
-      return true;
     }
+    return true;
+  }
 }
 
 function prettyBoard(boardString) {
   console.table(boardString)
   return 'УРААААА, МЫ РЕШИЛИ!!!!'
-}
 
 module.exports = {
   solve,
