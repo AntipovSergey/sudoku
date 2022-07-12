@@ -1,8 +1,9 @@
 function solve(boardString) {
   const boxSize = 3;
   const size = 9;
+  // eslint-disable-next-line no-shadow
   function boardStringToArray(boardString) {
-    const board = boardString.split("");
+    const board = boardString.split('');
     const boardArray = [];
     for (let i = 0; i < board.length; i += 9) {
       boardArray.push(board.slice(i, i + 9));
@@ -10,17 +11,22 @@ function solve(boardString) {
     return boardArray;
   }
   const boardArray = boardStringToArray(boardString);
+  // eslint-disable-next-line no-shadow
   function findEmpty(boardArray) {
+    // eslint-disable-next-line no-shadow
     const size = 9;
+    // eslint-disable-next-line no-plusplus
     for (let r = 0; r < size; r++) {
+      // eslint-disable-next-line no-plusplus
       for (let c = 0; c < size; c++) {
-        if (boardArray[r][c] === "-") {
+        if (boardArray[r][c] === '-') {
           return [r, c];
         }
       }
     }
     return null;
   }
+  // eslint-disable-next-line no-shadow
   function validate(num, pos, boardArray) {
     const [r, c] = pos;
     for (let i = 0; i < size; i++) {
@@ -54,7 +60,7 @@ function solve(boardString) {
         if (generateNum()) {
           return true;
         }
-        boardArray[x][y] = "-";
+        boardArray[x][y] = '-';
       }
     }
     return false;
@@ -65,6 +71,7 @@ function solve(boardString) {
   function isSolved(boardString1) {
     const size = 9;
     for (let r = 0; r <= size; r++) {
+    
       for (let c = 0; c <= size; c++) {
         if (boardString1[r][c] === "-") {
           return false;
@@ -73,10 +80,10 @@ function solve(boardString) {
       return true;
     }
 }
-console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
-function prettyBoard(boardString) {
 
-  return console.table(boardString)
+function prettyBoard(boardString) {
+  console.table(boardString)
+  return 'УРААААА, МЫ РЕШИЛИ!!!!'
 }
 
 module.exports = {
