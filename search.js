@@ -22,7 +22,7 @@ let sudoku = [
   ['-', '-', '-', '-', '-', '-', '-', '-', '-'],
 ];
 
-const solve = function (fullArr) {
+function solvePuzzle (fullArr) {
   const findEmpty = (fullArr) => {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -89,7 +89,6 @@ const solve = function (fullArr) {
   return fullArr;
 };
 
-console.log(solve(sudoku));
 
 // function searchEl(fullArr, indexArr, el = 1) {
 //   for (let i = 0; i < indexArr.length; i++) {
