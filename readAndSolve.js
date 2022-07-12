@@ -10,7 +10,6 @@ const sudoku = require('./sudoku');
   return str
 } */
 
-// console.log(err('./puzzles.txt'))
 
 function make() {
   const sudStr = makeArr();
