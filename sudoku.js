@@ -3,20 +3,9 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function a() {
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      return arr.push()
-    }
-  }
-  return arr
-}
-console.log(a([['4','5','6'],['4','5','6'],['4','5','6']]));
-function solve(boardString) {
-  
-}
-  
 
+
+  
 function findDash (arr) {
 for(let z=0; z<arr.length; z++) {
   for (let j=0; j<arr[z].length; j++) {
@@ -28,9 +17,11 @@ for(let z=0; z<arr.length; z++) {
 return null;
 }
 
-
-
-
+function checkDash(number, arr) {
+for( let i=0; i<arr.length; i++) {
+  
+}
+}
 
 function solve(boardString) {
 
