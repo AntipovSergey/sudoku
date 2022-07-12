@@ -50,7 +50,7 @@ stepBtn.addEventListener('click', () => {
   let finded = false;
   let count = 1;
   while (!finded && count < 300) {
-    const randmInd = Math.floor(Math.random() * 80);
+    const randmInd = Math.floor(Math.random() * 81);
     if (itemEl[randmInd].innerText === '-') {
       itemEl[randmInd].innerHTML = textBordAfter[randmInd];
       finded = true;
@@ -66,7 +66,7 @@ animBtn.addEventListener('click', () => {
       let count = 1;
       let finded = false;
       while (!finded && count < 300) {
-        const randmInd = Math.floor(Math.random() * 80);
+        const randmInd = Math.floor(Math.random() * 81);
         if (itemEl[randmInd].innerText === '-') {
           itemEl[randmInd].innerHTML = textBordAfter[randmInd];
           finded = true;
