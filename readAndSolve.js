@@ -1,5 +1,36 @@
 // Подключить функции из файла sudoku.js.
+const fs = require('fs');
 const sudoku = require('./sudoku');
+
+
+
+function make() {
+  const sudStr = makeArr();
+  function makeArr() {
+    const str = fs.readFileSync('./puzzles.txt', 'utf-8');
+    const puzzles = str
+      .split('\n')
+      .filter((line) => line !== '');
+    return puzzles;
+  }
+
+  const ranNum = randomNumber();
+  function randomNumber() {
+    if (process.argv[2]) {
+      return process.argv[2];
+    }
+    return Math.floor(Math.random() * 4);
+  }
+
+  function arr(str) {
+    return str.replace(/(.{9})/g, (match, n) => `${n}\n`)
+      .split('\n')
+      .filter((line) => line !== '')
+      .map((el) => el.split(''));
+  }
+  return arr(sudStr[ranNum]);
+}
+
 
 // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
 // завершить работу функции.
@@ -9,12 +40,20 @@ function readAndSolve(error, fileData) {
   }
 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
-  const puzzles = fileData
+  const puzzles = fs.readFileSync('./puzzles.txt', 'utf-8')
     .split('\n')
     .filter((line) => line !== '');
+  console.log('puzzles >>>', puzzles);
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(process.argv[2]) || 0;
+  function randomNumber() {
+    if (process.argv[2]) {
+      return process.argv[2];
+    }
+    return Math.floor(Math.random() * 4);
+  }// Number(process.argv[2]) || 0;
+
+  const puzzleNumber = randomNumber();
 
   // Ограничить номер судоку максимальным числом массива с паззлами.
   if (puzzleNumber > puzzles.length) {
@@ -22,10 +61,40 @@ function readAndSolve(error, fileData) {
   }
 
   // Получить желаемый судоку по индексу и вывести его в консоль.
-  const puzzle = puzzles[puzzleNumber - 1];
+  const puzzle = puzzles[puzzleNumber];
   console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
+  console.log('>>>>>>>', puzzle, '\n');
 
+  
+  function make() {
+    const sudStr = makeArr();
+    function makeArr() {
+      const str = fs.readFileSync('./puzzles.txt', 'utf-8');
+      const puzzles = str
+        .split('\n')
+        .filter((line) => line !== '');
+      return puzzles;
+    }
+  
+    // const ranNum = randomNumber();
+    // function randomNumber() {
+    //   if (process.argv[2]) {
+    //     return process.argv[2];
+    //   }
+    //   return Math.floor(Math.random() * 4);
+    // }
+  
+    function arr(str) {
+      return str.replace(/(.{9})/g, (match, n) => `${n}\n`)
+        .split('\n')
+        .filter((line) => line !== '')
+        .map((el) => el.split(''));
+    }
+    return arr(sudStr[ranNum]);
+  }
+
+  
+  
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzle);
 
@@ -44,5 +113,3 @@ function readAndSolve(error, fileData) {
 }
 
 module.exports = readAndSolve;
-
-
