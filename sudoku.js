@@ -1,14 +1,30 @@
 /* eslint-disable max-len */
-const fs = require("fs");
+// const fs = require('fs');
+
+const txt = `1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--
+--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3
+29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9
+-8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-
+6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--
+---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----
+-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--
+-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7
+----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----
+3---------5-7-3--8----28-7-7------43-----------39-41-54--3--8--1---4----968---2--
+3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-
+-2-5----48-5--------48-9-2------5-73-9-----6-25-9------3-6-18--------4-71----4-9-
+--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--
+----------2-65-------18--4--9----6-4-3---57-------------------73------9----------
+---------------------------------------------------------------------------------
+`
 
 function getPuzzle(sudoNum) {
-  const puzzles = fs
-    .readFileSync("./puzzles.txt", "utf-8")
-    .split("\n")
-    .filter((line) => line !== "");
+  const puzzles = txt
+    .split('\n')
+    .filter((line) => line !== '');
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(process.argv[2]) || sudoNum || 1;
+  let puzzleNumber = sudoNum || 1;
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;
   }
@@ -22,7 +38,7 @@ function getPuzzle(sudoNum) {
 }
 
 function getArrayFromString(string) {
-  const arrayFromString = string.split("");
+  const arrayFromString = string.split('');
   const size = 9;
   const subarray = [];
   for (let i = 0; i < arrayFromString.length / size; i++) {
@@ -38,7 +54,7 @@ function solve(board) {
   function getRowColIndex(sudo) {
     for (let r = 0; r < sudo.length; r++) {
       for (let c = 0; c < sudo[r].length; c++) {
-        if (sudo[r][c] === "-") {
+        if (sudo[r][c] === '-') {
           return [r, c];
         }
       }
@@ -92,7 +108,7 @@ function solve(board) {
         if (sudoSolve()) {
           return true;
         }
-        board[r][c] = "-";
+        board[r][c] = '-';
       }
     }
     return false;
@@ -101,13 +117,13 @@ function solve(board) {
   return board;
 }
 
-console.table(getArrayFromString(getPuzzle()));
-console.table(solve(getArrayFromString(getPuzzle())));
+// console.table(getArrayFromString(getPuzzle()));
+// console.table(solve(getArrayFromString(getPuzzle())));
 
 function isSolved(board) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === "-") {
+      if (board[i][j] === '-') {
         return false;
       }
     }
@@ -116,19 +132,19 @@ function isSolved(board) {
 }
 
 function prettyBoard(board) {
-  const emptyStr = "---------------------------------";
-  const arr = board.map((el) => el.toString().split(",").join(" | "));
+  const emptyStr = '---------------------------------';
+  const arr = board.map((el) => el.toString().split(',').join(' | '));
   arr.splice(3, 0, emptyStr);
   arr.splice(7, 0, emptyStr);
 
-  const finalArr = arr.toString().split(",").join("\n");
+  const finalArr = arr.toString().split(',').join('\n');
   return finalArr;
 }
 
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-  getPuzzle,
-  getArrayFromString,
-};
+// module.exports = {
+//   solve,
+//   isSolved,
+//   prettyBoard,
+//   getPuzzle,
+//   getArrayFromString,
+// };
