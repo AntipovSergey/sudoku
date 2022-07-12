@@ -80,9 +80,9 @@ function isSolved(boardString) {
 }
 
 function prettyBoard(boardString) {
-  console.table(boardString)
-  return 'УРААААА, МЫ РЕШИЛИ!!!!'
-
+  console.table(boardString);
+  return 'УРААААА, МЫ РЕШИЛИ!!!!';
+}
 module.exports = {
   solve,
   isSolved,
