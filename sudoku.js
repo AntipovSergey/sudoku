@@ -105,7 +105,6 @@ for(let z=0; z<arr.length; z++) {
 return null;
 }
 
-<<<<<<< HEAD
 function checkDash(number,position, arr) {
     const position = [z,j];
     for (let i = 0; i < arr.length; i++) {
@@ -119,14 +118,12 @@ function checkDash(number,position, arr) {
         }
     }
 }
-=======
 function reload () {
   if (solve() === true) return true;
   boardString[z][j] ='-';
 }
 
 
->>>>>>> 7429c5d06eb9f0a371a156a8482fdef515b21fa1
 
 
 function solve(boardString) {
@@ -137,8 +134,18 @@ function solve(boardString) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
 
+ function isSolved(board) {
+  for (let i = 0; i < board.length; i++) {
+    console.log('board[i]:', board[i])
+    for (let j = 0; j < board[i].length; j++) {
+      console.log('board[i][j]:', board[i][j])
+      if (board[i][j] === '-') {
+        return false
+      }
+    }
+    return true
+  }
 }
 
 /**
