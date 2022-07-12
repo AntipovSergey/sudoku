@@ -32,7 +32,7 @@ let board = [
     }
     console.log("|=======|=======|=======|")
 
-    console.log('\n      Solved!')
+    return '\n         Solved!'
 }
 
 
