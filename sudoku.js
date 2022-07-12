@@ -1,8 +1,10 @@
 function solve(boardString) {
   const boxSize = 3;
   const size = 9;
+
   function boardStringToArray(boardString) {
-    const board = boardString.split("");
+    console.log(boardString);
+    const board = boardString.split('');
     const boardArray = [];
     for (let i = 0; i < board.length; i += 9) {
       boardArray.push(board.slice(i, i + 9));
@@ -10,17 +12,18 @@ function solve(boardString) {
     return boardArray;
   }
   const boardArray = boardStringToArray(boardString);
+
   function findEmpty(boardArray) {
-    const size = 9;
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if (boardArray[r][c] === "-") {
+        if (boardArray[r][c] === '-') {
           return [r, c];
         }
       }
     }
     return null;
   }
+
   function validate(num, pos, boardArray) {
     const [r, c] = pos;
     for (let i = 0; i < size; i++) {
@@ -40,6 +43,7 @@ function solve(boardString) {
     }
     return true;
   }
+
   function generateNum() {
     const currPos = findEmpty(boardArray);
     if (currPos === null) {
@@ -54,7 +58,7 @@ function solve(boardString) {
         if (generateNum()) {
           return true;
         }
-        boardArray[x][y] = "-";
+        boardArray[x][y] = '-';
       }
     }
     return false;
@@ -62,21 +66,22 @@ function solve(boardString) {
   generateNum();
   return boardArray;
 }
-  function isSolved(boardString1) {
-    const size = 9;
-    for (let r = 0; r <= size; r++) {
-      for (let c = 0; c <= size; c++) {
-        if (boardString1[r][c] === "-") {
-          return false;
-        }
-      }
-      return true;
-    }
-}
-console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
-function prettyBoard(boardString) {
 
-  return console.table(boardString)
+function isSolved(boardString) {
+  const size = 9;
+  for (let r = 0; r <= size; r++) {
+    for (let c = 0; c <= size; c++) {
+      if (boardString[r][c] === '-') {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+// console.log(solve());
+function prettyBoard(boardString) {
+  console.table(boardString);
+  return 'УРААА!!! МЫ РЕШИЛИ!!!';
 }
 
 module.exports = {
