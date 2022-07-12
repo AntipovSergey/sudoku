@@ -23,7 +23,7 @@ function sectoin(cect, row, col) {
     for (let j = Math.floor(col/3)*3; j < Math.floor(col/3)*3 + 3; j++) {
       for (let i = 1; i <= 9; i++) {
         const num = i;
-        if (cect[i][j] === num && i !==row && j!== col) return false;
+        if (cect[i][j] === num && i !== row && j !== col) return false;
       }
     }
   }
@@ -45,7 +45,7 @@ function boardArray(str, length) {
   }
   return newArr;
 }
-console.log(boardArray(puzzles, 9));
+console.table(boardArray(puzzles, 9));
 
 function findDash (arr) {
 for(let z=0; z<arr.length; z++) {
@@ -58,7 +58,10 @@ for(let z=0; z<arr.length; z++) {
 return null;
 }
 
-
+function reload () {
+  if (solve() === true) return true;
+  boardString[z][j] ='-';
+}
 
 
 
