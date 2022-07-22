@@ -1,46 +1,27 @@
 // Подключить функции из файла sudoku.js.
-// const sudoku = require('./sudoku')
-import { solve, isSolved, prettyBoard } from './sudoku';
+const fs = require('fs');
+const sudoku = require('./sudoku');
 
-function readAndSolve(error, fileData) {
-  // git add -A, git pull origin master
-  if (error) {
-    throw error;
+const puzzles = fs.readFileSync('./puzzles.txt', 'utf8');
+function readAndSolve(puzzles) {
+  const clearPuzzles = puzzles.split('\n').filter((line) => line !== '');
+  const puzzleNumber = Number(process.argv[2]) || 1;
+  const size = 9;
+  const squareSize = 3;
+
+  let arr = [];
+  const table = [];
+  const str = clearPuzzles[puzzleNumber].replaceAll('-', '0');
+  for (let j = 1; j <= 81; j += 1) {
+    arr.push(Number(str[j - 1]));
+    if ((j % 9 === 0) && (j !== 0)) {
+      table.push(arr);
+      arr = [];
+    }
   }
-
-  // Разбить содержимое файла построчно и отфильтровать все пустые строки.
-  const puzzles = fileData
-    .split('\n')
-    .filter((line) => line !== '');
-
-  //   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(process.argv[2]) || 1;
-
-  //   // Ограничить номер судоку максимальным числом массива с паззлами.
-  if (puzzleNumber > puzzles.length) {
-    puzzleNumber = puzzles.length;
-  }
-
-  //   // Получить желаемый судоку по индексу и вывести его в консоль.
-  const puzzle = puzzles[puzzleNumber - 1];
-  console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
-
-  //   // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = solve(puzzle);
-
-  //   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
-  if (!isSolved(solvedPuzzle)) {
-    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-    return; // Если судоку не решён, завершить работу этой функции.
-  }
-
-  //   // Код ниже сработает, только если проверка решения судоку прошла успешно.
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
-
-  //   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
-  //   // игрового поля в строку в желаемом формате.
-  console.log(prettyBoard(solvedPuzzle), '\n');
+  return table;
 }
 
-exports.default = readAndSolve;
+console.table(readAndSolve(puzzles));
+
+module.exports = readAndSolve;
