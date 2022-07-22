@@ -4,6 +4,27 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+    const currPos = findEmpty(board);
+
+    if (currPos === null) {
+        return true;
+    }
+    for (let i = 1; i < size + 1; i++) {
+        const currNum = i.toString();
+        const isValid = validate(currNum, currPos, board);
+        if (isValid) {
+            const [x,y] = currPos;
+            board[x][y] = currNum;
+
+            if(solve()) {
+                return true;
+            }
+
+            board[x][y] = '.';
+        }
+    }
+
+    return false;
 }
 
 /**
