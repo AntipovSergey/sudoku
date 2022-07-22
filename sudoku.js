@@ -19,7 +19,8 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
+function prettyBoard(sudoku) {
+
 
 }
 
