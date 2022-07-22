@@ -3,8 +3,7 @@
 import { solve, isSolved, prettyBoard } from './sudoku';
 
 function readAndSolve(error, fileData) {
-  // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
-  // завершить работу функции.
+  // git add -A, git pull origin master
   if (error) {
     throw error;
   }
