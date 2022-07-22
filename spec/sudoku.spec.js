@@ -1,2 +1,2 @@
-const sudoku = require('../sudoku.js')
+const sudoku = require('./puzzles.txt', 'utf8')
 
