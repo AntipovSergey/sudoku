@@ -15,6 +15,6 @@ function examination(sudoku) {
         if (sudoku[index].includes(0) == true) {
             return examination(sudoku)
         }  
-    }=
+    }
     // return puzzle; в конце основной функции
 }
