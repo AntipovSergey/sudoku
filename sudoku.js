@@ -26,25 +26,37 @@ function solve(boardString) {
       }
       columns.push(column);
   }
+  console.log('rows', rows)
 
-  let boxes = [];
+let boxes = [];
+
+
+let s = 0;
+let k = 0;
+for (let b = 0; b < 9; b += 1) {
 
   let box = [];
   for (let i = 0; i < 3; i += 1) {
-    let BoxRow = [];
-    let BoxRowCount = 0;
+    let boxRow = [];
     for (let j = 0; j < 3; j += 1) {
-      BoxRow.push(rows[BoxRowCount*3 + j][i*3 + i])
+      boxRow.push(rows[i + s*3][j + k*3])
     }
-    box.push(BoxRow)
-    BoxRowCount = BoxRowCount + 1;
-  }
-  console.log(boxes)
 
+    box.push(boxRow)
+  }
+  s += 1;
+  if (s % 3 === 0) {
+    k +=1;
+    s = 0;
+  }
+  boxes.push(box)
+}
+console.log(boxes)
 }
 
 
 solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')
+//solve('123456789------------------------------------------------------------------------')
 
 
 /**
