@@ -1,46 +1,20 @@
-// Подключить функции из файла sudoku.js.
-const sudoku = require('./sudoku');
+const fs = require('fs');
 
-function readAndSolve(error, fileData) {
-  // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
-  // завершить работу функции.
-  if (error) {
-    throw error;
-  }
-
-  // Разбить содержимое файла построчно и отфильтровать все пустые строки.
-  const puzzles = fileData
-    .split('\n')
-    .filter((line) => line !== '');
-
-  // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(process.argv[2]) || 1;
-
-  // Ограничить номер судоку максимальным числом массива с паззлами.
-  if (puzzleNumber > puzzles.length) {
-    puzzleNumber = puzzles.length;
-  }
-
-  // Получить желаемый судоку по индексу и вывести его в консоль.
-  const puzzle = puzzles[puzzleNumber - 1];
-  console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
-
-  // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = sudoku.solve(puzzle);
-
-  // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
-  if (!sudoku.isSolved(solvedPuzzle)) {
-    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-    return; // Если судоку не решён, завершить работу этой функции.
-  }
-
-  // Код ниже сработает, только если проверка решения судоку прошла успешно.
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
-
-  // Использовать функцию prettyBoard из файла sudoku.js для форматирования
-  // игрового поля в строку в желаемом формате.
-  console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
+function readAndSolve(numEx) {
+  const txtfile = fs.readFileSync('./puzzles.txt', 'utf8');
+  const fullStr = txtfile.split('\n');
+  const expArr = fullStr[numEx].split('');
+  const res = [[], [], [], [], [], [], [], [], []];
+  expArr.forEach((elem, i) => {
+    if (i <= 8) res[0].push(elem);
+    if (i > 8 && i <= 17) res[1].push(elem);
+    if (i > 17 && i <= 26) res[2].push(elem);
+    if (i > 26 && i <= 35) res[3].push(elem);
+    if (i > 35 && i <= 44) res[4].push(elem);
+    if (i > 44 && i <= 53) res[5].push(elem);
+    if (i > 53 && i <= 62) res[6].push(elem);
+    if (i > 62 && i <= 71) res[7].push(elem);
+    if (i > 71) res[8].push(elem);
+  });
+  return res;
 }
-
-module.exports = readAndSolve;
