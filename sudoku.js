@@ -1,5 +1,8 @@
+const fs = require('fs');
+const readTextfile = fs.readFileSync('./puzzles.txt', 'utf-8');
+console.log(readTextfile);
 /**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
+* Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
