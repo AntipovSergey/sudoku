@@ -1,4 +1,4 @@
-let board;
+let board = require('./readAndSolve');
 
 
 let solveSudoku = function (board) {
@@ -8,7 +8,7 @@ let solveSudoku = function (board) {
   const findEmpty = (board) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if (board[r][c] === '-') {
+        if (board[r][c] === '0') {
           return [r, c];
         }
       }
@@ -62,7 +62,7 @@ let solveSudoku = function (board) {
           return true;
         }
 
-        board[x][y] = '-';
+        board[x][y] = '0';
       }
     }
 
