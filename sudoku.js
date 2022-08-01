@@ -4,6 +4,16 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  let strArr = boardString.split('');
+  let size = 9;
+  let resSud =[];
+  for(let i=0;i < strArr.length; i+=size){
+    resSud.push(strArr.slice(i,i+size))
+  }
+  console.log(resSud);
+  
+  return resSud;
+
 }
 
 /**
