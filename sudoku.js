@@ -5,30 +5,95 @@
  * возвращаем 2мерный массив
  */
 function solve(boardString) {
-  const board = [];
-  for (let i = 0; i < boardString.length; i += 9) {
-    const arr = [];
-    for (let j = 0; j < 9; j += 1) {
-      arr.push(boardString[j + i]);
-    }
-    board.push(arr);
-  }
+  // const board = [];
+  // for (let i = 0; i < boardString.length; i += 9) {
+  //   const arr = [];
+  //   for (let j = 0; j < 9; j += 1) {
+  //     arr.push(boardString[j + i]);
+  //   }
+  //   board.push(arr);
+  // }
 
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === '-') {
-        let newInteger = Math.floor(1 + Math.random() * 9).toString();
-        while (board[i].includes(newInteger)) {
-          newInteger = Math.floor(1 + Math.random() * 9).toString();
-        }
-        board[i][j] = newInteger;
+  let finalBoard = [];
+  function newBoard(board) {
+    for (let r = 0; r < board.length; r++) {
+      for (let c = 0; c < board[r].length; c++) {
+        if (board[r][c] === '-') {
+          // let newInteger = Math.floor(1 + Math.random() * 9).toString();
+          // while (board[r].includes(newInteger)) {
+          //   newInteger = Math.floor(1 + Math.random() * 9).toString();
+          // }
+          return board[r, c];
+        } 
       }
     }
+    return null;
+    // finalBoard = board;
+    // return finalBoard;
   }
-  return board;
+
+  function newBoard(board) {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        if (board[i][j] === '-') {
+          let newInteger = Math.floor(1 + Math.random() * 9).toString();
+          while (board[i].includes(newInteger)) {
+            newInteger = Math.floor(1 + Math.random() * 9).toString();
+          }
+          board[i][j] = newInteger;
+        }
+      }
+    }
+    finalBoard = board;
+    return finalBoard;
+  }
+
+  console.log('новый\n', newBoard(board));
+
+  const transpondArr = [];
+  const rows = finalBoard.length;
+  const cols = finalBoard[0].length;
+
+  // function tranpose(finalBoard) {
+  //   for (let col = 0; col < cols; col++) {
+  //     transpondArr[col] = [];
+  //   }
+
+  //   for (let row = 0; row < rows; row++) {
+  //     for (let col = 0; col < cols; col++) {
+  //       transpondArr[col][row] = finalBoard[row][col];
+  //     }
+  //   }
+  //   return transpondArr.join('\n');
+  // }
+
+  // console.log('транс\n', tranpose(finalBoard));
+
+  // function transControl(transpondArr) {
+  //   for (let i = 0; i < transpondArr.length; i++) {
+  //     for (let j = 0; j < transpondArr[i].length; j++) {
+
+  //     }
+
+  //   }
+  // }
+
+  for (let i = 0; i < finalBoard.length; i++) {
+    for (let j = 0; j < finalBoard[i].length; j++) {
+      const test = finalBoard[i][j];
+      for (const value of finalBoard[i]) {
+        if (test === value) {
+          newBoard(finalBoard);
+        }
+      }
+    }
+    return finalBoard.join('\n');
+  }
+
+  
 }
 
-console.log('20==', solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
+console.log(solve('---------------------------------------------------------------------------------'));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -54,4 +119,3 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
-
