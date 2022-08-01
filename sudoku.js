@@ -4,17 +4,18 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
+const findEmpty = require('./findEmpty');
+const validate = require('./validate');
 
 function solve(boardString) {
-let arr = boardString.split('')
-let size = 9; 
-let subarray = []; 
-for (let i = 0; i <Math.ceil(arr.length/size); i++){
-    subarray[i] = arr.slice((i*size), (i*size) + size);
+  const arr = boardString.split('');
+  const size = 9;
+  const subarray = [];
+  for (let i = 0; i < Math.ceil(arr.length / size); i++) {
+    subarray[i] = arr.slice((i * size), (i * size) + size);
+  }
+  console.table(subarray);
 }
-console.table(subarray);
-}
-
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
