@@ -17,7 +17,7 @@ function solve(boardString) {
   return board;
 }
 
-console.log('20==',solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
+// console.log('20==',solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -26,28 +26,25 @@ console.log('20==',solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5-
  */
 function isSolved(board) {
   const set = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-  //проверка незаполненых полей одной из 9-ти строк
-  if (board[i].includes('-')) return false;
-
 //проверяем строки на дубликаты
   for (let i = 0; i < 9; i++) {
-    if (board.filter((el, i) => arr.indexOf(el) === i).length == 9);
+    console.log('31==',board[i]);
+    let row = board[i];  
+    if ( row.filter((el, index) => row.indexOf(el) === index).length == 9) return true;
   };
+
   //проверяем столбцы на дубликаты
-  const column = [];
-  
+  // const column = [];
 
-  for (let i = 0; i < 9; i++) {
-    if (board.filter((el, i) => arr.indexOf(el) === i).length == 9);
-  };
+  // for (let i = 0; i < 9; i++) {
+  //   if (board.filter((el, i) => arr.indexOf(el) === i).length == 9); 
+  // };
 
- 
-  
-    
-  return true;
+  return false
   };
   
+  const str = '113456789123456789123456789123456789123456789123456789123456789123456789123456789'
+ console.log(isSolved(solve(str)));
  
 
 /**
