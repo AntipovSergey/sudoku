@@ -10,11 +10,11 @@ const validate = require('./validate');
 function solve(boardString) {
   const arr = boardString.split('');
   const size = 9;
-  const subarray = [];
+  const input = [];
   for (let i = 0; i < Math.ceil(arr.length / size); i++) {
-    subarray[i] = arr.slice((i * size), (i * size) + size);
+    input[i] = arr.slice((i * size), (i * size) + size);
   }
-  console.table(subarray);
+  return input;
 }
 
 /**
@@ -22,7 +22,7 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  console.table(board);
 }
 
 /**
