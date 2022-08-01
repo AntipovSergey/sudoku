@@ -3,7 +3,9 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-// сюда будем экспотрить функции
+const findEmpty = require('./findEmpty');
+const validate = require('./validate');
+
 function solve(boardString) {
 }
 

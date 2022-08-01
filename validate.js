@@ -24,7 +24,7 @@ const validate = (num, pos, board) => {
   const boxCol = Math.floor(c / boxSize) * boxSize;
 
   for (let i = boxRow; i < boxRow + boxSize; i++) {
-    for (let j = boxCol; j < boxCol + boxSize, j++) {
+    for (let j = boxCol; j < boxCol + boxSize; j++) {
       if (board[i][j] === num && i !== r && j !== c) {
         return false;
       }
