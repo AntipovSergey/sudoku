@@ -5,22 +5,49 @@
  */
 
 function solve(boardString) {
-  let strArr = boardString.split('');
-  let size = 9;
-  let resSud = [];
-  for (let i = 0; i < strArr.length; i += size) {
-    resSud.push(strArr.slice(i, i + size));
+  const stringPuzzles = boardString.split("");
+  const size = 9;
+  const arrayPuzzles = [];
+  for (let i = 0; i < stringPuzzles.length; i += size) {
+    arrayPuzzles.push(stringPuzzles.slice(i, i + size));
   }
-  return resSud;
+  return arrayPuzzles;
 }
 
+function validation(board, row, column, k) {
+  for (let i = 0; i < 9; i += 1) {
+    const a = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+    const b = 3 * Math.floor(column / 3) + (i % 3);
+    if (board[row][i] === k || board[i][column] === k || board[a][b] === k) {
+      return false;
+    }
+  }
+  return true;
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {}
-// console.log(isSolved())
+function isSolved(board) {
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; j += 1) {
+      if (board[i][j] === "-") {
+        for (let k = 1; k <= 9; k += 1) {
+          if (validation(board, i, j, k)) {
+            board[i][j] = `${k}`;
+            if (isSolved(board)) {
+              return true;
+            }
+            board[i][j] = "-";
+          }
+        }
+        return false;
+      }
+    }
+  }
+  return true;
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
