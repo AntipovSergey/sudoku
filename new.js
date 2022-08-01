@@ -105,7 +105,7 @@ function isSolved(board) {
     mainUniq.push(uniq);
   });
 
-  return mainUniq;
+  return mainUniq.reduce((sum, cur) => sum + cur.length, 0) === 0;
 }
 
 console.log(isSolved(res));
