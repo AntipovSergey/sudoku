@@ -23,45 +23,43 @@ const puzzles = text
 // console.log(puzzles[process.argv[2]|| 1])
 
 
-let arr1=[];// квадрат
-let arr2=[];// строка
-let arr3=[];// столбец
+// let arr1=[];// квадрат
+// let arr2=[];// строка
+// let arr3=[];// столбец
 
 function gradation (str){
-  
   let sud = str.replace(/(.{9})/g,(match,n) => `${n}\n`).split(`\n`).filter((el)=> el!== ``).map((el)=> el.split(``))
+  
 
-  let arr4=[]
-  for (let y =0; y<sud.length; y++){
-    let arr0=[];    //приводим к числовому значению
-  for (let g =0; g<sud.length; g++){
-    if(sud[y][g]=='-'){
-      arr0.push(sud[y][g])
-    }else{
-       arr0.push(Number(sud[y][g]))
-    } 
-    arr4.push(arr0)
-    
-  }}
-console.table(`=*=*=*=*=**=============`,arr4)
-  //console.log(sud[0])
-  for ( let i = 0; i< 9; i++){
-    for (let j = 0; j<9; j++){
-      // console.log('=========================',sud[i][j])
-      
+  for ( let i = 0; i< sud.length; i++){
+    for (let j = 0; j<sud.length; j++){
+
       if ( sud[i][j] == '-'){
-        sud[i][j]= Math.ceil(Math.random()*9) 
+        sud[i][j]= Math.ceil(Math.random()*9) // замена на рандомные числа
       }
+      if (sud[i][j] !== Number(sud[i][j])){ // приводим к числовому значению
+        sud[i][j]=Number(sud[i][j])
     }
   }
-  console.table(sud)
-  return sud
 }
-gradation(puzzles[process.argv[2]])
+
+  //console.log(sud.join(`\n`).replace(/,/g,'').replace(/(.{3})/g,(match,n)=> `|${n}| `))
+  return sud
+
+}
+//gradation(puzzles[process.argv[2]])
+const prettyB = gradation(puzzles[process.argv[2]])
+//========================================================
+function prettyBoard(board) {
+  return  board.join(`\n`).replace(/,/g,'').replace(/(.{3})/g,(match,n)=> `|${n}| `)//.replace(/(.{17})/g,(match,n)=> `${n}\n_________________ `)
+}
+//console.log(prettyB)
+console.log(prettyBoard(prettyB))
 
 
-// let puzzleNumber = Number(process.argv[2]) || 1;
-// console.log(puzzleNumber)
+
+//puzzles[process.argv[2]]
+
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
   // завершить работу функции.
@@ -69,13 +67,13 @@ function readAndSolve(error, fileData) {
     throw error;
   }
 
-  const puzzles = text // ok
+  const puzzles = text 
     .split('\n')
     .filter((line) => line !== '');
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(process.argv[2]) || 1;
+  let puzzleNumber = Number(8) || 1;
 
   // Ограничить номер судоку максимальным числом массива с паззлами. //
   if (puzzleNumber > puzzles.length) {
