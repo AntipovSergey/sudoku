@@ -28,22 +28,31 @@ function isSolved(board) {
   const set = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 //проверяем строки на дубликаты
   for (let i = 0; i < 9; i++) {
-    console.log('31==',board[i]);
+    // console.log('31==',board[i]);
     let row = board[i];  
-    if ( row.filter((el, index) => row.indexOf(el) === index).length == 9) return true;
+    if ( row.filter((el, index) => row.indexOf(el) === index).length < 9) return false;
   };
 
   //проверяем столбцы на дубликаты
-  // const column = [];
+  
+  for (let j = 0; j < 9; j++) {
+    let column = [];
+    for (let i = 0; i < 9; i++) {
+      column.push(board[i][j])
+    };
+    console.log('44==', column);
+    
+    if (column.filter((el, index) => column.indexOf(el) === index).length < 9) return false;
+  };
 
-  // for (let i = 0; i < 9; i++) {
-  //   if (board.filter((el, i) => arr.indexOf(el) === i).length == 9); 
-  // };
 
-  return false
+//проверяем квадраты на дубликаты
+
+
+  return true;
   };
   
-  const str = '113456789123456789123456789123456789123456789123456789123456789123456789123456789'
+  const str = '123456789123456789123456789123456789123456789123456789123456789123456789123456789'
  console.log(isSolved(solve(str)));
  
 
