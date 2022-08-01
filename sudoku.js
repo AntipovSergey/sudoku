@@ -3,7 +3,41 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
+const findEmpty = require('./findEmpty');
+const validate = require('./validate');
+
 function solve(boardString) {
+  const arr = boardString.split('');
+  const size = 9;
+  const input = [];
+  for (let i = 0; i < Math.ceil(arr.length / size); i++) {
+    input[i] = arr.slice((i * size), (i * size) + size);
+  }
+
+  const solveHelper = () => {
+    const currPos = findEmpty(input);
+    if (currPos === null) {
+      return true;
+    }
+
+    for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, input);
+
+      if (isValid) {
+        const [x, y] = currPos;
+        input[x][y] = currNum;
+        if (solveHelper()) {
+          return true;
+        }
+        input[x][y] = '-';
+      }
+    }
+    return false;
+  };
+  solveHelper();
+  return input;
 }
 
 /**
@@ -20,7 +54,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  console.table(board);
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
