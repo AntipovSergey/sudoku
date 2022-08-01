@@ -5,7 +5,19 @@
  * возвращаем 2мерный массив
  */
 function solve(boardString) {
+ 
+  const board = [];
+  for (let i = 0; i < boardString.length; i+=9) {  
+    let arr = [];
+    for (let j = 0; j < 9; j += 1) {
+      arr.push(boardString[j+i]);    
+    };
+    board.push(arr);  
+  };
+  return board;
 }
+
+console.log('20==',solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
