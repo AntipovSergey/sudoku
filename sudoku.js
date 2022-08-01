@@ -25,8 +25,30 @@ console.log('20==',solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5-
  * возвращает true or false
  */
 function isSolved(board) {
+  const set = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-}
+  //проверка незаполненых полей одной из 9-ти строк
+  if (board[i].includes('-')) return false;
+
+//проверяем строки на дубликаты
+  for (let i = 0; i < 9; i++) {
+    if (board.filter((el, i) => arr.indexOf(el) === i).length == 9);
+  };
+  //проверяем столбцы на дубликаты
+  const column = [];
+  
+
+  for (let i = 0; i < 9; i++) {
+    if (board.filter((el, i) => arr.indexOf(el) === i).length == 9);
+  };
+
+ 
+  
+    
+  return true;
+  };
+  
+ 
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve. Массив
