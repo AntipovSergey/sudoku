@@ -42,13 +42,34 @@ const validate = (num, pos, board) => {
     const [row, col] = pos;
 
     for (let i = 0; i < size; i++) {
-        const element = array[i];
-        
+        if (board[i][col] === num && i !== row){
+            return false;
+        }
     }
+
+    for (let i = 0; i < size; i++) {
+      if (board[row][col] === num && i !== col){
+          return false;
+      }
+    }
+
+    const boxRow = Math.floor(row / boxSize) * boxSize
+    const boxCol =Math.floor(col / boxSize) * boxSize
+
+    for (let i = boxRow; i < boxRow + boxSize; i++) { 
+        for (let j = boxCol; j < boxSize; j++) {
+          if (board[i][j] === num && i !== row && j !== col){
+            return false
+          }
+        }
+    }
+    return true
 }
+
+
 const solveBoard = () => {
-    const position = empty(board){
-    }
+    const position = empty(board)
+    
     if (position === null){
         return true;
     }
@@ -56,12 +77,21 @@ const solveBoard = () => {
     for (let i = 1; i < size + 1; i++) {
         const num = i.toString();
         const isValid = validate(num, position, board);
+
+      if(isValid){
+        const [x,y] = position;
+        board[x][y] = num;
+
+        if(solveBoard()){
+          return true;
+        }
+        board[x][y] = '-';
+
+      }
     }
-
-
-
     return false;
 }
+
 solveBoard();
 return board;
 }
