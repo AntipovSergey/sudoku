@@ -3,8 +3,23 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
 function solve(boardString) {
+
+  
 }
+
+function searchNotNum(arrBoard) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (arrBoard[i][j] === '-') {
+        return [i, j];
+      }
+    }
+  }
+  return 0;
+} 
+console.log(searchNotNum(arrBoard));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
