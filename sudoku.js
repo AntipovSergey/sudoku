@@ -11,6 +11,7 @@ function solve(boardString) {
   const arr = boardString.split('');
   const size = 9;
   const input = [];
+
   for (let i = 0; i < Math.ceil(arr.length / size); i++) {
     input[i] = arr.slice((i * size), (i * size) + size);
   }
@@ -45,7 +46,6 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
   const rows = [];
   const columns = [];
   const boxes = [];
@@ -70,7 +70,6 @@ function isSolved(board) {
     }
   }
   return true;
-
 }
 
 /**
@@ -79,10 +78,8 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
-  const table = console.log(board);
+  const table = console.table(board);
   return table;
-
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
