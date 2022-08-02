@@ -31,22 +31,23 @@ function solve(boardString) {
     // finalBoard = board;
     // return finalBoard;
   }
-  function validate (num, pos, )
-  // function newBoard(board) {
-  //   for (let i = 0; i < board.length; i++) {
-  //     for (let j = 0; j < board[i].length; j++) {
-  //       if (board[i][j] === '-') {
-  //         let newInteger = Math.floor(1 + Math.random() * 9).toString();
-  //         while (board[i].includes(newInteger)) {
-  //           newInteger = Math.floor(1 + Math.random() * 9).toString();
-  //         }
-  //         board[i][j] = newInteger;
-  //       }
-  //     }
-  //   }
-  //   finalBoard = board;
-  //   return finalBoard;
-  // }
+
+
+  function newBoard(board) {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        if (board[i][j] === '-') {
+          let newInteger = Math.floor(1 + Math.random() * 9).toString();
+          while (board[i].includes(newInteger)) {
+            newInteger = Math.floor(1 + Math.random() * 9).toString();
+          }
+          board[i][j] = newInteger;
+        }
+      }
+    }
+    finalBoard = board;
+    return finalBoard;
+  }
 
   console.log('новый\n', newBoard(board));
 

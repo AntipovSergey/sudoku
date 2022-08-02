@@ -1,19 +1,34 @@
-let input = [
-    [".", ".", ".", ".", ".", ".", ".", ".", "."],
-    [".", ".", ".", ".", ".", ".", ".", ".", "."],
-    [".", "9", "8", ".", ".", ".", ".", "6", "."],
-    ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
-    ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
-    ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
-    [".", "6", ".", ".", ".", ".", "2", "8", "."],
-    [".", ".", ".", "4", "1", "9", ".", ".", "5"],
-    [".", ".", ".", ".", "8", ".", ".", "7", "9"]
-];
+// let input = [
+//     [".", ".", ".", ".", ".", ".", ".", ".", "."],
+//     [".", ".", ".", ".", ".", ".", ".", ".", "."],
+//     [".", "9", "8", ".", ".", ".", ".", "6", "."],
+//     ["8", ".", ".", ".", "6", ".", ".", ".", "3"],
+//     ["4", ".", ".", "8", ".", "3", ".", ".", "1"],
+//     ["7", ".", ".", ".", "2", ".", ".", ".", "6"],
+//     [".", "6", ".", ".", ".", ".", "2", "8", "."],
+//     [".", ".", ".", "4", "1", "9", ".", ".", "5"],
+//     [".", ".", ".", ".", "8", ".", ".", "7", "9"]
+// ];
+let string = '---------------------------------------------------------------------------------';
+function boardString(string) {
+    const board = [];
+    for (let i = 0; i < string.length; i += 9) {
+      const arr = [];
+      for (let j = 0; j < 9; j += 1) {
+        arr.push(string[j + i]);
+      }
+      board.push(arr);
+    }
+    return board;
+}
+console.log(boardString(string));
 
-let solveSudoku = function(board) {
+function solveSudoku(string) {
+
+    const board = boardString(string);
     const size = 9;
     const boxSize = 3;
-
+    
     const findEmpty = (board) => {
         for (let r = 0; r < size; r++) {
             for (let c = 0; c < size; c++) {
@@ -24,9 +39,10 @@ let solveSudoku = function(board) {
         }
         return null;
     }
-
+    
     const validate = (num, pos, board) => {
         const [r,c] = pos;
+        console.log('========;;;;', board);
 
         //Check rows
         for (let i = 0; i < size; i++) {
@@ -88,5 +104,5 @@ let solveSudoku = function(board) {
     return board;
 };
 
-console.table(input);
-console.table(solveSudoku(input))
+// console.table(board);
+console.table(solveSudoku(string))
