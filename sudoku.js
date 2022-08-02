@@ -42,6 +42,18 @@ function transformBoard(boardString) {
     return arr;
   }, []);
 }
+
+function getCurrPos(board) {
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board.length; col++) {
+      if (board[row][col] === '•') {
+        return [row,col];
+      }
+    }
+  }
+  return null;
+}
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
