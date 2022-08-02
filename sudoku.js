@@ -9,6 +9,16 @@ function solve(boardString) {
 
   
 }
+function makeArr(boardString){
+  
+  let board = [];
+  let arr = boardString.split('');
+   for (let i = 0; i < arr.length; i++){
+    board.push(arr.splice(0,9))
+    }
+return board
+}
+console.log(makeArr('-8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-'))
 
 function searchNotNum(arrBoard) {
   for (let i = 0; i < 9; i++) {
