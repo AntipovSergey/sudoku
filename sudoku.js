@@ -4,36 +4,21 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  
+    
+}  
+
+function makeArr(boardString){
+  
   let board = [];
   let arr = boardString.split('');
    for (let i = 0; i < arr.length; i++){
     board.push(arr.splice(0,9))
     }
-    console.log('=====>',board)
-    //findEmpty//
-    const size = 9;
-    // const boxSize = 3;
-     for (let r = 0; r < size; r += 1) {
-      for (let c = 0; c < size; c += 1) {
-        
-        if (board[r][c] === '-') {
-          console.log('=======>', [r,c])  
-          return [r,c]; 
-        }
-        
-      }
-      return null;
-    }
-    
-    let [r,c] = pos;
-    //check rows
+return board
+}
+console.log(makeArr('6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--'))
 
-    //  return board
-  }
-  
-  
-
- 
 
   
 /**
@@ -41,6 +26,7 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+  
   
 
 }
