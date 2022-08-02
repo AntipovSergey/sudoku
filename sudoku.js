@@ -15,7 +15,7 @@ function solve(boardString) {
     for (let i = 0; i < arr.length; i++) {
       board.push(arr.splice(0, 9))
     }
-    return board
+    return board;
   }
 
   function searchNotNum(board) {
