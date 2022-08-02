@@ -1,75 +1,20 @@
 // Подключить функции из файла sudoku.js.
 const sudoku = require("./sudoku");
-const text = 
-`1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--
---5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3
-29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9
--8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-
-6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--
----6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----
--3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--
--96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7
-----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----
-3---------5-7-3--8----28-7-7------43-----------39-41-54--3--8--1---4----968---2--
-3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-
--2-5----48-5--------48-9-2------5-73-9-----6-25-9------3-6-18--------4-71----4-9-
---7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--
-----------2-65-------18--4--9----6-4-3---57-------------------73------9----------
----------------------------------------------------------------------------------
-`;
-
-const puzzles = text.split("\n").filter((line) => line !== "");
-// console.log(puzzles[process.argv[2]|| 1])
-
-// let arr1=[];// квадрат
-// let arr2=[];// строка
-// let arr3=[];// столбец
-
-function gradation(str) {
-  let sud = str
-    .replace(/(.{9})/g, (match, n) => `${n}\n`)
-    .split(`\n`)
-    .filter((el) => el !== ``)
-    .map((el) => el.split(``));
-
-  for (let i = 0; i < sud.length; i++) {
-    for (let j = 0; j < sud.length; j++) {
-      if (sud[i][j] == "-") {
-        sud[i][j] = Math.ceil(Math.random() * 9); // замена на рандомные числа
-      }
-      if (sud[i][j] !== Number(sud[i][j])) {
-        // приводим к числовому значению
-        sud[i][j] = Number(sud[i][j]);
-      }
-    }
-  }
-
-  //console.log(sud.join(`\n`).replace(/,/g,'').replace(/(.{3})/g,(match,n)=> `|${n}| `))
-  return sud;
-}
-
-//gradation(puzzles[process.argv[2]])
-const prettyB = gradation(puzzles[process.argv[2]]);
-//========================================================
-function prettyBoard(board) {
-  return board
-    .join(`\n`)
-    .replace(/,/g, "")
-    .replace(/(.{3})/g, (match, n) => `|${n}| `); 
-}
-console.log(prettyB)
-console.log(prettyBoard(prettyB));
 
 
-function readAndSolve(error, fileData) {
+function readAndSolve(fileData) {
+
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
   // завершить работу функции.
-  if (error) {
-    throw error;
+
+  if (fileData.match(/[a-z]/gi)) {
+    throw "Имеется некорректный символ!";
   }
 
-  const puzzles = text.split("\n").filter((line) => line !== "");
-  // Разбить содержимое файла построчно и отфильтровать все пустые строки.
+
+  // Делаем массив всех судоку
+  const puzzles = fileData.split("\n").filter((line) => line !== "");
+
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
   let puzzleNumber = Number(8) || 1;
@@ -84,8 +29,27 @@ function readAndSolve(error, fileData) {
   console.log(`Решаем судоку №${puzzleNumber}:`);
   console.log(puzzle, "\n");
 
+
+  // Делаем массив массивов заданого судоку
+  // Разбить содержимое файла построчно и отфильтровать все пустые строки.
+  const array = puzzle
+    .replace(/(.{9})/g, (match, n) => `${n}\n`)
+    .split("\n")
+    .filter((line) => line !== "")
+    .map((el) => el.split(""));
+
+
   // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = sudoku.solve(puzzle);
+  const solvedPuzzle = sudoku.solve(array);
+
+  // приводим к числовому значению
+  for (let i = 0; i < solvedPuzzle.length; i++) {
+    for (let j = 0; j < solvedPuzzle.length; j++) {
+      if (solvedPuzzle[i][j] !== Number(solvedPuzzle[i][j])) {
+        solvedPuzzle[i][j] = Number(solvedPuzzle[i][j]);
+      }
+    }
+  }
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
   if (!sudoku.isSolved(solvedPuzzle)) {
@@ -94,7 +58,7 @@ function readAndSolve(error, fileData) {
   }
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.log(`Судоку №${puzzleNumber} решён успешно!\n`);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
