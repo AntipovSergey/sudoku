@@ -104,4 +104,6 @@ const solveSudoku = function (boardString) {
 };
 
 // console.table(input);
+
 console.table(solveSudoku(boardString));
+
