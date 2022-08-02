@@ -2,6 +2,7 @@
 const fs = require("fs");
 
 // Подключить функцию readAndSolve из соответствующего файла.
+
 // ! ErrorSudoku.txt
 // ! puzzles.txt
 const readAndSolve = require("./readAndSolve");
