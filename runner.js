@@ -10,5 +10,5 @@ const readAndSolve = require("./readAndSolve");
 // Прочесть файл  в кодировке 'utf-8' и передать его содержимое в функцию readAndSolve.
 
 const dataFile = fs.readFileSync("./puzzles.txt", "utf-8");
-
+// test
 readAndSolve(dataFile);
