@@ -82,7 +82,9 @@ function prettyBoard(board) {
     font: 'slick',
     colors: ['blue'],
     background: 'transparent',
-    gradient: ['blue', 'red'],
+    gradient: ['green', 'blue', 'cyan'],
+    transitionGradient: true,
+    lineHeight: 1,
     space: false,
     env: 'node',
   });
