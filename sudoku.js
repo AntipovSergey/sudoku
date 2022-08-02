@@ -45,7 +45,32 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-return true
+
+  const rows = [];
+  const columns = [];
+  const boxes = [];
+
+  for (let i = 0; i < board.length; i++) {
+    rows.push(new Set());
+    columns.push(new Set());
+    boxes.push(new Set());
+  }
+
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      const cell = board[i][j];
+      if (cell === '-') { return false; }
+      const boxNum = 3 * Math.floor(i / 3) + Math.floor(j / 3);
+      if ((rows[i].has(cell)) || (columns[i].has(cell)) || boxes[boxNum].has(cell)) {
+        return false;
+      }
+      rows[i].add(cell);
+      columns[i].add(cell);
+      boxes[boxNum].add(cell);
+    }
+  }
+  return true;
+
 }
 
 /**
@@ -54,7 +79,10 @@ return true
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  console.log(board);
+
+  const table = console.log(board);
+  return table;
+
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
