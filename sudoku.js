@@ -35,6 +35,13 @@
   return board;
 }
 
+function transformBoard(boardString) {
+  return boardString.match(/([1-9-]{9})/g).reduce((arr, row) => {
+    const dotted = row.replace(/-/g, '•');
+    arr.push(dotted.split(''));
+    return arr;
+  }, []);
+}
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -58,4 +65,5 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
-};
+  transformBoard
+}
