@@ -32,7 +32,7 @@ function validation(board, row, column, k) {
 function isSolved(board) {
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
-      if (board[i][j] === "-") {
+      if (board[i][j] == "-") {
         for (let k = 1; k <= 9; k += 1) {
           if (validation(board, i, j, k)) {
             board[i][j] = `${k}`;
@@ -54,7 +54,9 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {}
+function prettyBoard(board) {
+console.table(board)
+}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
