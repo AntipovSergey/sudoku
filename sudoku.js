@@ -3,7 +3,36 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
+ function solve(boardString) {
+  const board = transformBoard(boardString);
+  const sectorSize = 3;
+
+  const solving = () => {
+    const currPos = getCurrPos(board);
+
+    if (currPos === null) return true;
+    
+    for (let i = 1; i <= 9; i++) {
+
+      const currNum = i.toString(); // 4
+      const isValid = validate(currNum, currPos, board, sectorSize);
+      
+      if (isValid) {
+        const [row, col] = currPos; // 0, 1
+        board[row][col] = currNum;
+
+        console.log(`\n row(${row}), col(${col}): ${currNum}` );
+
+        if (solving()) return true;
+        
+        board[row][col] = '•';
+      }
+    }
+  }
+
+  
+  solving() ? isSolved(true) : isSolved(false);
+  return board;
 }
 
 /**
