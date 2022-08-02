@@ -37,6 +37,7 @@ const empty = (board) => {
     }
     return null;
 }
+console.log()
 
 const validate = (num, pos, board) => {
     const [row, col] = pos;
@@ -54,7 +55,7 @@ const validate = (num, pos, board) => {
     }
 
     const boxRow = Math.floor(row / boxSize) * boxSize
-    const boxCol =Math.floor(col / boxSize) * boxSize
+    const boxCol = Math.floor(col / boxSize) * boxSize
 
     for (let i = boxRow; i < boxRow + boxSize; i++) { 
         for (let j = boxCol; j < boxSize; j++) {
