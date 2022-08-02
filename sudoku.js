@@ -21,7 +21,7 @@
         const [row, col] = currPos; // 0, 1
         board[row][col] = currNum;
 
-        console.log(`\n row(${row}), col(${col}): ${currNum}` );
+        // console.log(`\n row(${row}), col(${col}): ${currNum}` );
 
         if (solving()) return true;
         
