@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Marmelad&display=swap');
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.sudoku {
+    position: relative;
+    background-image: ;
+}
