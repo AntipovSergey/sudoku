@@ -77,7 +77,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  const table = console.table(board);
+  const table = console.log(board);
   return table;
 }
 
