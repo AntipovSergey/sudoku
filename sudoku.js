@@ -3,7 +3,7 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-
+const cfonts = require('cfonts');
 const findEmpty = require('./findEmpty');
 const validate = require('./validate');
 
@@ -11,6 +11,7 @@ function solve(boardString) {
   const arr = boardString.split('');
   const size = 9;
   const input = [];
+
   for (let i = 0; i < Math.ceil(arr.length / size); i++) {
     input[i] = arr.slice((i * size), (i * size) + size);
   }
@@ -45,7 +46,30 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+  const rows = [];
+  const columns = [];
+  const boxes = [];
 
+  for (let i = 0; i < board.length; i++) {
+    rows.push(new Set());
+    columns.push(new Set());
+    boxes.push(new Set());
+  }
+
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      const cell = board[i][j];
+      if (cell === '-') { return false; }
+      const boxNum = 3 * Math.floor(i / 3) + Math.floor(j / 3);
+      if ((rows[i].has(cell)) || (columns[i].has(cell)) || boxes[boxNum].has(cell)) {
+        return false;
+      }
+      rows[i].add(cell);
+      columns[i].add(cell);
+      boxes[boxNum].add(cell);
+    }
+  }
+  return true;
 }
 
 /**
@@ -54,8 +78,28 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  console.table(board);
+  const boardToString = board.toString();
+  const boardReplace = boardToString.replace(/,/g, ' ');
+  const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s/gim;
+  const matchStr = boardReplace.match(regex, /\d{18}/gim);
+  const joinStr = matchStr.join('\n');
+  const prettyFont = cfonts
+    .render(joinStr, {
+      font: 'tiny',
+      colors: ['blue'],
+      background: 'transparent',
+      gradient: ['green', 'blue', 'cyan'],
+      transitionGradient: true,
+      lineHeight: 1,
+      space: false,
+      align: 'center',
+      env: 'node',
+    })
+    .array.join('\n');
+  console.log(prettyFont);
+  return 'Yeah!';
 }
+// //   console, block, simpleBlock, simple, 3d, simple3d, chrome, huge, shade, slick, grid, pallet, tiny
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
