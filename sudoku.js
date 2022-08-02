@@ -18,7 +18,7 @@ function validation(board, row, column, k) {
   for (let i = 0; i < 9; i += 1) {
     const a = 3 * Math.floor(row / 3) + Math.floor(i / 3);
     const b = 3 * Math.floor(column / 3) + (i % 3);
-    if (board[row][i] === k || board[i][column] === k || board[a][b] === k) {
+    if (board[row][i] == k || board[i][column] == k || board[a][b] == k) {
       return false;
     }
   }
@@ -54,7 +54,9 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  console.table(board)
+}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
