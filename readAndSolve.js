@@ -1,9 +1,7 @@
 // Подключить функции из файла sudoku.js.
 const sudoku = require("./sudoku");
 
-
 function readAndSolve(fileData) {
-
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
   // завершить работу функции.
 
@@ -11,13 +9,11 @@ function readAndSolve(fileData) {
     throw "Имеется некорректный символ!";
   }
 
-
   // Делаем массив всех судоку
   const puzzles = fileData.split("\n").filter((line) => line !== "");
 
-
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(8) || 1;
+  let puzzleNumber = Number(process.argv[2]) || 1;
 
   // Ограничить номер судоку максимальным числом массива с паззлами. //
   if (puzzleNumber > puzzles.length) {
@@ -29,7 +25,6 @@ function readAndSolve(fileData) {
   console.log(`Решаем судоку №${puzzleNumber}:`);
   console.log(puzzle, "\n");
 
-
   // Делаем массив массивов заданого судоку
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
   const array = puzzle
@@ -37,7 +32,6 @@ function readAndSolve(fileData) {
     .split("\n")
     .filter((line) => line !== "")
     .map((el) => el.split(""));
-
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(array);
