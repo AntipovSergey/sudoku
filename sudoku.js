@@ -27,6 +27,7 @@ function validation(board, row, column, k) {
   return true;
 }
 
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -72,6 +73,7 @@ function prettyBoard(board) {
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
+  reStr,
   solve,
   isSolved,
   prettyBoard,
