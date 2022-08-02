@@ -3,7 +3,7 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-
+const cfonts = require('cfonts');
 const findEmpty = require('./findEmpty');
 const validate = require('./validate');
 
@@ -78,9 +78,18 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  const table = console.table(board);
-  return table;
+  const prettyFont = cfonts.render('ALL DONE!', {
+    font: 'slick',
+    colors: ['blue'],
+    background: 'transparent',
+    gradient: ['blue', 'red'],
+    space: false,
+    env: 'node',
+  });
+  console.table(board);
+  return prettyFont.string;
 }
+// //   console, block, simpleBlock, simple, 3d, simple3d, chrome, huge, shade, slick, grid, pallet, tiny
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
