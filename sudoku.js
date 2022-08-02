@@ -78,18 +78,26 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  const prettyFont = cfonts.render('ALL DONE!', {
-    font: 'slick',
-    colors: ['blue'],
-    background: 'transparent',
-    gradient: ['green', 'blue', 'cyan'],
-    transitionGradient: true,
-    lineHeight: 1,
-    space: false,
-    env: 'node',
-  });
-  console.table(board);
-  return prettyFont.string;
+  const boardToString = board.toString();
+  const boardReplace = boardToString.replace(/,/g, ' ');
+  const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s/gim;
+  const matchStr = boardReplace.match(regex, /\d{18}/gim);
+  const joinStr = matchStr.join('\n');
+  const prettyFont = cfonts
+    .render(joinStr, {
+      font: 'tiny',
+      colors: ['blue'],
+      background: 'transparent',
+      gradient: ['green', 'blue', 'cyan'],
+      transitionGradient: true,
+      lineHeight: 1,
+      space: false,
+      align: 'center',
+      env: 'node',
+    })
+    .array.join('\n');
+  console.log(prettyFont);
+  return 'Yeah!';
 }
 // //   console, block, simpleBlock, simple, 3d, simple3d, chrome, huge, shade, slick, grid, pallet, tiny
 
