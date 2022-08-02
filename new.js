@@ -10,6 +10,7 @@ function arr(str) {
     .map((el) => el.split(""));
 }
 
+
 const strArray = arr(text);
 
 // Делаем массив цифр
@@ -52,6 +53,7 @@ console.table(col);
 
 //Принимает i элемент массива(судоку), тоже массив(i-я горизонталь судоку). Проверяет на наличие цифры
 //подставляет рандомное число
+function mainSolve (array) {
 function solve(arrStr) {
   const arr = [];
   const ran = Math.ceil(Math.random() * 9);
@@ -67,7 +69,7 @@ function solve(arrStr) {
   return arr;
 }
 
-console.log(solve(array[0]));
+//console.log(solve(array[0]));
 
 //Принимает ф-ю solve и с помощью рекурсии, аполняет i-я горизонталь судоку
 function full(f) {
@@ -78,15 +80,20 @@ function full(f) {
   }
 }
 
-console.log(full(array[0]));
+//console.log(full(array[0]));
 
 //Заполняет всё судоку с помощью ф-ции full(f)
 const res = [];
 array.forEach((el) => {
   res.push(full(el));
 });
+return res
+}
 
-console.table(res);
+console.table(mainSolve (array));
+
+
+
 
 // Проверяет на совпадения столбцов.
 function isSolved(board) {
@@ -108,7 +115,7 @@ function isSolved(board) {
   return mainUniq.reduce((sum, cur) => sum + cur.length, 0) === 0;
 }
 
-console.log(isSolved(res));
+//console.log(isSolved(res));
 
 /*function isSolved(board) {
   const solveForColumn = tMatrix(board);
@@ -125,3 +132,57 @@ console.log(isSolved(res));
   }
   return mainUniq;
 }*/
+
+function solve1(a) {
+  const arr1 = [];
+
+  const col1 = tMatrix(array);
+
+  for (let i = 0; i < a[0].length; i++) {
+
+    const ran = p(a[0], 9)
+
+    //const ran = Math.ceil(Math.random() * 9);
+    if (
+      a[0][i] === "-" &&
+      !a[0].includes(ran) &&
+      !arr1.includes(ran) &&
+      !col1[i].includes(ran)
+    ) {
+      arr1.push(ran);
+      col1[i].push(ran);
+    } else {
+      arr1.push(a[0][i]);
+    }
+  }
+  console.log(col1);
+  return arr1;
+}
+
+//console.log(solve1(array));
+
+/*function solve(arrStr) {
+    const arr = [];
+    const ran = Math.ceil(Math.random() * 9);
+  
+    arrStr.forEach((element, i) => {
+      if (element === "-" && !arrStr.includes(ran) && !arr.includes(ran)) {
+        arr.push(ran);
+      } else {
+        arr.push(element);
+      }
+    });
+  
+    return arr;
+  }*/
+
+function p(arr, n) {
+  let res = n;
+  if (!arr.includes(res) && !col[1].includes(res)) {
+    return res;
+  } else {
+    res = p(arr, n - 1);
+  }
+  return res;
+}
+console.log(p(array[0], 9));
