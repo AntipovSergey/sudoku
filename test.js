@@ -1,5 +1,11 @@
+/**
+ * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
+ * Возвращает игровое поле после попытки его решить.
+ * Договорись со своей командой, в каком формате возвращать этот результат.
+ * возвращаем 2мерный массив
+ */
 function solve(boardString) {
-  let board = [];
+  const board = [];
   for (let i = 0; i < boardString.length; i += 9) {
     const arr = [];
     for (let j = 0; j < 9; j += 1) {
@@ -8,93 +14,109 @@ function solve(boardString) {
     board.push(arr);
   }
 
-//   let boardArr = board;
-//   function empty(boardArr) {
-//     for (let i = 0; i < boardArr.length; i++) {
-//       for (let j = 0; j < boardArr[i].length; j++) {
-//         if (boardArr[i][j] === '-') {
-//           let newInteger = Math.floor(1 + Math.random() * 9).toString();
-//           while (boardArr[i].includes(newInteger)) {
-//             newInteger = Math.floor(1 + Math.random() * 9).toString();
-//           }
-//           boardArr[i][j] = newInteger;
-//         }
-//       }
-//     }
-//     return boardArr;
-//   }
-
-const size = 9;
-const boxSize = 3;
-
-const empty = (board) => {
-    for (let row = 0; row < size; row++) {
-        for (let col = 0; col < size; col++) {
-            if (board[row][col] === '-'){
-                return [row, col]
-            }
-        }
+  let finalBoard = [];
+  function newBoard(board) {
+    for (let r = 0; r < board.length; r++) {
+      for (let c = 0; c < board[r].length; c++) {
+        if (board[r][c] === '-') {
+          // let newInteger = Math.floor(1 + Math.random() * 9).toString();
+          // while (board[r].includes(newInteger)) {
+          //   newInteger = Math.floor(1 + Math.random() * 9).toString();
+          // }
+          return board[r, c];
+        } 
+      }
     }
     return null;
-}
-console.log()
+    // finalBoard = board;
+    // return finalBoard;
+  }
 
-const validate = (num, pos, board) => {
-    const [row, col] = pos;
 
-    for (let i = 0; i < size; i++) {
-        if (board[i][col] === num && i !== row){
-            return false;
-        }
-    }
-
-    for (let i = 0; i < size; i++) {
-      if (board[row][col] === num && i !== col){
-          return false;
-      }
-    }
-
-    const boxRow = Math.floor(row / boxSize) * boxSize
-    const boxCol = Math.floor(col / boxSize) * boxSize
-
-    for (let i = boxRow; i < boxRow + boxSize; i++) { 
-        for (let j = boxCol; j < boxSize; j++) {
-          if (board[i][j] === num && i !== row && j !== col){
-            return false
+  function newBoard(board) {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        if (board[i][j] === '-') {
+          let newInteger = Math.floor(1 + Math.random() * 9).toString();
+          while (board[i].includes(newInteger)) {
+            newInteger = Math.floor(1 + Math.random() * 9).toString();
           }
+          board[i][j] = newInteger;
         }
-    }
-    return true
-}
-
-
-const solveBoard = () => {
-    const position = empty(board)
-    
-    if (position === null){
-        return true;
-    }
-
-    for (let i = 1; i < size + 1; i++) {
-        const num = i.toString();
-        const isValid = validate(num, position, board);
-
-      if(isValid){
-        const [x,y] = position;
-        board[x][y] = num;
-
-        if(solveBoard()){
-          return true;
-        }
-        board[x][y] = '-';
-
       }
     }
-    return false;
+    finalBoard = board;
+    return finalBoard;
+  }
+
+  console.log('новый\n', newBoard(board));
+
+  const transpondArr = [];
+  const rows = finalBoard.length;
+  const cols = finalBoard[0].length;
+
+  // function tranpose(finalBoard) {
+  //   for (let col = 0; col < cols; col++) {
+  //     transpondArr[col] = [];
+  //   }
+
+  //   for (let row = 0; row < rows; row++) {
+  //     for (let col = 0; col < cols; col++) {
+  //       transpondArr[col][row] = finalBoard[row][col];
+  //     }
+  //   }
+  //   return transpondArr.join('\n');
+  // }
+
+  // console.log('транс\n', tranpose(finalBoard));
+
+  // function transControl(transpondArr) {
+  //   for (let i = 0; i < transpondArr.length; i++) {
+  //     for (let j = 0; j < transpondArr[i].length; j++) {
+
+  //     }
+
+  //   }
+  // }
+
+  for (let i = 0; i < finalBoard.length; i++) {
+    for (let j = 0; j < finalBoard[i].length; j++) {
+      const test = finalBoard[i][j];
+      for (const value of finalBoard[i]) {
+        if (test === value) {
+          newBoard(finalBoard);
+        }
+      }
+    }
+    return finalBoard.join('\n');
+  }
+
+  
 }
 
-solveBoard();
-return board;
+console.log(solve('---------------------------------------------------------------------------------'));
+
+/**
+ * Принимает игровое поле в том формате, в котором его вернули из функции solve.
+ * Возвращает булевое значение — решено это игровое поле или нет.
+ * возвращает true or false
+ */
+function isSolved(board) {
+
 }
 
-console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
+/**
+ * Принимает игровое поле в том формате, в котором его вернули из функции solve. Массив
+ * Возвращает строку с игровым полем для последующего вывода в консоль.
+ * Подумай, как симпатичнее сформировать эту строку. Оставим реалиазацию на потом
+ */
+function prettyBoard(board) {
+
+}
+
+// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
+module.exports = {
+  solve,
+  isSolved,
+  prettyBoard,
+};
