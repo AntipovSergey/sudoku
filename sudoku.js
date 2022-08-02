@@ -4,8 +4,13 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  * возвращаем 2мерный массив
  */
+
 function solve(boardString) {
 
+}
+
+
+function strToArr(boardString) {//удалить после проверки isSolved
   const board = [];
   for (let i = 0; i < boardString.length; i += 9) {
     let arr = [];
@@ -34,14 +39,11 @@ function isSolved(board) {
   };
 
   //проверяем столбцы на дубликаты
-
   for (let j = 0; j < 9; j++) {
     let column = [];
     for (let i = 0; i < 9; i++) {
       column.push(board[i][j])
     };
-    // console.log('44==', column);
-
     if (column.filter((el, index) => column.indexOf(el) === index).length < 9) return false;
   };
 
@@ -67,8 +69,8 @@ function isSolved(board) {
 };
 const wrongSudoku = '123456789321654987123456789123456789123456789123456789123456789123456789123456789'
 const rigthSudoku = '123456789456789123789123456234567891567891234891234567345678912678912345912345678'
-console.log(isSolved(solve(rigthSudoku)));
-// console.log(isSolved(solve(wrongSudoku)));
+console.log(isSolved(strToArr(rigthSudoku)));
+// console.log(isSolved(strToArr(wrongSudoku)));
 
 
 /**
