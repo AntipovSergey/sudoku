@@ -10,7 +10,6 @@ function arr(str) {
     .map((el) => el.split(""));
 }
 
-
 const strArray = arr(text);
 
 // Делаем массив цифр
@@ -90,7 +89,7 @@ array.forEach((el) => {
 return res
 }
 
-console.table(mainSolve (array));
+console.table(res);
 
 
 
