@@ -47,8 +47,8 @@ function transformBoard(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 
-function isSolved(board) {
-
+ function isSolved(solve) {
+  return solve;
 }
 
 /**
