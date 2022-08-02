@@ -54,6 +54,36 @@ function getCurrPos(board) {
   return null;
 }
 
+function validate(num, pos, board, sectorSize) {
+  //      0    1
+  const [row, col] = pos;
+
+  // row
+  for (let i = 0; i < board.length; i++) {
+  // 
+    if (board[row][i] === num && i !== col) return false;
+  }
+
+  // col
+  for (let i = 0; i < board.length; i++) {
+    if (board[i][col] === num && i !== row) return false;
+  }
+
+  // sector
+  const boxRow = Math.floor(row / sectorSize) * sectorSize; 
+  const boxCol = Math.floor(col / sectorSize) * sectorSize;
+  //              0          0           3
+  for (let i = boxRow; i < boxRow + sectorSize; i++) {
+    //             0          0          3
+    for (let j = boxCol; j < boxCol + sectorSize; j++) {
+      //                   4            0            1
+      if (board[i][j] === num && i !== row && j !== col) return false;
+    }
+  }
+
+  return true;
+}
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
