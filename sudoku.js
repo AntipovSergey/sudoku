@@ -3,35 +3,6 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-<<<<<<< HEAD
-function reStr (boardString){
-  let strArr = boardString.split('');
-  let size = 9;
-  let BoardArr =[];
-  for(let i=0;i < strArr.length; i+=size){
-    BoardArr.push(strArr.slice(i,i+size))
-  }
-  return BoardArr;
-}
-function solve(BoardArr) {
-  
-  console.log(BoardArr);
-  for (let i=0; i< 9; i++){
-    for(let j=0; j< 9; j++){
-      if (BoardArr[i][j]=== '-'){
-        for( let a =1; a<=9; a++){
-          if(isSolved(BoardArr,i,j,a)){
-            BoardArr[i][j] = a;
-            if(solve(BoardArr)){
-              return true;
-            }else{
-              BoardArr[i][j] = '-';
-            }
-          }
-        }
-return false;
-      }
-=======
 
 function solve(boardString) {
   const stringPuzzles = boardString.split("");
@@ -49,7 +20,6 @@ function validation(board, row, column, k) {
     const b = 3 * Math.floor(column / 3) + (i % 3);
     if (board[row][i] === k || board[i][column] === k || board[a][b] === k) {
       return false;
->>>>>>> b3daded1cba620a73bc843384015aad3bbfd85cc
     }
   }
   return true;
@@ -60,17 +30,6 @@ function validation(board, row, column, k) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-<<<<<<< HEAD
-function isSolved(board,ro,co,a) {
-for (let i=0;i < 9;i++){
-let x = 3* Math.floor(ro / 3) + Math.floor(i / 3);
-let y = 3 * Math.floor(co / 3) + i % 3;
-if (board[ro][i] == a || board[i][co] == a || board[x][y] == a){
-  return false;
-}
-}
-return true;
-=======
 function isSolved(board) {
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
@@ -89,7 +48,6 @@ function isSolved(board) {
     }
   }
   return true;
->>>>>>> b3daded1cba620a73bc843384015aad3bbfd85cc
 }
 
 /**
