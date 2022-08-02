@@ -27,7 +27,6 @@ function validation(board, row, column, k) {
   return true;
 }
 
-
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -57,23 +56,23 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(board) {
   const boardToString = board.toString();
   const boardReplace = boardToString.replace(/,/g, " ");
   const regex =
-    /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s/gim;
+    /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}/gim;
   const matchStr = boardReplace.match(regex, /\d{18}/gim);
   const joinStr = matchStr.join("\n");
   const prettyFont = cfonts
     .render(joinStr, { font: "tiny", gradient: "blue,red", align: "center" })
     .array.join("\n");
   console.log(prettyFont);
-  return "Ты красавчик!";
+  return "Ты красавчик!😜" + "                                                     Это просто радуга😉";
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
-  reStr,
   solve,
   isSolved,
   prettyBoard,
