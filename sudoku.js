@@ -20,7 +20,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  const inputNode = document.querySelector('sudoku__input_animationEffect');
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).

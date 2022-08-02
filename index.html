@@ -1,139 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sudoku</title>
-    <link rel="stylesheet" href="./index.css">
-</head>
-<body>
-     <div class="sudoku">
-        <div class="sudoku__heder">
-            <select class="sudoku__select">
-                <option hidden disabled selected value>Выбирай уровень сложности!</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-            </select>
-            <button class="sudoku__button">Решить</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sudoku</title>
+        <link rel="stylesheet" href="./index.css">
+        <script defer src="./sudoku.js"></script>
+    </head>
+    <body>
+        <div class="sudoku">
+            <div class="sudoku__heder">
+                <p class="sudoku__heder_text">SUDOKU</p>
+                <input type="number" class="sudoku__input_animationEffect" placeholder="Choose level" title="from 1 to 15" >
+                <button class="sudoku__button_animationEffect">Solve</button>
+            </div>
+            <div class="sudoku__body">
+                <div class="sudoku__body_segment">
+                        <div class="sudoku__body_elenent" id="sudoku__body_elenent_1"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_2"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_3"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_10"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_11"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_12"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_19"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_20"></div> 
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_21"></div>
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_4"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_5"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_6"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_13"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_14"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_15"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_22"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_23"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_24"></div> 
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_7"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_8"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_9"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_16"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_17"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_18"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_25"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_26"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_27"></div> 
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_28"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_29"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_30"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_37"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_38"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_39"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_46"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_47"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_48"></div> 
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_31"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_32"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_33"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_40"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_41"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_42"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_49"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_50"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_51"></div> 
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_34"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_35"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_36"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_43"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_44"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_45"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_52"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_53"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_54"></div> 
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_55"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_56"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_57"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_64"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_65"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_66"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_73"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_74"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_75"></div> 
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_58"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_59"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_60"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_67"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_68"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_69"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_76"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_77"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_78"></div> 
+                </div>
+                <div class="sudoku__body_segment">
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_61"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_62"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_63"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_70"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_71"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_72"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_79"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_80"></div>
+                    <div class="sudoku__body_elenent" id="sudoku__body_elenent_81"></div> 
+            </div>
         </div>
-        <div class="sudoku__body">
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_1"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_2"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_3"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_10"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_11"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_12"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_19"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_20"></div> 
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_21"></div>
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_4"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_5"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_6"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_13"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_14"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_15"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_22"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_23"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_24"></div> 
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_7"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_8"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_9"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_16"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_17"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_18"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_25"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_26"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_27"></div> 
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_28"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_29"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_30"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_37"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_38"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_39"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_46"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_47"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_48"></div> 
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_31"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_32"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_33"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_40"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_41"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_42"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_49"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_50"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_51"></div> 
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_34"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_35"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_36"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_43"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_44"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_45"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_52"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_53"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_54"></div> 
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_55"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_56"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_57"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_64"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_65"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_66"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_73"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_74"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_75"></div> 
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_58"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_59"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_60"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_67"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_68"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_69"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_76"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_77"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_78"></div> 
-            </div>
-            <div class="sudoku__body_segment">
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_61"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_62"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_63"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_70"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_71"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_72"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_79"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_80"></div>
-                <div class="sudoku__body_elenent" id="sudoku__body_elenent_81"></div> 
-            </div>
-            <div class="sudoku__blockCyrillicWord"></div>
-            <div class="sudoku__blockLatinWord"></div>
-        </div>
-    </div>
-    <script src="index.js"></script>
-</body>
+    </body>
 </html>

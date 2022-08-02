@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bad+Script&family=Marmelad&display=swap');
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
 
 *,
 *::before,
@@ -9,7 +10,135 @@
     box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #48b9ff;
+}
+
 .sudoku {
     position: relative;
-    background-image: ;
+    display: flex;
+    justify-content: space-around;
+    /* background-image: url(https://images.wallpaperscraft.ru/image/single/fon_tekstura_poverhnost_temnyy_50699_1920x1200.jpg); */
+    min-width: 100vh;
+    min-height: 100vh;
+}
+
+.sudoku__heder {
+    position: absolute;
+    display: flex;
+    min-width: 80%;
+    min-height: 40%;
+    justify-content: center;
+    margin-top: 5%;
+    /* border: 3px solid wheat; */
+}
+
+.sudoku__input_animationEffect {
+    content: attr('data-title');
+    outline: none;
+    border-radius: 10px;
+    max-width: 40%;
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+}
+
+input::placeholder {
+    color: #fff;
+}
+
+.sudoku__input_animationEffect::-webkit-outer-spin-button,
+.sudoku__input_animationEffect::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.sudoku__input_animationEffect[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.sudoku__heder{
+  display: block;
+}
+
+.sudoku__heder_text {
+  margin-bottom: 110px;
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  font-size:48px;
+  letter-spacing: 10px;  
+}
+
+.sudoku__input_animationEffect, 
+.sudoku__button_animationEffect{
+  min-width: 30%;
+  height: 70px;
+  font-size: 30px;
+  border-radius: 30px;
+  color: white;
+  -webkit-transition: 1.9s ease-in-out;
+  transition: .8s ease-in-out;
+}
+
+.sudoku__input_animationEffect:first-of-type{
+  margin:0 4.4% 2% 10.8%;
+}
+.sudoku__button_animationEffect:first-of-type{
+  margin:0 4.4% 2% 10.8%;
+}
+
+.sudoku__input_animationEffect, 
+.sudoku__button_animationEffect{
+  background: linear-gradient(145deg, #76d5ff, #63b3e6);
+  box-shadow: 20px 20px 30px #1e7689,
+             -10px -10px 30px #7fe5ff;
+  border: 3px solid rgba(255, 255, 255, .4);
+  border: 3px solid rgb(188, 235, 247);
+}
+neumorphic
+.sudoku__input_animationEffect:focus, .sudoku__input_animationEffect:hover, .sudoku__input_animationEffect:focus, .sudoku__input_animationEffect:hover, .sudoku__input_animationEffect:focus, .-pressed:hover {
+  border: 3px solid rgba(135, 152, 170, 0.75);
+}
+.sudoku__button_animationEffect:focus, .sudoku__button_animationEffect:hover, .sudoku__button_animationEffect:focus, .sudoku__button_animationEffect:hover, .sudoku__button_animationEffect:focus, .sudoku__button_animationEffect:hover {
+  border: 3px solid rgba(135, 152, 170, 0.75);
+}
+
+.sudoku__body {
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-width: 30%;
+    justify-content: center;
+    margin: 22% 0 2% 0;
+    /* border: 3px solid rgb(188, 235, 247); */
+}
+
+.sudoku__body_segment {
+    display: flex;
+    /* position: relative; */
+    /* border: 3px solid rgb(188, 235, 247); */
+    flex-direction: column;
+    justify-content: start;
+    flex-wrap: wrap;
+    align-items:flex-start;
+    min-width: 33%;
+    min-height: 33%;
+    margin: 3px 3px 3px 3px;
+    padding: 0 0 0 0;
+}
+
+.sudoku__body_elenent {
+  display: flex;
+  /* border: 3px solid rgb(188, 235, 247); */
+  flex-wrap: wrap;
+  min-width: 32%;
+  min-height: 32%;
+  margin: 0 0 0 0;
+  align-items: stretch;
 }
