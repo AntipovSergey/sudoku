@@ -5,7 +5,6 @@ function rowColumnParser(index, puzzle) {
       candidates.splice(candidates.indexOf(puzzle[index[0]][i]), 1);
     }
   }
-
   for (let j = index[1]; j < 9; j += 1) {
     if (candidates.indexOf(puzzle[j][index[1]]) !== -1) {
       candidates.splice(candidates.indexOf(puzzle[j][index[1]]), 1);
