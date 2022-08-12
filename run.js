@@ -21,6 +21,7 @@ function runSudoku(massSudoku) {
 		console.log(massEmpties);
     if (massEmpties.length < 1)
       break;
+<<<<<<< HEAD
 		for (let i = 0; i < massEmpties.length; i++) {
 			// massSudoku = rowColumnParser(massEmpties[i], massSudoku));
 			massSudoku = squareParser(massEmpties[i], massSudoku);
