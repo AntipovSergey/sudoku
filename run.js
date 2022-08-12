@@ -23,7 +23,6 @@ function runSudoku(massSudoku) {
     if (massEmpties.length < 1) {
       break;
     }
-    let ret;
     for (let i = 0; i < massEmpties.length; i++)
       massSudoku = squareParser(massEmpties[i], massSudoku, rowColumnParser(massEmpties[i], massSudoku));
     const end = new Date().getTime(); 
