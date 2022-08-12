@@ -7,10 +7,8 @@ const {
 } = require('./squareParser');
 
 function runSudoku(massSudoku) {
-  let isEnd = true;
-  //10 ctr
   const start = new Date().getTime();
-  while (isEnd) {
+  while (1) {
     let massEmpties = [];
     for (let i = 0, k = 0; i < massSudoku.length; i++) {
       for (let j = 0; j < massSudoku[i].length; j++) {
@@ -20,13 +18,12 @@ function runSudoku(massSudoku) {
         }
       }
     }
-    if (massEmpties.length < 1) {
+    if (massEmpties.length < 1)
       break;
-    }
     for (let i = 0; i < massEmpties.length; i++)
       massSudoku = squareParser(massEmpties[i], massSudoku, rowColumnParser(massEmpties[i], massSudoku));
     const end = new Date().getTime(); 
-    if (end - start >= 10)
+    if (end - start >= 15)
       return { mass: massSudoku, fl: 0 };
   }
   return { mass: massSudoku, fl: 1 };
