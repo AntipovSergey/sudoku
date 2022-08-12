@@ -34,7 +34,8 @@ function readAndSolve(error, fileData) {
   console.table(sudokuArr);
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = sudoku.solve(puzzle);
+  const solvedPuzzle = sudoku.solve(sudokuArr);
+  console.table(solvedPuzzle);
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
   if (!sudoku.isSolved(solvedPuzzle)) {

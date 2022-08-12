@@ -3,80 +3,67 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve() {
-  let board = [['1','-','5','8','-','2','-','-','-',], 
-              ['-','9','-','-','7','6','4','-','5',], 
-              ['2','-','-','4','-','-','8','1','9',], 
-              ['-','1','9','-','-','7','3','-','6',], 
-              ['7','6','2','-','8','3','-','9','-',], 
-              ['-','-','-','-','6','1','-','5','-',], 
-              ['-','-','7','6','-','-','-','3','-',], 
-              ['4','3','-','-','2','-','5','-','1',], 
-              ['6','-','-','3','-','8','9','-','-',]];
-
+function solve(board) {
   const size = 9;
-  const squareSize = 3;
+  const boxSize = 3;
 
-  const findEmptyCell = (board) => {    // поиск пустой ячейки
-    for (let r = 0; r < size; r++) {
-      for (let c = 0; c < size; c++) {
-        if(board[r][c] === '-') {
-          return [r,c];
+  const findEmpty = (board) => {
+    for (let r = 0; r < size; r += 1) {
+      for (let c = 0; c < size; c += 1) {
+        if (board[r][c] === '-') {
+          return [r, c];
         }
       }
     }
     return null;
-  }
-  
-  const validateSudoku = (number, position, board) => {
-    const [r,c] = position;
+  };
 
-    // проверка полного ряда
-    for (let i = 0; i < size; i++) {
-      if(board[i][c] === number && i !== r){function solve(boardString) {
+  const validate = (num, pus, board) => {
+    const [r, c] = pus;
 
-        // }
+    // проверяем строки
+    for (let i = 0; i < size; i += 1) {
+      if (board[i][c] === num && i !== r) {
         return false;
       }
     }
 
-    // проверка ячеек 
-    for(let i = 0; i < size; i++){
-      if(board[r][i] === number && i !== c){
+    // проверка колонки
+    for (let i = 0; i < size; i += 1) {
+      if (board[r][i] === num && i !== c) {
         return false;
       }
     }
 
-    //поиск квадрата 
-    const squareRow = Math.floor(r/squareSize) * squareSize;
-    const squareCell = Math.floor(c/squareSize) * squareSize;
+    // проверка маленького квадрата
+    const boxRow = Math.floor(r / boxSize) * boxSize;
+    const boxCol = Math.floor(c / boxSize) * boxSize;
 
-    for(let i = squareRow; i < squareRow + squareSize; i++){
-      for(let j = squareCell; j < squareCell + squareSize; j++) {
-        if(board[i][j] === number && i !== r && j !== c){
+    for (let i = boxRow; i < boxRow + boxSize; i += 1) {
+      for (let j = boxCol; j < boxCol + boxSize; j += 1) {
+        if (board[i][j] === num && i !== r && j !== c) {
           return false;
         }
       }
     }
+
     return true;
-  }
+  };
 
   const solve = () => {
-    const currentPos = findEmptyCell(board);
-
-    if(currentPos === null) {
+    const currPos = findEmpty(board);
+    if (currPos === null) {
       return true;
     }
-    
-    for(let i = 1; i < size + 1; i++) {
-      const currentNumber = i.toString();
-      const isValid = validateSudoku(number,position,board);
-      
-      if(isValid) {
-        const [x,y] = currentPos;
-        board [x,y] = currentNUmber;
+    for (let i = 1; i < size + 1; i += 1) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, board);
 
-        if(solve()) {
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (solve()) {
           return true;
         }
 
@@ -84,39 +71,26 @@ function solve() {
       }
     }
     return false;
-  }
-
+  };
   solve();
   return board;
 }
-}
-
-//  метод Массивов foreach и for ,узнать индекс массива пустой клетки
-// i и g
-function nullCell(arr) {
-  const result = [];
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
-      if (arr[i][j] === '-') {
-        result.push([i, j]);
-      }
-    }
-  }
-  return result;
-}
-console.log(nullCell([[1, 2, 3, '-'], [1, 2, 3, '-', '-', 10]]));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 
-function isSolved() {
-  
+function isSolved(board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === '-') {
+        return false;
+      }
+    }
+  }
+  return true;
 }
-console.log(isSolved());
-// console.table(board);
-// console.table(isSolved(board));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -124,13 +98,13 @@ console.log(isSolved());
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  // const formBord = board.flat ;
+  // return chessBoard.join('\n').split(',').join(''));
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
-  nullCell,
   isSolved,
   prettyBoard,
 };
