@@ -9,9 +9,10 @@ const {runSudoku} = require('./run')
 function reader(puzzles){
     let arr = puzzles.split('\n')
     // let bord = arr[0].split('')
-    let sudoku
+	let sudoku
+	
     for (let i = 0; i < 15; i++){
-        let bord = arr[i].split('')
+			let bord = arr[i].split('');
         sudoku = bord.reduce((acc, val, i) => {
         const tmp = Math.floor(i/9)
         if (!Array.isArray(acc[tmp])){

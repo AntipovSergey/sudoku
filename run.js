@@ -17,7 +17,8 @@ function runSudoku(massSudoku) {
           k += 1;
         }
       }
-    }
+		}
+		console.log(massEmpties);
     if (massEmpties.length < 1)
       break;
 		for (let i = 0; i < massEmpties.length; i++) {
@@ -25,8 +26,9 @@ function runSudoku(massSudoku) {
 			massSudoku = squareParser(massEmpties[i], massSudoku);
 		}
     const end = new Date().getTime();
-    if (end - start >= 15)
-      return { mass: massSudoku, fl: 0 };
+		if (end - start >= 1500)
+			break;
+      // return { mass: massSudoku, fl: 0 };
   }
   return { mass: massSudoku, fl: 1 };
 }
