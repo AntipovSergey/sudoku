@@ -1,4 +1,5 @@
 // Подключить функции из файла sudoku.js.
+const fs = require('fs');
 const sudoku = require('./sudoku');
 
 function readAndSolve(error, fileData) {
@@ -7,9 +8,9 @@ function readAndSolve(error, fileData) {
   if (error) {
     throw error;
   }
-
+  const readFilePuzzleTxt = fs.readFileSync('./puzzles.txt', 'utf8');
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
-  const puzzles = fileData
+  const puzzles = readFilePuzzleTxt
     .split('\n')
     .filter((line) => line !== '');
 
@@ -22,12 +23,19 @@ function readAndSolve(error, fileData) {
   }
 
   // Получить желаемый судоку по индексу и вывести его в консоль.
-  const puzzle = puzzles[puzzleNumber - 1];
+  const puzzle = puzzles[puzzleNumber - 1].split('', 81);
+  const sudokuArr = [[], [], [], [], [], [], [], [], []];
+  for (let a = 0; a < sudokuArr.length; a += 1) {
+    for (let i = 0; i < 9; i += 1) {
+      sudokuArr[a].push(puzzle[a * 9 + i]);
+    }
+  }
   console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
+  console.table(sudokuArr);
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = sudoku.solve(puzzle);
+  const solvedPuzzle = sudoku.solve(sudokuArr);
+  // console.table(solvedPuzzle);
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
   if (!sudoku.isSolved(solvedPuzzle)) {
@@ -37,10 +45,11 @@ function readAndSolve(error, fileData) {
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.table(solvedPuzzle);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
-}
+};
 
 module.exports = readAndSolve;
