@@ -91,6 +91,21 @@ function solve() {
 }
 }
 
+//  метод Массивов foreach и for ,узнать индекс массива пустой клетки
+// i и g
+function nullCell(arr) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === '-') {
+        result.push([i, j]);
+      }
+    }
+  }
+  return result;
+}
+console.log(nullCell([[1, 2, 3, '-'], [1, 2, 3, '-', '-', 10]]));
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -115,6 +130,7 @@ function prettyBoard(board) {
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
+  nullCell,
   isSolved,
   prettyBoard,
 };
