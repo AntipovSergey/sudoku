@@ -1,4 +1,4 @@
-function squareParser(myIndex, sudoku) {
+function squareParser(myIndex, sudoku ) {
   let stroka = myIndex[0];
   let stolb = myIndex[1];
   let squareStroka;
@@ -35,3 +35,5 @@ function squareParser(myIndex, sudoku) {
   }
   return sudoku;
 }
+
+module.exports = { squareParser };

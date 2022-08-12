@@ -1,6 +1,6 @@
-const {
-  rowColumnParser,
-} = require('./rowColumnParser');
+// const {
+//   rowColumnParser,
+// } = require('./rowColumnParser');
 
 const {
   squareParser,
@@ -20,8 +20,10 @@ function runSudoku(massSudoku) {
     }
     if (massEmpties.length < 1)
       break;
-    for (let i = 0; i < massEmpties.length; i++)
-      massSudoku = squareParser(massEmpties[i], massSudoku, rowColumnParser(massEmpties[i], massSudoku));
+		for (let i = 0; i < massEmpties.length; i++) {
+			// massSudoku = rowColumnParser(massEmpties[i], massSudoku));
+			massSudoku = squareParser(massEmpties[i], massSudoku);
+		}
     const end = new Date().getTime();
     if (end - start >= 15)
       return { mass: massSudoku, fl: 0 };
