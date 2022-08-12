@@ -4,6 +4,7 @@ const { fileURLToPath } = require('url');
 const { runInContext } = require('vm');
 
 const puzzles = fs.readFileSync('./puzzles.txt','utf-8')
+const {runSudoku} = require('./run')
 
 function reader(puzzles){
     let arr = puzzles.split('\n')
@@ -20,11 +21,16 @@ function reader(puzzles){
         }
         return acc
         }, [])
-        console.table(sudoku)
+        let table = runSudoku(sudoku);
+        console.table(table.mass);
+        if (table.fl === 0){
+            console.log('Судоку не решена.')
+        } else {
+            console.log('Судоку решена.')
+        }
     }
-    return sudoku
 }
 
-// console.table (reader(puzzles));
+
 reader(puzzles)
 
