@@ -8,10 +8,10 @@ const puzzles = fs.readFileSync('./puzzles.txt','utf-8')
 function reader(puzzles){
     let arr = puzzles.split('\n')
     // let bord = arr[0].split('')
-    let res
+    let sudoku
     for (let i = 0; i < 15; i++){
         let bord = arr[i].split('')
-        res = bord.reduce((acc, val, i) => {
+        sudoku = bord.reduce((acc, val, i) => {
         const tmp = Math.floor(i/9)
         if (!Array.isArray(acc[tmp])){
             acc[tmp] = [val]
@@ -20,11 +20,11 @@ function reader(puzzles){
         }
         return acc
         }, [])
-        console.table(res)
+        console.table(sudoku)
     }
-   
-    return res
+    return sudoku
 }
 
 // console.table (reader(puzzles));
 reader(puzzles)
+
