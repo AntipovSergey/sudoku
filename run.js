@@ -14,7 +14,7 @@ function runSudoku(massSudoku) {
     let massEmpties = [];
     for (let i = 0, k = 0; i < massSudoku.length; i++) {
       for (let j = 0; j < massSudoku[i].length; j++) {
-        if (!(massSudoku[i][j] >= '0' && massSudoku[i][j] <= '9')) {
+        if (massSudoku[i][j] === '-') {
           massEmpties[k] = [i, j];
           k += 1;
         }
