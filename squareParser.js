@@ -23,11 +23,9 @@ function squareParser(myIndex, sudoku)
     //если массив осечен до 1 индекса, делаем замену в клетке "-"
     if (masTmp.length === 1) {
       sudoku[stroka][stolb] = masTmp[0];
-      console.table(sudoku);
       return sudoku;
     }
   }
-  console.table(sudoku);
   return sudoku;
 }
 
