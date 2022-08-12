@@ -8,25 +8,23 @@ const {
 
 function runSudoku(massSudoku) {
   const start = new Date().getTime();
-  while (1) {
-    let massEmpties = [];
-    for (let i = 0, k = 0; i < massSudoku.length; i++) {
-      for (let j = 0; j < massSudoku[i].length; j++) {
+  while (massSudoku.flat(1).includes('-')) {
+    let candid;
+    for (let i = 0; i < massSudoku.length; i += 1) {
+      for (let j = 0; j < massSudoku[i].length; j += 1) {
         if (massSudoku[i][j] === '-') {
-          massEmpties[k] = [i, j];
-          k += 1;
+          candid = rowColumnParser([i, j], massSudoku);
+          candid = squareParser([i, j], massSudoku, candid);
+          if (candid.length === 1) {
+            massSudoku[i][j] = candid[0];
+          }
         }
       }
     }
-    if (massEmpties.length < 1)
-      break;
-    for (let i = 0; i < massEmpties.length; i++) {
-      massSudoku = squareParser(massEmpties[i], massSudoku);
-      massSudoku = rowColumnParser(massEmpties[i], massSudoku);
-    }
-    const end = new Date().getTime(); 
-    if (end - start >= 15)
+    const end = new Date().getTime();
+    if (end - start >= 15) {
       return { mass: massSudoku, fl: 0 };
+    }
   }
   return { mass: massSudoku, fl: 1 };
 }
