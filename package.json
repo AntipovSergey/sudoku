@@ -4,7 +4,7 @@
   "description": "## Введение",
   "main": "runner.js",
   "scripts": {
-    "start": "node read-write.js"
+    "start": "node reader.js"
   },
   "repository": {
     "type": "git",
