@@ -34,7 +34,8 @@ function readAndSolve(error, fileData) {
   console.table(sudokuArr);
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = sudoku.solve(puzzle);
+  const solvedPuzzle = sudoku.solve(sudokuArr);
+  // console.table(solvedPuzzle);
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
   if (!sudoku.isSolved(solvedPuzzle)) {
@@ -44,12 +45,11 @@ function readAndSolve(error, fileData) {
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.table(solvedPuzzle);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
 }
-
-readAndSolve();
 
 module.exports = readAndSolve;
