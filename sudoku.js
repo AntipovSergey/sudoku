@@ -6,29 +6,25 @@
 function solve(boardString) {
 }
 
-
 //  метод Массивов foreach и for ,узнать индекс массива пустой клетки
-// i и g 
+// i и g
 function nullCell(arr) {
-let result = [];
-for( let i = 0; i < arr.length; i ++) {
-for( let j = 0; j < arr[i].length; j++){
-  if(arr[i][j] === '-'){
-    result.push([i,j])
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === '-') {
+        result.push([i, j]);
+      }
+    }
   }
+  return result;
 }
-}
-return result
-}
-console.log(nullCell([[1,2,3,'-'],[1,2,3,'-','-',10]]))
+console.log(nullCell([[1, 2, 3, '-'], [1, 2, 3, '-', '-', 10]]));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-
-
-
 function isSolved(board) {
 
 }
