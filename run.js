@@ -22,7 +22,7 @@ function runSudoku(massSudoku) {
       break;
     for (let i = 0; i < massEmpties.length; i++)
       massSudoku = squareParser(massEmpties[i], massSudoku, rowColumnParser(massEmpties[i], massSudoku));
-    const end = new Date().getTime(); 
+    const end = new Date().getTime();
     if (end - start >= 15)
       return { mass: massSudoku, fl: 0 };
   }
