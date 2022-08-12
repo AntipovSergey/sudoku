@@ -1,7 +1,4 @@
 const fs = require('fs');
-// const { hasUncaughtExceptionCaptureCallback } = require('process');
-// const { fileURLToPath } = require('url');
-// const { runInContext } = require('vm');
 
 const puzzles = fs.readFileSync('./puzzles.txt', 'utf-8');
 const { runSudoku } = require('./run');
