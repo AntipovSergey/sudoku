@@ -4,13 +4,17 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  function getArrFromStr(str) {
+    const arr = str.match(/.{9}/gm).map((line) => line.split(''));
+    return arr;
+  }
 }
-
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+  
 
 }
 
