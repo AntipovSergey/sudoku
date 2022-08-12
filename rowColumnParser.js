@@ -1,5 +1,4 @@
-function rowColumnParser(index, puzzle) {      // index[0] - i , index[1] - j
-    const candidates = ['1','2','3','4','5','6','7','8','9']
+function rowColumnParser(index, puzzle, candidates) {      // index[0] - i , index[1] - j
     for (let i = index[0]; i < 9; i++) {
       if (candidates.indexOf(puzzle[index[0]][i]) !== -1)
       candidates.splice(candidates.indexOf(puzzle[index[0]][i]), 1)
@@ -9,6 +8,10 @@ function rowColumnParser(index, puzzle) {      // index[0] - i , index[1] - j
       if (candidates.indexOf(puzzle[j][index[1]]) !== -1)
       candidates.splice(candidates.indexOf(puzzle[j][index[1]]), 1)
     }
+
+    // if (candidates.length === 1) {
+    //   puzzle[index[0]][index[1]] = candidates[0]
+    // }
 
     if (candidates.length > 1) { 
         return {candidates , puzzle}
@@ -68,6 +71,8 @@ const test = [
 
   const indexTest = [0, 1]
 
-  console.log(rowColumnParser(indexTest, test))
+  const candidates = ['1','2','3','4','5','6','7','8','9']
+
+  console.log(rowColumnParser(indexTest, test, candidates))
 
 module.exports = rowColumnParser;
