@@ -1,5 +1,4 @@
-function squareParser(myIndex, sudoku)
-{
+function squareParser(myIndex, sudoku) {
   let stroka = myIndex[0];
   let stolb = myIndex[1];
   let squareStroka;
@@ -13,19 +12,26 @@ function squareParser(myIndex, sudoku)
   if (stolb >= 0 && stolb < 3) squareStolb = 0;
   if (stolb > 2 && stolb < 6) squareStolb = 3;
   if (stolb > 5 && stolb < 9) squareStolb = 6;
-	//перебор столбца, при отсуствии только 1 элемента, ищем подходящий и меняем
-	for (let i = squareStroka; i < squareStroka + 3; i++) {
-    //цикл отсева с массива [1,2,3,4,5,6,7,8,9]
+  //перебор столбца, при отсуствии только 1 элемента, ищем подходящий и меняем
+  for (let i = squareStroka; i < squareStroka + 3; i++) {
     for (let j = squareStolb; j < squareStolb + 3; j++) {
       if (masTmp.indexOf(sudoku[i][j]) !== -1)
         masTmp.splice(masTmp.indexOf(sudoku[i][j]), 1);
     }
-    //если массив осечен до 1 индекса, делаем замену в клетке "-"
-    if (masTmp.length === 1) {
-      sudoku[stroka][stolb] = masTmp[0];
-      return sudoku;
-    }
+  }
+  //цикл отсева с массива [1,2,3,4,5,6,7,8,9] по горизонту
+  for (let j = squareStolb; j < 9; j++)
+    if (masTmp.indexOf(sudoku[squareStroka][j]) !== -1)
+      masTmp.splice(masTmp.indexOf(sudoku[squareStroka][j]), 1);
+  //цикл отсева с массива [1,2,3,4,5,6,7,8,9] по вертикали
+  for (let j = squareStolb; j < 9; j++)
+    if (masTmp.indexOf(sudoku[j][squareStroka]) !== -1)
+      masTmp.splice(masTmp.indexOf(sudoku[j][squareStroka]), 1);
+  //если массив осечен до 1 индекса, делаем замену в клетке "-"
+  if (masTmp.length === 1) {
+    sudoku[stroka][stolb] = masTmp[0];
+    console.table(sudoku);
+    return sudoku;
   }
   return sudoku;
 }
-

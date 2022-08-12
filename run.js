@@ -9,7 +9,8 @@ const {
 function runSudoku(massSudoku) {
   let isEnd = true;
   while (isEnd) {
-    let massEmpties = [];
+		let massEmpties = [];
+		
     for (let i = 0, k = 0; i < massSudoku.length; i++) {
       for (let j = 0; j < massSudoku[i].length; j++) {
         if (!(massSudoku[i][j] >= '0' && massEmpties[i][j] <= '9')) {
