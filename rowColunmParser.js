@@ -1,26 +1,26 @@
-function rowColunmParser(index, puzzle) {// index[0] - i , index[1] - j
-    const sudoku = [...puzzle]
-    const candidates = [1,2,3,4,5,6,7,8,9]
-    for (let i = index[0]; i < sudoku.length; i++) {
-        puzzle[i].forEach((el) => {
-            el = []
-            el.filter(candidates)
-            return
-        });
+function rowColunmParser(index, puzzle) {      // index[0] - i , index[1] - j
+    const candidates = ['1','2','3','4','5','6','7','8','9']
+    for (let i = index[0]; i < puzzle.length; i++) {
+        if (puzzle[i].includes(candidates[i])) {
+            candidates.splice(puzzle[i].indexOf(candidates[i]), 1)
+            puzzle[i].splice(puzzle[i], 0, candidates[i])
+         }
+        }
+
+    for (let j = index[1]; j < puzzle.length; j++) {
+        if (puzzle[j].includes(candidates[j])) {
+            candidates.splice(puzzle[j].indexOf(candidates[j]), 1)
+            puzzle[j].splice(puzzle[j], 0, candidates[j])
+         }
     }
 
-    for (let j = index[1]; j < sudoku.length; j++) {
-        puzzle[j].forEach((el) => {
-            el = []
-            el.filter(candidates)
-            return
-        })
-    }
-    if (candidates.length > 1) return sudoku
-    else {
-
+    if (candidates.length > 1) { 
+        return {candidates , puzzle}
+    } else {
+        return 'test'
     }
 }
+
 
 const test = [
     [
@@ -70,7 +70,7 @@ const test = [
     ]
   ]
 
-  const indexTest = [3, 4]
+  const indexTest = [0, 0]
 
   console.log(rowColunmParser(indexTest, test))
 
