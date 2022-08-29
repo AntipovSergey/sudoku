@@ -5,7 +5,16 @@
  */
 function solve(boardString) {
   const fs = require('fs');
-  const puzzle = fs.readFileSync('./puzzles.txt','utf-8');
+  let sudokuBaza = fs.readFileSync('./puzzles.txt','utf-8');
+  sudokuBaza = sudokuBaza.split('\n')
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  
+  
+  numbers.forEach(num => {
+    console.log(num);
+  });
+  // console.log(sudokuBaza[14]);
+  // console.log(solve());
 }
 
 /**
