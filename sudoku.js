@@ -3,6 +3,7 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
 function solve(boardString) {
   let newArr = boardString.split('');
   let board = [];
@@ -16,7 +17,11 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  for(let i = 0; i < board.length; i++) {
+    for (let y = 0; y < board[i].length; y++) {
+      
+    }
+  }
 }
 
 /**
@@ -27,6 +32,11 @@ function isSolved(board) {
 function prettyBoard(board) {
 
 }
+
+// function testFunc(arr) {
+//   const str = arr.join(' ');
+//   return str;
+// }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
