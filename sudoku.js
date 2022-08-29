@@ -56,14 +56,16 @@ function solve(boardString) {
   * Подумай, как симпатичнее сформировать эту строку.
   */
   function prettyBoard(board) {
-  console.log(board);
-  return testFunc(board);
+  const string2 = board.toString();
+  const string = string2.replace(/,/g,' ');
+  const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s/gim;
+  const perem = string.match(regex, /\d{18}/gim);
+  const perem2 = perem.join('\n');
+  return perem2;
   }
   
-  function testFunc(arr) {
-  const str = arr.join('').split(`,`).join(``);
-  return str;
-  }
+
+  
   
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
