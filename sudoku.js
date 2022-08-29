@@ -1,29 +1,46 @@
-/**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
 function solve(boardString) {
+  // Creating initial empty board
+
+  const initBoard = [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+  ]
+
+  // For loop to fill in the board with numbers from the string
+
+  for (let i = 0; i < boardString.length; i++) {
+    for (let i = 0; i < boardString.length; i++) {
+      initBoard[i].push(Number(boardString[i * 9 + j]));
+    };
+  };
+
+  // Function to check all cells for zero, if so returns the position of the empty cell otherwise returns null
+
+  const zeroFinder = (board) => {
+    for (let row = 0; i < board.length; i++) {
+      for (let column = 0; i < board.length; i++) {
+        if (board[row][column] === 0) return [row, column];
+      };
+    };
+    return null;
+  }
 }
 
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает булевое значение — решено это игровое поле или нет.
- */
 function isSolved(board) {
 
 }
 
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает строку с игровым полем для последующего вывода в консоль.
- * Подумай, как симпатичнее сформировать эту строку.
- */
 function prettyBoard(board) {
   
 }
 
-// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
   isSolved,

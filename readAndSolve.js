@@ -16,7 +16,7 @@ function readAndSolve(error = null, fileData) {
     puzzleNumber = puzzles.length;
   }
 
-  const puzzle = puzzles[puzzleNumber - 1];
+  const puzzle = puzzles[puzzleNumber - 1].replaceAll('-', '0');
   console.log(`Решаем судоку №${puzzleNumber}:`);
   console.log(puzzle, '\n');
   
