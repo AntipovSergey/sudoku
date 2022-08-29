@@ -4,10 +4,22 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  let arr = boardString.split('')
+  let sudokuBoard = []
+   for (let i = 0; i < arr.length; i += 9) {
+        sudokuBoard.push(arr.slice(i, i+9))
+   }
   
 
 
+  console.log(console.table(sudokuBoard))
+
+
 }
+solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')
+
+
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
