@@ -4,6 +4,11 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  let newArr = boardString.split('');
+  let board = [];
+  for (let i=0; i< newArr.length; i = i+9){
+    board.push(newArr.slice(i,i+9))
+  }return board;
 }
 
 /**
