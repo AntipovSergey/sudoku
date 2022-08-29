@@ -4,6 +4,31 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  const fs = require('fs');
+  let sudokuBaza = fs.readFileSync('./puzzles.txt','utf-8');
+  sudokuBaza = sudokuBaza.split('\n')
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  
+  sudokuBaza.forEach(sudoku => {
+    let strings = []
+    let columns = []
+    for (let index = 0; index < sudoku.length; index += 9) {
+      let myString = strings.push(sudoku.slice(index, index +9));
+      for (let index = 0; index < myString.length; index++) {
+        console.log(myString);
+        
+      }
+    }
+    
+    console.log(strings);
+    numbers.forEach(num => {
+      // console.log(num);
+    });
+    
+  });
+  
+  
+  console.log(solve());
 }
 
 /**
