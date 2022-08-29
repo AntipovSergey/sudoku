@@ -31,6 +31,39 @@ function solve(boardString) {
     };
     return null;
   }
+  
+  const validate = (num, pos, board) => {
+    // в массиве num строка или число ??
+    const [x, y] = pos;
+
+    // Проходим по рядам
+    for (let i = 0; i < 9; i += 1) {
+      if (board[i][y] === num && i !== x) {
+        return false;
+      }
+    }
+
+    // Проходим по колонкам
+    for (let i = 0; i < 9; i += 1) {
+      if (board[x][i] === num && i !== y) {
+        return false;
+      }
+    }
+
+    // Проходим по квадратам
+    const rowStart = Math.floor(x / 3) * 3;
+    const colStart = Math.floor(y / 3) * 3;
+
+    for (let i = rowStart; i < rowStart + 3; i++) {
+      for (let j = colStart; j < colStart + 3; j++) {
+        if (board[i][j] === num && i !== x && j !== y) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
 }
 
 function isSolved(board) {
