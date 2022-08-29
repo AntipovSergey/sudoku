@@ -40,6 +40,7 @@ function validator(num, pos, board) {
       return false;
     }
   }
+
 }
 
 /**
