@@ -4,6 +4,8 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  const fs = require('fs');
+  const puzzle = fs.readFileSync('./puzzles.txt','utf-8');
 }
 
 /**
