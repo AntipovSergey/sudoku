@@ -20,8 +20,26 @@
   // console.table(boradsudoku);
   
   
-  for (let index = 0; index <= 2; index++) {
+  for (let index = 0; index < 1; index++) {
     let boradsudoku = prettyBoard(sudokuBaza[index]);
+    console.table (boradsudoku)
+    let checkArr = []
+    for (let check = 0; check < 9; check += 3) {
+        let arr1 = []
+        arr1.push(boradsudoku[check].slice(0, 3))
+        arr1.push(boradsudoku[check + 1].slice(0, 3))
+        arr1.push(boradsudoku[check + 2].slice(0, 3))
+        let arr2 = []
+        arr2.push(boradsudoku[check].slice(3, 6))
+        arr2.push(boradsudoku[check + 1].slice(3, 6))
+        arr2.push(boradsudoku[check + 2].slice(3, 6))
+        let arr3 = []
+        arr3.push(boradsudoku[check].slice(6))
+        arr3.push(boradsudoku[check + 1].slice(6))
+        arr3.push(boradsudoku[check + 2].slice(6))
+        checkArr.push(arr1.join(','), arr2.join(','), arr3.join(','))
+    }
+    console.log(checkArr);
     for (let row = 0; row < boradsudoku.length; row++) {
       let accCol = '';
       for (let col = 0; col < boradsudoku.length; col++) {
@@ -29,25 +47,22 @@
           for (let rowMy = [row]; rowMy < boradsudoku.length; rowMy++){
             accCol += boradsudoku[rowMy][col]
           }
-          // console.log(accCol)
-            // console.log(boradsudoku[row], boradsudoku[col])
-          // console.log([row, col], index);
-          // const proverka = (num, row, col) => {
-          //   console.log (el)
-            //for (let i=0; i < boradsudoku.length; i++){
-              for (let num of numbers){
+          for (let num of numbers){
+            // function ifUnclArr(row, col, num) {
+              
+              // }
               if (!boradsudoku[row].includes(num) && !accCol.includes(num)){
-                // console.log(1)
                 boradsudoku[row][col] = num;
-               }
-              } 
-            }
-          }
-          
+              }
+          } 
         }
-        console.table (boradsudoku)
       }
     }
+    // console.log(checkArr);
+  }
+}
+
+
 console.log(solve()) 
   
   // sudokuBaza.forEach((sudoku, sudokuIndex) => {
