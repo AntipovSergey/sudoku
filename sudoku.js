@@ -9,12 +9,26 @@ function solve(boardString) {
   sudokuBaza = sudokuBaza.split('\n')
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   
-  
-  numbers.forEach(num => {
-    console.log(num);
+  sudokuBaza.forEach(sudoku => {
+    let strings = []
+    let columns = []
+    for (let index = 0; index < sudoku.length; index += 9) {
+      let myString = strings.push(sudoku.slice(index, index +9));
+      for (let index = 0; index < myString.length; index++) {
+        console.log(myString);
+        
+      }
+    }
+    
+    console.log(strings);
+    numbers.forEach(num => {
+      // console.log(num);
+    });
+    
   });
-  // console.log(sudokuBaza[14]);
-  // console.log(solve());
+  
+  
+  console.log(solve());
 }
 
 /**
