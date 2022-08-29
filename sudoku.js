@@ -30,7 +30,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+console.log(`Ff`)
 }
 
 // function testFunc(arr) {
