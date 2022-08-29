@@ -4,14 +4,26 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-  const board = [];
-  const arr = boardString.split('');
-  for (let i = 0; i < arr.length; i++) {
-    board.push(arr.splice(0, 9));
-  }
-  return board;
-}
 
+ function makeField(boardString) {
+    const board = [];
+    const arr = boardString.split('');
+    for (let i = 0; i < arr.length; i++) {
+      board.push(arr.splice(0, 9));
+    }
+    return board;
+  }
+
+  function searchNotNum(board) {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (board[i][j] === '-') {
+          return [i, j];
+        }
+      }
+    }
+    return 0; 
+  }
 function validator(num, pos, board) {
   const [r, c] = pos;
 
@@ -53,3 +65,5 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+//Добавление веток
