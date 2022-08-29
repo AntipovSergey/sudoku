@@ -3,22 +3,51 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+//  let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 function solve(boardString) {
-  let arr = boardString.split('')
-  let sudokuBoard = []
-   for (let i = 0; i < arr.length; i += 9) {
-        sudokuBoard.push(arr.slice(i, i+9))
-   }
-  
+  console.log('======>', boardString)
+  let arr = boardString.split('');
+  let sudokuBoard = [];
+  for (let i = 0; i < arr.length; i += 9) {
+    sudokuBoard.push(arr.slice(i, i + 9))
+  }
 
 
-  console.log(console.table(sudokuBoard))
 
-
+  return sudokuBoard;
 }
 solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')
 
+function findEmpty(sudokuBoard) {
 
+  for (let r = 0; r < sudokuBoard.length; r += 1) {
+    for (let c = 0; c < sudokuBoard.length; c += 1) {
+      if (sudokuBoard[r][c] === '-') {
+        return [r, c]
+      }
+    }
+  }
+  return null;
+}
+
+
+
+console.log(findEmpty(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')))
+
+// console.log(solve())
+
+/* function findEmpty(sudokuBoard) {
+
+  for (let r = 0; r < sudokuBoard.length; r += 1) {
+    for (let c = 0; c < sudokuBoard.length; c += 1) {
+      if (sudokuBoard[r][c] === '-') {
+        return [r, c]
+      }
+    }
+  }
+  return null;
+} */
+// console.log(findEmpty(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')))
 
 
 /**
