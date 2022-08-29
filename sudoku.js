@@ -11,33 +11,56 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
+ function solve(boardString) {
   const fs = require('fs');
   let sudokuBaza = fs.readFileSync('./puzzles.txt','utf-8');
   sudokuBaza = sudokuBaza.split('\n')
+  // console.log(sudokuBaza);
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  // console.table(boradsudoku);
   
-  sudokuBaza.forEach(sudoku => {
-    let strings = []
-    let columns = []
-    for (let index = 0; index < sudoku.length; index += 9) {
-      let myString = strings.push(sudoku.slice(index, index +9));
-      for (let index = 0; index < myString.length; index++) {
-        console.log(myString);
-        
+  
+  for (let index = 0; index <= 2; index++) {
+    let boradsudoku = prettyBoard(sudokuBaza[index]);
+    for (let row = 0; row < boradsudoku.length; row++) {
+      let accCol = '';
+      for (let col = 0; col < boradsudoku.length; col++) {
+        if(boradsudoku[row][col] === '-') {
+          for (let rowMy = [row]; rowMy < boradsudoku.length; rowMy++){
+            accCol += boradsudoku[rowMy][col]
+          }
+          // console.log(accCol)
+            // console.log(boradsudoku[row], boradsudoku[col])
+          // console.log([row, col], index);
+          // const proverka = (num, row, col) => {
+          //   console.log (el)
+            //for (let i=0; i < boradsudoku.length; i++){
+              for (let num of numbers){
+              if (!boradsudoku[row].includes(num) && !accCol.includes(num)){
+                // console.log(1)
+                boradsudoku[row][col] = num;
+               }
+              } 
+            }
+          }
+          
+        }
+        console.table (boradsudoku)
       }
     }
-    
-    console.log(strings);
-    numbers.forEach(num => {
-      // console.log(num);
-    });
-    
-  });
+console.log(solve()) 
   
+  // sudokuBaza.forEach((sudoku, sudokuIndex) => {
   
-  console.log(solve());
-}
+  // let strings = []
+  // let columns = []
+  // for (let index = 0; index < sudoku.length; index += 9) {
+  // let myColumns = ''
+  // let myString = strings.push(sudoku.slice(index, index +9));
+  // for (let i = 0; i < sudoku.length; i += 9) {
+  // myColumns += sudoku[i]
+  // }
+  // // columns.push(myColumns) 
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
