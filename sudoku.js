@@ -13,14 +13,15 @@ function solve(boardString) {
     let strings = []
     let columns = []
     for (let index = 0; index < sudoku.length; index += 9) {
+      let myColumns = ''
       let myString = strings.push(sudoku.slice(index, index +9));
-      for (let index = 0; index < myString.length; index++) {
-        console.log(myString);
-        
+      for (let i = 0; i < sudoku.length; i += 9) {
+        myColumns += sudoku[i]
       }
+      columns.push(myColumns)
     }
+    console.log(columns);
     
-    console.log(strings);
     numbers.forEach(num => {
       // console.log(num);
     });
@@ -28,8 +29,8 @@ function solve(boardString) {
   });
   
   
-  console.log(solve());
 }
+console.log(solve());
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
