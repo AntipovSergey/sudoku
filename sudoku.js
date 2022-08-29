@@ -4,7 +4,8 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-  function makeField(boardString) {
+
+ function makeField(boardString) {
     const board = [];
     const arr = boardString.split('');
     for (let i = 0; i < arr.length; i++) {
@@ -21,7 +22,23 @@ function solve(boardString) {
         }
       }
     }
-    return 0;
+    return 0; 
+  }
+function validator(num, pos, board) {
+  const [r, c] = pos;
+
+  // Проверка строк
+  for (let i = 0; i < 9; i++) {
+    if (board[i][c] === num && i !== r) {
+      return false;
+    }
+  }
+
+  // Проверка столбцов
+  for (let i = 0; i < 9; i++) {
+    if (board[r][i] === num && i !== c) {
+      return false;
+    }
   }
 }
 
