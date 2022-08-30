@@ -3,7 +3,7 @@ const sudoku = require('../sudoku.js');
 describe("Sudoku solver", () => {
     let board;
     function hasDuplicates(row) {
-        return new Set(row).size !== arr.length; // true, если найдет повторения
+        return new Set(row).size !== row.length; // true, если найдет повторения
     }
 
     function isFullFilled(board) {
