@@ -1,10 +1,3 @@
-// в solve(board) -
-// 1. найти пустую ячейку 
-// 2. подставить число и провести проверку
-// 3. вернуть решеный борд
-
-//isSolved(board, который вернулся из ф-ции solve)
-
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -13,6 +6,7 @@
  */
  function solve(boardString) {
   const fs = require('fs');
+
   let sudokuBaza = fs.readFileSync('./puzzles.txt','utf-8');
   sudokuBaza = sudokuBaza.split('\n')
   // console.log(sudokuBaza);
@@ -68,7 +62,22 @@
           return boradsudoku
         }
         
+
+
 }
+console.log(solve());
+
+// sudokuBaza.forEach((sudoku, sudokuIndex) => {
+
+// let strings = []
+// let columns = []
+// for (let index = 0; index < sudoku.length; index += 9) {
+// let myColumns = ''
+// let myString = strings.push(sudoku.slice(index, index +9));
+// for (let i = 0; i < sudoku.length; i += 9) {
+// myColumns += sudoku[i]
+// }
+// // columns.push(myColumns)
 
 
   console.log(solve()) 
@@ -79,18 +88,36 @@
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  for (let row = 0; row < boradsudoku.length; row++) {
+    for (let col = 0; col < boradsudoku.length; col++) {
+      if (board[row][col] == '.') {
+        for (let num = 0; num < numbers.length; num++) {
+          if (isValid(row, col, num)) { // название функции ???
+            board[row][col] = String(num);
+            if (solve(boardString)) {
+              return true;
+            }
+            board[row][col] == '-';
+          }
+        }
+        return false;
+      }
+    }
+  }
+  return true;
 }
-
+isSolved();
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  let sudokuBoard = [];
+
+  const sudokuBoard = [];
   let i = 0;
-  while(i < board.length) {
+  while (i < board.length) {
+
     const row = board.substring(i, i + 9);
     sudokuBoard.push(Array.from(row));
     i += 9;
