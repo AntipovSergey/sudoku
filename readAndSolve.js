@@ -57,10 +57,6 @@ function readAndSolve(fileData, error = null) {
     return;
   }
 
- if (!sudoku.isSolved(solvedPuzzle)) {
-    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-    return;
-  }
   
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
 
