@@ -61,7 +61,18 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  let summ = 0;
+  for (let i = 0; i < board.length; i++) {
+    const m = board[i].reduce((s, item) => {
+      s += +item;
+      return s;
+    }, 0);
+    summ += m;
+  }
+  if (summ === 405) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -70,7 +81,15 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  // console.table(board);
+  // return '';
+  return board
+    .join(',')
+    .replace(/(,)/g, '')
+    .replace(/(.{27})/g, (match, n) => `${n}---------`)
+    .replace(/(.{9})/g, (match, n) => `${n}\n`)
+    .replace(/(.{3})/g, (match, n) => `|${n}|`)
+    .replace(/(.)/g, (match, n) => `${n} `);
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
