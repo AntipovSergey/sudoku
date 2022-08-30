@@ -13,20 +13,19 @@ function readAndSolve(fileData, error = null) {
 
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;
-  }
-
+  } 
+ 
   const puzzle = puzzles[puzzleNumber - 1].replaceAll('-', '0');
   console.log(`Решаем судоку №${puzzleNumber}:`);
   console.log(puzzle, '\n');
-
+  
   const solvedPuzzle = sudoku.solve(puzzle);
+  if (!sudoku.isSolved(solvedPuzzle)) {
+    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
+    return;
+  }
 
-  // if (!sudoku.isSolved(solvedPuzzle)) {
-  //   console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-  //   return;
-  // }
-
-  // console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.log(`Судоку №${puzzleNumber} решён успешно!`);
 
   return sudoku.prettyBoard(solvedPuzzle);
 }
