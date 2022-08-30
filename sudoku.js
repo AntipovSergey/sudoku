@@ -69,8 +69,8 @@ function solve(boardString) {
   
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
+// module.exports = {
+//   solve,
+//   isSolved,
+//   prettyBoard,
+// };
