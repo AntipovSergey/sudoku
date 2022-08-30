@@ -1,39 +1,22 @@
+// const readAndSolve = require('project-sudoku/readAndSolve.js')
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-//  let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-function solve(boardString) {
-<<<<<<< HEAD
-  const arr = boardString.split('');
-  const sudokuBoard = [];
+let mainFunction = function (str) {
+
+let arr = str.split('')
+const board = [];
   for (let i = 0; i < arr.length; i += 9) {
-    sudokuBoard.push(arr.slice(i, i + 9));
+    board.push(arr.slice(i, i + 9));
   }
 
-  console.log(console.table(sudokuBoard));
-}
-solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
-=======
-  console.log('======>', boardString)
-  let arr = boardString.split('');
-  let sudokuBoard = [];
-  for (let i = 0; i < arr.length; i += 9) {
-    sudokuBoard.push(arr.slice(i, i + 9))
-  }
+function findEmpty(board) {
 
-
-
-  return sudokuBoard;
-}
-solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')
-
-function findEmpty(sudokuBoard) {
-
-  for (let r = 0; r < sudokuBoard.length; r += 1) {
-    for (let c = 0; c < sudokuBoard.length; c += 1) {
-      if (sudokuBoard[r][c] === '-') {
+  for (let r = 0; r < board.length; r += 1) {
+    for (let c = 0; c < board.length; c += 1) {
+      if (board[r][c] === '-') {
         return [r, c]
       }
     }
@@ -43,46 +26,103 @@ function findEmpty(sudokuBoard) {
 
 
 
-console.log(findEmpty(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')))
+let size = 9;
+let boxSize = 3;
+const validate = (num, pos, board) => {
+  const [r,c] = pos;
+  
+  //Check rows
+  for (let i = 0; i < size; i++) {
+      if (board[i][c] === num && i !== r) {
+          return false;
+      }
+  }
 
-// console.log(solve())
+  //Check cols
+  for (let i = 0; i < size; i++) {
+      if (board[r][i] === num && i !== c) {
+          return false;
+      }
+  }
 
-/* function findEmpty(sudokuBoard) {
 
-  for (let r = 0; r < sudokuBoard.length; r += 1) {
-    for (let c = 0; c < sudokuBoard.length; c += 1) {
-      if (sudokuBoard[r][c] === '-') {
-        return [r, c]
+  //Check box
+  const boxRow = Math.floor( r/boxSize ) * boxSize;
+  const boxCol = Math.floor( c/boxSize ) * boxSize;
+
+  for (let i = boxRow; i < boxRow + boxSize; i++) {
+      for (let j = boxCol; j < boxCol + boxSize; j++) {
+          if (board[i][j] === num && i !== r && j !== c) {
+              return false;
+          }
+      }
+  }
+
+  return true;
+}
+
+
+const solve = () => {
+  const currPos = findEmpty(board);
+
+  if (currPos === null) {
+      return true;
+  }
+  //console.log('------------------------------');
+  for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, board);
+      //console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
+      if (isValid) {
+          const [x,y] = currPos;
+          board[x][y] = currNum;
+
+          if(solve()) {
+              return true;
+          }
+        
+          board[x][y] = '-';
       }
     }
+   return false;
   }
-  return null;
-} */
-// console.log(findEmpty(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--')))
+    solve();
+    return board;
+  
+}
 
->>>>>>> 4dfcdbb567cfbb8c08d8c915942c7e1af0c3501a
+// mainFunction(boardString)
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i += 1) {
+    for (let j = 0; j < board[i].length; j += 1) {
+      if (board[i][j] === '-') {
+        return false
+      } 
+    }
+  }
+  return true
 }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
 
+function prettyBoard(board) {
+ console.table(board.map(el => el.map(el => el / 1)))
 }
 
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
-module.exports = {
-  solve,
-  isSolved,
+module.exports = { isSolved,
   prettyBoard,
+  mainFunction
 };
 
