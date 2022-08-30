@@ -40,7 +40,7 @@ function solve(input) {
             }
             return false;
           }
-          
+
         }
       }
       return true;
@@ -62,13 +62,13 @@ console.table(solvedSudoku);
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-  for (let row = 0; row < sudokuBoard.length; row++) {
-    for (let col = 0; col < sudokuBoard.length; col++) {
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board.length; col++) {
       if (board[row][col] === '-') {
-        return false;
+        return 'Sudoku not solved';
       }
     }
-    return true;
+    return 'Sudoku is solved correctly';
   }
 }
 console.log(isSolved(solvedSudoku))
@@ -87,8 +87,6 @@ function prettyBoard(board) {
   }
   return sudokuBoard;
 }
-console.table(prettyBoard(sudokuBoard))
-
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
