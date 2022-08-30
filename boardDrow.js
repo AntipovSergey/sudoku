@@ -43,6 +43,8 @@ function boardDrawCfonts(array, formaC) {
     cfonts.say(m + stringLayer(formaC), fontSetting);
   });
   cfonts.say(m + stringSolid(formaC), fontSetting);
+  console.log('\n');
+  cfonts.say('sudoku is solved\n', { space: false, font: 'chrome', gradient: ['red', 'blue'] });
 }
 
 module.exports = boardDrawCfonts;
