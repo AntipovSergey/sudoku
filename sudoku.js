@@ -4,6 +4,9 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  
+  const board = makeField(boardString);
+
   function makeField(boardString) {
     const board = [];
     const arr = boardString.split('');
@@ -23,6 +26,7 @@ function solve(boardString) {
     }
     return 0;
   }
+
   function validator(num, pos, board) {
     const [r, c] = pos;
 
@@ -53,6 +57,32 @@ function solve(boardString) {
     }
     return true;
   }
+
+  const solveRecurcia = () => {
+    const pos = searchNotNum(board);
+
+    if (pos === 0) {
+      return true;
+    }
+    for (let i = 1; i < 10; i++) {
+      const num = i.toString();
+      const isValid = validator(num, pos, board);
+      if (isValid) {
+        const [x, y] = pos;
+        board[x][y] = num;
+
+        if (solveRecurcia()) {
+          return true;
+        }
+        board[x][y] = '-';
+      }
+    }
+
+    return false;
+  };
+
+  solveRecurcia();
+  return board;
 }
 
 /**
