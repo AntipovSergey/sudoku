@@ -130,4 +130,5 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  boardDrawCfonts,
 };
