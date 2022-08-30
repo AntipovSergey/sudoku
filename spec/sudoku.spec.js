@@ -29,11 +29,5 @@ describe("Sudoku solver", () => {
         test("There are no repeating numbers in a Sudoku string", () => {
             expect(hasDuplicates(sudoku.solve(board))).toBeFalsy();
         });
-        test("Sudoku column has no repeating numbers", () => {
-            expect().toBe();
-        });
-        test("В секторе судоку нет повторяющихся чисел", () => {
-            expect().toBe();
-        });
     });
 });

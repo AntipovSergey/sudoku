@@ -4,12 +4,11 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-function solve(input) {
+ function solve(input) {
   const sudokuBoard = prettyBoard(input);
 
     let isValidNum = (row, col, num) => {
 
-      //необходимо разобраться как работает этот блок
       for (let check = 0; check < sudokuBoard.length; check++) {
         let boxRow = (parseInt(row / 3) * 3) + parseInt(check / 3);
         let boxCol = (parseInt(col / 3) * 3) + check % 3;
@@ -31,10 +30,10 @@ function solve(input) {
             for (let num of numbers) {
               if (isValidNum(row, col, num)) {
                 sudokuBoard[row][col] = String(num);
-                if (checkSudoku(sudokuBoard)) { // разобраться как запустается рекурсия
+                if (checkSudoku(sudokuBoard)) {
                   return true;
                 }
-                sudokuBoard[row][col] = '-' // откатываемся на шаг назад и вместо цифры ставим -
+                sudokuBoard[row][col] = '-'
               }
             }
             return false;
@@ -51,8 +50,12 @@ const fs = require('fs');
 const inputStrings = fs.readFileSync('./puzzles.txt', 'utf-8')
 const arrOfBoards = inputStrings.split('\n');
 
+console.log('Решаем судоку номер 1')
+console.table(prettyBoard(arrOfBoards[0]))
+
 const solvedSudoku = solve(arrOfBoards[0]);
 console.table(solvedSudoku);
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -63,10 +66,10 @@ function isSolved(board) {
   for (let row = 0; row < board.length; row++) {
     for (let col = 0; col < board.length; col++) {
       if (board[row][col] === '-') {
-        return 'Sudoku not solved';
+        return 'Судоку не решено :(';
       }
     }
-    return 'Sudoku is solved correctly';
+    return 'Судоку успешно решено!';
   }
 }
 
