@@ -58,8 +58,8 @@ function solve(boardString) {
   function prettyBoard(board) {
   const string2 = board.toString();
   const string = string2.replace(/,/g,' ');
-  const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s/gim;
-  const perem = string.match(regex, /\d{18}/gim);
+  const regex = /(\d{1}).{16}/g
+  const perem = string.match(regex)
   const perem2 = perem.join('\n');
   return perem2;
   }
