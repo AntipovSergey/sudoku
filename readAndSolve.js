@@ -13,8 +13,8 @@ function readAndSolve(fileData, error = null) {
 
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;
-  }
-
+  } 
+ 
   const puzzle = puzzles[puzzleNumber - 1].replaceAll('-', '0');
 
   const neatBoard = () => {
@@ -50,15 +50,18 @@ function readAndSolve(fileData, error = null) {
   };
 
   console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(neatBoard());
 
   const solvedPuzzle = sudoku.solve(puzzle);
+  if (!sudoku.isSolved(solvedPuzzle)) {
+    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
+    return;
+  }
 
-  // if (!sudoku.isSolved(solvedPuzzle)) {
-  //   console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-  //   return;
-  // }
-
+ if (!sudoku.isSolved(solvedPuzzle)) {
+    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
+    return;
+  }
+  
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
 
   return sudoku.prettyBoard(solvedPuzzle);
