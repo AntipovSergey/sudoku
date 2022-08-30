@@ -1,69 +1,56 @@
-
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 const fs = require('fs');
-let sudokuBaza = fs.readFileSync('./puzzles.txt','utf-8');
-sudokuBaza = sudokuBaza.split('\n')
 
-let boradsudoku = prettyBoard(sudokuBaza[14]);
+let sudokuBaza = fs.readFileSync('./puzzles.txt', 'utf-8');
+sudokuBaza = sudokuBaza.split('\n');
+
+const boradsudoku = prettyBoard(sudokuBaza[14]);
 
 function solve(boardString) {
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-  
   for (let index = 0; index <= 14; index++) {
-    
     // console.log(sudokuBaza[index]);
- 
-    let isValidNum = (row,col,num) => {
-    
-    for (let check = 0; check < boradsudoku.length; check++) {
-      let boxRow = (parseInt(row/3)*3)+parseInt(check/3); 
-      let boxCol = (parseInt(col/3)*3)+check%3;
-    
+
+    const isValidNum = (row, col, num) => {
+      for (let check = 0; check < boradsudoku.length; check++) {
+        const boxRow = (parseInt(row / 3) * 3) + parseInt(check / 3);
+        const boxCol = (parseInt(col / 3) * 3) + check % 3;
+
         if (boradsudoku[row][check] == num || boradsudoku[check][col] == num || boradsudoku[boxRow][boxCol] == num) {
           return false;
         }
       }
       return true;
-    }
-     
-    let checkSudoku = () => {
-      for (let row = 0; row < boradsudoku.length; row++) {
-              
-            for (let col = 0; col < boradsudoku.length; col++) {
+    };
 
-              if(boradsudoku[row][col] === '-') {
-                
-                for (let num of numbers){
-                
-                      if (isValidNum(row,col,num)){
-         
-                        boradsudoku[row][col] = String(num);
-                        if(checkSudoku(boradsudoku)){
-                          return true;
-                        }
-                        boradsudoku[row][col] = '-'
-                      }
-                  } 
-                  return false;
+    const checkSudoku = () => {
+      for (let row = 0; row < boradsudoku.length; row++) {
+        for (let col = 0; col < boradsudoku.length; col++) {
+          if (boradsudoku[row][col] === '-') {
+            for (const num of numbers) {
+              if (isValidNum(row, col, num)) {
+                boradsudoku[row][col] = String(num);
+                if (checkSudoku(boradsudoku)) {
+                  return true;
                 }
+                boradsudoku[row][col] = '-';
               }
             }
-            return true;
+            return false;
           }
-          // console.table(boradsudoku)
-          checkSudoku(boradsudoku)
-          return  boradsudoku
         }
-        
-
-
+      }
+      return true;
+    };
+    // console.table(boradsudoku)
+    checkSudoku(boradsudoku);
+    return boradsudoku;
+  }
 }
 console.log(solve(boradsudoku));
 
@@ -72,24 +59,18 @@ console.log(solve(boradsudoku));
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved() {
+  const solveSUdoku = solve(boradsudoku);
   for (let row = 0; row < boradsudoku.length; row++) {
     for (let col = 0; col < boradsudoku.length; col++) {
-      if (!board[row][col] == '-') {
-        for (let num = 0; num < numbers.length; num++) {
-          if (isValid(row, col, num)) { // название функции ???
-            board[row][col] = String(num);
-            if (solve(boardString)) {
-              return true;
-            }
-            board[row][col] == '-';
-          }
-        }
+      if (solveSUdoku[row][col] === '-') {
         return false;
       }
     }
+    return true;
   }
-  return true;
 }
+console.log(isSolved(solve(boradsudoku)));
+
 // isSolved();
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -97,11 +78,9 @@ function isSolved() {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
   const sudokuBoard = [];
   let i = 0;
   while (i < board.length) {
-
     const row = board.substring(i, i + 9);
     sudokuBoard.push(Array.from(row));
     i += 9;
