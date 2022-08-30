@@ -1,3 +1,5 @@
+const boardDrawCfonts = require('./boardDrow');
+
 function solve(boardString) {
   // Creating initial empty board
 
@@ -111,7 +113,16 @@ function isSolved(board) {
 }
 
 function prettyBoard(board) {
-  console.table(board);
+  const formaCfont = {
+    vertical: ' ', // |
+    border: '#', // ■✦#
+    gorizont: '-', // ―
+    space: '  ', // '·'
+    lineLength: function lineLen() {
+      return this.space.length * 18 + 10 + 9;
+    },
+  };
+  return boardDrawCfonts(board, formaCfont);
 }
 
 module.exports = {
