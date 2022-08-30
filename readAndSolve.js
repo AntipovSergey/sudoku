@@ -57,10 +57,10 @@ function readAndSolve(fileData, error = null) {
 
   const solvedPuzzle = sudoku.solve(puzzle);
 
-  // if (!sudoku.isSolved(solvedPuzzle)) {
-  //   console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-  //   return;
-  // }
+  if (!sudoku.isSolved(solvedPuzzle)) {
+    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
+    return;
+  }
 
   console.log(`
                           Судоку №${puzzleNumber} решён успешно!
