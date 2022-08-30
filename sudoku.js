@@ -7,7 +7,6 @@
 function solve(input) {
   const sudokuBoard = prettyBoard(input);
 
-  for (let index = 0; index <= 14; index++) { //почему 14?? зачем нужен этот цикл, в который обернут весь код ф-ции?
     let isValidNum = (row, col, num) => {
 
       //необходимо разобраться как работает этот блок
@@ -46,7 +45,6 @@ function solve(input) {
     }
     checkSudoku(sudokuBoard);
     return sudokuBoard;
-  }
 }
 
 const fs = require('fs');
@@ -62,13 +60,13 @@ console.table(solvedSudoku);
  */
  
 function isSolved(board) {
-  for (let row = 0; row < sudokuBoard.length; row++) {
-    for (let col = 0; col < sudokuBoard.length; col++) {
+  for (let row = 0; row < board.length; row++) {
+    for (let col = 0; col < board.length; col++) {
       if (board[row][col] === '-') {
-        return false;
+        return 'Sudoku not solved';
       }
     }
-    return true;
+    return 'Sudoku is solved correctly';
   }
 }
 
@@ -89,8 +87,6 @@ function prettyBoard(board) {
   }
   return sudokuBoard;
 }
-console.table(prettyBoard(sudokuBoard))
-
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
