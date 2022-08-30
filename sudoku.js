@@ -118,6 +118,7 @@ function prettyBoard(board) {
     border: '#', // ■✦#
     gorizont: '-', // ―
     space: '  ', // '·'
+    margin: '          ',
     lineLength: function lineLen() {
       return this.space.length * 18 + 10 + 9;
     },
@@ -129,4 +130,5 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  boardDrawCfonts,
 };
