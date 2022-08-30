@@ -51,7 +51,6 @@ function solve(boardString) {
         }
       }
     }
-
     return true;
   }
 }
@@ -61,7 +60,15 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  let sum = 0;
+  for (let i = 0; i < board.length; i++) {
+    const num = board[i].reduce((acc, item) => {
+      acc += Number(item);
+      return acc;
+    }, 0);
+    sum += num;
+  }
+  return sum === 405; // true or false
 }
 
 /**
