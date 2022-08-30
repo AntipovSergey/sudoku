@@ -31,17 +31,18 @@ const fontSetting = {
 };
 
 function boardDrawCfonts(array, formaC) {
-  cfonts.say(stringSolid(formaC), fontSetting);
-  cfonts.say(stringLayer(formaC), fontSetting);
+  const m = formaC.margin;
+  cfonts.say(m + stringSolid(formaC), fontSetting);
+  cfonts.say(m + stringLayer(formaC), fontSetting);
   array.forEach((el, ind) => {
     if (ind === 3 || ind === 6) {
-      cfonts.say(stringSolid(formaC), fontSetting);
-      cfonts.say(stringLayer(formaC), fontSetting);
+      cfonts.say(m + stringSolid(formaC), fontSetting);
+      cfonts.say(m + stringLayer(formaC), fontSetting);
     }
-    cfonts.say(createString(el, formaC), fontSetting);
-    cfonts.say(stringLayer(formaC), fontSetting);
+    cfonts.say(m + createString(el, formaC), fontSetting);
+    cfonts.say(m + stringLayer(formaC), fontSetting);
   });
-  cfonts.say(stringSolid(formaC), fontSetting);
+  cfonts.say(m + stringSolid(formaC), fontSetting);
 }
 
 module.exports = boardDrawCfonts;
