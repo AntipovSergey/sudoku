@@ -39,8 +39,7 @@ function solve(input) {
               }
             }
             return false;
-          }
-          
+          }      
         }
       }
       return true;
@@ -61,6 +60,7 @@ console.table(solvedSudoku);
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+ 
 function isSolved(board) {
   for (let row = 0; row < sudokuBoard.length; row++) {
     for (let col = 0; col < sudokuBoard.length; col++) {
@@ -71,7 +71,9 @@ function isSolved(board) {
     return true;
   }
 }
+
 console.log(isSolved(solvedSudoku))
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
