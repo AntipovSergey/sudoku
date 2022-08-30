@@ -68,7 +68,7 @@ function isSolved(board) {
     }, 0);
     sum += num;
   }
-  return sum === 405; // true or false
+  return sum === 405;
 }
 
 /**
@@ -76,15 +76,15 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-// function prettyBoard(board) {
-//   return board
-//     .join(',')
-//     .replace(/(,)/g, '')
-//     .replace(/(.{27})/g, (match, n) => `${n}---------`)
-//     .replace(/(.{9})/g, (match, n) => `${n}\n`)
-//     .replace(/(.{3})/g, (match, n) => `|${n}|`)
-//     .replace(/(.)/g, (match, n) => `${n} `);
-// }
+function prettyBoard(board) {
+  return board
+    .join(',')
+    .replace(/(,)/g, '')
+    .replace(/(.{27})/g, (match, n) => `${n}---------`)
+    .replace(/(.{9})/g, (match, n) => `${n}\n`)
+    .replace(/(.{3})/g, (match, n) => `|${n}|`)
+    .replace(/(.)/g, (match, n) => `${n} `);
+}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
