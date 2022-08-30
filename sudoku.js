@@ -20,9 +20,10 @@
   // console.table(boradsudoku);
   let boradsudoku
   
-  for (let index = 0; index < 1; index++) {
-  
+  for (let index = 0; index <= 14; index++) {
+    
     boradsudoku = prettyBoard(sudokuBaza[index]);
+    console.log(sudokuBaza[index]);
  
       // console.log(checkArr);
       for (let row = 0; row < boradsudoku.length; row++) {
@@ -92,6 +93,7 @@
           }
         }
       }
+      console.table (boradsudoku)
     }
     // console.log(checkArr);
     //   boradsudoku.forEach(el => {
@@ -104,8 +106,7 @@
           //       solve(boradsudoku, conunter++) 
           //   }
           // })
-  console.table (boradsudoku)
-  return boradsudoku
+  // return boradsudoku
 }
 
 
