@@ -23,6 +23,7 @@ function readAndSolve(fileData, error = null) {
       border: '#', // ■✦#
       gorizont: '-', // ―
       space: '  ', // '·'
+      margin: '          ',
       lineLength: function lineLen() {
         return this.space.length * 18 + 10 + 9;
       },
@@ -49,8 +50,10 @@ function readAndSolve(fileData, error = null) {
     return sudoku.boardDrawCfonts(unsolvedBoard, formaCfont);
   };
 
-  console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(neatBoard());
+  console.log(`
+                            Решаем судоку №${puzzleNumber}:
+            `);
+  neatBoard();
 
   const solvedPuzzle = sudoku.solve(puzzle);
 
@@ -59,7 +62,9 @@ function readAndSolve(fileData, error = null) {
   //   return;
   // }
 
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.log(`
+                          Судоку №${puzzleNumber} решён успешно!
+            `);
 
   return sudoku.prettyBoard(solvedPuzzle);
 }
