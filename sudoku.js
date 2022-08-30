@@ -3,82 +3,84 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const fs = require('fs');
 
-let sudokuBaza = fs.readFileSync('./puzzles.txt', 'utf-8');
-sudokuBaza = sudokuBaza.split('\n');
+function solve(input) {
+  const sudokuBoard = prettyBoard(input);
 
-const boradsudoku = prettyBoard(sudokuBaza[14]);
+  for (let index = 0; index <= 14; index++) { //почему 14?? зачем нужен этот цикл, в который обернут весь код ф-ции?
+    let isValidNum = (row, col, num) => {
 
-function solve(boardString) {
-  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      //необходимо разобраться как работает этот блок
+      for (let check = 0; check < sudokuBoard.length; check++) {
+        let boxRow = (parseInt(row / 3) * 3) + parseInt(check / 3);
+        let boxCol = (parseInt(col / 3) * 3) + check % 3;
 
-  for (let index = 0; index <= 14; index++) {
-    // console.log(sudokuBaza[index]);
-
-    const isValidNum = (row, col, num) => {
-      for (let check = 0; check < boradsudoku.length; check++) {
-        const boxRow = (parseInt(row / 3) * 3) + parseInt(check / 3);
-        const boxCol = (parseInt(col / 3) * 3) + check % 3;
-
-        if (boradsudoku[row][check] == num || boradsudoku[check][col] == num || boradsudoku[boxRow][boxCol] == num) {
+        if (sudokuBoard[row][check] == num || sudokuBoard[check][col] == num || sudokuBoard[boxRow][boxCol] == num) {
           return false;
         }
       }
       return true;
-    };
+    }
 
-    const checkSudoku = () => {
-      for (let row = 0; row < boradsudoku.length; row++) {
-        for (let col = 0; col < boradsudoku.length; col++) {
-          if (boradsudoku[row][col] === '-') {
-            for (const num of numbers) {
+    let checkSudoku = () => {
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+      for (let row = 0; row < sudokuBoard.length; row++) {
+        for (let col = 0; col < sudokuBoard.length; col++) {
+
+          if (sudokuBoard[row][col] === '-') {
+            for (let num of numbers) {
               if (isValidNum(row, col, num)) {
-                boradsudoku[row][col] = String(num);
-                if (checkSudoku(boradsudoku)) {
+                sudokuBoard[row][col] = String(num);
+                if (checkSudoku(sudokuBoard)) { // разобраться как запустается рекурсия
                   return true;
                 }
-                boradsudoku[row][col] = '-';
+                sudokuBoard[row][col] = '-' // откатываемся на шаг назад и вместо цифры ставим -
               }
             }
             return false;
-          }
+          }      
         }
       }
       return true;
-    };
-    // console.table(boradsudoku)
-    checkSudoku(boradsudoku);
-    return boradsudoku;
+    }
+    checkSudoku(sudokuBoard);
+    return sudokuBoard;
   }
 }
-console.log(solve(boradsudoku));
+
+const fs = require('fs');
+const inputStrings = fs.readFileSync('./puzzles.txt', 'utf-8')
+const arrOfBoards = inputStrings.split('\n');
+
+const solvedSudoku = solve(arrOfBoards[0]);
+console.table(solvedSudoku);
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved() {
-  const solveSUdoku = solve(boradsudoku);
-  for (let row = 0; row < boradsudoku.length; row++) {
-    for (let col = 0; col < boradsudoku.length; col++) {
-      if (solveSUdoku[row][col] === '-') {
+ 
+function isSolved(board) {
+  for (let row = 0; row < sudokuBoard.length; row++) {
+    for (let col = 0; col < sudokuBoard.length; col++) {
+      if (board[row][col] === '-') {
         return false;
       }
     }
     return true;
   }
 }
-console.log(isSolved(solve(boradsudoku)));
 
-// isSolved();
+console.log(isSolved(solvedSudoku))
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  const sudokuBoard = [];
+  let sudokuBoard = [];
   let i = 0;
   while (i < board.length) {
     const row = board.substring(i, i + 9);
@@ -87,11 +89,11 @@ function prettyBoard(board) {
   }
   return sudokuBoard;
 }
-// [[0,1,2,3,4,5,6,7,8], [9,10,11,12,13,14,15,16,17]]
+console.table(prettyBoard(sudokuBoard))
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
   isSolved,
   prettyBoard,
-};
+}
