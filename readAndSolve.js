@@ -1,4 +1,5 @@
 // Подключить функции из файла sudoku.js.
+const cfonts = require('cfonts');
 const sudoku = require('./sudoku');
 
 function readAndSolve(error, fileData) {
@@ -40,7 +41,23 @@ function readAndSolve(error, fileData) {
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
-  console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
+  cfonts.say(`${sudoku.prettyBoard(solvedPuzzle)}`, {
+    font: 'shade', // define the font face
+    align: 'left', // define text alignment
+    fontSize: 13,
+    colors: ['white'], // define all colors
+    background: 'black', // define the background color, you can also use `backgroundColor` here as key
+    letterSpacing: 2, // define letter spacing
+    lineHeight: 0, // define the line height
+    space: true, // define if the output text should have empty lines on top and on the bottom
+    maxLength: '0', // define how many character can be on one line
+    gradient: ['red', 'green'], // define your two gradient colors
+    independentGradient: true, // define if you want to recalculate the gradient for each new line
+    transitionGradient: false, // define if this is a transition between colors directly
+    env: 'node', // define the environment cfonts is being executed in
+  });
+
+  // console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
 }
 
 module.exports = readAndSolve;

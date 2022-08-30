@@ -112,7 +112,7 @@ function prettyBoard(board) {
     .replace(/(,)/g, '')
     .replace(/(.{27})/g, (match, n) => `${n}---------`)
     .replace(/(.{9})/g, (match, n) => `${n}\n`)
-    .replace(/(.{3})/g, (match, n) => `|${n}|`)
+    .replace(/(.{3})/g, (match, n) => ` ${n}`)
     .replace(/(.)/g, (match, n) => `${n} `);
 }
 
