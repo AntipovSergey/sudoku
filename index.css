@@ -1,0 +1,11 @@
+body{
+    background: rgb(197,200,138);
+    background: radial-gradient(circle, rgba(197,200,138,1) 0%, rgba(78,78,158,1) 60%, rgba(0,212,255,1) 100%);
+}
+
+.name{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 60px;
+    text-align: center;
+}
+
