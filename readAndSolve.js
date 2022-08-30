@@ -39,8 +39,9 @@ function readAndSolve(error, fileData) {
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
-  // игрового поля в строку в желаемом формате.
-  console.log(prettyBoard(solvedPuzzle), '\n');
+  // // игрового поля в строку в желаемом формате.
+  // console.log(prettyBoard(solvedPuzzle), '\n');
+  return prettyBoard(solvedPuzzle)
 }
 
 // module.exports = readAndSolve;

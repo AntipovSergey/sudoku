@@ -1,0 +1,48 @@
+body {
+    color : red
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+    min-width: 200px;
+    
+    font-size: 32px;
+    font-weight: bolder;
+    animation-duration: 5s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+      border: unset;
+    }
+  
+    to {
+      margin-left: 0%;
+      width: 100%;
+      border: unset;
+    }
+  }
+
+  #krasota {
+    display: flex;
+    padding: 20px;
+    border: 2.5px solid black;
+    color: transparent;    
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(to right, red, blue);
+  }
+/* 
+  br {
+    content: "";
+    display: flex;
+    height: 3px;
+    background-color: red;
+    margin: 10px;
+    border-bottom: 3px solid black;
+  } */
