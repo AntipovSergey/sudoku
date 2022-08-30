@@ -1,7 +1,6 @@
-// Подключить функции из файла sudoku.js.
 const sudoku = require('./sudoku');
 
-function readAndSolve(error = null, fileData) {
+function readAndSolve(fileData, error = null) {
   if (error) {
     throw error;
   }
@@ -19,17 +18,17 @@ function readAndSolve(error = null, fileData) {
   const puzzle = puzzles[puzzleNumber - 1].replaceAll('-', '0');
   console.log(`Решаем судоку №${puzzleNumber}:`);
   console.log(puzzle, '\n');
-  
+
   const solvedPuzzle = sudoku.solve(puzzle);
 
-  if (!sudoku.isSolved(solvedPuzzle)) {
-    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-    return;
-  }
-  
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  // if (!sudoku.isSolved(solvedPuzzle)) {
+  //   console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
+  //   return;
+  // }
 
-  console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
+  // console.log(`Судоку №${puzzleNumber} решён успешно!`);
+
+  return sudoku.prettyBoard(solvedPuzzle);
 }
 
 module.exports = readAndSolve;
