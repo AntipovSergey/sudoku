@@ -7,7 +7,6 @@
 function solve(input) {
   const sudokuBoard = prettyBoard(input);
 
-  for (let index = 0; index <= 14; index++) { //почему 14?? зачем нужен этот цикл, в который обернут весь код ф-ции?
     let isValidNum = (row, col, num) => {
 
       //необходимо разобраться как работает этот блок
@@ -39,15 +38,13 @@ function solve(input) {
               }
             }
             return false;
-          }
-
+          }      
         }
       }
       return true;
     }
     checkSudoku(sudokuBoard);
     return sudokuBoard;
-  }
 }
 
 const fs = require('fs');
@@ -61,6 +58,7 @@ console.table(solvedSudoku);
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+ 
 function isSolved(board) {
   for (let row = 0; row < board.length; row++) {
     for (let col = 0; col < board.length; col++) {
@@ -71,7 +69,9 @@ function isSolved(board) {
     return 'Sudoku is solved correctly';
   }
 }
+
 console.log(isSolved(solvedSudoku))
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
