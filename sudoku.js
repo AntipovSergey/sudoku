@@ -4,23 +4,25 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
- function solve(boardString) {
-  const fs = require('fs');
+const fs = require('fs');
+let sudokuBaza = fs.readFileSync('./puzzles.txt','utf-8');
+sudokuBaza = sudokuBaza.split('\n')
 
-  let sudokuBaza = fs.readFileSync('./puzzles.txt','utf-8');
-  sudokuBaza = sudokuBaza.split('\n')
-  // console.log(sudokuBaza);
+let boradsudoku = prettyBoard(sudokuBaza[14]);
+
+function solve(boardString) {
+
+  
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  // console.table(boradsudoku);
-  let boradsudoku
+
   
   for (let index = 0; index <= 14; index++) {
     
-    boradsudoku = prettyBoard(sudokuBaza[index]);
     // console.log(sudokuBaza[index]);
  
-    let ifUnclArr = (row,col,num) => {
-    for (let check = 0; check < 9; check++) {
+    let isValidNum = (row,col,num) => {
+    
+    for (let check = 0; check < boradsudoku.length; check++) {
       let boxRow = (parseInt(row/3)*3)+parseInt(check/3); 
       let boxCol = (parseInt(col/3)*3)+check%3;
     
@@ -32,65 +34,47 @@
     }
      
     let checkSudoku = () => {
-      for (let row = 0; row < 9; row++) {
+      for (let row = 0; row < boradsudoku.length; row++) {
               
-            for (let col = 0; col < 9; col++) {
+            for (let col = 0; col < boradsudoku.length; col++) {
+
               if(boradsudoku[row][col] === '-') {
+                
                 for (let num of numbers){
-                  // let accCol = '';
-                  // for (let rowMy = [row]; rowMy < boradsudoku.length; rowMy++){
-                    //     accCol += boradsudoku[rowMy][col]
-                    //   }
-                    // if (!boradsudoku[row].includes(num) && !accCol.includes(num)){
-                      if (ifUnclArr(row,col,num)){
-                        // console.log(num)
-                        boradsudoku[row][col] = num;
+                
+                      if (isValidNum(row,col,num)){
+         
+                        boradsudoku[row][col] = String(num);
                         if(checkSudoku(boradsudoku)){
                           return true;
                         }
                         boradsudoku[row][col] = '-'
                       }
-                    // }
                   } 
                   return false;
                 }
               }
             }
+            return true;
           }
-          console.table(boradsudoku)
+          // console.table(boradsudoku)
           checkSudoku(boradsudoku)
-          return boradsudoku
+          return  boradsudoku
         }
         
 
 
 }
-console.log(solve());
-
-// sudokuBaza.forEach((sudoku, sudokuIndex) => {
-
-// let strings = []
-// let columns = []
-// for (let index = 0; index < sudoku.length; index += 9) {
-// let myColumns = ''
-// let myString = strings.push(sudoku.slice(index, index +9));
-// for (let i = 0; i < sudoku.length; i += 9) {
-// myColumns += sudoku[i]
-// }
-// // columns.push(myColumns)
-
-
-  console.log(solve()) 
-  
+console.log(solve(boradsudoku));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
+function isSolved() {
   for (let row = 0; row < boradsudoku.length; row++) {
     for (let col = 0; col < boradsudoku.length; col++) {
-      if (board[row][col] == '.') {
+      if (!board[row][col] == '-') {
         for (let num = 0; num < numbers.length; num++) {
           if (isValid(row, col, num)) { // название функции ???
             board[row][col] = String(num);
@@ -106,7 +90,7 @@ function isSolved(board) {
   }
   return true;
 }
-isSolved();
+// isSolved();
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
