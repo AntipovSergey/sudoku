@@ -13,8 +13,8 @@ function readAndSolve(fileData, error = null) {
 
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;
-  } 
- 
+  }
+
   const puzzle = puzzles[puzzleNumber - 1].replaceAll('-', '0');
 
   const neatBoard = () => {
@@ -23,6 +23,7 @@ function readAndSolve(fileData, error = null) {
       border: '#', // ■✦#
       gorizont: '-', // ―
       space: '  ', // '·'
+      margin: '          ',
       lineLength: function lineLen() {
         return this.space.length * 18 + 10 + 9;
       },
@@ -49,16 +50,21 @@ function readAndSolve(fileData, error = null) {
     return sudoku.boardDrawCfonts(unsolvedBoard, formaCfont);
   };
 
-  console.log(`Решаем судоку №${puzzleNumber}:`);
+  console.log(`
+                            Решаем судоку №${puzzleNumber}:
+            `);
+  neatBoard();
 
   const solvedPuzzle = sudoku.solve(puzzle);
+
   if (!sudoku.isSolved(solvedPuzzle)) {
     console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
     return;
   }
 
-  
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.log(`
+                          Судоку №${puzzleNumber} решён успешно!
+            `);
 
   return sudoku.prettyBoard(solvedPuzzle);
 }
