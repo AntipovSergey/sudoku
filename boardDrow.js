@@ -23,11 +23,24 @@ function stringLayer(forma) {
   return line;
 }
 
+function generateColor() {
+  const gen = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  if (gen.length === 7) {
+    return gen;
+  }
+  if (gen.length === 6) {
+    return gen + "0";
+  } else {
+    return gen + "00";
+  }
+}
+const color1 = generateColor();
+const color2 = generateColor();
+
 const fontSetting = {
-  colors: ['blue'],
   space: false,
   font: 'console',
-  gradient: ['blue', 'red'],
+  gradient: `${color1},${color2}`
 };
 
 function boardDrawCfonts(array, formaC) {

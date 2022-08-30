@@ -119,6 +119,21 @@ function isSolved(board) {
   return true;
 }
 
+function generateColor() {
+  const gen = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  if (gen.length === 7) {
+    return gen;
+  }
+  if (gen.length === 6) {
+    return gen + "0";
+  } else {
+    return gen + "00";
+  }
+}
+const color1 = generateColor();
+const color2 = generateColor();
+
+
 function prettyBoard(board) {
   const formaCfont = {
     vertical: ' ', // |
@@ -128,6 +143,7 @@ function prettyBoard(board) {
     margin: '          ',
     lineLength: function lineLen() {
       return this.space.length * 18 + 10 + 9;
+      
     },
   };
   return boardDrawCfonts(board, formaCfont);
