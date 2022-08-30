@@ -1,16 +1,39 @@
 const sudoku = require('../sudoku.js');
 
-describe('Тесты судоку', () => {
+describe("Sudoku solver", () => {
+    let board;
+    function hasDuplicates(row) {
+        return new Set(row).size !== arr.length; // true, если найдет повторения
+    }
 
-  test('Являются ли входные данные строкой', () => {
-    expect(typeof(sudokuBaza)).toBe('string');
-  });
+    function isFullFilled(board) {
+        return board.flat().includes('-'); // true, если найдет пустышки
+    }
 
-  test ('Проверка таблицы 9 на 9', ()=>{
-    expect(prettyBoard(board)).toBe(true);
-  })
+    beforeAll(() => {
+        board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+    });
 
-  test('Является ли конечный результат массивом', () => {
-    expect(Array.isArray(solve(boardString))).toBe(true);
-  });
+    describe('Common tests', () => {
+
+
+        test('Function takes a string and returns an array', () => {
+            expect(Array.isArray(sudoku.solve(board))).toBe(true);
+        });
+    });
+    describe('Functional tests', () => {
+        test('Function returns a completely filled board', () => {
+            expect(isFullFilled(sudoku.solve(board))).toBeFalsy();
+        });
+
+        test("There are no repeating numbers in a Sudoku string", () => {
+            expect(hasDuplicates(sudoku.solve(board))).toBeFalsy();
+        });
+        test("Sudoku column has no repeating numbers", () => {
+            expect().toBe();
+        });
+        test("В секторе судоку нет повторяющихся чисел", () => {
+            expect().toBe();
+        });
+    });
 });
