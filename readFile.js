@@ -1,7 +1,23 @@
-const puzzle = require('./test');
+// const puzzle = require('./test');
 
-function changeForm(puzzle) {
-  let sudoku = puzzle();
+const fs = require('fs');
+const fileData = fs.readFileSync('./puzzles.txt', 'utf-8');
+
+function puzzle() {
+  const puzzles = fileData.split('\n').filter(line => line !== '');
+
+  let puzzleNumber = Number(process.argv[2]) || 1;
+
+  if (puzzleNumber > puzzles.length) {
+    puzzleNumber = puzzles.length;
+  }
+  const strit = puzzles[puzzleNumber - 1];
+
+  return strit;
+}
+
+function changeForm(oneSudoku) {
+  let sudoku = oneSudoku();
   let board = [];
   let str = sudoku;
 
@@ -15,5 +31,5 @@ function changeForm(puzzle) {
   }
   return board;
 }
-
-module.exports = changeForm;
+//console.log(changeForm(puzzle));
+module.exports = {puzzle, changeForm};

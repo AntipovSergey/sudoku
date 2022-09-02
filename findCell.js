@@ -1,21 +1,21 @@
 const sudoku = require('./sudoku');
-const square = require('./squareTest')
-const changeForm = require('./readFile')
-
-
+const square = require('./squareTest');
+const { puzzle, changeForm } = require('./readFile');
+const board = changeForm(puzzle);
+//console.log(changeForm(puzzle));
 const arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-const board = [
-  ['2', '9', '-', '5', '-', '-', '-', '-', '7'],
-  ['7', '-', '-', '-', '-', '-', '4', '-', '-'],
-  ['-', '-', '4', '7', '3', '8', '-', '1', '2'],
-  ['9', '-', '2', '-', '-', '3', '-', '6', '4'],
-  ['8', '-', '-', '-', '5', '-', '-', '7', '-'],
-  ['5', '-', '-', '-', '6', '7', '2', '-', '-'],
-  ['3', '-', '9', '-', '-', '4', '-', '-', '5'],
-  ['-', '-', '-', '-', '8', '-', '7', '-', '-'],
-  ['-', '8', '7', '-', '-', '5', '1', '-', '9'],
-];
+// const board = [
+//   ['2', '9', '-', '5', '-', '-', '-', '-', '7'],
+//   ['7', '-', '-', '-', '-', '-', '4', '-', '-'],
+//   ['-', '-', '4', '7', '3', '8', '-', '1', '2'],
+//   ['9', '-', '2', '-', '-', '3', '-', '6', '4'],
+//   ['8', '-', '-', '-', '5', '-', '-', '7', '-'],
+//   ['5', '-', '-', '-', '6', '7', '2', '-', '-'],
+//   ['3', '-', '9', '-', '-', '4', '-', '-', '5'],
+//   ['-', '-', '-', '-', '8', '-', '7', '-', '-'],
+//   ['-', '8', '7', '-', '-', '5', '1', '-', '9'],
+// ];
 function findCell(board) {
   let coords = [];
   for (let i = 0; i < board.length; i++) {
@@ -29,8 +29,8 @@ function findCell(board) {
   }
   return false;
 }
-findCell(board);
-////////////////////////////////////////////////////////////////
+//findCell(board);
+// ////////////////////////////////////////////////////////////////
 function checkRow(board, findCell, arr) {
   const emptyCell = findCell(board);
   const row = board[emptyCell[0]].map(el => el);
@@ -38,11 +38,12 @@ function checkRow(board, findCell, arr) {
     if (!row.includes(el)) return el;
   });
   // safe char if length = 1
+  //console.log(diff);
   return diff;
 }
-checkRow(board, findCell, arr);
+//checkRow(board, findCell, arr);
 
-////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////
 
 function checkCol(board, findCell, checkRow) {
   const emptyCell = findCell(board);
@@ -53,13 +54,12 @@ function checkCol(board, findCell, checkRow) {
   const diff = sorted.filter(el => {
     if (!col.includes(el)) return el;
   });
-  console.log(diff);
+  //console.log(diff);
   return diff;
 }
-checkCol(board, findCell, checkRow);
-////////////////////////////////////////////////////
-function safeCheckDate(board, findCell, checkRow, checkCol, square) {
+//checkCol(board, findCell, checkRow);
+// ////////////////////////////////////////////////////
+// function safeCheckDate(board, findCell, checkRow, checkCol, square) {
 
-
-}
-module.exports = {findCell, checkRow, checkCol, safeCheckDate};
+// }
+module.exports = { findCell, checkRow, checkCol };

@@ -14,7 +14,7 @@
 // function squares (first, second, value) {
 //     let perv = Math-floor(first / 3) * 3;
 //     let vtor = Math-floor(second / 3) * 3;
-//     let found = false; 
+//     let found = false;
 //     for (let i = 0; i < 3; i++) {
 //         for (let j = 0; j < 3; j++){
 //             if (value[perv + i][vtor + 1] === value) found = true
@@ -52,7 +52,7 @@
 
 //                 if (first[pervKey] || second[vtorKey] || third[boxKey]) {
 //                     return false;
-//                 }               
+//                 }
 //                 first[pervKey] = true;
 //                 second[vtorKey] = true;
 //                 third[boxKey] = true;
@@ -65,18 +65,17 @@
 
 // console.log(isValidSudoku(_board));
 
-const _board = [
-    ['-', '9', '-', '-', '4', '2', '1', '3', '6'],
-    ['-', '-', '-', '9', '6', '-', '4', '8', '5'],
-    ['-', '-', '-', '5', '8', '1', '-', '-', '-'],
-    ['-', '-', '4', '-', '-', '-', '-', '-', '-'],
-    ['5', '1', '7', '2', '-', '-', '9', '-', '-'],
-    ['6', '-', '2', '-', '-', '-', '3', '7', '-'],
-    ['1', '-', '-', '8', '-', '4', '-', '2', '-'],
-    ['7', '-', '6', '-', '-', '-', '8', '1', '-'],
-    ['3', '-', '-', '-', '9', '-', '-', '-', '-'],
-];
-
+// const _board = [
+//   ['-', '9', '-', '-', '4', '2', '1', '3', '6'],
+//   ['-', '-', '-', '9', '6', '-', '4', '8', '5'],
+//   ['-', '-', '-', '5', '8', '1', '-', '-', '-'],
+//   ['-', '-', '4', '-', '-', '-', '-', '-', '-'],
+//   ['5', '1', '7', '2', '-', '-', '9', '-', '-'],
+//   ['6', '-', '2', '-', '-', '-', '3', '7', '-'],
+//   ['1', '-', '-', '8', '-', '4', '-', '2', '-'],
+//   ['7', '-', '6', '-', '-', '-', '8', '1', '-'],
+//   ['3', '-', '-', '-', '9', '-', '-', '-', '-'],
+// ];
 
 // let _board = [
 //     [1, 0, 5, 8, 0, 2, 0, 0, 0],
@@ -89,36 +88,37 @@ const _board = [
 //     [4, 3, 0, 0, 2, 0, 5, 0, 1],
 //     [6, 0, 0, 3, 0, 8, 9, 0, 0]
 //  ];
+const { puzzle, changeForm } = require('./readFile');
+const { findCell, checkRow, checkCol } = require('./findCell');
+const pos = findCell(changeForm(puzzle));
 
-function square(pos, arr,candidates) {
-    const [a, b] = pos;
-  
-    const first = Math.floor(a / 3) * 3;
-    const second = Math.floor(b / 3) * 3;
-    let newArr = [];
-    let arrTwo = [];
-    for (let i = first; i < first + 3; i ++) {
-      for (let j = second; j < second + 3 ; j ++) {
-        if (arr[i][j] !== '-') {
-            newArr.push(Number(arr[i][j]))
-      } 
-     }
+function square(pos, arr, candidates) {
+  const [a, b] = pos;
+
+  const first = Math.floor(a / 3) * 3;
+  const second = Math.floor(b / 3) * 3;
+  let newArr = [];
+  //const arrTwo = [];
+  for (let i = first; i < first + 3; i++) {
+    for (let j = second; j < second + 3; j++) {
+      if (arr[i][j] !== '-') {
+        newArr.push(Number(arr[i][j]));
+      }
     }
-    return candidates.filter((i) => newArr.indexOf(i) === -1)
-   }
-    
-    
-   
-  console.log(square([7, 7], _board, [1,2,8]))
+  }
+  const diff = candidates.filter(i => newArr.indexOf(i) === -1);
+  console.log(diff);
+  return diff;
+}
 
+console.log(square([0, 1], changeForm(puzzle)[0], [4, 7]));
 
-  module.exports = square
-
+module.exports = square;
 
 // function squares (first, second, value) {
 //     let perv = Math.floor(first / 3) * 3;
 //     let vtor = Math.floor(second / 3) * 3;
-//     let found = false; 
+//     let found = false;
 //     for (let i = 0; i < perv; i++) {
 //         for (let j = 0; j < vtor; j++){
 //             if (value[i][j] === value)  {
@@ -130,6 +130,3 @@ function square(pos, arr,candidates) {
 // }
 
 // console.log(squares(1312312, [1, 1], _board))
-
-
-
