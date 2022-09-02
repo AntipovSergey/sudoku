@@ -1,5 +1,8 @@
 const buildBoard = require('./buildBoard');
 
+
+const findCoord = require('./findCoord');
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -31,7 +34,7 @@ function prettyBoard(board) {
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
+	solve,
+	isSolved,
+	prettyBoard,
 };
