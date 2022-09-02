@@ -5,17 +5,25 @@
  */
 const board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-function checkRow(arr) {
-  let num = 0;
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 1; j <= 9; j++) {
-      if (!arr[i].includes(j.toString())) {
-        for (let k = 0; k < arr.length; k += 1) {
-          const array = [];
-          for (let n = 0; n < arr[k].length; n += 1) {
-            array.push(arr[n][k]);
+function checkRow(arr, position) {
+  let num = '_';
+  const i = position[0];
+  const k = position[1];
+  for (let j = 1; j <= 9; j++) {
+    if (!arr[i].includes((j).toString())) {
+      const arrayCol = [];
+      for (let n = 0; n < arr[k].length; n += 1) {
+        arrayCol.push(arr[n][k]);
+      }
+      if (!arrayCol.includes(j.toString())) {
+        const newTempArrPos = position.map((x) => (Math.floor(x / 3) * 3));
+        const arraySquare = [];
+        for (let r = newTempArrPos[0]; r < newTempArrPos[0] + 3; r += 1) {
+          for (let c = newTempArrPos[1]; c < newTempArrPos[1] + 3; c += 1) {
+            console.log(r, '----','c ',c,arr[c]);
+            arraySquare.push(arr[r][c]);
           }
-          if (!array.includes(j.toString())) {
+          if (!arraySquare.includes(j.toString())) {
             num = j;
           }
         }
@@ -36,11 +44,12 @@ function solve(boardString) {
     }
     arr.push(arr2);
   }
-
+  let position = [];
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
       if (arr[i][j] === '-') {
-        arr[i][j] = checkRow(arr).toString();
+        position = [i, j];
+        arr[i][j] = checkRow(arr, position).toString();
       }
     }
   }
@@ -56,7 +65,8 @@ console.table(solve(board));
 
 function isSolved(board) {
   const puzzle = JSON.stringify(board);
-  if (puzzle.includes('-')) return false;
+  console.log(board);
+  if (!puzzle.includes('-')) return true;
 }
 
 /**
