@@ -3,20 +3,31 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-function checkRow(arr, position1, position2) {
-  let num = 0;
-  for (let i = position1; i < arr.length; i++) {
-    for (let j = 1; j <= 9; j++) {
-      if (!arr[i].includes(j.toString())) {
-        for (let k = position2; k < arr.length; k += 1) {
-          const array = [];
-          for (let n = 0; n < arr[k].length; n += 1) {
-            array.push(arr[n][k]);
+function checkRow(arr, position) {
+  let num = '_';
+  const i = position[0];
+  const k = position[1];
+  const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const sortedArr = digits.sort(func);
+  function func(a, b) {
+    return 0.5 - Math.random();
+  }
+  for (let j = 0; j < sortedArr.length; j++) {
+    if (!arr[i].includes(sortedArr[j].toString())) {
+      const arrayCol = [];
+      for (let n = 0; n < arr[k].length; n += 1) {
+        arrayCol.push(arr[n][k]);
+      }
+      if (!arrayCol.includes(sortedArr[j].toString())) {
+        const newTempArrPos = position.map((x) => (Math.floor(x / 3) * 3));
+        const arraySquare = [];
+        for (let r = newTempArrPos[0]; r < newTempArrPos[0] + 3; r += 1) {
+          for (let c = newTempArrPos[1]; c < newTempArrPos[1] + 3; c += 1) {
+            arraySquare.push(arr[r][c]);
           }
-          if (!array.includes(j.toString())) {
-            num = j;
+          if (!arraySquare.includes(sortedArr[j].toString())) {
+            num = sortedArr[j];
           }
         }
       }
@@ -37,26 +48,27 @@ function solve(board) {
     arr.push(arr2);
   }
 
+  let position;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
       if (arr[i][j] === '-') {
-        const position1 = i;
-        const position2 = j;
-        arr[i][j] = checkRow(arr, position1, position2).toString();
+        position = [i, j];
+        arr[i][j] = checkRow(arr, position).toString();
       }
     }
   }
+
   return arr;
 }
-
-console.table(solve(board));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
 
+function isSolved(board) {
+  const puzzle = JSON.stringify(board);
+  if (!puzzle.includes('-')) return true;
 }
 
 /**
@@ -65,7 +77,13 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  const f = [];
+  for (let n = 0; n < board.length; n += 1) {
+    f.push(board[n].join(' '));
+  }
+  const newBoard = f.join('\n');
+  const trimmedNewBoard = newBoard.trim();
+  return trimmedNewBoard;
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
