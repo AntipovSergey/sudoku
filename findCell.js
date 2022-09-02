@@ -31,27 +31,31 @@ findCell(board);
 function checkRow(board, findCell, arr) {
   const emptyCell = findCell(board);
   const row = board[emptyCell[0]].map(el => el);
-  const diff = arr.filter((el) => {
+  const diff = arr.filter(el => {
     if (!row.includes(el)) return el;
   });
+  // safe char if length = 1
   return diff;
 }
 checkRow(board, findCell, arr);
 
-
 ////////////////////////////////////////////////////////////////
 
-function checkCol(board, findCell, arr) {
-  const emptyCell = findCell(...arguments);
+function checkCol(board, findCell, checkRow) {
+  const emptyCell = findCell(board);
+  const sorted = checkRow(board, findCell, arr);
   //console.log(emptyCell);
   const col = board.map(el => el[emptyCell[1]]);
 
-  const diff = arr.filter((el) => {
+  const diff = sorted.filter(el => {
     if (!col.includes(el)) return el;
   });
-  console.log(diff);
   return diff;
 }
-checkCol(board, findCell, arr);
+checkCol(board, findCell, checkRow);
+////////////////////////////////////////////////////
+function safeCheckDate(board, findCell, checkRow, checkCol) {
 
-module.exports = {findCell, checkRow, checkCol};
+
+}
+module.exports = { findCell, checkRow, checkCol, safeCheckDate };
