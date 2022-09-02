@@ -3,28 +3,31 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function checkRow(arr, position) {
   let num = '_';
   const i = position[0];
   const k = position[1];
-  for (let j = 1; j <= 9; j++) {
-    if (!arr[i].includes((j).toString())) {
+  const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const sortedArr = digits.sort(func);
+  function func(a, b) {
+    return 0.5 - Math.random();
+  }
+  for (let j = 0; j < sortedArr.length; j++) {
+    if (!arr[i].includes(sortedArr[j].toString())) {
       const arrayCol = [];
       for (let n = 0; n < arr[k].length; n += 1) {
         arrayCol.push(arr[n][k]);
       }
-      if (!arrayCol.includes(j.toString())) {
+      if (!arrayCol.includes(sortedArr[j].toString())) {
         const newTempArrPos = position.map((x) => (Math.floor(x / 3) * 3));
         const arraySquare = [];
         for (let r = newTempArrPos[0]; r < newTempArrPos[0] + 3; r += 1) {
           for (let c = newTempArrPos[1]; c < newTempArrPos[1] + 3; c += 1) {
-            console.log(r, '----','c ',c,arr[c]);
             arraySquare.push(arr[r][c]);
           }
-          if (!arraySquare.includes(j.toString())) {
-            num = j;
+          if (!arraySquare.includes(sortedArr[j].toString())) {
+            num = sortedArr[j];
           }
         }
       }
@@ -33,18 +36,19 @@ function checkRow(arr, position) {
   return num;
 }
 
-function solve(boardString) {
+function solve(board) {
   const arr = [];
   let count = 0;
   for (let i = 0; i < 9; i++) {
     const arr2 = [];
     for (let j = 0; j < 9; j++) {
-      arr2.push(boardString[count]);
+      arr2.push(board[count]);
       count += 1;
     }
     arr.push(arr2);
   }
-  let position = [];
+
+  let position;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
       if (arr[i][j] === '-') {
@@ -53,10 +57,9 @@ function solve(boardString) {
       }
     }
   }
+
   return arr;
 }
-
-console.table(solve(board));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -65,7 +68,6 @@ console.table(solve(board));
 
 function isSolved(board) {
   const puzzle = JSON.stringify(board);
-  console.log(board);
   if (!puzzle.includes('-')) return true;
 }
 
