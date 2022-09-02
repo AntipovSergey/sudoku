@@ -5,43 +5,34 @@ const fs = require('fs');
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-function solve(boardString) {
+function solve(board) {
+  const cols = board.length;
+  const boarded = board;
 
-}
+  for (let r = 0; r < cols; r += 1) {
+    for (let c = 0; c < cols; c += 1) {
+      if (board[r][c] === '-') {
+        for (let k = 1; k < cols + 1; k += 1) {
+          if (boarded[c][k] === k.toString()) return false;
+          if (boarded[k][c] === k.toString()) return false;
+
+          // проверка в блоке
+
+          boarded[r][c] = k.toString();
+          // const boxRow = Math.floor(r / board.length);
+        }
+      }
+    }
+  }
+  return board;
+ }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-// function isSolved(board) {
-//   const size = 9;
-//   const blockSize = 3;
 
-//   // поиск первой пустой клетки
-
-//   const emptyPosition (board) => {
-//     for (let x = 0; x < size; x++) {
-//       for (let y = 0; y < size; y++) {
-//         if (board[y][x] !== '-') {
-//           return [y, x]
-//         }
-//         else return null
-//       }
-//     }
-//   }
-
-//   // проверка строк и столбцов
-//   const isValid (number, x, y) => {
-//     for (let i = 0; i < size; i++) {
-//       board[i][x] == number && board[i][x] !== x
-//       return false
-//     }
-//     for (let i = 0; i < size; i++) {
-//       board[y][i] == number && board[y][i] !== y
-//       return false
-//     }
-//   }
-// }
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -73,6 +64,15 @@ function conversed() {
     }
     return arrN;
   }
+  
+ function prettyBoard(board) {
+  const stringReplace = board.toString().replace(/,/g, ' ');
+    const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}/g;
+    const matchStr = stringReplace.match(regex);
+    const res = matchStr.map((el) => (el.slice(0, 6) + ' ' + el.slice(6, 12) +  ' ' + el.slice(12)));
+    res.splice(3, 0, ' '.repeat(19));
+    res.splice(7, 0, ' '.repeat(19));
+    return res.join('\n');
 }
 
 conversed();
