@@ -111,7 +111,7 @@ function square(pos, arr, candidates) {
   return diff;
 }
 
-console.log(square([0, 1], changeForm(puzzle)[0], [4, 7]));
+//console.log(square([0, 2], changeForm(puzzle)[0], ['1', '3', '6', '8']));
 
 module.exports = square;
 

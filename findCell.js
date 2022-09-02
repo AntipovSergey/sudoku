@@ -1,8 +1,8 @@
 const sudoku = require('./sudoku');
-const square = require('./squareTest');
+//const square = require('./squareTest');
 const { puzzle, changeForm } = require('./readFile');
 const board = changeForm(puzzle);
-//console.log(changeForm(puzzle));
+console.table(changeForm(puzzle));
 const arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 // const board = [
@@ -54,10 +54,10 @@ function checkCol(board, findCell, checkRow) {
   const diff = sorted.filter(el => {
     if (!col.includes(el)) return el;
   });
-  //console.log(diff);
+  console.log(diff);
   return diff;
 }
-//checkCol(board, findCell, checkRow);
+checkCol(board, findCell, checkRow);
 // ////////////////////////////////////////////////////
 // function safeCheckDate(board, findCell, checkRow, checkCol, square) {
 
