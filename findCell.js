@@ -54,4 +54,4 @@ function checkCol(board, findCell, arr) {
 }
 checkCol(board, findCell, arr);
 
-module.exports = findCell;
+module.exports = {findCell, checkRow, checkCol};
