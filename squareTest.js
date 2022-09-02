@@ -112,6 +112,9 @@ function square(pos, arr, candidate) {
   console.log(square([7, 7], _board, [2]))
 
 
+  module.exports = square
+
+
 // function squares (first, second, value) {
 //     let perv = Math.floor(first / 3) * 3;
 //     let vtor = Math.floor(second / 3) * 3;
