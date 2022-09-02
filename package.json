@@ -4,7 +4,8 @@
   "description": "## Введение",
   "main": "runner.js",
   "scripts": {
-    "start": "node runner.js"
+    "start": "node runner.js",
+    "test": "jest sudoku.spec.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,9 @@
   },
   "homepage": "https://github.com/Elbrus-Bootcamp/project-sudoku#readme",
   "devDependencies": {
-    "eslint": "^8.8.0",
+    "eslint": "^8.23.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^29.0.1"
   }
 }
