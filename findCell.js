@@ -1,4 +1,7 @@
 const sudoku = require('./sudoku');
+const square = require('./squareTest')
+const changeForm = require('./readFile')
+
 
 const arr = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -50,12 +53,13 @@ function checkCol(board, findCell, checkRow) {
   const diff = sorted.filter(el => {
     if (!col.includes(el)) return el;
   });
+  console.log(diff);
   return diff;
 }
 checkCol(board, findCell, checkRow);
 ////////////////////////////////////////////////////
-function safeCheckDate(board, findCell, checkRow, checkCol) {
+function safeCheckDate(board, findCell, checkRow, checkCol, square) {
 
 
 }
-module.exports = { findCell, checkRow, checkCol, safeCheckDate };
+module.exports = {findCell, checkRow, checkCol, safeCheckDate};
