@@ -3,13 +3,27 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
-   const arrBoardString = boardString.split('');
-   const puzzle = [];
-   for (let i = 0; i < boardString.length; i += 9) {
-    puzzle.push(arrBoardString.slice(i, i + 9));
+
+function solve(board) {
+  const cols = board.length;
+  const boarded = board;
+
+  for (let r = 0; r < cols; r += 1) {
+    for (let c = 0; c < cols; c += 1) {
+      if (board[r][c] === '-') {
+        for (let k = 1; k < cols + 1; k += 1) {
+          if (boarded[c][k] === k.toString()) return false;
+          if (boarded[k][c] === k.toString()) return false;
+
+          // проверка в блоке
+
+          boarded[r][c] = k.toString();
+          // const boxRow = Math.floor(r / board.length);
+        }
+      }
+    }
   }
-  return puzzle;
+  return board;
 }
 
 
