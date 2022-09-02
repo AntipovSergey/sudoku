@@ -90,26 +90,26 @@ const _board = [
 //     [6, 0, 0, 3, 0, 8, 9, 0, 0]
 //  ];
 
-function square(pos, arr, candidate) {
+function square(pos, arr,candidates) {
     const [a, b] = pos;
   
     const first = Math.floor(a / 3) * 3;
     const second = Math.floor(b / 3) * 3;
     let newArr = [];
+    let arrTwo = [];
     for (let i = first; i < first + 3; i ++) {
       for (let j = second; j < second + 3 ; j ++) {
         if (arr[i][j] !== '-') {
-            newArr.push(arr[i][j])
+            newArr.push(Number(arr[i][j]))
       } 
      }
-    } 
-    for (let k = 0; k < candidate.length; k++) {
-        if (
-        }
     }
-    return newArr
+    return candidates.filter((i) => newArr.indexOf(i) === -1)
    }
-  console.log(square([7, 7], _board, [2]))
+    
+    
+   
+  console.log(square([7, 7], _board, [1,2,8]))
 
 
   module.exports = square
@@ -130,3 +130,6 @@ function square(pos, arr, candidate) {
 // }
 
 // console.log(squares(1312312, [1, 1], _board))
+
+
+
