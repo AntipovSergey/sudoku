@@ -15,14 +15,21 @@ function solve(board) {
         for (let k = 1; k < cols + 1; k += 1) {
           if (boarded[c][k] === k.toString()) return false;
           if (boarded[k][c] === k.toString()) return false;
-
-          // проверка в блоке
-
-          boarded[r][c] = k.toString();
-          // const boxRow = Math.floor(r / board.length);
+          // eslint-disable-next-line no-use-before-define
+          if (getCheckBox(r, c, k)) boarded[r][c] = k.toString();
         }
       }
     }
+  }
+  function getCheckBox(r, c, k) {
+    const row = Math.floor((r / 3) * 3);
+    const col = Math.floor((c / 3) * 3);
+    for (let a = 0; a < 3; a += 1) {
+      for (let b = 0; b < 3; b += 1) {
+        if (boarded[row + r][col + c] === k.toString()) return false;
+      }
+    }
+    return true;
   }
   return board;
  }
