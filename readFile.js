@@ -19,4 +19,4 @@ function changeForm(puzzle){
     return board
 }
 
-console.table(changeForm(puzzle))
+module.exports = changeForm
