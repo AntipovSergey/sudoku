@@ -14,7 +14,6 @@ function solveSudoku(board) {
     }
     return null;
   };
-
   const validate = (num, pos, board) => {
     const [row, col] = pos;
     for (let i = 0; i < size; i += 1) {
@@ -87,5 +86,5 @@ function prettyBoard(board, number) {
   res.splice(3, 0, ' '.repeat(19));
   res.splice(7, 0, ' '.repeat(19));
   res = res.join('\n');
-  return head + res + '\n';
+  return `${head + res}\n`;
 }
