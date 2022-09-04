@@ -4,33 +4,16 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-
 const { isNoMatchVH } = require('./horizontal_vertikal_search');
 const { isNoMatchSquare } = require('./isNoMatchSquare');
+const { toCorrectType } = require('./toCorrectType');
+const { findEmptyCell } = require('./findEmptyCell');
 
-let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+const boardStr = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
 
-function toCorrectType(boardString) {
-  let board = [];
-  while (boardString.length > 7) {
-  board.push(boardString.split('', 9));
-  boardString = boardString.slice(9);
-  }
-  return board;
-}
-let board = toCorrectType(boardString);
+function solve(boardString) {
+  let board = toCorrectType(boardString);
 
-function solve(board) {
-  function findEmptyCell(board) {
-    for (let i = 0; i < board.length; i += 1) {
-      for (let y = 0; y < board.length; y += 1) {
-        if (board[i][y] === '-') {
-          return [i, y];
-        }
-      }
-    }
-    return null;
-  }
   function solveBoard() {
     const emptyCell = findEmptyCell(board);
 
@@ -38,7 +21,7 @@ function solve(board) {
       return true;
     }
 
-    let [i, y] = emptyCell;
+    const [i, y] = emptyCell;
     for (let num = 1; num <= 9; num += 1) {
       const rightNum = num.toString();
       if (isNoMatchVH(rightNum, i, y, board) && isNoMatchSquare(rightNum, i, y, board)) {
@@ -57,7 +40,9 @@ function solve(board) {
   return board;
 }
 
-console.log(solve(board))
+console.log(solve(boardStr));
+
+const board = solve(boardStr);
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
