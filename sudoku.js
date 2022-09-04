@@ -14,6 +14,7 @@ function solveSudoku(board) {
     }
     return null;
   };
+
   const validate = (num, pos, board) => {
     const [row, col] = pos;
     for (let i = 0; i < size; i += 1) {
