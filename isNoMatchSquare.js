@@ -12,9 +12,9 @@ const isNoMatchSquare = (searchNumber, raw, column, arr) => {
       massiv.push(arr[i][j]);
     }
   }
-  return !(massiv.includes(searchNumber))
+  return !(massiv.includes(searchNumber));
 }
 
 module.exports = {
-  isNoMatchSquare
+  isNoMatchSquare,
 }

@@ -5,10 +5,10 @@
  */
 
 
-const isNoMatchVH = (n, i, j, p) => !(p[i].includes(n)) && !(p.map((element) => element[j]).includes(n))
+const { isNoMatchVH } = require('./horizontal_vertikal_search');
+const { isNoMatchSquare } = require('./isNoMatchSquare');
 
 let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-
 
 function toCorrectType(boardString) {
   let board = [];
@@ -41,8 +41,7 @@ function solve(board) {
     let [i, y] = emptyCell;
     for (let num = 1; num <= 9; num += 1) {
       const rightNum = num.toString();
-      const isValid = isNoMatchVH(rightNum, i, y, board);
-      if (isValid) {
+      if (isNoMatchVH(rightNum, i, y, board) && isNoMatchSquare(rightNum, i, y, board)) {
         board[i][y] = rightNum;
 
         if (solveBoard()) {
