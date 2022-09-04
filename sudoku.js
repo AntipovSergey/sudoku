@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-function solve(board) {
+function solveSudoku(board) {
   const size = 9;
   const boxSize = 3;
 
@@ -14,26 +14,26 @@ function solve(board) {
     }
     return null;
   };
-  const validate = (num, position, board) => {
-    const [row, col] = position;
+
+  const validate = (num, pos, board) => {
+    const [row, col] = pos;
     for (let i = 0; i < size; i += 1) {
       if (board[i][col] === num && i !== row) return false;
     }
     for (let i = 0; i < size; i += 1) {
       if (board[row][i] === num && i !== col) return false;
     }
-    const boxStarderRow = Math.floor(row / boxSize) * boxSize;
-    const boxStarderCol = Math.floor(col / boxSize) * boxSize;
-    for (let i = boxStarderRow; i < boxStarderRow + boxSize; i += 1) {
-      for (let j = boxStarderCol; j < boxStarderCol + boxSize; j += 1) {
-        if (board[i][j] === num && i !== row && j !== col) {
-          return false;
-        }
+    const boxRow = Math.floor(row / boxSize) * boxSize;
+    const boxCol = Math.floor(col / boxSize) * boxSize;
+    for (let i = boxRow; i < boxRow + boxSize; i += 1) {
+      for (let j = boxCol; j < boxCol + boxSize; j += 1) {
+        if (board[i][j] === num && i !== row && j !== col) return false;
       }
     }
     return true;
   };
-  const solveSudoku = () => {
+
+  const solve = () => {
     const currPos = findEmpty(board);
     if (currPos === null) return true;
     for (let i = 1; i < size + 1; i += 1) {
@@ -49,7 +49,8 @@ function solve(board) {
 
     return false;
   };
-  solveSudoku();
+
+  solve();
   return board;
 }
 
@@ -58,12 +59,16 @@ function conversed() {
   arr.pop();
   for (let i = 0; i < arr.length; i += 1) {
     arr[i] = arr[i].split('');
-    // eslint-disable-next-line no-use-before-define
     arr[i] = reversArrToBoard(arr[i]);
   }
-  arr.map((el) => solve(el));
+  arr.map((el) => solveSudoku(el));
+  for (let i = 1; i < arr.length + 1; i += 1) {
+    console.log(prettyBoard(arr[i], i));
+  }
   return arr;
 }
+
+conversed();
 
 function reversArrToBoard(arr) {
   const array = [];
@@ -73,14 +78,14 @@ function reversArrToBoard(arr) {
   return array;
 }
 
-conversed();
-
-// function prettyBoard(board) {
-//   const stringReplace = board.toString().replace(/,/g, ' ');
-//   const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}/g;
-//   const matchStr = stringReplace.match(regex);
-//   const res = matchStr.map((el) => (`${el.slice(0, 6)} ${el.slice(6, 12)} ${el.slice(12)}`));
-//   res.splice(3, 0, ' '.repeat(19));
-//   res.splice(7, 0, ' '.repeat(19));
-//   return res.join('\n');
-// }
+function prettyBoard(board, number) {
+  const head = `${number} судоку \n`;
+  const stringReplace = board.toString().replace(/,/g, ' ');
+  const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}/g;
+  const matchStr = stringReplace.match(regex);
+  let res = matchStr.map((el) => (`${el.slice(0, 6)} ${el.slice(6, 12)} ${el.slice(12)}`));
+  res.splice(3, 0, ' '.repeat(19));
+  res.splice(7, 0, ' '.repeat(19));
+  res = res.join('\n');
+  return head + res + '\n';
+}
