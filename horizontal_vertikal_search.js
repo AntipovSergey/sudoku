@@ -2,5 +2,5 @@
 const isNoMatchVH = (n, i, j, p) => !(p[i].includes(n)) && !(p.map((element) => element[j]).includes(n))
 
 module.exports = {
-  isNoMatchVH
+  isNoMatchVH;
 }
