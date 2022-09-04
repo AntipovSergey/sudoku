@@ -1,23 +1,20 @@
 const fs = require('fs');
 
-// eslint-disable-next-line no-use-before-define
 function solve(board) {
   const size = 9;
   const boxSize = 3;
-  console.log(board[0][1]);
-  // поиск пустой ячейки
-  // eslint-disable-next-line no-use-before-define
-  function findEmpty() {
-    for (let row = 0; row < size; row += 1) {
-      for (let col = 0; col < size; col += 1) {
-        if (board[row][col] === '-') {
-          return [row, col];
+
+  const findEmpty = (board) => {
+    for (let r = 0; r < size; r += 1) {
+      for (let c = 0; c < size; c += 1) {
+        if (board[r][c] === '-') {
+          return [r, c];
         }
       }
     }
-    return false;
-  }
-  const validate = (num, position) => {
+    return null;
+  };
+  const validate = (num, position, board) => {
     const [row, col] = position;
     for (let i = 0; i < size; i += 1) {
       if (board[i][col] === num && i !== row) return false;
