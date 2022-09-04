@@ -2,62 +2,81 @@ const fs = require('fs');
 
 // eslint-disable-next-line no-use-before-define
 function solve(board) {
-  const cols = board.length;
-  const boarded = board;
+  const size = 9;
+  const boxSize = 3;
+  console.log(board[0][1]);
   // поиск пустой ячейки
   // eslint-disable-next-line no-use-before-define
-  findEmpty(0, 0);
-  function findEmpty(r, c) {
-    for (let row = r; r < cols; row += 1) {
-      for (let col = c; c < cols; col += 1) {
+  function findEmpty() {
+    for (let row = 0; row < size; row += 1) {
+      for (let col = 0; col < size; col += 1) {
         if (board[row][col] === '-') {
-          for (let k = 1; k < 10; k += 1) {
-            // eslint-disable-next-line no-use-before-define
-            if (checkNum(row, col, k, boarded) === true) {
-              findEmpty(row, col);
-            }
-            // eslint-disable-next-line no-use-before-define
-            if (row === 9 && col === 9) boarded[row][col] = k.toString();
-          }
+          return [row, col];
         }
       }
     }
     return false;
   }
-}
-
-// Сравнение переданной цифры в колонке строке и блоке
-function checkNum(r, c, k, board) {
-  const row = Math.floor((r / 3) * 3);
-  const col = Math.floor((c / 3) * 3) - 1;
-  for (let a = 0; a <= 3; a += 1) {
-    for (let b = 0; b <= 3; b += 1) {
-      if (board[row + a][col + b] === k.toString()) return false;
+  const validate = (num, position) => {
+    const [row, col] = position;
+    for (let i = 0; i < size; i += 1) {
+      if (board[i][col] === num && i !== row) return false;
     }
-  }
-  return true;
+    for (let i = 0; i < size; i += 1) {
+      if (board[row][i] === num && i !== col) return false;
+    }
+    const boxStarderRow = Math.floor(row / boxSize) * boxSize;
+    const boxStarderCol = Math.floor(col / boxSize) * boxSize;
+    for (let i = boxStarderRow; i < boxStarderRow + boxSize; i += 1) {
+      for (let j = boxStarderCol; j < boxStarderCol + boxSize; j += 1) {
+        if (board[i][j] === num && i !== row && j !== col) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+  const solveSudoku = () => {
+    const currPos = findEmpty(board);
+    if (currPos === null) return true;
+    for (let i = 1; i < size + 1; i += 1) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, board);
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+        if (solve()) return true;
+        board[x][y] = '-';
+      }
+    }
+
+    return false;
+  };
+  solveSudoku();
+  return board;
 }
 
 function conversed() {
   const arr = fs.readFileSync(`${__dirname}/puzzles.txt`, 'utf-8').split('\n');
+  arr.pop();
   for (let i = 0; i < arr.length; i += 1) {
+    arr[i] = arr[i].split('');
     // eslint-disable-next-line no-use-before-define
-    arr[i] = reversed(arr[i]);
+    arr[i] = reversArrToBoard(arr[i]);
   }
+  arr.map((el) => solve(el));
   return arr;
-  function reversed(str) {
-    const arrN = [];
-    const strArr = str.split('');
-    for (let k = 0; k < strArr.length; k += 1) {
-      arrN.push(strArr.splice(0, 9));
-      k = 0;
-    }
-    return arrN;
-  }
 }
 
-const borderArray = conversed();
-console.log(borderArray.map((el) => solve(el)));
+function reversArrToBoard(arr) {
+  const array = [];
+  for (let i = 0; i < 9; i += 1) {
+    array.push(arr.splice(0, 9));
+  }
+  return array;
+}
+
+conversed();
 
 // function prettyBoard(board) {
 //   const stringReplace = board.toString().replace(/,/g, ' ');
