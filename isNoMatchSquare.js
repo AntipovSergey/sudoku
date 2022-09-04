@@ -13,7 +13,7 @@ const isNoMatchSquare = (searchNumber, raw, column, arr) => {
     }
   }
   return !(massiv.includes(searchNumber));
-}
+};
 
 module.exports = {
   isNoMatchSquare,
