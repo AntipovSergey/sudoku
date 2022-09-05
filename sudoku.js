@@ -3,7 +3,6 @@ const fs = require('fs');
 function solveSudoku(board) {
   const size = 9;
   const boxSize = 3;
-
   const findEmpty = (board) => {
     for (let r = 0; r < size; r += 1) {
       for (let c = 0; c < size; c += 1) {
@@ -14,7 +13,6 @@ function solveSudoku(board) {
     }
     return null;
   };
-
   const validate = (num, pos, board) => {
     const [row, col] = pos;
     for (let i = 0; i < size; i += 1) {
@@ -32,7 +30,6 @@ function solveSudoku(board) {
     }
     return true;
   };
-
   const solve = () => {
     const currPos = findEmpty(board);
     if (currPos === null) return true;
