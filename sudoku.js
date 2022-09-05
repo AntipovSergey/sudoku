@@ -62,12 +62,11 @@ function conversed() {
     arr[i] = reversArrToBoard(arr[i]);
   }
   arr.map((el) => solveSudoku(el));
-  for (let i = 1; i < arr.length + 1; i += 1) {
+  for (let i = 1; i < arr.length; i += 1) {
     console.log(prettyBoard(arr[i], i));
   }
   return arr;
 }
-
 conversed();
 
 function reversArrToBoard(arr) {
