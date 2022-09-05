@@ -43,10 +43,8 @@ function solveSudoku(board) {
         board[x][y] = '-';
       }
     }
-
     return false;
   };
-
   solve();
   return board;
 }
@@ -64,7 +62,6 @@ function conversed() {
   }
   return arr;
 }
-conversed();
 
 function reversArrToBoard(arr) {
   const array = [];
@@ -79,9 +76,11 @@ function prettyBoard(board, number) {
   const stringReplace = board.toString().replace(/,/g, ' ');
   const regex = /\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}\s\d{1}/g;
   const matchStr = stringReplace.match(regex);
-  let res = matchStr.map((el) => (`${el.slice(0, 6)} ${el.slice(6, 12)} ${el.slice(12)}`));
+  const res = matchStr.map((el) => (`${el.slice(0, 6)} ${el.slice(6, 12)} ${el.slice(12)}`));
   res.splice(3, 0, ' '.repeat(19));
   res.splice(7, 0, ' '.repeat(19));
   res = res.join('\n');
   return `${head + res}\n`;
 }
+
+conversed();
