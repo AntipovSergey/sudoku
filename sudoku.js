@@ -4,12 +4,14 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-const { isNoMatchVH } = require('./horizontal_vertikal_search');
-const { isNoMatchSquare } = require('./isNoMatchSquare');
-const { toCorrectType } = require('./toCorrectType');
-const { findEmptyCell } = require('./findEmptyCell');
+const { isNoMatchVH } = require("./horizontal_vertikal_search");
+const { isNoMatchSquare } = require("./isNoMatchSquare");
+const { toCorrectType } = require("./toCorrectType");
+const { findEmptyCell } = require("./findEmptyCell");
+const { getNumbCount, transboard, extractSquares } = require("./isSolved");
 
-const boardStr = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+const boardStr =
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 
 function solve(boardString) {
   let board = toCorrectType(boardString);
@@ -24,14 +26,17 @@ function solve(boardString) {
     const [i, y] = emptyCell;
     for (let num = 1; num <= 9; num += 1) {
       const rightNum = num.toString();
-      if (isNoMatchVH(rightNum, i, y, board) && isNoMatchSquare(rightNum, i, y, board)) {
+      if (
+        isNoMatchVH(rightNum, i, y, board) &&
+        isNoMatchSquare(rightNum, i, y, board)
+      ) {
         board[i][y] = rightNum;
 
         if (solveBoard()) {
           return true;
         }
 
-        board[i][y] = '-';
+        board[i][y] = "-";
       }
     }
     return false;
@@ -49,22 +54,38 @@ const board = solve(boardStr);
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-  let sum = 45;
-  for (let i = 0; i < board.length; i += 1) {
-    for (let y = 0; y < board.length; y += 1) {
-      let sumofboardI = board[i].map((el) => +el).reduce((a, b) => a + b, 0);
-      let sumofboardY = board[y].map((el) => +el).reduce((a, b) => a + b, 0);
-      if (sumofboardI === sum) {
-        return true;
-      }
-      if (sumofboardY === sum) {
-        return true;
-      }
+  let resI;
+  let resY;
+  let resS;
+  let num = 45;
+  let transb = transboard(board); // переворот массива для вертикали
+  let squares = extractSquares(board); // получение массива квадратов
+  for (let i = 0; i < board.length; i++) {
+    let sumofboardI = board[i].map((el) => +el).reduce((a, b) => a + b, 0);
+    let sumoftransb = transb[i].map((el) => +el).reduce((a, b) => a + b, 0);
+    let sumofsquares = squares[i].map((el) => +el).reduce((a, b) => a + b, 0);
+    resI = getNumbCount(board[i]);
+    const values = Object.values(resI);
+    resY = getNumbCount(transb[i]);
+    const valuesY = Object.values(resY);
+    resS = getNumbCount(squares[i]);
+    const valuesS = Object.values(resS);
+    if (sumofboardI !== num || sumoftransb !== num || sumofsquares !== num) {
+      return false;
+      
+    }
+    if (
+      values.reduce((a, b) => a + b, 0) > 0 ||
+      valuesY.reduce((a, b) => a + b, 0) > 0 ||
+      valuesS.reduce((a, b) => a + b, 0) > 0
+    ) {
+      return false;
     }
   }
-  return false;
+  return true;
 }
 isSolved(board);
+console.log(isSolved(board));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -75,11 +96,12 @@ function prettyBoard(board) {
   let prettyBoard = board.map((el) => (el = el.join(" "))).join("\n");
   return prettyBoard;
 }
-// console.log(prettyBoard(board));
-// console.table(board);
+console.log(prettyBoard(board));
+console.table(board);
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
-// module.exports = {
-//   solve,
-//   isSolved,
-//   prettyBoard,
-// };
+
+module.exports = {
+  solve,
+  isSolved,
+  prettyBoard,
+};
