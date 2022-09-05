@@ -72,6 +72,7 @@ function isSolved(board) {
     const valuesS = Object.values(resS);
     if (sumofboardI !== num || sumoftransb !== num || sumofsquares !== num) {
       return false;
+      
     }
     if (
       values.reduce((a, b) => a + b, 0) > 0 ||
