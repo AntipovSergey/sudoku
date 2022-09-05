@@ -10,9 +10,6 @@ const { toCorrectType } = require("./toCorrectType");
 const { findEmptyCell } = require("./findEmptyCell");
 const { getNumbCount, transboard, extractSquares } = require("./isSolved");
 
-const boardStr =
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-
 function solve(boardString) {
   let board = toCorrectType(boardString);
 
@@ -45,9 +42,6 @@ function solve(boardString) {
   return board;
 }
 
-console.log(solve(boardStr));
-
-const board = solve(boardStr);
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -84,20 +78,21 @@ function isSolved(board) {
   }
   return true;
 }
-isSolved(board);
-console.log(isSolved(board));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-  let prettyBoard = board.map((el) => (el = el.join(" "))).join("\n");
+ function prettyBoard(board) {
+  let prettyBoard = board.map((el) => (el = el.join(" "))).join("\n")
+    .replace(/(\d \d \d) (\d \d \d) (\d \d \d)/g, "| $1 | $2 | $3 |")
+    .replace(/(.+?\n.+?\n.+?\n)/g, '$1_________________________\n')
+    .replace(/^(.+)/, '_________________________\n$1')
+    .replace(/(.+)$/, '$1\n_________________________')
+
   return prettyBoard;
 }
-console.log(prettyBoard(board));
-console.table(board);
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 
 module.exports = {
