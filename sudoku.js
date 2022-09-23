@@ -47,7 +47,7 @@ function solve(boardString) {
  */
  
 function isSolved(board){
-  let d = [1,2,3,4,5,6,7,8,9]
+  let d = ['1','2','3','4','5','6','7','8','9',1,2,3,4,5,6,7,8,9]
   for(let i = 0; i < board.length;i++){
     for (let j = 0; j < board.length; j++){
       if(!d.includes(board[i][j])){
@@ -119,4 +119,3 @@ module.exports = {
   prettyBoard,
 
 };
-
