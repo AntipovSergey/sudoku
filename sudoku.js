@@ -50,15 +50,23 @@ function sodokoSolver(data) {
   }
   return true;
 }
-sodokoSolver(_board)
-console.table(_board);
+// sodokoSolver(_board);
+// console.table(_board);
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
+function isSolved([rgv]) {
+  console.log('----', typeof rgv);
+  if (+rgv >= 15) {
+    return console.log('Ошибка, введи число от 0 по 14');
+  }
+  solve(sudoku[rgv]);
+  sodokoSolver(_board);
+  console.table(_board);
+  return console.log(true);
 }
-
+isSolved([rgv]);
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
