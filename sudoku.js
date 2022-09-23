@@ -3,15 +3,21 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
-}
+function solve(boardString) {}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      let el = board[i][j];
+      if (typeof el !== "string") {
+        return true;
+      }
+    }
+  }
 }
 
 /**
@@ -19,6 +25,7 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(board) {
   let resultArr = [];
   for (let i = 0; i < board.length; i = i + 9) {
