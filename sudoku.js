@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-
-
-
-=======
 function buildBoard(board) {
   const str = board
   const arr = str.split('');
@@ -68,7 +62,6 @@ function buildBoard(board) {
 
   return findCorrectNumbers(boardArray);
 };
->>>>>>> master
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
