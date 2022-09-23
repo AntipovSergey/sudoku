@@ -15,10 +15,18 @@ function solve(boardString) {
   let nineString = Array.from(boardString.slice(72, 81))
 
   const board = [firstString, secondString, thirdString, forthString, fiveString, sixString, sevenString, eigthString, nineString]
+
+  function nextEptySpot(board) {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (board[i][j] === '_')
+          return [i, j]
+
+      }
+    }
+    return [-1, -1]
+  }
   
-
-
-
 }
 
 /**
