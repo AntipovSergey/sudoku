@@ -6,13 +6,23 @@
 
 function solve(boardString) {
 
+
 }
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+
+
 function isSolved(board) {
+  for (let i = 0; i < board.lenth; i++){
+    for (let j = 0; j < board[i].length; i++){
+      if (board[i][j] === "-"){
+        return false
+      }
+    }
+  }
 
 }
 
@@ -31,3 +41,4 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
