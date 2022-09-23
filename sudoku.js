@@ -4,6 +4,21 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  let firstString = Array.from(boardString.slice(0, 9))
+  let secondString = Array.from(boardString.slice(9, 18))
+  let thirdString = Array.from(boardString.slice(18, 27))
+  let forthString = Array.from(boardString.slice(27, 36))
+  let fiveString = Array.from(boardString.slice(36, 45))
+  let sixString = Array.from(boardString.slice(45, 54))
+  let sevenString = Array.from(boardString.slice(54, 63))
+  let eigthString = Array.from(boardString.slice(63, 72))
+  let nineString = Array.from(boardString.slice(72, 81))
+
+  const board = [firstString, secondString, thirdString, forthString, fiveString, sixString, sevenString, eigthString, nineString]
+  
+
+
+
 }
 
 /**
