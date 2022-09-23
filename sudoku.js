@@ -24,7 +24,7 @@ function solve(boardString) {
  */
 function isSolved(board) {
   const res = solve(board);
-  if (res !== undefined || res === 405 * 9) {
+  if (res !== undefined || res === 405) {
     return true;
   }
   return false;
