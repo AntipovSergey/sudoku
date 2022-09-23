@@ -46,11 +46,12 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  const newBoard = solve(board);
+  let newBoard = solve(board);
+  let fin = []
   for (let i = 0; i < newBoard.length; i++) {
-    newBoard.join(' ');
-    return newBoard.join('\n');
+    fin.push(newBoard[i].join(' '))
   }
+  return fin.join('\n')
 }
 
 console.log(prettyBoard(sudoku[4]));
