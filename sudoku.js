@@ -27,7 +27,7 @@ function solve(boardString) {
   }
   return res;
 }
-// console.table(solve(sudoku[4]));
+// console.log(solve(sudoku[4]));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -46,8 +46,14 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  return console.log(board);
+  const newBoard = solve(board);
+  for (let i = 0; i < newBoard.length; i++) {
+    newBoard.join(' ');
+    return newBoard.join('\n');
+  }
 }
+
+console.log(prettyBoard(sudoku[4]));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
