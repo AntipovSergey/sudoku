@@ -85,6 +85,8 @@ function prettyBoard(board) {
 }
 console.log(prettyBoard(_board));
 
+// console.log(prettyBoard(sudoku[4]));
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
