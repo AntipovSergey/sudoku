@@ -1,9 +1,16 @@
+function makeMatrix(arr) {
+  // return (arr.join(''));
+  return (arr.join('').match(/\d{9}/g)).map((x) => x.split('').map((y) => Number(y)));
+}
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+
+  return makeMatrix(arr);
 }
 
 /**
