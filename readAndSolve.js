@@ -26,11 +26,11 @@ function readAndSolve(error, fileData) {
 
     let sudoku;
     const sudokuNumber = 2;
-    // здесь будем прописывать АРГВ
+    // здесь будем прописывать АРГВ ggg
     for (let i = 0; i < box.length; i++) {
       sudoku = box[sudokuNumber];
     }
-    console.log({ sudoku });
+    console.log(sudoku);
 
     const arr = [];
     let tmp = {};
