@@ -2,11 +2,11 @@ const fs = require('fs');
 
 const sudoku = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n');
 const rgv = process.argv[2];
-/**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
+//  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
+//  * Возвращает игровое поле после попытки его решить.
+//  * Договорись со своей командой, в каком формате возвращать этот результат.
+//  */
+
 function solve(boardString) {
   const res = [];
   for (let i = 0; i < boardString.length; i += 9) {
@@ -16,28 +16,47 @@ function solve(boardString) {
     }
     res.push(elem);
   }
-  for (let i = 0; i < res.length; i += 1) {
-    for (let k = 0; k < res[i].length; k += 1) {
-      if (res[i][k] === '-') {
-        res[i][k] = Math.ceil(Math.random() * 9);
-      } else {
-        res[i][k] = Number(res[i][k]);
+  return res;
+}
+const _board = solve(sudoku[rgv]);
+
+function isValid(board, row, col, k) {
+  for (let i = 0; i < 9; i++) {
+    const m = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+    const n = 3 * Math.floor(col / 3) + i % 3;
+    if (board[row][i] == k || board[i][col] == k || board[m][n] == k) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function sodokoSolver(data) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (data[i][j] == '-') {
+        for (let k = 1; k <= 9; k++) {
+          if (isValid(data, i, j, k)) {
+            data[i][j] = `${k}`;
+            if (sodokoSolver(data)) {
+              return true;
+            }
+            data[i][j] = '-';
+          }
+        }
+        return false;
       }
     }
   }
-  return res;
+  return true;
 }
-// console.table(solve(sudoku[4]));
+sodokoSolver(_board)
+console.table(_board);
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-  const res = solve(board);
-  if (res !== undefined && res === 405) {
-    return true;
-  }
-  return false;
 }
 
 /**
@@ -46,7 +65,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  return console.log(board);
+
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
