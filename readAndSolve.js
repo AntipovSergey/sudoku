@@ -9,8 +9,8 @@ function readAndSolve(error, fileData) {
   // завершить работу функции.
   if (error) {
     throw error;
-  } else {
-    fileData = fs.readFileSync('./puzzles.txt','utf-8')
+  // } else {
+  //   fileData = fs.readFileSync('./puzzles.txt','utf-8')
   }
 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
