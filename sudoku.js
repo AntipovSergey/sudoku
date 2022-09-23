@@ -1,4 +1,10 @@
 
+function makeMatrix(arr) {
+  // return (arr.join(''));
+  return (arr.join('').match(/\d{9}/g)).map((x) => x.split('').map((y) => Number(y)));
+}
+
+
 function giveArrBase(someString) {
   return someString.split('');
 }
@@ -13,6 +19,7 @@ function fill(arr) {
 
 
 
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -20,9 +27,14 @@ function fill(arr) {
  */
 function solve(boardString) {
 
+
+  
+
   const arrBase = giveArrBase(boardString);
 
   const filled = fill(arrBase);
+  
+  return makeMatrix(filled);
 
 
 }
