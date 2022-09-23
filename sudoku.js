@@ -12,7 +12,9 @@ function giveArrBase(someString) {
 
 function fill(arr) {
   return arr.map((el) => el.map((elem) => {
-    if (elem === '-') return Math.floor(Math.random() * (10));
+    if (elem === '-') {
+      return Math.floor(Math.random() * (10))
+    };
     return elem;
   }));
 }
@@ -62,11 +64,3 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
-
-function fill(arr){
-  return arr.map(el => {
-   return el.map(elem => {
-    if (elem === '-') return Math.floor(Math.random() * ())
-   })
-  })
-}
