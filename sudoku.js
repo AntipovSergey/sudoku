@@ -14,9 +14,9 @@ function solve(boardString) {
   let eigthString = Array.from(boardString.slice(63, 72))
   let nineString = Array.from(boardString.slice(72, 81))
 
-  const board = [firstString, secondString, thirdString, forthString, fiveString, sixString, sevenString, eigthString, nineString]
+  let board = [firstString, secondString, thirdString, forthString, fiveString, sixString, sevenString, eigthString, nineString]
 
-  function nextEptySpot(board) {
+  function nextEmptySpot(board) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         if (board[i][j] === '_')
@@ -26,7 +26,28 @@ function solve(boardString) {
     }
     return [-1, -1]
   }
-  
+  //Функции для проверки строки, столбца
+  function checkRow(board, row, value) {
+    for (var i = 0; i < board[row].length; i++) {
+      if (board[row][i] === value) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+  function checkColumn(board, column, value) {
+    for (var i = 0; i < board.length; i++) {
+      if (board[i][column] === value) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+
+
 }
 
 /**
