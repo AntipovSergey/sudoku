@@ -3,7 +3,6 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const str = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function solve(puzzle) {
   const boxSize = 3;
@@ -26,38 +25,32 @@ function solve(puzzle) {
     const [r, c] = pos;
 
     // проверка по горизонтали
-    const checkHorizontal = chess[r].join('').includes(String(num));
-    // if (!(checkHorizontal) === false) return false
-
-    for (let i = 0; i < size; i++) {
-      if (!checkHorizontal && i !== r) return false;
+    for (let i = 0; i < size; i += 1) {
+      if (board[i][c] === num && i !== r) {
+        return false;
+      }
     }
 
     // проверка по вертикали
-    let lineVertical = '';
-    for (let t = 0; t < 9; t++) {
-      lineVertical += chess[r][t];
-    }
-    const checkVertical = lineVertical.includes(String(num));
-    // if (!(checkVertical) === false) return false
-
-    for (let i = 0; i < size; i++) {
-      if (!checkVertical && i !== c) return false;
+    for (let i = 0; i < size; i += 1) {
+      if (board[r][i] === num && i !== c) {
+        return false;
+      }
     }
 
     // проверка в квадрате
     const boxRow = Math.floor(r / boxSize) * boxSize;
     const boxCol = Math.floor(c / boxSize) * boxSize;
-    for (let i = boxRow; i < boxRow + boxSize; i += 1) { /** проверка по всему сектору */
-      for (let j = boxCol; j < boxCol + boxSize; j += 1) { /** делаем 2 вложенных цикла */
-        if (chess[i][j] === num && i !== r && j !== c) { /** проверяем текущую позицию */
+    for (let i = boxRow; i < boxRow + boxSize; i += 1) {
+      for (let j = boxCol; j < boxCol + boxSize; j += 1) {
+        if (chess[i][j] === num && i !== r && j !== c) {
           return false;
         }
       }
     }
 
     return true;
-  }
+  };
 
   const solver = () => {
     const currentPos = findIndex(board);
@@ -78,17 +71,21 @@ function solve(puzzle) {
   };
 
   solver();
+  console.table(board);
   return board;
 }
-
-console.table(solve(str));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i += 1) {
+    for (let j = 0; j < board.length; j += 1) {
+      if (board[i][j] === '-') return false;
+    }
+  }
+  return true;
 }
 
 /**
@@ -97,7 +94,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  return 'You\'re great!';
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
