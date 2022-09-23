@@ -7,10 +7,19 @@ function giveArrBase(someString) {
 }
 
 function fill(arr) {
+
+  return arr.map((el) => el.map((elem) => {
+    if (elem === '-') {
+      return Math.floor(Math.random() * (10))
+    };
+    return elem;
+  }));
+
   return arr.map((el) => {
     if (el === '-') return Math.ceil(Math.random() * 9);
     return el;
   });
+
 }
 
 //  ВЫбтирает кубики из заполненного массива из 9 массивов. Должен принимать в себя массив, который возвращает solve()
@@ -61,4 +70,7 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+
 };
+
+
