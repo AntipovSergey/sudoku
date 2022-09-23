@@ -13,4 +13,3 @@ function letBoard(n) {
   return newArr;
 }
 console.table(letBoard(4));
-

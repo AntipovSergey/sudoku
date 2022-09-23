@@ -5,8 +5,6 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-// const str = fs.readFileSync('puzzles.txt', 'utf-8');
-
 
 function solve(boardString) {
 
