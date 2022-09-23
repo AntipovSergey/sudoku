@@ -53,14 +53,18 @@ let num = 7;
 
 
 function validate (num, pos, board) {
-  let [r,c] = pos
-  let boxSize = 3
+  let [r,c] = pos;
+  let boxSize = 3;
+  let size = 9;
 
 
       // проверка по горизонтали
       let checkHorizontal = board[r].join('').includes(String(num)) 
-      if (!(checkHorizontal) === false) return false
+      // if (!(checkHorizontal) === false) return false
 
+      for (let i = 0; i < size; i++) {
+        if (!checkHorizontal && i !== r) return false;
+      }
 
       // проверка по вертикали
       let lineVertical = ''
@@ -68,19 +72,23 @@ function validate (num, pos, board) {
         lineVertical += board[r][t]
       }
       let checkVertical = lineVertical.includes(String(num))
-      if (!(checkVertical) === false) return false
+      // if (!(checkVertical) === false) return false
+
+      for (let i = 0; i < size; i++) {
+        if (!checkVertical && i !== c) return false;
+      }
 
       //проверка в квадрате
       let lineBox = ''
       const boxRow = Math.floor(r/boxSize) * boxSize
       const boxCol = Math.floor(c/boxSize) * boxSize
-      for(let j = boxRow; j < boxRow + boxSize; j++) {
-        for (let t = boxCol; t < boxCol + boxSize; t++) {         
-          lineBox += board[j][t]
+      for (let i = boxRow; i < boxRow + boxSize; i += 1) {  /**проверка по всему сектору */
+      for (let j = boxCol; j < boxCol + boxSize; j += 1) {  /** делаем 2 вложенных цикла */
+        if (board[i][j] === num && i !== r && j !== c) {  /** проверяем текущую позицию */
+          return false;
         }
       }
-      let checkBox = lineBox.includes(String(num))
-      if (!(checkBox) === false) return false
+    }
 
       return true
 }
