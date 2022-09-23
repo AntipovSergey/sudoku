@@ -16,6 +16,16 @@ function solve(boardString) {
 
   let board = [firstString, secondString, thirdString, forthString, fiveString, sixString, sevenString, eigthString, nineString]
 
+  let emptySpot = nextEmptySpot(board);
+  let row = emptySpot[0];
+  let col = emptySpot[1];
+  for (let num = 1; num <= 9; num++) {
+    if () { }
+    board[row][col] = num;
+
+
+  }
+
   function nextEmptySpot(board) {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -24,7 +34,7 @@ function solve(boardString) {
 
       }
     }
-    return [-1, -1]
+    return null
   }
   //Функции для проверки строки, столбца
   function checkRow(board, row, value) {
@@ -47,7 +57,7 @@ function solve(boardString) {
   };
 
 
-
+  return board
 }
 
 /**
