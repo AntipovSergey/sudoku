@@ -30,6 +30,7 @@ function readAndSolve(error, fileData) {
   const solvedPuzzle = sudoku.solve(puzzle);
   console.log(solvedPuzzle);
 
+
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
   if (!sudoku.isSolved(solvedPuzzle)) {
     console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
