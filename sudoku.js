@@ -1,94 +1,10 @@
-//1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--
-const example = [
-  {1: "yes", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "yes", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "yes", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "yes", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "yes"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "yes", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "yes", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "yes", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "yes", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "yes", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "yes", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "yes", 9: "no"},
-  {1: "yes", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "yes"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "yes", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "yes"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "yes", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "yes", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "yes", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "yes", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "yes", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "yes", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "yes", 9: "no"},
-  {1: "no", 2: "no", 3: "yes", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "yes"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "yes", 7: "no", 8: "no", 9: "no"},
-  {1: "yes", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "yes", 2: "no", 3: "no", 4: "no", 5: "yes", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "yes", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "yes", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "yes", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "yes", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "yes", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "yes", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "yes", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "yes", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "yes", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "yes", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "yes", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "yes"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-]
-
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
+function solve(board) {
+  checkArr(board);
 }
 
 /**
@@ -194,40 +110,6 @@ function getSegments(arr) {
   return result;
 }
 
-// const arr = [
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-// ]
-
-// getSegments(arr);
-
-const part = [
-  {1: "yes", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "yes", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "yes", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "yes", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "no", 8: "no", 9: "yes"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "no", 7: "yes", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "no", 6: "yes", 7: "no", 8: "no", 9: "no"},
-  {1: "no", 2: "no", 3: "no", 4: "yes", 5: "no", 6: "no", 7: "no", 8: "no", 9: "no"},
-  {1: "maybe", 2: "maybe", 3: "maybe", 4: "maybe", 5: "maybe", 6: "maybe", 7: "maybe", 8: "maybe", 9: "maybe"},
-  {1: "no", 2: "no", 3: "no", 4: "no", 5: "yes", 6: "no", 7: "no", 8: "no", 9: "no"},
-]
 /**
  * Принимает массив объектов и отправляет группы по 9 в функцию fillArr
  * 
@@ -235,31 +117,45 @@ const part = [
 
 function checkArr(arr) {
   const rows = getRows(arr);
-  for (let i = 0; i < rows.length; i += 1) {
-    rows[i] = fillArr(rows[i]);
-  }
   const columns = getColumns(rows);
-  for (let i = 0; i < columns.length; i += 1) {
-    columns[i] = fillArr(columns[i]);
-  }
   const segments = getSegments(columns);
-  for (let i = 0; i < segments.length; i += 1) {
-    segments[i] = fillArr(segments[i]);
+  let counter = 0;
+  while(counter < 81 && !isSolved(arr)) {
+    for (let i = 0; i < rows.length; i += 1) {
+      rows[i] = fillArr(rows[i]);
+    }
+    for (let i = 0; i < columns.length; i += 1) {
+      columns[i] = fillArr(columns[i]);
+    }
+    for (let i = 0; i < segments.length; i += 1) {
+      segments[i] = fillArr(segments[i]);
+    }
+    counter += 1;
   }
-  // if(!isSolved(arr)) {
-  //   checkArr(arr);
-  // }
-  // if (isSolved(arr)) {
-  // }
+  if(!isSolved(arr)) {
+    console.log("Я не могу справиться с задачей")
+  } else {
+    prettyBoard(arr);
+  }
 }
-
-checkArr(example);
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  const arrTemp = [];
+  for(let i = 0; i < board.length; i += 1) {
+    for (const [key, value] of Object.entries(board[i])) {
+      if (value === 'yes') {
+        arrTemp.push(board[i]);
+      }
+    }
+  }
+  if(arrTemp.length === board.length) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -268,7 +164,18 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  let finalArr = [];
+  for(let i = 0; i < board.length; i += 1) {
+    for (const [key, value] of Object.entries(board[i])) {
+      if (value === 'yes') {
+        finalArr.push(key);
+        break;
+      }
+    }
+  }
+  finalArr = getRows(finalArr);
+  finalArr = finalArr.map(el => el.join(" ")).join(`\n`);
+  console.log(finalArr);
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
