@@ -31,3 +31,5 @@ function readFile() {
 
   return resultArr;
 }
+
+module.exports = readFile;
