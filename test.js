@@ -12,4 +12,4 @@ for(let i = 0; i < 81; i += 9){
     return arr
 }
 
-
+module.exports = SudokuTable;
