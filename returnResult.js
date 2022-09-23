@@ -14,3 +14,5 @@ function check(arr) {
 
   return false;
 }
+
+module.exports = check;
