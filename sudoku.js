@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const sudoku = fs.readFile('./puzzles.txt', 'utf-8').split('\n');
+const sudoku = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n');
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -15,16 +15,23 @@ function solve(boardString) {
     }
     res.push(elem);
   }
+  for (let i = 0; i < res.length; i += 1) {
+    for (let k = 0; k < res[i].length; k += 1) {
+      if (res[i][k] === '-') {
+        res[i][k] = String(Math.floor(Math.random() * 9));
+      }
+    }
+  }
   return res;
 }
-
+console.table(solve(sudoku[0]));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
   const res = solve(board);
-  if (res !== undefined || res === 405) {
+  if (res !== undefined && res === 405) {
     return true;
   }
   return false;
