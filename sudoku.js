@@ -1,9 +1,20 @@
+function fill(arr) {
+  return arr.map((el) => el.map((elem) => {
+    if (elem === '-') return Math.floor(Math.random() * (10));
+    return elem;
+  }));
+}
+
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  const filled = fill(arrBase);
+
+  
 }
 
 /**
@@ -29,3 +40,11 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+function fill(arr){
+  return arr.map(el => {
+   return el.map(elem => {
+    if (elem === '-') return Math.floor(Math.random() * ())
+   })
+  })
+}
