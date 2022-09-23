@@ -22,14 +22,53 @@ function readAndSolve(error, fileData) {
     const box = data.split('\n')
       .map((el) => el.split('')
         .map((el) => (el == '-' ? 0 : Number(el))));
-    console.log(box[5]);
+    // console.log(box);
 
-    box.map((el) =>{
-     if(el === 0){
-      
-     }
+    let sudoku;
+    const sudokuNumber = 2;
+    // здесь будем прописывать АРГВ
+    for (let i = 0; i < box.length; i++) {
+      sudoku = box[sudokuNumber];
     }
-    )
+    console.log({ sudoku });
+
+    const arr = [];
+    let tmp = {};
+
+    sudoku.forEach((el2) => {
+      if (el2 == 0) {
+        for (i = 1; i < 10; i += 1) {
+          tmp[i] = 'maybe';
+        }
+        arr.push(tmp);
+        tmp = {};
+      } else {
+        for (i = 1; i < 10; i += 1) {
+          if (i === el2) { tmp[i] = 'yes'; } else {
+            tmp[i] = 'no';
+          }
+        }
+        arr.push(tmp);
+        tmp = {};
+      }
+    });
+
+    console.log(arr);
+
+    // const arr = [];
+    // let tmp = {};
+    // sudoku.forEach((el) => {
+    //   el.forEach((el2) => {
+    //     if (el2 == 0) {
+    //       for (i = 1; i < 10; i += 1) {
+    //         tmp[i] = 'maybe';
+    //       }
+    //       arr.push(tmp);
+    //       tmp = {};
+    //     }
+    //   });
+    // });
+    // console.log(arr);
 
     // const sudoky = box.map((el) => el.split('\n'))
 
