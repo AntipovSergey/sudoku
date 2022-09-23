@@ -119,21 +119,18 @@ function fillArr(arr) {
     }
   }
   for(i = 0; i < arr.length; i += 1) {
-    console.log({i});
     temp = Object.entries(arr[i]);
     counter = 0;
     for(let j = 0; j < temp.length; j += 1) {
-      console.log(temp[j][1]);
-      if (temp[j][1] = "no") {
+      if (temp[j][1] === "no") {
         counter += 1;
       }
     }
-    console.log({counter});
     if(counter === 8) {
       for(let z = 1; z < 10; z += 1) {
         if(arr[i][z] === "maybe") {
           console.log({z});
-          arr[i][z] === "yes";
+          arr[i][z] = "yes";
         }
       }
     }
@@ -250,9 +247,11 @@ function checkArr(arr) {
   for (let i = 0; i < segments.length; i += 1) {
     segments[i] = fillArr(segments[i]);
   }
-  console.log(arr[23]);
-  // if (isSolved(segments)) {
-
+  if(!isSolved(arr)) {
+    checkArr(arr);
+  }
+  console.log(arr[1]);
+  // if (isSolved(arr)) {
   // }
 }
 
