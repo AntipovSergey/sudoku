@@ -13,6 +13,19 @@ function fill(arr) {
   });
 }
 
+//  ВЫбтирает кубики из заполненного массива из 9 массивов. Должен принимать в себя массив, который возвращает solve()
+function makeCubes(arr) {
+  const res = [];
+  for (let i = 0; i < arr.length; i += 3) {
+    for (let j = 0; j < arr.length; j += 3) {
+      res.push([arr[i][j], arr[i + 1][j], arr[i + 2][j],
+      arr[i][j + 1], arr[i + 1][j + 1], arr[i + 2][j + 1],
+      arr[i][j + 2], arr[i + 1][j + 2], arr[i + 2][j + 2]]);
+    };
+  }
+  return res;
+}
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
