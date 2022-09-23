@@ -1,3 +1,19 @@
+let board = [
+  ["2", '-', "3", "4", "-", "7", "6", "8", "1"],
+  ["4", "7", "5", "1", "8", "6", "3", "9", "2"],
+  ["1", "6", "8", "3", "9", "2", "7", "4", "5"],
+  ["9", "4", "2", "5", "7", "1", "8", "6", "3"],
+  ["3", "8", "1", "6", "-", "9", "5", "7", "4"],
+  ["6", "5", "7", "8", "3", "4", "1", "2", "9"],
+  ["7", "2", "6", "9", "1", "3", "4", "5", "8"],
+  ["5", "1", "4", "2", "6", "8", "9", "3", "7"],
+  ["8", "3", "9", "7", "4", "5", "2", "1", "6"],
+];
+console.log(isSolved(board))
+board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
+// buildBoard(board)
+solve(board)
+
 function buildBoard(board) {
   const str = board
   const arr = str.split('');
@@ -6,7 +22,7 @@ function buildBoard(board) {
   for (let i = 0; i < arr1.length; i += 9) {
     board2.push(arr1.slice(i, i + 9));
   }
-  console.log(board2);
+  console.table(board2);
   return board2;
 }
 
@@ -18,6 +34,24 @@ function buildBoard(board) {
 function solve(boardString) {
   // преобразуем поле из строки в двумерный массив со строковыми значениями
   const boardArray = buildBoard(boardString)
+
+  function findEmptyCell(boardArray) {
+    // определяем длину массива (9)
+    const len = 9;
+
+    // бежим по каждому элементу
+    for (let r = 0; r < len; r++) {
+      for (let c = 0; c < len; c++) {
+        // проверяем является ли клетка пустой
+        if (boardArray[r][c] === '-') {
+          // возвращаем ее индекс, если она пустая
+          return [r, c];
+        }
+      }
+      // в противном случае все клетки заполнены
+      return 'No empty cells left';
+    }
+  };
 
   function validate(number, cellPosition, board){
     const [r, c] = cellPosition;
@@ -49,24 +83,6 @@ function solve(boardString) {
     return true
   }
 
-  function findEmptyCell(boardArray) {
-    // определяем длину массива (9)
-    const len = 9;
-
-    // бежим по каждому элементу
-    for (let r = 0; r < len; r++) {
-      for (let c = 0; c < len; c++) {
-        // проверяем является ли клетка пустой
-        if (boardArray[r][c] === '-') {
-          // возвращаем ее индекс, если она пустая
-          return [r, c];
-        }
-      }
-      // в противном случае все клетки заполнены
-      return 'No empty cells left';
-    }
-  };
-
   function findCorrectNumbers() {
     // ищем пустую клетку
     const cellPosition = findEmptyCell(boardArray);
@@ -81,9 +97,6 @@ function solve(boardString) {
     // на каждой итерации пробуем подставить новое значение (от 1 до 9)
     for (let i = 1; i < 10; i++) {
       const number = i.toString();
-      // подставляем новое значение в пустую клетку
-      // const [r, c] = cellPosition;
-      // boardArray[r][c] = number;
 
   
       // проверяем отвечает ли таким образом заполненное поле всем условиям
@@ -99,6 +112,7 @@ function solve(boardString) {
           return true
           // return boardArray
         }
+
         boardArray[r][c] = '-';
       } 
     }
@@ -106,6 +120,7 @@ function solve(boardString) {
   };
 
   findCorrectNumbers();
+  console.table(boardArray)
   return boardArray;
 }
 
@@ -190,7 +205,7 @@ function isSolved(board){
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  return buildBoard(board)
+  console.table(board)
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
@@ -200,16 +215,5 @@ module.exports = {
   prettyBoard,
 };
 
-// let board = [
-//   ["2", '-', "3", "4", "-", "7", "6", "8", "1"],
-//   ["4", "7", "5", "1", "8", "6", "3", "9", "2"],
-//   ["1", "6", "8", "3", "9", "2", "7", "4", "5"],
-//   ["9", "4", "2", "5", "7", "1", "8", "6", "3"],
-//   ["3", "8", "1", "6", "-", "9", "5", "7", "4"],
-//   ["6", "5", "7", "8", "3", "4", "1", "2", "9"],
-//   ["7", "2", "6", "9", "1", "3", "4", "5", "8"],
-//   ["5", "1", "4", "2", "6", "8", "9", "3", "7"],
-//   ["8", "3", "9", "7", "4", "5", "2", "1", "6"],
-// ];
 
-// console.log(solve(board))
+// solve(board)
