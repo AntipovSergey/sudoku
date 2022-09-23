@@ -50,8 +50,7 @@ function sodokoSolver(data) {
   }
   return true;
 }
-sodokoSolver(_board)
-console.table(_board);
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -66,7 +65,15 @@ function isSolved(board) {
  */
 function prettyBoard(board) {
 
+  let newBoard = solve(board);
+  let fin = []
+  for (let i = 0; i < newBoard.length; i++) {
+    fin.push(newBoard[i].join(' '))
+  }
+  return fin.join('\n')
 }
+
+console.log(prettyBoard(sudoku[4]));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
