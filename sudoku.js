@@ -1,24 +1,17 @@
-
 function makeMatrix(arr) {
-  // return (arr.join(''));
   return (arr.join('').match(/\d{9}/g)).map((x) => x.split('').map((y) => Number(y)));
 }
-
 
 function giveArrBase(someString) {
   return someString.split('');
 }
 
-
 function fill(arr) {
-  return arr.map((el) => el.map((elem) => {
-    if (elem === '-') return Math.floor(Math.random() * (10));
-    return elem;
-  }));
+  return arr.map((el) => {
+    if (el === '-') return Math.ceil(Math.random() * 9);
+    return el;
+  });
 }
-
-
-
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -26,17 +19,11 @@ function fill(arr) {
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-
-
-  
-
   const arrBase = giveArrBase(boardString);
 
   const filled = fill(arrBase);
-  
+
   return makeMatrix(filled);
-
-
 }
 
 /**
@@ -62,11 +49,3 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
-
-function fill(arr){
-  return arr.map(el => {
-   return el.map(elem => {
-    if (elem === '-') return Math.floor(Math.random() * ())
-   })
-  })
-}
