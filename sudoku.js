@@ -4,6 +4,7 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+
 }
 
 /**
@@ -20,7 +21,8 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  let prettyBoard = board.map((el) => (el = el.join(" "))).join("\n");
+  return prettyBoard;
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
