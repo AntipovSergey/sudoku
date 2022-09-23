@@ -129,7 +129,6 @@ function fillArr(arr) {
     if(counter === 8) {
       for(let z = 1; z < 10; z += 1) {
         if(arr[i][z] === "maybe") {
-          console.log({z});
           arr[i][z] = "yes";
         }
       }
@@ -247,10 +246,9 @@ function checkArr(arr) {
   for (let i = 0; i < segments.length; i += 1) {
     segments[i] = fillArr(segments[i]);
   }
-  if(!isSolved(arr)) {
-    checkArr(arr);
-  }
-  console.log(arr[1]);
+  // if(!isSolved(arr)) {
+  //   checkArr(arr);
+  // }
   // if (isSolved(arr)) {
   // }
 }

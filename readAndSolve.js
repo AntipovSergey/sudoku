@@ -5,15 +5,6 @@ const sudoku = require('./sudoku');
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
   // завершить работу функции.
-  // fs.readFile('./puzzles.txt', 'utf8', (err, data) => {
-  //   if (err) throw err;
-  //   data.split('\n').filter((line) => line !== '');
-  //   const box = data.split('\n').
-  //   map((el)=> el.split('').map((el)=> ({
-  //     val: el == '-'? 0: Number(el),
-
-  //   })))
-  //   console.log(box[0]);
   fs.readFile('./puzzles.txt', 'utf8', (err, data) => {
     if (err) throw err;
     data.split('\n')
@@ -22,15 +13,14 @@ function readAndSolve(error, fileData) {
     const box = data.split('\n')
       .map((el) => el.split('')
         .map((el) => (el == '-' ? 0 : Number(el))));
-    // console.log(box);
 
     let sudoku;
-    const sudokuNumber = 2;
+    const sudokuNumber = Number(process.argv[2]) - 1;
     // здесь будем прописывать АРГВ ggg
     for (let i = 0; i < box.length; i++) {
       sudoku = box[sudokuNumber];
     }
-    console.log(sudoku);
+    console.log({sudoku});
 
     const arr = [];
     let tmp = {};
@@ -52,33 +42,7 @@ function readAndSolve(error, fileData) {
         tmp = {};
       }
     });
-
-    console.log(arr);
-
-    // const arr = [];
-    // let tmp = {};
-    // sudoku.forEach((el) => {
-    //   el.forEach((el2) => {
-    //     if (el2 == 0) {
-    //       for (i = 1; i < 10; i += 1) {
-    //         tmp[i] = 'maybe';
-    //       }
-    //       arr.push(tmp);
-    //       tmp = {};
-    //     }
-    //   });
-    // });
-    // console.log(arr);
-
-    // const sudoky = box.map((el) => el.split('\n'))
-
-    // console.log(sudoky);
-
-    // sudoky.forEach(el => {
-    // console.log('---', el.map(string => +string))
-    // el.map(string => +string)
-
-    // });
+    return arr;
   });
 
   // // Разбить содержимое файла построчно и отфильтровать все пустые строки.
