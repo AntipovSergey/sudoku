@@ -20,6 +20,16 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  let resultArr = [];
+  for (let i = 0; i < board.length; i = i + 9) {
+    resultArr.push(board.slice(i, i + 9));
+    // resultArr.push(board.slice(i + 3, i + 6));
+    // resultArr.push(board.slice(i + 6, i + 9));
+  }
+  let newArr = resultArr.map(el => el.split('').join(' '));
+
+
+  return newArr;
 
 }
 
@@ -29,3 +39,7 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+
+const solveboard1 = '145892673893176425276435819519247386762583194384961752957614238438729561621358947';
+console.log(prettyBoard(solveboard1));
