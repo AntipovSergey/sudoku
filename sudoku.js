@@ -57,24 +57,33 @@ function sodokoSolver(data) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved([rgv]) {
-  console.log('----', typeof rgv);
-  if (+rgv >= 15) {
+  if (rgv >= 15) {
     return console.log('Ошибка, введи число от 0 по 14');
   }
   solve(sudoku[rgv]);
   sodokoSolver(_board);
-  console.table(_board);
-  return console.log(true);
+  prettyBoard(_board);
+  console.table(prettyBoard(solve(sudoku[rgv])));
+  console.log('\n');
+  // console.table(_board);
+  // console.log(true);
 }
 isSolved([rgv]);
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
 
+function prettyBoard(board) {
+  const fin = [];
+  for (let i = 0; i < board.length; i += 1) {
+    fin.push(board[i].join(' '));
+  }
+  return fin.join('\n');
 }
+console.log(prettyBoard(_board));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
