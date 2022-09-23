@@ -23,7 +23,11 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+    const res = solve(board)
+        if (res !== undefined || res === 405 * 9) {
+          return true
+        }
+        return false
 }
 
 /**
