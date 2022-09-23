@@ -12,4 +12,5 @@ function letBoard(n) {
   }
   return newArr;
 }
-console.table(letBoard(3));
+console.table(letBoard(4));
+
