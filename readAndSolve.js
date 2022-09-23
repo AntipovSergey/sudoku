@@ -1,6 +1,8 @@
 // Подключить функции из файла sudoku.js.
 const sudoku = require('./sudoku');
 
+// console.log(sudoku)
+
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
   // завершить работу функции.
@@ -12,7 +14,7 @@ function readAndSolve(error, fileData) {
   const puzzles = fileData
     .split('\n')
     .filter((line) => line !== '');
-
+    
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
   let puzzleNumber = Number(process.argv[2]) || 1;
 
