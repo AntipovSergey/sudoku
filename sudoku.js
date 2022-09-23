@@ -61,6 +61,8 @@ function solve(boardString) {
   // преобразуем поле из строки в двумерный массив со строковыми значениями
   const boardArray = boardString;
   // TODO
+  boardString.split('')
+  arr2D = [];
 
   const solvedSudoku = findCorrectNumbers(boardArray);
   return solvedSudoku;
