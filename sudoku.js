@@ -4,6 +4,7 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+
 }
 
 /**
@@ -41,7 +42,8 @@ function isSolved(board){
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  let prettyBoard = board.map((el) => (el = el.join(" "))).join("\n");
+  return prettyBoard;
 }
 function solvColsRows(arr){
   for(let j = 0; j < arr.length; j++){
@@ -77,9 +79,6 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+
 };
-
-
-
-
 
