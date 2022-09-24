@@ -85,17 +85,18 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 
+
 function prettyBoard(board) {
-  let resultArr = [];
   for (let i = 0; i < board.length; i = i + 9) {
-    resultArr.push(board.slice(i, i + 9));
-    // resultArr.push(board.slice(i + 3, i + 6));
-    // resultArr.push(board.slice(i + 6, i + 9));
+  if (i % 27 === 0 && i !== 0 ) {
+  console.log('------+-------+------')
   }
-  let newArr = resultArr.map(el => el.split('').join(' '));
-
-
-  return newArr;
+  let resultArr = [];
+  resultArr.push(board.slice(i, i + 3).split('').join(' '));
+  resultArr.push(board.slice(i + 3, i + 6).split('').join(' '));
+  resultArr.push(board.slice(i + 6, i + 9).split('').join(' '));
+  console.log(resultArr.join(' | '));
+  } 
 
 }
 
