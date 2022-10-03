@@ -1,41 +1,105 @@
-/**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
-let boardString = '-8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-'
+let boardString = '3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-'
 
-function solve(boardString) {
+function solvee(boardString) {
   let result = []
   let resSplit = boardString.split('')
-   for (let i = 0; i < resSplit.length; i = i + 9) {
-      result.push(resSplit.slice(i, i+9))
-    
-   }
-return result
-}
-console.log(solve(boardString))
+  for (let i = 0; i < resSplit.length; i = i + 9) {
+    result.push(resSplit.slice(i, i + 9))
 
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает булевое значение — решено это игровое поле или нет.
- */
-function isSolved(board) {
-
+  }
+  return result
 }
 
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает строку с игровым полем для последующего вывода в консоль.
- * Подумай, как симпатичнее сформировать эту строку.
- */
-function prettyBoard(board) {
+let board = solvee(boardString)
 
+let solveSudoku = function (board) {
+  // let board = solve(boardString)
+  const size = 9
+  const boxsize = 3
+
+  // ищем пустые элементы
+  const findEmpty = (board) => {
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board[r][c] === '-') {
+          return [r, c]
+        }
+      }
+    }
+    return null
+  }
+
+  // проверка на валидность
+  const validate = (num, pos, board) => {
+    const [r, c] = pos
+
+    // проверка строкт
+    for (let i = 0; i < size; i++) {
+      if (board[i][c] === num && i !== r) {
+        return false
+      }
+    }
+    // проверка столбцов
+    for (let i = 0; i < size; i++) {
+      if (board[r][i] === num && i !== c) {
+        return false
+      }
+    }
+
+    // проверка кубов
+    const boxRow = Math.floor(r / boxsize) * boxsize
+    const boxCol = Math.floor(c / boxsize) * boxsize
+
+    for (let i = boxRow; i < boxRow + boxsize; i++) {
+      for (let j = boxCol; i < boxRow + boxsize; i++) {
+        if (board[i][j] === num && i !== r && j !== c) {
+          return false
+        }
+      }
+
+    }
+    return true
+
+  }
+
+
+  // подставление цифр
+  const solve = () => {
+    const currPos = findEmpty(board)
+
+    if (currPos === null) {
+      return true
+    }
+
+    for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString()
+      const isValid = validate(currNum, currPos, board)
+
+      if (isValid) {
+        const [x, y] = currPos
+        board[x][y] = currNum
+
+        if (solve()) {
+          return true
+        }
+        board[x][y] = '-'
+      }
+    }
+
+    return false
+  }
+
+  solve()
+  return board
 }
 
-// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
+console.log(solveSudoku(board))
+
+
+
 module.exports = {
-  solve,
+  solvee,
+  solveSudoku,
   isSolved,
   prettyBoard,
 };
