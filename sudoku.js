@@ -1,4 +1,8 @@
-let boardString = '3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-'
+
+const fs = require('fs');
+const sudoku = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n'); 
+let randomSud = Math.floor(Math.random(sudoku) * 16) 
+
 
 function solvee(boardString) {
   let result = []
@@ -10,7 +14,9 @@ function solvee(boardString) {
   return result
 }
 
-let board = solvee(boardString)
+
+let board = solvee(sudoku[`${randomSud}`])
+
 
 let solveSudoku = function (board) {
   // let board = solve(boardString)
@@ -100,6 +106,5 @@ console.log(solveSudoku(board))
 module.exports = {
   solvee,
   solveSudoku,
-  isSolved,
-  prettyBoard,
+
 };
