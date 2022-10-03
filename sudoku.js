@@ -4,8 +4,33 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-}
+   let newBoardStrring = boardString.split('')
+   let arr =[];
+   for (let i = 0; i < newBoardStrring.length; i+=9) {
+    let n = newBoardStrring.slice(i,i+9);
+    arr.push(n)
+    
+   }
+  
+    
+  
+   for (let i = 0; i < arr.length; i++) {
+       for (let j = 0; j < arr[i].length; j++) {
+        const randNum= Math.round(Math.random()* (9 - 1) + 1);
+        if(arr[i][j]==='-' ){
+          arr[i][j]=randNum
+        }
+       }
+    
+   }
+   
+   //return arr.join('\n').replaceAll(',',' ')
+   return arr
+   
+   
 
+}
+console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
