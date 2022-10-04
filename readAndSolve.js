@@ -49,7 +49,7 @@ function readAndSolve(error, fileData) {
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
-  console.log(chalk.bgWhiteBright.underline.blueBright(sudoku.prettyBoard(solvedPuzzle)));
+  console.log(`${chalk.bgWhiteBright.underline.blueBright(sudoku.prettyBoard(solvedPuzzle))}\n`);
 }
 
 module.exports = readAndSolve;
