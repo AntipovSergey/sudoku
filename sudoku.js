@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const sudoku = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n'); 
-let randomSud = Math.floor(Math.random(sudoku) * 16) 
+let randomSud = Math.floor(Math.random(sudoku) * 15) 
 
 
 function solvee(boardString) {
