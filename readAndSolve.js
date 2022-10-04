@@ -28,12 +28,13 @@ function readAndSolve(error, fileData) {
   let newPuzzle = puzzle;
   let boardNew = [];
   for (let i = 0; i < newPuzzle.length; i += 9) {
-    let n = newPuzzle.slice(i, i + 9);
+    let n = [newPuzzle.slice(i, i + 9)];
     boardNew.push(n);
   }
-  console.log(chalk.bgBlue.whiteBright`Решаем судоку №${puzzleNumber}:\n`);
-  console.log(chalk.bgWhiteBright.underline.magentaBright(boardNew.join('\n').replaceAll(',', '|').replaceAll('','|').replaceAll('-',' ')));
-
+  console.log(chalk.italic.bgBlue.whiteBright`Решаем судоку №${puzzleNumber}:\n`);
+  
+  console.log(chalk.bgWhiteBright.underline.magentaBright(boardNew.join('\n').replaceAll(',', '|').replaceAll('','|').replaceAll('-',' '))); 
+  
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzle);
   //console.log(sudoku.solve(puzzle))
@@ -45,11 +46,12 @@ function readAndSolve(error, fileData) {
   }
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
-  console.log(chalk.bgBlue.whiteBright`\nСудоку №${puzzleNumber} решён успешно!\n`);
+  setTimeout(()=> console.log(chalk.bgBlue.italic.whiteBright`\nСудоку №${puzzleNumber} решён успешно!\n`),2000);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
-  console.log(`${chalk.bgWhiteBright.underline.blueBright(sudoku.prettyBoard(solvedPuzzle))}\n`);
+  solvedPuzzle.forEach((el)=> setTimeout(()=>console.log(chalk.bgWhiteBright.underline.magentaBright(el.join('').replaceAll('','|').replaceAll('-',' '))),3500,'\n'));
+  setTimeout(()=> console.log(chalk.italic.bgRed.whiteBright`\n Мы это сделали!!! \n`), 4500); 
 }
 
 module.exports = readAndSolve;
