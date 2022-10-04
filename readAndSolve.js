@@ -23,9 +23,16 @@ function readAndSolve(error, fileData) {
   }
 
   // Получить желаемый судоку по индексу и вывести его в консоль.
+  
   const puzzle = puzzles[puzzleNumber - 1];
-  console.log(chalk.bgBlue.yellowBright`Решаем судоку №${puzzleNumber}:`);
-  console.log(chalk.magentaBright(puzzle, '\n'));
+  let newPuzzle = puzzle;
+  let boardNew = [];
+  for (let i = 0; i < newPuzzle.length; i += 9) {
+    let n = newPuzzle.slice(i, i + 9);
+    boardNew.push(n);
+  }
+  console.log(chalk.bgBlue.whiteBright`Решаем судоку №${puzzleNumber}:\n`);
+  console.log(chalk.bgWhiteBright.underline.magentaBright(boardNew.join('\n').replaceAll(',', '|').replaceAll('','|').replaceAll('-',' ')));
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzle);
@@ -38,11 +45,11 @@ function readAndSolve(error, fileData) {
   }
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
-  console.log(chalk.blue`Судоку №${puzzleNumber} решён успешно!`);
+  console.log(chalk.bgBlue.whiteBright`\nСудоку №${puzzleNumber} решён успешно!\n`);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
-  console.log(chalk.bgGreenBright.underline.hex('#FFFFF')(sudoku.prettyBoard(solvedPuzzle), '\n'));
+  console.log(chalk.bgWhiteBright.underline.blueBright(sudoku.prettyBoard(solvedPuzzle)));
 }
 
 module.exports = readAndSolve;

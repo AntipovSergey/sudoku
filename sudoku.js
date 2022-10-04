@@ -86,14 +86,13 @@ function solve(boardString) {
 
 
 function prettyBoard(board){
-  return board.join('\n').replaceAll(',','|');
+  return `|${board.join('|\n|').replaceAll(',','|')}|`;
 }
 
 
 module.exports = {
   solve,
-  //isSolved,
-  prettyBoard,
+  prettyBoard
 };
 
 
