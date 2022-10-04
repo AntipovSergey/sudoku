@@ -1,0 +1,113 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: url(123.jpg);
+    background-repeat: no-repeat;
+    background-size:  cover;
+    min-height: 1100px;
+    min-width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    
+    margin-top: 40px;
+    margin-bottom: -60px;
+    font-size: 70px;
+    color: #00205b;
+    font-weight: bolder;
+}
+
+#puzzle {
+    width: 470px;
+    height: 470px;
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    margin-top: 20px;
+    font-weight: 800px;
+    color: #00205b;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 10px;
+    background-color:bisque;
+    transition: 0.2s;
+    width: 150px;
+    font-weight: bolder;
+}
+
+button:hover { 
+    background-color:cadetblue; 
+} 
+
+button:active {
+    background-color:cadetblue;
+}
+
+#puzzle input {
+    width: 50px;
+    height: 49px;
+    box-sizing: border-box; 
+    border-radius: 5px;
+}  
+
+table td {
+    border: 3px solid black;
+    text-align: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 5px;
+    margin-top: 2px;
+}
+
+.table1 {
+    display: none;
+    width: 470px;
+    height: 470px;
+    font-size: 20px;
+    margin-top: 100px;
+}
+
+.black {
+    background-color:cadetblue;
+}
+
+.white {
+    background-color: bisque;
+}
+
+input {
+    background-color:cadetblue;
+    text-align: center;
+    font-size: 20px;
+    border: 3px solid black;
+    width: 42px;
+    height: 42px;
+    margin: 1px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+    }
+
+.c4, .c5, .c6, .c13, .c14, .c15, .c22, .c23, .c24, .c28, .c29, .c30 {
+    background-color: bisque;
+}
+
+.c34, .c35, .c36, .c37, .c38, .c39, .c43, .c44, .c45, .c46, .c47, .c48 {
+    background-color: bisque;
+}
+
+.c52, .c53, .c54, .c58, .c59, .c60, .c67, .c68, .c69, .c76, .c77, .c78 {
+    background-color: bisque;
+}
+
