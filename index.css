@@ -1,0 +1,75 @@
+body {
+    background: url(I6DnK.gif) no-repeat;
+    background-size: cover; 
+    width: 1280px;
+    height: 900px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    color: #d8bfd8;
+    text-shadow: 1px 1px 1px #000;
+}
+
+table, th, td {
+    border: 2px solid white;
+    width: 500px;
+    height: 50px;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td {
+    text-align: center;
+    border: 1px solid white;
+    background-color: rgb(255 255 255 / 50%);
+    font-size: 30px;
+}
+
+.btnDiv {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+    width: 500px;
+    margin-left: 400px;
+}
+
+.buttonsS {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    width: 500px;
+    margin-left: 390px;
+}
+
+button {
+    width: 100px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-family: 'Nunito Sans';
+    font-weight: 500;
+}
+
+#btn2, #btn3, #btn4, #btn5, #btn6, #btn1 {
+    margin-bottom: 10px;
+}
+
+#cleanBtn {
+    background-color: #d8bfd8;
+}
+
+#btnTwo {
+    background-color: #d8bfd8;
+}
