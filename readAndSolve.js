@@ -1,4 +1,5 @@
 // Подключить функции из файла sudoku.js.
+const chalk = require('chalk');
 const sudoku = require('./sudoku');
 
 function readAndSolve(error, fileData) {
@@ -23,8 +24,8 @@ function readAndSolve(error, fileData) {
 
   // Получить желаемый судоку по индексу и вывести его в консоль.
   const puzzle = puzzles[puzzleNumber - 1];
-  console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
+  console.log(chalk.bgBlue.yellowBright`Решаем судоку №${puzzleNumber}:`);
+  console.log(chalk.magentaBright(puzzle, '\n'));
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzle);
@@ -37,11 +38,11 @@ function readAndSolve(error, fileData) {
   }
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.log(chalk.blue`Судоку №${puzzleNumber} решён успешно!`);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
-  console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
+  console.log(chalk.bgGreenBright.underline.hex('#FFFFF')(sudoku.prettyBoard(solvedPuzzle), '\n'));
 }
 
 module.exports = readAndSolve;
