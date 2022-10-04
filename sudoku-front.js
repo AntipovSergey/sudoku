@@ -146,3 +146,9 @@ function solve(boardString, maxGlobalCounter = 1000000) {
 //////////////////////////////////////////////
 //////////////////////////////////////////////
 
+//console.log(solve(str1));
+//console.log(solve(str2));
+//console.log(solve(str3));
+//console.log(solve(str4));
+//console.log(solve(str5));
+//console.log(solve(str6));

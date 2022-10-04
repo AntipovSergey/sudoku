@@ -1,25 +1,21 @@
 {
-  "name": "sudoku",
+  "name": "project-sudoku",
   "version": "1.0.0",
   "description": "## Введение",
-  "main": "runner.js",
+  "main": "browser.js",
   "scripts": {
-    "start": "node runner.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node sudoku-back.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Elbrus-Bootcamp/project-sudoku.git"
+    "url": "git+https://github.com/MaryBrandyBug/project-sudoku.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Elbrus-Bootcamp/project-sudoku/issues"
+    "url": "https://github.com/MaryBrandyBug/project-sudoku/issues"
   },
-  "homepage": "https://github.com/Elbrus-Bootcamp/project-sudoku#readme",
-  "devDependencies": {
-    "eslint": "^8.8.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
-  }
+  "homepage": "https://github.com/MaryBrandyBug/project-sudoku#readme"
 }
