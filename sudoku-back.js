@@ -30,18 +30,20 @@ function solve(boardString, maxGlobalCounter = 1000) {
     return 'Solution:\nThis sudoku is unsolvable!';
   }
 
-  let i0;
-  let j0;
+  //////////////////////////////////////////////
+  let i0 = null;
+  let j0 = null;
   for (let i = 0; i < lines.length; i++) {
+    if (i0 !== null && j0 !== null) break;
     for (let j = 0; j < lines[i].length; j++) {
       if (lines[i][j] === 0) {
         i0 = i;
         j0 = j;
-        j = lines[i].length - 1;
-        i = lines.length - 1;
+        break;        
       }
     }
   }
+  //////////////////////////////////////////////
   
   let globalCounter = 1;
   for (let i = 0; i < lines.length; i++) {
