@@ -41,4 +41,4 @@ function validate(board, number) {
 }
 
 console.table(createBoard());
-console.table(validate(puzzles, 5));
+console.table(validate(puzzles, 3));

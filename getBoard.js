@@ -17,7 +17,7 @@ function getBoards(sudokuNumber) {
 }
 
 function createBoard() {
-  const arr = getBoards(process.argv[2]);
+  const arr = getBoards(process.argv[2] || 1);
   if (process.argv[2] > 14) {
     gameMenu();
     return '**********************************';
