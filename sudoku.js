@@ -1,5 +1,6 @@
 // Подключаю Fs и настраиваю его (Игорь)
-const createBoardSudoku = (number = 0) => {
+let puzzleNumber = Number(process.argv[2])
+const createBoardSudoku = (number) => {
   const fs = require('fs');
 
   const boardSudokuRead = fs.readFileSync('puzzles.txt', 'utf-8');
@@ -12,34 +13,29 @@ const createBoardSudoku = (number = 0) => {
       sudokuBoardNumberOne[i][j] = sudokuBoardNumberOneValue[9 * i + j];
     }
   }
+  console.table(sudokuBoardNumberOne);
   return sudokuBoardNumberOne;
 };
 
-console.table(createBoardSudoku(0)); // от 0 до 13
-// Функция прохода горизонталь и вертикаль (Саша)
+const chekRow = (arr) => {
+  num = Math.ceil(Math.random() * 9).toString();
+  return arr.join('').includes(num) ? chekRow(arr, num) : num;
+};
+
+createBoardSudoku(puzzleNumber); // от 0 до 13
+// Функция прохода горизонталь и вертикаль (Саша)'
 const checkerRowColumn = (arr) => {
-
-
+  let num;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
-      if(arr[i].includes('3')) {}
-      const ultraSecretNum = Math.ceil(Math.random() * 9).toString();
-
-      if (arr[i][j] === '-') {
-        arr[i][j] = ultraSecretNum;
-      } else {
-        checkerRowColumn(arr);
-      }
+      if (arr[i][j] === '-') arr[i][j] = chekRow(arr[i]);
     }
   }
   return arr;
 };
-console.table(checkerRowColumn(createBoardSudoku()));
+console.table(checkerRowColumn(createBoardSudoku(puzzleNumber)));
 
-// Функция прохода коробки 3х3
-const checkerBox = () => {
-
-};
+// Функция создания объекта по ключам
 
 // Функция, которая проверяет можно ли точно подставить числа
 
