@@ -12,24 +12,31 @@ const createBoardSudoku = (number = 0) => {
       sudokuBoardNumberOne[i][j] = sudokuBoardNumberOneValue[9 * i + j];
     }
   }
-  console.table(sudokuBoardNumberOne);
   return sudokuBoardNumberOne;
 };
 
-// createBoardSudoku(0); // от 0 до 13
-// // Функция прохода горизонталь и вертикаль (Саша)
-// const checkerRowColumn = (arr, func) => {
-//   for (let i = 0; i < arr.length; i++) {
-//     for (let j = 0; i < arr[i].length; j++) {
-//       for (let g = 0; g < arr[i][j].length; g++) {
-//         if (arr[i][j] === '-') arr[i][j].replace(func);
-//       }
-//     }
-//   }
-// };
+console.table(createBoardSudoku(0)); // от 0 до 13
+// Функция прохода горизонталь и вертикаль (Саша)
+const checkerRowColumn = (arr) => {
+
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if(arr[i].includes('3')) {}
+      const ultraSecretNum = Math.ceil(Math.random() * 9).toString();
+
+      if (arr[i][j] === '-') {
+        arr[i][j] = ultraSecretNum;
+      } else {
+        checkerRowColumn(arr);
+      }
+    }
+  }
+  return arr;
+};
+console.table(checkerRowColumn(createBoardSudoku()));
 
 // Функция прохода коробки 3х3
-createBoardSudoku(0);
 const checkerBox = () => {
 
 };
