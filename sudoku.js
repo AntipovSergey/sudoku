@@ -13,25 +13,28 @@ const createBoardSudoku = (number) => {
     }
   }
   console.table(sudokuBoardNumberOne);
+  return sudokuBoardNumberOne;
 };
 
-createBoardSudoku(0) // от 0 до 13
-// Функция прохода горизонталь и вертикаль (Саша)
-const checkerRowColumn = (arr, func) => {
+const chekRow = (arr) => {
+  num = Math.ceil(Math.random() * 9).toString();
+  return arr.join('').includes(num) ? chekRow(arr, num) : num;
+};
+
+createBoardSudoku(0); // от 0 до 13
+// Функция прохода горизонталь и вертикаль (Саша)'
+const checkerRowColumn = (arr) => {
+  let num;
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
-      if (arr[i][j] === '-') arr[i][j] = func;
+      if (arr[i][j] === '-') arr[i][j] = chekRow(arr[i]);
     }
   }
-  return arr
+  return arr;
 };
-console.log(checkerRowColumn([[1, 2, 3], [1, '-', 8]],'5'));
+console.table(checkerRowColumn(createBoardSudoku(0)));
 
-// Функция прохода коробки 3х3
-
-const checkerBox = () => {
-
-};
+// Функция создания объекта по ключам
 
 // Функция, которая проверяет можно ли точно подставить числа
 
