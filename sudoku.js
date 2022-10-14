@@ -1,9 +1,14 @@
+const readFile = require('./readFile');
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  const read = readFile('./puzzles.txt');
+  function rus(read);
+  
 }
 
 /**
