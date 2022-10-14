@@ -1,9 +1,11 @@
 const fs = require('fs');
 
-function readFile() {
-  const file = fs.readFileSync('./puzzles.txt', 'utf-8');
+function readFile(path) {
+  const file = fs.readFileSync(path, 'utf-8');
   // for ()
-  const sud = file.split('\n');
-  console.log(sud);
+  const sudoku15 = file.split('\n');
+  const sudoku = sudoku15[0];
+  return sudoku;
 }
 console.log(readFile('./puzzles.txt'));
+module.exports = readFile;
