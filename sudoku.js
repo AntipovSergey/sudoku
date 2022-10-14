@@ -1,10 +1,71 @@
+let fs = require('fs')
+let boardString = fs.readFileSync("./puzzles.txt","utf-8") 
+//console.log(boardString.split('\n'))
+
+function reader(boardString){
+  let firstBoard = boardString.split('\n')
+  let str = firstBoard[0]
+  console.log(str)
+  let arr = [];
+  for(let i = 0;i < str.length; i=i+9){
+    let row = [];
+    for (let j = i; j < i+9; j++){
+      row.push(str[j])
+    }
+    arr.push(row)
+      
+    
+  }
+  return arr;
+}
+
+console.table(reader(boardString))
+
+//size - длина строки судоку
+function getNum (size) {
+  for (let i = 1; i < size + 1; i++) {
+    let curNum = i;
+    //каждый i элемент в строку преобр
+    curNum.toString();
+    //каждую i прогнать через функцию валидации 
+     let validNum = validateNum(curNum);
+  }
+}
+
+const board = reader(boardString);
+
+function validateNum (number, position, board) {
+  let [r, c] = position;
+
+  for(let i = 0; i < size; i++) {
+    if(board[i][c] === number && i !== r) {
+      return false;
+    }
+  }
+
+  for(let i = 0; i < size; i++) {
+    if(board[r][i] === number && i !== c) {
+      return false;
+    }
+  }
+  ???
+
+} 
+
+
+
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
+
 function solve(boardString) {
+  
 }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -24,8 +85,11 @@ function prettyBoard(board) {
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
+
 module.exports = {
   solve,
   isSolved,
   prettyBoard,
 };
+
+
