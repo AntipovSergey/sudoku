@@ -5,6 +5,8 @@ const fs = require('fs');
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+function solve(boardString) {}
+  
 
 // console.table(getSudoku(text, 0));
 // const sud = getSudoku(data, el);
@@ -18,17 +20,28 @@ function solve(data, el) {
   for (let i = 0; i < str.length; i += 9) {
     newStr.push(str.slice(i, i + 9));
   }
-  newStr.map((el) => el.split('').map((el2) => {
-    const math = Math.ceil(Math.random() * (9));
-    if (!el.includes(math) && el2 === '-') {
-      return math; // el2.toString().replace(math);
+  let trans = newStr.map((el) => el.split('').map((el2) => {
+    for ( let i = 0; i < el.length; i++) {
+      let math = Math.ceil(Math.random() * (9));
+      const math1 = Math.ceil(Math.random() * (9))
+      if (!el.includes(math) &&  ( el2[i] === '-')) {
+        return math
+      } if (el.includes(math) &&  ( el2 === '-')) { 
+return math1
+      }
+      return el2
     }
-    return el2;
+  // }
+
+    // if ( el2 === '-') {
+    //   return math; // el2.toString().replace(math);
+    // }
+    // return el2;
   }));
-  return newStr;
-  // return newStr;
+  return trans;
+  
 }
-// console.table(solve(text, terminal));
+console.table(solve(text, terminal));
 
 function solve1(boardString) {
   // let numberOfDef = boardString.map((el) => el.split('').reduce(((acc, cur) =>
@@ -43,7 +56,7 @@ function solve1(boardString) {
   return defReplace;
 }
 
-console.log(solve1(['7586------------878555555555555555555555555-----------------------------789']));
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -66,4 +79,4 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
-};
+}
