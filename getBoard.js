@@ -1,17 +1,15 @@
 const { log } = require('console');
 const fs = require('fs');
 
-function getBoards() {
+function getBoards(sudokuNumber) {
   const readTxt = fs.readFileSync('./puzzles.txt', 'utf-8');
-  const firstBoard = readTxt.slice(0, 81).split('');
-  // To Get Main Board?
-  const sizeOfArray = 9;
-  const readyFirstBoard = [];
-  for (let i = 0; i < Math.ceil(firstBoard.length/sizeOfArray); i++) {
-    readyFirstBoard[i] = firstBoard.slice((i * sizeOfArray), (i * sizeOfArray) + sizeOfArray);
-  }
-  return readyFirstBoard;
+  const strings = readTxt.split('\n');
+  strings.pop();
+  const getArrays = strings.map((el) => el.split(''));
+  
+
+
+  return getArrays[sudokuNumber];
+  
 }
-
-console.table(getBoards());
-
+console.log(getBoards(process.argv[2]));
