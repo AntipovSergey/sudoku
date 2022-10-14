@@ -19,13 +19,13 @@ createBoardSudoku(0) // от 0 до 13
 // Функция прохода горизонталь и вертикаль (Саша)
 const checkerRowColumn = (arr, func) => {
   for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; i < arr[i].length; j++) {
-      for (let g = 0; g < arr[i][j].length; g++) {
-        if (arr[i][j] === '-') arr[i][j].replace(func);
-      }
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === '-') arr[i][j] = func;
     }
   }
+  return arr
 };
+console.log(checkerRowColumn([[1, 2, 3], [1, '-', 8]],'5'));
 
 // Функция прохода коробки 3х3
 
