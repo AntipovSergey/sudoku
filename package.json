@@ -5,7 +5,7 @@
   "main": "readAndSolve.js",
   "scripts": {
     "test": "jest",
-    "start": "node sesa.js"
+    "start": "node sudoku.js"
   },
   "repository": {
     "type": "git",

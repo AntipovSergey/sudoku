@@ -25,13 +25,22 @@ let str1 = "'1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--
 // из строки "'1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89---'" пполучить квадрат
 function makeStr (str) {
     let res = '';
+    let size = 9;
+    let box = 9;
     for(let i = 0; i < str.length; i++){
         if(str[i] !== "'") {
             res = res + str[i]
         }
     }
+    for(let j = 0; j < res.length; j++){
+        for(let g = 0; g < size; g++){
+
+            
+
+        }
+    }
 
     return res
-    
+
 }
 console.log(makeStr(str1))
