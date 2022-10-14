@@ -1,10 +1,36 @@
+let fs = require('fs')
+let boardString = fs.readFileSync("./puzzles.txt","utf-8") 
+//console.log(boardString.split('\n'))
+
+function reader(boardString){
+  let firstBoard = boardString.split('\n')
+  let str = firstBoard[0]
+  console.log(str)
+  let arr = [];
+  for(let i = 0;i < str.length; i=i+9){
+    let row = [];
+    for (let j = i; j < i+9; j++){
+      row.push(str[j])
+    }
+    arr.push(row)
+      
+    
+  }
+  return arr;
+}
+
+console.table(reader(boardString))
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
+
 function solve(boardString) {
+  
 }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -29,3 +55,5 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+
