@@ -20,6 +20,41 @@ function reader(boardString){
 }
 
 console.table(reader(boardString))
+
+//size - длина строки судоку
+function getNum (size) {
+  for (let i = 1; i < size + 1; i++) {
+    let curNum = i;
+    //каждый i элемент в строку преобр
+    curNum.toString();
+    //каждую i прогнать через функцию валидации 
+     let validNum = validateNum(curNum);
+  }
+}
+
+const board = reader(boardString);
+
+function validateNum (number, position, board) {
+  let [r, c] = position;
+
+  for(let i = 0; i < size; i++) {
+    if(board[i][c] === number && i !== r) {
+      return false;
+    }
+  }
+
+  for(let i = 0; i < size; i++) {
+    if(board[r][i] === number && i !== c) {
+      return false;
+    }
+  }
+  ???
+
+} 
+
+
+
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
