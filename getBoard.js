@@ -31,3 +31,5 @@ function createBoard() {
 }
 
 console.table(createBoard());
+
+module.exports = {createBoard}

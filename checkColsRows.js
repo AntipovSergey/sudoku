@@ -1,20 +1,14 @@
-const puzzles = [
-  ['1', ' ', '3', ' ', '4', ' ', '7', ' ', '2'],
-  [' ', '2', ' ', '5', ' ', ' ', '9', '1', ' '],
-  ['1', ' ', '3', ' ', '3', '2', '7', ' ', ' '],
-  [' ', ' ', '6', ' ', '4', '6', '7', ' ', ' '],
-  ['4', ' ', ' ', '1', ' ', ' ', ' ', ' ', '6'],
-  ['5', ' ', ' ', ' ', '4', ' ', ' ', '3', ' '],
-  [' ', '2', '1', ' ', ' ', ' ', ' ', ' ', '7'],
-  [' ', '8', '9', ' ', '4', '3', '5', ' ', ' '],
-  [' ', ' ', '3', ' ', ' ', '9', '6', ' ', ' '],
-];
+const {createBoard} = require('./getBoard')
+
+let puzzles = createBoard()
+
+// console.log(puzzles)
 
 // check emty elem in board
 function findEmptyElement(board) {
   for (let r = 0; r < board[0].length; r++) {
     for (let c = 0; c < board[0].length; c++) {
-      if (board[r][c] === ' ') {
+      if (board[r][c] === '-') {
         return [r, c];
       }
     }
@@ -23,11 +17,11 @@ function findEmptyElement(board) {
   return null;
 }
 
-console.log(findEmptyElement(puzzles));
+// console.log(findEmptyElement(puzzles));
 
 // check valid number in rows and cols
 function validate(board, number) {
-  const num = number.toString();
+  let num = number.toString();
   const [r, c] = findEmptyElement(board);
 
   for (let i = 0; i < board[0].length; i++) {
@@ -41,8 +35,10 @@ function validate(board, number) {
       return false;
     }
   }
+  board[r][c] = number
 
-  return true;
+  return board;
 }
 
-console.log(validate(puzzles, 8));
+console.table(createBoard());
+console.table(validate(puzzles, 5));
