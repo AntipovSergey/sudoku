@@ -1,5 +1,5 @@
 // Подключаю Fs и настраиваю его (Игорь)
-const createBoardSudoku = (number) => {
+const createBoardSudoku = (number = 0) => {
   const fs = require('fs');
 
   const boardSudokuRead = fs.readFileSync('puzzles.txt', 'utf-8');
@@ -13,22 +13,23 @@ const createBoardSudoku = (number) => {
     }
   }
   console.table(sudokuBoardNumberOne);
+  return sudokuBoardNumberOne;
 };
 
-createBoardSudoku(0) // от 0 до 13
-// Функция прохода горизонталь и вертикаль (Саша)
-const checkerRowColumn = (arr, func) => {
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; i < arr[i].length; j++) {
-      for (let g = 0; g < arr[i][j].length; g++) {
-        if (arr[i][j] === '-') arr[i][j].replace(func);
-      }
-    }
-  }
-};
+// createBoardSudoku(0); // от 0 до 13
+// // Функция прохода горизонталь и вертикаль (Саша)
+// const checkerRowColumn = (arr, func) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; i < arr[i].length; j++) {
+//       for (let g = 0; g < arr[i][j].length; g++) {
+//         if (arr[i][j] === '-') arr[i][j].replace(func);
+//       }
+//     }
+//   }
+// };
 
 // Функция прохода коробки 3х3
-
+createBoardSudoku(0);
 const checkerBox = () => {
 
 };
