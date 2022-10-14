@@ -14,7 +14,6 @@ function reader(boardString){ //  функция, преобразующая т�
     }
     arr.push(row)
       
-    
   }
   return arr;
 
@@ -71,5 +70,3 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
-
-
