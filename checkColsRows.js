@@ -9,6 +9,8 @@ let puzzles = [
     [" ", "8", "9", " ", "4", "3", "5", " ", " "],
     [" ", " ", "3", " ", " ", "9", "6", " ", " "],
   ]
+
+
 // check emty elem in board
 function findEmptyElement(board) {
 
@@ -26,8 +28,8 @@ function findEmptyElement(board) {
 console.log(findEmptyElement(puzzles))
 
 // check valid number in rows and cols
-
 function validate(board, number) {
+    
     let num = number.toString()
     let [r, c] = findEmptyElement(board)
 
@@ -46,5 +48,5 @@ function validate(board, number) {
     return true
 }
 
-console.log(validate(puzzles, 5))
+console.log(validate(puzzles, 8))
 
