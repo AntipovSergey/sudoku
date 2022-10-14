@@ -1,16 +1,6 @@
-const {created}
+const { createBoard } = require('./getBoard');
 
-const input = [
-  ['5', '3', '.', '.', '7', '.', '.', '.', '.'],
-  ['6', '.', '.', '1', '9', '5', '.', '.', '.'],
-  ['.', '9', '8', '.', '.', '.', '.', '6', '.'],
-  ['8', '.', '.', '.', '6', '.', '.', '.', '3'],
-  ['4', '.', '.', '8', '.', '3', '.', '.', '1'],
-  ['7', '.', '.', '.', '2', '.', '.', '.', '6'],
-  ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
-  ['.', '.', '.', '4', '1', '9', '.', '.', '5'],
-  ['.', '.', '.', '.', '8', '.', '.', '7', '9'],
-];
+const input = createBoard();
 
 const solveSudoku = function (board) {
   const size = 9;
@@ -19,7 +9,7 @@ const solveSudoku = function (board) {
   const findEmpty = (board) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if (board[r][c] === '.') {
+        if (board[r][c] === '-') {
           return [r, c];
         }
       }
@@ -78,7 +68,7 @@ const solveSudoku = function (board) {
           return true;
         }
 
-        board[x][y] = '.';
+        board[x][y] = '-';
       }
     }
 
@@ -89,5 +79,5 @@ const solveSudoku = function (board) {
   return board;
 };
 
-console.table(input);
+// console.table(input);
 console.table(solveSudoku(input));
