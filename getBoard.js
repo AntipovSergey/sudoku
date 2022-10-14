@@ -30,6 +30,6 @@ function createBoard() {
   return newArr;
 }
 
-// console.table(createBoard);
+console.table(createBoard());
 
 module.exports = {createBoard}
