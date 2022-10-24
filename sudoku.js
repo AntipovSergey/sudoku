@@ -25,13 +25,33 @@ function solve(boardString) {
   // Разбивка задачи на массив 9x9
   const newBoardString = boardString.split('');
   let board = [];
-
+  
   for (let i = 0; i < newBoardString.length; i += 0) {
     board.push(newBoardString.slice(i, i += 9));
   }
 
-  console.table(board);
-  return board;
+// Находим пересечения пустых мест в строках и колонках
+  let size = 9
+  let boxSize = 3
+  let emptyArr = []
+  function findEmpty (board) {
+  for (let r = 0; r < size; r+=1) {
+    for (let c = 0; c < size; c+=1) {
+      if (board[r][c] === '-') {
+        emptyArr.push([r, c]);
+        let randomNumber = Math.floor(Math.random()*(9-1)+1)
+        board[r][c] = randomNumber
+      }
+    }
+  }
+  return board
+}
+
+// let randomNumber = Math.floor(Math.random()*(9-1)+1)
+
+  console.table(findEmpty(board));
+
+
 }
 
 /**
