@@ -16,7 +16,7 @@ function readAndSolve(error, fileData) {
 
   const puzzle = puzzles[puzzleNumber - 1];
 
-  const isValid = sudoku.validate(puzzle);
+  // const isValid = sudoku.validate(puzzle);
 
   // Получить желаемый судоку по индексу и вывести его в консоль.
   console.log(`Решаем судоку №${puzzleNumber}:`);
@@ -26,10 +26,10 @@ function readAndSolve(error, fileData) {
   const solvedPuzzle = sudoku.solve(puzzle);
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
-  if (!sudoku.isSolved(solvedPuzzle)) {
-    console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
-    return; // Если судоку не решён, завершить работу этой функции.
-  }
+  // if (!sudoku.isSolved(solvedPuzzle)) {
+  //   console.log(`Не смогли решить судоку №${puzzleNumber} :(`, '\n');
+  //   return; // Если судоку не решён, завершить работу этой функции.
+  // }
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
