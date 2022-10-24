@@ -33,6 +33,11 @@ function splitBoards(fileData) {
     .map((el) => el.trim());
 }
 
+// Проверка валидности доски
+function validate(board) {
+  throw new Error('non implemented exception');
+}
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 
 module.exports = {
@@ -41,4 +46,5 @@ module.exports = {
   prettyBoard,
   parseBoard,
   splitBoards,
+  validate,
 };

@@ -19,6 +19,7 @@ describe("Тестирование функций судоку", () => {
       [6, null, null, 3, null, 8, 9, null, null],
     ]);
   });
+
   test("Разбиение общего файла на строки", () => {
     const data = `1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--
       --5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3
@@ -53,5 +54,104 @@ describe("Тестирование функций судоку", () => {
       "----------2-65-------18--4--9----6-4-3---57-------------------73------9----------",
       "---------------------------------------------------------------------------------",
     ]);
+  });
+
+  test('Красивый вывод данных', () => {
+    const data = [
+      [1, null, 5, 8, null, 2, null, null, null],
+      [null, 9, null, null, 7, 6, 4, null, 5],
+      [2, null, null, 4, null, null, 8, 1, 9],
+      [null, 1, 9, null, null, 7, 3, null, 6],
+      [7, 6, 2, null, 8, 3, null, 9, null],
+      [null, null, null, null, 6, 1, null, 5, null],
+      [null, null, 7, 6, null, null, null, 3, null],
+      [4, 3, null, null, 2, null, 5, null, 1],
+      [6, null, null, 3, null, 8, 9, null, null],
+    ];
+
+    expect(sudoku.prettyBoard(data)).toEqual(
+`1 - 5 8 - 2 - - -
+- 9 - - 7 6 4 - 5
+2 - - 4 - - 8 1 9
+- 1 9 - - 7 3 - 6
+7 6 2 - 8 3 - 9 -
+- - - - 6 1 - 5 -
+- - 7 6 - - - 3 -
+4 3 - - 2 - 5 - 1
+6 - - 3 - 8 9 - -`);
+  });
+
+  describe('Проверка валидности судоку', () => {
+    test('Невалидное судоку (в столбце 2 две 5)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, null],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, 5, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+    test('Невалидное судоку (в строке 0 две 5)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, 5],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+    test('Невалидное судоку (в строке 0 две 1)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, 1],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+    test('Невалидное судоку (в верхнем левом квадрате 3на3 две 5)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, null],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, 5, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+
+    test('Валидное судоку', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, null],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(true);
+    });
   });
 });
