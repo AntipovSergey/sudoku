@@ -20,20 +20,14 @@ function prettyBoard(board) {}
 
 // Парсинг доски
 function parseBoard(line) {
-  let pars = line.split("").map((el) => (el === "-" ? null : Number(el)));
-  const result = [];
-  const count = 9;
-  for (let i = 0, e = count; i < pars.length; i += count, e += count)
-    result.push(pars.slice(i, e));
-  return result;
+  return line
+    .match(/[\d-]{9}/g)
+    .map((el) => el.split("").map((el) => (el === "-" ? null : Number(el))));
 }
 
 // Разбиение общего файла на строки судок
 function splitBoards(fileData) {
-  return fileData
-    .join()
-    .split("\n")
-    .map((el) => el.trim());
+  return fileData.split("\n").map((el) => el.trim());
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
