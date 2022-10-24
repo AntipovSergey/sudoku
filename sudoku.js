@@ -12,6 +12,7 @@ function solve(boardString) {
  */
 function isSolved(board) {
 console.log('Gayane');
+console.log('2')
 }
 
 /**
