@@ -4,6 +4,23 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  let boardArr = [];
+  for (let i = 0; i < 81; i += 9) {
+    boardArr.push(boardString.slice(i, i + 9).split(''));
+  }
+  for (let i = 0; i < 9; i += 1) {
+    let row = boardArr.map(el => el[i])
+    for (let j = 0; j < 9; j += 1) {
+      if (boardArr[i][j] === '-') {
+        for (let k = 1; k < 10; k += 1) {
+          if (!boardArr[i].includes(k) && !row[i].includes(k)) {
+            boardArr[i][j] = k;
+          }
+        }
+      } 
+    }
+  }
+  console.log(boardArr)
 }
 
 /**
@@ -12,12 +29,6 @@ function solve(boardString) {
  */
 function isSolved(board) {
 
-console.log('andrey')
-console.log('Gayane');
-console.log('2')
-console.log('')
-console.log('Макс')
-console.log('Svyatoslov')
 }
 
 /**
@@ -26,6 +37,7 @@ console.log('Svyatoslov')
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  
 
 }
 
