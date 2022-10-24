@@ -104,7 +104,7 @@ function solve(board) {
     const inLimits = (i, j, l) => i >= l.iMin && i < l.iMax && j >= l.jMin && j < l.jMax;
 
     for (let possible of possibles) {
-      const limits = findLimits(possible.i, possible.j)
+      const limits = findLimits(possible.i, possible.j);
       
       const intersection = possibles
         .filter(x => (x.i === possible.i || x.j === possible.j || inLimits(x.i, x.j, limits))
