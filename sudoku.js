@@ -27,7 +27,10 @@ function parseBoard(line) {
 
 // Разбиение общего файла на строки судок
 function splitBoards(fileData) {
-  return fileData.split("\n").map((el) => el.trim());
+  return fileData
+    .trim()
+    .split("\n")
+    .map((el) => el.trim());
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
