@@ -11,8 +11,12 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+
 console.log('Gayane');
 console.log('2')
+console.log('')
+console.log('Макс')
+console.log('Svyatoslov')
 }
 
 /**
