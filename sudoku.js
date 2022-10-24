@@ -1,6 +1,5 @@
-// const fs = require('fs');
-// const boardString = fs.readFileSync('./puzzles.txt', 'utf-8');
-// console.log(boardString);
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-shadow */
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -8,56 +7,99 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-//  1 - 5 8 - 2 - - -
-//  - 9 - - 7 6 4 - 5
-//  2 - - 4 - - 8 1 9
-//  - 1 9 - - 7 3 - 6
-//  7 6 2 - 8 3 - 9 -
-//  - - - - 6 1 - 5 -
-//  - - 7 6 - - - 3 -
-//  4 3 - - 2 - 5 - 1
-//  6 - - 3 - 8 9 - -
-
-// 1-58-2---
-// -9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--
-
 function solve(boardString) {
   // Разбивка задачи на массив 9x9
   const newBoardString = boardString.split('');
-  let board = [];
-  
+  const board = [];
+
   for (let i = 0; i < newBoardString.length; i += 0) {
     board.push(newBoardString.slice(i, i += 9));
   }
 
-// Находим пересечения пустых мест в строках и колонках
-  let size = 9
-  let boxSize = 3
-  let emptyArr = []
-  function findEmpty (board) {
-  for (let r = 0; r < size; r+=1) {
-    for (let c = 0; c < size; c+=1) {
-      if (board[r][c] === '-') {
-        emptyArr.push([r, c]);
-        let randomNumber = Math.floor(Math.random()*(9-1)+1)
-        board[r][c] = randomNumber
+  // Находим пересечения пустых мест в строках и колонках
+  const size = 9;
+  const boxSize = 3;
+
+  function findEmpty(board) {
+    for (let row = 0; row < size; row += 1) {
+      for (let col = 0; col < size; col += 1) {
+        if (board[row][col] === '-') {
+          return [row, col];
+        }
       }
     }
+    return null;
   }
-  return board
-}
 
-// let randomNumber = Math.floor(Math.random()*(9-1)+1)
+  function getValidate(number, position, board) {
+    const [row, col] = position;
 
-  console.table(findEmpty(board));
+    // Проверка строки
+    for (let i = 0; i < size; i = +1) {
+      if (board[i][col] === number && i !== row) {
+        return false;
+      }
+    }
 
+    // Проверка столбца
+    for (let i = 0; i < size; i = +1) {
+      if (board[row][i] === number && i !== col) {
+        return false;
+      }
+    }
 
+    // Проверка поля 3x3
+    const boxRow = Math.floor(row / boxSize) * boxSize;
+    const boxCol = Math.floor(col / boxSize) * boxSize;
+
+    for (let i = boxRow; i < boxRow + boxSize; i = +1) {
+      for (let j = boxCol; j < boxCol + boxSize; j = +1) {
+        if (board[i][j] === number && i !== row && j !== col) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  function getResult() {
+    const currentPosition = findEmpty(board);
+
+    if (currentPosition === null) {
+      return true;
+    }
+
+    // console.log('------------------------------');
+    for (let i = 1; i < size + 1; i = +1) {
+      const currentNumber = i.toString();
+      const isValid = getValidate(currentNumber, currentPosition, board);
+      // console.log('currPos ', currentPosition, 'currNum ',currentNumber, 'isValid ',isValid);
+
+      if (isValid) {
+        const [x, y] = currentPosition;
+        board[x][y] = currentNumber;
+
+        if (getResult()) {
+          return true;
+        }
+
+        board[x][y] = '-';
+      }
+    }
+    return false;
+  }
+
+  console.table(board);
+  getResult();
+  console.table(board);
+  return board;
 }
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+
 function isSolved(board) {
 
 }
@@ -67,6 +109,7 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(board) {
 
 }
