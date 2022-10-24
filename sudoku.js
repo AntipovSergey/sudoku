@@ -113,18 +113,27 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
 
+function prettyBoard(board) {
+  return board
+    .match(/[\d-]{9}/g)
+    .map((el) => el.split("").join(" "))
+    .join("\n");
 }
 
 // Парсинг доски
 function parseBoard(line) {
-
+  return line
+    .match(/[\d-]{9}/g)
+    .map((el) => el.split("").map((el) => (el === "-" ? null : Number(el))));
 }
 
 // Разбиение общего файла на строки судок
 function splitBoards(fileData) {
-
+  return fileData
+    .trim()
+    .split("\n")
+    .map((el) => el.trim());
 }
 
 // Проверка валидности доски
