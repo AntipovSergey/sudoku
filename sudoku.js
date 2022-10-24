@@ -15,9 +15,26 @@ function solve(boardString) {
   if (isSolved(result)) {
     return result;
   }
+
   for (let i = 0; i < result.length; i++) {
     intResult.push(result[i].join(''));
-  } return solve(intResult.join(''));
+  } if (boardString !== intResult.join('')) return solve(intResult.join(''));
+  for (let i = 0; i < result.length; i++) {
+    recursiveRandom(result, i);
+  }
+}
+
+function recursiveRandom(result, i, j = 0) {
+  const base = '123456789';
+  for (j; j < 9; j++) {
+    let summ = '';
+    if (result[i][j] === '-') {
+      summ = stroke(result, i) + table(result, j, i) + column(result, j);
+      for (let b = 0; b < base.length; b++) {
+        if (!summ.includes(base[b])) result[i][j] = base[b];
+      }
+    }
+  }
 }
 function recursive(result, i, j = 0) {
   const base = '123456789';
@@ -136,13 +153,18 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(result) {
-  const intResult = []
+  const intResult = [];
   for (let i = 0; i < result.length; i++) {
     intResult.push(result[i].join(''));
   } return solve(intResult.join(''));
 }
 // console.table(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
-
+// const boardString = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
+// const result = [];
+// for (let i = 0; i < boardString.length; i += 9) {
+//   result.push(boardString.slice(i, i + 9).split(''));
+// }
+// console.table(result);
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
