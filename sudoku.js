@@ -103,7 +103,12 @@ function solve(boardString) {
  */
 
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i += 1) {
+    for (let j = 0; j < board.length; j += 1) {
+      if (board[i][j] === '-') return false;
+    }
+  }
+  return true;
 }
 
 /**
