@@ -23,9 +23,19 @@ function prettyBoard(board) {
 
 }
 
+// Парсинг доски
+function parseBoard(fileData) {
+  return fileData
+    .split('\n')
+    .filter((line) => line !== '');
+}
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
+
+
 module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  parseBoard,
 };
