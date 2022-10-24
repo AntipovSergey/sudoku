@@ -4,13 +4,80 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-  const perm = "1582159212746";
-  const base = "123456789";
-  const uniqe = "3";
   const result = [];
   for (let i = 0; i < boardString.length; i += 9) {
     result.push(boardString.slice(i, i + 9).split(""));
   }
+
+
+}
+
+function table(board, index, height) {
+  let result = '';
+  if (index < 3 && height < 3) {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 6 && index >= 3 && height < 3) {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 3; j < 6; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 9 && index >= 6 && height < 3) {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 6; j < 9; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 3 && height < 6 && height >= 3) {
+    for (let i = 3; i < 6; i++) {
+      for (let j = 0; j < 3; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 6 && index >= 3 && height < 6 && height >= 3) {
+    for (let i = 3; i < 6; i++) {
+      for (let j = 3; j < 6; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 9 && index >= 6 && height < 6 && height >= 3) {
+    for (let i = 3; i < 6; i++) {
+      for (let j = 6; j < 9; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 3 && height < 9 && height >= 6) {
+    for (let i = 6; i < 9; i++) {
+      for (let j = 0; j < 3; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 6 && index >= 3 && height < 9 && height >= 6) {
+    for (let i = 6; i < 9; i++) {
+      for (let j = 3; j < 6; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+  if (index < 9 && index >= 6 && height < 9 && height >= 6) {
+    for (let i = 6; i < 9; i++) {
+      for (let j = 6; j < 9; j++) {
+        result += board[i][j];
+      }
+    } return result;
+  }
+
 }
 
 function table(board) {}
@@ -23,7 +90,11 @@ function stroke(board, height) {
   return result;
 }
 
-function column(board) {}
+
+function column(board) {
+
+}
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -46,11 +117,9 @@ function isSolved(board) {
  */
 function prettyBoard(board) {}
 
-console.log(
-  solve(
-    "1258726789922764152024118192191273267625834912145611512-7612331431221511612318912"
-  )
-);
+
+console.log(solve('1258726789922764152024118192191273267625834912145611512-7612331431221511612318912'));
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
