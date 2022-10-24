@@ -83,8 +83,12 @@ function stroke(board) {
 }
 
 function column(board) {
-
-}
+    let result = '';
+      for (let i = 0; i < board.length; i += 1) {
+          result += board[i][index]
+        }
+        return result
+      }
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
