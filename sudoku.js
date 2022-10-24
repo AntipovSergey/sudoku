@@ -33,6 +33,11 @@ function splitBoards(fileData) {
 
 }
 
+// Проверка валидности доски
+function validate(pazzle) {
+
+}
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 
 module.exports = {
@@ -41,4 +46,5 @@ module.exports = {
   prettyBoard,
   parseBoard,
   splitBoards,
+  validate,
 };

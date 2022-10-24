@@ -79,4 +79,78 @@ describe('Тестирование функций судоку', () => {
 4 3 - - 2 - 5 - 1
 6 - - 3 - 8 9 - -`);
   });
+
+  describe('Проверка валидности судоку', () => {
+    test('Невалидное судоку (в столбце 2 две 5)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, null],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, 5, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+    test('Невалидное судоку (в строке 0 две 5)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, 5],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+    test('Невалидное судоку (в строке 0 две 1)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, 1],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+    test('Невалидное судоку (в верхнем левом квадрате 3на3 две 5)', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, null],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, 5, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(false);
+    });
+
+    test('Валидное судоку', () => {
+      const inputData = [
+        [1, null, 5, 8, null, 2, null, null, null],
+        [null, 9, null, null, 7, 6, 4, null, 5],
+        [2, null, null, 4, null, null, 8, 1, 9],
+        [null, 1, 9, null, null, 7, 3, null, 6],
+        [7, 6, 2, null, 8, 3, null, 9, null],
+        [null, null, null, null, 6, 1, null, 5, null],
+        [null, null, 7, 6, null, null, null, 3, null],
+        [4, 3, null, null, 2, null, 5, null, 1],
+        [6, null, null, 3, null, 8, 9, null, null],
+      ];
+      expect(sudoku.validate(inputData)).toBe(true);
+    });
+  });
 });
