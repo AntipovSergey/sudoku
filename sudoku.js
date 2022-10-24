@@ -24,10 +24,13 @@ function prettyBoard(board) {
 }
 
 // Парсинг доски
-function parseBoard(fileData) {
-  return fileData
-    .split('\n')
-    .filter((line) => line !== '');
+function parseBoard(line) {
+
+}
+
+// Разбиение общего файла на строки судок
+function splitBoards(fileData) {
+
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
@@ -38,4 +41,5 @@ module.exports = {
   isSolved,
   prettyBoard,
   parseBoard,
+  splitBoards,
 };
