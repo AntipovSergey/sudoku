@@ -34,8 +34,8 @@ function splitBoards(fileData) {
 }
 
 // Проверка валидности доски
-function validate(pazzle) {
-
+function validate(board) {
+  throw new Error('non implemented exception');
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
