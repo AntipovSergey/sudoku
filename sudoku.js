@@ -5,22 +5,53 @@
  */
 function solve(boardString) {
   let boardArr = [];
-  for (let i = 0; i < 81; i += 9) {
-    boardArr.push(boardString.slice(i, i + 9).split(''));
+  let arr = []
+  let obj = {}
+  for (let i = 0; i < 81; i++) {
+    arr.push(+boardString[i]);
+  }
+  for (let i = 0; i < 9; i++) {
+    boardArr.push(arr.slice(0, 9))
+    arr.splice(0, 9)
   }
   for (let i = 0; i < 9; i += 1) {
-    let row = boardArr.map(el => el[i])
     for (let j = 0; j < 9; j += 1) {
-      if (boardArr[i][j] === '-') {
-        for (let k = 1; k < 10; k += 1) {
-          if (!boardArr[i].includes(k) && !row[i].includes(k)) {
-            boardArr[i][j] = k;
+      if (isNaN(boardArr[i][j])) {
+        let newArr = []
+        for (let k = 1; k < 10; k++) {
+          if (!boardArr[i].includes(k) &&
+            boardArr[0][j] !== k &&
+            boardArr[1][j] !== k &&
+            boardArr[2][j] !== k &&
+            boardArr[3][j] !== k &&
+            boardArr[4][j] !== k &&
+            boardArr[5][j] !== k &&
+            boardArr[6][j] !== k &&
+            boardArr[7][j] !== k &&
+            boardArr[8][j] !== k) {
+            newArr.push(k)
+            obj[`${i}${j}`] = newArr
           }
         }
-      } 
+      }
     }
   }
-  console.log(boardArr)
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (obj.hasOwnProperty(`${i}${j}`)) {
+        if (obj[`${i}${j}`].length === 1) {
+          boardArr[i][j] = +(obj[`${i}${j}`].join(''))
+        }
+      }
+    }
+
+  }
+  
+  if(boardArr.join('').includes('NaN')){
+    console.log('hey')
+    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'))
+  }
+  console.table(boardArr)
 }
 
 /**
@@ -37,7 +68,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  
+
 
 }
 
