@@ -3,18 +3,26 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
+function horizontal(boardArr, i, k) {
+  return !boardArr[i].includes(k);
+}
+function vertical(boardArr, j, k) {
+  return !boardArr.map(el => el[j]).includes(k);
+}
+
 function solve(boardString) {
   let boardArr = [];
   for (let i = 0; i < 81; i += 9) {
     boardArr.push(boardString.slice(i, i + 9).split(''));
   }
   for (let i = 0; i < 9; i += 1) {
-    let row = boardArr.map(el => el[i])
     for (let j = 0; j < 9; j += 1) {
       if (boardArr[i][j] === '-') {
         for (let k = 1; k < 10; k += 1) {
-          if (!boardArr[i].includes(k) && !row[i].includes(k)) {
+          if (horizontal(boardArr, i, k) && vertical(boardArr, j, k)) {
             boardArr[i][j] = k;
+            break;
           }
         }
       } 
