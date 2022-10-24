@@ -6,8 +6,9 @@
 function solve(boardString) {
   const result = [];
   for (let i = 0; i < boardString.length; i += 9) {
-    result.push(boardString.slice(i, i + 9).split(''));
+    result.push(boardString.slice(i, i + 9).split(""));
   }
+
 
 }
 
@@ -76,15 +77,24 @@ function table(board, index, height) {
       }
     } return result;
   }
-}
-
-function stroke(board) {
 
 }
+
+function table(board) {}
+
+function stroke(board, height) {
+  let result = "";
+  for (let i = 0; i < 9; i++) {
+    result += board[height][i];
+  }
+  return result;
+}
+
 
 function column(board) {
 
 }
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -92,11 +102,12 @@ function column(board) {
 function isSolved(board) {
   const result = [];
   for (let i = 0; i < board.length; i += 9) {
-    result.push(board.slice(i, i + 9).split(''));
+    result.push(board.slice(i, i + 9).split(""));
   }
   for (let i = 0; i < result.length; i++) {
-    if (result[i].indexOf('-') !== -1) return false;
-  } return true;
+    if (result[i].indexOf("-") !== -1) return false;
+  }
+  return true;
 }
 
 /**
@@ -104,11 +115,11 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
+function prettyBoard(board) {}
 
-}
 
 console.log(solve('1258726789922764152024118192191273267625834912145611512-7612331431221511612318912'));
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
