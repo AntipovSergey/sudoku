@@ -4,6 +4,8 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  console.log('solve', solve)
+
 }
 
 /**
