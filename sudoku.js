@@ -4,12 +4,6 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-function horizontal(boardArr, i, k) {
-  return !boardArr[i].includes(k);
-}
-function vertical(boardArr, j, k) {
-  return !boardArr.map(el => el[j]).includes(k);
-}
 
 function solve(boardString) {
   let boardArr = [];
@@ -38,7 +32,7 @@ function solve(boardString) {
             boardArr[7][j] !== k &&
             boardArr[8][j] !== k) {
             newArr.push(k)
-            obj[${i}${j}] = newArr
+            obj[`${i}${j}`] = newArr
           }
         }
       }
@@ -46,9 +40,9 @@ function solve(boardString) {
   }
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
-      if (obj.hasOwnProperty(${i}${j})) {
-        if (obj[${i}${j}].length === 1) {
-          boardArr[i][j] = +(obj[${i}${j}].join(''))
+      if (obj.hasOwnProperty(`${i}${j}`)) {
+        if (obj[`${i}${j}`].length === 1) {
+          boardArr[i][j] = +(obj[`${i}${j}`].join(''))
         }
       }
     }
@@ -56,10 +50,9 @@ function solve(boardString) {
   }
   
   if(boardArr.join('').includes('NaN')){
-    console.log('hey')
     return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'))
   }
-  console.table(boardArr)
+  return boardArr
 }
 
 /**
@@ -67,7 +60,7 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  return !board.join(',').split(',').join('').includes('-')
 }
 
 /**
