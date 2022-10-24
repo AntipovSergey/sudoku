@@ -9,6 +9,8 @@ function readAndSolve(error, fileData) {
   const puzzles = sudoku.splitBoards(fileData).map(sudoku.parseBoard);
 
   let puzzleNumber = Number(process.argv[2]) || 1;
+  
+  puzzleNumber = 6;
 
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;

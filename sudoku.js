@@ -50,6 +50,7 @@ function solve(board) {
           e.splice(index, 1);
           if (e.length === 1) {
             board[i][y] = e[0];
+            possibles.splice(possibles.findIndex(k => k.arr === board[i][y]))
             popFromPossibles(board, e[0], i, y);
           }
         };
@@ -63,6 +64,7 @@ function solve(board) {
           e[j].splice(index, 1);
           if (e[j].length === 1) {
             board[x][j] = e[j][0];
+            possibles.splice(possibles.findIndex(k => k.arr === board[x][j]))
             popFromPossibles(board, e[j][0], x, j);
           }
         };
@@ -79,6 +81,7 @@ function solve(board) {
             board[x][y].splice(index, 1);
             if (board[x][y].length === 1) {
               board[x][y] = board[x][y][0];
+              possibles.splice(possibles.findIndex(k => k.arr === board[x][y]))
               popFromPossibles(board, board[x][y][0], x, y);
             }
           };
@@ -86,11 +89,41 @@ function solve(board) {
       }
   }
 
-  function fillPossibles(board, possiblesArray) {
 
+
+  function fillPossibles(board, possibles) {
+    let changed = false;
+
+    const findLimits = (i, j) => ({
+      iMin: Math.floor(i / 3) * 3, 
+      iMax: Math.floor(i / 3) * 3 + 3,
+      jMin: Math.floor(j / 3) * 3,
+      jMax: Math.floor(j / 3) * 3 + 3,
+    })
+
+    const inLimits = (i, j, l) => i >= l.iMin && i < l.iMax && j >= l.jMin && j < l.jMax;
+
+    for (let possible of possibles) {
+      const limits = findLimits(possible.i, possible.j)
+      
+      const intersection = possibles
+        .filter(x => (x.i === possible.i || x.j === possible.j || inLimits(x.i, x.j, limits))
+          && x.i !== possible.i && x.j !== possible.j);
+      
+      for (let i = 0; i < possible.arr; i++) {
+        if (intersection.every(x => !x.arr.includes(possible.arr[i]))) {
+          popFromPossibles(board, possible.arr[i], possible.i, possible.j);
+          possibles.splice(i, 1);
+          changed = true;
+        }
+      }
+    }
+
+    return changed;
   }
 
   let changed = true;
+  let first = true;
 
   while(changed) {
     changed = false;
@@ -103,16 +136,20 @@ function solve(board) {
             copiedBoard[i][j] = foundElement;
             popFromPossibles(copiedBoard, foundElement, i, j);
             changed = true;
+            continue;
           }
 
           copiedBoard[i][j] = foundElement;
+
+          if (first) possibles.push({ i, j, arr: foundElement });
+          else {
+            changed = fillPossibles(copiedBoard, possibles);
+          }
         }
-        fillPossibles(copiedBoard)
       }
     }
+    first = false;
   }
-
-
 
   return copiedBoard;
 }
