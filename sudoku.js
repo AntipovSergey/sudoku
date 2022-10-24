@@ -13,6 +13,7 @@ function solve(boardString) {
 function isSolved(board) {
 console.log('')
 console.log('Макс')
+console.log('Svyatoslov')
 }
 
 /**
