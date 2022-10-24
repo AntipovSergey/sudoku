@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 
@@ -35,14 +37,14 @@ function solve(boardString) {
     const [row, col] = position;
 
     // Проверка строки
-    for (let i = 0; i < size; i = +1) {
+    for (let i = 0; i < size; i++) {
       if (board[i][col] === number && i !== row) {
         return false;
       }
     }
 
     // Проверка столбца
-    for (let i = 0; i < size; i = +1) {
+    for (let i = 0; i < size; i++) {
       if (board[row][i] === number && i !== col) {
         return false;
       }
@@ -52,8 +54,8 @@ function solve(boardString) {
     const boxRow = Math.floor(row / boxSize) * boxSize;
     const boxCol = Math.floor(col / boxSize) * boxSize;
 
-    for (let i = boxRow; i < boxRow + boxSize; i = +1) {
-      for (let j = boxCol; j < boxCol + boxSize; j = +1) {
+    for (let i = boxRow; i < boxRow + boxSize; i++) {
+      for (let j = boxCol; j < boxCol + boxSize; j++) {
         if (board[i][j] === number && i !== row && j !== col) {
           return false;
         }
@@ -70,10 +72,10 @@ function solve(boardString) {
     }
 
     // console.log('------------------------------');
-    for (let i = 1; i < size + 1; i = +1) {
+    for (let i = 1; i < size + 1; i++) {
       const currentNumber = i.toString();
       const isValid = getValidate(currentNumber, currentPosition, board);
-      // console.log('currPos ', currentPosition, 'currNum ',currentNumber, 'isValid ',isValid);
+      // console.log('Текущая позиция:', currentPosition, 'Текущие число:', currentNumber, 'Валидация: ', isValid);
 
       if (isValid) {
         const [x, y] = currentPosition;
