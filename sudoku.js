@@ -37,7 +37,6 @@ let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---
       }
     }
 
-    function 
   }
 
 // function createBordLines(boardString) {
@@ -57,7 +56,7 @@ let boardString = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---
 //   for (let key in digits) {
 //   if(a[i] === key) {
 //     delete digits[key]
-//   } 
+//   } git push --set-upstream origin igor
 //   }
 //   }
 //   let shuffleArr = (Object.values(digits)).sort(() => Math.random() - 0.5)
