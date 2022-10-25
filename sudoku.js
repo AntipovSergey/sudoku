@@ -3,7 +3,97 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
+const clc = require('cli-color');
+const check = require('./check');
+
+function solve(boardString, count = 0, boardArr1) {
+  const boardArr = [];
+  const arr = [];
+  const obj = {};
+  // !!!!!преобразуем строку в нормальный целочисленный массив!!!!!!
+  for (let i = 0; i < 81; i++) {
+    arr.push(+boardString[i]);
+  }
+  for (let i = 0; i < 9; i++) {
+    boardArr.push(arr.slice(0, 9));
+    arr.splice(0, 9);
+  }
+  // !!!!!создаем объект со значениями, которые можем поставить!!!!!
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; j += 1) {
+      if (isNaN(boardArr[i][j])) {
+        const newArr = [];
+        for (let k = 1; k < 10; k++) {
+          if (!boardArr[i].includes(k)
+            && boardArr[0][j] !== k
+            && boardArr[1][j] !== k
+            && boardArr[2][j] !== k
+            && boardArr[3][j] !== k
+            && boardArr[4][j] !== k
+            && boardArr[5][j] !== k
+            && boardArr[6][j] !== k
+            && boardArr[7][j] !== k
+            && boardArr[8][j] !== k) {
+            newArr.push(k);
+            obj[`${i}${j}`] = newArr;
+          }
+        }
+      }
+    }
+  }
+  // !!!!!!закидываем все возможные варианты, которых по 1!!!!!!
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (obj.hasOwnProperty(`${i}${j}`)) {
+        if (obj[`${i}${j}`].length === 1) {
+          boardArr[i][j] = +(obj[`${i}${j}`].join(''));
+        }
+      }
+    }
+  }
+
+  // !!!!!!проверка на квадраты!!!!!!
+
+  let tempArr = [];
+  let unique = 0;
+  let a = 0;
+  let b = 0;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 3; j < 6; j++) {
+      tempArr.push(boardArr[i][j]);
+      if (isNaN(boardArr[i][j])) {
+        a = i;
+        b = j;
+      }
+    }
+    if (isNaN(boardArr[a][b])) {
+      if (tempArr.length === 9) {
+        tempArr.sort();
+        tempArr = tempArr.slice(0, 8);
+        unique = 45 - tempArr.reduce((a, b) => a + b, 0);
+        boardArr[a][b] = unique;
+      }
+    }
+  }
+  console.log(obj);
+  //! !!!!!заново запускаем цикл!!!!!
+  console.table(boardArr);
+  if (boardArr.join('').includes('NaN') && count < 15) {
+    boardArr1 = JSON.parse(JSON.stringify(boardArr));
+    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1, boardArr1);
+  }
+  if (boardArr.join('').includes('NaN')) {
+    const arr123 = Object.keys(obj)[Object.keys(obj).length - 1];
+    boardArr[arr123[0]][arr123[1]] = Object.values(obj)[0][0];
+    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1, boardArr1);
+  }
+  console.table(boardArr);
+  return boardArr;
+  // if(boardArr.join('').includes('NaN') && count > 25 && count < 35){
+  //   let arr124 = Object.keys(obj)[0]
+  //   boardArr[arr124[0]][arr124[1]] = Object.values(obj)[0][1]
+  //   return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1,boardArr1)
+  // }
 }
 
 /**
@@ -11,12 +101,7 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
-console.log('Gayane');
-console.log('2')
-console.log('')
-console.log('Макс')
-console.log('Svyatoslov')
+  return check.boardIsCorrect(check.boardStringToArr(board));
 }
 
 /**
@@ -25,8 +110,17 @@ console.log('Svyatoslov')
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  const emptyStr = '---------------------------------';
+  const arr = board.map((el) => el.toString().split(',').join(' | '));
+  arr.splice(3, 0, emptyStr);
+  arr.splice(7, 0, emptyStr);
 
+  const finalArr = arr.toString().split(',').join('\n');
+  return finalArr;
+  // let boardToStr = board.map((el) => el.join(' ')).join(' \n');
+  // console.table(boardToStr);
 }
+console.table(clc.red(prettyBoard));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
