@@ -14,7 +14,7 @@ function readAndSolve(error, fileData) {
     .filter((line) => line !== '');
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
-  let puzzleNumber = Number(process.argv[2]) || 1;
+  let puzzleNumber = Number(process.argv[2]) || 13;
 
   // Ограничить номер судоку максимальным числом массива с паззлами.
   if (puzzleNumber > puzzles.length) {
