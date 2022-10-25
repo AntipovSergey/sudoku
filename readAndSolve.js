@@ -10,13 +10,15 @@ function readAndSolve(error, fileData) {
 
   let puzzleNumber = Number(process.argv[2]) || 1;
   
-  // puzzleNumber = 12;
+  // puzzleNumber = 13;
+
 
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;
   }
 
   const puzzle = puzzles[puzzleNumber - 1];
+  console.log(sudoku.validate(puzzle));
 
   // const isValid = sudoku.validate(puzzle);
 
@@ -38,6 +40,11 @@ function readAndSolve(error, fileData) {
 
   console.log(sudoku.prettyBoard(solvedPuzzle.board), '\n');
   console.log(solvedPuzzle.solved);
+
+  if (!solvedPuzzle.solved) {
+    const puzzleHard = sudoku.solveHard(solvedPuzzle.board);
+    console.log(sudoku.prettyBoard(puzzleHard.board));
+  }
 }
 
 module.exports = readAndSolve;

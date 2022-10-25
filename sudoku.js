@@ -50,7 +50,7 @@ function solveEasy(board) {
           e.splice(index, 1);
           if (e.length === 1) {
             board[i][y] = e[0];
-            /* check */possibles.splice(possibles.findIndex(k => k.i === i && k.j === y), 1);
+            possibles.splice(possibles.findIndex(k => k.i === i && k.j === y), 1);
             popFromPossibles(board, board[i][y], i, y);
           }
         };
@@ -64,7 +64,7 @@ function solveEasy(board) {
           e[j].splice(index, 1);
           if (e[j].length === 1) {
             board[x][j] = e[j][0];
-            /* check */possibles.splice(possibles.findIndex(k => k.i === x && k.j === j), 1);
+            possibles.splice(possibles.findIndex(k => k.i === x && k.j === j), 1);
             popFromPossibles(board, board[x][j], x, j);
           }
         };
@@ -179,6 +179,22 @@ function solveMedium(board, possibles) {
   
 }
 
+function solveHard(board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (Array.isArray(board[i][j])) {
+        for (let k = 1; k < 10; k++) {
+          const temp = board[i][j];
+          board[i][j] = k;
+          if (validate(board)) return solveHard(board);
+          else board[i][j] = temp;
+        }
+      }
+    }
+  }
+  return board;
+}
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -221,52 +237,28 @@ function splitBoards(fileData) {
 
 // Проверка валидности доски
 function validate(board) {
+  const findLimits = (i, j) => ({
+    iMin: Math.floor(i / 3) * 3,
+    iMax: Math.floor(i / 3) * 3 + 3,
+    jMin: Math.floor(j / 3) * 3,
+    jMax: Math.floor(j / 3) * 3 + 3,
+  });
 
-  function isValidRow(board){
-    for (let i = 0 ; i< board.length; i++ ){
-      const set = new Set();
-      for(let j =0; j < board[i].length; j++){
-        const cell = board[i][j];
-        if (cell === null) continue;
-        if (set.has(cell)) return false; 
-        set.add(cell)
-      } 
-    }
-  }
-
-  function isValidColumn(board){
-    for(i = 0; i< board.length; i++){
-      const set = new Set();
-      for (j=0; j< board[i].length; j++){
-        const cell= board[j][i]; 
-        if (cell === null) continue;
-        if (set.has(cell))return false;
-        set.add(cell)
-      }
-    }
-  }
-  
-  
-  function isValidBox(board){
-      for(i = 0; i < 3; i++){
-        for(j= 0; j < 3; j++){
-          const set = new Set(); 
-          for(let k = 0 ; k< 3; k++){
-            for(let l = 0; l<3; l++){
-              const cell = board[i*3 +k][j *3 +l]
-              if(cell ===null) continue; 
-              if(set.has(cell))return false; 
-              set.add(cell); 
-            }
-          }
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (typeof board[i][j] !== 'number') continue;
+      if (board[i].findIndex((e, y) => e === board[i][j] && j !== y) !== -1) return false;
+      if (board.map(x => x[j]).findIndex((e, x) => e === board[i][j] && i !== x) !== -1) return false;
+      const { iMin, iMax, jMin, jMax } = findLimits(i, j);
+      for (let x = iMin; x < iMax; x++) {
+        for (let y = jMin; y < jMax; y++) {
+          if (board[i][j] === board[x][y] && i !== x && j !== y) return false;
         }
       }
     }
-  
   }
-  return true
+  return true;
 }
-
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 
@@ -280,4 +272,5 @@ module.exports = {
   isInBlock,
   isInHorizontal,
   isInVertical,
+  solveHard,
 };
