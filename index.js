@@ -15,13 +15,40 @@ const sudoks =
 ----------2-65-------18--4--9----6-4-3---57-------------------73------9----------
 ---------------------------------------------------------------------------------`;
 
-const puzzles = sudoku.splitBoards(fileData).map(sudoku.parseBoard);
+const puzzles = splitBoards(sudoks).map(parseBoard);
 
 const table = document.querySelector('#sudoku');
+let sudoku = 0;
 
 Array.from(document.querySelectorAll('.input')).forEach(x => {
   x.addEventListener('click', e => {
-    table.forEach
+    sudoku = Number(e.target.textContent) - 1;
+    const puzzle = puzzles[sudoku];
+    Array.from(table.rows).forEach((x, i) => {
+      Array.from(x.cells).forEach((y, j) => {
+        y.textContent = typeof puzzle[i][j] === 'number' ? puzzle[i][j] : '';
+      })
+    })
   })
 })
 
+Array.from(document.querySelectorAll('.state')).forEach(x => {
+  x.addEventListener('click', e => {
+    if (e.target.textContent === '0') {
+      const puzzle = puzzles[sudoku];
+      Array.from(table.rows).forEach((x, i) => {
+        Array.from(x.cells).forEach((y, j) => {
+          y.textContent = typeof puzzle[i][j] === 'number' ? puzzle[i][j] : '';
+        })
+      })
+    }
+    else {
+      const puzzle = solveEasy(puzzles[sudoku]).board;
+      Array.from(table.rows).forEach((x, i) => {
+        Array.from(x.cells).forEach((y, j) => {
+          y.textContent = typeof puzzle[i][j] === 'number' ? puzzle[i][j] : '';
+        })
+      })
+    }
+  })
+})
