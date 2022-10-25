@@ -4,7 +4,7 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-function isInHorizontal(board, element, i) {
+ function isInHorizontal(board, element, i) {
   return board[i].includes(element);
 }
 
@@ -254,18 +254,3 @@ function validate(board) {
   }
   return true;
 }
-
-// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
-
-module.exports = {
-  solveEasy,
-  isSolved,
-  prettyBoard,
-  parseBoard,
-  splitBoards,
-  validate,
-  isInBlock,
-  isInHorizontal,
-  isInVertical,
-  solveHard,
-};
