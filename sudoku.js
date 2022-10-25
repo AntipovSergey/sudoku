@@ -91,7 +91,7 @@ function stroke(board, height) {
 }
 
 
-function column(board) {
+function column(board, index) {
 
     let result = '';
       for (let i = 0; i < board.length; i += 1) {
@@ -100,7 +100,7 @@ function column(board) {
         return result
       }
 
-}
+
 
 
 /**
@@ -127,6 +127,7 @@ function prettyBoard(board) {}
 
 
 console.log(solve('1258726789922764152024118192191273267625834912145611512-7612331431221511612318912'));
+
 
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).

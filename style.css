@@ -1,0 +1,79 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color:rgb(127, 200, 255);
+    
+}
+
+.header p {
+    font-size: 36px;
+    color: #00205b;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table td, table tr {
+    border: 3px solid black;
+    text-align: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 5px;
+}
+
+td {
+    text-align: center;
+    background-color: rgba(144, 117, 117, 0.5);
+    font-size: 30px;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+    width: 500px;
+    margin-left: 350px;
+}
+
+button {
+    width: 100px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+#cleanBtn {
+    background-color: #8c77d0;
+}
+
+#solveBtn {
+    background-color: #8c77d0;
+}
+
+#cleanBtn:active { 
+    background-color:rgb(89, 75, 182); 
+} 
+
+#solveBtn:active {
+    background-color:rgb(89, 75, 182); 
+} 
+
+#cleanBtn:hover { 
+    transform: scale(1.1);
+} 
+
+#solveBtn:hover {
+    transform: scale(1.1);
+} 
