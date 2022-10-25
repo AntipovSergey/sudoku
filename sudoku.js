@@ -122,7 +122,6 @@ function isSolved(board) {
 function prettyBoard(board) {
   // Вариант №1
   const arrRowLine = ['-', '-', '-', '+', '-', '-', '-', '+', '-', '-', '-'];
-  const arrColLine = ['|'];
 
   board.splice(3, 0, arrRowLine);
   board.splice(7, 0, arrRowLine);
