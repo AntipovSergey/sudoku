@@ -40,34 +40,51 @@ function splitBoards(fileData) {
 // Проверка валидности доски
 function validate(board) {
 
-  function sameHorozontal(board, element, i, j) {
-    for (let y = 0; y < board[i].length; y++) {
-      if (y === j) continue;
-      if (board[i][y] === element) return true;
+  function isValidRow(board){
+    for (let i = 0 ; i< board.length; i++ ){
+      const set = new Set();
+      for(let j =0; j < board[i].length; j++){
+        const cell = board[i][j];
+        if (cell === null) continue;
+        if (set.has(cell)) return false; 
+        set.add(cell)
+      } 
     }
-    return false;
-  }
-  function isInVertical(board, element, j) {
-    return board.findIndex((_, i) =>{
-      (board[i][j] === element) === -1 ? false : true;
-    }
-  }
-  function isInBlock(board, element, i, j) {
-    let xMin = Math.floor(i / 3) * 3, xMax = xMin + 3;
-    let yMin = Math.floor(j / 3) * 3, yMax = yMin + 3;
-    for (let x = xMin; x < xMax; x++) 
-      for (let y = yMin; y < yMax; y++)
-        if (element === board[x][y]) return true;
-    return false;
   }
 
-for(let i = 0; i < board.length; i++)
-  for(let j = 0; j < board[i].length; j++) {
-    if (board[i][j] != null) {
-        sameHorozontal(board, element, i, j)  
+  function isValidColumn(board){
+    for(i = 0; i< board.length; i++){
+      const set = new Set();
+      for (j=0; j< board[i].length; j++){
+        const cell= board[j][i]; 
+        if (cell === null) continue;
+        if (set.has(cell))return false;
+        set.add(cell)
       }
+    }
   }
+  
+  
+  function isValidBox(board){
+      for(i = 0; i < 3; i++){
+        for(j= 0; j < 3; j++){
+          const set = new Set(); 
+          for(let k = 0 ; k< 3; k++){
+            for(let l = 0; l<3; l++){
+              const cell = board[i*3 +k][j *3 +l]
+              if(cell ===null) continue; 
+              if(set.has(cell))return false; 
+              set.add(cell); 
+            }
+          }
+        }
+      }
+    }
+  
+  }
+  return true
 }
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 
