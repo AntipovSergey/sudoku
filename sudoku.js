@@ -5,10 +5,11 @@
  */
  const check = require('./check');
 
-function solve(boardString) {
+function solve(boardString, count = 0) {
   let boardArr = [];
   let arr = []
   let obj = {}
+  // !!!!!преобразуем строку в нормальный целочисленный массив!!!!!!
   for (let i = 0; i < 81; i++) {
     arr.push(+boardString[i]);
   }
@@ -16,6 +17,7 @@ function solve(boardString) {
     boardArr.push(arr.slice(0, 9))
     arr.splice(0, 9)
   }
+  // !!!!!создаем объект со значениями, которые можем поставить!!!!!
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
       if (isNaN(boardArr[i][j])) {
@@ -38,6 +40,8 @@ function solve(boardString) {
       }
     }
   }
+  // !!!!!!закидываем все возможные варианты, которых по 1!!!!!!
+  console.log(obj)
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       if (obj.hasOwnProperty(`${i}${j}`)) {
@@ -46,20 +50,41 @@ function solve(boardString) {
         }
       }
     }
+  }
 
+  // !!!!!!проверка на квадраты!!!!!!
+
+  let tempArr = []
+  let unique = 0
+  let a = 0
+  let b = 0
+  for (let i = 0; i < 3; i++) {
+    for (let j = 3; j < 6; j++) {
+      tempArr.push(boardArr[i][j])
+      if (isNaN(boardArr[i][j])) {
+        a = i
+        b = j
+      }
+    }
+    if (isNaN(boardArr[a][b])) {
+    if (tempArr.length === 9) {
+      tempArr.sort()
+      tempArr = tempArr.slice(0, 8)
+      unique = 45 - tempArr.reduce((a, b) => a + b, 0)
+      boardArr[a][b] = unique
+    }
   }
-  
-  if(boardArr.join('').includes('NaN')){
-    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'))
   }
-  //boardArr[1][1] = 2
+
+  //!!!!!!заново запускаем цикл!!!!!
+
+  if (boardArr.join('').includes('NaN') && count < 100) {
+    console.table(boardArr)
+    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1)
+  }
   console.table(boardArr)
-  console.log(check.squareIsCorrect(boardArr,6,6))
-  console.log(check.squareIsCorrect(boardArr,6,8))
-  console.log(check.boardIsCorrect(boardArr))
-  
-  return boardArr
 }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -67,7 +92,9 @@ function solve(boardString) {
  */
 function isSolved(board) {
   
+
   return !board.join(',').split(',').join('').includes('-')
+
 }
 
 /**
