@@ -9,6 +9,7 @@ function createBordLines(boardString) {
   for (let i = 0; i < boardString.length; i += 9) {
     board.push(boardString.slice(i, i + 9).split(''));
   }
+  
   return board;
 }
 
@@ -82,6 +83,7 @@ function solve(boardString) {
     }
   }
   getSolution(board);
+  console.log(board)
   return board;
 }
 
@@ -89,7 +91,6 @@ function solve(boardString) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-
 function isSolved(board) {
   for (let i = 0; i < board.length; i++) {
     for (let el of board[i]) {
@@ -115,6 +116,7 @@ function isSolved(board) {
         array.push(board[j][k]);
       }
     }
+    
     for (item of array) {
       if (array.indexOf(item) !== array.lastIndexOf(item)) {
         return false;
@@ -128,6 +130,7 @@ function isSolved(board) {
         array.push(board[j][k]);
       }
     }
+    
     for (item of array) {
       if (array.indexOf(item) !== array.lastIndexOf(item)) {
         return false;
@@ -141,13 +144,19 @@ function isSolved(board) {
         array.push(board[j][k]);
       }
     }
+   
     for (item of array) {
       if (array.indexOf(item) !== array.lastIndexOf(item)) {
         return false;
       }
     }
   }
-  return true;
+  let flat = board.flat()
+    if (flat.reduce((acc, el) => {return +el + acc}, 0) !== 405) { 
+      return false
+  }
+
+        return true;
 }
 
 /**
@@ -176,8 +185,11 @@ function prettyBoard(board) {
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
+
 module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  createBordLines,
+  getPossibleValues
 };
