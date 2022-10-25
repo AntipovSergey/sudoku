@@ -3,6 +3,7 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
 const clc = require('cli-color');
 const check = require('./check');
 
@@ -10,32 +11,35 @@ function solve(boardString, count = 0, boardArr1) {
   const boardArr = [];
   const arr = [];
   const obj = {};
+
   // !!!!!преобразуем строку в нормальный целочисленный массив!!!!!!
   for (let i = 0; i < 81; i++) {
     arr.push(+boardString[i]);
   }
   for (let i = 0; i < 9; i++) {
+
     boardArr.push(arr.slice(0, 9));
     arr.splice(0, 9);
+
   }
   // !!!!!создаем объект со значениями, которые можем поставить!!!!!
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
       if (isNaN(boardArr[i][j])) {
-        const newArr = [];
+        let newArr = []
         for (let k = 1; k < 10; k++) {
-          if (!boardArr[i].includes(k)
-            && boardArr[0][j] !== k
-            && boardArr[1][j] !== k
-            && boardArr[2][j] !== k
-            && boardArr[3][j] !== k
-            && boardArr[4][j] !== k
-            && boardArr[5][j] !== k
-            && boardArr[6][j] !== k
-            && boardArr[7][j] !== k
-            && boardArr[8][j] !== k) {
-            newArr.push(k);
-            obj[`${i}${j}`] = newArr;
+          if (!boardArr[i].includes(k) &&
+            boardArr[0][j] !== k &&
+            boardArr[1][j] !== k &&
+            boardArr[2][j] !== k &&
+            boardArr[3][j] !== k &&
+            boardArr[4][j] !== k &&
+            boardArr[5][j] !== k &&
+            boardArr[6][j] !== k &&
+            boardArr[7][j] !== k &&
+            boardArr[8][j] !== k) {
+            newArr.push(k)
+            obj[`${i}${j}`] = newArr
           }
         }
       }
@@ -89,12 +93,14 @@ function solve(boardString, count = 0, boardArr1) {
   }
   console.table(boardArr);
   return boardArr;
+
   // if(boardArr.join('').includes('NaN') && count > 25 && count < 35){
   //   let arr124 = Object.keys(obj)[0]
   //   boardArr[arr124[0]][arr124[1]] = Object.values(obj)[0][1]
   //   return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1,boardArr1)
   // }
 }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
