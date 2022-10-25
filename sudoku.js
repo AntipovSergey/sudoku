@@ -87,6 +87,7 @@ function solve(boardString, count = 0,boardArr1) {
     return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1,boardArr1)
   }
   console.table(boardArr)
+  return boardArr
   // if(boardArr.join('').includes('NaN') && count > 25 && count < 35){
   //   let arr124 = Object.keys(obj)[0]
   //   boardArr[arr124[0]][arr124[1]] = Object.values(obj)[0][1]
@@ -100,7 +101,7 @@ function solve(boardString, count = 0,boardArr1) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-  check.boardIsCorrect()
+  return check.boardIsCorrect(check.boardStringToArr(board))
 }
 
 /**
@@ -109,7 +110,6 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
 
 }
 

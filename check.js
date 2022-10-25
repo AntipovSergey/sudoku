@@ -60,9 +60,9 @@ function columnIsCorrect(boardArr, colIndex) {
 
     function boardIsCorrect (boardArr){
       for (let i = 0; i < 9; i++){
-        if (!rowIsCorrect(boardArr,i)) return false
-        if (!columnIsCorrect(boardArr,i)) return false 
-        if (!squareIsCorrect(boardArr,(i%3)*3,Math.floor(i/3))) return false
+        if (rowIsCorrect(boardArr,i)) {return false}
+        if (columnIsCorrect(boardArr,i)) {return false}
+        if (squareIsCorrect(boardArr,(i%3)*3,Math.floor(i/3))) {return false}
       }
       return true;
     }
@@ -71,5 +71,6 @@ function columnIsCorrect(boardArr, colIndex) {
       columnIsCorrect,
       rowIsCorrect,
       squareIsCorrect,
-      boardIsCorrect
+      boardIsCorrect,
+      boardStringToArr
     }
