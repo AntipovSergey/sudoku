@@ -175,19 +175,14 @@ function solveEasy(board) {
   };
 }
 
-function solveMedium(board, possibles) {
-  
-}
-
 function solveHard(board) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (Array.isArray(board[i][j])) {
-        for (let k = 1; k < 10; k++) {
-          const temp = board[i][j];
+      if (board[i][j] === null) {
+        for (let k = 1; k <= 9; k++) {
           board[i][j] = k;
           if (validate(board)) return solveHard(board);
-          else board[i][j] = temp;
+          board[i][j] = null;
         }
       }
     }

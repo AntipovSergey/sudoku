@@ -10,7 +10,7 @@ function readAndSolve(error, fileData) {
 
   let puzzleNumber = Number(process.argv[2]) || 1;
   
-  // puzzleNumber = 13;
+  // puzzleNumber = 15;
 
 
   if (puzzleNumber > puzzles.length) {
@@ -18,13 +18,12 @@ function readAndSolve(error, fileData) {
   }
 
   const puzzle = puzzles[puzzleNumber - 1];
-  console.log(sudoku.validate(puzzle));
 
   // const isValid = sudoku.validate(puzzle);
 
   // Получить желаемый судоку по индексу и вывести его в консоль.
   console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
+  console.log(sudoku.prettyBoard(puzzle), '\n');
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solveEasy(puzzle);
@@ -39,12 +38,9 @@ function readAndSolve(error, fileData) {
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
 
   console.log(sudoku.prettyBoard(solvedPuzzle.board), '\n');
-  console.log(solvedPuzzle.solved);
-
-  if (!solvedPuzzle.solved) {
-    const puzzleHard = sudoku.solveHard(solvedPuzzle.board);
-    console.log(sudoku.prettyBoard(puzzleHard.board));
-  }
+  // console.log(solvedPuzzle.solved);
+  // const puzzleHard = sudoku.solveHard(puzzle);
+  // console.log(sudoku.prettyBoard(puzzleHard.board));
 }
 
 module.exports = readAndSolve;
