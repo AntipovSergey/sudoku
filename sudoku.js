@@ -20,8 +20,12 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+    return board
+      .match(/[\d-]{9}/g)
+      .map((el) => el.split("").join(" "))
+      .join("\n");
+  }
 
-}
 
 // Парсинг доски
 function parseBoard(line) {
@@ -35,7 +39,34 @@ function splitBoards(fileData) {
 
 // Проверка валидности доски
 function validate(board) {
-  throw new Error('non implemented exception');
+
+  function sameHorozontal(board, element, i, j) {
+    for (let y = 0; y < board[i].length; y++) {
+      if (y === j) continue;
+      if (board[i][y] === element) return true;
+    }
+    return false;
+  }
+  function isInVertical(board, element, j) {
+    return board.findIndex((_, i) =>{
+      (board[i][j] === element) === -1 ? false : true;
+    }
+  }
+  function isInBlock(board, element, i, j) {
+    let xMin = Math.floor(i / 3) * 3, xMax = xMin + 3;
+    let yMin = Math.floor(j / 3) * 3, yMax = yMin + 3;
+    for (let x = xMin; x < xMax; x++) 
+      for (let y = yMin; y < yMax; y++)
+        if (element === board[x][y]) return true;
+    return false;
+  }
+
+for(let i = 0; i < board.length; i++)
+  for(let j = 0; j < board[i].length; j++) {
+    if (board[i][j] != null) {
+        sameHorozontal(board, element, i, j)  
+      }
+  }
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
