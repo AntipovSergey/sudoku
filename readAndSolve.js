@@ -23,7 +23,7 @@ function readAndSolve(error, fileData) {
 
   // Получить желаемый судоку по индексу и вывести его в консоль.
   const puzzle = puzzles[puzzleNumber - 1];
-  console.log(`Решаем судоку №${puzzleNumber}:`);
+  console.log(`\nРешаем судоку №${puzzleNumber}:\n`);
   console.log(puzzle, '\n');
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
@@ -36,7 +36,7 @@ function readAndSolve(error, fileData) {
   }
 
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
-  console.log(`Судоку №${puzzleNumber} решён успешно!`);
+  console.log(`Судоку №${puzzleNumber} решён успешно!\n`);
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
