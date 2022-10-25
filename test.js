@@ -1,49 +1,25 @@
-/**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
 function solve(boardString) {
   const board = parseBoardString(boardString);
-  if (solveRecursive(board)) return board;
+  const intResult = solveRecursive(board);
+  return intResult;
 }
 
-function solveRecursive(board) {
-  // находим ячейку с минимальным кол-вом кандидатов
-  let minI; let minJ; let minCandidates;
+function solveRecursive(result) {
+  const board = JSON.parse(JSON.stringify(result));
   for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (board[i][j] === '-') {
-        const candidates = getCandidates(board, i, j);
-        // если кандидатов в ячейке нет, значит такую доску нельзя решить
-        if (candidates.length === 0) return false;
-        if (!minCandidates || candidates.length < minCandidates.length) {
-          minI = i;
-          minJ = j;
-          minCandidates = candidates;
-        }
-      }
-    }
+    recursive(result, i);
   }
-
-  // если вся доска заполнена, значит решено
-  if (!minCandidates) {
-    return true;
+  if (isSolved(result)) {
+    return result;
   }
-
-  // ставим каждого кандидата и рекурсивно запускаем solve
-  for (let i = 0; i < minCandidates.length; i++) {
-    board[minI][minJ] = minCandidates[i];
-    if (solveRecursive(board)) return true;
+  if (JSON.stringify(result) !== JSON.stringify(board)) return solveRecursive(result);
+  const intResult = JSON.parse(JSON.stringify(result));
+  for (let i = 0; i < 9; i++) {
+    recursiveRandom(result, i);
   }
-
-  // если решения не нашлось, важно вернуть в ячейку значение '-',
-  // чтобы проверять ее в других ветках рекурсии
-  board[minI][minJ] = '-';
-
-  return false;
+  if (isSolved2(result)) return result;
+  return solveRecursive(intResult);
 }
-
 // преобразуем строку в 2мерный массив
 function parseBoardString(boardString) {
   const result = [];
@@ -52,20 +28,41 @@ function parseBoardString(boardString) {
   }
   return result;
 }
-//получаем список кандидатов
-function getCandidates(result, i, j) {
+
+function recursiveRandom(result, i = 0, j = 0) {
   const base = '123456789';
-  for (let k = 0; k < 9; k++) {
+  for (j; j < 9; j++) {
     let summ = '';
-    let uniqeString = '';
-    summ = stroke(result, i) + table(result, j, i) + column(result, j);
-    for (let b = 0; b < base.length; b++) {
-      if (!summ.includes(base[b])) uniqeString += base[b];
-    } return uniqeString;
+    if (result[i][j] === '-') {
+      let uniqeString = '';
+      summ = stroke(result, i) + table(result, j, i) + column(result, j);
+      for (let b = 0; b < base.length; b++) {
+        if (!summ.includes(base[b])) uniqeString += base[b];
+      }
+      if(uniqeString.length >0)result[i][j] = uniqeString[Math.floor(uniqeString.length * Math.random())];
+      // console.log(result)
+      return recursiveRandom(result, i, j + 1);
+    }
+  }
+}
+function recursive(result, i, j = 0) {
+  const base = '123456789';
+  for (j; j < 9; j++) {
+    let summ = '';
+    if (result[i][j] === '-' ) {
+      let uniqeString = '';
+      summ = stroke(result, i) + table(result, j, i) + column(result, j);
+      for (let b = 0; b < base.length; b++) {
+        if (!summ.includes(base[b])) uniqeString += base[b];
+      }
+      if (uniqeString.length === 1) {
+        result[i][j] = uniqeString;
+        return result;
+      } return recursive(result, i, j + 1);
+    }
   }
 }
 
-// ищем значения по таблице строке и колонке
 function table(board, index, height) {
   let result = '';
   if (index < 3 && height < 3) {
@@ -159,23 +156,66 @@ function isSolved(board) {
   }
   return true;
 }
+function isSolved2(board) {
+  return isSolvedString(board)
+  && isSolvedColumn(board)
+  && isSolvedTable(board);
+}
+
+function isSolvedString(board) {
+  for (let i = 0; i < board.length; i++) {
+    if (board[i].slice().sort().join('') !== '123456789') return false;
+  } return true;
+}
+
+function isSolvedColumn(board) {
+  for (let i = 0; i < 9; i++) {
+    const arr = [];
+    for (let j = 0; j < 9; j++) {
+      arr.push(board[j][i]);
+    }
+    if (arr.slice().sort().join('') !== '123456789') return false;
+  } return true;
+}
+
+// проверяет все квадраты
+function isSolvedTable(board) {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (!isSolvedKvadrat(board, i, j)) return false;
+    }
+  } return true;
+}
+/* проверяет конкретный квадрат */
+function isSolvedKvadrat(board, x, y) {
+  const arr = [];
+  for (let i = 3 * x; i < 3 * (x + 1); i++) {
+    for (let j = 3 * y; j < 3 * (y + 1); j++) {
+      arr.push(board[j][i]);
+    }
+  }
+  if (arr.slice().sort().join('') !== '123456789') return false;
+  return true;
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      process.stdout.write(`${board[i][j]} `);
-      if ((j + 1) % 3 === 0) process.stdout.write('  ');
-    }
-    process.stdout.write('\n');
-    if ((i + 1) % 3 === 0) process.stdout.write('\n');
-  }
-  return ("")
+function prettyBoard(result) {
+  const intResult = [];
+  for (let i = 0; i < result.length; i++) {
+    intResult.push(result[i].join(''));
+  } return solve(intResult.join(''));
 }
+console.table(solve('---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----'));
+// const boardString = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
+// const result = [];
+// for (let i = 0; i < boardString.length; i += 9) {
+//   result.push(boardString.slice(i, i + 9).split(''));
+// }
+// console.table(result);
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
