@@ -141,6 +141,7 @@ function stroke(board, height) {
   return result;
 }
 
+
 function column(board, index) {
   let result = '';
   for (let i = 0; i < board.length; i += 1) {
@@ -165,6 +166,7 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(board) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -176,6 +178,7 @@ function prettyBoard(board) {
   }
   return ("")
 }
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
