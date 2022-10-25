@@ -5,7 +5,7 @@
  */
 
 
-const clc = require('cli-color');
+// const clc = require('cli-color');
 const check = require('./check');
 
 function solve(boardString, count = 0, boardArr1) {
@@ -81,12 +81,10 @@ function solve(boardString, count = 0, boardArr1) {
       }
     }
   }
-  }
   //!!!!!!заново запускаем цикл!!!!!
   if (boardArr.join('').includes('NaN') && count < 30) {
     return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1)
   }
-  console.table(boardArr)
   return boardArr
 }
 
@@ -115,7 +113,7 @@ function prettyBoard(board) {
   // let boardToStr = board.map((el) => el.join(' ')).join(' \n');
   // console.table(boardToStr);
 }
-console.table(clc.red(prettyBoard));
+// console.table(clc.red(prettyBoard));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
