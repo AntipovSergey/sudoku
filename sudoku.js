@@ -5,7 +5,7 @@
  */
  const check = require('./check');
 
-function solve(boardString, count = 0) {
+function solve(boardString, count = 0,boardArr1) {
   let boardArr = [];
   let arr = []
   let obj = {}
@@ -41,7 +41,6 @@ function solve(boardString, count = 0) {
     }
   }
   // !!!!!!закидываем все возможные варианты, которых по 1!!!!!!
-  console.log(obj)
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       if (obj.hasOwnProperty(`${i}${j}`)) {
@@ -75,14 +74,24 @@ function solve(boardString, count = 0) {
     }
   }
   }
-
+  console.log(obj)
   //!!!!!!заново запускаем цикл!!!!!
-
-  if (boardArr.join('').includes('NaN') && count < 100) {
-    console.table(boardArr)
-    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1)
+  console.table(boardArr)
+  if (boardArr.join('').includes('NaN') && count < 15) {
+    boardArr1 = JSON.parse(JSON.stringify(boardArr))
+    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1, boardArr1)
+  }
+  if(boardArr.join('').includes('NaN')){
+    let arr123 = Object.keys(obj)[Object.keys(obj).length-1]
+    boardArr[arr123[0]][arr123[1]] = Object.values(obj)[0][0]
+    return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1,boardArr1)
   }
   console.table(boardArr)
+  // if(boardArr.join('').includes('NaN') && count > 25 && count < 35){
+  //   let arr124 = Object.keys(obj)[0]
+  //   boardArr[arr124[0]][arr124[1]] = Object.values(obj)[0][1]
+  //   return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'), count += 1,boardArr1)
+  // }
 }
 
 
@@ -91,10 +100,7 @@ function solve(boardString, count = 0) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-  
-
-  return !board.join(',').split(',').join('').includes('-')
-
+  check.boardIsCorrect()
 }
 
 /**
