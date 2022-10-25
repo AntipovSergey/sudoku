@@ -12,5 +12,8 @@ module.exports = {
   },
   rules: {
     'no-console': 0,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true 
+  },
   },
 };
