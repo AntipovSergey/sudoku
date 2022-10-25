@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
 /* eslint-disable max-len */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
@@ -91,9 +93,9 @@ function solve(boardString) {
     return false;
   }
 
-  console.table(board);
+  // console.table(board);
   getResult();
-  console.table(board);
+  // console.table(board);
   return board;
 }
 
@@ -118,7 +120,35 @@ function isSolved(board) {
  */
 
 function prettyBoard(board) {
+  // Вариант №1
+  const arrRowLine = ['-', '-', '-', '+', '-', '-', '-', '+', '-', '-', '-'];
+  const arrColLine = ['|'];
 
+  board.splice(3, 0, arrRowLine);
+  board.splice(7, 0, arrRowLine);
+
+  const pretty = board.join('\n').replaceAll(',', ' ');
+
+  let prettyBoard = '';
+
+  for (let i = 0; i < pretty.length; i++) {
+    if (i === 5 || i === 11 || i === 23 || i === 29 || i === 41 || i === 47
+       || i === 81 || i === 87 || i === 99 || i === 105 || i === 117 || i === 123
+       || i === 157 || i === 163 || i === 175 || i === 181 || i === 193 || i === 199) {
+      prettyBoard = `${prettyBoard + pretty[i]}| `;
+    } else {
+      prettyBoard += pretty[i];
+    }
+  }
+
+  // Вариант №2
+  // const prettyBoard = board.map((el) => (el = el.join(' '))).join('\n')
+  //   .replace(/(\d \d \d) (\d \d \d) (\d \d \d)/g, '| $1 | $2 | $3 |')
+  //   .replace(/(.+?\n.+?\n.+?\n)/g, '$1-------------------------\n')
+  //   .replace(/^(.+)/, '-------------------------\n$1')
+  //   .replace(/(.+)$/, '$1\n-------------------------');
+
+  return prettyBoard;
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
