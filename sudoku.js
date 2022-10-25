@@ -65,6 +65,7 @@ function getPossibleValues(coordinates, board) {
 function solve(boardString) {
   let board = createBordLines(boardString);
   function getSolution(board) {
+    let count =0
     for (let r = 0; r < board.length; r += 1) {
       for (let c = 0; c < board.length; c += 1) {
         if (board[r][c] === '-') {
@@ -72,10 +73,12 @@ function solve(boardString) {
           let posibleValues = getPossibleValues(coordinates, board);
           if (posibleValues.length === 1) {
             board[r][c] = posibleValues[0];
+            count++
           }
         }
       }
     }
+    if (count===0) return 
     for (let r = 0; r < board.length; r += 1) {
       for (let c = 0; c < board.length; c += 1) {
         if (board[r][c] === '-') return getSolution(board);
@@ -83,7 +86,6 @@ function solve(boardString) {
     }
   }
   getSolution(board);
-  console.log(board)
   return board;
 }
 
