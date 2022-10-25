@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'arrow-parens': 'warn',
-
+    'no-plusplus': 'off'
     'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
   },
 };
