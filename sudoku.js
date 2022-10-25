@@ -3,19 +3,25 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
- const check = require('./check');
 
-function solve(boardString, count = 0) {
-  let boardArr = [];
-  let arr = []
-  let obj = {}
+
+const clc = require('cli-color');
+const check = require('./check');
+
+function solve(boardString, count = 0, boardArr1) {
+  const boardArr = [];
+  const arr = [];
+  const obj = {};
+
   // !!!!!преобразуем строку в нормальный целочисленный массив!!!!!!
   for (let i = 0; i < 81; i++) {
     arr.push(+boardString[i]);
   }
   for (let i = 0; i < 9; i++) {
-    boardArr.push(arr.slice(0, 9))
-    arr.splice(0, 9)
+
+    boardArr.push(arr.slice(0, 9));
+    arr.splice(0, 9);
+
   }
   // !!!!!создаем объект со значениями, которые можем поставить!!!!!
   for (let i = 0; i < 9; i += 1) {
@@ -46,7 +52,7 @@ function solve(boardString, count = 0) {
     for (let j = 0; j < 9; j++) {
       if (obj.hasOwnProperty(`${i}${j}`)) {
         if (obj[`${i}${j}`].length === 1) {
-          boardArr[i][j] = +(obj[`${i}${j}`].join(''))
+          boardArr[i][j] = +(obj[`${i}${j}`].join(''));
         }
       }
     }
@@ -54,24 +60,25 @@ function solve(boardString, count = 0) {
 
   // !!!!!!проверка на квадраты!!!!!!
 
-  let tempArr = []
-  let unique = 0
-  let a = 0
-  let b = 0
+  let tempArr = [];
+  let unique = 0;
+  let a = 0;
+  let b = 0;
   for (let i = 0; i < 3; i++) {
     for (let j = 3; j < 6; j++) {
-      tempArr.push(boardArr[i][j])
+      tempArr.push(boardArr[i][j]);
       if (isNaN(boardArr[i][j])) {
-        a = i
-        b = j
+        a = i;
+        b = j;
       }
     }
     if (isNaN(boardArr[a][b])) {
-    if (tempArr.length === 9) {
-      tempArr.sort()
-      tempArr = tempArr.slice(0, 8)
-      unique = 45 - tempArr.reduce((a, b) => a + b, 0)
-      boardArr[a][b] = unique
+      if (tempArr.length === 9) {
+        tempArr.sort();
+        tempArr = tempArr.slice(0, 8);
+        unique = 45 - tempArr.reduce((a, b) => a + b, 0);
+        boardArr[a][b] = unique;
+      }
     }
   }
   }
@@ -89,7 +96,7 @@ function solve(boardString, count = 0) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-  return check.boardIsCorrect(check.boardStringToArr(board))
+  return check.boardIsCorrect(check.boardStringToArr(board));
 }
 
 /**
@@ -98,8 +105,17 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  const emptyStr = '---------------------------------';
+  const arr = board.map((el) => el.toString().split(',').join(' | '));
+  arr.splice(3, 0, emptyStr);
+  arr.splice(7, 0, emptyStr);
 
+  const finalArr = arr.toString().split(',').join('\n');
+  return finalArr;
+  // let boardToStr = board.map((el) => el.join(' ')).join(' \n');
+  // console.table(boardToStr);
 }
+console.table(clc.red(prettyBoard));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
