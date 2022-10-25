@@ -3,7 +3,7 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-
+ const check = require('./check');
 
 function solve(boardString) {
   let boardArr = [];
@@ -52,6 +52,12 @@ function solve(boardString) {
   if(boardArr.join('').includes('NaN')){
     return solve(boardArr.join(',').split(',').join('').replace(/NaN/g, '-'))
   }
+  //boardArr[1][1] = 2
+  console.table(boardArr)
+  console.log(check.squareIsCorrect(boardArr,6,6))
+  console.log(check.squareIsCorrect(boardArr,6,8))
+  console.log(check.boardIsCorrect(boardArr))
+  
   return boardArr
 }
 
@@ -60,6 +66,7 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+  
   return !board.join(',').split(',').join('').includes('-')
 }
 
