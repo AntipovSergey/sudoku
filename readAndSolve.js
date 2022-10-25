@@ -37,6 +37,7 @@ function readAndSolve(error, fileData) {
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
 
   console.log(sudoku.prettyBoard(solvedPuzzle.board), '\n');
+  console.log(solvedPuzzle.solved);
 }
 
 module.exports = readAndSolve;
