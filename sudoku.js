@@ -38,7 +38,7 @@ function findPossibles(board, i, j) {
   return possibles;
 }
 
-function solve(board) {
+function solveEasy(board) {
   const copiedBoard = JSON.parse(JSON.stringify(board));
   const possibles = [];
 
@@ -50,8 +50,8 @@ function solve(board) {
           e.splice(index, 1);
           if (e.length === 1) {
             board[i][y] = e[0];
-            possibles.splice(possibles.findIndex(k => k.arr === board[i][y]))
-            popFromPossibles(board, e[0], i, y);
+            /* check */possibles.splice(possibles.findIndex(k => k.i === i && k.j === y), 1);
+            popFromPossibles(board, board[i][y], i, y);
           }
         };
       }
@@ -64,8 +64,8 @@ function solve(board) {
           e[j].splice(index, 1);
           if (e[j].length === 1) {
             board[x][j] = e[j][0];
-            possibles.splice(possibles.findIndex(k => k.arr === board[x][j]))
-            popFromPossibles(board, e[j][0], x, j);
+            /* check */possibles.splice(possibles.findIndex(k => k.i === x && k.j === j), 1);
+            popFromPossibles(board, board[x][j], x, j);
           }
         };
       }
@@ -81,21 +81,17 @@ function solve(board) {
             board[x][y].splice(index, 1);
             if (board[x][y].length === 1) {
               board[x][y] = board[x][y][0];
-              possibles.splice(possibles.findIndex(k => k.arr === board[x][y]))
-              popFromPossibles(board, board[x][y][0], x, y);
+              possibles.splice(possibles.findIndex(k => k.i === x && k.j === y), 1);
+              popFromPossibles(board, board[x][y], x, y);
             }
           };
         }
       }
   }
 
-
-
   function fillPossibles(board, possibles) {
-    let changed = false;
-
     const findLimits = (i, j) => ({
-      iMin: Math.floor(i / 3) * 3, 
+      iMin: Math.floor(i / 3) * 3,
       iMax: Math.floor(i / 3) * 3 + 3,
       jMin: Math.floor(j / 3) * 3,
       jMax: Math.floor(j / 3) * 3 + 3,
@@ -104,22 +100,45 @@ function solve(board) {
     const inLimits = (i, j, l) => i >= l.iMin && i < l.iMax && j >= l.jMin && j < l.jMax;
 
     for (let possible of possibles) {
-      const limits = findLimits(possible.i, possible.j);
-      
-      const intersection = possibles
-        .filter(x => (x.i === possible.i || x.j === possible.j || inLimits(x.i, x.j, limits))
-          && x.i !== possible.i && x.j !== possible.j);
-      
-      for (let i = 0; i < possible.arr; i++) {
+      let intersection = possibles
+        .filter(x => x.i === possible.i && x.j !== possible.j);
+
+      for (let i = 0; i < possible.arr.length; i++) {
         if (intersection.every(x => !x.arr.includes(possible.arr[i]))) {
+          board[possible.i][possible.j] = possible.arr[i];
+          possibles.splice(possibles.findIndex(x => x.i === possible.i && x.j === possible.j), 1);
           popFromPossibles(board, possible.arr[i], possible.i, possible.j);
-          possibles.splice(i, 1);
-          changed = true;
+          return true;
+        }
+      }
+
+      intersection = possibles
+        .filter(x => x.j === possible.j && x.i !== possible.i);
+
+      for (let i = 0; i < possible.arr.length; i++) {
+        if (intersection.every(x => !x.arr.includes(possible.arr[i]))) {
+          board[possible.i][possible.j] = possible.arr[i];
+          possibles.splice(possibles.findIndex(x => x.i === possible.i && x.j === possible.j), 1);
+          popFromPossibles(board, possible.arr[i], possible.i, possible.j);
+          return true;
+        }
+      }
+
+      const limits = findLimits(possible.i, possible.j);
+      intersection = possibles
+        .filter(x => inLimits(x.i, x.j, limits) && x.i !== possible.i && x.j !== possible.j);
+      
+      for (let i = 0; i < possible.arr.length; i++) {
+        if (intersection.every(x => !x.arr.includes(possible.arr[i]))) {
+          board[possible.i][possible.j] = possible.arr[i];
+          possibles.splice(possibles.findIndex(x => x.i === possible.i && x.j === possible.j), 1);
+          popFromPossibles(board, possible.arr[i], possible.i, possible.j);
+          return true;
         }
       }
     }
 
-    return changed;
+    return false;
   }
 
   let changed = true;
@@ -134,32 +153,39 @@ function solve(board) {
 
           if (!Array.isArray(foundElement)) {
             copiedBoard[i][j] = foundElement;
+
             popFromPossibles(copiedBoard, foundElement, i, j);
             changed = true;
             continue;
           }
 
           copiedBoard[i][j] = foundElement;
-
           if (first) possibles.push({ i, j, arr: foundElement });
-          else {
-            changed = fillPossibles(copiedBoard, possibles);
-          }
+          else changed = fillPossibles(copiedBoard, possibles);
         }
       }
     }
     first = false;
   }
 
-  return copiedBoard;
+  return {
+    board: copiedBoard,
+    solved: isSolved(copiedBoard),
+    possibles: possibles
+  };
 }
+
+function solveMedium(board, possibles) {
+  
+}
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-  return validate(board) && board.every(x => x.every(y => typeof y === 'number'));
+  return board.every(x => x.every(y => typeof y === 'number'));
 }
 
 /**
@@ -201,7 +227,7 @@ function validate(board) {
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 
 module.exports = {
-  solve,
+  solveEasy,
   isSolved,
   prettyBoard,
   parseBoard,

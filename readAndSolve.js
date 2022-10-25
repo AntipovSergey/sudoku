@@ -10,7 +10,7 @@ function readAndSolve(error, fileData) {
 
   let puzzleNumber = Number(process.argv[2]) || 1;
   
-  puzzleNumber = 6;
+  // puzzleNumber = 12;
 
   if (puzzleNumber > puzzles.length) {
     puzzleNumber = puzzles.length;
@@ -25,7 +25,7 @@ function readAndSolve(error, fileData) {
   console.log(puzzle, '\n');
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
-  const solvedPuzzle = sudoku.solve(puzzle);
+  const solvedPuzzle = sudoku.solveEasy(puzzle);
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
   // if (!sudoku.isSolved(solvedPuzzle)) {
@@ -36,7 +36,7 @@ function readAndSolve(error, fileData) {
   // Код ниже сработает, только если проверка решения судоку прошла успешно.
   console.log(`Судоку №${puzzleNumber} решён успешно!`);
 
-  console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
+  console.log(sudoku.prettyBoard(solvedPuzzle.board), '\n');
 }
 
 module.exports = readAndSolve;
