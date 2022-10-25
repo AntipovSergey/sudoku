@@ -3,7 +3,7 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-
+ const check = require('./check');
 
 function solve(boardString, count = 0) {
   let boardArr = [];
@@ -75,6 +75,7 @@ function solve(boardString, count = 0) {
     }
   }
   }
+
   //!!!!!!заново запускаем цикл!!!!!
 
   if (boardArr.join('').includes('NaN') && count < 100) {
@@ -91,6 +92,9 @@ function solve(boardString, count = 0) {
  */
 function isSolved(board) {
   
+
+  return !board.join(',').split(',').join('').includes('-')
+
 }
 
 /**
