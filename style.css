@@ -87,6 +87,10 @@ td {
   font-family: monospace;
 }
 
+.new {
+  color: rgb(11, 141, 207);
+}
+
 td:nth-child(3n):not(:last-of-type) {
   border-right: 2px solid #000;
 }
@@ -130,4 +134,8 @@ td:nth-child(3n):not(:last-of-type) {
 
 .red {
   background-color: rgb(246, 0, 0);
+}
+
+.man {
+  position: relative;
 }

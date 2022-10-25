@@ -26,6 +26,7 @@ Array.from(document.querySelectorAll('.input')).forEach(x => {
     const puzzle = puzzles[sudoku];
     Array.from(table.rows).forEach((x, i) => {
       Array.from(x.cells).forEach((y, j) => {
+        y.classList.remove('new');
         y.textContent = typeof puzzle[i][j] === 'number' ? puzzle[i][j] : '';
       })
     })
@@ -46,7 +47,10 @@ Array.from(document.querySelectorAll('.state')).forEach(x => {
       const puzzle = solveEasy(puzzles[sudoku]).board;
       Array.from(table.rows).forEach((x, i) => {
         Array.from(x.cells).forEach((y, j) => {
-          y.textContent = typeof puzzle[i][j] === 'number' ? puzzle[i][j] : '';
+          if (y.textContent === '') {
+            y.textContent = typeof puzzle[i][j] === 'number' ? puzzle[i][j] : '';
+            y.classList.add('new');
+          }
         })
       })
     }
