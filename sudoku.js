@@ -4,7 +4,6 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-
 function solve(boardString) {
   const board = [];
   const preBoard = boardString.split('');
@@ -20,28 +19,23 @@ function solve(boardString) {
     }
   }
 
-const findempty = board => {
-  for(let i = 0; i < board.length; i++){
-    for(let j = 0; j < board.length; j++){
-      if(board[i][j] === '-'){
-        return[i, j]
+  const findempty = (board) => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board.length; j++) {
+        if (board[i][j] === '-') {
+          return [i, j];
+        }
       }
     }
-  }
-  return null
+    return null;
+  };
 }
-}
-
-
-
-
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
 
 }
 
