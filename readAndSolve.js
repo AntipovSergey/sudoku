@@ -1,4 +1,5 @@
 // Подключить функции из файла sudoku.js.
+const fs = require('fs');
 const sudoku = require('./sudoku');
 
 function readAndSolve(error, fileData) {
@@ -7,7 +8,7 @@ function readAndSolve(error, fileData) {
   if (error) {
     throw error;
   }
-
+ 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
   const puzzles = fileData
     .split('\n')
