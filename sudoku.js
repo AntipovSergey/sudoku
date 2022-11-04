@@ -3,8 +3,18 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+const fs = require('fs');
+
 function solve(boardString) {
+  // const terminal = process.argv[2];
+  if (boardString !== undefined) {
+    console.log("1");
+  }
+  const fileData = fs.readFileSync('puzzles.txt', 'utf8');
+  console.log(fileData, 'fileData');
+  return fileData;
 }
+solve();
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
