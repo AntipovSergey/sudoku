@@ -6,6 +6,18 @@
 // const proc = process.argv[2];
 // console.log(proc);
 
+// function valid(arr, row, col, value) {
+//   if (arr[row][col] === value) {
+//     return true;
+//   }
+//   return false;
+// }
+
+// const neWarr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// console.log(horizontal(neWarr, 10));
+
+const horizontal = (arr, row, value) => arr[row].includes(value);
+
 function solve(boardString) {
   const resultStr = [];
   for (let i = 0; i < boardString.length; i += 9) {
@@ -19,11 +31,24 @@ function solve(boardString) {
       }
     }
   }
-  const example = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  // console.log(boardNumb[0][0], boardNumb[1][0], boardNumb[2][0]); ВЕРТИКАЛЬ
+  // console.log(boardNumb[0][0], boardNumb[0][1], boardNumb[0][2]); ГОРИЗОНТ
+  for (let row = 0; row < boardNumb.length; row += 1) {
+    console.log('Начало новой строки');
+    for (let col = 0; col < boardNumb.length; col++) {
+      if (boardNumb[row][col] === 0) {
+        for (let value = 1; value <= 9; value++) {
+          console.log(horizontal(boardNumb, row, value));
+        }
+      }
+    }
+  }
 
   console.table(boardNumb);
 }
 console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.

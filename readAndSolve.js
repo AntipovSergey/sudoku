@@ -1,11 +1,9 @@
 // Подключить функции из файла sudoku.js.
-
 const sudoku = require('./sudoku');
 
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
   // завершить работу функции.
-
   if (error) {
     throw error;
   }
