@@ -5,17 +5,18 @@ const fs = require('fs');
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 const read = fs.readFileSync('./puzzles.txt', 'utf-8');
-const slice =read.slice(0,81);
+const slice = read.slice(0, 81);
 // function boardString() {
 //   return read.slice(0, 82)
 // }
 function solve(boardString) {
   const table = [];
   const split = boardString.split('');
-  for (let i = 9; i < split.length; i+=10) {
+  for (let i = 9; i < split.length; i += 10) {
     split.splice(i, 0, ',');
   }
-  return split
+  return split.join('').split(',').map((x) => x.split(''))
+
   // for (let i = 0; i < boardString.length; i++) {
   //   const row = [];
   //   for (let j = 0; j < 9; j+=10) {
@@ -26,6 +27,7 @@ function solve(boardString) {
   // }
   // return table
 }
+console.table(solve(slice));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
