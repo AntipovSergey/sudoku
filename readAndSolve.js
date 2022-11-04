@@ -13,6 +13,7 @@ function readAndSolve(error, fileData) {
     .split('\n')
     .filter((line) => line !== '');
 
+  
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
   let puzzleNumber = Number(process.argv[2]) || 1;
 
@@ -42,5 +43,8 @@ function readAndSolve(error, fileData) {
   // игрового поля в строку в желаемом формате.
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
 }
+
+
+
 
 module.exports = readAndSolve;
