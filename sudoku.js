@@ -3,7 +3,14 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+// const proc = process.argv[2];
+// console.log(proc);
+
 function solve(boardString) {
+  const resultStr = [];
+  for (let i = 0; i < boardString.length; i += 9) {
+    resultStr.push(boardString.slice(i, i + 9));
+  }
 }
 
 /**
