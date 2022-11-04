@@ -1,3 +1,4 @@
+const { Console } = require('console');
 const fs = require('fs');
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -10,23 +11,48 @@ const slice = read.slice(0, 81);
 //   return read.slice(0, 82)
 // }
 function solve(boardString) {
-  const table = [];
   const split = boardString.split('');
   for (let i = 9; i < split.length; i += 10) {
     split.splice(i, 0, ',');
   }
-  return split.join('').split(',').map((x) => x.split(''))
+  const table = split.join('').split(',').map((x) => x.split('')); // превратить просто в переменную, с которой работать дальше
 
-  // for (let i = 0; i < boardString.length; i++) {
-  //   const row = [];
-  //   for (let j = 0; j < 9; j+=10) {
-  //     row.push(boardString[j]);
-  //   }
-  //   table.push(row);
-  //   boardString.slice()
-  // }
-  // return table
+  // ----- Поиск пустых клеток----------
+
+  function findEmpty(table) {
+    for (let i = 0; i < table.length; i++) {
+      for (let j = 0; j < table.length; j++) {
+        if (table[i][j] === '-') {
+          return [i, j];
+        }
+      }
+    }
+    return null;
+  }
+
+  // -------Проверка по строкам--------
+  const marker = 0;
+
+  function checkRows(table, pos, num) {
+    const [i, j] = pos;
+    for (let h = 0; h < table.length; h++) {
+      if (table[h][j] === num && h !== i) return false;
+    }
+
+    for (let h = 0; h < table.length; h++) {
+      if (table[i][h] === num && h !== j) return false;
+    }
+
+    // for (let h = o; h < table.length; h++) {
+    //   h = String(h)
+    //     if (table[i][j].includes(String(j))) {
+    //       return false
+    //     }
+    //     return true
+    // }
+  }
 }
+
 console.table(solve(slice));
 
 /**
