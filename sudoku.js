@@ -1,11 +1,27 @@
+const fs = require('fs');
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+const read = fs.readFileSync('./puzzles.txt', 'utf-8');
+const slice = read.split('\n').filter((line) => line !== '')
+// console.log(slice);
+// function boardString() {
+//   return read.slice(0, 82)
+// }
 function solve(boardString) {
-
+ 
+console.log('xxxxxx',slice);
+  let r;
+for (let x = 0; x < slice.length; x = x+9) {
+    r = slice.slice(x,x+10)
+  
 }
+console.log(r);
+}
+
+solve(slice)
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
