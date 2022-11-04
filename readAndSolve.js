@@ -1,15 +1,9 @@
 // Подключить функции из файла sudoku.js.
-const fs = require('fs');
 const sudoku = require('./sudoku');
 
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
   // завершить работу функции.
-  const readFile = fs.readFileSync(
-    './puzzles.txt',
-    'utf-8',
-  ).trim().split('\n');
-
   if (error) {
     throw error;
   }
