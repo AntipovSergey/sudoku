@@ -1,10 +1,74 @@
+const { Console } = require('console');
+const fs = require('fs');
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+const read = fs.readFileSync('./puzzles.txt', 'utf-8');
+const slice = read.split('\n').filter((line) => line !== '')
+// console.log(slice);
+// function boardString() {
+//   return read.slice(0, 82)
+// }
 function solve(boardString) {
+
+
+//console.log('xxxxxx',slice);
+//  let r;
+//or (let x = 0; x < slice.length; x = x+9) {
+//    r = slice.slice(x,x+10)
+  
+//}
+//console.log(r);
+//}
+
+solve(slice)
+
+  const split = boardString.split('');
+  for (let i = 9; i < split.length; i += 10) {
+    split.splice(i, 0, ',');
+  }
+  const table = split.join('').split(',').map((x) => x.split('')); // превратить просто в переменную, с которой работать дальше
+
+  // ----- Поиск пустых клеток----------
+
+  function findEmpty(table) {
+    for (let i = 0; i < table.length; i++) {
+      for (let j = 0; j < table.length; j++) {
+        if (table[i][j] === '-') {
+          return [i, j];
+        }
+      }
+    }
+    return null;
+  }
+
+  // -------Проверка по строкам--------
+  const marker = 0;
+
+  function checkRows(table, pos, num) {
+    const [i, j] = pos;
+    for (let h = 0; h < table.length; h++) {
+      if (table[h][j] === num && h !== i) return false;
+    }
+
+    for (let h = 0; h < table.length; h++) {
+      if (table[i][h] === num && h !== j) return false;
+    }
+
+    // for (let h = o; h < table.length; h++) {
+    //   h = String(h)
+    //     if (table[i][j].includes(String(j))) {
+    //       return false
+    //     }
+    //     return true
+    // }
+  }
 }
+
+console.table(solve(slice));
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -12,7 +76,8 @@ function solve(boardString) {
  */
 function isSolved(board) {
 
-}
+};
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
