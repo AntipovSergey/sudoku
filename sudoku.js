@@ -4,7 +4,6 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-let sudokuLine = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function solver() {
   let res = [];
@@ -13,8 +12,32 @@ function solver() {
   }
   return res;
 }
-// console.log(solver());
-// console.log(solver()[0][2]);
+    
+  const solve = () => {
+    const currPos = findEmpty(board);
+    if (currPos === null) {
+      return true;
+    }
+    let board = solver();
+    for (let i = 1; i < boxLength + 1; i++) {
+      const currNum = i.toString();
+      const isValid = valid(currNum, currPos, board);
+      console.log('currPos=', currPos, 'currNum=', currNum, 'isValid=', isValid);
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (solve()) {
+          return true;
+        }
+        board[x][y] = '-';
+      }
+    }
+    return false;
+  };
+  solve();
+  return board;
+};
 
 /* Проверка валидности вводимого значения */
 
@@ -52,6 +75,9 @@ return true
 
   
 
+
+console.table(solver());
+console.table(sudokuSolver(solver()));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
