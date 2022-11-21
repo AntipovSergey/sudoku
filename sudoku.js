@@ -93,6 +93,11 @@ function isSolved(board) {
  */
 
 function prettyBoard(board) {
+
+  if (!(Array.isArray(board))) {
+    throw console.error(`В board должен быть массив, а пришел ${typeof board}`);
+  }
+  
   //пример аргумента который ожидает функция
   // array = [
   //   [1, 2, 3, 1, 2, 3, 1, 2, 3],
