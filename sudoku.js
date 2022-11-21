@@ -4,11 +4,18 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-function solve(board) { 
+function solve(board) {
+  solveBoard(board);
+  console.log('обращение к solve в файле sudoku.js', board);
+  return board;
+}
+
+
+function solveBoard(board) { 
   let row = 0;
   let col = 0;
   let emptySlots = true;
-  if (row === 8 && column === 8) return true;
+  // if (row === 8 && column === 8) return true;
 
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
@@ -16,17 +23,18 @@ function solve(board) {
         row = i;
         col = j;
         emptySlots = false;
+        break;
       }
     }
-    
+    if (!emptySlots) break;  
   }
-  if (emptySlots === true) return true;
-  let num = 1;
+  if (emptySlots) return true;
 
   for (let i = 1; i <= 9; i += 1) {
-    board[row][col] = num;
-    if (solve(board) === true) return true;
-    else board[row][col] = 0;
+    board[row][col] = i;
+    if (solve(board)) {
+      return true;
+    } else board[row][col] = 0;
   }
   return false;
 }
@@ -43,8 +51,9 @@ function solve(board) {
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 
-// console.log(solve(emptyBoard));
+// console.log(solveBoard(emptyBoard));
 // console.log(emptyBoard);
+console.log('обращение к solve(emptyBoard)', solve(emptyBoard));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
