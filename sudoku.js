@@ -43,8 +43,8 @@ function solve(board) {
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 
-console.log(solve(emptyBoard));
-console.log(emptyBoard);
+// console.log(solve(emptyBoard));
+// console.log(emptyBoard);
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -68,11 +68,11 @@ function isSolved(board) {
       if (vertical.indexOf(vertical[j]) !== vertical.lastIndexOf(vertical[j])) return false;
     }
   }
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      square.push(board[i][j]);
-    }
-  }
+  // for (let i = 0; i < 3; i++) {
+  //   for (let j = 0; j < 3; j++) {
+  //     square.push(board[i][j]);
+  //   }
+  // }
   return true;
 }
 
@@ -119,6 +119,8 @@ function prettyBoard(board) {
 
   return res.join("")
 }
+
+// console.log(prettyBoard(emptyBoard));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
