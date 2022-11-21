@@ -14,6 +14,34 @@ function getSquareElements(board, x, y) {
   }
   return arr.filter(el => el !== '-');
 }
+function findLastNumber(arrUnique) {
+  for (let i = 1; i <= 9; i++) {
+    if (!arrUnique.includes(i.toString())) {
+      return i.toString();
+    }
+  }
+}
+function hasEmptyCells(arr) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (arr[i][j] === '-') {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function getString(arr) {
+  let res = '';
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      res += arr[i][j];
+    }
+  }
+  return res;
+}
+
 function solve(boardString) {
   const arr = [];
   const arrColumns = [];
@@ -27,21 +55,27 @@ function solve(boardString) {
     }
     arrColumns.push(newColumn);
   }
+
+  let step = 0;
   //i строка j столбец
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (arr[i][j] === 'x') {
-        const newArrI = arr[i].filter(el => el !== '-');
-        const newArrJ = arrColumns[j].filter(el => el !== '-');
-        const newSq = getSquareElements(arr, i, j);
-        const arrUnique = [...new Set([...newArrI, ...newArrJ, ...newSq])];
-        console.log(arrUnique);
+  while (hasEmptyCells(arr) && step <= 10) {
+    step += 1;
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (arr[i][j] === '-') {
+          const newArrI = arr[i].filter(el => el !== '-');
+          const newArrJ = arrColumns[j].filter(el => el !== '-');
+          const newSq = getSquareElements(arr, i, j);
+          const arrUnique = [...new Set([...newArrI, ...newArrJ, ...newSq])];
+          if (arrUnique.length === 8) {
+            arr[i][j] = findLastNumber(arrUnique);
+            arrColumns[j][i] = findLastNumber(arrUnique);
+          }
+        }
       }
     }
   }
-
-  const strPuz = '1x58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-  console.log(solve(strPuz));
+  return getString(arr);
 }
 
 
