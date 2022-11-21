@@ -4,7 +4,16 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  let arr = boardString.split('\n');
+  let sud = [];
+  for( let i = 0; i < arr.length - 1; i += 1){
+    let atributes = arr[i].split(',');
+    sud.push(atributes)
 }
+return sud
+}
+
+console.log(solve(boardString));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
