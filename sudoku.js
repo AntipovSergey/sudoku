@@ -3,32 +3,53 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {}
 
+function solve(board) { 
+  let row = 0;
+  let col = 0;
+  let emptySlots = true;
+  if (row === 8 && column === 8) return true;
 
-function solve(boardString) { 
-  let arr = [];
-  for(let i = 0; i < boardString.length; i += 1){
-    arr.push(boardString[i])
-    console.log(arr)
+  for (let i = 0; i < 9; i += 1) {
+    for (let j = 0; j < 9; j += 1) {
+      if (board[i][j] === 0) {
+        row = i;
+        col = j;
+        emptySlots = false;
+      }
+    }
+    
   }
+  if (emptySlots === true) return true;
+  let num = 1;
+
+  for (let i = 1; i <= 9; i += 1) {
+    board[row][col] = num;
+    if (solve(board) === true) return true;
+    else board[row][col] = 0;
+  }
+  return false;
 }
 
-//  const array = [
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
+ let emptyBoard = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
+
+console.log(solve(emptyBoard));
+console.log(emptyBoard);
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {}
-
 
 function isSolved(board) {
   let line = [];
@@ -47,11 +68,11 @@ function isSolved(board) {
       if (vertical.indexOf(vertical[j]) !== vertical.lastIndexOf(vertical[j])) return false;
     }
   }
-  // for (let i = 0; i < 3; i++) {
-  //   for (let j = 0; j < 3; j++) {
-  //     square.push(board[i][j]);
-  //   }
-  // }
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      square.push(board[i][j]);
+    }
+  }
   return true;
 }
 
