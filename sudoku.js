@@ -5,16 +5,23 @@
  */
 
 
+function solver() {
+  let res = [];
+  for (let i = 0; i < sudokuLine.length; i += 9) {
+    res.push(sudokuLine.slice(i, i + 9).split(''));
+  }
+  return res;
+}
     
-
   const solve = () => {
     const currPos = findEmpty(board);
     if (currPos === null) {
       return true;
     }
+    let board = solver();
     for (let i = 1; i < boxLength + 1; i++) {
       const currNum = i.toString();
-      const isValid = validate(currNum, currPos, board);
+      const isValid = valid(currNum, currPos, board);
       console.log('currPos=', currPos, 'currNum=', currNum, 'isValid=', isValid);
       if (isValid) {
         const [x, y] = currPos;
@@ -31,6 +38,43 @@
   solve();
   return board;
 };
+
+/* Проверка валидности вводимого значения */
+
+let sudokuChois = solver();
+
+const valid = (num, position, sudokuChois) => {
+  let [r,c] = position;
+
+/* Строка */
+for (let i = 0; i < 9; i++) {
+  if(sudokuChois[i][c] === num && i !== r) {
+    return false;
+  }
+}
+/* Столбец */
+for (let i = 0; i < 9; i++) {
+  if(sudokuChois[r][i] === num && i !== c) {
+    return false;
+  }
+}
+/* Внутренний квадрат */
+let startPositionCubeRow = Math.floor(r/3)*3;
+let startPositionCubeCol = Math.floor(c/3)*3;
+for (let i = startPositionCubeRow; i < startPositionCubeRow + startPositionCubeCol; i++){
+  for (let j = startPositionCubeCol; j < startPositionCubeCol + startPositionCubeRow; j++){
+    if(sudokuChois[i][j] === num && i !== r && j !== c) {
+      return false
+    }
+  }
+}
+return true
+}
+
+
+
+  
+
 
 console.table(solver());
 console.table(sudokuSolver(solver()));
