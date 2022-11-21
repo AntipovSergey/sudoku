@@ -5,11 +5,13 @@
  */
 
 function solve(boardString) { 
-  let arr = []
+  let arr = [];
   for(let i = 0; i < boardString.length; i += 1){
     arr.push(boardString[i])
     console.log(arr)
   }
+}
+
 //  const array = [
 //   [1, 2, 3, 4, 5, 6, 7, 8, 9],
 //   [1, 2, 3, 4, 5, 6, 7, 8, 9],
@@ -44,11 +46,11 @@ function isSolved(board) {
       if (vertical.indexOf(vertical[j]) !== vertical.lastIndexOf(vertical[j])) return false;
     }
   }
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      square.push(board[i][j]);
-    }
-  }
+  // for (let i = 0; i < 3; i++) {
+  //   for (let j = 0; j < 3; j++) {
+  //     square.push(board[i][j]);
+  //   }
+  // }
   return true;
 }
 
