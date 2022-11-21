@@ -39,10 +39,33 @@ function solveBoard(board) {
   return false;
 }
 
+function canPlace(num, row, col, board) {  // проверяет можно ли ставить элемент в эту точку
+  if (board[row].indexOf(num) > 0) { // проверка строки
+    // console.log('row is false because of element', row, board[row].indexOf(num));
+    return false;
+  };
+  for (let i = 0; i < board.length; i++) { // проверка столбца
+    if (board[i][col] === num) {
+      // console.log('column is false because of element', i, col);
+      return false;
+    };
+  }
+  let startHorizontal = row - row % 3; // откуда начинать считать квадрат по горизонтали
+  let startVertical = col - col % 3; // откуда начинать считать квадрат по вертикали
+  for (let i = startHorizontal; i < startHorizontal + 3; i += 1) { // проверка квадрата
+    for (let j = startVertical; j < startVertical + 3; j += 1) {
+      if (board[i][j] === num) {
+        // console.log('square is false because of element', i, j);
+        return false};
+    }
+  }
+  return true; // если все выше не проходят, то возвращает, что можно ставить
+}
+
  let emptyBoard = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 2, 0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 7, 0, 0, 0, 0],
+  [0, 0, 0, 0, 3, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -51,9 +74,11 @@ function solveBoard(board) {
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ]
 
+// console.log(canPlace(1, 2, 3, emptyBoard)); // проверка функции canPlace
+
 // console.log(solveBoard(emptyBoard));
 // console.log(emptyBoard);
-console.log('обращение к solve(emptyBoard)', solve(emptyBoard));
+// console.log('обращение к solve(emptyBoard)', solve(emptyBoard));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
