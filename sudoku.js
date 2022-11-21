@@ -111,6 +111,39 @@ function isSolved(board) {
 }
 
 // console.log(isSolved(array));
+
+const arrBoard = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+function makeBoard(arrBoard){
+  const res = arrBoard.split('')
+
+    for(let i = 0; i < res.length; i++){
+      if(res[i] === '-'){
+        res[i] = 0
+
+      }
+        
+      res[i] = +res[i]
+      
+    } 
+    let start = 0;
+    let finish = 8;
+    let arrBig = []
+    for(let j = 0; j <= 8; j++ ){
+      let arrS = []
+      for(let r = start; r <= finish; r++){
+        arrS.push(res[r])
+      }
+      // console.log(arrS)
+      arrBig.push(arrS)
+      start += 9
+      finish += 9
+    }
+    return arrBig
+
+  }
+  // console.log(makeBoard(arrBoard))
+
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
