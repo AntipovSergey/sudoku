@@ -28,6 +28,7 @@ function readAndSolve(error, fileData) {
 
   const puzzleArr = sudoku.makeBoard(puzzle);
 
+
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzleArr);
   console.log('Обращение к solve(puzzle)', solvedPuzzle);
