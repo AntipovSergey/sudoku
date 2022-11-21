@@ -13,13 +13,43 @@ function solver() {
   }
   return res;
 }
-console.log(solver());
-console.log(solver()[0][2]);
+// console.log(solver());
+// console.log(solver()[0][2]);
 
-// console.log(solve(boardString) )
+/* Проверка валидности вводимого значения */
 
- //  ТЕСТ!!!!!
-  
+let sudokuChois = solver();
+
+const valid = (num, position, sudokuChois) => {
+  let [r,c] = position;
+
+/* Строка */
+for (let i = 0; i < 9; i++) {
+  if(sudokuChois[i][c] === num && i !== r) {
+    return false;
+  }
+}
+/* Столбец */
+for (let i = 0; i < 9; i++) {
+  if(sudokuChois[r][i] === num && i !== c) {
+    return false;
+  }
+}
+/* Внутренний квадрат */
+let startPositionCubeRow = Math.floor(r/3)*3;
+let startPositionCubeCol = Math.floor(c/3)*3;
+for (let i = startPositionCubeRow; i < startPositionCubeRow + startPositionCubeCol; i++){
+  for (let j = startPositionCubeCol; j < startPositionCubeCol + startPositionCubeRow; j++){
+    if(sudokuChois[i][j] === num && i !== r && j !== c) {
+      return false
+    }
+  }
+}
+return true
+}
+
+
+
   
 
 
