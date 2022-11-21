@@ -3,14 +3,45 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-
-
-const boardString = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
-function solve(boardString) {
-  const board = [];
-  for (let i = 0; i < boardString.length; i += 9) {
-    board.push(boardString.slice(i, i + 9).split(''));
+function getSquareElements(board, x, y) {
+  const a = Math.floor(x / 3);
+  const b = Math.floor(y / 3);
+  const arr = [];
+  for (let i = 3 * a; i < 3 * a + 3; i++) {
+    for (let j = 3 * b; j < 3 * b + 3; j++) {
+      arr.push(board[i][j]);
+    }
   }
+  return arr.filter(el => el !== '-');
+}
+function solve(boardString) {
+  const arr = [];
+  const arrColumns = [];
+  for (let i = 0; i < 81; i = i + 9) {
+    arr.push(boardString.slice(i, i + 9).split(''));
+  }
+  for (let i = 0; i < 9; i++) {
+    const newColumn = [];
+    for (let j = 0; j < 9; j++) {
+      newColumn.push(arr[j][i]);
+    }
+    arrColumns.push(newColumn);
+  }
+  //i строка j столбец
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (arr[i][j] === 'x') {
+        const newArrI = arr[i].filter(el => el !== '-');
+        const newArrJ = arrColumns[j].filter(el => el !== '-');
+        const newSq = getSquareElements(arr, i, j);
+        const arrUnique = [...new Set([...newArrI, ...newArrJ, ...newSq])];
+        console.log(arrUnique);
+      }
+    }
+  }
+
+  const strPuz = '1x58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+  console.log(solve(strPuz));
 }
 
 
@@ -44,9 +75,7 @@ console.log(isSolved('1234567891234567891234567891234567891234567891234567891234
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
