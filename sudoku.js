@@ -3,17 +3,26 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
-  let arr = boardString.split('\n');
-  let sud = [];
-  for( let i = 0; i < arr.length - 1; i += 1){
-    let atributes = arr[i].split(',');
-    sud.push(atributes)
-}
-return sud
-}
 
-console.log(solve(boardString));
+let sudokuLine = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+
+function solver() {
+  let res = [];
+  for (let i = 0; i < sudokuLine.length; i += 9) {
+    res.push(sudokuLine.slice(i, i + 9).split(''));
+  }
+   return res;
+
+}
+console.log(solver());
+console.log(solver()[0][2]);
+
+// console.log(solve(boardString) )
+
+ //  ТЕСТ!!!!!
+  
+  
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -32,9 +41,25 @@ function prettyBoard(board) {
 
 }
 
+let solveSudoku = function(board){
+  const size = 9
+  const boxSize = 3
+
+  function findEmpty(board){
+     for( let r = 0; r < size; i += 1){
+      for( let c = 0; c < size; i += 1){
+        if(board[r][c] === '-'){
+          return [r,c]
+        }
+      }
+     }
+     return null
+  }
+}
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
-  solve,
+  // solve,
   isSolved,
   prettyBoard,
 };
