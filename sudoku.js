@@ -3,24 +3,22 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
- const fs = require('fs');
- const boardString = fs.readFileSync('./puzzles.txt','utf-8',);
 
- 
+let sudokuLine = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
-function solve(boardString) {
- console.log(boardString)
-  let arrayOfTxt = boardString.split('\n');
-  let allSudoku = [];
-  for (let i = 0; i < arrayOfTxt.length-1; i++){
-    let atributes = arrayOfTxt[i].split(',');
-    allSudoku.push(atributes)
+function solver() {
+  let res = [];
+  for (let i = 0; i < sudokuLine.length; i += 9) {
+    res.push(sudokuLine.slice(i, i + 9).split(''));
   }
-  
-  return allSudoku
+  return res;
 }
+console.log(solver());
+console.log(solver()[0][2]);
 
 // console.log(solve(boardString) )
+
+ //  ТЕСТ!!!!!
   
   
 
@@ -44,7 +42,7 @@ function prettyBoard(board) {
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
-  solve,
+  // solve,
   isSolved,
   prettyBoard,
 };
