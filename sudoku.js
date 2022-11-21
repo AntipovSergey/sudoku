@@ -3,7 +3,12 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
+function solve(boardString) { 
+  let arr = []
+  for(let i = 0; i < boardString.length; i += 1){
+    arr.push(boardString[i])
+    console.log(arr)
+  }
 }
 
 /**
