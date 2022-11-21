@@ -3,8 +3,27 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+ const fs = require('fs');
+ const boardString = fs.readFileSync('./puzzles.txt','utf-8',);
+
+ 
+
 function solve(boardString) {
+ console.log(boardString)
+  let arrayOfTxt = boardString.split('\n');
+  let allSudoku = [];
+  for (let i = 0; i < arrayOfTxt.length-1; i++){
+    let atributes = arrayOfTxt[i].split(',');
+    allSudoku.push(atributes)
+  }
+  
+  return allSudoku
 }
+
+// console.log(solve(boardString) )
+  
+  
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
