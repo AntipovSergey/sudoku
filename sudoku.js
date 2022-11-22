@@ -8,7 +8,6 @@ const chalk = require("chalk");
 
 function solve(board) {
   solveBoard(board);
-  // console.log("обращение к solve в файле sudoku.js", board);
   return board;
 }
 
@@ -40,49 +39,24 @@ function solveBoard(board) {
 
 function canPlace(num, row, col, board) {
   // проверяет можно ли ставить элемент в эту точку
-  if (board[row].indexOf(num) > 0) {
+  for (let i = 0; i < board.length; i++) {
     // проверка строки
-    // console.log('row is false because of element', row, board[row].indexOf(num));
-    return false;
+    if (board[row][i] === num) return false;
   }
   for (let i = 0; i < board.length; i++) {
     // проверка столбца
-    if (board[i][col] === num) {
-      // console.log('column is false because of element', i, col);
-      return false;
-    }
+    if (board[i][col] === num) return false;
   }
   let startHorizontal = row - (row % 3); // откуда начинать считать квадрат по горизонтали
   let startVertical = col - (col % 3); // откуда начинать считать квадрат по вертикали
   for (let i = startHorizontal; i < startHorizontal + 3; i += 1) {
     // проверка квадрата
     for (let j = startVertical; j < startVertical + 3; j += 1) {
-      if (board[i][j] === num) {
-        // console.log('square is false because of element', i, j);
-        return false
-      };
+      if (board[i][j] === num) return false;
     }
   }
   return true; // если все выше не проходят, то возвращает, что можно ставить
-}
-
-let emptyBoard = [
-  [0, 0, 1, 2, 0, 0, 0, 0, 0],
-  [0, 1, 0, 0, 7, 0, 0, 0, 0],
-  [0, 0, 0, 0, 3, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
-
-// console.log(canPlace(1, 2, 3, emptyBoard)); // проверка функции canPlace
-
-// console.log(solveBoard(emptyBoard));
-// console.log(emptyBoard);
-// console.log('обращение к solve(emptyBoard)', solve(emptyBoard));
+} 
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -96,7 +70,10 @@ function isSolved(board) {
   for (let i = 0; i < board.length; i++) {
     line = board[i];
     for (let j = 0; j < board.length; j++) {
-      if (line.indexOf(line[j]) !== line.lastIndexOf(line[j])) return false;
+      if (line.indexOf(line[j]) !== line.lastIndexOf(line[j])) {
+        console.log(i, 'line');
+        return false
+      };
     }
   }
   for (let i = 0; i < board.length; i++) {
@@ -117,8 +94,6 @@ function isSolved(board) {
 
 // console.log(isSolved(array));
 
-const arrBoard =
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 function makeBoard(arrBoard) {
   const res = arrBoard.split("");
 
@@ -144,7 +119,6 @@ function makeBoard(arrBoard) {
   }
   return arrBig;
 }
-// console.log(makeBoard(arrBoard))
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -153,18 +127,6 @@ function makeBoard(arrBoard) {
  *   //пример аргумента который ожидает функция
 
  */
-
-// array = [
-//   [1, 2, 3, 1, 2, 3, 1, 2, 3],
-//   [4, 5, 6, 4, 5, 6, 4, 5, 6],
-//   [7, 8, 9, 7, 8, 9, 7, 8, 9],
-//   [1, 2, 3, 1, 2, 3, 1, 2, 3],
-//   [4, 5, 6, 4, 5, 6, 4, 5, 6],
-//   [7, 8, 9, 7, 8, 9, 7, 8, 9],
-//   [1, 2, 3, 1, 2, 3, 1, 2, 3],
-//   [4, 5, 6, 4, 5, 6, 4, 5, 6],
-//   [7, 8, 9, 7, 8, 9, 7, 8, 9],
-// ];
 
 function prettyBoard(board) {
   if (!Array.isArray(board)) {
@@ -208,8 +170,6 @@ function prettyBoard(board) {
 
   return res;
 }
-
-// console.log(prettyBoard(emptyBoard));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
