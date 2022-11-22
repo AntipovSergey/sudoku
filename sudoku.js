@@ -213,15 +213,36 @@ function isSolved(board) {
 
   return Object.values(dict).every(el => el === 9);
 }
-//console.log(isSolved('123456789123456789123456789123456789123456789123456789123456789123456789123456789'));
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(boardStr) {
-  return boardStr;
+  const arr = [];
+  for (let i = 0; i < 81; i = i + 9) {
+    arr.push(boardStr.slice(i, i + 9).split(''));
+  }
+  let res = '';
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 3 === 0 && i !== 0) {
+      res = `${res} \n------------------------`;
+    }
+    for (let j = 0; j < arr.length; j++) {
+      if (j % 3 === 0 && j !== 0) {
+        res = ` ${res}` + ' | ';
+      }
+      if (j % 9 === 0) {
+        res = `${res} \n`;
+      }
+      res = res + ' ' + arr[i][j];
+    }
+  }
+  return res;
 }
+
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
