@@ -4,12 +4,14 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-function sudokuToArr(sudokuLine) {
+
+function sudokuToArr(line) {
   const res = [];
-  // let sudokuLine = puzzle;
-  for (let i = 0; i < sudokuLine.length; i += 9) {
-    res.push(sudokuLine.slice(i, i + 9).split(''));
+  for (let i = 0; i < line.length; i += 9) {
+    res.push(line.slice(i, i + 9).split(''));
+
   }
+  console.table(res)
   return res;
 }
 function solve(str) {
@@ -79,30 +81,45 @@ function solve(str) {
     return false;
   };
   numsFinder();
-  console.table(sudokuChois);
+
+  
   return sudokuChois;
 }
+
+// console.table(sudokuToArr());
+// console.table(solve(sudokuToArr()));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+
 function isSolved(board) {
+
   for (let i = 0; i < board.length; i++) {
     if (board[i].indexOf('-') === -1) return true;
   }
   return false;
+
 }
+ 
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-  return 'поздравляю';
-}
 
+
+function prettyBoard(board) {
+  let stringPretty = '';
+  for(let i = 0; i < board.length; i++){
+  stringPretty = stringPretty + board[i].join(' ') + '\n';
+  }
+  return '\n' + stringPretty
+
+}
+  
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
