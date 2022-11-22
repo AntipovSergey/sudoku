@@ -85,7 +85,8 @@ function isSolved(board) {
     }
   }
   for (let row = 0; row < board.length; row += 3) {
-    for (let column = 0; column < array.length; column += 3) {
+    for (let column = 0; column < board.length; column += 3) {
+      square = [];
       for (let i = row; i < row + 3; i += 1) {
         for (let j = column; j < column + 3; j += 1) {
           square.push(board[i][j]);
@@ -181,7 +182,7 @@ function prettyBoard(board) {
   log(chalk.white.bgMagentaBright.bold(' ' + res[9] + ' '))
   log(chalk.white.bgMagentaBright.bold('                       '))
 
-  return res;
+  // return res;
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
