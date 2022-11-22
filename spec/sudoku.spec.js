@@ -24,11 +24,16 @@ describe("Tests", function () {
     it("Функция возвращает массив", () => {
       expect(Array.isArray(sudoku.makeBoard(arrBoard))).toBe(true)
     });
+    it("Функция не перезаписывает данные", () => {
+        expect(sudoku.makeBoard(arrBoard)[0][0]).toBe(1)
+        expect(sudoku.makeBoard(arrBoard)[0][2]).toBe(5)
+        expect(sudoku.makeBoard(arrBoard)[0][3]).toBe(8)
+      });
     it("Функция удаляет тире из строк", () => {
         expect((sudoku.makeBoard(arrBoard))[0][1]).not.toContain('-')
     });
     it("Функция заменяет тире нулями", () => {
-        expect((sudoku.makeBoard(arrBoard))[0][1]).not.toContain(0)
+        expect((sudoku.makeBoard(arrBoard))[0][1]).toBe(0)
     });
     it("Функция создает 9 массивов", () => {
         expect((sudoku.makeBoard(arrBoard)).length).toBe(9)
