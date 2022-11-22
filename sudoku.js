@@ -4,10 +4,12 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
+
 function sudokuToArr(line) {
   const res = [];
   for (let i = 0; i < line.length; i += 9) {
     res.push(line.slice(i, i + 9).split(''));
+
   }
   console.table(res)
   return res;
@@ -21,13 +23,13 @@ function solve(str) {
     for (let row = 0; row < 9; row++) {
       for (let column = 0; column < 9; column++) {
         if (board[row][column] === '-') {
+          console.log([row, column]);
           return [row, column];
         }
       }
     }
     return null;
   };
-
   const valid = (num, position, sudokuChois) => {
     const [row, column] = position;
 
@@ -61,7 +63,8 @@ function solve(str) {
     if (currPos === null) {
       return true;
     }
-    for (let i = 1; i < 9 + 1; i++) {
+    console.log('------------');
+    for (let i = 1; i <= 9; i++) {
       const currNum = i.toString();
       const isValid = valid(currNum, currPos, sudokuChois);
       console.log('currPos=', currPos, 'currNum=', currNum, 'isValid=', isValid);
@@ -78,6 +81,7 @@ function solve(str) {
     return false;
   };
   numsFinder();
+
   
   return sudokuChois;
 }
@@ -91,7 +95,11 @@ function solve(str) {
  */
 
 function isSolved(board) {
-  return true
+
+  for (let i = 0; i < board.length; i++) {
+    if (board[i].indexOf('-') === -1) return true;
+  }
+  return false;
 
 }
  
@@ -102,12 +110,14 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 
+
 function prettyBoard(board) {
   let stringPretty = '';
   for(let i = 0; i < board.length; i++){
   stringPretty = stringPretty + board[i].join(' ') + '\n';
   }
   return '\n' + stringPretty
+
 }
   
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).

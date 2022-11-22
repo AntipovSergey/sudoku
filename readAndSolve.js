@@ -1,6 +1,6 @@
 // Подключить функции из файла sudoku.js.
 const sudoku = require('./sudoku');
-// const sudokuToArr = require('./sudoku');
+// const solve = require('./sudoku');
 
 // Разбить содержимое файла построчно и отфильтровать все пустые строки.
 
