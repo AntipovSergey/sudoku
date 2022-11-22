@@ -3,15 +3,12 @@
    function sort(board){
     
     for (let i = 0; i < board.length - 1; i++){
-        for (let j = i + 1; j < board.length; j++){
-            if(board[i] Ю board[j]){
-                let res = 
-                
-              
-                           
+        for (let j = i; j < board.length; j++){
+            if(board[i] > board[j]){
+                [board[i], board[j]] = [board[j], board[i]]    
             }
         }
     }
-    return res
+    return board
 }
 console.log(sort(board))
