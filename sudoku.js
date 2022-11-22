@@ -3,9 +3,34 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
-}
 
+function solve(boardString) {
+  const board = [];
+  const preBoard = boardString.split('');
+
+  for (let i = 0; i < preBoard.length; i++) {
+    if (i === 0) {
+      const arrStr = preBoard.slice(0, 9);
+      board.push(arrStr);
+    }
+    if (!(i % 9) && i !== 0) {
+      const arrStr = preBoard.slice(i, i + 9);
+      board.push(arrStr);
+    }
+  }
+
+  const findempty = (board) => {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board.length; j++) {
+        if (board[i][j] === '-') {
+          return [i, j];
+        }
+      }
+    }
+    return null;
+  };
+}
+console.log(!!!);
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
