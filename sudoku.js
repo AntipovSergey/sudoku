@@ -3,18 +3,19 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const sudokuLine = '6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--';
-function sudokuToArr() {
+
+function sudokuToArr(line) {
   const res = [];
-  for (let i = 0; i < sudokuLine.length; i += 9) {
-    res.push(sudokuLine.slice(i, i + 9).split(''));
+  for (let i = 0; i < line.length; i += 9) {
+    res.push(line.slice(i, i + 9).split(''));
   }
+  console.table(res)
   return res;
 }
-function solve() {
+function solve(str) {
 /* Проверка валидности вводимого значения */
 
-  const sudokuChois = sudokuToArr();
+  const sudokuChois = sudokuToArr(str);
 
   const findEmpty = (board) => {
     for (let row = 0; row < 9; row++) {
@@ -77,29 +78,38 @@ function solve() {
     return false;
   };
   numsFinder();
+  
   return sudokuChois;
 }
 
-console.table(sudokuToArr());
-console.table(solve(sudokuToArr()));
+// console.table(sudokuToArr());
+// console.table(solve(sudokuToArr()));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+
 function isSolved(board) {
+  return true
 
 }
+ 
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(board) {
-
+  let stringPretty = '';
+  for(let i = 0; i < board.length; i++){
+  stringPretty = stringPretty + board[i].join(' ') + '\n';
+  }
+  return '\n' + stringPretty
 }
-
+  
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
