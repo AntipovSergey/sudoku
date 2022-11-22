@@ -3,30 +3,31 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const sudokuLine = '6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--';
-function sudokuToArr() {
+
+function sudokuToArr(sudokuLine) {
   const res = [];
+  // let sudokuLine = puzzle;
   for (let i = 0; i < sudokuLine.length; i += 9) {
     res.push(sudokuLine.slice(i, i + 9).split(''));
   }
   return res;
 }
-function solve() {
+function solve(str) {
 /* Проверка валидности вводимого значения */
 
-  const sudokuChois = sudokuToArr();
+  const sudokuChois = sudokuToArr(str);
 
   const findEmpty = (board) => {
     for (let row = 0; row < 9; row++) {
       for (let column = 0; column < 9; column++) {
         if (board[row][column] === '-') {
+          console.log([row, column]);
           return [row, column];
         }
       }
     }
     return null;
   };
-
   const valid = (num, position, sudokuChois) => {
     const [row, column] = position;
 
@@ -60,7 +61,8 @@ function solve() {
     if (currPos === null) {
       return true;
     }
-    for (let i = 1; i < 9 + 1; i++) {
+    console.log('------------');
+    for (let i = 1; i <= 9; i++) {
       const currNum = i.toString();
       const isValid = valid(currNum, currPos, sudokuChois);
       console.log('currPos=', currPos, 'currNum=', currNum, 'isValid=', isValid);
@@ -77,18 +79,19 @@ function solve() {
     return false;
   };
   numsFinder();
+  console.table(sudokuChois);
   return sudokuChois;
 }
-
-console.table(sudokuToArr());
-console.table(solve(sudokuToArr()));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  for (let i = 0; i < board.length; i++) {
+    if (board[i].indexOf('-') === -1) return true;
+  }
+  return false;
 }
 
 /**
@@ -97,7 +100,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  return 'поздравляю';
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
