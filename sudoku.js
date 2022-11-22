@@ -8,34 +8,32 @@ const chalk = require("chalk");
 
 function solve(board) {
   solveBoard(board);
-  console.log("обращение к solve в файле sudoku.js", board);
+  // console.log("обращение к solve в файле sudoku.js", board);
   return board;
 }
 
 function solveBoard(board) {
   let row = 0;
   let col = 0;
-  let emptySlots = true;
-  // if (row === 8 && column === 8) return true;
-
+  let filledBoard = true;
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
       if (board[i][j] === 0) {
         row = i;
         col = j;
-        emptySlots = false;
+        filledBoard = false;
         break;
       }
     }
-    if (!emptySlots) break;
+    if (!filledBoard) break;
   }
-  if (emptySlots) return true;
-
-  for (let i = 1; i <= 9; i += 1) {
-    board[row][col] = i;
-    if (solve(board)) {
-      return true;
-    } else board[row][col] = 0;
+  if (filledBoard) return true;
+  for (let i = 1; i <= 9; i += 1) {   
+    if (canPlace(i, row, col, board)) {
+      board[row][col] = i;
+      if (solveBoard(board)) return true;
+      else board[row][col] = 0;
+    }
   }
   return false;
 }
@@ -61,8 +59,8 @@ function canPlace(num, row, col, board) {
     for (let j = startVertical; j < startVertical + 3; j += 1) {
       if (board[i][j] === num) {
         // console.log('square is false because of element', i, j);
-        return false;
-      }
+        return false
+      };
     }
   }
   return true; // если все выше не проходят, то возвращает, что можно ставить
@@ -218,4 +216,7 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  makeBoard,
+  canPlace,
+  solveBoard,
 };
