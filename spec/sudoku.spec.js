@@ -1,6 +1,6 @@
 const sudoku = require('../sudoku.js')
 
-describe("Tests", function () {
+describe("Sudoku unit tests", function () {
 
   beforeEach(function () {
     board = [
@@ -21,34 +21,34 @@ describe("Tests", function () {
   });
 
   describe("Тесты для функции makeBoard", function () {
-    it("Функция возвращает массив", () => {
+    it("Возвращает массив", () => {
       expect(Array.isArray(sudoku.makeBoard(arrBoard))).toBe(true)
     });
-    it("Функция не перезаписывает данные", () => {
+    it("Не перезаписывает данные", () => {
         expect(sudoku.makeBoard(arrBoard)[0][0]).toBe(1)
         expect(sudoku.makeBoard(arrBoard)[0][2]).toBe(5)
         expect(sudoku.makeBoard(arrBoard)[0][3]).toBe(8)
       });
-    it("Функция удаляет тире из строк", () => {
+    it("Удаляет тире из строк", () => {
         expect((sudoku.makeBoard(arrBoard))[0][1]).not.toContain('-')
     });
-    it("Функция заменяет тире нулями", () => {
+    it("Заменяет тире нулями", () => {
         expect((sudoku.makeBoard(arrBoard))[0][1]).toBe(0)
     });
-    it("Функция создает 9 массивов", () => {
+    it("Создает 9 массивов", () => {
         expect((sudoku.makeBoard(arrBoard)).length).toBe(9)
     });
 });
 
 
   describe("Тесты для функции форматирования доски - prettyBoard ", function () {
-    it("Функция возвращает массив", () => {
+    it("Возвращает массив", () => {
       expect(Array.isArray(sudoku.prettyBoard(board))).toBe(true)
     });
     it("Элементы массива это строки", () => {
         expect(typeof sudoku.prettyBoard(board)[1]).toBe('string')
       });  
-    it("Функция возвращает строки содержащие форматирование", () => {
+    it("Возвращает строки содержащие форматирование", () => {
         expect(sudoku.prettyBoard(board)[0]).toContain('\n')
       });
     it("Возвращает заголовок", () => {
