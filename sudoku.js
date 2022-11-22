@@ -5,13 +5,14 @@
  */
 
 
-function solver() {
+function solver(sudokuLine) {
   let res = [];
   for (let i = 0; i < sudokuLine.length; i += 9) {
     res.push(sudokuLine.slice(i, i + 9).split(''));
   }
   return res;
 }
+// console.log(solver())
     
   const solve = () => {
     const currPos = findEmpty(board);
@@ -26,7 +27,7 @@ function solver() {
       if (isValid) {
         const [x, y] = currPos;
         board[x][y] = currNum;
-
+        
         if (solve()) {
           return true;
         }
@@ -37,7 +38,6 @@ function solver() {
   };
   solve();
   return board;
-};
 
 /* Проверка валидности вводимого значения */
 
@@ -71,21 +71,18 @@ for (let i = startPositionCubeRow; i < startPositionCubeRow + startPositionCubeC
 return true
 }
 
-
-
-  
-
-
-console.table(solver());
-console.table(sudokuSolver(solver()));
+// console.table(solver());
+// console.table(sudokuSolver(solver()));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
+
 function isSolved(board) {
 
 }
+ 
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
