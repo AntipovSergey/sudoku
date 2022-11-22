@@ -28,6 +28,10 @@ function readAndSolve(error, fileData) {
   console.log(puzzle);
 
   const puzzleArr = sudoku.makeBoard(puzzle);
+  
+  if (!sudoku.isSolved(puzzleArr)) {
+    return console.log('Этот судоку невозможно решить');
+  }
 
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
