@@ -84,13 +84,26 @@ function isSolved(board) {
         return false;
     }
   }
-  // for (let i = 0; i < 3; i++) {
-  //   for (let j = 0; j < 3; j++) {
-  //     square.push(board[i][j]);
-  //   }
-  // }
+  for (let row = 0; row < board.length; row += 3) {
+    for (let column = 0; column < array.length; column += 3) {
+      for (let i = row; i < row + 3; i += 1) {
+        for (let j = column; j < column + 3; j += 1) {
+          square.push(board[i][j]);
+        }
+      }
+      for (let k = 0; k < board.length; k += 1) {
+        if (square.indexOf(square[k]) !== square.lastIndexOf(square[k])) {
+          console.log(row, column, 'position of square');
+          return false;
+        }
+      }
+      
+    }
+    
+  }
   return true;
 }
+
 
 // console.log(isSolved(array));
 
