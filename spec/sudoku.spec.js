@@ -1,6 +1,6 @@
 const sudoku = require('../sudoku.js')
 
-describe("board", function () {
+describe("Tests", function () {
 
   beforeEach(function () {
     board = [
@@ -15,7 +15,26 @@ describe("board", function () {
   [7, 8, 9, 7, 8, 9, 7, 8, 9],
 ];
 
+ arrBoard =
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+
   });
+
+  describe("Тесты для функции makeBoard", function () {
+    it("Функция возвращает массив", () => {
+      expect(Array.isArray(sudoku.makeBoard(arrBoard))).toBe(true)
+    });
+    it("Функция удаляет тире из строк", () => {
+        expect((sudoku.makeBoard(arrBoard))[0][1]).not.toContain('-')
+    });
+    it("Функция заменяет тире нулями", () => {
+        expect((sudoku.makeBoard(arrBoard))[0][1]).not.toContain(0)
+    });
+    it("Функция создает 9 массивов", () => {
+        expect((sudoku.makeBoard(arrBoard)).length).toBe(9)
+    });
+});
+
 
   describe("Тесты для функции форматирования доски - prettyBoard ", function () {
     it("Функция возвращает массив", () => {
@@ -31,7 +50,8 @@ describe("board", function () {
         expect(sudoku.prettyBoard(board)[0]).toContain('SUDOKU BOARD')
       });  
     it("Возвращает ошибку если передан не массив", () => {
-        expect(() => sudoku.prettyBoard('notArray')).toThrowError('')
+        const error = () => sudoku.prettyBoard('notArray')
+        expect(error).toThrowError('')
       });   
   });
 });
