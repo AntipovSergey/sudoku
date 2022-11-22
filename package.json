@@ -5,9 +5,7 @@
   "main": "runner.js",
   "scripts": {
     "start": "node runner.js",
-    "scripts": {
-      "test": "jest"
-    }
+    "test": "jest"
   },
   "repository": {
     "type": "git",
