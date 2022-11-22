@@ -9,28 +9,7 @@
                 [4, 3, 8, 7, 2, 9, 5, 6, 1],
                 [6, 2, 1, 3, 5, 8, 9, 4, 7]];
 function isSolved(board) {
-    // Проверка строк
-    for (let i = 0; i < board.length; i++){
-        for(let j = 0; j < board[i].length - 1; j++){
-            for(let k = j + 1; k < board[i].length; k++){
-                if(board[i][j] === board[i][k] || Number(board[i][j]) > 9 || Number(board[i][j]) < 1){
-            return false
-            }
-        }
-    }
-    }
-     //Проверка столбцов 
-    for (let i = 0; i < board.length; i++){
-        for (let j = 0; j < board[i].length - 1; j++){
-            for(let k = j + 1; k < board[i].length; k++){
-       if(board[j][i] === board[k][i]){
-        return false
-    }
-            }
-        }
-    }
-    //Проверка квадратов 
-    
+    let allArr = []
     let arr1 = [];
     for(let i = 0; i < 3; i++){
         for(let j = 0; j < 3; j++){
@@ -149,6 +128,6 @@ function isSolved(board) {
         }
     }
     
-    return true
+return true
 }
-  console.log(isSolved(board));
+console.log(isSolved(board));
