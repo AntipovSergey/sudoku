@@ -1,9 +1,8 @@
-// /* eslint-disable no-unused-vars */
-// /**
-//  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
-//  * Возвращает игровое поле после попытки его решить.
-//  * Договорись со своей командой, в каком формате возвращать этот результат.
-//  */
+/**
+ * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
+ * Возвращает игровое поле после попытки его решить.
+ * Договорись со своей командой, в каком формате возвращать этот результат.
+ */
 
 // возвращает все числа в квадрате 3 на 3 для элемента с координатами х и у
 function getSquareElements(board, x, y) {
@@ -198,7 +197,6 @@ function solveRec(arr) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-
 function isSolved(board) {
   let dict = {};
   let numArr = board.split('');
@@ -212,9 +210,10 @@ function isSolved(board) {
       dict[Number(numArr[i])] += 1;
     }
   }
-  return Object.values(dict).every((el) => el === 9);
-}
 
+  return Object.values(dict).every(el => el === 9);
+}
+//console.log(isSolved('123456789123456789123456789123456789123456789123456789123456789123456789123456789'));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
@@ -223,10 +222,9 @@ function isSolved(board) {
 function prettyBoard(boardStr) {
   return boardStr;
 }
-
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
-// module.exports = {
-//   // solve,
-//   isSolved,
-//   prettyBoard,
-// };
+module.exports = {
+  solve,
+  isSolved,
+  prettyBoard,
+};
