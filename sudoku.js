@@ -4,7 +4,6 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-let sudokuLine = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function solver() {
   let res = [];
@@ -14,15 +13,88 @@ function solver() {
    return res;
 
 }
-console.log(solver());
-console.log(solver()[0][2]);
 
-// console.log(solve(boardString) )
+let solveSudoku = function(board) {
+  const size = 9;
+  const boxSize = 3;
 
- //  ТЕСТ!!!!!
+  const findEmpty = (board) => {
+      for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+              if(board[r][c] === '.') {
+                  return [r,c];
+              }
+          }
+      }
+      return null;
+  }
+
   
+  const solve = () => {
+    const currPos = findEmpty(board);
+    if (currPos === null) {
+      return true;
+    }
+    let board = solver();
+    for (let i = 1; i < boxLength + 1; i++) {
+      const currNum = i.toString();
+      const isValid = valid(currNum, currPos, board);
+      console.log('currPos=', currPos, 'currNum=', currNum, 'isValid=', isValid);
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (solve()) {
+          return true;
+        }
+        board[x][y] = '-';
+      }
+    }
+    return false;
+  };
+  solve();
+  return board;
+};
+
+/* Проверка валидности вводимого значения */
+
+let sudokuChois = solver();
+
+const valid = (num, position, sudokuChois) => {
+  let [r,c] = position;
+
+/* Строка */
+for (let i = 0; i < 9; i++) {
+  if(sudokuChois[i][c] === num && i !== r) {
+    return false;
+  }
+}
+/* Столбец */
+for (let i = 0; i < 9; i++) {
+  if(sudokuChois[r][i] === num && i !== c) {
+    return false;
+  }
+}
+/* Внутренний квадрат */
+let startPositionCubeRow = Math.floor(r/3)*3;
+let startPositionCubeCol = Math.floor(c/3)*3;
+for (let i = startPositionCubeRow; i < startPositionCubeRow + startPositionCubeCol; i++){
+  for (let j = startPositionCubeCol; j < startPositionCubeCol + startPositionCubeRow; j++){
+    if(sudokuChois[i][j] === num && i !== r && j !== c) {
+      return false
+    }
+  }
+}
+return true
+}
+
+
+
   
 
+
+console.table(solver());
+console.table(sudokuSolver(solver()));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -41,21 +113,6 @@ function prettyBoard(board) {
 
 }
 
-let solveSudoku = function(board){
-  const size = 9
-  const boxSize = 3
-
-  function findEmpty(board){
-     for( let r = 0; r < size; i += 1){
-      for( let c = 0; c < size; i += 1){
-        if(board[r][c] === '-'){
-          return [r,c]
-        }
-      }
-     }
-     return null
-  }
-}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
