@@ -1,5 +1,8 @@
 // Подключить функции из файла sudoku.js.
 const sudoku = require('./sudoku');
+// const solve = require('./sudoku');
+
+// Разбить содержимое файла построчно и отфильтровать все пустые строки.
 
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
@@ -8,7 +11,6 @@ function readAndSolve(error, fileData) {
     throw error;
   }
 
-  // Разбить содержимое файла построчно и отфильтровать все пустые строки.
   const puzzles = fileData
     .split('\n')
     .filter((line) => line !== '');
@@ -27,6 +29,7 @@ function readAndSolve(error, fileData) {
   console.log(puzzle, '\n');
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
+  // const boardToArr = sudokuToArr(puzzle);
   const solvedPuzzle = sudoku.solve(puzzle);
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
