@@ -105,7 +105,7 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+    return board.map((el)=>el).join('\n')
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
