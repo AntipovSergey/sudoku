@@ -4,6 +4,17 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  
+  let arr = []
+  let preBoard = boardString.split('')
+  for (let i = 0; i < preBoard.length; i += 9) {
+    arr.push(preBoard.slice(i, i + 9))
+  }
+  //преобразуем строку в доску судоку
+  let board = arr.map(el => el.map(item => item === '-' ? item = 0 : Number(item)))
+
+  let boardRandom = board.map(el => el.map(item => item === 0 ? item = Math.floor(Math.random()*9)+1 : item))
+  return console.table(boardRandom)
 }
 
 /**
