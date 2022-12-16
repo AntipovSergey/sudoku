@@ -17,5 +17,10 @@ module.exports = {
     'react'
   ],
   rules: {
+ styles
   }
 }
+    'no-console': 0,
+    'no-unused-vars': 0,
+  },
+}; main
