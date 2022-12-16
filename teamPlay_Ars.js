@@ -14,6 +14,4 @@ function findEmpty (board){
     }
     return null
 }
-
-
 console.log(findEmpty(board))
