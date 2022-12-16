@@ -9,6 +9,4 @@ const generateRandomField = (fieldNumber=Math.floor(Math.random() * 15)) => {
     return result.map((el) => el.map((el) => Number(el)));
 };
 
-console.log(generateRandomField(userInput));
-
 module.exports = generateRandomField;
