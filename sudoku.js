@@ -3,11 +3,9 @@ const process = require('process');
 const box = fs.readFileSync('puzzles.txt', 'utf-8').split('\n');
 let board;
 
-
 function getColumns(board) {
   const col = [];
   let mincol = [];
-  const columns = {};
   if (process.argv[2] === undefined) {
     board = box[0].match(/.{9}/g).map((el) => el.split(''));
   } else {
@@ -20,20 +18,34 @@ function getColumns(board) {
     }
     col.push(mincol);
   }
-  for (let i = 1; i <= 9; i++) {
-    columns[i] = col[i - 1];
-  }
-  return columns;
+  return col;
 }
 
+function rowSeparator(board) {
+  let row = [];
+  if (process.argv[2] === undefined) {
+    row = box[0].match(/.{9}/g).map((el) => el.split(''));
+  } else {
+    row = box[process.argv[2]].match(/.{9}/g).map((el) => el.split(''));
+  }
+  return row
+}
 
-console.log(getColumns());
+function getSquares(str1) {
+  const arr = [[], [], [], [], [], [], [], [], []];
+  if (process.argv[2] === undefined) {
+    const str1 = box[0].match(/.{9}/g).map((el) => el.split(''));
+  } else {
+    const str1 = box[process.argv[2]].match(/.{9}/g).map((el) => el.split(''));
+  }
+  for (let i = 0; i < 9; i += 3) {
+    arr[i].push(str1[i][0], str1[i][1], str1[i][2], str1[i + 1][0], str1[i + 1][1], str1[i + 1][2], str1[i + 2][0], str1[i + 2][1], str1[i + 2][2]);
+    arr[i + 1].push(str1[i][3], str1[i][4], str1[i][5], str1[i + 1][3], str1[i + 1][4], str1[i + 1][5], str1[i + 2][3], str1[i + 2][4], str1[i + 2][5]);
+    arr[i + 2].push(str1[i][6], str1[i][7], str1[i][8], str1[i + 1][6], str1[i + 1][7], str1[i + 1][8], str1[i + 2][6], str1[i + 2][7], str1[i + 2][8]);
+  }
+  return arr;
+}
 
-/*********************************************************************************
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
 function solve(boardString) {
 
 }
