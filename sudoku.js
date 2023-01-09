@@ -4,8 +4,23 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 const fs = require('fs');
+const process = require('process');
+const box = fs.readFileSync('puzzles.txt', 'utf-8').split('\n');
+let board;
 
-const box = fs.readFileSync('./puzzles.txt', 'utf8').split('\n');
+function rowSeparator(board) {
+let row = [];
+  if (process.argv[2] === undefined) {
+    row = box[0].match(/.{9}/g).map((el) => el.split(''));
+  } else {
+    row = box[process.argv[2]].match(/.{9}/g).map((el) => el.split(''));
+  }
+  return row
+}
+console.log(rowSeparator())
+
+
+
 function getSquares(str1) {
   const arr = [[], [], [], [], [], [], [], [], []];
   if (process.argv[2] === undefined) {
