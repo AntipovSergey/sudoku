@@ -21,7 +21,11 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  const newBoard = board.split('');
+  for (let i = 9; i < board.length; i += 10) {
+    newBoard.splice(i, 0, '\n');
+  }
+  return newBoard.join(' ');
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
@@ -30,3 +34,5 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+console.log(prettyBoard('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'));
