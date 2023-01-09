@@ -1,15 +1,28 @@
-/*
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
 const fs = require('fs');
 const process = require('process');
 const box = fs.readFileSync('puzzles.txt', 'utf-8').split('\n');
 let board;
 
+function getColumns(board) {
+  const col = [];
+  let mincol = [];
+  if (process.argv[2] === undefined) {
+    board = box[0].match(/.{9}/g).map((el) => el.split(''));
+  } else {
+    board = box[process.argv[2]].match(/.{9}/g).map((el) => el.split(''));
+  }
+  for (let i = 0; i < board.length; i++) {
+    mincol = [];
+    for (let j = 0; j < board[i].length; j++) {
+      mincol.push(board[j][i]);
+    }
+    col.push(mincol);
+  }
+  return col;
+}
+
 function rowSeparator(board) {
-let row = [];
+  let row = [];
   if (process.argv[2] === undefined) {
     row = box[0].match(/.{9}/g).map((el) => el.split(''));
   } else {
@@ -17,9 +30,6 @@ let row = [];
   }
   return row
 }
-console.log(rowSeparator())
-
-
 
 function getSquares(str1) {
   const arr = [[], [], [], [], [], [], [], [], []];
@@ -33,15 +43,14 @@ function getSquares(str1) {
     arr[i + 1].push(str1[i][3], str1[i][4], str1[i][5], str1[i + 1][3], str1[i + 1][4], str1[i + 1][5], str1[i + 2][3], str1[i + 2][4], str1[i + 2][5]);
     arr[i + 2].push(str1[i][6], str1[i][7], str1[i][8], str1[i + 1][6], str1[i + 1][7], str1[i + 1][8], str1[i + 2][6], str1[i + 2][7], str1[i + 2][8]);
   }
-  // const obj = {};
-  // for (let i = 0; i < arr.length; i += 1) {
-  //   obj[i + 1] = arr[i];
-  // }
   return arr;
 }
+
 function solve(boardString) {
 
 }
+
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
