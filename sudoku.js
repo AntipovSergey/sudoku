@@ -12,6 +12,56 @@ function solve(boardString) {
  */
 function isSolved(board) {
 
+  Array.prototype.chunk = function(groupsize){
+    var sets = [], chunks, i = 0;
+    chunks = Math.ceil(this.length / groupsize);
+    
+    while(i < chunks){
+    sets[i] = this.splice(0, groupsize);
+    i++;
+    }
+    return sets;
+    }; 
+  // for (let i = 1; i < 10; i++) {
+  //   for (let j = 0; j < 9; j++) {
+  //    for (let k = 0; k < 9; k++) {
+  //     if (board[j[k]] === i)
+  //    }
+  //   }
+  // }
+
+for (let j = 0; j < 9; j++) {
+  for (let i = 1; i < 10; i ++) {
+    if (board[j].indexOf(i.toString()) === -1) { 
+      return false;
+    }
+  } 
+}
+
+let vertical = [];
+for (let k = 0; k < 9; k++) {
+  for (let l = 0; l < 9; l++) {
+vertical.push(board[l][k]);
+  }
+}
+let newBoard = vertical.chunk(9);
+
+for (let j = 0; j < 9; j++) {
+  for (let i = 1; i < 10; i ++) {
+    if (newBoard[j].indexOf(i.toString()) === -1) { 
+      return false;
+    }
+  } 
+}
+
+let boxes = []
+for (let i = 0; i < 9; i++) {
+  for (let j = 0; j < 9; j++) {
+    let index = math.floor(i % 3) + math.floor(j % 3) * 3
+    boxes[index].push(board[i][j]);
+  }
+}
+
 }
 
 /**
