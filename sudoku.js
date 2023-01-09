@@ -74,4 +74,6 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  getColumns,
+  getSquares,
 };
