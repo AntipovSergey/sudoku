@@ -27,7 +27,6 @@ function getColumns(board) {
 }
 
 
-
 console.log(getColumns());
 
 /*********************************************************************************
@@ -36,11 +35,6 @@ console.log(getColumns());
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-  if (process.argv[2] === undefined) {
-    boardString = box[0].match(/.{9}/g).map((el) => el.split(''));
-  } else {
-    boardString = box[process.argv[2]].match(/.{9}/g).map((el) => el.split(''));
-  }
 
 }
 
