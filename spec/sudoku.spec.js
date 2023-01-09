@@ -7,7 +7,7 @@ describe(' Судоку ', () => {
   let row;
 
   beforEach(() => {
-    rightSudoku = getColumns();
+    line = getColumns();
     
   });
 
