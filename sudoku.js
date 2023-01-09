@@ -3,6 +3,22 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+const fs = require('fs');
+const process = require('process');
+const box = fs.readFileSync('puzzles.txt', 'utf-8').split('\n');
+let board;
+
+function rowSeparator(board) {
+let row = [];
+  if (process.argv[2] === undefined) {
+    row = box[0].match(/.{9}/g).map((el) => el.split(''));
+  } else {
+    row = box[process.argv[2]].match(/.{9}/g).map((el) => el.split(''));
+  }
+  return row
+}
+console.log(rowSeparator())
+
 
 function solve(boardString) {
 }
