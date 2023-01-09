@@ -21,87 +21,120 @@ function mainSolve(boardString) {
     );
     return newArr;
   }
+
   const boardPrototype = makeBoard(boardString);
 
-  // for (let i = 0; i < boardPrototype.length; i++) {
-  //   for (let j = 0; j < 9; j++) {
-  //     console.log(boardPrototype[i][1]);
-  //   }
-  // }
+  function nextNull(boardPrototype) {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (boardPrototype[i][j] === 0) return [i, j];
+      }
+    }
+    return [-1, -1];
+  }
+  function checkRow(boardPrototype, row, value) {
+    //! value  тождественно (===) num в следующих функциях
 
-  let row;
-  const testArr = boardPrototype.map((element, index, array) => {
-    for (let i = 0; i < element.length; i++) {
-      if (element[i] === 1) {
-        let subArray = array[index];
-        for (let j = 0; j < subArray.length; j++) {
-          console.log(subArray[j]);
+    for (let i = 0; i < boardPrototype[row].length; i++) {
+      //! ищем в одном подмассиве (соответствует строке(row))
+      if (boardPrototype[row][i] === value) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function checkColumn(boardPrototype, column, value) {
+    //! ищем во всех подмассивах, т.к. колонка проходит через все подмассивы (под одним индексом)
+    for (let i = 0; i < boardPrototype.length; i++) {
+      if (boardPrototype[i][column] === value) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function checkCube(boardPrototype, row, column, value) {
+    //! делим строки и колонки на группы (math.floor позволяет провести группировку по индексам)
+    let cubeRow = Math.floor(row / 3) * 3;
+    let cubeColumn = Math.floor(column / 3) * 3;
+    //! i и j равны 3, т.к. квадраты поделены на 3 подгруппы (от 0 до 2 включительно) (по горизонтали для колонок и по вертикали для строк)
+
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (boardPrototype[i + cubeRow][j + cubeColumn] === value) {
+          return false;
         }
       }
     }
-  });
-
-  console.log(boardPrototype);
-
-  const boardPrototype = makeBoard(boardString);
-  let row;
-  for (let i = 0; i < boardPrototype.length; i++) {
-    console.log(boardPrototype[i].length);
-    for (let j = 0; j < boardPrototype[i].length; j++) {}
+    return true;
   }
-
-  // console.log(boardPrototype);
-
-  function mainLogic(boardPrototype, counter = 9) {
-    //row, column, cube,
-    // return mainLogic(boardPrototype, row, column, cube, counter = counter - 1)
+  function checkSudokuRules(boardPrototype, row, column, value) {
+    //! проверяем, чтобы все 3 правила судоку соблюдались (правила записаны в функциях выше checkRow, checkColumn, checkCube)
+    if (
+      checkRow(boardPrototype, row, value) &&
+      checkColumn(boardPrototype, column, value) &&
+      checkCube(boardPrototype, row, column, value)
+    )
+      return true;
+    else return false;
   }
+  function fillSudokuWithNums(boardPrototype) {
+    let cellNull = nextNull(boardPrototype);
+    let row = cellNull[0];
+    let column = cellNull[1];
+
+    if (row === -1) return boardPrototype;
+
+    for (let num = 1; num <= 9; num++) {
+      if (checkSudokuRules(boardPrototype, row, column, num)) {
+        boardPrototype[row][column] = num;
+        fillSudokuWithNums(boardPrototype);
+      }
+    }
+    if (nextNull(boardPrototype)[0] !== -1) {
+      boardPrototype[row][column] = 0;
+    }
+    return boardPrototype;
+  }
+  return fillSudokuWithNums(boardPrototype);
 }
 
-// let arrMain = [];
-// for (let i = 0; i < 9; i++) {
-//   arrMain[i] = [];
-//   let start = 0;
-//   let finish = 9;
-//   for (let j = start; j < finish && finish <= boardString.length; j++) {
-//     // console.log(boardString[j]);
-//     arrMain[i].push(boardString[j]);
-
-//     // start += 1;
-//     // finish += 1;
+//* const testArr = boardPrototype.map((element, index, array) => {
+//   for (let i = 0; i < element.length; i++) {
+//     if (element[i] === 0) {
+//       return [index, i];
+//     }
 //   }
-// }
-// console.log(arrMain);
+//   return [-1, -1];
+// });
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 
-<<<<<<< HEAD
-//board = [ [arr] x9 ]
+// const board = [
+//   [1, 4, 5, 8, 9, 2, 6, 7, 3],
+//   [8, 9, 3, 1, 7, 6, 4, 2, 5],
+//   [2, 7, 6, 4, 3, 5, 8, 1, 9],
+//   [5, 1, 9, 2, 4, 7, 3, 8, 6],
+//   [7, 6, 2, 5, 8, 3, 1, 9, 4],
+//   [3, 8, 4, 9, 6, 1, 7, 5, 2],
+//   [9, 5, 7, 6, 1, 4, 2, 3, 8],
+//   [4, 3, 8, 7, 2, 9, 5, 6, 1],
+//   [6, 2, 1, 3, 5, 8, 9, 4, 7],
+// ];
 
-function isSolved(board) {}
-=======
-const board = [
-[1, 4, 5, 8, 9, 2, 6, 7, 3],
-[8, 9, 3, 1, 7, 6, 4, 2, 5],
-[2, 7, 6, 4, 3, 5, 8, 1, 9],
-[5, 1, 9, 2, 4, 7, 3, 8, 6],
-[7, 6, 2, 5, 8, 3, 1, 9, 4],
-[3, 8, 4, 9, 6, 1, 7, 5, 2],
-[9, 5, 7, 6, 1, 4, 2, 3, 8],
-[4, 3, 8, 7, 2, 9, 5, 6, 1],
-[6, 2, 1, 3, 5, 8, 9, 4, 7],
-];
-function isSolved(board) {
+// const board = ;
+
+function isSolved(board = solve(boardString)) {
   // проверяем строку
   for (let row = 0; row < 9; row++) {
     const usedNumbers = new Set();
     for (let col = 0; col < 9; col++) {
       const cell = board[row][col];
       if (cell < 1 || cell > 9 || usedNumbers.has(cell)) {
-        console.log(new Set())
+        console.log(new Set());
         return false;
       }
       usedNumbers.add(cell);
@@ -123,7 +156,7 @@ function isSolved(board) {
 
   // проверяем 3x3 subgrids
   for (let sqareRow = 0; sqareRow < 3; sqareRow++) {
-    for (let sqareCol = 0; sqareCol < 3; sqareCol++){
+    for (let sqareCol = 0; sqareCol < 3; sqareCol++) {
       const usedNumbers = new Set();
       for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 3; col++) {
@@ -139,9 +172,7 @@ function isSolved(board) {
 
   return true;
 }
->>>>>>> da81a18d9284d99aec92e546d0ca259ef74e5ac3
 
-console.log(isSolved(board))
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
