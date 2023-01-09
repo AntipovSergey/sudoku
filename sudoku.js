@@ -6,7 +6,6 @@
 const fs = require('fs');
 
 const box = fs.readFileSync('./puzzles.txt', 'utf8').split('\n');
-
 function getSquares(str1) {
   const arr = [[], [], [], [], [], [], [], [], []];
   if (process.argv[2] === undefined) {
