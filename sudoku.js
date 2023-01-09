@@ -148,6 +148,33 @@ return true;
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  const emojis = {
+    '1': '➊ ',
+    '2': '➋ ',
+    '3': '➌ ',
+    '4': '➍ ',
+    '5': '➎ ',
+    '6': '➏ ',
+    '7': '➐ ',
+    '8': '➑ ',
+    '9': '➒ ',
+    }
+const res = [];
+
+for (let i = 0; i < board.length; i++) {
+res.push([]);
+for (let j = 0; j < board.length; j++) {
+if (Object.keys(emojis).includes(board[i][j])) {
+res[i].push(emojis[board[i][j]]);
+} else {
+res[i].push('');
+}
+}
+
+
+
+}
+return res.map((el) => el.join('')).join('\n'); 
 
 }
 
@@ -158,4 +185,4 @@ module.exports = {
   prettyBoard,
 };
 
-console.log(isSolved(solve(boardString)))
+console.log(prettyBoard(solve(boardString)))
