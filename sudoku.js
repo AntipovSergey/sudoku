@@ -21,13 +21,25 @@ function mainSolve(boardString) {
     );
     return newArr;
   }
-
   const boardPrototype = makeBoard(boardString);
+
+  // for (let i = 0; i < boardPrototype.length; i++) {
+  //   for (let j = 0; j < 9; j++) {
+  //     console.log(boardPrototype[i][1]);
+  //   }
+  // }
+
   let row;
-  for (let i = 0; i < boardPrototype.length; i++) {
-    console.log(boardPrototype[i].length);
-    for (let j = 0; j < boardPrototype[i].length; j++) {}
-  }
+  const testArr = boardPrototype.map((element, index, array) => {
+    for (let i = 0; i < element.length; i++) {
+      if (element[i] === 1) {
+        let subArray = array[index];
+        for (let j = 0; j < subArray.length; j++) {
+          console.log(subArray[j]);
+        }
+      }
+    }
+  });
 
   // console.log(boardPrototype);
 
