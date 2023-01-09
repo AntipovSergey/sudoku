@@ -5,24 +5,36 @@
  */
 
 function solve(boardString) {
-  return makeBoard(boardString);
+  return mainSolve(boardString);
 }
 
-function makeBoard(boardString) {
-  const str = boardString;
-  const count = 9;
-  const pattern = new RegExp('.{1,' + count + '}', 'ig');
-  let res = str.match(pattern);
-  let newArr = res.map((el) =>
-    Array.from(el).map((element) =>
-      element === '-' ? (element = 0) : Number(element)
-    )
-  );
-  return newArr;
-}
+function mainSolve(boardString) {
+  function makeBoard(boardString) {
+    const str = boardString;
+    const count = 9;
+    const pattern = new RegExp('.{1,' + count + '}', 'ig');
+    let res = str.match(pattern);
+    let newArr = res.map((el) =>
+      Array.from(el).map((element) =>
+        element === '-' ? (element = 0) : Number(element)
+      )
+    );
+    return newArr;
+  }
 
-function solveBoard(makeBoard()) {
-  console.log(makeBoard(boardString));
+  const boardPrototype = makeBoard(boardString);
+  let row;
+  for (let i = 0; i < boardPrototype.length; i++) {
+    console.log(boardPrototype[i].length);
+    for (let j = 0; j < boardPrototype[i].length; j++) {}
+  }
+
+  // console.log(boardPrototype);
+
+  function mainLogic(boardPrototype, counter = 9) {
+    //row, column, cube,
+    // return mainLogic(boardPrototype, row, column, cube, counter = counter - 1)
+  }
 }
 
 // let arrMain = [];
@@ -61,8 +73,7 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
-  //solveBoard,
-  makeBoard,
+  mainSolve,
 };
 
 //! ЛОГИКА ПРОВЕРКИ
