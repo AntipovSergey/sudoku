@@ -21,7 +21,6 @@ function mainSolve(boardString) {
     );
     return newArr;
   }
-<<<<<<< HEAD
   const boardPrototype = makeBoard(boardString);
 
   // for (let i = 0; i < boardPrototype.length; i++) {
@@ -43,7 +42,6 @@ function mainSolve(boardString) {
   });
 
   console.log(boardPrototype);
-=======
 
   const boardPrototype = makeBoard(boardString);
   let row;
@@ -53,7 +51,6 @@ function mainSolve(boardString) {
   }
 
   // console.log(boardPrototype);
->>>>>>> e6abf6095984e2e86956c1b288ef280661e47e47
 
   function mainLogic(boardPrototype, counter = 9) {
     //row, column, cube,
