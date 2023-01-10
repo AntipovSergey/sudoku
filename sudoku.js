@@ -96,7 +96,7 @@ function isSolved(board) {
   return mySolve();
   // return board;
 }
-
+console.log('Проверка');
 
 function prettyBoard(board) {
   let res = '';
