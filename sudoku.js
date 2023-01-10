@@ -40,9 +40,9 @@ function getSquares() {
 function validating() {
   const [a, b] = finding();
   let item = 0,
-  rows = getRows(),
-  columns = getColumns(),
-  squares = getSquares();
+    rows = getRows(),
+    columns = getColumns(),
+    squares = getSquares();
   switch (a) {
     case 0:
     case 1:
@@ -62,9 +62,10 @@ function validating() {
   }
 
   for (let i = 1; i <= 9; i++) {
-    if (rows[a].includes(i) || columns[b].includes(i) || squares[item].includes(i)) {
-      return false;
+    if (!rows[a].includes(i) && !columns[b].includes(i) && !squares[item].includes(i)) {
+      board[a][b] = i.toString();
     }
+    return false;
   }
 }
 
