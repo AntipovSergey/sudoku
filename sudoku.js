@@ -182,7 +182,7 @@ function prettyBoard(board) {
   let str = board.flat().join("\n");
   return str;
 }
-function prettyBoard(board) {}
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
