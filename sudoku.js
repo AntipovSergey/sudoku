@@ -147,6 +147,7 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(board) {
   const emojis = {
     1: "➊ ",
@@ -173,7 +174,13 @@ function prettyBoard(board) {
   }
   return res.map((el) => el.join("")).join("\n");
 }
-
+console.log(
+  prettyBoard([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]),
+);
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
