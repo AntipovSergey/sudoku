@@ -37,7 +37,7 @@ function getSquares() {
   return squares;
 }
 
-function validating() {
+function validating(k) {
   const [a, b] = finding(); 
   let item = 0,
   rows = board,
@@ -61,12 +61,13 @@ function validating() {
       break;
   }
 
-  for (let i = 1; i <= 9; i++) {
-    if (!rows[a].includes(i.toString()) && !columns[b].includes(i.toString()) && !squares[item].includes(i.toString())) {
-      return board[a][b] = i.toString();
+  // for (let i = 1; i <= 9; i++) {
+    if (!rows[a].includes(k.toString()) && !columns[b].includes(k.toString()) && !squares[item].includes(k.toString())) {
+      // return board[a][b] = i.toString();
+      return true;
     }
-  }
-  return ;
+  // }
+  return false;
 }
 
 function finding() {
@@ -81,13 +82,18 @@ function finding() {
 }
 
 function solve() {
-  let searching = finding();
-  if (searching !== null) {
-    searching = finding();
-    validating(searching);
-    solve();
+  const [a,b] = finding();
+  if (finding() === null){return true;}
+  for (let i = 1; i <= 9; i++) {
+    if (validating(i)) {
+      board[a][b] = i.toString();
+      if (solve()) {
+        return true;
+      }
+    else {board[a][b] = '-'}
+    }
   }
-  else { return board; }
+  return false;
 }
 console.log(solve());
 
