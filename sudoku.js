@@ -51,6 +51,7 @@ function solve() {
   }
 
   function validating(number, position) {
+    let item;
     const [i, j] = position;
     let rows = board;
     let columns = getColumns();
