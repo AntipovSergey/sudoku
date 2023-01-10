@@ -27,7 +27,7 @@ function readAndSolve(error, fileData) {
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzle);
 
-  //  sudoku.solve(puzzle);
+  console.log(sudoku.solve(puzzle));
 
   // Использовать функцию isSolved из файла sudoku.js для проверки решения судоку.
   if (!sudoku.isSolved(solvedPuzzle)) {
