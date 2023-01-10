@@ -37,8 +37,45 @@ function getSquares() {
   return squares;
 }
 
+function validating() {
+  const [a, b] = finding();
+  let item = 0;
 
+  switch (a) {
+    case 0:
+    case 1:
+    case 2:
+      item = 0 + Math.floor(b / 3);
+      break;
+    case 3:
+    case 4:
+    case 5:
+      item = 3 + Math.floor(b / 3);
+      break;
+    case 6:
+    case 7:
+    case 8:
+      item = 6 + Math.floor(b / 3);
+      break;
+  }
 
+  for (let i = 1; i <= 9; i++) {
+    if (rows[a].includes(i) || columns[b].includes(i) || squares[item].includes(i)) {
+      return false;
+    }
+  }
+}
+
+function finding() {
+  for (let a = 0; a < 9; a++) {
+    for (let b = 0; b < 9; b++) {
+      if (board[a][b] === '-') {
+        return [a, b];
+      }
+    }
+  }
+  return null;
+}
 
 function solve(boardString) {
 
