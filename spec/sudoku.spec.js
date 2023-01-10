@@ -20,11 +20,11 @@ describe('', () => {
 
   describe(' Проверка столбцов', () => {
     test('Если в квадрате нет повторящихся значений - "true" ', () => {
-      expect(squares[0].length === [new Set(squares[0])].length).toBe(true);
+      expect(squares[0].length === [...new Set(squares[0])].length).toBe(true);
     });
     test('Если в линии нет повторяющихся значений - "true" ', () => {
-      expect(lines[0].length === new Set(lines[0].length).toBe(true))
-    });
-  })
+      expect(lines[0].length === [...new Set(lines[0])].length).toBe(true);
+    })
+  });
 })
 
