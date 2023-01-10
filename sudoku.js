@@ -46,6 +46,9 @@ function getSquares(str1) {
   return arr;
 }
 
+
+
+
 function solve(boardString) {
 
 }
