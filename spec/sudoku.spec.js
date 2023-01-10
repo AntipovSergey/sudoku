@@ -17,3 +17,15 @@ describe("Общие тесты для фунции prettyBoard", () => {
     expect(prettyBoard(board)).toEqual(expected);
   });
 });
+
+describe("Общие тесты для фунций solve и isSolved", () => {
+  let string;
+  beforeEach(() => {'321-3422-'});
+  test("prettyBoard возвращает строку", () => {
+    expect(typeof prettyBoard(board)).toEqual("string");
+  });
+  test("prettyBoard возвращает соответствующие emojis", () => {
+    const expected = "➊ ➋ ➌ \n➍ ➎ ➏ \n➐ ➑ ➒ ";
+    expect(prettyBoard(board)).toEqual(expected);
+  });
+});

@@ -10,7 +10,12 @@ function solve(boardString) {
   const newBoard = boardString.split("");
   const board = [];
 
-  for (let i = 0; i < newBoard.length; i += 0) {
+  if(boardString.length < 81){
+    return console.log("Недостаточная длина строки");
+  }
+
+
+   for (let i = 0; i < newBoard.length; i += 0) {
     board.push(newBoard.slice(i, (i += 9)));
   }
 
