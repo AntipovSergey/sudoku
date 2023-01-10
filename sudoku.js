@@ -127,7 +127,7 @@ function mainSolve(boardString) {
 
 // const board = ;
 
-function isSolved(board = solve(boardString)) {
+function isSolved(board) {
   // проверяем строку
   for (let row = 0; row < 9; row++) {
     const usedNumbers = new Set();
