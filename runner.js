@@ -11,3 +11,6 @@ fs.readFile(
   'utf-8',
   readAndSolve,
 );
+
+
+console.log(fs.readFileSync('./puzzles.txt', 'utf-8')[0]);
