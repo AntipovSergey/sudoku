@@ -1,6 +1,7 @@
 const {
   getColumns,
   getSquares,
+  
 } = require('../sudoku.js')
 const fs = require('fs')
 
@@ -8,10 +9,14 @@ describe('', () => {
   let lines;
   let columns;
   let squares;
+  let box;
+  let board;
 
   beforeEach(() => {
     columns = getColumns();
     squares = getSquares();
+    box = fs.readFileSync('puzzles.txt', 'utf-8').split('\n');
+    board = getRows();
   });
 
   describe(' Проверка строки ', () => {
