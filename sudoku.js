@@ -39,8 +39,10 @@ function getSquares() {
 
 function validating() {
   const [a, b] = finding();
-  let item = 0;
-
+  let item = 0,
+  rows = getRows(),
+  columns = getColumns(),
+  squares = getSquares();
   switch (a) {
     case 0:
     case 1:
