@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="200a57ef-6520-454b-bfc4-2cabe27fc101" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/spec/sudoku.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/spec/sudoku.spec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sudoku.js" beforeDir="false" afterPath="$PROJECT_DIR$/sudoku.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +51,7 @@
       <updated>1673334634294</updated>
       <workItem from="1673334637585" duration="961000" />
       <workItem from="1673335644978" duration="365000" />
+      <workItem from="1673339517542" duration="106000" />
     </task>
     <servers />
   </component>
