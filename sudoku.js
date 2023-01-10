@@ -1,3 +1,7 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-shadow */
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -14,11 +18,7 @@ function mainSolve(boardString) {
     const count = 9;
     const pattern = new RegExp(`.{1,${count}}`, 'ig');
     const res = str.match(pattern);
-    const newArr = res.map((el) =>
-      Array.from(el).map((element) =>
-        element === '-' ? (element = 0) : Number(element)
-      )
-    );
+    const newArr = res.map((el) => Array.from(el).map((element) => (element === '-' ? (element = 0) : Number(element))));
     return newArr;
   }
   const boardPrototype = makeBoard(boardString);
@@ -56,7 +56,8 @@ function mainSolve(boardString) {
     //! делим строки и колонки на группы (math.floor позволяет провести группировку по индексам)
     const cubeRow = Math.floor(row / 3) * 3;
     const cubeColumn = Math.floor(column / 3) * 3;
-    //! i и j равны 3, т.к. квадраты поделены на 3 подгруппы (от 0 до 2 включительно) (по горизонтали для колонок и по вертикали для строк)
+    //! i и j равны 3, т.к. квадраты поделены на 3 подгруппы (от 0 до 2 включительно)
+    //! (по горизонтали для колонок и по вертикали для строк)
 
     for (let i = 0; i < 3; i += 1) {
       for (let j = 0; j < 3; j += 1) {
@@ -68,11 +69,12 @@ function mainSolve(boardString) {
     return true;
   }
   function checkSudokuRules(boardPrototype, row, column, value) {
-    //! проверяем, чтобы все 3 правила судоку соблюдались (правила записаны в функциях выше checkRow, checkColumn, checkCube)
+    //! проверяем, чтобы все 3 правила судоку соблюдались (правила записаны
+    //! в функциях выше checkRow, checkColumn, checkCube)
     if (
-      checkRow(boardPrototype, row, value) &&
-      checkColumn(boardPrototype, column, value) &&
-      checkCube(boardPrototype, row, column, value)
+      checkRow(boardPrototype, row, value)
+      && checkColumn(boardPrototype, column, value)
+      && checkCube(boardPrototype, row, column, value)
     ) {
       return true;
     }
@@ -159,11 +161,9 @@ const chalk = require('chalk');
 
 function prettyBoard(board) {
   const res = board
-    .map((element) =>
-      element
-        .map((item, i) => ((i + 1) % 3 === 0 && i < 7 ? `${item} |` : item))
-        .join(' ')
-    )
+    .map((element) => element
+      .map((item, i) => ((i + 1) % 3 === 0 && i < 7 ? `${item} |` : item))
+      .join(' '))
     .toString()
     .replace(/,/g, '\n');
   // console.log(res);
