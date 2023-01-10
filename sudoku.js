@@ -12,9 +12,9 @@ function mainSolve(boardString) {
   function makeBoard(boardString) {
     const str = boardString;
     const count = 9;
-    const pattern = new RegExp('.{1,' + count + '}', 'ig');
-    let res = str.match(pattern);
-    let newArr = res.map((el) =>
+    const pattern = new RegExp(`.{1,${count}}`, 'ig');
+    const res = str.match(pattern);
+    const newArr = res.map((el) =>
       Array.from(el).map((element) =>
         element === '-' ? (element = 0) : Number(element)
       )
@@ -24,8 +24,8 @@ function mainSolve(boardString) {
   const boardPrototype = makeBoard(boardString);
 
   function nextNull(boardPrototype) {
-    for (let i = 0; i < 9; i++) {
-      for (let j = 0; j < 9; j++) {
+    for (let i = 0; i < 9; i += 1) {
+      for (let j = 0; j < 9; j += 1) {
         if (boardPrototype[i][j] === 0) return [i, j];
       }
     }
@@ -34,7 +34,7 @@ function mainSolve(boardString) {
   function checkRow(boardPrototype, row, value) {
     //! value  тождественно (===) num в следующих функциях
 
-    for (let i = 0; i < boardPrototype[row].length; i++) {
+    for (let i = 0; i < boardPrototype[row].length; i += 1) {
       //! ищем в одном подмассиве (соответствует строке(row))
       if (boardPrototype[row][i] === value) {
         return false;
@@ -44,7 +44,7 @@ function mainSolve(boardString) {
   }
   function checkColumn(boardPrototype, column, value) {
     //! ищем во всех подмассивах, т.к. колонка проходит через все подмассивы (под одним индексом)
-    for (let i = 0; i < boardPrototype.length; i++) {
+    for (let i = 0; i < boardPrototype.length; i += 1) {
       if (boardPrototype[i][column] === value) {
         return false;
       }
@@ -54,12 +54,12 @@ function mainSolve(boardString) {
 
   function checkCube(boardPrototype, row, column, value) {
     //! делим строки и колонки на группы (math.floor позволяет провести группировку по индексам)
-    let cubeRow = Math.floor(row / 3) * 3;
-    let cubeColumn = Math.floor(column / 3) * 3;
+    const cubeRow = Math.floor(row / 3) * 3;
+    const cubeColumn = Math.floor(column / 3) * 3;
     //! i и j равны 3, т.к. квадраты поделены на 3 подгруппы (от 0 до 2 включительно) (по горизонтали для колонок и по вертикали для строк)
 
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < 3; i += 1) {
+      for (let j = 0; j < 3; j += 1) {
         if (boardPrototype[i + cubeRow][j + cubeColumn] === value) {
           return false;
         }
@@ -73,18 +73,19 @@ function mainSolve(boardString) {
       checkRow(boardPrototype, row, value) &&
       checkColumn(boardPrototype, column, value) &&
       checkCube(boardPrototype, row, column, value)
-    )
+    ) {
       return true;
-    else return false;
+    }
+    return false;
   }
   function fillSudokuWithNums(boardPrototype) {
-    let cellNull = nextNull(boardPrototype);
-    let row = cellNull[0];
-    let column = cellNull[1];
+    const cellNull = nextNull(boardPrototype);
+    const row = cellNull[0];
+    const column = cellNull[1];
 
     if (row === -1) return boardPrototype;
 
-    for (let num = 1; num <= 9; num++) {
+    for (let num = 1; num <= 9; num += 1) {
       if (checkSudokuRules(boardPrototype, row, column, num)) {
         boardPrototype[row][column] = num;
         fillSudokuWithNums(boardPrototype);
@@ -98,39 +99,16 @@ function mainSolve(boardString) {
   return fillSudokuWithNums(boardPrototype);
 }
 
-//* const testArr = boardPrototype.map((element, index, array) => {
-//   for (let i = 0; i < element.length; i++) {
-//     if (element[i] === 0) {
-//       return [index, i];
-//     }
-//   }
-//   return [-1, -1];
-// });
-
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 
-// const board = [
-//   [1, 4, 5, 8, 9, 2, 6, 7, 3],
-//   [8, 9, 3, 1, 7, 6, 4, 2, 5],
-//   [2, 7, 6, 4, 3, 5, 8, 1, 9],
-//   [5, 1, 9, 2, 4, 7, 3, 8, 6],
-//   [7, 6, 2, 5, 8, 3, 1, 9, 4],
-//   [3, 8, 4, 9, 6, 1, 7, 5, 2],
-//   [9, 5, 7, 6, 1, 4, 2, 3, 8],
-//   [4, 3, 8, 7, 2, 9, 5, 6, 1],
-//   [6, 2, 1, 3, 5, 8, 9, 4, 7],
-// ];
-
-// const board = ;
-
 function isSolved(board) {
   // проверяем строку
-  for (let row = 0; row < 9; row++) {
+  for (let row = 0; row < 9; row += 1) {
     const usedNumbers = new Set();
-    for (let col = 0; col < 9; col++) {
+    for (let col = 0; col < 9; col += 1) {
       const cell = board[row][col];
       if (cell < 1 || cell > 9 || usedNumbers.has(cell)) {
         console.log(new Set());
@@ -141,9 +119,9 @@ function isSolved(board) {
   }
 
   // проверяем столбец
-  for (let col = 0; col < 9; col++) {
+  for (let col = 0; col < 9; col += 1) {
     const usedNumbers = new Set();
-    for (let row = 0; row < 9; row++) {
+    for (let row = 0; row < 9; row += 1) {
       const cell = board[row][col];
       if (usedNumbers.has(cell)) {
         return false;
@@ -154,11 +132,11 @@ function isSolved(board) {
   }
 
   // проверяем 3x3 subgrids
-  for (let sqareRow = 0; sqareRow < 3; sqareRow++) {
-    for (let sqareCol = 0; sqareCol < 3; sqareCol++) {
+  for (let sqareRow = 0; sqareRow < 3; sqareRow += 1) {
+    for (let sqareCol = 0; sqareCol < 3; sqareCol += 1) {
       const usedNumbers = new Set();
-      for (let row = 0; row < 3; row++) {
-        for (let col = 0; col < 3; col++) {
+      for (let row = 0; row < 3; row += 1) {
+        for (let col = 0; col < 3; col += 1) {
           const cell = board[3 * sqareRow + row][3 * sqareCol + col];
           if (usedNumbers.has(cell)) {
             return false;
@@ -177,11 +155,27 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-  let str = board.flat().join("\n");
-  return str;
-}
+const chalk = require('chalk');
 
+function prettyBoard(board) {
+  const res = board
+    .map((element) =>
+      element
+        .map((item, i) => ((i + 1) % 3 === 0 && i < 7 ? `${item} |` : item))
+        .join(' ')
+    )
+    .toString()
+    .replace(/,/g, '\n');
+  // console.log(res);
+
+  const finalResOne = res.slice(0, 66);
+  const finalResTwo = res.slice(66, 132);
+  const finalResThree = res.slice(132);
+
+  const finalRes = `${finalResOne}\n${finalResTwo}\n${finalResThree}`;
+
+  return chalk.black.bold.bgWhiteBright(finalRes);
+}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
@@ -193,12 +187,12 @@ module.exports = {
 
 //! ЛОГИКА ПРОВЕРКИ
 
-//? 1) разбиваем на подмассивы
-//? 2) строки меняем на числа ( - => 0 )
-//? 3) целевой элемент (el) (0) прогоняется через function (row, column, cube, board[i] = 9)
+// ? 1) разбиваем на подмассивы
+// ? 2) строки меняем на числа ( - => 0 )
+// ? 3) целевой элемент (el) (0) прогоняется через function (row, column, cube, board[i] = 9)
 
-//? если рекурсия, то return function (row, column, cube, board - 1)
-//? базовое условие === правила судоку (число !== числу в столбце && строке && квадрате)
+// ? если рекурсия, то return function (row, column, cube, board - 1)
+// ? базовое условие === правила судоку (число !== числу в столбце && строке && квадрате)
 
 // if === [базовое условие] return el = board
 // if !== [базовое условие] return function (row, column, cube, board[i] - 1)
