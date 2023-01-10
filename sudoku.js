@@ -96,22 +96,7 @@ function isSolved(board) {
   return mySolve();
   // return board;
 }
-
-// const board = solve(str);
-// isSolved(board);
-
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает строку с игровым полем для последующего вывода в консоль.
- * Подумай, как симпатичнее сформировать эту строку.
- */
-// function prettyBoard(board) {
-//   let result = '';
-//   for (let i = 1; i <= board.length; i += 1) {
-//     result += `${board[i]}\n`.replaceAll(',', ' | ');
-//   }
-//   return result;
-// }
+console.log('Проверка');
 
 function prettyBoard(board) {
   let res = '';
