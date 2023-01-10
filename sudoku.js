@@ -32,10 +32,10 @@ function mainSolve(boardString) {
     return [-1, -1];
   }
   function checkRow(boardPrototype, row, value) {
-    //! value  тождественно (===) num в следующих функциях
+    //* value  тождественно (===) num в следующих функциях
 
     for (let i = 0; i < boardPrototype[row].length; i += 1) {
-      //! ищем в одном подмассиве (соответствует строке(row))
+      //* ищем в одном подмассиве (соответствует строке(row))
       if (boardPrototype[row][i] === value) {
         return false;
       }
@@ -43,7 +43,7 @@ function mainSolve(boardString) {
     return true;
   }
   function checkColumn(boardPrototype, column, value) {
-    //! ищем во всех подмассивах, т.к. колонка проходит через все подмассивы (под одним индексом)
+    //* ищем во всех подмассивах, т.к. колонка проходит через все подмассивы (под одним индексом)
     for (let i = 0; i < boardPrototype.length; i += 1) {
       if (boardPrototype[i][column] === value) {
         return false;
@@ -53,11 +53,11 @@ function mainSolve(boardString) {
   }
 
   function checkCube(boardPrototype, row, column, value) {
-    //! делим строки и колонки на группы (math.floor позволяет провести группировку по индексам)
+    //* делим строки и колонки на группы (math.floor позволяет провести группировку по индексам)
     const cubeRow = Math.floor(row / 3) * 3;
     const cubeColumn = Math.floor(column / 3) * 3;
-    //! i и j равны 3, т.к. квадраты поделены на 3 подгруппы (от 0 до 2 включительно)
-    //! (по горизонтали для колонок и по вертикали для строк)
+    //* i и j равны 3, т.к. квадраты поделены на 3 подгруппы (от 0 до 2 включительно)
+    //* (по горизонтали для колонок и по вертикали для строк)
 
     for (let i = 0; i < 3; i += 1) {
       for (let j = 0; j < 3; j += 1) {
@@ -69,8 +69,8 @@ function mainSolve(boardString) {
     return true;
   }
   function checkSudokuRules(boardPrototype, row, column, value) {
-    //! проверяем, чтобы все 3 правила судоку соблюдались (правила записаны
-    //! в функциях выше checkRow, checkColumn, checkCube)
+    //* проверяем, чтобы все 3 правила судоку соблюдались (правила записаны
+    //* в функциях выше checkRow, checkColumn, checkCube)
     if (
       checkRow(boardPrototype, row, value)
       && checkColumn(boardPrototype, column, value)
@@ -94,6 +94,7 @@ function mainSolve(boardString) {
       }
     }
     if (nextNull(boardPrototype)[0] !== -1) {
+      //если нет валидного числа, то сбрасываем значение до 0
       boardPrototype[row][column] = 0;
     }
     return boardPrototype;
@@ -163,16 +164,14 @@ function prettyBoard(board) {
   const res = board
     .map((element) => element
       .map((item, i) => ((i + 1) % 3 === 0 && i < 7 ? `${item} |` : item))
-      .join(' '))
-    .toString()
-    .replace(/,/g, '\n');
+      .join(' ')).toString().replace(/,/g, '\n');
   // console.log(res);
 
   const finalResOne = res.slice(0, 66);
   const finalResTwo = res.slice(66, 132);
   const finalResThree = res.slice(132);
 
-  const finalRes = `${finalResOne}\n${finalResTwo}\n${finalResThree}`;
+  const finalRes = `${finalResOne}---------------------\n${finalResTwo}---------------------\n${finalResThree}`;
 
   return chalk.black.bold.bgWhiteBright(finalRes);
 }
