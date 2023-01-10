@@ -27,52 +27,6 @@ function isSolved(board) {
   const size = board.length;
   const boxSize = 3;
 
-  // findEmpty функция поиска незаполненого элемента в массиве
-  const findEmpty = (board) => {
-    // const arr = []
-    for (let row = 0; row < size; row += 1) {
-      for (let column = 0; column < size; column += 1) {
-        if (board[row][column] === '-') {
-          // arr.push([row, column])
-          return [row, column];
-        }
-      }
-    }
-    // return arr
-    return null;
-  };
-
-  const validate = (num, pos, board) => {
-    const [row, column] = pos;
-
-    // Проверка строки
-    for (let i = 0; i < size; i += 1) {
-      if (board[i][column] === num && i !== row) {
-        return false;
-      }
-    }
-
-    // Проверка колонки
-    for (let i = 0; i < size; i += 1) {
-      if (board[row][i] === num && i !== column) {
-        return false;
-      }
-    }
-
-    // Поиск начального значения в выбраном квадрате 3х3
-    const boxRow = Math.floor(row / boxSize) * boxSize;
-    const boxColumn = Math.floor(column / boxSize) * boxSize;
-
-    for (let i = boxRow; i < boxRow + boxSize; i += 1) {
-      for (let j = boxColumn; j < boxColumn + boxSize; j += 1) {
-        if (board[i][j] === num && i === row && j !== column) {
-          return false;
-        }
-      }
-    }
-    return true;
-  };
-
   const mySolve = () => {
     const currPosition = findEmpty(board);
     if (currPosition === null) {
@@ -96,7 +50,55 @@ function isSolved(board) {
   return mySolve();
   // return board;
 }
-console.log('Проверка');
+
+ // findEmpty функция поиска незаполненого элемента в массиве
+function findEmpty(board){
+  const size = board.length;
+  for (let row = 0; row < size; row += 1) {
+    for (let column = 0; column < size; column += 1) {
+      if (board[row][column] === '-') {
+        
+        return [row, column];
+      }
+    }
+  }
+  return null;
+};
+
+
+function validate(num, pos, board){
+  const size = board.length;
+  const boxSize = 3;
+  const [row, column] = pos;
+
+  // Проверка строки
+  for (let i = 0; i < size; i += 1) {
+    if (board[i][column] === num && i !== row) {
+      return false;
+    }
+  }
+
+  // Проверка колонки
+  for (let i = 0; i < size; i += 1) {
+    if (board[row][i] === num && i !== column) {
+      return false;
+    }
+  }
+
+  // Поиск начального значения в выбраном квадрате 3х3
+  const boxRow = Math.floor(row / boxSize) * boxSize;
+  const boxColumn = Math.floor(column / boxSize) * boxSize;
+
+  for (let i = boxRow; i < boxRow + boxSize; i += 1) {
+    for (let j = boxColumn; j < boxColumn + boxSize; j += 1) {
+      if (board[i][j] === num && i === row && j !== column) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
 
 function prettyBoard(board) {
   let res = '';
