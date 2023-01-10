@@ -10,7 +10,12 @@ function solve(boardString) {
   const newBoard = boardString.split("");
   const board = [];
 
-  for (let i = 0; i < newBoard.length; i += 0) {
+  if(boardString.length < 81){
+    return console.log("Недостаточная длина строки");
+  }
+
+
+   for (let i = 0; i < newBoard.length; i += 0) {
     board.push(newBoard.slice(i, (i += 9)));
   }
 
@@ -147,6 +152,7 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+
 function prettyBoard(board) {
   const emojis = {
     1: "➊ ",
@@ -173,7 +179,13 @@ function prettyBoard(board) {
   }
   return res.map((el) => el.join("")).join("\n");
 }
-
+console.log(
+  prettyBoard([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ]),
+);
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
