@@ -109,12 +109,31 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
+// function prettyBoard(board) {
+//   let result = '';
+//   for (let i = 1; i <= board.length; i += 1) {
+//     result += `${board[i]}\n`.replaceAll(',', ' | ');
+//   }
+//   return result;
+// }
+
 function prettyBoard(board) {
-  let result = '';
-  for (let i = 1; i <= board.length; i += 1) {
-    result += `${board[i]}\n`.replaceAll(',', ' | ');
+  let res = '';
+  for (let i = 0; i < board.length; i++) {
+    if (i % 3 === 0 && i !== 0) {
+      res = `${res} \n------------------------`;
+    }
+    for (let j = 0; j < board.length; j++) {
+      if (j % 3 === 0 && j !== 0) {
+        res = ` ${res}` + ' | ';
+      }
+      if (j % 9 === 0) {
+        res = `${res} \n`;
+      }
+      res = `${res} ${board[i][j]}`;
+    }
   }
-  return result;
+  return res;
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
