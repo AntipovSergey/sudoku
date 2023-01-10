@@ -5,13 +5,7 @@
   "main": "runner.js",
   "scripts": {
     "start": "node runner.js"
-    
   },
-  
-    "scripts": {
-      "test": "jest"
-    }
-  ,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Elbrus-Bootcamp/project-sudoku.git"
@@ -26,11 +20,6 @@
   "devDependencies": {
     "eslint": "^8.31.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "jest": "^29.3.1"
-  },
-  
-  "dependencies": {
-    "chalk": "^5.2.0"
+    "eslint-plugin-import": "^2.26.0"
   }
 }
