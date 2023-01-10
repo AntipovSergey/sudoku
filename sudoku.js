@@ -1,11 +1,8 @@
-
-
-// const str = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
 function solve(boardString) {
   // Функция преобразования строки в массив
   const getBoard = function (string) {
-    const array = string.split('')
-    const board = []
+    const array = string.split('');
+    const board = [];
     while (array.length) {
       board.push(array.splice(0, 9));
     }
@@ -51,22 +48,20 @@ function isSolved(board) {
   // return board;
 }
 
- // findEmpty функция поиска незаполненого элемента в массиве
-function findEmpty(board){
+// findEmpty функция поиска незаполненого элемента в массиве
+function findEmpty(board) {
   const size = board.length;
   for (let row = 0; row < size; row += 1) {
     for (let column = 0; column < size; column += 1) {
       if (board[row][column] === '-') {
-        
         return [row, column];
       }
     }
   }
   return null;
-};
+}
 
-
-function validate(num, pos, board){
+function validate(num, pos, board) {
   const size = board.length;
   const boxSize = 3;
   const [row, column] = pos;
@@ -97,18 +92,17 @@ function validate(num, pos, board){
     }
   }
   return true;
-};
-
+}
 
 function prettyBoard(board) {
   let res = '';
-  for (let i = 0; i < board.length; i++) {
+  for (let i = 0; i < board.length; i += 1) {
     if (i % 3 === 0 && i !== 0) {
       res = `${res} \n------------------------`;
     }
-    for (let j = 0; j < board.length; j++) {
+    for (let j = 0; j < board.length; j += 1) {
       if (j % 3 === 0 && j !== 0) {
-        res = ` ${res}` + ' | ';
+        res = ` ${res} | `;
       }
       if (j % 9 === 0) {
         res = `${res} \n`;
