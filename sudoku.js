@@ -37,87 +37,107 @@ function getSquares() {
   return squares;
 }
 
-function validating(k) {
-  const [a, b] = finding(); 
-  let item = 0,
-  rows = board,
-  columns = getColumns(),
-  squares = getSquares();
-  switch (a) {
-    case 0:
-    case 1:
-    case 2:
-      item = 0 + Math.floor(b / 3);
-      break;
-    case 3:
-    case 4:
-    case 5:
-      item = 3 + Math.floor(b / 3);
-      break;
-    case 6:
-    case 7:
-    case 8:
-      item = 6 + Math.floor(b / 3);
-      break;
+function solve() {
+
+  function finding() {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (board[i][j] === '-') {
+          return [i, j];
+        }
+      }
+    }
+    return null;
   }
 
-  // for (let i = 1; i <= 9; i++) {
-    if (!rows[a].includes(k.toString()) && !columns[b].includes(k.toString()) && !squares[item].includes(k.toString())) {
-      // return board[a][b] = i.toString();
+  function validating(number, position) {
+    const [i, j] = position;
+    let rows = board;
+    let columns = getColumns();
+    let squares = getSquares();
+    switch (i) {
+      case 0:
+      case 1:
+      case 2:
+        item = 0 + Math.floor(j / 3);
+        break;
+      case 3:
+      case 4:
+      case 5:
+        item = 3 + Math.floor(j / 3);
+        break;
+      case 6:
+      case 7:
+      case 8:
+        item = 6 + Math.floor(j / 3);
+        break;
+    }
+
+    if (rows[i].includes(number) || columns[j].includes(number) || squares[item].includes(number)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function solving() {
+    const item = finding();
+    if (item === null) {
       return true;
     }
-  // }
-  return false;
-}
+    for (let i = 1; i <= 9; i++) {
+      const itemNum = i.toString();
+      const valid = validating(itemNum, item);
 
-function finding() {
-  for (let a = 0; a < 9; a++) {
-    for (let b = 0; b < 9; b++) {
-      if (board[a][b] === '-') {
-        return [a, b];
+      if (valid === true) {
+        const [q, w] = item;
+        board[q][w] = itemNum;
+
+        if (solving()) {
+          return true;
+        }
+        board[q][w] = '-';
       }
     }
+    return false;
   }
-  return null;
+
+  solving();
+  return board;
 }
 
-function solve() {
-  const [a,b] = finding();
-  if (finding() === null){return true;}
-  for (let i = 1; i <= 9; i++) {
-    if (validating(i)) {
-      board[a][b] = i.toString();
-      if (solve()) {
-        return true;
-      }
-    else {board[a][b] = '-'}
-    }
-  }
-  return false;
-}
-console.log(solve());
+console.log('solve', solve());
 
+function getSum(it) {
+  return it.reduce((a, b) => (+a) + (+b), 0) === 45;
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
-
+function isSolved(array) {
+  array = solve();
+  return array.every((el) => getSum(el) === true)
 }
+
+console.log('isSolved:', isSolved());
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
+function prettyBoard(x) {
+  x = solve();
+  return x.join('\n').replaceAll(',', ' | ')
 }
+
+console.log(`prettyBoard:`);
+console.log(prettyBoard());
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
-  solve,
   isSolved,
   prettyBoard,
   getRows,
