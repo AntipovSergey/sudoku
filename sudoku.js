@@ -1,15 +1,11 @@
-/**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
+
 
 // const str = '---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----';
 function solve(boardString) {
   // Функция преобразования строки в массив
   const getBoard = function (string) {
-    const array = string.split('');
-    const board = [];
+    const array = string.split('')
+    const board = []
     while (array.length) {
       board.push(array.splice(0, 9));
     }
