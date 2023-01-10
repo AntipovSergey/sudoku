@@ -10,7 +10,7 @@ function solve(boardString) {
   const newBoard = boardString.split("");
   const board = [];
 
-  if(boardString.length < 81){
+  if(boardString.length !== 81){
     return console.log("Недостаточная длина строки");
   }
 
