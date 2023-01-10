@@ -58,15 +58,11 @@ function refresh() {
   }
 }
 
-let board = getRows();
+let board = drawBoard().match(/.{9}/g).map((el) => el.split(''));
 
 function getRows() {
-  let rows = [];
-  if (process.argv[2] === undefined) {
-    rows = box[0].match(/.{9}/g).map((el) => el.split(''));
-  } else {
-    rows = box[process.argv[2]].match(/.{9}/g).map((el) => el.split(''));
-  }
+  const inpVal = getVal();
+  let rows = box[inpVal].join('').replaceAll('-', ' ').match(/.{9}/g).map((el) => el.split(''));
   return rows;
 }
 
@@ -95,7 +91,7 @@ function getSquares() {
 }
 
 function solveS() {
-
+  // let board = drawBoard().match(/.{9}/g).map((el) => el.split(''));; ???
   function finding() {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {

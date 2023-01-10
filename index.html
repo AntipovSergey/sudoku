@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>Document</title>
+  <script defer src="./index.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <nav class="nav">
+        <ul class="list">
+          <li class="list_item"> 1</li>
+          <li class="list_item"> 2</li>
+          <li class="list_item"> 3</li>
+          <li class="list_item"> 4</li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="intro">
+        <h1>Sudoku solver</h1>
+      </div>
+      <div class="sudoku">
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+        <div class="sudoku_item">
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+          <div class="item_number"></div>
+        </div>
+      </div>
+      <select name="board" id="select">
+        <option class="num" value="1">1</option>
+        <option class="num" value="2">2</option>
+        <option class="num" value="3">3</option>
+        <option class="num" value="4">4</option>
+        <option class="num" value="5">5</option>
+        <option class="num" value="6">6</option>
+        <option class="num" value="7">7</option>
+        <option class="num" value="8">8</option>
+        <option class="num" value="9">9</option>
+        <option class="num" value="10">10</option>
+        <option class="num" value="11">11</option>
+        <option class="num" value="12">12</option>
+        <option class="num" value="13">13</option>
+        <option class="num" value="14">14</option>
+        <option class="num" value="15">15</option>
+      </select>
+      <div class="buttons">
+        <button class="solve">Solve sudoku</button>
+        <button class="draw">Choose deck</button>
+        <button class="refresh">Clear All</button>
+        <button class="step">Solve step</button>
+      </div>
+    </main>
+  </div>
+
+
+</body>
+
+</html>
