@@ -21,7 +21,6 @@ function mainSolve(boardString) {
     );
     return newArr;
   }
-
   const boardPrototype = makeBoard(boardString);
 
   function nextNull(boardPrototype) {
@@ -127,7 +126,7 @@ function mainSolve(boardString) {
 
 // const board = ;
 
-function isSolved(board = solve(boardString)) {
+function isSolved(board) {
   // проверяем строку
   for (let row = 0; row < 9; row++) {
     const usedNumbers = new Set();
@@ -178,7 +177,11 @@ function isSolved(board = solve(boardString)) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {}
+function prettyBoard(board) {
+  let str = board.flat().join("\n");
+  return str;
+}
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
