@@ -173,7 +173,6 @@ function prettyBoard(board) {
   }
   return res.map((el) => el.join("")).join("\n");
 }
-
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
