@@ -1,6 +1,7 @@
 const fs = require('fs');
 const process = require('process');
 const box = fs.readFileSync('puzzles.txt', 'utf-8').split('\n');
+let board = getRows();
 
 function getRows() {
   let rows = [];
@@ -15,7 +16,6 @@ function getRows() {
 function getColumns() {
   const columns = [];
   let mincol = [];
-  let board = getRows();
   for (let i = 0; i < board.length; i++) {
     mincol = [];
     for (let j = 0; j < board[i].length; j++) {
@@ -28,7 +28,7 @@ function getColumns() {
 
 function getSquares() {
   const squares = [[], [], [], [], [], [], [], [], []];
-  let str1 = getRows();
+  let str1 = board;
   for (let i = 0; i < 9; i += 3) {
     squares[i].push(str1[i][0], str1[i][1], str1[i][2], str1[i + 1][0], str1[i + 1][1], str1[i + 1][2], str1[i + 2][0], str1[i + 2][1], str1[i + 2][2]);
     squares[i + 1].push(str1[i][3], str1[i][4], str1[i][5], str1[i + 1][3], str1[i + 1][4], str1[i + 1][5], str1[i + 2][3], str1[i + 2][4], str1[i + 2][5]);
@@ -38,9 +38,9 @@ function getSquares() {
 }
 
 function validating() {
-  const [a, b] = finding();
+  const [a, b] = finding(); 
   let item = 0,
-  rows = getRows(),
+  rows = board,
   columns = getColumns(),
   squares = getSquares();
   switch (a) {
@@ -62,10 +62,11 @@ function validating() {
   }
 
   for (let i = 1; i <= 9; i++) {
-    if (rows[a].includes(i) || columns[b].includes(i) || squares[item].includes(i)) {
-      return false;
+    if (!rows[a].includes(i.toString()) && !columns[b].includes(i.toString()) && !squares[item].includes(i.toString())) {
+      return board[a][b] = i.toString();
     }
   }
+  return ;
 }
 
 function finding() {
@@ -79,10 +80,16 @@ function finding() {
   return null;
 }
 
-function solve(boardString) {
-
+function solve() {
+  let searching = finding();
+  if (searching !== null) {
+    searching = finding();
+    validating(searching);
+    solve();
+  }
+  else { return board; }
 }
-
+console.log(solve());
 
 
 /**
