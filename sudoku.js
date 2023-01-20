@@ -4,15 +4,15 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-  function createInput(boardString) {
+  function createBoard(boardString) {
     const input = [];
     for (let i = 0; i < boardString.length - 8; i += 9) {
       input.push(boardString.split('').slice(i, i + 9));
     }
     return input;
   }
-  let input =createInput();
-  
+  const input = createBoard(boardString);
+
   const solveSudoku = function (board) {
     const size = 9;
     const boxSize = 3;
@@ -20,7 +20,7 @@ function solve(boardString) {
     const findEmpty = (board) => {
       for (let r = 0; r < size; r += 1) {
         for (let c = 0; c < size; c += 1) {
-          if (board[r][c] === '.') {
+          if (board[r][c] === '-') {
             return [r, c];
           }
         }
@@ -66,11 +66,11 @@ function solve(boardString) {
       if (currPos === null) {
         return true;
       }
-      // console.log('------------------------------');
+
       for (let i = 1; i < size + 1; i += 1) {
         const currNum = i.toString();
         const isValid = validate(currNum, currPos, board);
-        // console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
+
         if (isValid) {
           const [x, y] = currPos;
           board[x][y] = currNum;
@@ -79,7 +79,7 @@ function solve(boardString) {
             return true;
           }
 
-          board[x][y] = '.';
+          board[x][y] = '-';
         }
       }
 
