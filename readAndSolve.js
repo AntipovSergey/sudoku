@@ -1,5 +1,22 @@
 // Подключить функции из файла sudoku.js.
+const fs = require('fs');
 const sudoku = require('./sudoku');
+
+const read = fs.readFileSync('./puzzles.txt', 'utf8');
+// console.log(read);
+const allSudoku = read.split('\n');
+console.log(allSudoku[0].length);
+function getSudoku(allSudoku, index) {
+  const arr = allSudoku[index].split('');
+  console.log(arr);
+  const newArr = [];
+  const subArray = 9;
+  for (let i = 0; i < arr.length; i += subArray) {
+    newArr.push(arr.slice(i, i + subArray));
+  }
+  return newArr;
+}
+console.table(getSudoku(allSudoku, 0));
 
 function readAndSolve(error, fileData) {
   // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
