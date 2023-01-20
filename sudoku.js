@@ -1,3 +1,4 @@
+const fs = require('fs');
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -89,9 +90,10 @@ function solve(boardString) {
     solve();
     return board;
   }
-  
-  console.table(input);
-  console.table(solveSudoku(input));
+
+  // console.table(input);
+  // console.table(solveSudoku(input));
+  // console.log(solveSudoku(input));
   return solveSudoku(input);
 }
 
@@ -112,7 +114,9 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  const result = board.map((el) => el.join(' ')).join('\n');
+  fs.writeFileSync(`./results/Sudoku №${process.argv[2]}.txt`, result);
+  return result;
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
