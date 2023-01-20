@@ -13,7 +13,7 @@ function solve(boardString) {
   }
   const input = createBoard(boardString);
 
-  const solveSudoku = function (board) {
+  function solveSudoku(board) {
     const size = 9;
     const boxSize = 3;
 
@@ -88,10 +88,11 @@ function solve(boardString) {
 
     solve();
     return board;
-  };
-
+  }
+  
   console.table(input);
   console.table(solveSudoku(input));
+  return solveSudoku(input);
 }
 
 /**
@@ -99,6 +100,10 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+  if (!board.flat().includes('-')) {
+    return true;
+  }
+  return false;
 }
 
 /**
