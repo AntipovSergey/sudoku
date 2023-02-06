@@ -96,34 +96,35 @@ function checkOption(index, board) {
 //   return newStr;
 // }
 
-function solve(boardString, index = 0) {
-  let newStr = [...boardString].join("");
+function solve(boardString, index = 0, val = 0) {
+  let newStr = [...boardString];
+  if (val) {
+    newStr[index - 1] = val;
+  }
   while (boardString[index] !== "-" && index < 81) {
     index++;
   }
   if (!newStr.includes("-")) {
     return newStr;
   }
-  const options = checkOption(index, boardString);
-  if (!options.length) return false;
+  const options = checkOption(index, newStr.join(""));
+  if (!options.length) {
+    newStr[index - 1] = '-';
+    return newStr;
+  };
   if (index === 80) {
-    newStr =
-      newStr.substring(0, index) + options[0] + newStr.substring(index + 1);
+    newStr[80] = options[0];
     return newStr;
   }
   for (let val = 0; val < options.length; val++) {
-    newStr =
-      newStr.substring(0, index) + options[val] + newStr.substring(index + 1);
-    solve(newStr, index + 1);
-    if (solve && !solve(newStr, index + 1).includes('-')) {
-      newStr = solve(newStr, index + 1)
-    }
+    solve(newStr.join(''), index + 1, options[val]);
+
   }
   return newStr;
 }
 
 const firstSudoku =
-  "----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----";
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
 
 const fnResult =
   "14589267389317642527643581951924738676258319438496175295761423843872956162135894-";
