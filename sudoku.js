@@ -100,11 +100,11 @@ function solver(index, board) {
   if (index === 81) {
     return true;
   }
-  const options = checkOption(index, board, value = 0);
+  const options = checkOption(index, board);
 
   for (let val of options) {
     board[index] = val;
-    if (solver(index + 1, board, val)) {
+    if (solver(index + 1, board)) {
       return board;
     }
   }
