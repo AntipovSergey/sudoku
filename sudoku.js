@@ -19,6 +19,7 @@ let task1 = [
   '67-83----',
   '81--45---',
 ];
+// let column = '123456789';
 
 function stringCandidates(str) {
   let result = '';
@@ -32,7 +33,17 @@ function stringCandidates(str) {
   return result;
 }
 
-console.log(stringCandidates(task1[0]));
+function columnCandidates(str, candidates) {
+  for (let i = 0; i < str.length; i++) {
+    if (!(candidates.indexOf(str[i]) === -1)) {
+      candidates = candidates.replace(str[i], '');
+    }
+  }
+  return candidates;
+}
+
+console.log(columnCandidates('-2----968', '238'));
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
