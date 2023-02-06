@@ -4,8 +4,6 @@ const arrToStr = require('./arrToStr');
 const checkBoard = require('./checkBoard');
 const addNumber = require('./addNumber');
 
-const TEST = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
-
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -14,31 +12,30 @@ const TEST = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43-
 function solve(boardString) {
   const boardArr = strToArr(boardString);
   const cell = findEmptyCell(boardArr);
-  console.log('cell', cell);
-  // return cell;
   if (cell === -1) {
     return arrToStr(boardArr);
   }
-  for (let i = 1; i < 9; i++) {
+  for (let i = 1; i <= 9; i += 1) {
     const result = checkBoard(boardArr, cell, i);
-    console.log(result);
     if (!result) continue;
-    
+
     const newArr = addNumber(boardArr, cell, i);
-    console.table(newArr);
     const newStr = arrToStr(newArr);
-    console.log(newStr);
-    return solve(newStr);
+    const res = solve(newStr);
+    if (res) {
+      return res;
+    }
+    boardArr[cell[0]][cell[1]] = '-';
   }
-  // return newStr;
+  return null;
 }
-console.log(solve(TEST));
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  return solve(board);
 }
 
 /**
@@ -47,6 +44,13 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  const arr = strToArr(board).map((el)=> el.join(' | '));
+  const prettyArr = [];
+  const str = '—' + '—|——'.repeat(8) + '—';
+  for (let i = 0; i < arr.length-1; i += 1) {
+    prettyArr.push(arr[i], str);
+  }
+  return prettyArr.join('\n');
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
