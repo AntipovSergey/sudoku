@@ -3,6 +3,19 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+function i2rc(index) {
+  return { row: Math.floor(index / 9), column: index % 9 };
+}
+
+function rc2i(row, column) {
+  return row * 9 + column;
+}
+
+function square(row, column) {
+  return { row: Math.floor(row / 3), column: Math.floor(column / 3) };
+}
+
+
 function solve(boardString) {
 }
 
