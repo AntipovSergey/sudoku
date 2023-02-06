@@ -1,13 +1,8 @@
-// const board = require('./board');
-
 function checkSquare(board, coords, value) {
-  //определяем начальные координаты квардата для поиска значения
-  console.log('coords', coords);
   const squareRow = parseInt(coords[0] / 3) * 3;
   const squareCol = parseInt(coords[1] / 3) * 3;
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      //проверяем в определенном квадрате наличие заданного значения value
+  for (let i = 0; i < 3; i += 1) {
+    for (let j = 0; j < 3; j += 1) {
       if (board[i + squareRow][j + squareCol] === value.toString()) {
         return false;
       }
@@ -15,4 +10,5 @@ function checkSquare(board, coords, value) {
   }
   return true;
 }
+
 module.exports = checkSquare;
