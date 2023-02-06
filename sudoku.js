@@ -69,9 +69,8 @@ function solver(index, board) {
   return false;
 }
 
-
 function solve(boardString) {
-  let board = [...boardString];
+  const board = [...boardString];
   const result = solver(0, board);
   return result.join('');
 }
