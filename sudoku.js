@@ -1,42 +1,99 @@
-const { prettyBoard } = require("./prettyBoard.js");
+const fs = require('fs');
 
-function solve(boardString) {
-  const bordArray = boardString.split('');
-  const size = 9;
-  const subarray = [];
-  for (let i = 0; i < Math.ceil(bordArray.length / size); i += +1) {
-    subarray[i] = bordArray.slice(i * size, i * size + size);
-  }
-  return subarray;
+const { prettyBoard } = require('./prettyboard');
+
+const inputStrings = fs.readFileSync('./puzzles.txt', 'utf-8');
+
+const arrOfBoards = inputStrings.split('\n');
+
+function prettyB(board) {
+  const newBordNum = board.map(el => {
+    el.split('');
+    const size = 9;
+    const subarray = [];
+    for (let i = 0; i < Math.ceil(el.length / size); i += +1) {
+      subarray[i] = el.slice(i * size, i * size + size);
+    }
+    return subarray.map(elem => elem.split(''));
+  });
+  return newBordNum;
 }
+
+const sudokuBoard = prettyB(arrOfBoards);
 
 function isSolved(board) {
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
-      if (board[i][j].indexOf("-") > -1) {
-        return false;
+      if (board[i][j] === '-') {
+        return [i, j];
       }
     }
   }
-  return true;
+  return null;
 }
 
-// const sud1 = [
-//   ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
-//   ["4", "5", "6", "7", "8", "9", "1", "2", "3"],
-//   ["7", "8", "9", "1", "2", "3", "4", "5", "6"],
-//   ["2", "1", "4", "3", "6", "5", "8", "9", "7"],
-//   ["3", "6", "5", "8", "9", "7", "2", "1", "4"],
-//   ["8", "9", "7", "2", "1", "4", "3", "6", "5"],
-//   ["5", "3", "1", "6", "4", "2", "9", "7", "8"],
-//   ["6", "4", "2", "9", "7", "8", "5", "3", "1"],
-//   ["9", "7", "8", "5", "3", "1", "6", "4", "2"],
-// ];
+function solve(boardString) {
+  const size = 9;
+  const boxSize = 3;
 
-// console.log(prettyBoard(sud1));
+  const validate = (num, pos, board) => {
+    const [r, c] = pos;
 
-// module.exports = {
-//   solve,
-//   isSolved,
-//   prettyBoard,
-// };
+    for (let i = 0; i < size; i += 1) {
+      if (board[i][c] === num && i !== r) {
+        return false;
+      }
+    }
+    for (let i = 0; i < size; i += 1) {
+      if (board[r][i] === num && i !== c) {
+        return false;
+      }
+    }
+    const boxRow = Math.floor(r / boxSize) * boxSize;
+    const boxCol = Math.floor(c / boxSize) * boxSize;
+
+    for (let i = boxRow; i < boxRow + boxSize; i += 1) {
+      for (let j = boxCol; j < boxCol + boxSize; j += 1) {
+        if (board[i][j] === num && i !== r && j !== c) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
+  const solveSudoku = () => {
+    const currPos = isSolved(boardString);
+    if (currPos === null) {
+      return true;
+    }
+
+    for (let i = 1; i < size + 1; i += 1) {
+      const currNum = i.toString();
+      const isValid = validate(currNum, currPos, boardString);
+
+      if (isValid) {
+        const [x, y] = currPos;
+        boardString[x][y] = currNum;
+
+        if (solveSudoku()) {
+          return true;
+        }
+
+        boardString[x][y] = '-';
+      }
+    }
+    return false;
+  };
+  solveSudoku();
+  return boardString;
+}
+const result = solve(sudokuBoard[0]);
+
+console.log(prettyBoard(result));
+
+module.exports = {
+  solve,
+  isSolved,
+  prettyBoard,
+};
