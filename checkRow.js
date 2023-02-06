@@ -1,7 +1,7 @@
-function checkIsInLine(arr, indexes, num) {
+function checkRow(arr, indexes, num) {
   const lineIndex = indexes[0];
   const line = arr[lineIndex];
-  return line.includes(num.toString());
+  return !line.includes(num.toString());
 }
 
 // function divideIntoChunks(arr, chunk) {
@@ -16,9 +16,9 @@ function checkIsInLine(arr, indexes, num) {
 // function strToArr(str) {
 //   return divideIntoChunks(str.split(''), 9);
 // }
-// console.log(strToArr(str));
+// console.table(strToArr(str));
 
-// console.log(checkIsInLine(strToArr(str), [0, 1], 4));
-// console.log(checkIsInLine(strToArr(str), [0, 1], 8));
+// console.log(checkRow(strToArr(str), [0, 1], 4));
+// console.log(checkRow(strToArr(str), [0, 1], 8));
 
-module.exports = checkIsInLine;
+module.exports = checkRow;
