@@ -12,7 +12,7 @@ function rc2i(row, column) {
 }
 
 function square(row, column) {
-  return { row: Math.floor(row / 3), column: Math.floor(column / 3) };
+  return { row: Math.floor(row / 3) * 3, column: Math.floor(column / 3) * 3 };
 }
 
 
