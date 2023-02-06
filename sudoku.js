@@ -95,36 +95,53 @@ function checkOption(index, board) {
 //   }
 //   return newStr;
 // }
+function solver(index, board) {
+  while (index < 81 && board[index] !== "-") index++;
+  if (index === 81) {
+    return true;
+  }
+  const options = checkOption(index, board, value = 0);
+
+  for (let val of options) {
+    board[index] = val;
+    if (solver(index + 1, board, val)) {
+      return board;
+    }
+  }
+  board[index] = "-";
+  return false;
+}
 
 function solve(boardString, index = 0, val = 0) {
   let newStr = [...boardString];
-  if (val) {
-    newStr[index - 1] = val;
-  }
-  while (boardString[index] !== "-" && index < 81) {
-    index++;
-  }
-  if (!newStr.includes("-")) {
-    return newStr;
-  }
-  const options = checkOption(index, newStr.join(""));
-  if (!options.length) {
-    newStr[index - 1] = '-';
-    return newStr;
-  };
-  if (index === 80) {
-    newStr[80] = options[0];
-    return newStr;
-  }
-  for (let val = 0; val < options.length; val++) {
-    solve(newStr.join(''), index + 1, options[val]);
-
-  }
-  return newStr;
+  const check = solver(index, newStr);
+  return check;
+  // if (val) {
+  //   newStr[index - 1] = val;
+  // }
+  // while (boardString[index] !== "-" && index < 81) {
+  //   index++;
+  // }
+  // if (!newStr.includes("-")) {
+  //   return newStr;
+  // }
+  // const options = checkOption(index, newStr.join(""));
+  // if (!options.length) {
+  //   newStr[index - 1] = "-";
+  //   return newStr;
+  // }
+  // if (index === 80) {
+  //   newStr[80] = options[0];
+  //   return newStr;
+  // }
+  // for (let val = 0; val < options.length; val++) {
+  //   solve(newStr.join(""), index + 1, options[val]);
+  // }
+  // return newStr;
 }
 
 const firstSudoku =
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+  "----------2-65-------18--4--9----6-4-3---57-------------------73------9----------";
 
 const fnResult =
   "14589267389317642527643581951924738676258319438496175295761423843872956162135894-";
