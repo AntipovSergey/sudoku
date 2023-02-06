@@ -33,6 +33,7 @@ function stringCandidates(str) {
   return result;
 }
 
+
 function columnCandidates(str, candidates) {
   for (let i = 0; i < str.length; i++) {
     if (!(candidates.indexOf(str[i]) === -1)) {
