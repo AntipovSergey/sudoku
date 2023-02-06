@@ -34,7 +34,38 @@ function solve(boardString) {
     b += 3;
   }
 
-  console.log(sqwrs);
+  function compliteSudocu(field, sqwr) {
+    const numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let startField = field;
+
+    for (let i = 0; i < startField.length; i += 1) {
+      startField[i].forEach((num, index) => {
+        if (num === "-") {
+          console.log(`${num} === "-"`); // сработает
+          for (let j = 0; j < numberPool.length; j += 1) {
+            console.log(`${j} пошел`);
+
+            if (
+              !sqwr.includes(numberPool[j]) &&
+              !startField[i].includes(numberPool[j]) &&
+              startField[0][index] !== numberPool[j] &&
+              startField[1][index] !== numberPool[j] &&
+              startField[2][index] !== numberPool[j]
+            ) {
+              console.log("if includes сработал");
+              startField[i][index] = numberPool[j];
+              break;
+            }
+          }
+        }
+      });
+    }
+
+    for (element of field) {
+      if (!element.includes("-")) return startField;
+      return startField;
+    }
+  }
 }
 solve(boardString);
 
