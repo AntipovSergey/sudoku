@@ -74,3 +74,24 @@ hr {
 .horizontal-line {
   border-bottom: 1px solid black;
 }
+
+.selectPuzzle {
+  width: 480px;
+  height: 40px;
+  padding: 5px;
+  margin-bottom: 20px;
+  align-self: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+#pazzle {
+  width: 350px;
+  height: auto;
+  cursor: pointer;
+}
+
+#pazzle:focus {
+  cursor: pointer;
+}
