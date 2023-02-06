@@ -4,6 +4,9 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
+let boardString =
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--";
+
 function solve(boardString) {
   const arr = boardString.split("");
   const board = [];
@@ -34,9 +37,43 @@ function solve(boardString) {
     b += 3;
   }
 
-  console.log(sqwrs);
+  function compliteSudocu(field, sqwr) {
+    const numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let startField = field;
+
+    for (let i = 0; i < startField.length; i += 1) {
+      startField[i].forEach((num, index) => {
+        if (num === "-") {
+          console.log(`${num} === "-"`); // сработает
+          for (let j = 0; j < numberPool.length; j += 1) {
+            console.log(`${j} пошел`);
+
+            if (
+              !sqwr[j].includes(numberPool[j]) &&
+              !startField[i].includes(numberPool[j]) &&
+              startField[0][index] !== numberPool[j] &&
+              startField[1][index] !== numberPool[j] &&
+              startField[2][index] !== numberPool[j]
+            ) {
+              console.log("if includes сработал");
+              startField[i][index] = numberPool[j];
+              break;
+            }
+          }
+        }
+      });
+    }
+
+    for (element of field) {
+      if (!element.includes("-")) return startField;
+      return startField;
+    }
+  }
+
+  let result = compliteSudocu(board, sqwrs);
+  return board;
 }
-solve(boardString);
+console.log(solve(boardString));
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -52,7 +89,7 @@ function isSolved(board) {
   }
   return true;
 }
-console.log(isSolved(board));
+console.log(isSolved(solve));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
