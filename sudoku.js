@@ -1,17 +1,14 @@
-
-  
-function selectPuzzles(num){
+function selectPuzzles(num) {
   const fs = require('fs');
-  const res = fs.readFileSync("./puzzles.txt", "utf8")
-  console.table(res)
-  const startArr = res.split("\n");
-  let result = sudoku(startArr[num-1]);
-  return result
+  const res = fs.readFileSync('./puzzles.txt', 'utf8');
+  console.table(res);
+  const startArr = res.split('\n');
+  let result = sudoku(startArr[num - 1]);
+  return result;
 }
 
-
 // Обрабатывает данные в файле puzzles.txt
-function sudoku(wholeLine){
+function sudoku(wholeLine) {
   let newArr = [];
   let newStr = wholeLine.split('');
   for (let i = 0; i < newStr.length; i += 9) {
@@ -19,16 +16,6 @@ function sudoku(wholeLine){
   }
   return newArr;
 }
-
-
-
-// /res Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
-//  * Возвращает игровое поле после попытки его решить.
-//  * Договорись со своей командой, в каком формате возвращать этот результат.
-//  */
-// function solve(boardString) {
-
-// }
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -39,7 +26,7 @@ function solve(boardString) {
   //process.argv
 }
 
-('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
+// ('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--');
 let task1 = [
   '--74916-5',
   '2---6-3-9',
@@ -65,7 +52,6 @@ function stringCandidates(str) {
   return result;
 }
 
-
 function columnCandidates(str, candidates) {
   for (let i = 0; i < str.length; i++) {
     if (!(candidates.indexOf(str[i]) === -1)) {
@@ -77,33 +63,20 @@ function columnCandidates(str, candidates) {
 
 console.log(columnCandidates('-2----968', '238'));
 
-
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает булевое значение — решено это игровое поле или нет.
- */
-
-// function isSolved(board) {
-
-// }
-
 function isSolved(board) {}
-
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
-
-// function prettyBoard(board) {
-
-// }
+ */
 
 function prettyBoard(board) {}
 
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
+  selectPuzzles,
   solve,
   isSolved,
   prettyBoard,
