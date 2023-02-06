@@ -44,12 +44,13 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-  const arr = strToArr(board).map((el)=> el.join(' | '));
+  const arr = strToArr(board).map((el) => el.join(' | '));
   const prettyArr = [];
-  const str = '—' + '—|——'.repeat(8) + '—';
-  for (let i = 0; i < arr.length-1; i += 1) {
-    prettyArr.push(arr[i], str);
+  const str = '—' + '—|——'.repeat(8);
+  for (let i = 0; i < arr.length; i += 1) {
+    i === arr.length - 1 ? prettyArr.push(arr[i]) : prettyArr.push(arr[i], str);
   }
+
   return prettyArr.join('\n');
 }
 
