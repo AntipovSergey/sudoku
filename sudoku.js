@@ -16,10 +16,9 @@ function prettyB(board) {
     }
     return subarray.map(elem => elem.split(''));
   });
+
   return newBordNum;
 }
-
-const sudokuBoard = prettyB(arrOfBoards);
 
 function isSolved(board) {
   for (let i = 0; i < 9; i += 1) {
@@ -88,12 +87,11 @@ function solve(boardString) {
   solveSudoku();
   return boardString;
 }
-const result = solve(sudokuBoard[0]);
 
-console.log(prettyBoard(result));
+const sudokuBoardStr = prettyB(arrOfBoards);
+console.log(prettyBoard(sudokuBoardStr[Number(process.argv[2])]));
 
 module.exports = {
   solve,
   isSolved,
-  prettyBoard,
 };
