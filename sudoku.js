@@ -30,6 +30,7 @@ function sudoku(wholeLine) {
   return newArr;
 }
 
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.

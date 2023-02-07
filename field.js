@@ -4,7 +4,8 @@
 /* eslint-disable no-use-before-define */
 
 let input = document.querySelector('#pazzle');
-let SelectBtn = document.querySelector('button');
+let SelectBtn = document.querySelector('#selectBtn');
+let decideBtn = document.querySelector('#decide');
 
 //console.log('selectPuzzles=', selectPuzzles(2));
 
@@ -81,7 +82,7 @@ selectBtn.onclick = () => {
     // ---------------------
   }
 };
-
+// -------------------------
 // Выбор номера SUDOKU при нажатии на  {ENTER}
 // Функция возвращает числовое значение выбранного SUDOKU
 // для ввода в строку input разрешен ввод только цифр в диапазоне от 1 до 15
@@ -115,6 +116,7 @@ selectBtn.onclick = () => {
   });
 })();
 
+// -------------------------
 if (pazzleNum !== 0) {
   board = selectPuzzles(pazzleNum);
   console.log('board', board);
@@ -199,3 +201,26 @@ function selectTile() {
     document.getElementById('errors').innerText = errors;
   }
 }
+
+// функция. которая записывает решение по нажатию на клавишу {Решить}
+
+decideBtn.addEventListener('click', () => {
+  if (board) {
+    console.log('Выбрали решить');
+    // -------------------
+    let dataTile = document.querySelectorAll('.tile');
+    let dataBoard = document.querySelectorAll('.number');
+    if (dataTile !== 0) {
+      for (let t = 0; t < dataTile.length; t++) {
+        dataTile[t].remove();
+      }
+    }
+    if (dataBoard.length !== 0) {
+      for (let i = 0; i < dataBoard.length; i++) {
+        dataBoard[i].remove();
+      }
+    }
+    board = solution;
+    window.onload = setGame();
+  }
+});
