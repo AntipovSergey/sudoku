@@ -25,6 +25,11 @@
     border: 1px solid black;
 }
 
+.sudoku_input p {
+  font-family: monospace;
+  font-size: 20px;
+}
+
 #menu {
   display: flex;
   flex-direction: row;
@@ -41,6 +46,10 @@
   font-family: 'samurai';
   color: rgb(67,21,30);
   border-radius: 5px;
+}
+
+.list {
+  width: 120px;
 }
 
 .button:hover, .list:hover {
