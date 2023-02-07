@@ -11,10 +11,22 @@ let boardString =
 function solve(boardString) {
   const arr = boardString.split("");
   const board = [];
+  const size = 9;
 
   for (let i = 0; i < 9; i++) {
     board.push(arr.slice(0, 9));
     arr.splice(0, 9);
+  }
+
+  function findEmpty(board) {
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board[r][c] === "-") {
+          return [r, c];
+        }
+      }
+    }
+    return null;
   }
 }
 
