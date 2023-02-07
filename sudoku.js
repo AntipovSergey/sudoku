@@ -89,6 +89,33 @@ function solve(boardString) {
 }
 
 const sudokuBoardStr = prettyB(arrOfBoards);
+
+function startChecker() {
+  for (let i = 0; i < sudokuBoardStr.length; i += 1) {
+    for (let j = 0; j < sudokuBoardStr[i].length; j += 1) {
+      if (
+        sudokuBoardStr[i].lastIndexOf(sudokuBoardStr[i][j]) !==
+        sudokuBoardStr[i].indexOf(sudokuBoardStr[i][j])
+      ) {
+        return 'Сдаюсь, стартовые числа неверно расположены по горизонтали';
+      }
+    }
+  }
+
+  for (let i = 0; i < sudokuBoardStr.length; i += 1) {
+    for (let j = 0; j < sudokuBoardStr[i].length; j += 1) {
+      if (
+        sudokuBoardStr[j].lastIndexOf(sudokuBoardStr[j][i]) !==
+        sudokuBoardStr[j].indexOf(sudokuBoardStr[j][i])
+      ) {
+        return 'Сдаюсь, стартовые числа неверно расположены по вертикали';
+      }
+    }
+  }
+  return 'Стартовый Судоку подан правильно';
+}
+console.log(startChecker(sudokuBoardStr[Number(process.argv[2])]));
+console.log('\n');
 console.log(prettyBoard(sudokuBoardStr[Number(process.argv[2])]));
 console.log('\n');
 console.log(prettyBoard(solve(sudokuBoardStr[Number(process.argv[2])])));
