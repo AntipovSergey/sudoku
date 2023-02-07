@@ -1,0 +1,28 @@
+.sudoku_field {
+  margin-top: 50px;
+  max-width: 450px;
+  max-height: 450px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 3px solid black;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.sudoku_square {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    width: calc(450px/3 - 2px);
+    height: calc(450px/3 - 2px);
+}
+
+.sudoku_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(450px/9 - 2.7px);
+    height: calc(450px/9 - 2.7px);
+    border: 1px solid black;
+}
+

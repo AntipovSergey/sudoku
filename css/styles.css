@@ -1,0 +1,20 @@
+@import url(./normalize.css);
+@import url(./fonts.css);
+@import url(./header.css);
+@import url(./sudoku.css);
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'samurai';
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
