@@ -82,7 +82,7 @@ function solve(boardString) {
 const checkRow = (board) => {
   for (let i = 0; i < board.length; i += 9) {
     const expectRow = new Set();
-    for (let q = i; q < (i + 9); q++) {
+    for (let q = i; q < i + 9; q++) {
       expectRow.add(board[q]);
     }
     if (expectRow.size !== 9) return false;
@@ -115,8 +115,8 @@ const checkSquare = (board) => {
     const firstRow = Math.floor(position.row / 3) * 3;
     const firstColumn = Math.floor(position.column / 3) * 3;
     const curSquare = new Set();
-    for (let r = firstRow; r < (firstRow + 3); r++) {
-      for (let c = firstColumn; c < (firstColumn + 3); c++) {
+    for (let r = firstRow; r < firstRow + 3; r++) {
+      for (let c = firstColumn; c < firstColumn + 3; c++) {
         curSquare.add(board[rc2i(r, c)]);
       }
     }
@@ -150,7 +150,6 @@ function prettyBoard(board) {
       `${g1}    ${g2}    ${g3}\n${g4}    ${g5}    ${g6}\n${g7}    ${g8}    ${g9}\n\n`
   );
 }
-
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
