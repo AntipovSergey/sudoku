@@ -1,14 +1,24 @@
+/* eslint-disable wrap-iife */
+/* eslint-disable no-undef */
 /* eslint-disable func-names */
 /* eslint-disable no-use-before-define */
+
+let input = document.querySelector('#pazzle');
+let SelectBtn = document.querySelector('button');
+
+//console.log('selectPuzzles=', selectPuzzles(2));
+
 let numSelected = null;
-//let tileSelected = null;
 let errors = 0;
+let board;
+//let board = selectPuzzles(2);
+let pazzleNum = 0;
 
 // в массив board необходимо принять массив из функции,
 // которая обработает выбранную строку из файла "./puzzles.txt"
 // функцию пишет Александр.
 
-let board = [
+board = [
   '--74916-5',
   '2---6-3-9',
   '-----7-1-',
@@ -19,6 +29,11 @@ let board = [
   '67-83----',
   '81--45---',
 ];
+
+// if (pazzleNum) {
+//   board = selectPuzzles(pazzleNum);
+//   console.log('board', board);
+// }
 
 // в массив solution  необходимо принять массив из функции,
 // которая вернет массив с решением для выбранной строки из файла "./puzzles.txt"
@@ -36,9 +51,80 @@ let solution = [
   '812945763',
 ];
 
-window.onload = function () {
-  setGame();
+// Выбор номера SUDOKU по нажатию клавиши {выбрать}
+// Функция возвращает числовое значение выбранного SUDOKU
+// для ввода в строку input разрешен ввод только цифр в диапазоне от 1 до 15
+// let pazzleNum = '';
+selectBtn.onclick = () => {
+  input.value = input.value.replace(/[^\d.]/g, '');
+  if (input.value >= 1 && input.value <= 15) {
+    pazzleNum = Number(input.value);
+    input.value = '';
+    console.log(`Выбрали (${typeof pazzleNum})=`, { pazzleNum }); // убрать после подключения функции выбора
+    // -------------------
+    if (pazzleNum) {
+      let dataTile = document.querySelectorAll('.tile');
+      let dataBoard = document.querySelectorAll('.number');
+      if (dataTile !== 0) {
+        for (let t = 0; t < dataTile.length; t++) {
+          dataTile[t].remove();
+        }
+      }
+      if (dataBoard.length !== 0) {
+        for (let i = 0; i < dataBoard.length; i++) {
+          dataBoard[i].remove();
+        }
+      }
+      board = selectPuzzles(pazzleNum);
+      window.onload = setGame();
+    }
+    // ---------------------
+  }
 };
+
+// Выбор номера SUDOKU при нажатии на  {ENTER}
+// Функция возвращает числовое значение выбранного SUDOKU
+// для ввода в строку input разрешен ввод только цифр в диапазоне от 1 до 15
+(function () {
+  // eslint-disable-next-line consistent-return
+  document.querySelector('#pazzle').addEventListener('keydown', function (e) {
+    this.value = this.value.replace(/[^\d.]/g, '');
+    if (e.keyCode === 13 && input.value >= 1 && input.value <= 15) {
+      pazzleNum = Number(this.value);
+      this.value = '';
+      console.log(`enter (${typeof pazzleNum})=`, { pazzleNum }); // убрать после подключения функции выбора
+      // -------------------
+      if (pazzleNum) {
+        let dataTile = document.querySelectorAll('.tile');
+        let dataBoard = document.querySelectorAll('.number');
+        if (dataTile !== 0) {
+          for (let t = 0; t < dataTile.length; t++) {
+            dataTile[t].remove();
+          }
+        }
+        if (dataBoard.length !== 0) {
+          for (let i = 0; i < dataBoard.length; i++) {
+            dataBoard[i].remove();
+          }
+        }
+        board = selectPuzzles(pazzleNum);
+        window.onload = setGame();
+      }
+      // ---------------------
+    }
+  });
+})();
+
+if (pazzleNum !== 0) {
+  board = selectPuzzles(pazzleNum);
+  console.log('board', board);
+}
+
+if (board) {
+  window.onload = function () {
+    setGame();
+  };
+}
 
 function setGame() {
   // выводим на экран цифры от 1 до 9
@@ -113,34 +199,3 @@ function selectTile() {
     document.getElementById('errors').innerText = errors;
   }
 }
-
-// Выбор номера SUDOKU по нажатию клавиши {выбрать}
-// Функция возвращает числовое значение выбранного SUDOKU
-// для ввода в строку input разрешен ввод только цифр в диапазоне от 1 до 15
-let input = document.querySelector('#pazzle');
-let SelectBtn = document.querySelector('button');
-let pazzleNum = '';
-selectBtn.onclick = () => {
-  input.value = input.value.replace(/[^\d.]/g, '');
-  if (input.value >= 1 && input.value <= 15) {
-    pazzleNum = input.value;
-    input.value = '';
-    console.log(`Выбрали (${typeof pazzleNum})=`, { pazzleNum }); // убрать после подключения функции выбора
-    return Number(pazzleNum);
-  }
-};
-
-// Выбор номера SUDOKU при нажатии на  {ENTER}
-// Функция возвращает числовое значение выбранного SUDOKU
-// для ввода в строку input разрешен ввод только цифр в диапазоне от 1 до 15
-(function () {
-  document.querySelector('#pazzle').addEventListener('keydown', function (e) {
-    this.value = this.value.replace(/[^\d.]/g, '');
-    if (e.keyCode === 13 && input.value >= 1 && input.value <= 15) {
-      pazzleNum = this.value;
-      this.value = '';
-      console.log(`enter (${typeof pazzleNum})=`, { pazzleNum }); // убрать после подключения функции выбора
-      return Number(pazzleNum);
-    }
-  });
-})();
