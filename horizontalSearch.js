@@ -7,7 +7,7 @@ function horizontal(arr, argv) {
   return false;
 }
 
-
+module.exports = horizontal;
 // function a() {
 
 //   for (let i = 0; i < res.length; i++) {
@@ -48,11 +48,11 @@ for (let i = 0; i < res.length; i++) {
   for (let j = 0; j < res[i].length; j++) {
     for (let a = 0; a < res[i][j].length; a++) {
       // if (res[i][j] === res[i][j][a]) {
-        console.log(i,j,a)
-        // index.push([i][j][a]);
-        // console.log(index);
-      }
+      console.log(i, j, a);
+      // index.push([i][j][a]);
+      // console.log(index);
     }
   }
-//}
-//console.table(res);
+}
+// }
+// console.table(res);
