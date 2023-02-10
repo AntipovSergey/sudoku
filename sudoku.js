@@ -3,8 +3,23 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+function recursion(){
+  let change = 0;
+  do{
+    change = solve();
+    count ++
+    if (81<count){
+      break;
+    }
+  } while (change)
+
+};
+
+
 function solve(boardString) {
+const 
 }
+  
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
