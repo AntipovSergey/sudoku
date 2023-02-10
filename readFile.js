@@ -1,5 +1,7 @@
 const fs = require('fs');
-const sudoku = require('./sudoku');
+
+const horizontal = require('./horizontalSearch');
+const vert = require('./vertical');
 
 function readFile() {
   const readFileSudoku = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n');
@@ -12,5 +14,12 @@ function readFile() {
   }
   return res;
 }
+
+const sudoku = readFile();
+
+console.table(readFile());
+
+console.log(horizontal(sudoku, 9));
+console.log(vert(sudoku, 7));
 
 module.exports = readFile;
