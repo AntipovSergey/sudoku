@@ -4,6 +4,7 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  
 }
 
 /**
@@ -11,7 +12,17 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  const arr = solve();
+  //// проверка горизонтальная
+  let newArr;
+  for(let i=0; i<arr.length; i++) {
+    if (arr.includes(board)) {
+      return false;
+      continue;
+    } else {
+      return true;
+    }
+  //// проверка вертикальная
 }
 
 /**
@@ -19,9 +30,7 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
@@ -29,3 +38,4 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
