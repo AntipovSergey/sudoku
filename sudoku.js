@@ -60,7 +60,25 @@ return resultArr
 for (let index = 0; index < str.length; index++) {
   str[index] = putIntegersIntoSmallSquere(str[index]);
 }
+console.log(str)
 
+// for (let index = 0; index < str.str; index++) {
+//   for (let i = 0; i < str[index].length; i++) {
+//     str[index][i]
+    
+//   }
+//   str[index] = str[index].join();
+  
+// }
+const result = [];
+for (let index = 0; index < str.length; index++) {
+result.push(str[index].flat(1));
+}
+
+// const result = str.flat(1)
+
+console.log(result)
+return result
 }
 
 /**
