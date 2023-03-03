@@ -6,3 +6,4 @@ function checkingForEmpty(boardString) {
       }
   }
 }
+//такой хороший день
