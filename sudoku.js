@@ -3,9 +3,21 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
-}
+const fs = require('fs');
+const boardString = fs.readFileSync('./puzzles.txt','utf8');
 
+function solve(text) {
+  const arr = boardString.split('\n');
+  const arr2 = arr[0].split('').map((el) => (el !== '-' ? Number(el) : el));
+  const res = [];
+  for (let i = 0; i < arr2.length; i += 9) {
+    const slice = arr2.slice(i, i + 9);
+    res.push(slice);
+  }
+  console.log(res);
+return res; 
+}
+solve(boardString)
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.

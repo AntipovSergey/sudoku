@@ -19,9 +19,9 @@ function bordValidate(num, position, bord) {
     // console.log(bordValidate(num, c, bord));
   }
   // проверка по колонке
-  // for (let i = 0; i < size; i++) {
-  //   if (bord[i][r] === num && i !== c) {
-  // return false;
-  //   }  
-  // }
+  for (let i = 0; i < size; i++) {
+    if (bord[i][r] === num && i !== c) {
+  return false;
+    }  
+  }
 }
