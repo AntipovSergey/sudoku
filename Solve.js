@@ -4,7 +4,7 @@ function solveSudoku(table) {
   // console.log(table);
   for (let i = 0; i < table.length; i++) {
     for (let k = 0; k < table[i].length; k++) {
-      //console.log(arrNum);
+      // console.log(arrNum);
       if (table[i][k] === ".") {
         const number = arrNum.pop().toString();
         // console.log(table[i]);
@@ -20,8 +20,8 @@ function solveSudoku(table) {
 
         for (let r = 0; r < table[i].length; r++) {
           if (table[col][r] === number && r !== row) {
+            console.log(table[col][row]);
             table[col][row] = ".";
-            //console.log(table[col][row]);
             return solveSudoku(table);
           }
         }
