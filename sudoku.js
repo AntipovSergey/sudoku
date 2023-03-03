@@ -25,17 +25,15 @@ console.table(solve());
 //  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
 //  * Возвращает булевое значение — решено это игровое поле или нет.
 //  */
-function isSolved(board = '-') {
-  const arrayIsArr = solve();
-  for (let i = 0; i < arrayIsArr.length; i++) {
-    for (let j = 0; j < arrayIsArr.length; j++) {
-      if (arrayIsArr[i][j] === board) {
-        return 'решай сам';
-      }
+function isSolved(board) {
+  const arr = solve();
+  for (let i = 0; i < arr.length; i++) {
+    if (!arr.includes(board)) {
+      return true;
     }
   }
 }
-console.log(isSolved(3));
+console.log(isSolved());
 // /**
 //  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
 //  * Возвращает строку с игровым полем для последующего вывода в консоль.
