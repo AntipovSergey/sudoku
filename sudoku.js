@@ -10,22 +10,7 @@ function solve(boardString) {}
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(num, position, bord) {
-  const [r, c] = position;
-
-  // проверка по строке
-  for (let i = 0; i < size; i++) {
-    if (bord[i][c] === num && i !== r) {
-      return false;
-    }
-  }
-  // проверка по колонке
-  for (let i = 0; i < size; i++) {
-    if (bord[i][r] === num && i !== c) {
-      return false;
-    }
-  }
 }
-
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
