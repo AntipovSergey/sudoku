@@ -10,12 +10,11 @@ function solve(boardString) {
   function stringToArray(string) {
     const sudokuArr = [];
     for (let i = 0; i < sudokuString.length; i += size) {
-      const subString = sudokuString.slice(i, i + size).split('');
+      const subString = sudokuString.slice(i, i + size).split("");
       sudokuArr.push(subString);
     }
     return sudokuArr;
   }
-
 
   function solve() {
     const currPos = findEmpty(board);
@@ -34,7 +33,7 @@ function solve(boardString) {
         if (solve()) {
           return true;
         }
-        board[x][y] = '-';
+        board[x][y] = "-";
       }
     }
 
@@ -97,7 +96,33 @@ const findEmpty = (board) => {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {}
+function isSolved(num, pos, board) {
+  const [r, c] = pos;
+
+  for (let i = 0; i < size; i++) {
+    if (board[i][c] === num && i !== r) {
+      return false;
+    }
+  }
+
+  for (let i = 0; i < size; i++) {
+    if (board[r][i] === num && i !== c) {
+      return false;
+    }
+  }
+
+  const boxRow = Matn.floor(r / boxSize) * boxSize;
+  const boxCol = Math.floor(c / boxSize) * boxSize;
+
+  for (let i = boxRow; i < boxRow + boxSize; i++) {
+    for (let j = boxCol; j < boxCol + boxSize; j++) {
+      if (board[i][j] === num && i !== r && j !== c) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
