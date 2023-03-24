@@ -4,24 +4,37 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-}
+  let newArr = [];
+  for (let i = 0; i < boardString.length; i = i + 9) {
+    newArr.push(boardString.split("").slice(i, i + 9));
+  }
+  // ищем пустое место
+  function findEmpty(board) {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board.length; j++) {
+        if (board[i][j] === "-") {
+          return [i, j];
+        }
+      }
+    }
+  }
+  // Определеили пустое место
+  let empty = findEmpty(newArr);
 
+  return findEmpty(newArr);
+}
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
-
-}
+function isSolved(board) {}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
