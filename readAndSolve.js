@@ -7,6 +7,7 @@ function readAndSolve(error, fileData) {
   if (error) {
     throw error;
   }
+  console.log(readAndSolve());
 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
   const puzzles = fileData
@@ -42,5 +43,6 @@ function readAndSolve(error, fileData) {
   // игрового поля в строку в желаемом формате.
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
 }
+
 
 module.exports = readAndSolve;
