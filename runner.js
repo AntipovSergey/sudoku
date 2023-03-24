@@ -10,4 +10,4 @@ fs.readFile(
   './puzzles.txt',
   'utf-8',
   readAndSolve,
-);
+)
