@@ -10,5 +10,5 @@ function validate(num, pos, board) {
             return false
         }
     }
-
+  
 }
