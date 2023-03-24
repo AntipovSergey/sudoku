@@ -1,11 +1,10 @@
 const fs = require("fs");
 const boardString = fs.readFileSync("puzzles.txt", "utf8");
-
-  // Преобразование входной строки в двумерный массив.
+// Преобразование входной строки в двумерный массив.
 
 function solve(text) {
-    const SIZE = 9;
-    const BOX_SIZE = 3;
+  const SIZE = 9;
+  const BOX_SIZE = 3;
   const arr = boardString.split("\n");
   const arr2 = arr[0].split("").map((el) => (el !== "-" ? Number(el) : el));
   const solutionBoard = [];
@@ -16,7 +15,7 @@ function solve(text) {
   return solutionBoard;
 }
 
-  // Функция поиска первой пустой позиции на доске. Возвращает null, если все позиции заполнены.
+// Функция поиска первой пустой позиции на доске. Возвращает null, если все позиции заполнены.
 
 function findEmpty(board) {
   for (let row = 0; row < board.length; row += 1) {
