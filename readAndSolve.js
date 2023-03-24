@@ -7,7 +7,7 @@ function readAndSolve(error, fileData) {
   if (error) {
     throw error;
   }
-
+console.log(fileData)
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
   const puzzles = fileData
     .split('\n')
