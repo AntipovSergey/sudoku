@@ -13,6 +13,8 @@ function readAndSolve(error, fileData) {
     .split('\n')
     .filter((line) => line !== '');
 
+    console.log(puzzles)
+
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
   let puzzleNumber = Number(process.argv[2]) || 1;
 
