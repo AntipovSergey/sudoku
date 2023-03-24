@@ -4,8 +4,57 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const size = 9;
+const boxSize = 3;
+
+const findEmpty = (board) => {
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < size; c++) {
+      if (board[r][c] === "-") {
+        return [r, c];
+      }
+    }
+  }
+  return null;
+};
+}
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -20,12 +69,12 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  return board.map((el) => el.map((el)=> +el))
 }
 
-// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
-module.exports = {
-  solve,
-  isSolved,
-  prettyBoard,
-};
+// // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
+// module.exports = {
+//   solve,
+//   isSolved,
+//   prettyBoard,
+// };
