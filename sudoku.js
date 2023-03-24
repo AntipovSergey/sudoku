@@ -46,6 +46,18 @@ module.exports = {
 
 
 const lengthString = 9;
-function isValid(board) {
-  for (let i = 0; i < )
+function isSolved(num, pos, boardString) {
+  const [row,col] = pos;
+  for (let i = 0; i < lengthString; i ++) {
+    if (boardString[i][col] === num && i !== row) {
+      return false
+    }
+  }
+  for (let i = 0; i < lengthString; i ++) {
+    if (boardString[row][i] === num && i !== col) {
+      return false
+    }
+  } 
+  return true
 }
+console.log(validate());
