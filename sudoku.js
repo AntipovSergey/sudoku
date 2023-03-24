@@ -3,8 +3,38 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+const readAndSolve = require('./runner.js');
+
 function solve(boardString) {
-}
+
+    }
+    
+    function findValHor(empty) {
+      let z = []
+      let [p, m] = empty;
+        for (let i = p; i <=  p; i ++) {
+          for (let j = 0; j < 9; j ++) {
+              if (empty[i][j] === number) {
+               return false
+              }
+          }
+          return true
+        }
+      }
+
+      function findValVer(empty) {
+        let z = [];
+        let [p, m] = empty;
+          for (let i = m; i <=  m; i ++) {
+            for (let j = 0; j < 9; j ++) {
+                if (findEmpty[j][i] === number) {
+                 return false
+                }
+            }
+            return true
+          }
+        }
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
