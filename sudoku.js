@@ -11,8 +11,8 @@ function solve(boardString) {
     for (let i = 0; i < sudokuString.length; i += size) {
       const subString = sudokuString.slice(i, i + size).split('');
       sudokuArr.push(subString);
-      return sudokuArr;
     }
+    return sudokuArr;
   }
 
 
