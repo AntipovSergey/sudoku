@@ -29,3 +29,9 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+
+const lengthString = 9;
+function isValid(board) {
+  for (let i = 0; i < )
+}
