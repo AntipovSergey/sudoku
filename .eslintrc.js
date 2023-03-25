@@ -12,5 +12,7 @@ module.exports = {
   },
   rules: {
     'no-console': 0,
+    'no plusplus': false,
+    'no unused vars':false,
   },
 };
