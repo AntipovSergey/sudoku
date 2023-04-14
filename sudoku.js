@@ -10,6 +10,17 @@ const readFile = fs
   .slice(0, 10);
 // console.log(readFile);
 
+function solve(boardString) {
+  const board = boardString.map((el) => el.split(''));
+  const array = board.map((el) => {
+    const game = [];
+    for (let i = 0; i < el.length; i += 9) {
+      game.push(el.slice(i, i + 9));
+    }
+    return game;
+  });
+  return array.flat();
+}
 
 // return array.map((subarray) =>
 // subarray.map((cell) => (cell === '-' ? parseInt(cell) : '-' ))
@@ -22,7 +33,17 @@ function isSolved(board) {
   const size = 9;
   const boxSize = 3;
 
-  
+  function findSymbol(board) {
+    for (let r = 0; r < size; r += 1) {
+      for (let c = 0; c < size; c += 1) {
+        if (board[r][c] === '-') {
+          return [r, c];
+        }
+      }
+    }
+    return null;
+  }
+
   const validate = (num, pos, board) => {
     const [r, c] = pos;
 
@@ -80,6 +101,7 @@ function isSolved(board) {
   solvePuzzle();
   return board.slice(0, 9);
 }
+
 // try {
 //   isSolved(solve(readFile));
 // } catch (board) {
