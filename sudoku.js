@@ -3,26 +3,11 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-// const fs = require('fs');
-// const readFile = fs
-//   .readFileSync('./puzzles.txt', 'utf-8')
-//   .split('\n')
-//   .slice(0, 5);
-
-// console.log(readFile);
-
+function solve(boardString) {}
 function solve(boardString) {
   const board = boardString.map((el) => el.split(''));
   const array = board.map((el) => {
-    const game = [];
-    for (let i = 0; i < el.length; i += 9) {
-      game.push(el.slice(i, i + 9));
-    }
-    return game;
-  });
-  return array.flat();
-}
-
+    
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
