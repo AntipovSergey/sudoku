@@ -22,6 +22,17 @@ function solve(boardString) {
   return array.flat();
 }
 
+function findSymbol(board) {
+  for (let r = 0; r < size; r += 1) {
+    for (let c = 0; c < size; c += 1) {
+      if (board[r][c] === ‘-’) {
+        return [r, c];
+      }
+    }
+  }
+  return null;
+}
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
