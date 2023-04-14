@@ -3,16 +3,24 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
 function solve(boardString) {}
-function solve(boardString) {
-  const board = boardString.map((el) => el.split(''));
-  const array = board.map((el) => {
-    
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {}
+function solve(boardString) {
+  const board = boardString.map((el) => el.split(''));
+  const array = board.map((el) => {
+    const game = [];
+    for (let i = 0; i < el.length; i += 9) {
+      game.push(el.slice(i, i + 9));
+    }
+    return game;
+  });
+  return array.flat();
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
