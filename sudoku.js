@@ -29,14 +29,14 @@ function isSolved(board) {
     const [r, c] = position;
 
     //check row
-    for (let i = 0; i < outerSquareSize; i++) {
+    for (let i = 0; i < outerSquareSize; i += 1) {
       if (board[i][c] === number && i !== r) {
         return false;
       }
     }
 
     //check colums
-    for (let i = 0; i < outerSquareSize; i++) {
+    for (let i = 0; i < outerSquareSize; i += 1) {
       if (board[r][i] === number && i !== c) {
         return false;
       }
@@ -46,8 +46,8 @@ function isSolved(board) {
     const boxRow = Math.floor(r / innerSquareSize) * innerSquareSize;
     const boxColumn = Math.floor(c / innerSquareSize) * innerSquareSize;
 
-    for (let i = boxRow; i < innerSquareSize + boxRow; i++) {
-      for (let j = boxColumn; j < boxColumn + innerSquareSize; j++) {
+    for (let i = boxRow; i < innerSquareSize + boxRow; i += 1) {
+      for (let j = boxColumn; j < boxColumn + innerSquareSize; j += 1) {
         if (board[i][j] === number && i !== r && j !== c) {
           return false;
         }
@@ -62,7 +62,7 @@ function isSolved(board) {
       return true;
     }
 
-    for (let i = 1; i < outerSquareSize + 1; i++) {
+    for (let i = 1; i < outerSquareSize + 1; i += 1) {
       const currentNumber = i.toString();
       const isValid = validate(currentNumber, currentPosition, board);
 
