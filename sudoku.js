@@ -71,14 +71,14 @@ function findEmptyCell(board) {
 function solveBoard(board) {
   const emptyCell = findEmptyCell(board);
 
-  // If not empty cell is found it means that we have solved the board
+  // Если не найдена пустая клетка, то это означает, что мы решили судоку
   if (!emptyCell) {
     return true;
   }
 
   const [emptyCellX, emptyCellY] = emptyCell;
 
-  // Try to place the number in the empty cell
+  // Пробуем вставить число в пустую клетку
   for (
     let rawPotentialNumber = 1;
     rawPotentialNumber <= 9;
@@ -98,11 +98,11 @@ function solveBoard(board) {
       if (solveBoard(board)) {
         return true;
       }
-      // If can't solve with this number undo the placement
+      // Если с этим числом не решается, то отменяем вставку числа
       board[emptyCellX][emptyCellY] = EMPTY_CELL_VALUE;
     }
   }
-  // Couldn't find a valid placement thus the board can't be solved with this number
+  // Если не можем найти правильное место, то головоломка не может быть решена с этим числом
   return false;
 }
 
@@ -118,7 +118,7 @@ function solve(boardString) {
 }
 
 function validateSudokuBoard(board) {
-  // Check rows
+  // Проверяем столбцы
   for (let i = 0; i < SUDOKU_SIZE; i++) {
     const row = new Set(board[i]);
     if (row.size !== SUDOKU_SIZE) {
@@ -126,7 +126,7 @@ function validateSudokuBoard(board) {
     }
   }
 
-  // Check columns
+  // Проверяем колонки
   for (let i = 0; i < SUDOKU_SIZE; i++) {
     const column = new Set();
     for (let j = 0; j < SUDOKU_SIZE; j++) {
@@ -137,11 +137,11 @@ function validateSudokuBoard(board) {
     }
   }
 
-  // Iterate over squares
+  // Итерируем по квадратам
   for (let squareX = 0; squareX < SUDOKU_SIZE; squareX += 3) {
     for (let squareY = 0; squareY < SUDOKU_SIZE; squareY += 3) {
       const square = new Set();
-      // Iterate over square cells
+      // Итерируем по клеткам квадратов
       for (let row = squareX; row < squareX + 3; row++) {
         for (let col = squareY; col < squareY + 3; col++) {
           square.add(board[row][col]);
