@@ -2,13 +2,15 @@ function isSolvedVertical(number, board) {
   const result = [];
   for (let i = 0; i < board.length; i++) {
     result.push([]);
-    for (let j = 0; j < board[i].length; j++) {
-      result[i].push(board[j][i]);
+
+    //задал цикл, чтобы создась  новых пустых массивов
+    for (let j = 0; j < board[i][0].length; j++) {
+      result[i].push(board[j][0].split("")[i]);
     }
   }
-
+  console.log(result);
   for (let i = 0; i < result.length; i++) {
-    if (result[i].join("").includes(number)) {
+    if (result[i].includes(number.toString())) {
       return true;
     }
   }
