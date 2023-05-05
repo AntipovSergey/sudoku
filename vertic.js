@@ -1,3 +1,4 @@
+const { readFile } = require("./readFile");
 function isSolvedVertical(number, board) {
   const result = [];
   for (let i = 0; i < board.length; i++) {
@@ -16,4 +17,5 @@ function isSolvedVertical(number, board) {
   }
   return false; //фолз выносим за цикл. Если оставить внутри цикла, то то цикл фор остановится на первом столбце,как только найдет значение
 }
+isSolvedVertical(readFile()); //
 module.exports = isSolvedVertical; //пишем,что импортируем и название функции,которую импортируем
