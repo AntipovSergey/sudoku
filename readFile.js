@@ -11,4 +11,5 @@ const readFile = () => {
 
   return readFileText;
 };
+console.log(readFile());
 module.exports = readFile;
