@@ -20,15 +20,7 @@ console.log(solve('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function findEmpty(board) {
-// let horizontalLine = (board) => {
-// let result = false
-// board.forEach(element => {
-// let item = element.join('')
-// if(item.includes('-'))
-// {result = true}}
-// )
-// return result
-// }
+
 for(row = 0; row < board.length;row++) {
 for(column = 0; column < board.length[row];column++) {
 newString+=board[row][column]
@@ -39,7 +31,8 @@ newString+=board[row][column]
         }
         return false
 }
-console.log(findEmpty())
+
+
 
 
 /**
@@ -48,12 +41,7 @@ console.log(findEmpty())
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) 
-// клеток 9х9 из цифр от 1 до 9
-// обьявляем массив цифр от 1 до 9
-// в шахматах они не перебираются, все на одном месте. Тут нужно учитывать то что они перебираются в случайном порядке и не могут повторяться по рядам и столбцам. 
 
-// Цель цикла: перебрать масив так чтобы он случайным образом перебирал цифры и пустые ячейки, таким образом чтобы они не повторялись по рядам и по столбцам.
-// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
   isSolved,
