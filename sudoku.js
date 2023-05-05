@@ -11,7 +11,15 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  const res = [];
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === '-') {
+        res.push([i, j]);
+      }
+    }
+  }
+  return res;
 }
 
 /**
