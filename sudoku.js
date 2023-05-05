@@ -10,19 +10,40 @@ function solve(boardString) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
+function findEmpty(board) {
+// let horizontalLine = (board) => {
+// let result = false
+// board.forEach(element => {
+// let item = element.join('')
+// if(item.includes('-'))
+// {result = true}}
+// )
+// return result
+// }
+for(row = 0; row < board.length;row++) {
+for(column = 0; column < board.length[row];column++) {
+newString+=board[row][column]
+                }
+                if (board[row][column] === '-')
+                return [row,column]
 
+        }
+        return false
 }
+console.log(findEmpty())
+
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
+function prettyBoard(board) 
+// клеток 9х9 из цифр от 1 до 9
+// обьявляем массив цифр от 1 до 9
+// в шахматах они не перебираются, все на одном месте. Тут нужно учитывать то что они перебираются в случайном порядке и не могут повторяться по рядам и столбцам. 
 
-}
-
+// Цель цикла: перебрать масив так чтобы он случайным образом перебирал цифры и пустые ячейки, таким образом чтобы они не повторялись по рядам и по столбцам.
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
