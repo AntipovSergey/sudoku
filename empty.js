@@ -1,13 +1,14 @@
 const { readFile } = require("./readFile.js");
 
 const empty = (readFile) => {
-  for (let r = 0; r < readFile.length; r++) {
-    for (let c = 0; c < readFile.length; c++) {
-      if (readFile[r][c] === "-") {
-        return [r, c];
+  const indexes = [];
+  readFile.forEach((subArr, i) => {
+    subArr.forEach((str, j) => {
+      if (str.includes("-")) {
+        indexes.push([i, j]);
       }
-    }
-  }
-  return null;
+    });
+  });
+  return indexes;
 };
 console.log(empty(readFile()));
