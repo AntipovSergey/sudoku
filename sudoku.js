@@ -88,7 +88,7 @@ function prettyBoard(board) {
     const newArray = board[i];
 
     if (i === 0) {
-      finalBoard += '------------------------------------\n';
+      finalBoard += '-------------------------------------\n';
       finalBoard += '|';
     }
     if (i) {
@@ -96,20 +96,20 @@ function prettyBoard(board) {
     }
     for (let j = 0; j < newArray.length; j++) {
       if (newArray[j] === 3) {
-        finalBoard += ' ';
+        finalBoard += '';
       } else {
         finalBoard += `  ${newArray[j]}`;
       }
       if ((j + 1) % 3 === 0) {
-        finalBoard += ' | ';
+        finalBoard += '  |';
       }
     }
     finalBoard += '\n';
     if ((i) === 8) {
-      finalBoard += '------------------------------------';
+      finalBoard += '-------------------------------------';
     }
     if ((i + 1) % 3 === 0 && (i + 1) % 9 !== 0) {
-      finalBoard += '------------------------------------\n';
+      finalBoard += '-------------------------------------\n';
     }
   }
   return finalBoard;
