@@ -20,8 +20,50 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
+  let finalBoard = '';
+  for (let i = 0; i < board.length; i++) {
+    const newArray = board[i];
 
+    if (i === 0) {
+      finalBoard += '------------------------------------\n';
+      finalBoard += '|';
+    }
+    if (i) {
+      finalBoard += '|';
+    }
+    for (let j = 0; j < newArray.length; j++) {
+      if (newArray[j] === 3) {
+        finalBoard += ' ';
+      } else {
+        finalBoard += `  ${newArray[j]}`;
+      }
+      if ((j + 1) % 3 === 0) {
+        finalBoard += ' | ';
+      }
+    }
+    finalBoard += '\n';
+    if ((i) === 8) {
+      finalBoard += '------------------------------------';
+    }
+    if ((i + 1) % 3 === 0 && (i + 1) % 9 !== 0) {
+      finalBoard += '------------------------------------\n';
+    }
+  }
+  return finalBoard;
 }
+
+const array = [
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+  [1, 2, 6, 7, 8, 9, 0, 6, 7],
+];
+console.log(prettyBoard(array));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
