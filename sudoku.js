@@ -1,13 +1,14 @@
 function solve(boardString) {
-  // function getString(boardString) {
-  //   const board = boardString.split('\n').join('').split('');
-  //   const newBoard = [];
-  //   for (let i = 0; i < board.length; i += 9) {
-  //     const row = [board[i], board[i + 1], board[i + 2]];
-  //     newBoard.push(row);
-  //   }
-  //   return newBoard;
-  // }
+  function getString(boardString) {
+    const board = boardString.split('');
+
+    const newBoard = [];
+    for (let i = 0; i < board.length; i += 9) {
+      const row = [board[i], board[i + 1], board[i + 2], board[i + 3], board[i + 4], board[i + 5], board[i + 6], board[i + 7], board[i + 8]];
+      newBoard.push(row);
+    }
+    return newBoard;
+  }
   const board = getString(boardString);
   const box = 3;
   const size = 9;
