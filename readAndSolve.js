@@ -8,6 +8,16 @@ function readAndSolve(error, fileData) {
     throw error;
   }
 
+  function getString(boardString) {
+    const board = boardString.split('');
+
+    const newBoard = Array(9);
+    for (let i = 0; i < 9; i += 1) {
+      newBoard[i] = board.slice(i * 9, i * 9 + 9);
+    }
+    return newBoard;
+  }
+
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
   const puzzles = fileData
     .split('\n')
@@ -24,7 +34,7 @@ function readAndSolve(error, fileData) {
   // Получить желаемый судоку по индексу и вывести его в консоль.
   const puzzle = puzzles[puzzleNumber - 1];
   console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
+  console.log(sudoku.prettyBoard(getString(puzzle)), '\n');
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzle);
