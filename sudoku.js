@@ -5,12 +5,74 @@
  */
 function solve(boardString) {
 
-  function getString(boardString) {
+    function getString(boardString) {
     const board = boardString.split('\n').join('').split('');
     return board;
   }
+
+  const box = 3;
+  const size = 9;
+  const findEmpty = function (board) {
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board[r][c] === '-') return [r, c];
+      }
+    }
+    return undefined;
+  };
+
+  const checkPos = function (num, pos, board) {
+    const [r, c] = pos;
+
+    for (let i = 0; i < size; i++) {
+      if (board[i][c] === num && i !== r) {
+        return false;
+      }
+    }
+
+    for (let i = 0; i < size; i++) {
+      if (board[r][i] === num && i !== c) {
+        return false;
+      }
+    }
+
+    const boxRow = Math.floor(r / box) * box;
+    const boxCol = Math.floor(c / box) * box;
+
+    for (let i = boxRow; i < boxRow + box; i++) {
+      for (let j = boxCol; j < boxCol + box; j++) {
+        if (board[i][j] === num && i !== r && j !== c) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
+  const master = () => {
+    const currPos = findEmpty(board);
+    if (currPos === undefined) {
+      return true;
+    }
+    for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString();
+      const isValid = checkPos(currNum, currPos, board);
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (master()) return true;
+        board[x][y] = '-';
+      }
+    }
+    return false;
+  };
+
+  master();
+  return board;
+
 }
-console.log(getString('1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'))
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.

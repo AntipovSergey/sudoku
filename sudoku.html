@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sudoku Solver</title>
+  </head>
+  <body>
+    <h1>Sudoku Solver</h1>
+    <label for="board-input">Enter Sudoku board:</label>
+    <input type="text" id="board-input" placeholder="---26-7-168--7--9--19---45--82-1---4-46-29---5-1-74---5---36--98--3--9-6-7">
+    <button id="solve-button">Solve</button>
+    <br><br>
+    <div id="board"></div>
+    
+    <script>
+      function renderBoard(board) {
+        const boardDiv = document.getElementById('board');
+        boardDiv.innerHTML = '';
+        for (let i = 0; i < 9; i++) {
+          const row = document.createElement('div');
+          row.classList.add('row');
+          for (let j = 0; j < 9; j++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.textContent = board[i][j];
+            row.appendChild(cell);
+          }
+          boardDiv.appendChild(row);
+        }
+      }
+      
+      document.getElementById('solve-button').addEventListener('click', () => {
+        const boardString = document.getElementById('board-input').value;
+        const board = boardString.split('').reduce((acc, val, i) => {
+          const row = Math.floor(i / 9);
+          if (!acc[row]) acc[row] = [];
+          acc[row].push(val);
+          return acc;
+        }, []);
+        const solvedBoard = solve(board);
+        renderBoard(solvedBoard);
+      });
+    </script>
+    
+    <style>
+      .row {
+        display: flex;
+      }
+      .cell {
+        border: 1px solid black;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+      }
+    </style>
+  </body>
+</html>
