@@ -4,6 +4,74 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+
+    function getString(boardString) {
+    const board = boardString.split('\n').join('').split('');
+    return board;
+  }
+
+  const box = 3;
+  const size = 9;
+  const findEmpty = function (board) {
+    for (let r = 0; r < size; r++) {
+      for (let c = 0; c < size; c++) {
+        if (board[r][c] === '-') return [r, c];
+      }
+    }
+    return undefined;
+  };
+
+  const checkPos = function (num, pos, board) {
+    const [r, c] = pos;
+
+    for (let i = 0; i < size; i++) {
+      if (board[i][c] === num && i !== r) {
+        return false;
+      }
+    }
+
+    for (let i = 0; i < size; i++) {
+      if (board[r][i] === num && i !== c) {
+        return false;
+      }
+    }
+
+    const boxRow = Math.floor(r / box) * box;
+    const boxCol = Math.floor(c / box) * box;
+
+    for (let i = boxRow; i < boxRow + box; i++) {
+      for (let j = boxCol; j < boxCol + box; j++) {
+        if (board[i][j] === num && i !== r && j !== c) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
+  const master = () => {
+    const currPos = findEmpty(board);
+    if (currPos === undefined) {
+      return true;
+    }
+    for (let i = 1; i < size + 1; i++) {
+      const currNum = i.toString();
+      const isValid = checkPos(currNum, currPos, board);
+      if (isValid) {
+        const [x, y] = currPos;
+        board[x][y] = currNum;
+
+        if (master()) return true;
+        board[x][y] = '-';
+      }
+    }
+    return false;
+  };
+
+  master();
+  return board;
+
 }
 
 /**
@@ -11,8 +79,28 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+let newBoard = Array.isArray(board)
+for (let i = 0; i < 9; i++) {
+  if(!isNaN(newBoard[row][column])) {
+    return false
+  }
+  else {
+    return true;
+  }
 }
+}
+
+//   for(let i = 0; i < board.length; i++) {
+//     const rows = 3 * Math.floor(board.row / 3) + Math.floor(i / 3)
+//     const column = 3 * Math.floor(board.column / 3) + i % 3
+//     if (board[rows][column] === board[board.row][board.column] && (rows !== board.row || column !== board.column)) {
+//   }
+//   return true
+// }
+// return false
+// }
+
+// board.row && board.column могут быть названы по другому в других ветках, нужно иметь это ввиду
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
