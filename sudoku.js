@@ -1,21 +1,22 @@
-/**
- * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
- * Возвращает игровое поле после попытки его решить.
- * Договорись со своей командой, в каком формате возвращать этот результат.
- */
 function solve(boardString) {
-
-    function getString(boardString) {
-    const board = boardString.split('\n').join('').split('');
-    return board;
-  }
-
+  // function getString(boardString) {
+  //   const board = boardString.split('\n').join('').split('');
+  //   const newBoard = [];
+  //   for (let i = 0; i < board.length; i += 9) {
+  //     const row = [board[i], board[i + 1], board[i + 2]];
+  //     newBoard.push(row);
+  //   }
+  //   return newBoard;
+  // }
+  const board = getString(boardString);
   const box = 3;
   const size = 9;
-  const findEmpty = function (board) {
+  const findEmpty = (board) => {
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
-        if (board[r][c] === '-') return [r, c];
+        if (board[r][c] === '-') {
+          return [r, c];
+        }
       }
     }
     return undefined;
@@ -71,42 +72,17 @@ function solve(boardString) {
 
   master();
   return board;
-
 }
 
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает булевое значение — решено это игровое поле или нет.
- */
 function isSolved(board) {
-let newBoard = Array.isArray(board)
-for (let i = 0; i < 9; i++) {
-  if(!isNaN(newBoard[row][column])) {
-    return false
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (board[i][j] === '-') return false;
+    }
   }
-  else {
-    return true;
-  }
-}
+  return true;
 }
 
-//   for(let i = 0; i < board.length; i++) {
-//     const rows = 3 * Math.floor(board.row / 3) + Math.floor(i / 3)
-//     const column = 3 * Math.floor(board.column / 3) + i % 3
-//     if (board[rows][column] === board[board.row][board.column] && (rows !== board.row || column !== board.column)) {
-//   }
-//   return true
-// }
-// return false
-// }
-
-// board.row && board.column могут быть названы по другому в других ветках, нужно иметь это ввиду
-
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Возвращает строку с игровым полем для последующего вывода в консоль.
- * Подумай, как симпатичнее сформировать эту строку.
- */
 function prettyBoard(board) {
   let finalBoard = '';
   for (let i = 0; i < board.length; i++) {
@@ -139,21 +115,6 @@ function prettyBoard(board) {
   }
   return finalBoard;
 }
-
-const array = [
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-  [1, 4, 6, 7, 8, 9, 0, 6, 7],
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-  [1, 2, 6, 7, 8, 9, 0, 6, 7],
-];
-console.log(prettyBoard(array));
-
-// Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
   isSolved,
