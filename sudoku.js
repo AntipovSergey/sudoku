@@ -56,9 +56,11 @@ function solve(boardString) {
     if (currPos === undefined) {
       return true;
     }
+    console.log('------------------------------');
     for (let i = 1; i < size + 1; i++) {
       const currNum = i.toString();
       const isValid = checkPos(currNum, currPos, board);
+      console.log('currPos ', currPos, 'currNum ',currNum, 'isValid ',isValid);
       if (isValid) {
         const [x, y] = currPos;
         board[x][y] = currNum;
