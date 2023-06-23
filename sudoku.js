@@ -4,6 +4,7 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  
 }
 
 /**
@@ -30,4 +31,4 @@ module.exports = {
   prettyBoard,
 };
 
-console.log('Hello from Daya')
+
