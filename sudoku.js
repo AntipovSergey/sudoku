@@ -20,8 +20,25 @@ function isSolved(board) {
  * Подумай, как симпатичнее сформировать эту строку.
  */
 function prettyBoard(board) {
-
+  let result = '';
+  for (let i = 0; i < board.length; i++) {
+    result += `${board[i].join('')}\n`;
+  }
+  return result.trim();
 }
+const sudokuArray = [
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  [1, 2, 3, 4, 5, 6, 7, 8, 9],
+];
+const sudokuString = prettyBoard(sudokuArray);
+console.log(sudokuString);
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
