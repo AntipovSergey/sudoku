@@ -55,9 +55,3 @@ console.log('Hello from Daya')
 
 
 
-
-
-
-
-
-console.log('Хочу кушать')
