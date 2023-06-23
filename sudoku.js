@@ -1,6 +1,7 @@
 /**
  * Принимает строку с данными и конвертирует её в двумерный массив
  */
+
 function convertString(str) {
   const arrayWithElements = str.split('');
   const chunk = 9;
@@ -74,6 +75,7 @@ console.log(
   )
 );
 
+function solveSimple(boardString) {}
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
@@ -107,7 +109,28 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {}
+
+function prettyBoard(board) {
+let pretty1 = board.flat().join(' ')
+
+pretty1 = pretty1.toString()
+
+pretty1 = 
+pretty1.substring(0, 17)
++ '\n' + pretty1.substring(18, 35)
++ '\n' + pretty1.substring(36, 53) 
++ '\n' + '-----------------'
++ '\n' + pretty1.substring(54, 71)
++ '\n' + pretty1.substring(72, 89)
++ '\n' + pretty1.substring(90, 107)
++ '\n' + '-----------------'
++ '\n' + pretty1.substring(108, 125)
++ '\n' + pretty1.substring(126, 143)
++ '\n' + pretty1.substring(144, 161)
+
+return pretty1
+}
+
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
@@ -115,8 +138,3 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
-// console.log(
-//   convertString(
-//     '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--'
-//   )
-// );
