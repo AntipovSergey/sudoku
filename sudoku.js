@@ -29,3 +29,19 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('Хочу кушать')
