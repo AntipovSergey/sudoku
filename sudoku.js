@@ -16,9 +16,8 @@ function isSolved(board) {}
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-  const prom = board.flat().join('');
-  return prom;
+  function prettyBoard(board) {
+    //просто для коммита
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
