@@ -69,10 +69,8 @@ function solve(boardString) {
   return board;
 }
 
-console.log(
-  solve(
-    '-6-584917547219368891-63245278-451391593274866-4891572785132694416958723923476851'
-  )
+const boards = solve(
+  '-6-584917547219368891-63245278-451391593274866-4891572785132694416958723923476851'
 );
 
 function solveSimple(boardString) {}
@@ -84,10 +82,13 @@ function isSolved(board) {
   let statementrow;
   let statementcol;
   for (row = 0; row < board.length; row++) {
-    const check = arr[i];
+    const check = board[row];
     for (let i in check) {
       if (check.indexOf(i) === check.lastIndexOf(i)) {
         statementrow = true;
+      } else {
+        statementrow = false;
+        return statementcol;
       }
     }
   }
@@ -96,14 +97,20 @@ function isSolved(board) {
       const arr = [];
       arr.push(board[row][col]);
       for (let i in arr) {
-        if (check.indexOf(i) === check.lastIndexOf(i)) {
+        if (arr.indexOf(i) === arr.lastIndexOf(i)) {
           statementcol = true;
+        } else {
+          statementrow = false;
+          return statementrow;
         }
       }
     }
   }
+  if (statementcol === true && statementrow === true) {
+    return true;
+  }
 }
-
+console.log(isSolved(boards));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
