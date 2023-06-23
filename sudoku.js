@@ -31,7 +31,7 @@ function solve(boardString)
     for (let i = 0; i < board.length; i += 1) {
   for (let j = 0; j < arrOfNumbers.length; i += 1) {
     if (!board.includes(arrOfNumbers[j])){ 
-      let index = board[i].findIndex(0)
+      let index = board[i].findIndex('-')
       board[i][index] = arrOfNumbers[j]
     } fullBoard (board)
   }
