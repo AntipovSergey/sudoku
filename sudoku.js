@@ -1,3 +1,6 @@
+const { log } = require('console');
+const { CLIENT_RENEG_WINDOW } = require('tls');
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -36,7 +39,10 @@ console.log(
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {}
+function isSolved(board) {
+  const line = board.map((el) => !el.join('').includes('-'));
+  return !line.includes(false);
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
