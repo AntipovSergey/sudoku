@@ -3,7 +3,10 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {}
+function solve(boardString) {
+  const board = boardString.split('');
+  return board;
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -16,10 +19,7 @@ function isSolved(board) {}
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-  const prom = board.flat().join('');
-  return prom;
-}
+function prettyBoard(board) {}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
