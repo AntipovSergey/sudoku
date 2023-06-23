@@ -25,7 +25,14 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  for(let i = 0; i < data.length; i += 1) {
+    for(let j = 0; j < data.length; j += 1) {
+        if(data[i][j] === 0) {
+            return [i, j]
+        }
+    }
+}
+return false;
 }
 
 /**
