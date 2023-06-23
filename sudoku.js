@@ -29,3 +29,5 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+console.log('Hello from Daya')
