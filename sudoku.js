@@ -73,6 +73,8 @@ const boards = solve(
   '-6-584917547219368891-63245278-451391593274866-4891572785132694416958723923476851'
 );
 
+if (isSolved(boards)) console.log(prettyBoard(boards));
+
 function solveSimple(boardString) {}
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
