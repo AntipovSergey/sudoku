@@ -1,4 +1,19 @@
 /**
+ * Принимает строку с данными и конвертирует её в двумерный массив
+ */
+function convertString(str) {
+  const arrayWithElements = str.split('');
+  console.log(arrayWithElements);
+  const chunk = 9;
+  let board = [];
+  for (let i = 0; i < arrayWithElements.length; i += chunk) {
+    board.push(arrayWithElements.slice(i, i + chunk));
+  }
+
+  return board;
+}
+
+/**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
@@ -9,9 +24,7 @@ function solve(boardString) {
   return board;
 }
 
-function solveSimple(boardString) {
-  
-}
+function solveSimple(boardString) {}
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
