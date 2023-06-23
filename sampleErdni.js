@@ -1,0 +1,1 @@
+console.log('sample main erdni');
