@@ -30,4 +30,21 @@ module.exports = {
   prettyBoard,
 };
 
+
 console.log('Hello from Daya')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('Хочу кушать')
