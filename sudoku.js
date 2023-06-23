@@ -18,7 +18,11 @@ function convertString(str) {
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {}
+
+function solve(boardString) {
+  const board = boardString.split('');
+  return board;
+}
 
 function solveSimple(boardString) {}
 /**
