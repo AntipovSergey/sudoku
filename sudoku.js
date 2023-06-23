@@ -1,24 +1,50 @@
+const fs = require('fs')
+const boardString=fs.readFileSync('./puzzles.txt', 'utf8')
+
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {
-  // функция Димы
+function solve(boardString)
+{
+  let dataArray = boardString.split('\n').filter((line) => line !== '');
+  let dataArrayToSolve = dataArray[0].split('');
+  let board = [];
+  for (let i = 0; i < 9; i++)
+  {
+    let row = [];
+    for (let j = 0; j < 9; j++)
+    {
+      const index = i * 9 + j;
+      row.push(dataArrayToSolve[index]);
+
+    }
+    board.push(row);
+  }
+
+  return board
+  
   function fullBoard (board) {
     let arrOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let boardFull = [];
+
     for (let i = 0; i < board.length; i += 1) {
   for (let j = 0; j < arrOfNumbers.length; i += 1) {
     if (!board.includes(arrOfNumbers[j])){ 
-      let index = board[i].findIndex(0)
+      let index = board[i].findIndex('-')
       board[i][index] = arrOfNumbers[j]
-    } fullBoard (board)
-  }
+    } else
+    {
+      
     }
   }
-  
+  return board
 }
+}
+
+}
+
+solve(boardString)
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -51,7 +77,6 @@ module.exports = {
   prettyBoard,
 };
 
-console.log('Hello from Daya')
 
 
 
