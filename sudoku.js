@@ -4,18 +4,18 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 
-const fs = require("fs");
+const fs = require('fs');
 
 function solve(boardString) {
   // кажется уже реализовано в Рид энд Солве
 
   //принимает данные из файла puzzles.txt и присваивает их переменной data
-  let filePath = "./puzzles.txt";
-  let data = fs.readFileSync(filePath, "utf8");
+  let filePath = './puzzles.txt';
+  let data = fs.readFileSync(filePath, 'utf8');
 
   //складывает данные в массив из переменной data и берет первый судоку (пока) для решения
-  let dataArray = data.split("\n").filter((line) => line !== "");
-  let dataArrayToSolve = dataArray[0].split("");
+  let dataArray = data.split('\n').filter((line) => line !== '');
+  let dataArrayToSolve = dataArray[0].split('');
 
   let outputArray = [];
   for (let i = 0; i < 9; i++) {
