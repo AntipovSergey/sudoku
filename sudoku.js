@@ -72,17 +72,13 @@ function solve(boardString) {
     choose();
     return board;
   };
-  // console.table(inputBoard);
   return solveSudoku(inputBoard);
 }
-
 // console.table(
 //   solve(
 //     '----------2-65-------18--4--9----6-4-3---57-------------------73------9----------'
 //   )
 // );
-function solve(boardString) {}
-
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
