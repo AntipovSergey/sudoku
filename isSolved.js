@@ -13,27 +13,29 @@ const arrBoard = [
 console.table(arrBoard)
 
 
-function rowCheck(arrBoard, num, cord) {
+function Check(arrBoard, num, cord) {
   const [x, y] = cord;
   for (let i = 0; i < arrBoard.length; i += 1) {
-    for (let v = 0; v < arrBoard[i].length; v += 1) {
-      if (arrBoard[x][v]=== num) {
+      if (Number(arrBoard[x][i]) === num) {
         return false;
-      } return true;
+      } else return true;
     }
-  }
-}
-
-function culmnCheck(arrBoard, num, cord) {
-  const [x, y] = cord;
-  for (let i = 0; i < arrBoard.length; i += 1) {
-    for (let v = 0; v < arrBoard[i].length; v += 1) {
-      if (arrBoard[i][y] === num) {
+  for (let j = 0; j < arrBoard.length; j += 1) {
+      if (Number(arrBoard[j][y]) === num) {
         return false;
       } else return true;
     }
   }
-}
 
-console.table(rowCheck(arrBoard, 3, [0, 1]))
-console.table(culmnCheck(arrBoard, 7, [1, 1]))
+// function culmnCheck(arrBoard, num, cord) {
+//   const [x, y] = cord;
+//   for (let i = 0; i < arrBoard.length; i += 1) {
+//     for (let v = 0; v < arrBoard[i].length; v += 1) {
+//       if (Number(arrBoard[v][y]) === num) {
+//         return false;
+//       } else return true;
+//     }
+//   }
+// }
+
+// console.table(Check(arrBoard, 3, [1, 0]))
