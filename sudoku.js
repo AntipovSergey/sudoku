@@ -5,19 +5,8 @@ const fs = require('fs');
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const fs = require("fs");
-const puzzles = fs.readFileSync("./puzzles.txt", "utf-8");
-
-const transformatedPuzzles = (num) => {
-  const transformated = puzzles.split("\n")[num - 1];
-  const tempArr = []
-  for (let i = 0; i < 9; i += 1) {
-    tempArr[i] = transformated.slice(0 + i*9, 9 + i*9).split('')
-  }
-  return tempArr;
-};
-console.log(transformatedPuzzles(1))
-function solve(boardString) {}
+function solve(boardString) {
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -38,3 +27,60 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+function transpose(matrix) {
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+
+  const transposedMatrix = [];
+
+  for (let i = 0; i < cols; i += 1) {
+    transposedMatrix[i] = [];
+    for (let j = 0; j < rows; j += 1) {
+      transposedMatrix[i][j] = matrix[j][i];
+    }
+  }
+
+  return transposedMatrix;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const boardSudoku = [
+  ['1', '-', '5', '8', '-', '2', '-', '-', '-'],
+  ['-', '9', '-', '-', '7', '6', '4', '-', '5'],
+  ['2', '-', '-', '4', '-', '-', '8', '1', '9'],
+  ['-', '1', '9', '-', '-', '7', '3', '-', '6'],
+  ['7', '6', '2', '-', '8', '3', '-', '9', '-'],
+  ['-', '-', '-', '-', '6', '1', '-', '5', '-'],
+  ['-', '-', '7', '6', '-', '-', '-', '3', '-'],
+  ['4', '3', '-', '-', '2', '-', '5', '-', '1'],
+  ['6', '-', '-', '3', '-', '8', '9', '-', '-'],
+];
+
+const transposedMatrix = transpose(boardSudoku);
+
+console.log('function', transposedMatrix);
+console.log('board', boardSudoku);
