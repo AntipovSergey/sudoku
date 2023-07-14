@@ -14,9 +14,7 @@ function isSolved(board) {
 
 }
 
-function checkLine(){
-
-}
+function checkLine(){}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
