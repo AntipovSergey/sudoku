@@ -9,6 +9,7 @@ function readAndSolve(error, fileData) {
   }
 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
+
   const puzzles = fileData
     .split('\n')
     .filter((line) => line !== '');

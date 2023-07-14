@@ -4,6 +4,11 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  const puzzleWrapper = [];
+  for (let i = 0; i < 9; i++) {
+      puzzleWrapper.push(boardString.splice(0, 9));
+    }
+    return puzzleWrapper;
 }
 
 /**
