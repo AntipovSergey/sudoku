@@ -63,58 +63,58 @@ console.log(
   ])
 );
 
-function solve(boardString) {
-  // const cord = searchEmpty(boardString);
-  // if (!cord) return true;
+function solve(boardString) {}
+// const cord = searchEmpty(boardString);
+// if (!cord) return true;
 
-  // for (let i = 0; i < boardString.length; i++) {
-  //   for (let r = 0; r < boardString[i].length; r++) {
-  //     if (searchEmpty(boardString[i])) {
-  //       for (let w = 1; w < 9; w++) {
-  //         if (boardString[i].indexOf(w) === -1) {
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-  function getCoord(row, col) {
-    let block = "";
-    if (row < 3) {
-      if (col < 3) {
-        return (block = 1);
-      } else if (col < 6) {
-        return (block = 2);
-      } else {
-        return (block = 3);
-      }
-    } else if (row < 6) {
-      if (col < 3) {
-        return (block = 4);
-      } else if (col < 6) {
-        return (block = 5);
-      } else {
-        return (block = 6);
-      }
-    } else if (col < 3) {
-      return (block = 7);
-    } else if (col < 6) {
-      return (block = 8);
-    } else {
-      return (block = 9);
-    }
-  }
-  return block;
-}
+// for (let i = 0; i < boardString.length; i++) {
+//   for (let r = 0; r < boardString[i].length; r++) {
+//     if (searchEmpty(boardString[i])) {
+//       for (let w = 1; w < 9; w++) {
+//         if (boardString[i].indexOf(w) === -1) {
+//         }
+//       }
+//     }
+//   }
+// }
+//   function getCoord(row, col) {
+//     let block = "";
+//     if (row < 3) {
+//       if (col < 3) {
+//         return (block = 1);
+//       } else if (col < 6) {
+//         return (block = 2);
+//       } else {
+//         return (block = 3);
+//       }
+//     } else if (row < 6) {
+//       if (col < 3) {
+//         return (block = 4);
+//       } else if (col < 6) {
+//         return (block = 5);
+//       } else {
+//         return (block = 6);
+//       }
+//     } else if (col < 3) {
+//       return (block = 7);
+//     } else if (col < 6) {
+//       return (block = 8);
+//     } else {
+//       return (block = 9);
+//     }
+//   }
+//   return block;
+// }
 
-function coord(sudoku){
-  let coord ={}
-  for(let row =0;row<9;row++){
-    for(let col =0; col<9;col++){
-      const b =sudoku[row][col]
-      
-    }
-  }
-}
+// function coord(sudoku){
+//   let coord ={}
+//   for(let row =0;row<9;row++){
+//     for(let col =0; col<9;col++){
+//       const b =sudoku[row][col]
+
+//     }
+//   }
+// }
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
