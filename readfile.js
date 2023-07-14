@@ -39,7 +39,7 @@ function generateBoard(str) {
 
 function genArrBoard() {
   const result = [];
-  for (let i = 0; i < fileSudoku.length; i++) {
+  for (let i = 0; i < fileSudoku.length; i += 1) {
     result.push(generateBoard(fileSudoku[i]));
   }
   return result;
