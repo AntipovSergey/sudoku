@@ -21,10 +21,6 @@ const ready = [
         
     }
 
-    console.log(lineCheck(ready, 1, 1))
-
-    // вывести числа, которых нет в строке 
-
     function getLineFree (arr, line) { 
         const newArr = [];
         for (let i = 1; i <= 9; i += 1){
@@ -34,4 +30,3 @@ const ready = [
         }
         return newArr 
     }
-    console.log(getLineFree(ready, 3));
