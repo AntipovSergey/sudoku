@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 // console.log(board)
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -10,20 +10,30 @@ const puzzles = fs.readFileSync("./puzzles.txt", "utf-8");
 
 const transformatedPuzzles = (num) => {
   const transformated = puzzles.split("\n")[num - 1];
-  const tempArr = []
+  const tempArr = [];
   for (let i = 0; i < 9; i += 1) {
-    tempArr[i] = transformated.slice(0 + i*9, 9 + i*9).split('')
+    tempArr[i] = transformated.slice(0 + i * 9, 9 + i * 9).split("");
   }
   return tempArr;
 };
-console.log(transformatedPuzzles(1))
+console.log(transformatedPuzzles(1));
 function solve(boardString) {}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {}
+function isSolved(board) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      if (board[i][j] === "-") {
+        return false; // судоку не решено, потому что есть пустые ячейки '-'
+      }
+    }
+  }
+  return true; // судоку решено
+}
+console.log()
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
