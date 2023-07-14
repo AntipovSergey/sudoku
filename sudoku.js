@@ -4,6 +4,7 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+
 }
 
 /**
@@ -29,3 +30,16 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+
+
+
+
+
+
+
+
+
+
+
+console.log('123')
