@@ -1,32 +1,24 @@
-const ready = [
-    [['1'], ['-'], ['5'], ['8'], ['-'], ['2'], ['-'], ['-'], ['-']],
-    [['-'], ['9'], ['-'], ['-'], ['7'], ['6'], ['4'], ['-'], ['5']],
-    [['2'], ['-'], ['-'], ['4'], ['-'], ['-'], ['8'], ['1'], ['9']],
-    [['-'], ['1'], ['9'], ['-'], ['-'], ['7'], ['3'], ['-'], ['6']],
-    [['7'], ['6'], ['2'], ['-'], ['8'], ['3'], ['-'], ['9'], ['-']],
-    [['-'], ['-'], ['-'], ['-'], ['6'], ['1'], ['-'], ['5'], ['-']],
-    [['-'], ['-'], ['7'], ['6'], ['-'], ['-'], ['-'], ['3'], ['-']],
-    [['4'], ['3'], ['-'], ['-'], ['2'], ['-'], ['5'], ['-'], ['1']],
-    [['6'], ['-'], ['-'], ['3'], ['-'], ['8'], ['9'], ['-'], ['-']],
-  ];
-
-    function lineCheck (arr, line, value){
-        const newArr = [];
-        for (let i = 0; i < arr[line].length; i += 1){
-            if(arr[line][i].includes(String(value))){
-                return false
-            } 
-        }  
-        return true
-        
+function checkLine(arr, line, value) {
+  const newArr = [];
+  for (let i = 0; i < arr[line].length; i += 1) {
+    if (arr[line][i].includes(String(value))) {
+      return false;
     }
+  }
+  return true;
+}
 
-    function getLineFree (arr, line) { 
-        const newArr = [];
-        for (let i = 1; i <= 9; i += 1){
-            if (lineCheck(arr, line, i)){
-                newArr.push(String(i))
-            }
-        }
-        return newArr 
+function getLineFree(arr, line) {
+  const newArr = [];
+  for (let i = 1; i <= 9; i += 1) {
+    if (lineCheck(arr, line, i)) {
+      newArr.push(String(i));
     }
+  }
+  return newArr;
+}
+
+module.exports = {
+  checkLine,
+  getLineFree,
+};

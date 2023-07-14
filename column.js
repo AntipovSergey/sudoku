@@ -7,7 +7,7 @@ function checkColumn(arr, column, value) {
   return true;
 }
 
-function returnVal(arr, column) {
+function getColumnFree(arr, column) {
   const result = [];
   for (let i = 1; i <= 9; i++) {
     if (checkColumn(arr, column, i)) {
@@ -19,5 +19,5 @@ function returnVal(arr, column) {
 
 module.exports = {
   checkColumn,
-  returnVal,
+  getColumnFree,
 };
