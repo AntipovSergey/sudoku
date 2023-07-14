@@ -4,33 +4,13 @@
 const fs = require("fs");
 const baza = fs.readFileSync("./puzzles.txt", "utf-8").trim();
 const arr3 = baza.split("\n");
-const str = arr3[process.argv[2]];
-
-// const subarrays = arr.map((el) => el.split(""));
-// console.log
-// console.log(subarrays);
-// const subarraysOfSubarrays = arr.map((el) => {
-//   const subarrays = [];
-//   for (let i = 0; i < el.length; i += 9) {
-//     subarrays.push(el.slice(i, i + 9));
-//   }
-//   return subarrays;
-// });
-// console.log(subarraysOfSubarrays);
-// function call(subarraysOfSubarrays, el) {
-//   let result;
-//   if (el === "-" || (el >= 1 && el <= 9)) {
-//     result = subarraysOfSubarrays[el];
-//   } else {
-//     return undefined;
-//   }
-//   console.log("eeee", result.join(""));
-// }
-// console.log("yyy", call(subarraysOfSubarrays, 5));
-
-
-
-
+let number = process.argv[2];
+if (number === undefined)
+    number = 1;
+if (number >= arr3.length) 
+    number = arr3.length - 1;
+const str = arr3[number];
+console.log(str);
 
 const arr = [];
 
