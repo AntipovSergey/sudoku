@@ -1,10 +1,18 @@
+const fs = require('fs');
+const boardString = fs.readFileSync('puzzles.txt', 'utf-8')
+// console.log(board)
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
+  const board = fs.readFileSync('puzzles.txt', 'utf-8').split('\n')
+ 
 }
+const board = fs.readFileSync('puzzles.txt', 'utf-8').split('\n')[0]
+// const firstStr = board.join()
+console.log(board)
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
