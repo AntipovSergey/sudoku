@@ -18,8 +18,8 @@ const arrBoard = [
 function isSolved(arrBoard) {
   let regular = /\d{9}\W/
   for (let i = 0; i < arrBoard.length; i += 1) {
-    for (let i = 0; i < arrBoard[i].length; i += 1) {
-      if (arrBoard[i][i].join('').match(regular)) { 
+    for (let i2 = 0; i2 < arrBoard[i].length; i2 += 1) {
+      if (arrBoard[i][i2].match(regular)) { 
         return true;
       } else {
         return false;
