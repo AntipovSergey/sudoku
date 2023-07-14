@@ -26,6 +26,21 @@ module.exports = {
   prettyBoard,
 };
 
+function transpose(matrix) {
+  const rows = matrix.length;
+  const cols = matrix[0].length;
+
+  const transposedMatrix = [];
+
+  for (let i = 0; i < cols; i += 1) {
+    transposedMatrix[i] = [];
+    for (let j = 0; j < rows; j += 1) {
+      transposedMatrix[i][j] = matrix[j][i];
+    }
+  }
+
+  return transposedMatrix;
+}
 
 
 
@@ -37,4 +52,33 @@ module.exports = {
 
 
 
-console.log('123')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const boardSudoku = [
+  ['1', '-', '5', '8', '-', '2', '-', '-', '-'],
+  ['-', '9', '-', '-', '7', '6', '4', '-', '5'],
+  ['2', '-', '-', '4', '-', '-', '8', '1', '9'],
+  ['-', '1', '9', '-', '-', '7', '3', '-', '6'],
+  ['7', '6', '2', '-', '8', '3', '-', '9', '-'],
+  ['-', '-', '-', '-', '6', '1', '-', '5', '-'],
+  ['-', '-', '7', '6', '-', '-', '-', '3', '-'],
+  ['4', '3', '-', '-', '2', '-', '5', '-', '1'],
+  ['6', '-', '-', '3', '-', '8', '9', '-', '-'],
+];
+
+const transposedMatrix = transpose(boardSudoku);
+
+console.log('function', transposedMatrix);
+console.log('board', boardSudoku);
