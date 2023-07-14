@@ -1,6 +1,7 @@
 // Подключить модуль работы с файловой системой.
 const fs = require('fs');
 
+
 // Подключить функцию readAndSolve из соответствующего файла.
 const readAndSolve = require('./readAndSolve');
 
