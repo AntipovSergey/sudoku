@@ -19,9 +19,12 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
 
+function prettyBoard(board) {
+  return board.map((el)=>el.join(',')).join('\n').replace(/[^a-zа-яё0-9\s]/gi, '');  
 }
+
+console.log(prettyBoard(board))
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
