@@ -1,13 +1,12 @@
-// Подключить модуль работы с файловой системой.
-const fs = require('fs');
+const {
+  getStrFromFile,
+  getOnePuzzleAsArray,
+  printPuzzles,
+  fillSudoku,
+} = require('./utils');
 
-// Подключить функцию readAndSolve из соответствующего файла.
-const readAndSolve = require('./readAndSolve');
-
-// Все судоку для решения доступны в файле puzzles.txt.
-// Прочесть файл puzzles.txt в кодировке 'utf-8' и передать его содержимое в функцию readAndSolve.
-fs.readFile(
-  './puzzles.txt',
-  'utf-8',
-  readAndSolve,
-);
+// Не хватает только проверки исходной строки на корректность
+const puzzles = getStrFromFile('./puzzles/puzzles.txt');
+const puzzle = getOnePuzzleAsArray(puzzles);
+const solvedPuzzle = fillSudoku(puzzle);
+printPuzzles(puzzle, solvedPuzzle);
