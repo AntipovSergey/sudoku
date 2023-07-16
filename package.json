@@ -4,7 +4,7 @@
   "description": "## Введение",
   "main": "runner.js",
   "scripts": {
-    "start": "node runner.js"
+    "start": "node fillSudoku.js"
   },
   "repository": {
     "type": "git",
