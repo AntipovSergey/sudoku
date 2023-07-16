@@ -1,33 +1,56 @@
-// const str = "-934---81-7--863-2168-92-4-9-2-71--338-62-5-46-78--12----913-5851-2--9-78-9-452--";
-// const str = "----------2-65-------18--4--9----6-4-3---57-------------------73------9----------";
-
 const fs = require("fs");
-const baza = fs.readFileSync("./puzzles.txt", "utf-8").trim();
-const arr3 = baza.split("\n");
-let number = process.argv[2];
-if (number === undefined)
-    number = 1;
-if (number >= arr3.length) 
-    number = arr3.length - 1;
-const str = arr3[number];
-console.log(str);
+const os = require('os');
 
-const arr = [];
-
-for (let i = 0; i < 9; i ++) {
-    tmp = (str.slice(i * 9, (i + 1) * 9).split(''));
-    arr[i] = [];
-    for (let j = 0; j < 9; j ++) {
-        arr[i][j] = tmp[j];
-        if (arr[i][j] != '-') arr[i][j] = Number(arr[i][j]);
-    }
+function getStrFromFile(path) {
+    let puzzles = fs.readFileSync(path, "utf-8")
+    .trim()
+    .split(os.EOL);
+    return puzzles.filter(Boolean);
 }
 
-function printArr(arr) {
-    for (let i = 0; i < 9; i++) {
-        console.log(arr[i].join(" "));
+function getOnePuzzleAsArray(puzzles) {
+    let puzzleNumber = Number(process.argv[2]) || 1;
+    if (puzzleNumber > puzzles.length) {
+        puzzleNumber = puzzles.length;
     }
-    console.log("\n");
+    console.log(`Решаем судоку номер ${puzzleNumber}\n`);
+    return arrFromStr(puzzles[puzzleNumber - 1]);
+}
+
+function arrFromStr(str) {
+    console.log(`${str}\n`);
+    const arr = [];
+    for (let i = 0; i < 9; i ++) {
+        arr[i] = (str.slice(i * 9, i * 9 + 9).split(''));
+        for (let j = 0; j < 9; j++) {
+        if (arr[i][j] != '-') arr[i][j] = Number(arr[i][j]);
+        }
+    }
+    return arr;
+}
+
+function getStrForPrint(arr) {
+    let str = "";
+    for (let j = 0; j < 3; j++) {
+        str += arr.slice(j * 3, j * 3 + 3).join(" ");
+        if (j != 2) str += '   ';
+    }
+    return str;
+}
+
+function printPuzzles(arr, arr2) {
+    if (!arr2) {
+        for (let i = 0; i < 9; i++) {
+            console.log(getStrForPrint(arr[i]));
+            if (i && (i + 1) % 3 === 0) console.log('');
+        }
+        console.log("\nThis puzzle can't be solved");
+        return;
+    }
+    for (let i = 0; i < 9; i++) {
+        console.log(getStrForPrint(arr[i]), "                ", getStrForPrint(arr2[i]));
+        if (i && (i + 1) % 3 === 0) console.log('');
+    }
 }
 
 function valide(arr, x, y, k) {
@@ -45,7 +68,6 @@ function valide(arr, x, y, k) {
             if (arr[m][n] === k) return -1;
         }
     }
-
     return 0;
 }
 
@@ -66,7 +88,6 @@ function fillSudoku(arr, x = 0, y = 0) {
     if (p === undefined) return arr;
     for (let k = 1; k <= 9; k++) {
         if (valide(arr, p.i, p.j, k) === 0) {
-            arr[p.i][p.j] = k;
             // console.log(p.i, p.j, k, "yes");
             // printArr(arr);
             const newArr = [];
@@ -76,6 +97,7 @@ function fillSudoku(arr, x = 0, y = 0) {
                     newArr[m][n] = arr[m][n];
                 }
             }
+            newArr[p.i][p.j] = k;
             if (p.j <= 7) {
                 const ret = fillSudoku(newArr, p.j + 1, p.i);
                 if (Array.isArray(ret)) return ret;
@@ -91,8 +113,9 @@ function fillSudoku(arr, x = 0, y = 0) {
     }
 }
 
-printArr(arr);
-const arr2 = fillSudoku(arr);
-if (arr2) printArr(arr2)
-else console.log("problems");
-
+module.exports = {
+    getStrFromFile,
+    getOnePuzzleAsArray,
+    printPuzzles,
+    fillSudoku,
+};
