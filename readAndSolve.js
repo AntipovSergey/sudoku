@@ -1,5 +1,4 @@
-// Подключить функции из файла sudoku.js.
-
+const {CheckHorizontal, missingNumbers, RowCol} = require('./sudoku.js')
 
 
 

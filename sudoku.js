@@ -10,7 +10,6 @@
 //   ['6 - - 3 - 8 9 - -']
 // ];
 
-
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -28,7 +27,6 @@ function isSolved() {
 
 }
 
-
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает строку с игровым полем для последующего вывода в консоль.
@@ -38,7 +36,7 @@ function prettyBoard(board) {
 
 }
 
-/* 
+/*
 Проверка по горизонтали
 */
 // function CheckHorizontal(h) {
@@ -49,23 +47,23 @@ function prettyBoard(board) {
 // }
 
 function CheckHorizontal(sudokuBoard) {
-  const horizontal = []
-  for(let row = 0; row < 9; row++) {
-    const rowValues = []
-    for( let col= 0; col < 9; col++) {
-    rowValues.push(board[row][col])
+  const horizontal = [];
+  for (let row = 0; row < 9; row++) {
+    const rowValues = [];
+    for (let col = 0; col < 9; col++) {
+      rowValues.push(board[row][col]);
     }
-    const missNum = missingNumbers(rowValues)
+    const missNum = missingNumbers(rowValues);
   }
 }
 function missingNumbers(arr) {
-  const findmissNumbers = []
-  for( let i =0 ; i < 9; i++) {
-    if(!arr.includes[i]) {
-      findmissNumbers.push[i]
+  const findmissNumbers = [];
+  for (let i = 0; i < 9; i++) {
+    if (!arr.includes[i]) {
+      findmissNumbers.push[i];
     }
   }
-  return findmissNumbers
+  return findmissNumbers;
 }
 
 function RowCol(board, y, x, n) {
@@ -81,4 +79,7 @@ module.exports = {
   solve,
   isSolved,
   prettyBoard,
+  CheckHorizontal,
+  missingNumbers,
+  RowCol,
 };
