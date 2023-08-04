@@ -20,24 +20,24 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard() {
-  document.write(`${'--'.repeat(15)}<br>`);
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      for (let k = 0; k < 10; k++) {
-        for (let l = 0; l < 3; l++) {
-          document.write(' ');
-        }
-        document.write(' | ');
-      }
-      document.write('<br>');
-    }
-    document.write(`${'--'.repeat(15)}<br>`);
-  }
-}
-prettyBoard();
+// function prettyBoard() {
+//   document.write(`${'--'.repeat(15)}<br>`);
+//   for (let i = 0; i < 3; i++) {
+//     for (let j = 0; j < 3; j++) {
+//       for (let k = 0; k < 10; k++) {
+//         for (let l = 0; l < 3; l++) {
+//           document.write(' ');
+//         }
+//         document.write(' | ');
+//       }
+//       document.write('<br>');
+//     }
+//     document.write(`${'--'.repeat(15)}<br>`);
+//   }
+// }
+// prettyBoard();
 
-visualizeTable();
+// visualizeTable();
 const sudoku1 = [
   [5, 3, 0, 0, 7, 0, 0, 0, 0],
   [6, 0, 0, 1, 9, 5, 0, 0, 0],
@@ -70,7 +70,8 @@ function getSuggestedNumbers(sudoku, row, col) {
     }
   }
   suggestedNumbers.delete(0);
-  return Array.from(suggestedNumbers);
+  const result = Array.from(suggestedNumbers);
+  return result.map((el) => el.toString());
 }
 
 console.log(getSuggestedNumbers(sudoku1, 0, 2));
@@ -78,7 +79,7 @@ console.log(getSuggestedNumbers(sudoku1, 0, 2));
 module.exports = {
   solve,
   isSolved,
-  prettyBoard,
+  // prettyBoard,
   getSuggestedNumbers,
 };
 
