@@ -45,6 +45,7 @@ function checkVerticalLine(arr, vertical) {
   }
   return need;
 }
+
 function checkSquare(arr, indexX, indexY) {
   const need = [];
   const square = [];
