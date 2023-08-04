@@ -23,7 +23,7 @@ function prettyBoard(board) {
 
 }
 
-const sudoku = [
+const sudoku1 = [
   [5, 3, 0, 0, 7, 0, 0, 0, 0],
   [6, 0, 0, 1, 9, 5, 0, 0, 0],
   [0, 9, 8, 0, 0, 0, 0, 6, 0],
@@ -58,7 +58,7 @@ function getSuggestedNumbers(sudoku, row, col) {
   return Array.from(suggestedNumbers);
 }
 
-console.log(getSuggestedNumbers(sudoku, 0, 2));
+console.log(getSuggestedNumbers(sudoku1, 0, 2));
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
