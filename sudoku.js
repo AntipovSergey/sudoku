@@ -19,10 +19,24 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
+function prettyBoard() {
+  document.write(`${'--'.repeat(15)}<br>`);
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      for (let k = 0; k < 10; k++) {
+        for (let l = 0; l < 3; l++) {
+          document.write(' ');
+        }
+        document.write(' | ');
+      }
+      document.write('<br>');
+    }
+    document.write(`${'--'.repeat(15)}<br>`);
+  }
 }
+prettyBoard();
 
+visualizeTable();
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
