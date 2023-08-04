@@ -3,7 +3,17 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
+
+
+
 function solve(boardString) {
+  const board = [];
+  for (let i = 0; i < 9; i++) {
+    board[i] = [];
+    for (let j = 0; j < 9; j++) {
+      board[i][j] = Number(boardString[i * 9 + j]);
+    }
+  }
 }
 
 /**
@@ -11,6 +21,7 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
+  
 
 }
 

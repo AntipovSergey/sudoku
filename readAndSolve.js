@@ -1,17 +1,27 @@
 // Подключить функции из файла sudoku.js.
-const sudoku = require('./sudoku');
+const board = require('./sudoku');
+
 
 function readAndSolve(error, fileData) {
-  // Если чтение файла не удалось, выбросить ошибку с описанием проблемы и
-  // завершить работу функции.
   if (error) {
     throw error;
   }
+  if (Array.isArray(fileData)) {
+    fileData = fileData.join('\n');
+  }
+
+  return fileData;
+}
+// console.log(readAndSolve(fileData));
 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
-  const puzzles = fileData
+  const fileStr = readAndSolve();
+
+  const puzzles = fileStr
     .split('\n')
     .filter((line) => line !== '');
+    
+// console.log(puzzles);
 
   // Получить номер судоку из process.argv, либо взять 1-й судоку по умолчанию.
   let puzzleNumber = Number(process.argv[2]) || 1;
@@ -41,6 +51,6 @@ function readAndSolve(error, fileData) {
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
-}
+
 
 module.exports = readAndSolve;
