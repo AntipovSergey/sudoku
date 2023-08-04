@@ -3,14 +3,15 @@ const board = require('./sudoku');
 
 
 function readAndSolve(error, fileData) {
+  const sudoku = [];
   if (error) {
     throw error;
   }
   if (Array.isArray(fileData)) {
-    fileData = fileData.join('\n');
+    sudoku.push(fileData);
   }
 
-  return fileData;
+  return sudoku;
 }
 // console.log(readAndSolve(fileData));
 
