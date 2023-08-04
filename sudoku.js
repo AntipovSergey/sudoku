@@ -60,7 +60,7 @@ function checkBox(sudokuBoard) {
       const boxValues = [];
       for (let d = i; d < i + 3; d++) {
         for (let f = j; f < j + 3; f++) {
-          boxValues.push(sudokuBoard[i][j]);
+          boxValues.push(sudokuBoard[d][f]);
         }
       }
       const missNum = missingNumbers(boxValues);
