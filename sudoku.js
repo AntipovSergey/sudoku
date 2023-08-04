@@ -42,18 +42,19 @@ module.exports = {
 
 function takeSudoku(index) {
   const filePath = './puzzles.txt';
-  const data = fs.readFileSync(filePath, 'utf8');
-  const arr = data.trim().split('\n');
-  console.log(arr);
+  const data = fs.readFileSync(filePath, 'utf8').split('\n');
+  // const arr = data.trim().split('\n');
+  // console.log(arr);
 
-  const newArr = arr.map((elem) => elem);
+  const arr = data[index];
+  const newArr = Array.from(arr);
+  const newArr2 = [];
 
   // for (let i = 0; i < arr.length; i++) {
 
-  // for (let i = 0; i <= 81; i++) {
-  //   newArr.push(arr.slice(i, i + 9));
-  //   console.log(newArr);
-  // }
-  return newArr;
+  for (let i = 0; i <= 8; i++) {
+    newArr2.push(newArr.slice(i, i + 9));
+  }
+  return newArr2;
 }
-takeSudoku();
+console.log(takeSudoku(6));
