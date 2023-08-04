@@ -7,8 +7,6 @@ const fs = require('fs');
 // Все судоку для решения доступны в файле puzzles.txt.
 // Прочесть файл puzzles.txt в кодировке 'utf-8' и передать его содержимое в функцию readAndSolve.
 
-const fileData = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n');
+const fileData = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n').slice(0, 1);
 
-// console.log(fileData);
-
-
+console.log(fileData);

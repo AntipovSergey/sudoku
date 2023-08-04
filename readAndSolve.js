@@ -2,18 +2,20 @@
 
 
 
-function readAndSolve(error, fileData) {
-  const sudoku = [];
-  if (error) {
-    throw error;
-  }
-  if (Array.isArray(fileData)) {
-    sudoku.push(fileData);
-  }
 
-  return sudoku;
+function readAndSolve(files) {
+  const sudoku = [];
+  if (Array.isArray(files)) {
+    for (let i = 0; i < files.length; i++) {
+      // Добавить эту строку
+      const row = files[i].split('');
+      sudoku.push(row);
+    }
+    return sudoku;
+  }
 }
-// console.log(readAndSolve(fileData));
+
+console.log(readAndSolve(fileData));
 
   // Разбить содержимое файла построчно и отфильтровать все пустые строки.
   const fileStr = readAndSolve();
