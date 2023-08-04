@@ -47,6 +47,10 @@ function prettyBoard(board) {
 //   }
 // }
 
+
+
+
+
 function CheckHorizontal(sudokuBoard) {
   const horizontal = []
   for(let row = 0; row < 9; row++) {
@@ -67,12 +71,13 @@ function missingNumbers(arr) {
   return findmissNumbers
 }
 
-function RowCol(board, y, x, square, n) {
+function RowColSqu(board, col, row, square, n) {
+  let n = '-'
   for (let i = 0; i < 9; i++) {
-    if (board[y][i] === n || board[i][x] === n || board[square][i] === n) {
+    if (board[row][i] === n || board[i][col] === n || board[square][i] === n) {
       return false;
     }
-  }
+  } return true
 }
 
 function checkBox(sudokuBoard) {
