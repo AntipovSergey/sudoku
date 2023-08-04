@@ -1,3 +1,4 @@
+const fs = require('fs');
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
  * Возвращает игровое поле после попытки его решить.
@@ -29,3 +30,30 @@ module.exports = {
   isSolved,
   prettyBoard,
 };
+
+// function takeSudoku(index) {
+//   const filePath = './puzzles.txt';
+//   const arr = data.split('');
+//   const newArr = [];
+//   for (let i = 0; i < arr.length; i++);
+
+// }
+// takeSudoku();
+
+function takeSudoku(index) {
+  const filePath = './puzzles.txt';
+  const data = fs.readFileSync(filePath, 'utf8');
+  const arr = data.trim().split('\n');
+  console.log(arr);
+
+  const newArr = arr.map((elem) => elem);
+
+  // for (let i = 0; i < arr.length; i++) {
+
+  // for (let i = 0; i <= 81; i++) {
+  //   newArr.push(arr.slice(i, i + 9));
+  //   console.log(newArr);
+  // }
+  return newArr;
+}
+takeSudoku();
