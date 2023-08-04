@@ -1,14 +1,4 @@
-// const board = [
-//   ['1 - 5 8 - 2 - - -']
-//   ['- 9 - - 7 6 4 - 5']
-//   ['2 - - 4 - - 8 1 9']
-//   ['- 1 9 - - 7 3 - 6']
-//   ['7 6 2 - 8 3 - 9 -']
-//   ['- - - - 6 1 - 5 -']
-//   ['- - 7 6 - - - 3 -']
-//   ['4 3 - - 2 - 5 - 1']
-//   ['6 - - 3 - 8 9 - -']
-// ];
+// const fs = require('fs');
 
 /**
  * Принимает игровое поле в формате строки — как в файле sudoku-puzzles.txt.
@@ -66,13 +56,34 @@ function missingNumbers(arr) {
   return findmissNumbers;
 }
 
-function RowCol(board, y, x, n) {
+// function RowCol(board, y, x, n) {
+//   for (let i = 0; i < 9; i++) {
+//     if (board[y][i] === n || board[i][x] === n) {
+//       return false;
+//     }
+//   }
+// // }
+// function readAndSolve(files) {
+//   const fileData = fs.readFileSync(files, 'utf-8').slice(0, 81);
+//   const sudokuArray = [];
+
+//   for (let i = 0; i < fileData.length; i += 9) {
+//     sudokuArray.push(fileData.slice(i, i + 9).split(''));
+//   }
+//   return sudokuArray;
+
+//   // console.table(sudokuArray);
+// }
+// const array = readAndSolve();
+
+function RowCol(array, y, x, square, n) {
   for (let i = 0; i < 9; i++) {
-    if (board[y][i] === n || board[i][x] === n) {
+    if (array[y][i] === n || array[i][x] === n || array[square][i] === n) {
       return false;
     }
-  }
+  } return true;
 }
+console.log(RowCol(array, 0, 0, 0, 1));
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
