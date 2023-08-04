@@ -23,7 +23,7 @@ function solve(boardString) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board, num) {
+function isSolved() {
 
 }
 
@@ -67,11 +67,14 @@ function missingNumbers(arr) {
   return findmissNumbers
 }
 
+function RowCol(board, y, x, n) {
+  for (let i = 0; i < 9; i++) {
+    if (board[y][i] === n || board[i][x] === n) {
+      return false;
+    }
+  }
+}
 
-
-// function CheckSquare(x, y) {
-// for(let i = 0; i < x.length; i++)
-// }
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
