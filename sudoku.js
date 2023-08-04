@@ -67,14 +67,30 @@ function missingNumbers(arr) {
   return findmissNumbers
 }
 
-function RowCol(board, y, x, n) {
+function RowCol(board, y, x, square, n) {
   for (let i = 0; i < 9; i++) {
-    if (board[y][i] === n || board[i][x] === n) {
+    if (board[y][i] === n || board[i][x] === n || board[square][i] === n) {
       return false;
     }
   }
 }
 
+function checkBox(sudokuBoard) {
+  const square = [];
+  for (let i = 0; i < 9; i += 3) {
+    for (let j = 0; j < 9; j += 3) {
+      const boxValues = [];
+      for (let d = i; d < i + 3; d++) {
+        for (let f = j; f < j + 3; f++) {
+          boxValues.push(sudokuBoard[d][f]);
+        }
+      }
+      const missNum = missingNumbers(boxValues);
+      square.push({ box: `(${i / 3}, ${j / 3})`, missing: missNum });
+    }
+  }
+  return square;
+}
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
   solve,
