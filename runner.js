@@ -12,15 +12,3 @@ const fileData = fs.readFileSync('./puzzles.txt', 'utf-8').split('\n');
 // console.log(fileData);
 
 
-function readAndSolve(error, fileData) {
-  const sudoku = [];
-  if (error) {
-    throw error;
-  }
-  if (Array.isArray(fileData)) {
-    sudoku.push(fileData);
-  }
-
-  return sudoku;
-}
-console.log(readAndSolve(fileData));
