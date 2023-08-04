@@ -9,10 +9,10 @@ const fs = require('fs');
 
 const fileData = fs.readFileSync('./puzzles.txt', 'utf-8').slice(0, 81);
 
-const sudokuArray = [];
+// const sudokuArray = [];
 
-for (let i = 0; i < fileData.length; i += 9) {
-  sudokuArray.push(fileData.slice(i, i + 9).split(''));
-}
+// for (let i = 0; i < fileData.length; i += 9) {
+//   sudokuArray.push(fileData.slice(i, i + 9).split(''));
+// }
 
-console.table(sudokuArray);
+// console.table(sudokuArray);

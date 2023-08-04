@@ -4,15 +4,14 @@
 
 
 function readAndSolve(files) {
-  const sudoku = [];
-  if (Array.isArray(files)) {
-    for (let i = 0; i < files.length; i++) {
-      // Добавить эту строку
-      const row = files[i].split('');
-      sudoku.push(row);
-    }
-    return sudoku;
+  const fileData = fs.readFileSync(files, 'utf-8').slice(0, 81);
+  const sudokuArray = [];
+  
+  for (let i = 0; i < fileData.length; i += 9) {
+    sudokuArray.push(fileData.slice(i, i + 9).split(''));
   }
+  
+  console.table(sudokuArray);
 }
 
 console.log(readAndSolve(fileData));
