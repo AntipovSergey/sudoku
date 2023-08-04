@@ -30,7 +30,20 @@ function checkColums(sudokuBoard) {
       colValues.push(sudokuBoard[row][col]);
     }
     const missNum = missingNumbers(colValues);
-    maybeArr.push(missNum);
+    maybeArr.push({ column: col + 1, missing: missNum });
+  }
+  return maybeArr;
+}
+
+function checkRow(sudokuBoard) {
+  const maybeArr = [];
+  for (let row = 0; row < 9; row++) {
+    const colValues = [];
+    for (let col = 0; col < 9; col++) {
+      colValues.push(sudokuBoard[row][col]);
+    }
+    const missNum = missingNumbers(colValues);
+    maybeArr.push({ row: row + 1, missing: missNum });
   }
   return maybeArr;
 }
@@ -40,9 +53,21 @@ function checkColums(sudokuBoard) {
 // for
 // }
 
-function checkSquare(sudokuBoard) {
-
-  const 
+function checkBox(sudokuBoard) {
+  const square = [];
+  for (let i = 0; i < 9; i += 3) {
+    for (let j = 0; j < 9; j += 3) {
+      const boxValues = [];
+      for (let d = i; d < i + 3; d++) {
+        for (let f = j; f < j + 3; f++) {
+          boxValues.push(sudokuBoard[i][j]);
+        }
+      }
+      const missNum = missingNumbers(boxValues);
+      square.push({ box: `(${i / 3}, ${j / 3})`, missing: missNum });
+    }
+  }
+  return square;
 }
 
 function missingNumbers(arr) {
@@ -56,8 +81,12 @@ function missingNumbers(arr) {
 }
 
 const sudokuCheckColums = checkColums(parsedSudoku);
+const sudokuCheckRow = checkRow(parsedSudoku);
+const checkSquare = checkBox(parsedSudoku);
 
 console.log(sudokuCheckColums);
+console.log(sudokuCheckRow);
+console.log(checkSquare);
 
 function solve(boardString) {
 }
