@@ -34,7 +34,7 @@ const sudokuArr = [
     [0, 0, 3, 0, 4, 3, 0, 2, 0]
     [5, 0, 1, 6, 0, 0, 3, 0, 8],
 ];
-function checkVertical(i, j, sudokuArr) {
+function fillSudoku(i, j, sudokuArr) {
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
       if (sudokuArr[i][j] !== sudokuArr[i][j + 1]) {
