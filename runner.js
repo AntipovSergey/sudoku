@@ -1,5 +1,6 @@
 // Подключить модуль работы с файловой системой.
 const fs = require('fs');
+console.log(fs.readFileSync('./puzzles.txt', 'utf8'));
 
 // Подключить функцию readAndSolve из соответствующего файла.
 const readAndSolve = require('./readAndSolve');
