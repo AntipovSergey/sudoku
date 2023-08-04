@@ -35,18 +35,22 @@ const sudokuArr = [
   ['5', '-', '1', '6', '-', '-', '3', '-', '8'],
 ];
 
-const nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 function fillSudoku(sudokuArr) {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (sudokuArr[i][j] !== sudokuArr[i][j + 1]) {
-        // board = takeSudoku(), задать переменную и заменить на нее
-        console.log(sudokuArr[i][j]);
-        return true;
-      }
-    }
-    return false;
-  }
+  const repeatNum = new Set(sudokuArr);
+  return sudokuArr.length !== repeatNum.size;
+  // for (let i = 0; i < 9; i++) {
+  //   for (let j = 0; j < 9; j++) {
+  //     if (sudokuArr[i][j] !== sudokuArr[i][j + 1]) {
+  //       // board = takeSudoku(), задать переменную и заменить на нее
+  //       console.log(sudokuArr[i][j]);
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
+  // if (sudokuArr[i][j] === '-') {
+  //   const emptyCell =
+  // }
   // for (let b = 0; b < sudokuArr.length; b++) {
   //   for (let b1 = 0; b1 < sudokuArr.length; b1++) {
   //     if (sudokuArr[b][b1] !== sudokuArr[b1][b]) {
