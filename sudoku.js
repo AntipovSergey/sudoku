@@ -4,8 +4,14 @@
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
 function solve(boardString) {
-}
+  const playGround = [];
+  for (let i = 0; i < boardString.length; i += 9) {
+    playGround.push(boardString.slice(i, i + 9).split(''));
+  }
+  // const arrQue = playGround.map((el) => el.filter((el2) => el2 === '-').length); --- создание массива с очередью
+  
 
+}
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
