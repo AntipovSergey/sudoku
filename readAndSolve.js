@@ -42,5 +42,5 @@ function readAndSolve(error, fileData) {
   // игрового поля в строку в желаемом формате.
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
 }
-
+console.log( readAndSolve(false, fs.readFileSync('./puzzles.txt', 'utf-8')));
 module.exports = readAndSolve;
