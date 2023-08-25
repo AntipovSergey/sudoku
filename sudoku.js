@@ -2,28 +2,28 @@ const fs = require('fs');
 
 function read(num) {
   const strRead = fs.readFileSync('./puzzles.txt', 'utf8')
-  .trim()
-  .split('\n') 
+    .trim()
+    .split('\n');
 
-  const strReadnum = strRead[num-1]
-  .split('')
-  
+  const strReadnum = strRead[num - 1]
+    .split('');
+
   const mapStr = strReadnum.map((el) => {
     if (el === '-') {
-      return 0
-    }else { 
-      return Number(el)
-  }})
+      return 0;
+    }
+    return Number(el);
+  });
 
-  function slice (arr) {
-  const result  = [];
-  for (let i = 0; i<arr.length; i+=9) {
-    result.push(arr.slice(i,i+9))
-  }
-  return result;
+  function slice(arr) {
+    const result = [];
+    for (let i = 0; i < arr.length; i += 9) {
+      result.push(arr.slice(i, i + 9));
+    }
+    return result;
   }
 
-return slice(mapStr).map(el => el.join('')).join('\n');
+  return slice(mapStr);
 }
 // функция которая ищет первый нулевый элемент
 function findFirstZero(arr) {
@@ -84,13 +84,13 @@ function solve(arr) {
   }
   return false;
 }
-const array1 = [[1, 0, 5, 8, 0, 2, 0, 0, 0], [0, 9, 0, 0, 7, 6, 4, 0, 5],
-  [2, 0, 0, 4, 0, 0, 8, 1, 9],
-  [0, 1, 9, 0, 0, 7, 3, 0, 6], [7, 6, 2, 0, 8, 3, 0, 9, 0], [0, 0, 0, 0, 6, 1, 0, 5, 0], [
-    0, 0, 7, 6, 0, 0, 0, 3, 0], [4, 3, 0, 0, 2, 0, 5, 0, 1], [6, 0, 0, 3, 0, 8, 9, 0, 0]];
-console.table(array1);
-solve(array1);
-console.table(array1);
+// const array1 = [[1, 0, 5, 8, 0, 2, 0, 0, 0], [0, 9, 0, 0, 7, 6, 4, 0, 5],
+//   [2, 0, 0, 4, 0, 0, 8, 1, 9],
+//   [0, 1, 9, 0, 0, 7, 3, 0, 6], [7, 6, 2, 0, 8, 3, 0, 9, 0], [0, 0, 0, 0, 6, 1, 0, 5, 0], [
+//     0, 0, 7, 6, 0, 0, 0, 3, 0], [4, 3, 0, 0, 2, 0, 5, 0, 1], [6, 0, 0, 3, 0, 8, 9, 0, 0]];
+// console.table(array1);
+// solve(array1);
+// console.table(array1);
 
 function isSolved() {
   /**
@@ -99,37 +99,23 @@ function isSolved() {
    */
 }
 
-const arr = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9],
-[1, 2, 3, 4, 5, 6, 7, 8, 9]]
+// const arr = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9],
+// [1, 2, 3, 4, 5, 6, 7, 8, 9]]
 function prettyBoard(array) {
   // let resultBoard=board.map((row)=> {return row.map((el) => {return emojis[el]})});
-  return array.map((el) => el.join(' ')).join('\n')
->>>>>>> main
+  return array.map((el) => el.join(' ')).join('\n');
 }
+// let findArray=read(15);
+// console.table(findArray);
 
+// solve(findArray);
+// console.table(findArray);
 
-/**
- * Принимает игровое поле в том формате, в котором его вернули из функции solve.
- * Выводит в консоль/терминал судоку.
- * Подумай, как симпатичнее его вывести.
- */
-
-
-
-
-// function prettyBoard(arr) {
-//   /**
-//    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-//    * Выводит в консоль/терминал судоку.
-//    * Подумай, как симпатичнее его вывести.
-//    */
-
-// }
-
+module.exports = { read, findFirstZero, checkRow, checkColomn, checkSquare, checkAll, solve, prettyBoard };
