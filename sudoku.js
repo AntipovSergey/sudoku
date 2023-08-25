@@ -1,7 +1,7 @@
 function read(num) {
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+   */console.log('Hello, hello')
 }
 
 function solve() {
