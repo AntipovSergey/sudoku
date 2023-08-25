@@ -1,7 +1,29 @@
+const fs = require('fs');
+
 function read(num) {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */console.log('Hello, hello')
+  const strRead = fs.readFileSync('./puzzles.txt', 'utf8')
+  .trim()
+  .split('\n') 
+
+  const strReadnum = strRead[num-1]
+  .split('')
+  
+  const mapStr = strReadnum.map((el) => {
+    if (el === '-') {
+      return 0
+    }else { 
+      return Number(el)
+  }})
+
+  function slice (arr) {
+  const result  = [];
+  for (let i = 0; i<arr.length; i+=9) {
+    result.push(arr.slice(i,i+9))
+  }
+  return result;
+  }
+
+return slice(mapStr).map(el => el.join('')).join('\n');
 }
 
 function solve() {
@@ -30,7 +52,8 @@ function prettyBoard(array) {
   // let resultBoard=board.map((row)=> {return row.map((el) => {return emojis[el]})});
   return array.map((el) => el.join(' ')).join('\n')
 }
-console.log(prettyBoard(arr));
+
+
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Выводит в консоль/терминал судоку.
@@ -48,5 +71,4 @@ console.log(prettyBoard(arr));
 //    */
 
 // }
-
 
