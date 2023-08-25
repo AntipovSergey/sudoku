@@ -1,16 +1,6 @@
 const fs = require('fs');
 
-const sudoky = [
-  ['1 - 5 8 - 2 - - -'],
-  ['- 9 - - 7 6 4 - 5'],
-  ['2 - - 4 - - 8 1 9'],
-  ['- 1 9 - - 7 3 - 6'],
-  ['7 6 2 - 8 3 - 9 -'],
-  ['- - - - 6 1 - 5 -'],
-  ['- - 7 6 - - - 3 -'],
-  ['4 3 - - 2 - 5 - 1'],
-  ['6 - - 3 - 8 9 - -'],
-];
+const newBoard = [];
 
 function read() {
   const str = (fs.readFileSync('puzzles.txt', 'utf8')).split('\n')[0];
@@ -26,8 +16,7 @@ function read() {
     }
   }
 
-
-  console.log(arrPazzle)
+  console.log(arrPazzle);
   return arrPazzle;
 }
 
@@ -40,25 +29,42 @@ read();
 //    */
 
 // }
-function checkColums(sudokuBoard) {
-  const arr = [];
-  for (let col = 0; col < 9; col++) {
-    const colValues = [];
-    for (let row = 0; row < 9; row++) {
-      colValues.push(sudokuBoard[row][col]);
+function missingNumbers(arr) {
+  const findmissingNumbers = [];
+  for (let num = 1; num <= 9; num++) {
+    if (!arr.includes(num)) {
+      findmissingNumbers.push(num);
     }
   }
+  return findmissingNumbers;
 }
 
-function checkRow(sudokuBoeard) {
-  const arr = [];
-  for (let row = 0; row < 9; row++) {
+function checkColums(arrPazzle) {
+  const arr1 = [];
+  for (let col = 0; col < 9; col++) {
     const rowValues = [];
-    for (let col = 0; col < 9; col++) {
-      rowValues.push(sudokuBoeard[col][row]);
+    for (let row = 0; row < 9; row++) {
+      rowValues.push(arrPazzle[row][col]);
     }
+    const missNum = missingNumbers(rowValues);
+    arr1.push({ column: col + 1, missing: missNum });
   }
+  return arr1;
 }
+
+function checkRow(arrPazzle) {
+  const arr1 = [];
+  for (let row = 0; row < 9; row++) {
+    const colValues = [];
+    for (let col = 0; col < 9; col++) {
+      colValues.push(arrPazzle[col][row]);
+    }
+    const missNum = missingNumbers(colValues);
+    arr1.push({ row: row + 1, missing: missNum });
+  }
+  return arr1;
+}
+
 
 function isSolved() {
   /**
@@ -93,7 +99,9 @@ function prettyBoard() {
 
 module.exports = {
   read,
-  solve,
   isSolved,
   prettyBoard,
+  checkColums,
+  checkRow,
+  missingNumbers,
 };
