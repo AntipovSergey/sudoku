@@ -108,12 +108,27 @@ function isSolved(board) {
   return false;
 }
 
-function prettyBoard(board) {
+
+
+
+   function prettyBoard(board) {
+let newBoard = board.map((row) => row.join(' ')).join('\n');
+  return newBoard;
+  }
+
+  console.log(prettyBoard(board));
+
   /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
+   * Принимает игровое поле в том формате, в котором его вернули из функции solve. Принимает массивы строк [2, 5, 7, 3, 1, 6, 4, 8, 9] в массиве судоку 
+   * 
    * Выводит в консоль/терминал судоку.
    * Подумай, как симпатичнее его вывести.
    */
 }
 
 console.log(solve(arr));
+
+
+
+
+
