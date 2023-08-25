@@ -1,3 +1,16 @@
+
+function read(number) {
+  const fs = require('fs');
+  const arr = (fs.readFileSync('puzzles.txt', 'utf8')).split('\n');
+  const resArr = [];
+  resArr.push(arr[number - 1]);
+  const resArr2 = [];
+  for (let i = 0; i < resArr[0].length; i += 9) {
+    resArr2.push([resArr[0].slice(i, i + 9)]);
+  }
+  console.log(resArr2)
+}
+
 function solve(board) {
   const bigSide = 9;
   const squareSide = 3;
@@ -24,6 +37,7 @@ function solve(board) {
     }
 
     // Проверка колонок
+
 
     for (let i = 0; i < bigSide; i += 1) {
       if (board[i][y] === num && i !== x) {
