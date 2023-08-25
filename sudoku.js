@@ -3,7 +3,17 @@ function read() {
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
    */
 }
-
+let puzzle =
+  "219543678543876912876219345432765891765198234198432567321564789654987123987321456";
+function checkSqr(arr) {
+  let array = arr.match(/.{1,9}/g);
+  const puzzle = [];
+  for (let i = 0; i < array.length; i++) {
+    let oneLine = array[i].split("").map(Number);
+    puzzle.push(oneLine);
+  }
+}
+checkSqr(puzzle);
 function solve() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции read.
