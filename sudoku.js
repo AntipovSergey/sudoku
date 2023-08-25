@@ -1,7 +1,7 @@
 function read(num) {
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+   */console.log('Hello, hello')
 }
 
 function solve() {
@@ -26,11 +26,11 @@ const arr = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
 [1, 2, 3, 4, 5, 6, 7, 8, 9],
 [1, 2, 3, 4, 5, 6, 7, 8, 9],
 [1, 2, 3, 4, 5, 6, 7, 8, 9]]
-function prettyBoard(arr) {
-
-
-
+function prettyBoard(array) {
+  // let resultBoard=board.map((row)=> {return row.map((el) => {return emojis[el]})});
+  return array.map((el) => el.join(' ')).join('\n')
 }
+console.log(prettyBoard(arr));
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Выводит в консоль/терминал судоку.
@@ -38,4 +38,15 @@ function prettyBoard(arr) {
  */
 
 
-console.table(arr);
+
+
+// function prettyBoard(arr) {
+//   /**
+//    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
+//    * Выводит в консоль/терминал судоку.
+//    * Подумай, как симпатичнее его вывести.
+//    */
+
+// }
+
+
