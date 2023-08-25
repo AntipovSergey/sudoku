@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const sudoky = [
   ['1 - 5 8 - 2 - - -'],
   ['- 9 - - 7 6 4 - 5'],
