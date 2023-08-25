@@ -32,7 +32,7 @@ read();
 function missingNumbers(arr) {
   const findmissingNumbers = [];
   for (let num = 1; num <= 9; num++) {
-    if (!arr.includes(num)) {
+    if (arr === 0) {
       findmissingNumbers.push(num);
     }
   }
