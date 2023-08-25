@@ -88,16 +88,11 @@ function isSolved() {
   }
 
 
-  for ( let i = 0; i < boardRow.lenght; i++) {
+  for ( let i = 0; i < boardColumn.lenght; i++) {
   
-    if (boardRow[i].lenght !== new Set(boardRow[i])) {
+    if (boardColumn[i].lenght !== new Set(boardColumn[i])) {
     return false
    } return true
-  }
-
-  const checkSq = threeByThree
-  for (let i = 0; i < checkSq.length; i++ ) {
-    
   }
 }
 
