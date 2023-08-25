@@ -1,4 +1,4 @@
-function read() {
+function read(num) {
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
    */
