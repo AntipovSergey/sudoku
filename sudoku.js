@@ -20,4 +20,7 @@ function isSolved() {
 
 function prettyBoard() {
 //я взял супер функцию aka ARTUR
+// очень интересный текст
+
+// test artura at 7-43
 }
