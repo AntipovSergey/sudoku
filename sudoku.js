@@ -12,10 +12,12 @@ function solve() {
 }
 
 function isSolved() {
+const my = 100
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
    * Возвращает булевое значение — решено это игровое поле или нет.
    */
+  return my
 }
 
 function prettyBoard() {
