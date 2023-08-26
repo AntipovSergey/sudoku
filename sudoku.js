@@ -19,5 +19,7 @@ function isSolved() {
 }
 
 function prettyBoard() {
-//я взял супер функцию aka ARTUR
+// я взял супер функцию aka ARTUR
 }
+
+/// написала Юла!!!!!!!!!
