@@ -1,1 +1,10 @@
-// Используйте для решения судоку необходимые функции из файла sudoku.js
+const {
+    read,
+    prettyBoard,
+} = require('./sudoku.js');
+
+function runner() {
+    const value = Number(process.argv[2]);
+    prettyBoard(read(value));
+}
+runner();
