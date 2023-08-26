@@ -5,3 +5,4 @@ function getFunc() {
 }
 
 // rfrefr
+// это юла
