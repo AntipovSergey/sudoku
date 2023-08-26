@@ -1,5 +1,6 @@
 function read() {
   const str = 'read sdelan';
+  return str;
 }
 
 function solve() {
