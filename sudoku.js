@@ -22,4 +22,5 @@ function prettyBoard() {
 // я взял супер функцию aka ARTUR
 }
 
-/// написала Юла!!!!!!!!!
+/// написала Юла!!!!!!!!!kmtglemtgkmegmerlkmtglkermt
+/// egrergergerg
