@@ -8,15 +8,21 @@ function read() {
   const board = []
   for (let i = 0; i < 9; i++) {
     board.push(firstString.splice(0,9))
-  } 
+    } 
+    solve(board)
 }
+read();
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+
+function solve(func) {
+
+
+
+console.log(board)
 }
+solve()
+
+
 
 function isSolved() {
   /**
