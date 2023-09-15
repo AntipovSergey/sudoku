@@ -12,7 +12,7 @@ for (let i = 0; i < 9; i++) {
   arr.push(data[0].splice(0, 9));
 }
 
-console.table(arr);
+//console.table(arr);
 
 module.exports = {
   arr,
