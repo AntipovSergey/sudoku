@@ -8,8 +8,7 @@ function read() {
   const board = []
   for (let i = 0; i < 9; i++) {
     board.push(firstString.splice(0,9))
-  }
-
+  } 
 }
 
 function solve() {
