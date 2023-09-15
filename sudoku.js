@@ -56,7 +56,7 @@ function isSolved() {
 function prettyBoard(board) {
   for (let row = 0; row < 9; row++) {
     if (row % 3 === 0 && row !== 0) {
-      console.log('-'.repeat(21)); // Горизонтальная линия для разделения блоков
+      console.log('-'.repeat(27)); // Горизонтальная линия для разделения блоков
     }
     for (let col = 0; col < 9; col++) {
       if (col % 3 === 0 && col !== 0) {
