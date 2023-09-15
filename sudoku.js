@@ -8,7 +8,6 @@ function read(num = 0) {
     board.push(newArr.splice(0, 9))
   }
   return board
-
 }
 
 /**
@@ -18,11 +17,20 @@ function read(num = 0) {
 
 read()
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+function solve() { 
+  for (let stroka = 0; stroka < 9; stroka++){
+    for( let stoblbec = 0; stoblbec <9; stoblbec++) {
+      if (board[stroka][stoblbec] = '-'){
+        for( let num = 1; num <= 9; num++){
+          if (checkPrime(board, stroka, stoblbec, num)){
+            board[stroka][stoblbec] = num;
+            solve(board);
+          }
+        }
+      }
+
+    }
+}
 }
 
 function isSolved() {
