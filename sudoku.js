@@ -1,29 +1,19 @@
 const fs = require('fs');
-function read(num) {
+function read(sud) {
   const file = fs
     .readFileSync('./puzzles.txt', 'utf-8')
     .split('\n')
     .map((el) => el.split(''))
     .map((arr) => arr.map((el) => (el === '-' ? 0 : Number(el))));
-  // const sud = [];
-  // for (let i = 0; i < 15; i++) {
-  //   for (let i = 0; i < file.length; i += 9) {
-  //     sud.push(file.slice(i, i + 9));
-  //   }
-  // }
-  // const board = [];
-  // for (let i = 0; i < 15; i += 1) {
-  //   board.push(sud.splice(0, 9));
-  // }
-  // return board.map((sudoku) => sudoku.map((row) => row.split("")));
   const newArr = [];
   for (let i = 0; i < 9; i++) {
-    newArr.push(file[num].splice(0, 9));
+    newArr.push(file[sud].splice(0, 9));
   }
   return newArr;
 }
-const board = read(0);
-console.table(board);
+const sud = process.argv[2] ?? 0;
+const field = read(sud);
+console.table(field);
 
 function findEmpty(board) {
   // const line = 9;
@@ -66,15 +56,13 @@ function isSolved() {
 function prettyBoard(board) {
   for (let row = 0; row < 9; row++) {
     if (row % 3 === 0 && row !== 0) {
-      console.log("-".repeat(21)); // Горизонтальная линия для разделения блоков
+      console.log('-'.repeat(21)); // Горизонтальная линия для разделения блоков
     }
     for (let col = 0; col < 9; col++) {
       if (col % 3 === 0 && col !== 0) {
-        process.stdout.write("| "); // Вертикальная черта для разделения блоков
+        process.stdout.write('| '); // Вертикальная черта для разделения блоков
       }
-      process.stdout.write(board[row][col] + " ");
+      process.stdout.write(board[row][col] + ' ');
     }
-
   }
 }
-
