@@ -35,17 +35,30 @@ for (let i = 0; i< sudoku1.length; i+=9){
 // console.log(sudoku1)
 
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  const fs = require("fs");
+  const text = fs.readFileSync("puzzles.txt", "utf8")
+  const array = text.split("\n")
+  
+  const firstString = array[0].split('')
+ 
+  const board = []
+  for (let i = 0; i < 9; i++) {
+    board.push(firstString.splice(0,9))
+    } 
+    solve(board)
 }
+read();
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+
+function solve(func) {
+
+
+
+console.log(board)
 }
+solve()
+
+
 
 function isSolved() {
   /**
