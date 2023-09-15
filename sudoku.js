@@ -1,21 +1,18 @@
 const fs = require("fs");
-
 function read() {
-  const file = fs.readFileSync("./puzzles.txt", "utf-8").replaceAll('\n', '');
-
+  const file = fs.readFileSync("./puzzles.txt", "utf-8").replaceAll("\n", "");
   const sud = [];
-  for (let i = 0; i < file.length; i += 9) {
-    sud.push(file.slice(i, i + 9).split());
+  for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < file.length; i += 9) {
+      sud.push(file.slice(i, i + 9));
+    }
   }
-
-  const res = [];
+  const board = [];
   for (let i = 0; i < 15; i += 1) {
-    res.push(sud.splice(0, 9));
+    board.push(sud.splice(0, 9));
   }
-
-  return res;
+  return board.map((sudoku) => sudoku.map((row) => row.split("")));
 }
-
 console.log(read());
 
 function solve() {
