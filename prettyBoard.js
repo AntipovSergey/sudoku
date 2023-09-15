@@ -6,3 +6,5 @@ function prettyBoard() {
      */
   }
   
+
+module.exports = { prettyBoard };
