@@ -10,7 +10,7 @@ function read() {
 
   const res = [];
   for (let i = 0; i < 15; i += 1) {
-    res.push(sud.splice(0, 9).flat());
+    res.push(sud.splice(0, 9));
   }
 
   return res;
