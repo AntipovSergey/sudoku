@@ -1,26 +1,26 @@
-const {arr} = require('./getboard.js')
+const fs = require("fs");
 
-function read(arr) {
-  let num = 0;
-  let emptySpaces = []
-  for (let x = 0; x < arr.length; x++) {
-    for (let y = 0; y < arr.length; y++) {
-      if(arr[x][y] === 0){
-        emptySpaces.push([x,y])
-      }
-    }
-  }
-  console.log(emptySpaces)
-  return emptySpaces
+function read() {
+ 
 }
-read(arr)
+
 
 function solve(arr) {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+ 
 }
+
+
+// function col(arr,emplySpaces){
+//   for (let x = 0; x < arr[0].length; x++) {
+//     for (let y = 0; y < emplySpaces.length; y++) {
+//       const cellValue = arr[y][x];
+//       if(cellValue = emplySpaces[y]){
+//         return emplySpaces = emplySpaces.map((el) => el === 0 ? Math.floor(Math.random() * 9) + 1 : el);
+//       }
+//     }
+//   }
+// }
+// col(solve())
 
 function isSolved() {
   /**
@@ -36,4 +36,3 @@ function prettyBoard() {
    * Подумай, как симпатичнее его вывести.
    */
 }
-module.exports = {read}
