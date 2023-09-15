@@ -6,8 +6,8 @@ const sudoku1 = arrSudoku[0];
 const board1 = [];
 // const sudokuLength = sudoku1.length / 9;
 for (let i = 0; i< sudoku1.length; i+=9){
-//  const lalala =  ([...board1].slice(0,9))
- board1.push([...board1].slice(0,9))
+
+ board1.push(sudoku1.slice(0,9))
 
 }
 
