@@ -3,7 +3,10 @@ const fs = require("fs");
 function read(filename) {
   let result = [];
   const puzzles = fs.readFileSync(__dirname + filename, "utf8");
-  result = puzzles.split("\n");
+  result = puzzles
+    .replaceAll("-", 0)
+    .split("\n")
+    .map((row) => row.split("").map((el) => Number(el)));
   return result.slice(0, -1);
 }
 
