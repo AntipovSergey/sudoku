@@ -5,10 +5,11 @@ function read() {
 }
 read()
 function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+ function checkNumbers (arr){
+
+
+  return arr 
+ }
 }
 
 function isSolved() {
