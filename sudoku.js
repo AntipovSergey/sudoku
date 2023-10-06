@@ -1,15 +1,18 @@
-const strTest = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
-
+const board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function read() {
-  let arr = [[], [], [], [], [], [], [], [], []]
-  for (let i = 0; i < strTest.length - 1; i += 8) {
-    let counter = 0
-    if (arr[counter].length < 9) {
-      arr[counter].push(strTest[i])
-    } else {
-      counter++
+  function createSudokuBoard(board) {
+    const arr = [[], [], [], [], [], [], [], [], []];
+    let counter = 0;
+    for (let i = 0; i < board.length; i += 1) {
+      if (arr[counter].length < 9) {
+        arr[counter].push(board[i]);
+      } else {
+        ++counter;
+        arr[counter].push(board[i]);
+      }
     }
+    return arr;
   }
 }
 
