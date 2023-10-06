@@ -1,6 +1,6 @@
 const fn = require ("fs")
 function read() {
-  let sss = fn.readFileSync ("./puzzles.txt","utf-8".).split()
+  let sss = fn.readFileSync ("./puzzles.txt","utf-8").split("\n");
  console.log(sss)
 }
 read()
