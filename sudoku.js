@@ -5,12 +5,32 @@ function read() {
 }
 read()
 function solve() {
- function checkNumbers (arr){
+  function findMissingNumbers(numbers) {
+    let missingNumbers = [];
+    let counter = 1;
 
+    for (let i = 0; i < numbers.length; i++) {
+        while (Number(numbers[i]) !== counter) {
+            missingNumbers.push(counter);
+            counter++;
+        }
+        counter++;
+    }
 
-  return arr 
- }
+    return missingNumbers;
 }
+
+let inputNumbers = ["1", "2", "4", "9"];
+let result = findMissingNumbers(inputNumbers);
+console.log(result);
+     
+   }
+ }
+ console.log(checkNumbers("1-58-2--9"));
+
+
+ }
+
 
 function isSolved() {
   /**
