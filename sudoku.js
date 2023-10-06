@@ -1,6 +1,7 @@
 const fs = require("fs");
 function read(n) {
   const sudokuMass = []
+  n = process.argv[2]-1
   let size =9
   const readText = fs.readFileSync("./puzzles.txt","utf-8").split('\n')
   for (let i = 0; i <readText[n].length/size; i++){
@@ -8,6 +9,7 @@ function read(n) {
 }
   return sudokuMass 
 }
+console.table(read(4))
 
 
 function solve() {
@@ -32,3 +34,6 @@ function prettyBoard() {
    */
 }
 module.exports = read;
+
+
+
