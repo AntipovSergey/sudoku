@@ -1,8 +1,14 @@
-function read() {
-	/**
-	 * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-	 */
-}
+const fs = require("fs");
+function read(n) {
+  const sudokuMass = []
+  n = process.argv[2]-1
+  let size =9
+  const readText = fs.readFileSync("./puzzles.txt","utf-8").split('\n')
+  for (let i = 0; i <readText[n].length/size; i++){
+    sudokuMass[i] = readText[n].slice((i*size), (i*size) + size);
+    return sudokuMass
+  }}
+
 
 function solve() {
 	/**
@@ -25,18 +31,12 @@ function prettyBoard() {
 	 * Подумай, как симпатичнее его вывести.
 	 */
 }
+module.exports = read;
 
-const date =  [
-  [1, "-", 5, 8, "-", 2, "-", "-", "-"],
-  ["-", 9, "-", "-", 7, 6, 4, "-", 5],
-  [2, "-", "-", 4, "-", "-", 8, 1, 9],
-  ["-", 1, 9, "-", "-", 7, 3, "-", 6],
-  [7, 6, 2, "-", 8, 3, "-", 9, "-"],
-  ["-", "-", "-", "-", 6, 1, "-", 5, "-"],
-  ["-", "-", 7, 6, "-", "-", "-", 3, "-"],
-  [4, 3, "-", "-", 2, "-", 5, "-", 1],
-  [6, "-", "-", 3, "-", 8, 9, "-", "-"],
-];
+
+
+
+
 
 function isVertical(sudoku,columnIndex){
   const row = []
@@ -53,7 +53,7 @@ function isVertical(sudoku,columnIndex){
   return true
 }
 
-console.log(isVertical(date,8))
+
 
 function isHorizontal(sudoku,columnIndex){
   const row = []
@@ -71,4 +71,4 @@ function isHorizontal(sudoku,columnIndex){
 }
 
 
-console.log(isHorizontal(date,8))
+
