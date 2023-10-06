@@ -1,8 +1,14 @@
-function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+const fs = require("fs");
+function read(n) {
+  const sudokuMass = []
+  let size =9
+  const readText = fs.readFileSync("./puzzles.txt","utf-8").split('\n')
+  for (let i = 0; i <readText[n].length/size; i++){
+    sudokuMass[i] = readText[n].slice((i*size), (i*size) + size);
 }
+  return sudokuMass 
+}
+
 
 function solve() {
   /**
@@ -25,3 +31,4 @@ function prettyBoard() {
    * Подумай, как симпатичнее его вывести.
    */
 }
+module.exports = read;
