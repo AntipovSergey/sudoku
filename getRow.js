@@ -6,4 +6,4 @@ function getRow(sud, index) {
   console.log(finish);
   return sud.slice(start, finish);
 }
-module.exports { getRow };
+module.exports = { getRow };
