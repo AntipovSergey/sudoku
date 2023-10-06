@@ -7,3 +7,5 @@ function getColumn(sud, ind) {
   }
   return result;
 }
+
+module.exports = { getColumn }
