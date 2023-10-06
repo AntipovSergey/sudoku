@@ -1,4 +1,6 @@
 const fs = require("fs");
+const { possibleValues } = require("./possibleValues");
+// const { getRendering } = require("./getRendering");
 
 function read(filename) {
   let result = [];
@@ -10,11 +12,9 @@ function read(filename) {
   return result.slice(0, -1);
 }
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+function solve(puzle) {
+  const solution = possibleValues(pazle);
+  getRendering(solution);
 }
 
 function isSolved() {
