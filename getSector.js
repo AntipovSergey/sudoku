@@ -24,16 +24,11 @@ function getSector(sud, ind) {
   const col = Math.floor(ind % 9);
   const sector = Math.floor(row / 3) * 3 + Math.floor(col / 3);
   const indq = obj[sector];
-  console.log(indq);
-  //   for (let i = 0; i < 3; i++) {
-  //     for (let j = 0; j < 3; j++) {
-  //       const ind = sud[i * sector + col + (i % 3) + Math.floor(i / 3) * 9];
-  //       console.log(
-  //         Math.floor(row / 3) * 27 + Math.floor(col / 3) * 3 + i * 9 + j
-  //       );
-  //       result.push(sud[ind]);
-  //     }
-  //   }
+  for (let i = 0; i < indq.length; i++) {
+    if (sud[indq[i]] !== 0) {
+      result.push(sud[indq[i]]);
+    }
+  }
   return result;
 }
 
