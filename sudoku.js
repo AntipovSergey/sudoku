@@ -1,14 +1,20 @@
-function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+const fs = require("fs");
+const { possibleValues } = require("./possibleValues");
+// const { getRendering } = require("./getRendering");
+
+function read(filename) {
+  let result = [];
+  const puzzles = fs.readFileSync(__dirname + filename, "utf8");
+  result = puzzles
+    .replaceAll("-", 0)
+    .split("\n")
+    .map((row) => row.split("").map((el) => Number(el)));
+  return result.slice(0, -1);
 }
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+function solve(puzle) {
+  const solution = possibleValues(pazle);
+  getRendering(solution);
 }
 
 function isSolved() {
@@ -25,3 +31,5 @@ function prettyBoard() {
    * Подумай, как симпатичнее его вывести.
    */
 }
+
+module.exports = { read, solve, isSolved, prettyBoard };
