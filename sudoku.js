@@ -1,36 +1,45 @@
-const fn = require ("fs")
+const board = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
+
+const fn = require('fs');
+
 function read() {
-  let sss = fn.readFileSync ("./puzzles.txt","utf-8").split("\n");
- console.log(sss)
+  const sss = fn.readFileSync('./puzzles.txt', 'utf-8').split('\n');
+  console.log(sss);
 }
-read()
+read();
+
+function createSudokuBoard(board) {
+  const arr = [[], [], [], [], [], [], [], [], []];
+  let counter = 0;
+  for (let i = 0; i < board.length; i += 1) {
+    if (arr[counter].length < 9) {
+      arr[counter].push(board[i]);
+    } else {
+      ++counter;
+      arr[counter].push(board[i]);
+    }
+  }
+  return arr;
+}
+
 function solve() {
   function findMissingNumbers(numbers) {
-    let missingNumbers = [];
+    const missingNumbers = [];
     let counter = 1;
 
     for (let i = 0; i < numbers.length; i++) {
-        while (Number(numbers[i]) !== counter) {
-            missingNumbers.push(counter);
-            counter++;
-        }
+      while (Number(numbers[i]) !== counter) {
+        missingNumbers.push(counter);
         counter++;
+      }
+      counter++;
     }
 
     return missingNumbers;
+  }
 }
 
-let inputNumbers = ["1", "2", "4", "9"];
-let result = findMissingNumbers(inputNumbers);
-console.log(result);
-     
-   }
- }
- console.log(checkNumbers("1-58-2--9"));
-
-
- }
-
+console.log(checkNumbers('1-58-2--9'));
 
 function isSolved() {
   /**
