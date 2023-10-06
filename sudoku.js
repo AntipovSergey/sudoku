@@ -1,7 +1,10 @@
-function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+const fs = require("fs");
+
+function read(filename) {
+  let result = [];
+  const puzzles = fs.readFileSync(__dirname + filename, "utf8");
+  result = puzzles.split("\n");
+  return result.slice(0, -1);
 }
 
 function solve() {
@@ -25,3 +28,5 @@ function prettyBoard() {
    * Подумай, как симпатичнее его вывести.
    */
 }
+
+module.exports = { read, solve, isSolved, prettyBoard };
