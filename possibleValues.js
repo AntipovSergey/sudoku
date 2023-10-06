@@ -4,20 +4,32 @@ const {getColumn} = require('./getColumn'); // возвращает столбе
 function possibleValues(array) {
   const possibleResults = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const result = [];
+  let flagRecursion = false;
   for (let j = 0; j < array.length; j += 1) {
     if (array[j] == 0) {
       const newArray = [];
       for (let i = 0; i < possibleResults.length; i += 1) {
-        const merge = [...getRow, ...getSector, ...getColumn];// ...getSector()
-        if (possibleResults[i].some(merge) == false) {
+        const merge = [...getRow(array,j), ...getSector(array,j), ...getColumn(array,j)];// ...getSector()
+        if (merge.indexOf(possibleResults[i]) === -1) {
           newArray.push(i);
         }
       }
-      result.push(newArray);
+      if(newArray.length === 1){
+        result.push(newArray[0]);
+      }
+      else{
+        result.push(newArray);
+        flagRecursion = true;
+      }
+      
     } else {
       result.push(array[j]);
     }
   }
+  // if (flagRecursion === true) {
+  //   return possibleValues(result);
+  // }
   return result;
+
 }
-console.log(possibleValues('105802000090076405200400819019007306762083090000061050007600030430020501600308900'));
+module.exports = {possibleValues}
