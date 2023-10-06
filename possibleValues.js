@@ -1,6 +1,8 @@
-// const getRow = require('./getRow');// возвращает строку неизвестного элемента
-// const getSector = require('./getSector'); // возвращает квадрат неизвестного элемента
-// const getColumn = require('./getColumn'); // возвращает столбец неизвестного элемента
+const getRow = require('./getRow');// возвращает строку неизвестного элемента
+const getSector = require('./getSector'); // возвращает квадрат неизвестного элемента
+const getColumn = require('./getColumn');
+
+// возвращает столбец неизвестного элемента
 function possibleValues(array) {
   const possibleResults = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const result = [];
@@ -20,4 +22,6 @@ function possibleValues(array) {
   }
   return result;
 }
-console.log(possibleValues('105802000090076405200400819019007306762083090000061050007600030430020501600308900'));
+console.log(possibleValues());
+
+
