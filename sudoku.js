@@ -1,27 +1,35 @@
+const fs = require('fs');
+
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  const sudo = fs.readFileSync('./easy.txt', 'utf-8');
+  sudo.split('\n');
+  const sodoSplit = sudo.split('\n')[0];
+  const sudokuArray = sodoSplit.split('');
+  const sudokuGrid = [];
+  for (let i = 0; i < sudokuArray.length; i += 9) {
+    sudokuGrid.push(sudokuArray.slice(i, i + 9));
+  }
+  return sudokuGrid;
 }
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+
+function readVertical() {
+ const sudoku = fs.readFileSync(‘./easy.txt’, ‘utf-8’);
+ const lines = sudoku.split(‘\n’);
+ const firstLine = lines[0];
+ const sudokuGrid = [];
+ for (let i = 0; i < 9; i++) {
+  const column = [];
+  for (let j = i; j < firstLine.length; j += 9) {
+   column.push(firstLine[j]);
+  }
+  sudokuGrid.push(column);
+ }
+ return sudokuGrid;
 }
 
-function isSolved() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Возвращает булевое значение — решено это игровое поле или нет.
-   */
-}
 
-function prettyBoard() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Выводит в консоль/терминал судоку.
-   * Подумай, как симпатичнее его вывести.
-   */
-}
+
+
+
+
