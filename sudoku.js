@@ -11,3 +11,25 @@ function read() {
   }
   return sudokuGrid;
 }
+
+
+function readVertical() {
+ const sudoku = fs.readFileSync(‘./easy.txt’, ‘utf-8’);
+ const lines = sudoku.split(‘\n’);
+ const firstLine = lines[0];
+ const sudokuGrid = [];
+ for (let i = 0; i < 9; i++) {
+  const column = [];
+  for (let j = i; j < firstLine.length; j += 9) {
+   column.push(firstLine[j]);
+  }
+  sudokuGrid.push(column);
+ }
+ return sudokuGrid;
+}
+
+
+
+
+
+
