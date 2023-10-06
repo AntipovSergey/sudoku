@@ -26,49 +26,65 @@ function prettyBoard() {
 	 */
 }
 
-const date =  [
-  [1, "-", 5, 8, "-", 2, "-", "-", "-"],
-  ["-", 9, "-", "-", 7, 6, 4, "-", 5],
-  [2, "-", "-", 4, "-", "-", 8, 1, 9],
-  ["-", 1, 9, "-", "-", 7, 3, "-", 6],
-  [7, 6, 2, "-", 8, 3, "-", 9, "-"],
-  ["-", "-", "-", "-", 6, 1, "-", 5, "-"],
-  ["-", "-", 7, 6, "-", "-", "-", 3, "-"],
-  [4, 3, "-", "-", 2, "-", 5, "-", 1],
-  [6, "-", "-", 3, "-", 8, 9, "-", "-"],
-];
+const sudoku = [
+	[1, '-', 5, 8, '-', 2, '-', '-', '-'],
+	['-', 9, '-', '-', 7, 6, 4, '-', 5],
+	[2, '-', '-', 4, '-', '-', 8, 1, 9],
+	['-', 1, 9, '-', '-', 7, 3, '-', 6],
+	[7, 6, 2, '-', 8, 3, '-', 9, '-'],
+	['-', '-', '-', '-', 6, 1, '-', 5, '-'],
+	['-', '-', 7, 6, '-', '-', '-', 3, '-'],
+	[4, 3, '-', '-', 2, '-', 5, '-', 1],
+	[6, '-', '-', 3, '-', 8, 9, '-', '-'],
+]
 
-function isVertical(sudoku,columnIndex){
-  const row = []
-  for(let i = 0; i<9;i++){
-    const value = sudoku[i][columnIndex]
+function isVertical(sudoku, columnIndex) {
+	const row = []
+	for (let i = 0; i < 9; i++) {
+		const value = sudoku[i][columnIndex]
 
-  if(row.includes(value)){
-    return false
-  }
-  if(value !== '-'){
-    row.push(value)
-  }
-}
-  return true
-}
-
-console.log(isVertical(date,8))
-
-function isHorizontal(sudoku,columnIndex){
-  const row = []
-  for(let i = 0; i<9;i++){
-    const value = sudoku[columnIndex][i]
-
-  if(row.includes(value)){
-    return false
-  }
-  if(value !== '-'){
-    row.push(value)
-  }
-}
-  return true
+		if (row.includes(value)) {
+			return false
+		}
+		if (value !== '-') {
+			row.push(value)
+		}
+	}
+	return true
 }
 
+console.log(isVertical(sudoku, 8))
 
-console.log(isHorizontal(date,8))
+function isHorizontal(sudoku, columnIndex) {
+	const row = []
+	for (let i = 0; i < 9; i++) {
+		const value = sudoku[columnIndex][i]
+		if (row.includes(value)) {
+			return false
+		}
+		if (value !== '-') {
+			row.push(value)
+		}
+	}
+	return true
+}
+
+console.log(isHorizontal(sudoku, 8))
+
+// function isSolved() {
+
+//   return false
+//   return true
+// }
+
+function allValues(board) {
+	const arr = []
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+			if (board[i][j] === '-') {
+				return false
+			}
+		}
+	}
+	return true
+}
