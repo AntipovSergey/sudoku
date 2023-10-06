@@ -1,9 +1,9 @@
+const fn = require ("fs")
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  let sss = fn.readFileSync ("./puzzles.txt","utf-8".).split()
+ console.log(sss)
 }
-
+read()
 function solve() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции read.
