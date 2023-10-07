@@ -1,6 +1,6 @@
-const { log } = require("console");
+
 const fs = require("fs");
-let num = process.argv[2] || 0;
+
 
 
 function read(num = 0 || 0) {
@@ -10,19 +10,26 @@ function read(num = 0 || 0) {
    */
 
   const readText = fs.readFileSync("./puzzles.txt", "utf8").trim().split("\n");
-  const formText = readText[num].split("");
+  
+  const formText = readText[process.argv[2] || 0].split("");
+
   const desk = [];
 
   for (let i = 0; i < 9; i++) {
     desk.push(formText.splice(0, 9));
   }
-
+  // console.table(desk);
   return desk;
 }
 
-console.table(read());
+
+
+// console.log(read());
+
+
 
 function solve(desk) {
+  
   // console.table(desk)
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции read.
@@ -30,21 +37,22 @@ function solve(desk) {
    */
   for (let x = 0; x < 9; x++) {
     for (let y = 0; y < 9; y++) {
-      if ((desk[x][y] == "-")) {
+      if (desk[x][y] == "-") {
         for (let num = 1; num <= 9; num++) {
           if (isSolved(desk, x, y, num)) {
             desk[x][y] = num.toString();
+            console.table(desk);
             if (solve(desk)) {
               return desk;
             }
-            desk[x][y] == "-";
+            desk[x][y] = "-";
           }
         }
         return false;
       }
     }
   }
-  console.log(desk);
+  // console.log(desk);
   return desk;
 }
 
@@ -73,6 +81,7 @@ function isSolved(desk, row, col, num) {
 
   return true;
 }
+console.log(solve(read()));
 
 function prettyBoard() {
   /**
@@ -82,13 +91,13 @@ function prettyBoard() {
    */
 }
 
-solve(read());
+// solve(read());
 
-function abc(desk) {
-  if (solve(desk)) {
-    return true;
-  }
-  return "АААААААААААААААААААААААААААААААААААААААААААААААААААААААААА!";
-}
-let desk = read(7);
-console.log(abc(read()));
+// function abc(desk) {
+//   if (solve(desk)) {
+//     return true;
+//   }
+//   return "АААААААААААААААААААААААААААААААААААААААААААААААААААААААААА!";
+// }
+// let desk = read(7);
+// console.log(abc(read()));
