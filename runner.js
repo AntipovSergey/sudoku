@@ -7,7 +7,7 @@ const {getSector} = require("./getSector");
 
 const puzzles = read("/puzzles.txt");
 
-let ind = 11;
+let ind = 6;
 if (process.argv[2] != undefined) ind = process.argv[2];
 
 

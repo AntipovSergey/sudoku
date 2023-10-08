@@ -19,26 +19,51 @@ function read(filename) {
   return result.slice(0, -1);
 }
 
-function selectionSolution(solution) {
-  let result = [];
+function selectionSolution(solution, solutionOld = solution) {
+  let result = [...solutionOld];
   let solutionNow = [...solution];
-  for (let i = 0; i < solution.length; i++) {
-    result = [];
+  let i = 0;
+  for (i = 0; i < solution.length; i++) {
     if (Array.isArray(solution[i])) {
-      const varibles = solution[i];
-      for (let j = 0; j < varibles.length; j++) {
-        solution[i] = varibles[j];
-
-        result = possibleValues(solution);
-        if (isSolved(result)) {
-          return result;
-        } //else if (isAnyArrays(result)) return solution = selectionSolution(result);
-        //else return solutionNow;
-      }
-      solution[i] = varibles;
+      result = iterating();
     }
   }
-  return solution;
+  return result;
+  function iterating() {
+    let k = i;
+    let resultIterating = [...solution];
+    const varibles = solution[i];
+    for (let j = 0; j < varibles.length; j++) {
+      resultIterating[k] = varibles[j];
+
+      resultIterating = possibleValues(resultIterating);
+      if (isSolved(result)) {
+        return resultIterating;
+      } else if (isAnyArrays(resultIterating))
+        resultIterating = selectionSolution(resultIterating, result);
+    }
+    return result;
+  }
+
+  // for (let i = 0; i < solution.length; i++) {
+  //   result = [];
+
+  //   if (Array.isArray(solution[i])) {
+  //     const varibles = solution[i];
+  //     for (let j = 0; j < varibles.length; j++) {
+  //       result[i] = varibles[j];
+
+  //       result = possibleValues(result);
+  //       if (isSolved(result)) {
+  //         return result;
+  //       } else if (isAnyArrays(result)) result = selectionSolution(result, solutionNow);
+
+  //     }
+  //     solution[i] = varibles;
+  //     if (!isAnyArrays(result)) return solution;
+  //   }
+  // }
+  // return solution;
 }
 
 function solve(puzle) {
