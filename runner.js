@@ -16,3 +16,4 @@ console.log(prettyBoard(solution));
 // console.log(prettyBoard(puzzles[0]));
 
 // console.log(getColumn(puzzles[0],2));
+console.log();
