@@ -19,51 +19,60 @@ function read(filename) {
   return result.slice(0, -1);
 }
 
-function selectionSolution(solution) {
-  let result = structuredClone(solution);
-  let i = 0;
-  for (i = 0; i < solution.length; i++) {
-    if (Array.isArray(solution[i])) {
-      result = iterating();
-    }
-  }
-  return result;
-  function iterating() {
-    const k = i;
-    let resultIterating = structuredClone(solution);
-    const varibles = solution[i];
-    for (let j = 0; j < varibles.length; j++) {
-      result[k] = varibles[j];
-
-      resultIterating = possibleValues(result);
-      if (isSolved(resultIterating)) {
-        return resultIterating;
-      }
-      if (isAnyArrays(resultIterating))
-        resultIterating = selectionSolution(resultIterating);
-    }
-    return result;
-  }
-
-  // for (let i = 0; i < solution.length; i++) {
-  //   result = [];
-
+function selectionSolution(solution, prevSoluteion = []) {
+  // let result = structuredClone(prevSoluteion);
+  // let resultIter = [];
+  // let i = 0;
+  // for (i = 0; i < solution.length; i++) {
+  //   if (isSolved(resultIter)) return resultIter;
   //   if (Array.isArray(solution[i])) {
-  //     const varibles = solution[i];
-  //     for (let j = 0; j < varibles.length; j++) {
-  //       result[i] = varibles[j];
-
-  //       result = possibleValues(result);
-  //       if (isSolved(result)) {
-  //         return result;
-  //       } else if (isAnyArrays(result)) result = selectionSolution(result, solutionNow);
-
-  //     }
-  //     solution[i] = varibles;
-  //     if (!isAnyArrays(result)) return solution;
+  //     resultIter = iterating();
   //   }
   // }
-  // return solution;
+  // if (isSolved(resultIter)) return resultIter;
+  // return result;
+  // function iterating() {
+  //   const k = i;
+  //   let resultIterating = structuredClone(solution);
+  //   const varibles = solution[i];
+  //   for (let j = 0; j < varibles.length; j++) {
+  //     if (isSolved(resultIterating)) {
+  //       return resultIterating;
+  //     }
+  //     resultIterating[k] = varibles[j];
+
+  //     resultIterating = possibleValues(resultIterating);
+  //     if (isSolved(resultIterating)) {
+  //       return resultIterating;
+  //     }
+  //     if (isAnyArrays(resultIterating))
+  //       resultIterating = selectionSolution(resultIterating,solution);
+  //   }
+  //   return resultIterating;
+  // }
+
+  for (let i = 0; i < solution.length; i++) {
+    
+    result = solution;
+
+    if (Array.isArray(solution[i])) {
+      const varibles = solution[i];
+      for (let j = 0; j < varibles.length; j++) {
+        
+        let resultIter = [];
+        solution[i] = varibles[j];
+
+        resultIter = possibleValues(solution);
+        if (isSolved(resultIter)) {
+          return resultIter;
+        } else if (isAnyArrays(resultIter)) result = selectionSolution(resultIter, solution);
+
+      }
+      prevSoluteion[i] = varibles;
+      if (!isAnyArrays(result)) return solution;
+    }
+  }
+  return prevSoluteion;
 }
 
 function solve(puzle) {
