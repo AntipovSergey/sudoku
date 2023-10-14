@@ -23,10 +23,10 @@ function getSector(sud, ind) {
   const row = Math.floor(ind / 9);
   const col = Math.floor(ind % 9);
   const sector = Math.floor(row / 3) * 3 + Math.floor(col / 3);
-  const indq = obj[sector];
-  for (let i = 0; i < indq.length; i++) {
-    if (sud[indq[i]] !== 0) {
-      result.push(sud[indq[i]]);
+  const indCell = obj[sector];
+  for (let i = 0; i < indCell.length; i++) {
+    if (sud[indCell[i]] !== 0) {
+      result.push(sud[indCell[i]]);
     }
   }
   return result;

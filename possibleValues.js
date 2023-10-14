@@ -20,7 +20,7 @@ function possibleValues(array) {
           newArray.push(possibleResults[i]);
         }
       }
-      if (newArray.length === 1) {
+      if (newArray.length <= 1) {
         result.push(newArray[0]);
         flagModifayed = true;
       } else {

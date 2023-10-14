@@ -7,13 +7,8 @@ const {getSector} = require("./getSector");
 
 const puzzles = read("/puzzles.txt");
 
-let solution = [];
+let ind = 6;
+if (process.argv[2] != undefined) ind = process.argv[2];
 
-solution = possibleValues(puzzles[1]);
-// console.log(solution);
-console.log(prettyBoard(solution));
 
-// console.log(prettyBoard(puzzles[0]));
-
-// console.log(getColumn(puzzles[0],2));
-console.log();
+solve(puzzles[ind]);
