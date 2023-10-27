@@ -1,7 +1,24 @@
+ const fs = require('fs')
+
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  const path = fs.readFileSync('./puzzles.txt', 'utf-8').slice(0,81).split('')
+  const nein = 9
+ let result = []
+  for (let i = 0; i < path.length; i+= nein) {
+    const chunk = path.slice(i, i + nein);
+    result.push(chunk)
+  }
+  return result
+
+}
+
+
+function getCol (result, col) {
+  const column = [];
+  for (let i = 0; i < 9; i++) {
+ column.push(result[i][col])
+ return column
+}
 }
 
 function solve() {
