@@ -1,7 +1,5 @@
 
-function graph() {
-const minus = Array(9).fill('null');
-return minus
+function graph(read) {
+const val = Array(9).fill('null');
+return val
 }
-console.log(graph());
-
