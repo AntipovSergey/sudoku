@@ -13,12 +13,11 @@ function read() {
 }
 
 
-function getCol () {
-  const result = [];
-  for (let i = 0; i < read().length; i++) {
- for (let j = 0; j < read()[i].length; j++) { 
-result.push(read()[j][i])
- }return result
+function getCol (result, col) {
+  const column = [];
+  for (let i = 0; i < 9; i++) {
+ column.push(result[i][col])
+ return column
 }
 }
 
