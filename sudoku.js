@@ -11,8 +11,16 @@ function read() {
   return result
 
 }
-console.table(read())
 
+
+function getCol () {
+  const result = [];
+  for (let i = 0; i < read().length; i++) {
+ for (let j = 0; j < read()[i].length; j++) { 
+result.push(read()[j][i])
+ }return result
+}
+}
 
 function solve() {
   /**
