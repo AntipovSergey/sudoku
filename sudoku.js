@@ -12,10 +12,19 @@ function read() {
   for (let i = 0; i < newStr.length; i += 9) {
     const newLine = newStr.slice(i, i + 9);
     sudoku.push(Array.from(newLine));
+    for (let i = 0; i < sudoku.length; i++) {
+      for (let j = 0; j < sudoku[i].length; j++) {
+        // sudoku[i][j] = Number(sudoku[i][j]);
+        if (sudoku[i][j] === '-') {
+          sudoku[i][j] = '-';
+        } else { sudoku[i][j] = Number(sudoku[i][j]); }
+      }
+    }
   }
 
   return sudoku;
 }
+console.log(read());
 
 const arr = [
   [1, '-', 5, 8, '-', 2, '-', '-', '-'],
@@ -45,7 +54,7 @@ function solve(arr) {
   }
   return arr;
 }
-console.log(solve(arr));
+// console.log(solve(arr));
 
 function isSolved() {
   /**
