@@ -40,53 +40,50 @@ function read() {
 const game1 = read(0);
 
 function solve(game) {
-  
+
   let findings = [];
   let sum = 0;
+  let arrMisElsAll = [];
+
+  function contains(arr, elem) {
+    return arr.filter(item => !elem.includes(Number(item)))
+  }
 
   game[0].forEach((line) => {
- 
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    let arrMisEls = [];
+    let newLine = line.map((el) => Number(el))
     for (let i = 0; i < line.length; i++) {
-      if (line[i] !== '-') {       
+      if (line[i] !== '-') {
         sum += Number(line[i])
-      }     
-      console.log(sum)
+      }
+
     }
-    
     findings.push(45 - sum);
     sum = 0
+
+    arrMisEls = contains(arr, newLine)
+    arrMisElsAll.push(arrMisEls)
+
   })
+
+  game[0].forEach((line) => {
+
+    for (let i = 0; i < line.length; i++) {
+      let n = -1;
+      if (line[i] == '-') {
+        line[i] = (arrMisElsAll[i][n + 1]).toString()
+      }
+    }
+  })
+
+  console.log(arrMisElsAll);
   console.log(findings);
-  return findings;
-  //   const diff = 45 - sum;
-
-  //   if (diff <= 9 && emptyFiguresIndices / length === 1) {
-  //     line[emptyFiguresIndices[0]] = diff;
-  //   }
-  //   findings.push(diff);
-  // });
-
-  // console.log(findings);
-
-  // let emptyFiguresIndices = []
-  // let numbersLine = []
-
-  // line.forEach((fig, index) => {
-  //   if (fig === '-') {
-  //     emptyFiguresIndices.push(index)
-  //   }
-  //   else {
-  //     numbersLine.push(fig);
-  //   }
-
-  // });
-  // console.log(numbersLine)
-  // console.log(emptyFiguresIndices)
-
+  return game[0];
 
 }
 
-solve(game1);
+console.log(solve(game1));
 
 
 // Проверки:
