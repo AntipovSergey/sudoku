@@ -11,16 +11,20 @@ function read() {
 
   for (let i = 0; i < newStr.length; i += 9) {
     const newLine = newStr.slice(i, i + 9);
-    const line = Array.from(newLine);
-    for (let element of line) {
-      element = parseInt(element);
-      console.log(typeof (element));
+    sudoku.push(Array.from(newLine));
+    for (let i = 0; i < sudoku.length; i++) {
+      for (let j = 0; j < sudoku[i].length; j++) {
+        // sudoku[i][j] = Number(sudoku[i][j]);
+        if (sudoku[i][j] === '-') {
+          sudoku[i][j] = '-';
+        } else { sudoku[i][j] = Number(sudoku[i][j]); }
+      }
     }
-    sudoku.push(Array.from(line));
   }
 
   return sudoku;
 }
+// console.log(read());
 
 // [
 //   [1, '-', 5, 8, '-', 2, '-', '-', '-'],
@@ -51,7 +55,7 @@ function solve(arr) {
   }
   return arr;
 }
-console.log(read());
+// console.log(solve(arr));
 
 function isSolved() {
   /**
@@ -60,18 +64,20 @@ function isSolved() {
    */
 }
 
-function prettyBoard() {
-  const output = solve(arr);
+const output = solve(arr);
 
-  output = `
-${arr[0]}\n
-${arr[1]}\n
-${arr[2]}\n
-${arr[3]}\n
-${arr[4]}\n
-${arr[5]}\n
-${arr[6]}\n
-${arr[7]}\n
-${arr[8]}\n`;
-console.log
+function prettyBoard(output) {
+  const result = `
+${output[0]}\n
+${output[1]}\n
+${output[2]}\n
+${output[3]}\n
+${output[4]}\n
+${output[5]}\n
+${output[6]}\n
+${output[7]}\n
+${output[8]}\n`;
+
+  return result;
 }
+console.table(prettyBoard(output));
