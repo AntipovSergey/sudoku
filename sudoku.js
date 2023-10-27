@@ -4,9 +4,17 @@ function read() {
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
    */
-  return (fs.readFileSync('./puzzles.txt', 'utf8'));
+  const strPazz = (fs.readFileSync('./puzzles.txt', 'utf8'));
+  let newStr = strPazz.slice(0, 81);
+  const sudoku = [];
+
+  for (let i = 0; i < newStr.length; i += 9) {
+    let newLine = newStr.slice(i, i + 9);
+    sudoku.push(Array.from(newLine));
+  }
+
+  return sudoku;
 }
-console.log(read());
 
 function solve() {
   /**
