@@ -1,23 +1,13 @@
 const fs = require('fs');
 
 function read() {
-  const data = fs.readFileSync('./puzzles.txt', 'utf8').trim();
-  const arr = data.split('\r\n');
-  const firstSudoku = arr[0];
+  const data = fs.readFileSync('./puzzles.txt', 'utf8').split('\n');
+  const sudoku = data[0].split('')
+  const opt = 9
+  let result = []
 
-  // for(let i = 0; i < firstSudoku.length; i ++) {
-  //   let sudokuArr = []
-  //   if(firstSudoku.length / 9 )
-  // }
-  // const sudoku = arr.map((el) => el.split(' '));
-  // const sudokuStrings = sudoku.map((el) => el.split(' '));
 
-  // const sudoku = arr.map((el) => el)
-  // console.log(arr);
-  // console.log(sudoku);
-  // console.log(sudoku.length);
-  // console.log(sudokuStrings);
-  console.log(firstSudoku);
+  
 }
 read();
 
