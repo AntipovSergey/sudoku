@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+
 function read() {
   let puzzleRead = fs.readFileSync('./puzzles.txt', 'utf-8');
   puzzleRead = puzzleRead.split('\n').join('');
@@ -37,6 +38,15 @@ function read() {
 }
 console.table(read()[0][0]);
 
+=======
+function read() { 
+  /**
+   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
+   */
+  const data = fs.readFileSync('./puzzles.txt','utf-8');
+  console.log(data);
+}
+read();
 function solve() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции read.
@@ -57,4 +67,11 @@ function prettyBoard() {
    * Выводит в консоль/терминал судоку.
    * Подумай, как симпатичнее его вывести.
    */
+}
+
+module.exports = {
+  read,
+  solve,
+  isSolved,
+  prettyBoard
 }
