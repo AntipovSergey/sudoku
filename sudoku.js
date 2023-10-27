@@ -1,8 +1,21 @@
+const fs = require("fs");
+
 function read() {
+  const puzzleAr = fs.readFileSync("./puzzles.txt", "utf-8").split("\n");
+  const puzzleArSec = puzzleAr[0].split("");
+  let emptyArr = [];
+  for (let i = 0; i < puzzleArSec.length; i += 9) {
+    emptyArr.push(puzzleArSec.slice(i, i + 9));
+  }
+
+  return emptyArr;
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
    */
+  //----
 }
+
+console.log(read());
 
 function solve() {
   /**
