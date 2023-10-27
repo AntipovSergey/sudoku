@@ -2,9 +2,6 @@ const { log } = require('console');
 const fs = require('fs');
 
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
   const strPazz = (fs.readFileSync('./puzzles.txt', 'utf8'));
   const newStr = strPazz.slice(0, 81);
   const sudoku = [];
@@ -14,7 +11,6 @@ function read() {
     sudoku.push(Array.from(newLine));
     for (let i = 0; i < sudoku.length; i++) {
       for (let j = 0; j < sudoku[i].length; j++) {
-        // sudoku[i][j] = Number(sudoku[i][j]);
         if (sudoku[i][j] === '-') {
           sudoku[i][j] = '-';
         } else { sudoku[i][j] = Number(sudoku[i][j]); }
@@ -24,19 +20,7 @@ function read() {
 
   return sudoku;
 }
-// console.log(read());
 
-// [
-//   [1, '-', 5, 8, '-', 2, '-', '-', '-'],
-//   ['-', 9, '-', '-', 7, 6, 4, '-', '5'],
-//   [2, '-', '-', 4, '-', '-', 8, 1, 9],
-//   ['-', 1, 9, '-', '-', 7, 3, '-', 6],
-//   [7, 6, 2, '-', 8, 3, '-', 9, '-'],
-//   ['-', '-', '-', '-', 6, 1, '-', 5, '-'],
-//   ['-', '-', 7, 6, '-', '-', '-', 3, '-'],
-//   [4, 3, '-', '-', 2, '-', 5, '-', 1],
-//   [6, '-', '-', 3, '-', 8, 9, '-', '-'],
-// ];
 const arr = read();
 
 function solve(arr) {
@@ -55,7 +39,6 @@ function solve(arr) {
   }
   return arr;
 }
-// console.log(solve(arr));
 
 function isSolved() {
   /**
@@ -67,16 +50,30 @@ function isSolved() {
 const output = solve(arr);
 
 function prettyBoard(output) {
+  for (const str of output) {
+    for (let i = 2; i < output.length; i += 3) {
+      str[i] = `${str[i]}|`;
+    }
+    for (let i = 0; i < output.length; i += 9) {
+      str[i] = `|${str[i]}`;
+    }
+  }
+
   const result = `
-${output[0]}\n
-${output[1]}\n
-${output[2]}\n
-${output[3]}\n
-${output[4]}\n
-${output[5]}\n
-${output[6]}\n
-${output[7]}\n
-${output[8]}\n`;
+
+  - - - - - - - - - - - - - - -\n
+  ${output[0].join('  ')}\n
+  ${output[1].join('  ')}\n
+  ${output[2].join('  ')}\n
+  - - - - - - - - - - - - - - -\n
+  ${output[3].join('  ')}\n
+  ${output[4].join('  ')}\n
+  ${output[5].join('  ')}\n
+  - - - - - - - - - - - - - - -\n
+  ${output[6].join('  ')}\n
+  ${output[7].join('  ')}\n
+  ${output[8].join('  ')}\n
+  - - - - - - - - - - - - - - -\n`;
 
   return result;
 }
