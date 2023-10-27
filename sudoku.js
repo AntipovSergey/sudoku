@@ -1,33 +1,6 @@
 const { Linter } = require('eslint');
 const fs = require('fs');
 
-function read(num) { 
-
-}
-// console.log(read(0));
-
-const game = read(0);
-
-function solve(game) {
- 
-//   console.table(game);
-//   let findings = [];
-//   game.forEach(line => {
-//     const sum = line.reduce((acc,cv)=>acc+cv,0);
-//     const missing = 45-sum;
-// let emptyFiguresIndices = []
-// line.forEach(fig,index => {
-//   fig === '-' ?  emptyFiguresIndices.push(index):console.log("Линия заполнена")
-//   console.log(emptyFiguresIndices)
-// });
-// if (missing <=9 && emptyFiguresIndices/length === 1){
-//   line[emptyFiguresIndices[0]] = missing;
-// }
-//     findings.push(missing);
-//   });
-//   return findings;  
-
-
 function read() {
   let puzzleRead = fs.readFileSync('./puzzles.txt', 'utf-8');
   puzzleRead = puzzleRead.split('\n').join('');
@@ -63,26 +36,68 @@ function read() {
   }
   return finalPuzzlesArr;
 }
-console.table(read()[0][0]);
 
+const game1 = read(0);
 
-function read() { 
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
-  const data = fs.readFileSync('./puzzles.txt','utf-8');
-  console.log(data);
+function solve(game) {
+  
+  let findings = [];
+  let sum = 0;
+
+  game[0].forEach((line) => {
+ 
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] !== '-') {       
+        sum += Number(line[i])
+      }     
+      console.log(sum)
+    }
+    
+    findings.push(45 - sum);
+    sum = 0
+  })
+  console.log(findings);
+  return findings;
+  //   const diff = 45 - sum;
+
+  //   if (diff <= 9 && emptyFiguresIndices / length === 1) {
+  //     line[emptyFiguresIndices[0]] = diff;
+  //   }
+  //   findings.push(diff);
+  // });
+
+  // console.log(findings);
+
+  // let emptyFiguresIndices = []
+  // let numbersLine = []
+
+  // line.forEach((fig, index) => {
+  //   if (fig === '-') {
+  //     emptyFiguresIndices.push(index)
+  //   }
+  //   else {
+  //     numbersLine.push(fig);
+  //   }
+
+  // });
+  // console.log(numbersLine)
+  // console.log(emptyFiguresIndices)
+
 
 }
+
+solve(game1);
+
+
 // Проверки:
 
 
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+/**
+ * Принимает игровое поле в том формате, в котором его вернули из функции read.
+ * Возвращает игровое поле после попытки его решить.
+ */
 
-solve(game);
+
 
 function isSolved() {
   /**
