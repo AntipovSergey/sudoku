@@ -2,44 +2,6 @@ const { Linter } = require('eslint');
 const fs = require('fs');
 
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
-  const data = fs.readFileSync('./puzzles.txt', 'utf-8');
-  // console.log(data);
-}
-
-read();
-
-function solve() {
-function read(num) { 
-
-}
-// console.log(read(0));
-
-const game = read(0);
-
-function solve(game) {
- 
-//   console.table(game);
-//   let findings = [];
-//   game.forEach(line => {
-//     const sum = line.reduce((acc,cv)=>acc+cv,0);
-//     const missing = 45-sum;
-// let emptyFiguresIndices = []
-// line.forEach(fig,index => {
-//   fig === '-' ?  emptyFiguresIndices.push(index):console.log("Линия заполнена")
-//   console.log(emptyFiguresIndices)
-// });
-// if (missing <=9 && emptyFiguresIndices/length === 1){
-//   line[emptyFiguresIndices[0]] = missing;
-// }
-//     findings.push(missing);
-//   });
-//   return findings;  
-
-
-function read() {
   let puzzleRead = fs.readFileSync('./puzzles.txt', 'utf-8');
   puzzleRead = puzzleRead.split('\n').join('');
   let cnt = 0;
@@ -74,18 +36,64 @@ function read() {
   }
   return finalPuzzlesArr;
 }
-console.table(read()[0][0]);
 
+const game1 = read(0);
 
-function read() { 
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
-  const data = fs.readFileSync('./puzzles.txt','utf-8');
-  console.log(data);
+function solve(game) {
+
+  let findings = [];
+  let sum = 0;
+  let arrMisElsAll = [];
+
+  function contains(arr, elem) {
+    return arr.filter(item => !elem.includes(Number(item)))
+  }
+
+  game[0].forEach((line) => {
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    let arrMisEls = [];
+    let newLine = line.map((el) => Number(el))
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] !== '-') {
+        sum += Number(line[i])
+      }
+
+    }
+    findings.push(45 - sum);
+    sum = 0
+
+    arrMisEls = contains(arr, newLine)
+    arrMisElsAll.push(arrMisEls)
+
+  })
+
+  game[0].forEach((line) => {
+
+    for (let i = 0; i < line.length; i++) {
+      let n = -1;
+      if (line[i] == '-') {
+        line[i] = (arrMisElsAll[i][n + 1]).toString()
+      }
+    }
+  })
+
+  console.log(arrMisElsAll);
+  console.log(findings);
+  return game[0];
 
 }
+
+console.log(solve(game1));
+
+
 // Проверки:
+
+
+
+/**
+ * Принимает игровое поле в том формате, в котором его вернули из функции read.
+ * Возвращает игровое поле после попытки его решить.
+ */
 
 
 
@@ -94,7 +102,7 @@ function read() {
    * Возвращает игровое поле после попытки его решить.
    */
 
-solve(game);
+
 
 function isSolved(solve) {
   // Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -131,7 +139,7 @@ function isSolved(solve) {
 
 }
 
-console.log(isSolved());
+// console.log(isSolved());
 
 function prettyBoard() {
   /**
@@ -148,11 +156,3 @@ module.exports = {
   isSolved,
   prettyBoard
 };
-
-// module.exports = {
-//   read,
-//   solve,
-//   isSolved,
-//   prettyBoard
-// }
-
