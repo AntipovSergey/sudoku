@@ -1,22 +1,24 @@
 const fs = require('fs');
 
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
-  
-
-  // return readPuzzel;
 }
 // console.log(read())
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+function free(arr) {
+  for (let i=0; i < arr.length; i++){
+    for (let j=0; j < arr[i].length; j++){
+      if(arr[i][j] === '-'){
+        return [i,j]
+      }
+    }
+  }
+  return null
 }
 
+function solve() {
+
+}
+console.log(solve())
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
