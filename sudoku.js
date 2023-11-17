@@ -1,7 +1,19 @@
+const fs = require('fs');
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  const strPuzzles = fs.readFileSync('./puzzles.txt', 'utf8').slice(0, 81).split('');
+  const sudoku = [];
+  for (let i = 0; i < strPuzzles.length; i += 9) {
+    const mat = strPuzzles.slice(i, i + 9);
+    sudoku.push(mat);
+  }
+  for (let i = 0; i < sudoku.length; i++) {
+    for (let j = 0; j < sudoku[i].length; j++) {
+      if (sudoku[i][j] === '-') {
+        sudoku[i][j] = 0;
+      } else (sudoku[i][j] = Number(sudoku[i][j]));
+    }
+  }
+  return sudoku;
 }
 
 function solve() {
