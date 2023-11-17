@@ -19,7 +19,6 @@ function validateSquared(puzzles) {
       resultArr.push(puzzles[j].slice(i, i + 3));
     }
   }
-  // console.log(resultArr);
 
   resultArrSqd = []
   for (let i = 0; i < resultArr.length; i += 3) {
