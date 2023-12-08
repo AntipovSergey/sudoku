@@ -19,6 +19,7 @@ function isSolved() {
 }
 
 function prettyBoard() {
+  console.table(isSolved());
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
    * Выводит в консоль/терминал судоку.
