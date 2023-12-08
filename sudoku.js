@@ -1,12 +1,20 @@
 const fs = require('fs');
 
-function read() {
-  const board = fs.readFileSync('./puzzles.txt', 'utf-8');
-  return board;
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
-}
+function read() { 
+  const board = fs.readFileSync('./puzzles.txt','utf-8'); 
+  let boardSplit = board.split(''); 
+  let res=[]; 
+  let result=[]; 
+  for(let i = 0;i < 81;i++) { 
+    res.push(boardSplit[i]); 
+  } 
+  for(let i=0;i<res.length;i++) { 
+    if(i%8===0) { 
+      result.push(res.slice(i - 8, i + 1)); 
+    } 
+  } 
+  return result; 
+} 
 console.log(read());
 
 function solve() {
