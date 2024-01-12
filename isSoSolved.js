@@ -1,4 +1,4 @@
-const board = [
+const solvedSudoku = [
   [2, 3, 8, 9, 6, 5, 7, 1, 4],
   [7, 5, 9, 4, 1, 3, 6, 8, 2],
   [4, 1, 6, 2, 7, 8, 9, 5, 3],
@@ -10,10 +10,8 @@ const board = [
   [8, 9, 3, 7, 4, 1, 5, 2, 6],
 ];
 
-function isSolved(board) {
-  // Функция для нахождения чисел от 1 до 9 во входящем массиве
-  // Возвращает false, если не найдено какое либо число
-  function check(input) {
+function isSolved(solvedSudoku) {
+  function checkNum(input) {
     for (let i = 1; i <= 9; i++) {
       if (input.indexOf(i) == -1) {
         return false;
@@ -21,8 +19,7 @@ function isSolved(board) {
     }
     return true;
   }
-
-  // перевернуть массив для проверки строк
+  // переворачиваем массив для проверки строк
   function transpose(arr) {
     for (i = 0; i < 9; i++) {
       for (j = i + 1; j < 9; j++) {
@@ -46,27 +43,29 @@ function isSolved(board) {
     return output;
   }
 
-  const transposedBoard = transpose(board);
+  const transposedsolvedSudoku = transpose(solvedSudoku);
 
-  // проверка массива board
+  // проверка массива solvedSudoku
   for (let i = 0; i < 9; i++) {
     // сначала проверяем правильность строк и столбцов
-    if (!check(board[i]) || !check(transposedBoard[i])) {
+    if (!checkNum(solvedSudoku[i]) || !checkNum(transposedsolvedSudoku[i])) {
       return false;
     }
-
     // проверка квадратов 3x3
-    var y = Math.floor(i / 3) * 3;
-    var x = (i % 3) * 3;
-    if (!check(box(y, x, board))) {
+    const y = Math.floor(i / 3) * 3;
+    const x = (i % 3) * 3;
+    if (!checkNum(box(y, x, solvedSudoku))) {
       return false;
     }
   }
   return true;
-  /**
-     * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-     * Возвращает булевое значение — решено это игровое поле или нет.
-     */
 }
 
-console.log(isSolved(board));
+module.exports = {
+  isSolved,
+};
+/**
+       * Принимает игровое поле в том формате, в котором его вернули из функции solve.
+       * Возвращает булевое значение — решено это игровое поле или нет.
+       */
+console.log(isSolved(solvedSudoku));
