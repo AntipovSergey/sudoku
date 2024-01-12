@@ -46,7 +46,7 @@ function prettyBoard(sudokuArray) {
 
   const boardWithHorizontalSeparators = newSudokuBoard.reduce((acc, row, index) => {
     if (index % 3 === 2 && index < newSudokuBoard.length - 1) {
-      return `${acc + row}\n${'-'.repeat(row.length)}\n`;
+      return `${acc + row}\n${'-'.repeat(22)}\n`;
     }
     return `${acc + row}\n`;
   }, '');
