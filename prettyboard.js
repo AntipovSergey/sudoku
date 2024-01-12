@@ -26,6 +26,7 @@ function prettyBoard(sudokuArray) {
     7: '\u0037\uFE0F\u20E3',
     8: '\u0038\uFE0F\u20E3',
     9: '\u0039\uFE0F\u20E3',
+    '-': '\u0030\uFE0F\u20E3',
   };
 
   const newSudokuBoard = sudokuArray.map((row, rowIndex) => {
@@ -54,19 +55,19 @@ function prettyBoard(sudokuArray) {
   return boardWithHorizontalSeparators;
 }
 
-const sudokoData = [
-  [5, 3, 4, 6, 7, 8, 9, 1, 2],
-  [6, 7, 2, 1, 9, 5, 3, 4, 8],
-  [1, 9, 8, 3, 4, 2, 5, 6, 7],
-  [8, 5, 9, 7, 6, 1, 4, 2, 3],
-  [4, 2, 6, 8, 5, 3, 7, 9, 1],
-  [7, 1, 3, 9, 2, 4, 8, 5, 6],
-  [9, 6, 1, 5, 3, 7, 2, 8, 4],
-  [2, 8, 7, 4, 1, 9, 6, 3, 5],
-  [3, 4, 5, 2, 8, 6, 1, 7, 9],
-];
+// const sudokoData = [
+//   [5, 3, 4, 6, 7, 8, 9, 1, 2],
+//   [6, 7, 2, 1, 9, 5, 3, 4, 8],
+//   [1, 9, 8, 3, 4, 2, 5, 6, 7],
+//   [8, 5, 9, 7, 6, 1, 4, 2, 3],
+//   [4, 2, 6, 8, 5, 3, 7, 9, 1],
+//   [7, 1, 3, 9, 2, 4, 8, 5, 6],
+//   [9, 6, 1, 5, 3, 7, 2, 8, 4],
+//   [2, 8, 7, 4, 1, 9, 6, 3, 5],
+//   [3, 4, 5, 2, 8, 6, 1, 7, 9],
+// ];
 
-console.log(prettyBoard(sudokoData));
+// console.log(prettyBoard(sudokoData));
 
 module.exports = {
   prettyBoard,
