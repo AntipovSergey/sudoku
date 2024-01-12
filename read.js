@@ -3,7 +3,7 @@ const fs = require('fs');
 function read() {
   const readFile = fs.readFileSync('./puzzles.txt', 'utf-8');
   const array = readFile.split('\n').map((el) => el.replaceAll('-', 0));
-  // console.log(array);
+  
 
   const resultArray = [];
   for (let i = 0; i < array.length; i++) {
