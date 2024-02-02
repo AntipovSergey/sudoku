@@ -11,4 +11,4 @@ function getPossibleDigitInRow(field, y) {
   return consisting;
 }
 
-module.exports = getPossibleDigitInRow
+module.exports = getPossibleDigitInRow;

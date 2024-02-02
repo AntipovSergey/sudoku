@@ -11,5 +11,4 @@ function getPossibleDigitInColumn(field, x) {
   return consisting;
 }
 
-
-module.exports = getPossibleDigitInColumn
+module.exports = getPossibleDigitInColumn;
