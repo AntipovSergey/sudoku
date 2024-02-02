@@ -1,17 +1,13 @@
-const { num, read } = require('./read');
-
-// const num = process.argv[2] - 1;
+const { num, read } = require('./read')
 
 const solve = function (board) {
   const size = 9;
   const boxSize = 3;
 
   const findEmpty = (board) => { // Ищем пустые ячейки
-    // console.log('board:', board);
-    for (let r = 0; r < size; r += 1) { // При итерации меняется строка
-      for (let c = 0; c < size; c += 1) { // При итерации сдвигаемся влево по строке
-        // console.log(board);
-        if (board[r][c] === '-') { // Если в ячейке - то, возвращаем эти координаты, они используются на 51 строке в ф-ии solve(), у нас первая пустая ячейка с координатами [0][1]
+    for (let r = 0; r < size; r++) { // При итерации меняется строка
+      for (let c = 0; c < size; c++) { // При итерации сдвигаемся влево по строке
+        if (board[r][c] === '-') { // Если в ячейке - то, возвращаем эти координаты, они используются на 51 строке в ф-ии solveSudoku(), у нас первая пустая ячейка с координатами [0][1]
           return [r, c];
         }
       }
@@ -64,19 +60,19 @@ const solve = function (board) {
       const currNum = i.toString(); // currNum присваивается 1
       const isValid = validate(currNum, currPos, board); // вызываем ф-ию validate с параметрами (num - 1, pos - [0][1] и board) идем на 17 строку
 
-      if (isValid) {
-        const [x, y] = currPos;
-        board[x][y] = currNum; // если isValid вернул true, то присваиваем ячейке, которую получили ф-ии findEmpty, тот num, который прошел проверку isValid
+        if (isValid) {
+            const [x, y] = currPos; // Деструктуризация currPos
+            board[x][y] = currNum; // если isValid вернул true, то присваиваем ячейке, которую получили ф-ии findEmpty, тот num, который прошел проверку isValid
 
-        if (solveSudoku()) { // вызывается solve пока findEmpty не вернет null, то solve заканчивает работу
-          return true;
-        }
-        board[x][y] = '-'; // если число не подходит, то записывается -
+            if (solveSudoku()) { // вызывается solveSudoku пока findEmpty не вернет null, то solveSudoku заканчивает работу
+                return true;
+            }
+            board[x][y] = '-'; // если число не подходит, то записывается -
       }
     }
-    return false; // если solve не может подобрать число, то возвращается false
-  };
-  solveSudoku(); // ф-ия solveSudoku вызывает сначала solve
+    return false; // если solveSudoku не может подобрать число, то возвращается false
+  }
+  solveSudoku(); // ф-ия solve вызывает сначала solveSudoku
 
   for (let i = 0; i < board.length; i++) { // Преобразование элементов в числа
     for (let j = 0; j < board[i].length; j++) {
@@ -86,21 +82,6 @@ const solve = function (board) {
   return board;
 };
 
-const input = [
-  ['1', '-', '5', '8', '-', '2', '-', '-', '-'],
-  ['-', '9', '-', '-', '7', '6', '4', '-', '5'],
-  ['2', '-', '-', '4', '-', '-', '8', '1', '9'],
-  ['-', '1', '9', '-', '-', '7', '3', '-', '6'],
-  ['7', '6', '2', '-', '8', '3', '-', '9', '-'],
-  ['-', '-', '-', '-', '6', '1', '-', '5', '-'],
-  ['-', '-', '7', '6', '-', '-', '-', '3', '-'],
-  ['4', '3', '-', '-', '2', '-', '5', '-', '1'],
-  ['6', '-', '-', '3', '-', '8', '9', '-', '-'],
-];
-// console.table(input);
-// console.table(solve(input))
-// const readFun = read(num)
-
-console.log(solve(read(num)));
+solve(read(num));
 
 module.exports = { solve };

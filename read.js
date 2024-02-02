@@ -21,10 +21,13 @@ function read(num) {
   arrSudLine.push(splitSud.slice(54, 63));
   arrSudLine.push(splitSud.slice(63, 72));
   arrSudLine.push(splitSud.slice(72, 81));
-  // console.table(arrSudLine);
   return arrSudLine;
 }
 
 read(num);
 
-module.exports = { read, num };
+module.exports = {num, read}
+
+
+
+
