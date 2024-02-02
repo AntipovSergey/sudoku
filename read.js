@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const num = process.argv[2];
+const num = process.argv[2] - 1;
 
 function read(num) {
   const readFile = fs.readFileSync('./puzzles.txt', 'utf8');
@@ -18,11 +18,12 @@ function read(num) {
   arrSudLine.push(splitSud.slice(54, 63));
   arrSudLine.push(splitSud.slice(63, 72));
   arrSudLine.push(splitSud.slice(72, 81));
-  console.table(arrSudLine);
   return arrSudLine;
 }
 
 read(num);
+
+module.exports = {num, read}
 
 
 

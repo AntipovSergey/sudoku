@@ -1,4 +1,4 @@
-let readSudoku = require('./read')
+const { num, read } = require('./read')
 
 let solve = function (board) {
   const size = 9;
@@ -7,7 +7,7 @@ let solve = function (board) {
   const findEmpty = (board) => { // Ищем пустые ячейки
     for (let r = 0; r < size; r++) { // При итерации меняется строка
       for (let c = 0; c < size; c++) { // При итерации сдвигаемся влево по строке
-        if (board[r][c] === '-') { // Если в ячейке - то, возвращаем эти координаты, они используются на 51 строке в ф-ии solve(), у нас первая пустая ячейка с координатами [0][1]
+        if (board[r][c] === '-') { // Если в ячейке - то, возвращаем эти координаты, они используются на 51 строке в ф-ии solveSudoku(), у нас первая пустая ячейка с координатами [0][1]
           return [r, c];
         }
       }
@@ -61,18 +61,18 @@ let solve = function (board) {
         const isValid = validate(currNum, currPos, board); // вызываем ф-ию validate с параметрами (num - 1, pos - [0][1] и board) идем на 17 строку
 
         if (isValid) {
-            const [x, y] = currPos;
+            const [x, y] = currPos; // Деструктуризация currPos
             board[x][y] = currNum; // если isValid вернул true, то присваиваем ячейке, которую получили ф-ии findEmpty, тот num, который прошел проверку isValid
 
-            if (solveSudoku()) { // вызывается solve пока findEmpty не вернет null, то solve заканчивает работу
+            if (solveSudoku()) { // вызывается solveSudoku пока findEmpty не вернет null, то solveSudoku заканчивает работу
                 return true;
             }
             board[x][y] = '-'; // если число не подходит, то записывается -
         }
     }
-    return false; // если solve не может подобрать число, то возвращается false
+    return false; // если solveSudoku не может подобрать число, то возвращается false
   }
-  solveSudoku(); // ф-ия solveSudoku вызывает сначала solve
+  solveSudoku(); // ф-ия solve вызывает сначала solveSudoku
 
   for (let i = 0; i < board.length; i++) { // Преобразование элементов в числа
     for (let j = 0; j < board[i].length; j++) {
@@ -82,21 +82,7 @@ let solve = function (board) {
   return board;
 };
 
-let input = [
-    ['1','-','5','8','-','2','-','-','-'],
-    ['-','9','-','-','7','6','4','-','5'],
-    ['2','-','-','4','-','-','8','1','9'],
-    ['-','1','9','-','-','7','3','-','6'],
-    ['7','6','2','-','8','3','-','9','-'],
-    ['-','-','-','-','6','1','-','5','-'],
-    ['-','-','7','6','-','-','-','3','-'],
-    ['4','3','-','-','2','-','5','-','1'],
-    ['6','-','-','3','-','8','9','-','-']
-]
-// console.table(input);
-// console.table(solve(input))
-
-solve(input);
+solve(read(num));
 
 module.exports = {solve}
 

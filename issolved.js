@@ -1,4 +1,5 @@
-const solveSudoku = require('./solve');
+const { solve } = require('./solve');
+const { num, read } = require('./read')
 
 function isSolved(grid) {
   // Проверяем на то, что все элементы числами и находятся в нашем диапазоне
@@ -35,34 +36,7 @@ function isSolved(grid) {
 
   return true;
 }
-// правильно решенная матрица
-// const trueDemoMatrix = [
-//   [1, 2, 3, 4, 5, 6, 7, 8, 9],
-//   [4, 5, 6, 7, 8, 9, 1, 2, 3],
-//   [7, 8, 9, 1, 2, 3, 4, 5, 6],
-//   [2, 3, 1, 5, 6, 4, 8, 9, 7],
-//   [5, 6, 4, 8, 9, 7, 2, 3, 1],
-//   [8, 9, 7, 2, 3, 1, 5, 6, 4],
-//   [3, 1, 2, 6, 4, 5, 9, 7, 8],
-//   [6, 4, 5, 9, 7, 8, 3, 1, 2],
-//   [9, 7, 8, 3, 1, 2, 6, 4, 5],
-// ];
 
-// не правильно решенная матрица
-// const falseDemoMatrix = [
-//   [1, 1, 3, 4, 5, 6, 7, 8, 9],
-//   [4, 5, 6, 7, 8, 9, 1, 2, 3],
-//   [7, 8, 9, 1, 2, 3, 4, 5, 6],
-//   [2, 3, 1, 5, 6, 4, 8, 9, 7],
-//   [5, 6, 4, 8, 9, 7, 2, 3, 1],
-//   [8, 9, 7, 2, 3, 1, 5, 6, 4],
-//   [3, 1, 2, 6, 4, 5, 9, 7, 8],
-//   [6, 4, 5, 9, 7, 8, 3, 1, 2],
-//   [9, 7, 8, 3, 1, 2, 6, 4, 5],
-// ];
-// console.log(isSolved(trueDemoMatrix));// true
-// isSolved(falseDemoMatrix);// false
-
-isSolved(solveSudoku);
+// console.log(isSolved(solve(read(num))));
 
 module.exports = { isSolved };
