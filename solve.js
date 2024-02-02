@@ -1,6 +1,6 @@
 const { num, read } = require('./read')
 
-let solve = function (board) {
+const solve = function (board) {
   const size = 9;
   const boxSize = 3;
 
@@ -20,18 +20,18 @@ let solve = function (board) {
 
     // Проверяем строки
 
-    for (let i = 0; i < size; i++) { 
-        if (board[i][c] === num && i !== r) { // проверяем равно ли [0][1] num, т.е. 1 и не равно 0
-            return false;
-        }
+    for (let i = 0; i < size; i += 1) {
+      if (board[i][c] === num && i !== r) { // проверяем равно ли [0][1] num, т.е. 1 и не равно 0
+        return false;
+      }
     }
 
     // Проверяем столбцы
 
-    for (let i = 0; i < size; i++) {
-        if (board[r][i] === num && i !== c) { // проверяем равно ли [1][0] num, т.е. 1 и не равно 1
-            return false;
-        }
+    for (let i = 0; i < size; i += 1) {
+      if (board[r][i] === num && i !== c) { // проверяем равно ли [1][0] num, т.е. 1 и не равно 1
+        return false;
+      }
     }
 
     // Проверяем блок
@@ -40,25 +40,25 @@ let solve = function (board) {
     const BoxCol = Math.floor(c / boxSize) * boxSize; // присваиваем значение boxCol, в нашем случае c равно 1, это видно на 17 строке, получается 0
 
     for (let i = boxRow; i < boxRow + boxSize; i++) { // если boxRow и boxCol равны 0, то проверяется первый блок, далее идем на 61 строку
-        for (j = BoxCol; j < BoxCol + boxSize; j++) {
-            if (board[i][j] === num && i !== r && j !== c) {
-                return false;
-            }
+      for (j = BoxCol; j < BoxCol + boxSize; j += 1) {
+        if (board[i][j] === num && i !== r && j !== c) {
+          return false;
         }
+      }
     }
     return true;
-  }
+  };
 
   const solveSudoku = () => {
     const currPos = findEmpty(board); // Принимает координаты из ф-ии findEmpty, передалось значение [0][1]
 
     if (currPos === null) { // Если в ячейке не -, то ОК
-        return true;
+      return true;
     }
 
     for (let i = 1; i < size + 1; i++) { // В этом цикле происходит перебор от 1 до 9, которые подставляются в ячейку и проверяются в ф-ии validate
-        const currNum = i.toString(); // currNum присваивается 1
-        const isValid = validate(currNum, currPos, board); // вызываем ф-ию validate с параметрами (num - 1, pos - [0][1] и board) идем на 17 строку
+      const currNum = i.toString(); // currNum присваивается 1
+      const isValid = validate(currNum, currPos, board); // вызываем ф-ию validate с параметрами (num - 1, pos - [0][1] и board) идем на 17 строку
 
         if (isValid) {
             const [x, y] = currPos; // Деструктуризация currPos
@@ -68,7 +68,7 @@ let solve = function (board) {
                 return true;
             }
             board[x][y] = '-'; // если число не подходит, то записывается -
-        }
+      }
     }
     return false; // если solveSudoku не может подобрать число, то возвращается false
   }
@@ -84,7 +84,4 @@ let solve = function (board) {
 
 solve(read(num));
 
-module.exports = {solve}
-
-
-
+module.exports = { solve };

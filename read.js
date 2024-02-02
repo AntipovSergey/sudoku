@@ -5,8 +5,11 @@ const num = process.argv[2] - 1;
 function read(num) {
   const readFile = fs.readFileSync('./puzzles.txt', 'utf8');
   const arr = readFile.split('\n');
+  arr.pop();
+  // console.log(arr);
   const sudokuLine = arr[num];
   const splitSud = sudokuLine.split('');
+  // console.log(splitSud);
   const arrSudLine = [];
 
   arrSudLine.push(splitSud.slice(0, 9));

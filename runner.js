@@ -6,3 +6,5 @@ const { isSolved } = require('./issolved')
 
 console.table(solve(read(num)))
 
+console.log(solve());
+console.log(isSolved());
