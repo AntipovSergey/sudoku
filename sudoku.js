@@ -1,7 +1,15 @@
+const fs = require('fs');
+
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  const puzz = fs.readFileSync('./puzzles.txt', 'utf-8');
+  git pull origin master
+  const firstArr = puzz.trim().split('\n')[0].split('');
+  const newArrSudoku = [];
+  for (let i = 0; i < firstArr.length; i += 9) {
+    newArrSudoku.push(firstArr.slice(i, i + 9));
+  }
+  return newArrSudoku;
+
 }
 
 function solve() {
