@@ -1,12 +1,15 @@
 const fs = require('fs');
 
-const num = process.argv[2];
+const num = process.argv[2] - 1;
 
 function read(num) {
   const readFile = fs.readFileSync('./puzzles.txt', 'utf8');
   const arr = readFile.split('\n');
+  arr.pop();
+  // console.log(arr);
   const sudokuLine = arr[num];
   const splitSud = sudokuLine.split('');
+  // console.log(splitSud);
   const arrSudLine = [];
 
   arrSudLine.push(splitSud.slice(0, 9));
@@ -18,12 +21,10 @@ function read(num) {
   arrSudLine.push(splitSud.slice(54, 63));
   arrSudLine.push(splitSud.slice(63, 72));
   arrSudLine.push(splitSud.slice(72, 81));
-  console.table(arrSudLine);
+  // console.table(arrSudLine);
   return arrSudLine;
 }
 
 read(num);
 
-
-
-
+module.exports = { read, num };
