@@ -1,4 +1,4 @@
-function readSudoku(string) {
+function generateSudokuField(string) {
   const fieldArr = Array(9).fill([]).map(() => Array(9).fill(''));
   for (let i = 0; i < 9; i += 1) {
     for (let j = 0; j < 9; j += 1) {
@@ -8,4 +8,4 @@ function readSudoku(string) {
   return fieldArr;
 }
 
-module.exports = readSudoku;
+module.exports = generateSudokuField;
