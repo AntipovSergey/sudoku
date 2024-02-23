@@ -4,7 +4,7 @@ const read = () => {
     const num = process.argv[2];
     const data = fs.readFileSync('./puzzles.txt', 'utf-8').trim().split('\n');
     
-    const sudoku = data[num].split(''); 
+    const sudoku = data[num].split('')
     
     const arr = [];
     for (let i = 0; i < 81; i += 9) {
@@ -13,6 +13,6 @@ const read = () => {
     return arr;
 }
 
-// console.log(read())
+console.log(read())
 
 module.exports = read;
