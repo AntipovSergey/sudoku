@@ -1,7 +1,7 @@
 const fs = require('fs');
 function read() {
-  const puzzles = fs.readFileSync('puzzles.txt', 'utf-8');
-  return puzzles;
+  const puzzle = fs.readFileSync('puzzles.txt', 'utf-8');
+  return puzzle;
 }
 
 
@@ -21,4 +21,3 @@ function isSolved() {
 
 function prettyBoard() {
 }
-  
