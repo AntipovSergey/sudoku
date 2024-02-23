@@ -24,4 +24,8 @@ function prettyBoard() {
    * Выводит в консоль/терминал судоку.
    * Подумай, как симпатичнее его вывести.
    */
+  const sudokuVue = read().join('\n').replace(/,/g, ' ');
+  return sudokuVue;
 }
+
+module.exports = { read, solve, isSolved, prettyBoard };
