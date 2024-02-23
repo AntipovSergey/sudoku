@@ -1,8 +1,19 @@
-function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+/* eslint-disable no-unused-vars */
+const fs = require("fs");
+
+function read(num) {
+  const arr = fs
+    .readFileSync("./puzzles.txt", "utf-8")
+    .split("\r\n")
+    .map((el) => el.replaceAll("-", 0));
+  const arrNum = arr[num].split("").map(Number);
+  const emptyArr = [];
+  for (let i = 0; i < arrNum.length; i += 9) {
+    emptyArr.push(arrNum.slice(i, i + 9));
+  }
+  return emptyArr;
 }
+console.log(read(1));
 
 function findEmptySpot(sudoku) {
 for (let i = 0; i < sudoku.length; i += 1) {
