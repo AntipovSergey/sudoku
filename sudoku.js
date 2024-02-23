@@ -16,6 +16,14 @@ function isSolved() {
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
    * Возвращает булевое значение — решено это игровое поле или нет.
    */
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      if (sudoku[row][col] === 0) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 function prettyBoard() {
