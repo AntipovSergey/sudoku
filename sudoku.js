@@ -9,36 +9,33 @@ function read() {
     puzzles.push(puzzle);
   }
   const puzzlesWithNull = puzzles.map((elArr) => elArr.map((el) => (el === '-' ? 0 : Number(el))));
+  return puzzlesWithNull
   
 }
 
-console.table(read());
+console.log(read());
 
-const test1 = [
-  [1, 0, 3], [4, 5, 0], [7, 0, 9],
-  // [[2, 1, null], [7, null, 1], [null, 5, 4]],
-  // [[null, 9, 1], [6, null, 3], [7, 2, null]]
-];
 
 function solve(arr) {
-  let kor = []
+
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
-      const x = 
       if (arr[i][j] === 0) {
+        return {x: i, y: j }
       }
     }
   }
-  return kor
+  return false
 }
 
-console.table(solve(test1));
+console.log(solve(read()));
 
-function isSolved() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Возвращает булевое значение — решено это игровое поле или нет.
-   */
+function isSolved(arr, obj) {
+  let resss = []
+  for (let i = 0; i < arr.length; i++) {
+    for ( let j = 0; j < arr[i].length; j++) {
+    }
+  }
 }
 
 function prettyBoard(isSolved) {
