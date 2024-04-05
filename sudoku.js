@@ -9,9 +9,10 @@ function read() {
     puzzles.push(puzzle);
   }
   const puzzlesWithNull = puzzles.map((elArr) => elArr.map((el) => (el === '-' ? 0 : Number(el))));
+  
 }
 
-read();
+console.table(read());
 
 function solve() {
   /**
