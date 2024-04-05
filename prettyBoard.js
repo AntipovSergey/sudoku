@@ -9,6 +9,7 @@ function prettyBoard(arr) {
   console.log(arr.join('\n').replaceAll(',', ' | '));
 }
 prettyBoard(arr);
+
 module.exports = {
   prettyBoard,
 };
