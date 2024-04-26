@@ -1,10 +1,32 @@
 const fs = require('fs');
 
+//  ============= read =============
+// функция читает файл и возвращает один из 15 судоку по переданному номеру puzzleNum
+// например, чтобы прочитать десятое судоку - read(10)
+// возвращает судоку в формате:
+// [
+//   [1, 0, 5, 8, 0, 2, 0, 0, 0],
+//   [0, 5, 8, 0, 2, 0, 0, 0, 0],
+//   [5, 8, 0, 2, 0, 0, 0, 0, 9],
+//   [8, 0, 2, 0, 0, 0, 0, 9, 0],
+//   [0, 2, 0, 0, 0, 0, 9, 0, 0],
+//   [2, 0, 0, 0, 0, 9, 0, 0, 7],
+//   [0, 0, 0, 0, 9, 0, 0, 7, 6],
+//   [0, 0, 0, 9, 0, 0, 7, 6, 4],
+//   [0, 0, 9, 0, 0, 7, 6, 4, 0],
+// ];
+// const sudoku = read(0);
+// console.log(sudoku);
+
 function read(puzzleNum) {
+  // читаем файл 'puzzles.txt'
   const puzzle = fs
     .readFileSync('puzzles.txt', 'utf-8')
+    // заменяем все дефисы на 0, чтобы потом привести все в формиат чисел. Пока что они строки
     .replaceAll('-', 0)
+    // удаляем технические пробелы в начале и конце строки
     .trim()
+    // делим одну огромную строку на 15 судоку по \n
     .split('\n')[puzzleNum];
 
   const rows = [];
@@ -21,6 +43,15 @@ function read(puzzleNum) {
   }
   return rows;
 }
+
+//  ============= isSafe =============
+// вспомогательная функция - проверяет можно ли вставить цифру в ячейку
+// можно если
+// 1) в строке нет такой цифры
+// 2) в столбце нет такой цифры
+// 3) в квадрате 3х3 нет такой цифры
+// const sudoku = read(0);
+// console.log(isSafe(sudoku, 0, 1, 5)); => false
 
 function isSafe(grid, row, col, num) {
   // Check if we find the same num in the similar row , we return false
@@ -47,6 +78,10 @@ function isSafe(grid, row, col, num) {
   }
   return true;
 }
+
+//  ============= solveSudoku =============
+// решиет судоку :)))
+// если можно решить - возвращает заполненную табличку, а если нет - возвращает false
 
 function solveSudoku(puzzle, row, col) {
   let curRow = row;
@@ -97,10 +132,14 @@ function solveSudoku(puzzle, row, col) {
   return false;
 }
 
+//  ============= isSolved =============
+// если судоку решено - возвращает true, а если нет false
 function isSolved(sudoku) {
   return !!sudoku;
 }
 
+//  ============= prettyBoard =============
+// рисует судоку - превращает массив в строку и принтит в консоль
 function prettyBoard(puzzle) {
   return puzzle.map((el) => el.join(' ')).join('\n');
 }
