@@ -18,9 +18,8 @@ function read() {
 }
 
 function solve(puzleDone) {
-  return puzleDone.map((subArr) => subArr.map((num) => (num === 0 ? Math.floor(Math.random() * 9) + 1 : num)));
+  return puzleDone.map((arr) => arr.map((num) => (num === 0 ? Math.floor(Math.random() * 9) + 1 : num)));
 }
-
 
 function isSolved() {
   /**
