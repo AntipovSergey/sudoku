@@ -25,3 +25,11 @@ function prettyBoard() {
    * Подумай, как симпатичнее его вывести.
    */
 }
+
+function findCellValues(sudoku, i, j) {
+  const allPossibleValues = [];
+  allPossibleValues = allPossibleValues.concat(checkRow(sudoku, i, j));
+  allPossibleValues = allPossibleValues.concat(checkCol(sudoku, i, j));
+  allPossibleValues = allPossibleValues.concat(checkCube(sudoku, i, j));
+  return allPossibleValues;
+}
