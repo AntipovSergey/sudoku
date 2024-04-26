@@ -1,14 +1,13 @@
-let arr = [
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--",
+const arr = [
+  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--',
 ];
 
-
 function read(array, num) {
-  const replaceOnZero  = array[num].replaceAll("-", "0").split("");
+  const replaceOnZero = array[num].replaceAll('-', '0').split('');
   const numbersInArray = replaceOnZero.map((a) => +a);
-  let sudokuTable = [];
+  const sudokuTable = [];
   const numbersInArrayLength = numbersInArray.length;
-  for (let i = 0; i < numbersInArrayLength; i+=9) {
+  for (let i = 0; i < numbersInArrayLength; i += 9) {
     const numbersInArrayCopy = [...numbersInArray];
     sudokuTable.push(numbersInArrayCopy.splice(i, 9));
   }
@@ -40,7 +39,7 @@ function prettyBoard() {
 }
 
 function findCellValues(sudoku, row, column) {
-  const allPossibleValues = [];
+  let allPossibleValues = [];
   const values = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   allPossibleValues = allPossibleValues.concat(checkRow(sudoku, row, values));
   allPossibleValues = allPossibleValues.concat(checkColumn(sudoku, column, values));
@@ -147,3 +146,5 @@ function findZeroes(arr) {
   }
   return arrNull;
 }
+
+console.log(findZeroes(testPuzzle));
