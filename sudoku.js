@@ -6,14 +6,14 @@ const fs = require('fs');
 // возвращает судоку в формате:
 // [
 //   [1, 0, 5, 8, 0, 2, 0, 0, 0],
-//   [0, 5, 8, 0, 2, 0, 0, 0, 0],
-//   [5, 8, 0, 2, 0, 0, 0, 0, 9],
-//   [8, 0, 2, 0, 0, 0, 0, 9, 0],
-//   [0, 2, 0, 0, 0, 0, 9, 0, 0],
-//   [2, 0, 0, 0, 0, 9, 0, 0, 7],
-//   [0, 0, 0, 0, 9, 0, 0, 7, 6],
-//   [0, 0, 0, 9, 0, 0, 7, 6, 4],
-//   [0, 0, 9, 0, 0, 7, 6, 4, 0],
+//   [0, 9, 0, 0, 7, 6, 4, 0, 5],
+//   [2, 0, 0, 4, 0, 0, 8, 1, 9],
+//   [0, 1, 9, 0, 0, 7, 3, 0, 6],
+//   [7, 6, 2, 0, 8, 3, 0, 9, 0],
+//   [0, 0, 0, 0, 6, 1, 0, 5, 0],
+//   [0, 0, 7, 6, 0, 0, 0, 3, 0],
+//   [4, 3, 0, 0, 2, 0, 5, 0, 1],
+//   [6, 0, 0, 3, 0, 8, 9, 0, 0],
 // ];
 // const sudoku = read(0);
 // console.log(sudoku);
@@ -30,13 +30,10 @@ function read(puzzleNum) {
     .split('\n')[puzzleNum];
 
   const rows = [];
-  const numRows = 9;
-  const numCols = 9;
-
-  for (let i = 0; i < numRows; i += 1) {
+  for (let i = 0; i < 9; i += 1) {
     rows.push(
       puzzle
-        .slice(i, i + numCols)
+        .slice(i * 9, (i + 1) * 9)
         .split('')
         .map((e) => +e),
     );
@@ -50,8 +47,6 @@ function read(puzzleNum) {
 // 1) в строке нет такой цифры
 // 2) в столбце нет такой цифры
 // 3) в квадрате 3х3 нет такой цифры
-// const sudoku = read(0);
-// console.log(isSafe(sudoku, 0, 1, 5)); => false
 
 function isSafe(grid, row, col, num) {
   // Check if we find the same num in the similar row , we return false
@@ -62,13 +57,14 @@ function isSafe(grid, row, col, num) {
   }
   // Check if we find the same num in the similar column , we return false
   for (let x = 0; x < 9; x += 1) {
-    if (grid[col][x] === num) {
+    if (grid[x][col] === num) {
       return false;
     }
   }
   // Check if we find the same num in the particular 3*3 matrix, we return false
   const startRow = row - (row % 3);
   const startCol = col - (col % 3);
+
   for (let i = 0; i < 3; i += 1) {
     for (let j = 0; j < 3; j += 1) {
       if (grid[i + startRow][j + startCol] === num) {
@@ -80,8 +76,17 @@ function isSafe(grid, row, col, num) {
 }
 
 //  ============= solveSudoku =============
-// решиет судоку :)))
-// если можно решить - возвращает заполненную табличку, а если нет - возвращает false
+// решает судоку - заполняет таблицу - МУТИРУЕТ таблицу, котооруб в нее передали!
+// если можно решить - возвращает true, а если нет - возвращает false
+
+// то есть до нее sudoku  еще не решенное
+//    const sudoku = read(0);
+//    console.log(prettyBoard(sudoku));
+
+// а после вызова этой функции sudoku уже заполненное
+//    solveSudoku(sudoku, 0, 0);
+//    тут решенное судоку
+//    console.log(sudoku);
 
 function solveSudoku(puzzle, row, col) {
   let curRow = row;
@@ -140,12 +145,30 @@ function isSolved(sudoku) {
 
 //  ============= prettyBoard =============
 // рисует судоку - превращает массив в строку и принтит в консоль
+// 1 4 5 8 9 2 6 7 3
+// 8 9 3 1 7 6 4 2 5
+// 2 7 6 4 3 5 8 1 9
+// 5 1 9 2 4 7 3 8 6
+// 7 6 2 5 8 3 1 9 4
+// 3 8 4 9 6 1 7 5 2
+// 9 5 7 6 1 4 2 3 8
+// 4 3 8 7 2 9 5 6 1
+// 6 2 1 3 5 8 9 4 7
+
+// eslint-disable-next-line consistent-return
 function prettyBoard(puzzle) {
-  return puzzle.map((el) => el.join(' ')).join('\n');
+  if (isSolved(puzzle)) {
+    return puzzle.map((el) => el.join(' ')).join('\n');
+  }
 }
 
+// запуск
 const sudoku = read(0);
+console.log('исходное судоку:');
 console.log(prettyBoard(sudoku));
-const sudokuSolved = solveSudoku(sudoku, 0, 0);
-console.log(sudokuSolved);
-console.log(isSolved(sudokuSolved));
+
+// решенное судоку
+console.log('\n');
+console.log('решенное судоку:');
+solveSudoku(sudoku, 0, 0);
+console.log(prettyBoard(sudoku));
