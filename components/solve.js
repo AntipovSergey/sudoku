@@ -1,8 +1,11 @@
+const read = require('./read');
+
 function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+  const array = read();
+
+  return array;
 }
+
+console.log(solve());
 
 module.exports = solve;
