@@ -1,1 +1,1 @@
-const sudoku = require('../sudoku.js')
+const sudoku = require('../sudoku.js');
