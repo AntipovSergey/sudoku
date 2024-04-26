@@ -1,6 +1,4 @@
-let arr = [
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--",
-];
+
 
 
 function read(array, num) {
@@ -15,7 +13,6 @@ function read(array, num) {
   return sudokuTable;
 }
 
-console.table(read(arr, 0));
 
 function solve() {
   /**
@@ -23,6 +20,19 @@ function solve() {
    * Возвращает игровое поле после попытки его решить.
    */
 }
+
+function changeZero(sudoku2, arrNull) {
+  const nullShortValues = findShortest(sudoku, arrNull);
+  const i = nullShortValues[i];
+  const j = nullShortValues[j];
+  const values = nullShortValues[values];
+  if (values.length > 1) {
+    sudoku2[i][j]=values[Math.floor(Math.random()*arr.length)]
+  } else {
+    sudoku2[i][j] === values[0];
+  }
+  return sudoku2;
+  }
 
 function isSolved() {
   /**
@@ -147,3 +157,4 @@ function findZeroes(arr) {
   }
   return arrNull;
 }
+
