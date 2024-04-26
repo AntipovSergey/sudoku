@@ -39,7 +39,7 @@ function solve(puzleDone) {
     return true
 
 }
-
+//solve()
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
