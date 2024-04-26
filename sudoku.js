@@ -21,7 +21,7 @@ function solve(puzleDone) {
   return puzleDone.map((subArr) => subArr.map((num) => (num === 0 ? Math.floor(Math.random() * 9) + 1 : num)));
 }
 
-// solve()
+
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
