@@ -18,13 +18,27 @@ function read() {
 }
 read();
 
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
-}
+function solve(puzleDone) {
+  for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+            if (puzleDone[row][col] === 0) {
+                for (let num = 1; num <= 9; num++) {
+                    if (isValid(puzleDone, row, col, num)) {
+                        puzleDone[row][col] = num;
+                        if (solveSudoku(puzleDone)) {
+                            return true;
+                        }
+                        puzleDone[row][col] = 0; // Backtrack
+                    }
+                }
+                return false; // Не найдено подходящего числа для этой ячейки
+            }
+        }
+    }
+    return true
 
+}
+//solve()
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
