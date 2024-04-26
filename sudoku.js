@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const sudokuTxt = fs.readFileSync('./puzzles.txt', 'utf-8');
+const sudokuTxt = fs.readFileSync('puzzles.txt', 'utf-8');
 
 function read() {
   /**
