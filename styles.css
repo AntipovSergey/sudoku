@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 body {
   height: 100vh;
@@ -34,7 +34,7 @@ input {
   font-size: 20px;
 }
 
-button {
+.solve {
   padding: 20px;
   border: none;
   /* border: solid 3px #f6f5f2; */
@@ -44,13 +44,23 @@ button {
   font-size: 20px;
   font-weight: 800;
 }
+.render {
+  padding: 20px;
+  border: none;
+  /* border: solid 3px #f6f5f2; */
+  border-radius: 5px;
+  background-color: #a3ffd6;
+  color: #7743db;
+  font-size: 20px;
+  font-weight: 800;
+}
 
 .puzzle {
   display: flex;
   flex-direction: column;
-  border: solid 10px #f6f5f2;
+  border: solid 5px #f6f5f2;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .puzzle__row {
@@ -61,13 +71,13 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid 3px #f6f5f2;
+  border: solid 2px #f6f5f2;
   border-radius: 5px;
-  margin: 10px;
-  width: 40px;
-  height: 40px;
+  margin: 8px;
+  width: 30px;
+  height: 30px;
   color: #a3ffd6;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
 }
 .active {
