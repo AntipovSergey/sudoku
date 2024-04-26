@@ -1,8 +1,21 @@
-function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+let arr = [
+  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--",
+];
+
+
+function read(array) {
+  const replaceOnZero  = array.join("").replaceAll("-", "0").split("");
+  const numbersInArray = replaceOnZero.map((a) => +a);
+  let sudokuTable = [];
+  const numbersInArrayLength = numbersInArray.length;
+  for (let i = 0; i < numbersInArrayLength; i+=9) {
+    const numbersInArrayCopy = [...numbersInArray];
+    sudokuTable.push(numbersInArrayCopy.splice(i, 9));
+  }
+  return sudokuTable;
 }
+
+console.table(read(arr));
 
 function solve() {
   /**
