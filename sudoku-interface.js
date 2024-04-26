@@ -214,7 +214,6 @@ function renderSudoku(sudoku) {
     for (let j = 0; j < puzzle[0].length; j += 1) {
       const puzzleLetter = document.createElement('div');
       // puzzleLetter.className =puzzle__letter';
-      console.log(puzzle[i][j]);
       if (puzzle[i][j] === 0) {
         puzzleLetter.className = 'puzzle__letter-empty';
         puzzleLetter.innerText = '';
@@ -254,6 +253,12 @@ buttonSolve.addEventListener('click', (e) => {
   if (sudokuNum) {
     const sudoku = read(+sudokuNum);
     solveSudoku(sudoku, 0, 0);
+    const container = document.querySelector('.container');
+    container.style.background =
+      'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)';
     renderSudoku(sudoku);
+    setTimeout(() => {
+      container.style.background = '#7743db';
+    }, 1000);
   }
 });
