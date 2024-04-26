@@ -1,8 +1,15 @@
+const fs = require ('fs')
+
 function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
+  const dataText = fs.readFileSync('./puzzles.txt', 'utf8').trim().split('\n');
+  const dataLine = dataText[0].split('');
+  const sudokuFirstLine = [];
+  for (let i = 0; i < dataLine.length; i += 9){
+    const line9 = dataLine.slice(i, i + 9)
+    sudokuFirstLine.push(line9)
+  }
 }
+read()
 
 function solve() {
   /**
