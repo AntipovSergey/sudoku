@@ -25,3 +25,44 @@ function prettyBoard() {
    * Подумай, как симпатичнее его вывести.
    */
 }
+
+function findZeros(arr) {
+  const arrNull = [];
+  for (let x = 0; x < arr.length; x++) {
+    for (let y = 0; y < arr[x].length; y++) {
+      if (arr[x][y] === 0) {
+        // const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9] // Создание массива, по которому проверяются возможные значения нуля
+        const posObj = {
+          1: 1,
+          2: 2,
+          3: 3,
+          4: 4,
+          5: 5,
+          6: 6,
+          7: 7,
+          8: 8,
+          9: 9,
+        };
+        // Проверка горизонтальной строки
+        for (let i = 0; i < arr[x].length; i++) {
+          if (arr[x][i] !== 0) {
+            delete posObj[arr[x][i]];
+          }
+        }
+        // Проверка вертикальной строки
+        for (let i = 0; i < arr[i].length; i++) {
+          if (arr[y][i] !== 0) {
+            delete posObj[arr[y][i]];
+          }
+        }
+        // Проверка блока
+        for (let i = 0; i < )
+        const objNull = {
+          i: x,
+          g: y,
+          values: 
+        };
+      }
+    }
+  }
+}
