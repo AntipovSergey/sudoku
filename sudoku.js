@@ -30,7 +30,7 @@ function findCellValues(sudoku, i, j) {
   const allPossibleValues = [];
   const values = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   allPossibleValues = allPossibleValues.concat(checkRow(sudoku, i, values));
-  allPossibleValues = allPossibleValues.concat(checkCol(sudoku, i, j, values));
+  allPossibleValues = allPossibleValues.concat(checkColumn(sudoku, i, j, values));
   allPossibleValues = allPossibleValues.concat(checkCube(sudoku, i, j, values));
   return allPossibleValues;
 }
@@ -42,7 +42,20 @@ function checkRow(sudoku, i, values) {
     if (sudoku[i][k] !== 0) {
       if (result.includes(sudoku[i][k])) {
         const index = result.indexOf(sudoku[i][k]);
-        result.splice(index, 1)
+        result.splice(index, 1);
+      }
+    }
+  }
+  return result;
+}
+
+function checkColumn(sudoku, j, values) {
+  const result = [...values];
+  for (let k = 0; k < sudoku.length; k += 1) {
+    if (sudoku[k][j] !== 0) {
+      if (result.includes(sudoku[k][j])) {
+        const index = result.indexOf(sudoku[k][j]);
+        result.splice(index, 1);
       }
     }
   }
@@ -60,4 +73,5 @@ function checkRow(sudoku, i, values) {
 // ];
 // const values = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-// console.log(checkRow(testPuzzle, 0, values))
+// // console.log(checkRow(testPuzzle, 0, values))
+// console.log(checkColumn(testPuzzle, 0, values))
