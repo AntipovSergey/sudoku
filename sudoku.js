@@ -8,6 +8,7 @@ function read() {
     const line9 = dataLine.slice(i, i + 9)
     sudokuFirstLine.push(line9)
   }
+  console.log(sudokuFirstLine)
 }
 read()
 
