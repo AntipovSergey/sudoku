@@ -14,24 +14,14 @@ function read() {
   }
 
   const puzleDone = puzless.map((elArr) => elArr.map((el) => (el === '-' ? 0 : Number(el))));
-  console.log(puzleDone);
+  return puzleDone;
 }
-read();
 
 function solve(puzleDone) {
-  for (let row = 0; row < 9; row++) {
-        for (let col = 0; col < 9; col++) {
-            if (puzleDone[row][col] === 0) {
-                for (let num = 1; num <= 9; num++) {
-                 
-                return false; // Не найдено подходящего числа для этой ячейки
-            }
-        }
-    }
-    return true
-
+  return puzleDone.map((subArr) => subArr.map((num) => (num === 0 ? Math.floor(Math.random() * 9) + 1 : num)));
 }
-//solve()
+
+// solve()
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -39,10 +29,20 @@ function isSolved() {
    */
 }
 
-function prettyBoard() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Выводит в консоль/терминал судоку.
-   * Подумай, как симпатичнее его вывести.
-   */
+function prettyBoard(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 3 === 0 && i !== 0) {
+      console.log('---- ---- ---- ----');
+    }
+    let newStr = '';
+    for (let j = 0; j < arr[i].length; j++) {
+      if (j % 3 === 0 && j !== 0) {
+        newStr += '|';
+      }
+      newStr += `${arr[i][j]} `;
+    }
+    console.log(newStr);
+  }
 }
+prettyBoard(solve(read()));
+// prettyBoard(read());
