@@ -1,11 +1,10 @@
 const fs = require('fs');
 
-const sudokuTxt = fs.readFileSync('puzzles.txt', 'utf-8');
-
 function read() {
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
    */
+  const sudokuTxt = fs.readFileSync('puzzles.txt', 'utf-8');
   const line = sudokuTxt.trim().split('\n')[0].split('');
   // console.log(line);
   const puzless = [];
