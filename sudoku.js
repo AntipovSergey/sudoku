@@ -1,27 +1,25 @@
-let arr = [
-  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--",
+const arr = [
+  '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--',
 ];
 
-
 function read(array, num) {
-  const replaceOnZero  = array[num].replaceAll("-", "0").split("");
+  const replaceOnZero = array[num].replaceAll('-', '0').split('');
   const numbersInArray = replaceOnZero.map((a) => +a);
-  let sudokuTable = [];
+  const sudokuTable = [];
   const numbersInArrayLength = numbersInArray.length;
-  for (let i = 0; i < numbersInArrayLength; i+=9) {
+  for (let i = 0; i < numbersInArrayLength; i += 9) {
     const numbersInArrayCopy = [...numbersInArray];
     sudokuTable.push(numbersInArrayCopy.splice(i, 9));
   }
   return sudokuTable;
 }
 
-console.table(read(arr, 0));
-
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+function solve(arrNull, sudoku) {
+  let sudoku2 = JSON.parse(JSON.stringify(sudoku));
+  while (findZeroes(sudoku2).length > 0) {
+    sudoku2 = changeZero(sudoku2, arrNull);
+  }
+  return sudoku2;
 }
 
 function isSolved() {
@@ -40,11 +38,11 @@ function prettyBoard() {
 }
 
 function findCellValues(sudoku, row, column) {
-  const allPossibleValues = [];
   const values = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  allPossibleValues = allPossibleValues.concat(checkRow(sudoku, row, values));
-  allPossibleValues = allPossibleValues.concat(checkColumn(sudoku, column, values));
-  allPossibleValues = allPossibleValues.concat(checkCube(sudoku, row, column, values));
+  const rowValue = checkRow(sudoku, row, values);
+  const columnValue = checkColumn(sudoku, column, values);
+  const cubeValue = checkCube(sudoku, row, column, values);
+  const allPossibleValues = rowValue.filter((el) => columnValue.includes(el) && cubeValue.includes(el));
   return allPossibleValues;
 }
 
@@ -123,12 +121,15 @@ const testPuzzle = [
   [6, 1, 2, 0, 0, 0, 4, 0, 7],
   [0, 0, 2, 0, 0, 0, 4, 9, 7],
   [0, 1, 2, 0, 0, 0, 4, 0, 7],
+  [0, 1, 2, 0, 0, 0, 4, 0, 7],
+  [0, 1, 2, 0, 0, 0, 4, 0, 7],
+  [0, 1, 2, 0, 0, 0, 4, 0, 7],
 ];
 const values = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // // console.log(checkRow(testPuzzle, 0, values))
 // console.log(checkColumn(testPuzzle, 0, values))
-console.log(checkCube(testPuzzle, 2, 5, values));
+console.log(findCellValues(testPuzzle, 8, 8, values));
 
 function findZeroes(arr) {
   const arrNull = [];
@@ -146,4 +147,11 @@ function findZeroes(arr) {
     }
   }
   return arrNull;
+}
+
+module.exports = {
+  read,
+  solve,
+  findCellValues,
+  findZeroes
 }
