@@ -25,11 +25,9 @@ function solve(puzleDone) {
         for (let num = 1; num <= 9; num++) {
 
         }
-        return false; // Не найдено подходящего числа для этой ячейки
       }
     }
   }
-  return true;
 }
 // solve()
 function isSolved() {
