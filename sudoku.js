@@ -17,7 +17,28 @@ function solve() {
   const sudoku = read();
   let solved = false;
 
-  function check(row, col, num) {
+  function fill(row, col) {
+    if (row === 9) {
+      solved = true;
+      return;
+    }
+
+    if (sudoku[row][col] !== '-') {
+      if (col === 8) fill(row + 1, 0);
+      else fill(row, col + 1);
+    } else {
+      for (let num = 1; num <= 9; num += 1) {
+        if (isSolved(row, col, num)) {
+          sudoku[row][col] = num;
+          if (col === 8) fill(row + 1, 0);
+          else fill(row, col + 1);
+          if (!solved) sudoku[row][col] = '-';
+        }
+      }
+    }
+  }
+
+  function isSolved(row, col, num) {
     for (let i = 0; i < 9; i += 1) {
       if (sudoku[row][i] === num) return false;
       if (sudoku[i][col] === num) return false;
@@ -33,27 +54,6 @@ function solve() {
     }
 
     return true;
-  }
-
-  function fill(row, col) {
-    if (row === 9) {
-      solved = true;
-      return;
-    }
-
-    if (sudoku[row][col] !== '-') {
-      if (col === 8) fill(row + 1, 0);
-      else fill(row, col + 1);
-    } else {
-      for (let num = 1; num <= 9; num += 1) {
-        if (check(row, col, num)) {
-          sudoku[row][col] = num;
-          if (col === 8) fill(row + 1, 0);
-          else fill(row, col + 1);
-          if (!solved) sudoku[row][col] = '-';
-        }
-      }
-    }
   }
 
   fill(0, 0);
