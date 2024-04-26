@@ -1,11 +1,10 @@
 const fs = require('fs');
 
-const sudokuTxt = fs.readFileSync('./puzzles.txt', 'utf-8');
-
 function read() {
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
    */
+  const sudokuTxt = fs.readFileSync('puzzles.txt', 'utf-8');
   const line = sudokuTxt.trim().split('\n')[0].split('');
   // console.log(line);
   const puzless = [];
@@ -15,16 +14,21 @@ function read() {
   }
 
   const puzleDone = puzless.map((elArr) => elArr.map((el) => (el === '-' ? 0 : Number(el))));
-  console.log(puzleDone);
+  return puzleDone;
 }
-read();
 
 function solve(puzleDone) {
   for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
             if (puzleDone[row][col] === 0) {
-              for (let num = 1; num <= 9; num++) {
-                  
+                for (let num = 1; num <= 9; num++) {
+                    if (isValid(puzleDone, row, col, num)) {
+                        puzleDone[row][col] = num;
+                        if (solveSudoku(puzleDone)) {
+                            return true;
+                        }
+                        puzleDone[row][col] = 0; // Backtrack
+                    }
                 }
                 return false; // Не найдено подходящего числа для этой ячейки
             }
@@ -33,6 +37,7 @@ function solve(puzleDone) {
     return true
 
 }
+//solve()
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
@@ -40,10 +45,20 @@ function isSolved() {
    */
 }
 
-function prettyBoard() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Выводит в консоль/терминал судоку.
-   * Подумай, как симпатичнее его вывести.
-   */
+function prettyBoard(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 3 === 0 && i !== 0) {
+      console.log('---- ---- ---- ----');
+    }
+    let newStr = '';
+    for (let j = 0; j < arr[i].length; j++) {
+      if (j % 3 === 0 && j !== 0) {
+        newStr += '|';
+      }
+      newStr += `${arr[i][j]} `;
+    }
+    console.log(newStr);
+  }
 }
+prettyBoard(solve(read()));
+// prettyBoard(read());
