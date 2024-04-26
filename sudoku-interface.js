@@ -18,7 +18,6 @@
 //   [6, 0, 0, 3, 0, 8, 9, 0, 0],
 // ];
 const sudoku = read(1);
-console.log(sudoku);
 
 function read(puzzleNum) {
   const puzzlesString =
@@ -214,8 +213,15 @@ function renderSudoku(sudoku) {
     puzzleRow.className = 'puzzle__row';
     for (let j = 0; j < puzzle[0].length; j += 1) {
       const puzzleLetter = document.createElement('div');
-      puzzleLetter.className = 'puzzle__letter';
-      puzzleLetter.innerText = puzzle[i][j];
+      // puzzleLetter.className =puzzle__letter';
+      console.log(puzzle[i][j]);
+      if (puzzle[i][j] === 0) {
+        puzzleLetter.className = 'puzzle__letter-empty';
+        puzzleLetter.innerText = '';
+      } else {
+        puzzleLetter.className = 'puzzle__letter-filled';
+        puzzleLetter.innerText = puzzle[i][j];
+      }
       puzzleRow.append(puzzleLetter);
     }
     puzzleDiv.append(puzzleRow);
