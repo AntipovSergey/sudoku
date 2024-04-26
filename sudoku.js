@@ -1,8 +1,6 @@
 const fs = require('fs');
 
 function read() {
-
-
   /**
    * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
    */
@@ -16,23 +14,13 @@ function read() {
   }
 
   const puzleDone = puzless.map((elArr) => elArr.map((el) => (el === '-' ? 0 : Number(el))));
-  console.log(puzleDone);
+  return puzleDone;
 }
-read();
 
 function solve(puzleDone) {
-  for (let row = 0; row < 9; row++) {
-    for (let col = 0; col < 9; col++) {
-      if (puzleDone[row][col] === 0) {
-        for (let num = 1; num <= 9; num++) {
-
-        }
-        return false; // Не найдено подходящего числа для этой ячейки
-      }
-    }
-  }
-  return true;
+  return puzleDone.map((subArr) => subArr.map((num) => (num === 0 ? Math.floor(Math.random() * 9) + 1 : num)));
 }
+
 // solve()
 function isSolved() {
   /**
@@ -42,18 +30,19 @@ function isSolved() {
 }
 
 function prettyBoard(arr) {
-  for (let i = 0; i < isSolved.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (i % 3 === 0 && i !== 0) {
       console.log('---- ---- ---- ----');
     }
     let newStr = '';
-    for (let j = 0; j < isSolved[i].length; j++) {
+    for (let j = 0; j < arr[i].length; j++) {
       if (j % 3 === 0 && j !== 0) {
         newStr += '|';
       }
-      newStr += `${isSolved[i][j]} `;
+      newStr += `${arr[i][j]} `;
     }
     console.log(newStr);
   }
 }
-console.log(prettyBoard())
+prettyBoard(solve(read()));
+// prettyBoard(read());
