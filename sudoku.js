@@ -3,8 +3,8 @@ let arr = [
 ];
 
 
-function read(array) {
-  const replaceOnZero  = array.join("").replaceAll("-", "0").split("");
+function read(array, num) {
+  const replaceOnZero  = array[num].replaceAll("-", "0").split("");
   const numbersInArray = replaceOnZero.map((a) => +a);
   let sudokuTable = [];
   const numbersInArrayLength = numbersInArray.length;
@@ -15,7 +15,7 @@ function read(array) {
   return sudokuTable;
 }
 
-console.table(read(arr));
+console.table(read(arr, 0));
 
 function solve() {
   /**
