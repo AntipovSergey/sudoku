@@ -1,4 +1,6 @@
-const fs = require('fs');
+// const fs = require('fs');
+// import * as fs from 'fs';
+// import { fs } from 'fs';
 
 //  ============= read =============
 // функция читает файл и возвращает один из 15 судоку по переданному номеру puzzleNum
@@ -15,13 +17,29 @@ const fs = require('fs');
 //   [4, 3, 0, 0, 2, 0, 5, 0, 1],
 //   [6, 0, 0, 3, 0, 8, 9, 0, 0],
 // ];
-// const sudoku = read(0);
-// console.log(sudoku);
+const sudoku = read(1);
 
 function read(puzzleNum) {
+  const puzzlesString =
+    '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--\n\
+--5-3--819-285--6-6----4-5---74-283-34976---5--83--49-15--87--2-9----6---26-495-3\n\
+29-5----77-----4----4738-129-2--3-648---5--7-5---672--3-9--4--5----8-7---87--51-9\n\
+-8--2-----4-5--32--2-3-9-466---9---4---64-5-1134-5-7--36---4--24-723-6-----7--45-\n\
+6-873----2-----46-----6482--8---57-19--618--4-31----8-86-2---39-5----1--1--4562--\n\
+---6891--8------2915------84-3----5-2----5----9-24-8-1-847--91-5------6--6-41----\n\
+-3-5--8-45-42---1---8--9---79-8-61-3-----54---5------78-----7-2---7-46--61-3--5--\n\
+-96-4---11---6---45-481-39---795--43-3--8----4-5-23-18-1-63--59-59-7-83---359---7\n\
+----754----------8-8-19----3----1-6--------34----6817-2-4---6-39------2-53-2-----\n\
+3---------5-7-3--8----28-7-7------43-----------39-41-54--3--8--1---4----968---2--\n\
+3-26-9--55--73----------9-----94----------1-9----57-6---85----6--------3-19-82-4-\n\
+-2-5----48-5--------48-9-2------5-73-9-----6-25-9------3-6-18--------4-71----4-9-\n\
+--7--8------2---6-65--79----7----3-5-83---67-2-1----8----71--38-2---5------4--2--\n\
+----------2-65-------18--4--9----6-4-3---57-------------------73------9----------\n\
+---------------------------------------------------------------------------------\n';
   // читаем файл 'puzzles.txt'
-  const puzzle = fs
-    .readFileSync('puzzles.txt', 'utf-8')
+  // const puzzle = fs
+  //   .readFileSync('puzzles.txt', 'utf-8')
+  const puzzle = puzzlesString
     // заменяем все дефисы на 0, чтобы потом привести все в формиат чисел. Пока что они строки
     .replaceAll('-', 0)
     // удаляем технические пробелы в начале и конце строки
@@ -163,12 +181,84 @@ function prettyBoard(puzzle) {
 }
 
 // запуск
-const sudoku = read(0);
-console.log('исходное судоку:');
-console.log(prettyBoard(sudoku));
+// const sudoku = read(0);
+// console.log('исходное судоку:');
+// console.log(prettyBoard(sudoku));
 
-// решенное судоку
-console.log('\n');
-console.log('решенное судоку:');
-solveSudoku(sudoku, 0, 0);
-console.log(prettyBoard(sudoku));
+// // решенное судоку
+// console.log('\n');
+// console.log('решенное судоку:');
+// solveSudoku(sudoku, 0, 0);
+// console.log(prettyBoard(sudoku));
+
+// read a sudoku
+
+function renderSudoku(sudoku) {
+  // render the puzzle
+  const container = document.querySelector('.container');
+  const puzzle = sudoku;
+
+  let puzzleDiv = document.querySelector('.puzzle');
+  if (puzzleDiv) {
+    puzzleDiv.remove();
+    puzzleDiv = document.createElement('div');
+    puzzleDiv.className = 'puzzle';
+  } else {
+    puzzleDiv = document.createElement('div');
+    puzzleDiv.className = 'puzzle';
+  }
+
+  for (let i = 0; i < puzzle.length; i += 1) {
+    const puzzleRow = document.createElement('div');
+    puzzleRow.className = 'puzzle__row';
+    for (let j = 0; j < puzzle[0].length; j += 1) {
+      const puzzleLetter = document.createElement('div');
+      // puzzleLetter.className =puzzle__letter';
+      if (puzzle[i][j] === 0) {
+        puzzleLetter.className = 'puzzle__letter-empty';
+        puzzleLetter.innerText = '';
+      } else {
+        puzzleLetter.className = 'puzzle__letter-filled';
+        puzzleLetter.innerText = puzzle[i][j];
+      }
+      puzzleRow.append(puzzleLetter);
+    }
+    puzzleDiv.append(puzzleRow);
+  }
+
+  container.append(puzzleDiv);
+  return sudoku;
+}
+
+// render a sudoku
+const buttonRender = document.querySelector('.render');
+
+buttonRender.addEventListener('click', (e) => {
+  e.preventDefault();
+  const input = document.querySelector('input');
+  const sudokuNum = input.value;
+  if (sudokuNum) {
+    const sudoku = read(+sudokuNum);
+    renderSudoku(sudoku);
+  }
+});
+
+// solve a sudoku
+const buttonSolve = document.querySelector('.solve');
+buttonSolve.addEventListener('click', (e) => {
+  e.preventDefault();
+  const input = document.querySelector('input');
+  const sudokuNum = input.value;
+
+  if (sudokuNum) {
+    const sudoku = read(+sudokuNum);
+    solveSudoku(sudoku, 0, 0);
+    const container = document.querySelector('.container');
+    container.style.background =
+      'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)';
+    renderSudoku(sudoku);
+    setTimeout(() => {
+      container.style.background = '#7743db';
+    }, 1000);
+  }
+});
