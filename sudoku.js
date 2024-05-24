@@ -10,8 +10,17 @@ const read = (n) => {
   }
   return game
 }
+console.table(read())
 
-function solve() {
+function solve(game) {
+  game = read();
+  for (let i = 0; i < game.length; i++) {
+    for (let y = 0; y < game[i].length; i++) {
+      if (game[i][y] !==  && game[i][y] === '-') {
+        
+      }
+    }
+  }
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции read.
    * Возвращает игровое поле после попытки его решить.
@@ -19,6 +28,7 @@ function solve() {
 
 }
 
+console.log(solve())
 function isSolved() {
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
