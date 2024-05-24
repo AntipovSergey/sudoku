@@ -24,18 +24,26 @@ const findXY = () => {
 };
 console.log(findXY());
 
+const checkHorizon =(game, x, i) =>{
+  game = read()
+  for (let y = 0; y < game[x].length; y++){
+    if(!game[x].includes(i)) {
+      return true
+    }
+  }
+} 
+
 
 function solve(game) {
   const coordinates = findXY();
-
-  for (let i = 1; i <= 9; i++) {
+  // for (let i = 1; i <= 9; i++) {
     // if (
     // checkHorizon(game, x, i) -> true/false
     // game[x][i] === i -> return false
     // checkVertical()
     // checkBox()
     // )
-  }
+  // }
 }
 /**
    * Принимает игровое поле в том формате, в котором его вернули из функции read.
