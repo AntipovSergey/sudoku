@@ -39,9 +39,16 @@ const randomMatrix = generateRandomMatrix(m, n, minValue, maxValue);
 console.table(randomMatrix);
 
 const checkEmpty = (board) => {
+  const res = [];
   for (let i = 0; i < board.length; i += 1) {
-    for (let j = 0; j < board[i].length; i)
+    for (let j = 0; j < board[i].length; i) {
+      if (j === 0) {
+        res.push([i, j]);
+      }
     }
+  }
+  if (res.length <= 0) {
+    return true;
   }
 };
 console.log(checkEmpty(randomMatrix));
