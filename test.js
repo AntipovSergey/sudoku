@@ -9,3 +9,17 @@ const matrix = [
   [7, 82, 56, 91, 39, 54, 68, 65, 19],
   [52, 23, 31, 74, 62, 49, 88, 98, 14],
 ];
+// console.table(matrix)
+
+function pushConsole(matrix){
+      let row = 0
+      for(let j = 0; j < 9; j++){
+        if(j % 3 === 0 && j !== 0){
+       row += '| '
+        }
+        row += matrix[j] + ' '
+      }return row
+      // console.table(matrix)
+    }
+
+console.log(pushConsole(matrix))
