@@ -9,8 +9,8 @@ const matrix = [
   [7, 82, 56, 91, 39, 54, 68, 65, 19],
   [52, 23, 31, 74, 62, 49, 88, 98, 14],
 ];
+// console.table(matrix)
 
-// console.table(matrix);
 
 const dateGetEmty = [
   [0, 4],

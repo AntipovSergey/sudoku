@@ -9,4 +9,5 @@ const getEmpty = (martix) => {
   return arrLocation.length ? arrLocation : false;
 };
 
+
 module.exports = { getEmpty };
