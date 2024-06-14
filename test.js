@@ -25,3 +25,4 @@ const CheckCool = (arr, num) => {
 };
 
 CheckCool(dateGetEmty, 9)
+
