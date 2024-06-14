@@ -11,19 +11,6 @@ const matrix = [
 ];
 // console.table(matrix)
 
-function pushConsole(matrix){
-      let row = 0
-      for(let j = 0; j < 9; j++){
-        if(j % 3 === 0 && j !== 0){
-       row += '| '
-        }
-        row += matrix[j] + ' '
-      }return row
-      // console.table(matrix)
-    }
-
-console.log(pushConsole(matrix))
-// console.table(matrix);
 
 const dateGetEmty = [
   [0, 4],
