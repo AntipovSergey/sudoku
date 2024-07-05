@@ -21,7 +21,6 @@ function checkColumnUniqueElements(board, column, number) {
   for (let row = 0; row < board.length; row++) {
     uniqueColumn.push(board[row][column]);
   }
-  console.log(uniqueColumn);
   if (uniqueColumn.find((item) => item === number) === undefined) {
     return true;
   }
@@ -85,7 +84,9 @@ function solve(board) {
             checkValidBoxes(board, i, j, String(fitNumber))
           ) {
             board[i][j] = String(fitNumber);
-            if (solve(board)) return board;
+            if (solve(board)) {
+              return board;
+            }
           } else {
             board[i][j] = "-";
           }
@@ -98,4 +99,8 @@ function solve(board) {
 const board = prettyBoard(read()[0]);
 
 // console.log(checkValidBoxes(board, 0, 0, "9"));
-console.log(solve(board));
+const solved = solve(board);
+
+for (let index = 0; index < solved.length; index++) {
+  console.log(solved[index].join(""));
+}
