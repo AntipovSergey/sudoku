@@ -5,46 +5,56 @@ function read() {
 }
 
 function generateNumber() {
-  return 1 + Math.floor(Math.random() * 9);
+  return String(1 + Math.floor(Math.random() * 9));
 }
-
-function solve() {
-  const board = prettyBoard(read()[0]);
-  const ifSolved = isSolved(board);
-
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board.length; j++) {
-      if (board[i][j] === "-") {
-        const newElement = generateNumber();
-        board[i][j] = String(newElement);
-      }
+function checkRowUniqueElements(board, row, number) {
+  for (let column = 0; column < board.length; column++) {
+    if (board[row][column] === number) {
+      return false;
     }
-    return;
   }
-  console.log(board);
+  return true;
 }
-solve();
+
+function checkColumnUniqueElements(board, column, number) {
+  const uniqueColumn = [];
+  for (let row = 0; row < board.length; row++) {
+    uniqueColumn.push(board[row][column]);
+  }
+  console.log(uniqueColumn);
+  if (uniqueColumn.find((item) => item === number) === undefined) {
+    return true;
+  }
+  return false;
+}
+
+function checkValidBoxes(board, row, column, number) {
+  const boxArray = [];
+
+  for (let i = 3 * Math.floor(row / 3); i < 3 * Math.floor(row / 3) + 3; i++) {
+    for (
+      let j = 3 * Math.floor(column / 3);
+      j < 3 * Math.floor(column / 3) + 3;
+      j++
+    ) {
+      boxArray.push(board[i][j]);
+    }
+  }
+  if (boxArray.find((item) => item === number) === undefined) {
+    return true;
+  }
+  return false;
+}
 
 function isSolved(board) {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === "-" || board[j][i] === "-") {
+      if (board[i][j] === "-") {
         return false;
       }
     }
   }
-}
-
-function checkRow(boardRow, number) {
-  return boardRow.find((item) => number !== item);
-}
-
-function checkColumn(board, i, number) {
-  const uniqueColumn = [];
-  for (let j = 0; j < board.length; j++) {
-    uniqueColumn.push(board[j][i]);
-  }
-  return board.find((item) => item !== number);
+  return true;
 }
 
 function prettyBoard(board) {
