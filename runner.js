@@ -1,1 +1,3 @@
-// Используйте для решения судоку необходимые функции из файла sudoku.js
+const { getSudocu, checkSqure } = require("./sudoku");
+const sudoc = getSudocu();
+console.log(checkSqure(1, 2, sudoc));
