@@ -1,0 +1,21 @@
+function isCheck(result) {
+  let index;
+  for (let i = 0; i < result.length; i++) {
+    for (let j = 0; j < result.length; j++) {
+      if (result[i][j] === "-") {
+        index = [i, j];
+        return index;
+      }
+    }
+  }
+}
+
+function checkLine(sudocu, i) {
+  let result = [];
+  for (let l = 0; l < 9; l++) {
+    if (sudocu[i][l] !== "-") {
+      result.push(sudocu[l][i]);
+    }
+  }
+  return result;
+}
