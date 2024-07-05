@@ -59,3 +59,33 @@ function prettyBoard(board) {
   }
   return newBoard;
 }
+
+function solve(board) {
+  if (isSolved(board)) {
+    return board;
+  }
+
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      if (board[i][j] === "-") {
+        for (let fitNumber = 1; fitNumber < 10; fitNumber++) {
+          if (
+            checkRowUniqueElements(board, i, String(fitNumber)) &&
+            checkColumnUniqueElements(board, j, String(fitNumber)) &&
+            checkValidBoxes(board, i, j, String(fitNumber))
+          ) {
+            board[i][j] = String(fitNumber);
+            if (solve(board)) return board;
+          } else {
+            board[i][j] = "-";
+          }
+        }
+        return false;
+      }
+    }
+  }
+}
+const board = prettyBoard(read()[0]);
+
+// console.log(checkValidBoxes(board, 0, 0, "9"));
+console.log(solve(board));
