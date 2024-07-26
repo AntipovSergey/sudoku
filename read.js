@@ -12,7 +12,6 @@ function createAllBoards() {
     allBoards.push(board);
 
   }
-  console.table(allBoards[0])
   return allBoards;
   
 }
