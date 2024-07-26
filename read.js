@@ -10,9 +10,14 @@ function createAllBoards() {
       board.push(allBoard[i].split("").slice(j, j + 9));
     }
     allBoards.push(board);
+
   }
+  console.table(allBoards[0])
   return allBoards;
+  
 }
+
 createAllBoards();
+
 
 module.exports = createAllBoards;
